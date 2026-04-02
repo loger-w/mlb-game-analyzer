@@ -1,0 +1,583 @@
+---
+name: mlb-game-analyzer
+description: Use when the user asks about MLB game predictions, matchup analysis, betting lines, score predictions, pitcher duels, or "who will win" questions for any specific MLB game — including queries like "analyze today's Yankees game" or "Dodgers vs Padres"
+---
+
+# MLB Game Analyzer — 單場對決分析與比分預測
+
+分析 MLB 例行賽或季後賽的單場對決，使用進階數據、投打分析、場地天氣、
+傷兵手術評估、牛棚消耗、球員年齡退化評估、賽季階段修正，輸出勝率預測與比分預測。
+
+> **搜尋語言原則**：所有 web search 查詢**優先使用英文**。
+> MLB 球員數據的英文資料（Statcast、FanGraphs、Baseball Reference、Baseball Savant）
+> 遠比中文豐富且更新更快。
+> - **球員姓名**：一律使用英文全名搜尋（如 "Gerrit Cole"，非 "乙乙"）
+> - **數據查詢**：使用英文關鍵字（如 "ERA FIP xERA"、"box score"、"batting splits"）
+> - **新聞與傷兵**：英文搜尋為主，可輔以中文搜尋補充
+> - 若用戶使用中文溝通，使用**繁體中文**輸出
+> - 請一定要使用真實存在的資料，切記不要臆測或幻想，也不要使用過舊的訓練資料集
+
+---
+
+## 分析模式
+
+使用者可選擇兩種模式。若未指定，預設使用**完整模式**。
+
+| 模式 | 觸發方式 | 執行範圍 | 適用場景 |
+|------|---------|---------|---------|
+| **快速模式** | 使用者說「快速分析」「簡單看一下」 | Phase 1 + 簡化 Phase 2（僅先發投手 + 盤口） + Phase 4 | 快速決策、時間有限 |
+| **完整模式** | 預設，或使用者說「完整分析」「詳細分析」 | Phase 1 → 2 → 3 → 4 完整執行 | 深度分析、重要比賽 |
+
+---
+
+## MLB 賽制規則速查（適用 2025-2026 賽季）
+
+### 例行賽基本規則
+- 每隊 162 場例行賽（81 主場 + 81 客場）
+- 全面使用 DH（指定打擊）
+- Pitch Clock：空壘 15 秒 / 有跑者 18 秒 / 打者需在 8 秒前就位
+- 三打者最低規則（Three-Batter Minimum）
+- 防守布陣限制（Shift Limits）：內野手左右各至少 2 人
+- 壘包加大（18 吋 → 減少觸殺受傷）
+- 延長賽幽靈跑者（Ghost Runner）：第 10 局起二壘放跑者（例行賽適用）
+
+### 季後賽規則差異
+- **無幽靈跑者**：季後賽延長賽不使用幽靈跑者
+- Wild Card Series：3 戰 2 勝（高種子全主場）
+- Division Series：5 戰 3 勝
+- Championship Series：7 戰 4 勝
+- World Series：7 戰 4 勝
+- 季後賽無用球數上限（與 WBC 不同），先發可完投
+
+---
+
+## Phase 1: 資料收集（API 查詢）
+
+> **腳本偵測**：檢查 `~/.claude/skills/mlb-game-analyzer/scripts/fetch_game_data.py` 是否存在。
+> 🐍 **有腳本** → `python3 scripts/fetch_game_data.py --date {date} --team {team}`，解析 JSON 輸出
+> 📡 **無腳本** → 使用 WebFetch 呼叫 MLB Stats API（以下流程）
+
+> **核心理念**：一次性透過 MLB Stats API 取得所有結構化資料，減少後續搜尋需求。
+
+### 1.1 日期解析
+
+使用者可能的輸入格式（皆需轉換為 `YYYY-MM-DD`）：
+- 「4/1」「4月1日」→ 補上當前年份
+- 「明天」「後天」→ 根據今天日期計算
+- 「今天」→ 使用當天日期
+- 「2026-04-01」→ 直接使用
+
+> ⚠️ MLB 賽程使用**美國時間**。若使用者在亞洲時區，提醒使用者確認是指美國時間的日期。
+> 例如台灣 4/2 早上的比賽，實際是美國時間 4/1 的比賽。
+
+### 1.2 隊名比對（中文 / 簡稱 → 英文全名）
+
+| 中文常用名 | 英文全名 | 縮寫 | teamId |
+|-----------|---------|------|--------|
+| 洋基 | New York Yankees | NYY | 147 |
+| 大都會 | New York Mets | NYM | 121 |
+| 紅襪 | Boston Red Sox | BOS | 111 |
+| 道奇 | Los Angeles Dodgers | LAD | 119 |
+| 天使 | Los Angeles Angels | LAA | 108 |
+| 太空人 | Houston Astros | HOU | 117 |
+| 勇士 | Atlanta Braves | ATL | 144 |
+| 費城人 | Philadelphia Phillies | PHI | 143 |
+| 教士 | San Diego Padres | SD | 135 |
+| 巨人 | San Francisco Giants | SF | 137 |
+| 小熊 | Chicago Cubs | CHC | 112 |
+| 白襪 | Chicago White Sox | CWS | 145 |
+| 紅人 | Cincinnati Reds | CIN | 113 |
+| 紅雀 | St. Louis Cardinals | STL | 138 |
+| 釀酒人 | Milwaukee Brewers | MIL | 158 |
+| 海盜 | Pittsburgh Pirates | PIT | 134 |
+| 響尾蛇 | Arizona Diamondbacks | ARI | 109 |
+| 落磯 | Colorado Rockies | COL | 115 |
+| 金鶯 | Baltimore Orioles | BAL | 110 |
+| 光芒 | Tampa Bay Rays | TB | 139 |
+| 藍鳥 | Toronto Blue Jays | TOR | 141 |
+| 雙城 | Minnesota Twins | MIN | 142 |
+| 皇家 | Kansas City Royals | KC | 118 |
+| 老虎 | Detroit Tigers | DET | 116 |
+| 守護者 | Cleveland Guardians | CLE | 114 |
+| 水手 | Seattle Mariners | SEA | 136 |
+| 運動家 | Athletics | OAK | 133 |
+| 遊騎兵 | Texas Rangers | TEX | 140 |
+| 馬林魚 | Miami Marlins | MIA | 146 |
+| 國民 | Washington Nationals | WSH | 120 |
+
+> 比對方式：使用者輸入的隊名（中文、英文、縮寫皆可）與 API 回傳的 `team.name` 做模糊比對。
+> 若不確定 teamId，也可從 API 回傳中取得（`teams.home.team.id` / `teams.away.team.id`）。
+
+### 1.3 API 呼叫（同時發送兩個請求）
+
+**請求 A — 當日賽程與先發投手**：
+
+```
+https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={YYYY-MM-DD}&hydrate=probablePitcher(note)
+```
+
+> **重要**：必須加上 `hydrate=probablePitcher(note)` 才能取得先發投手資料。
+
+**請求 B & C — 雙方近 10 場戰績**（兩隊同時查詢）：
+
+```
+https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId={球隊ID}&startDate={比賽日期-20天}&endDate={比賽前一天}&hydrate=linescore
+```
+
+> 三個 API 請求應**同時發送**（使用平行 WebFetch 呼叫）。
+
+### 1.4 從 API 提取資料
+
+**從請求 A 提取**：
+
+| 欄位 | API 路徑 |
+|------|---------|
+| 比賽 ID | `games[].gamePk` |
+| 比賽時間 | `games[].gameDate`（UTC → 當地時間）|
+| 比賽狀態 | `games[].status.abstractGameState`（Preview / Live / Final）|
+| 主隊 / 客隊 | `games[].teams.home.team.name` / `games[].teams.away.team.name` |
+| 先發投手 | `games[].teams.{home/away}.probablePitcher.fullName` |
+| 球場 | `games[].venue.name` |
+
+**從請求 B & C 提取**（每隊各取最近 10 場 `Final` 狀態的比賽）：
+
+| 欄位 | API 路徑 |
+|------|---------|
+| 日期 | `games[].gameDate` |
+| 主客場 | 該隊在 `home` 或 `away` |
+| 比分 | `teams.{home/away}.score` |
+| 勝敗 | `teams.{home/away}.isWinner` |
+
+> ⚠️ 僅計算狀態為 **Final** 的比賽，忽略 Scheduled / Preview / Postponed。
+
+### 1.5 資料來源優先順序（先發投手）
+
+| 優先順序 | 來源 | 說明 |
+|---------|------|------|
+| 🥇 **最高** | MLB Stats API（`probablePitcher`）| 官方資料，最可靠 |
+| 🥈 次高 | MLB.com / 球隊官網公告 | 官方管道 |
+| 🥉 第三 | ESPN / CBS Sports / FanGraphs | 可能有延遲或錯誤 |
+| ⚠️ 最低 | 網頁抓取（WebFetch recap 頁面）| 動態載入內容可能不完整 |
+
+> **切勿因第三方網頁資料而推翻 API 結果。** 若仍有疑義，應向使用者確認。
+
+### 1.6 輸出確認 + 資料完整性檢查
+
+向使用者確認找到的比賽資訊：
+
+```
+📅 {日期} 找到 {隊伍} 的比賽：
+🏟️ {客隊} @ {主隊}（{球場名}）
+⚾ 先發投手：{客隊投手} vs {主隊投手}
+🕐 比賽時間：{當地時間}
+📊 比賽狀態：{Preview / Live / Final}
+
+📊 {主隊} 近 10 場：{W}-{L}（場均得分 {RS/G} | 場均失分 {RA/G}）
+📊 {客隊} 近 10 場：{W}-{L}（場均得分 {RS/G} | 場均失分 {RA/G}）
+
+--- 資料完整性檢查 ---
+✅/⚠️ 先發投手：已確認 / TBD（待公布）
+✅/⚠️ 近期戰績：已取得 {N} 場 / 不足 10 場（開季初期）
+📋 待搜尋：先發投手進階數據、傷兵、天氣、盤口...
+```
+
+> - **多場比賽**（Doubleheader）→ 列出所有場次供使用者選擇
+> - **該日無比賽** → 告知使用者並建議查詢前後日期
+> - **先發投手 TBD** → Phase 2 改用網路搜尋確認
+> - **比賽狀態 Final** → 詢問使用者是否要做賽後分析或查看比分
+> - **開季初期**（不足 10 場）→ 標註實際場數，Phase 3 權重調整
+
+### 1.7 同系列賽前場比分驗證
+
+> ⚠️ **若本場為系列賽第 2 場或第 3 場，必須用 API 拉取前場實際比分。**
+> **嚴禁依賴 WebSearch 搜尋摘要來判斷前場比分。**
+
+```
+https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={前一場日期}&teamId={球隊ID}&hydrate=linescore
+```
+
+> **教訓**：曾因搜尋摘要誤將「水手再見勝 2-1」套用為前場結果，
+> 但實際前場為洋基 5-0 完封水手，導致錯估系列賽動能與打線評價。
+
+確認後進入 Phase 2。
+
+---
+
+## Phase 2: 平行搜尋（WebSearch + WebFetch）
+
+> **腳本偵測**：檢查 scripts/ 目錄下對應腳本是否存在。
+> 🐍 **有腳本** → 平行執行：
+>   - `python3 pitcher_stats.py --name "{pitcher}" --year {year}`（任務 A/B）
+>   - `python3 lineup_analyzer.py --team {team} --year {year}`（任務 D）
+>   - 盤口需手動輸入 → `python3 odds_analyzer.py --home-ml {ml} ...`（任務 F）
+> 📡 **無腳本** → 平行 Agent 派發 WebSearch（以下流程）
+
+> **核心理念**：Phase 1 的 API 資料已就緒，Phase 2 的所有搜尋任務**互相獨立**，
+> 應使用 **Agent 工具平行派發**，大幅縮短分析時間。
+
+### 平行任務分配
+
+同時啟動以下 **6 組搜尋任務**（快速模式只啟動任務 A + F）：
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Phase 2: 平行搜尋                      │
+│                                                          │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                │
+│  │ A. 主隊   │ │ B. 客隊   │ │ C. 傷兵   │                │
+│  │ 先發投手  │ │ 先發投手  │ │ 名單     │                │
+│  │ 進階數據  │ │ 進階數據  │ │ (雙方)   │                │
+│  └──────────┘ └──────────┘ └──────────┘                │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                │
+│  │ D. 打線   │ │ E. 球場   │ │ F. 盤口   │                │
+│  │ 分析     │ │ 天氣     │ │ 賠率     │                │
+│  │ (雙方)   │ │ Park Fac │ │          │                │
+│  └──────────┘ └──────────┘ └──────────┘                │
+│                                                          │
+│  全部完成後 → Phase 3                                     │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 任務 A & B: 先發投手進階數據
+
+Search queries（英文優先）：
+- `"[Pitcher name] stats [year] FanGraphs"`
+- `"[Pitcher name] Statcast Baseball Savant [year]"`
+- `"[Pitcher name] game log [year]"`
+- 若 TBD：`"[Team] probable pitcher [date]"`
+
+**核心指標（必查）**：
+
+| 指標 | 說明 | 來源 |
+|------|------|------|
+| ERA / FIP / xERA / xFIP / SIERA | 投球品質 | FanGraphs / Savant |
+| K% / BB% / K-BB% | 三振保送（K-BB% 預測力最高）| FanGraphs |
+| WHIP / HR/9 / GB% | 被上壘與球質 | FanGraphs |
+| Hard Hit% / Barrel% | 被擊球品質 | Statcast |
+| 球種組合、使用率、Run Value | 球種分析 | Baseball Savant |
+| 球速（均速/最高）/ Stuff+ | 球種品質 | Statcast / FanGraphs |
+
+**投手數據使用權重**（基於 FanGraphs 2025 研究）：
+
+| 資料來源 | 角色 | 說明 |
+|---------|------|------|
+| **本季全部數據** | 主要基準 | ERA/FIP/K-BB% 作為核心評估 |
+| **近 30 天趨勢** | 方向性補充 | 僅用於識別**結構性改變**（球速跳升/下滑、新球種）|
+| **去年數據** | 回歸參考 | 本季樣本有限時向長期平均回歸 |
+| **投影系統** | 交叉驗證 | ZiPS/Steamer 當前投影 |
+
+> ⚠️ 近 3 場 game log 是為了識別結構性變化，不是高權重地納入預測。
+> 王牌也會被打爆，這是正常變異，不應過度反應。
+
+**投手實力分級**：
+
+| 等級 | 定義 | 參考標準 |
+|------|------|---------|
+| 🔴 **Elite Ace** | 當代頂尖 | ERA < 2.50 + K-BB% > 20% |
+| 🟠 **Strong Ace** | 全明星級 | ERA 2.50-3.20 + ERA+ 130-170 |
+| 🟡 **Solid Starter** | MLB 穩定先發 | ERA 3.20-4.20 + ERA+ 100-130 |
+| 🟢 **Back-end Starter** | 中後段先發 | ERA 4.20-5.00 + ERA+ 80-100 |
+| ⚪ **Below Average** | MLB 邊緣 | ERA > 5.00 或 ERA+ < 80 |
+
+**同時蒐集**：投球手 R/L、年齡、休息天數、近 5 場用球數。
+
+### 任務 C: 傷兵名單（雙方）
+
+Search queries:
+- `"[Team] injury report today"`
+- `"[Team] IL injured list [month year]"`
+
+狀態標記：
+- 🚨 **IL**：10-day / 15-day / 60-day IL
+- ⚠️ **Day-to-day**：狀態不明
+- 🔧 **手術復出**：TJ Surgery / 肩部手術等（見 Phase 3 條件修正）
+- 😓 **低迷** / 💪 **火熱**
+
+**影響度過濾（必須執行）**：
+
+搜尋到傷兵後，按以下標準過濾，僅將「高影響」和「中高影響」納入分析：
+
+| 受傷球員角色 | 影響度 | 處理 |
+|------------|--------|------|
+| 今日先發投手帶傷上陣 | 🔴 高 | 重點分析，搜尋近期數據變化 |
+| 今日打線中的主力打者缺陣 | 🔴 高 | 評估替補 vs 主力的數據落差 |
+| 牛棚核心（Closer/Setup）不可用 | 🟠 中高 | 評估替代方案品質 |
+| 輪值中其他先發投手受傷 | ⚪ 無影響 | **不納入本場分析** |
+| 板凳/替補球員 | ⚪ 低 | **不納入本場分析** |
+
+> ⚠️ 受傷的輪值先發投手不影響今天這場比賽。不要因為「某王牌在 IL」就對該隊扣分。
+
+### 任務 D: 打線分析（雙方）
+
+Search queries:
+- `"[Team] lineup today [date]"`
+- `"[Team] batting order [date]"`
+
+對打線核心（1-6 棒）查詢：wRC+、OPS+、wOBA、OBP、SLG、ISO、K%/BB%、Hard Hit%、Barrel%、BABIP。
+
+**打線評級**：🔴 Elite / 🟠 Strong / 🟡 Average / 🟢 Weak
+**近期熱度**（近 7 天）：💪 Hot / ⚖️ Normal / 😓 Cold
+**串聯分析**：1-3 棒上壘能力、4-5 棒清壘能力、弱點位置、左右手組成。
+
+同時查詢投打對決（Platoon splits、BvP 歷史對決、球種對決）。
+
+### 任務 E: 球場因素與天氣
+
+Search:
+- `"[Stadium name] park factor [year]"`
+- `"[City] weather [date]"`
+
+**Park Factor 使用方式**（基於 FanGraphs 方法論）：
+以 100 為聯盟平均。**修正公式**：預期得分 × (Park Factor / 100)。
+
+**天氣影響**（Baseball Savant 研究）：每 10°F 影響約 1% 球飛距離；每 800 英尺海拔增加 1% 距離。
+
+### 任務 F: 博弈市場賠率
+
+Search:
+- `"[Team A] vs [Team B] odds [date]"`
+- `"[Team A] [Team B] moneyline run line over under"`
+
+取得 Moneyline、Run Line（-1.5）、Over/Under 盤口與隱含勝率。
+
+---
+
+## Phase 3: 綜合分析與修正
+
+> **核心理念**：基於 Phase 1-2 的資料，進行交叉分析與條件修正。
+> 此階段為**順序執行**，因為後續修正依賴前面的基礎判斷。
+
+### 3.1 投打對決分析
+
+- 先發投手 vs 對方打線的 Platoon 優劣勢（左右手分拆）
+- BvP 歷史對決數據（樣本 ≥ 15 PA 才有參考價值）
+- 球種對決：投手王牌球種 vs 打線弱點球種
+
+### 3.2 牛棚分析
+
+- 牛棚整體品質（ERA、FIP、K-BB%）
+- 關鍵角色可用性（Closer、Setup）
+- 近 3 天用球消耗（搜尋 game log）
+- Doubleheader → 牛棚消耗累積
+
+### 3.3 條件修正（僅在符合條件時執行）
+
+以下修正為**條件觸發**，不符合條件則跳過：
+
+#### 開季初期（僅限開季後一個月內）
+
+> **研究結論**：春訓成績幾乎沒有預測力（R² = 0.05）。
+> 唯一有一定相關性的是 Statcast 物理指標（R²=0.33）。
+
+| 資料類型 | 使用方式 |
+|---------|---------|
+| 去年例行賽數據 | 主要參考 |
+| 投影系統（ZiPS / Steamer） | 優先參考 |
+| Statcast 物理指標 | 補充參考 |
+| **春訓 ERA / FIP / 打擊率** | **不使用**（研究證實無預測力）|
+
+搜尋：`"[Player name] [year] ZiPS projection"` / `"[Player name] [year] Steamer projection"`
+
+#### 傷病與手術復出評估
+
+> 動過重大手術的球員，即使已回歸，表現仍需謹慎評估。
+> **不使用固定百分比修正**，搜尋實際術前/術後數據做比較。
+
+**Tommy John Surgery 復出分級**：
+
+| 復出階段 | 定義 | 評估方式 |
+|---------|------|---------|
+| 🔴 復出首年 | 術後第一個完整賽季 | 搜尋實際術後數據 vs 術前 2 年 |
+| 🟠 復出次年 | 術後第二個完整賽季 | 通常有改善趨勢 |
+| 🟡 完全恢復 | 第三年起 | 回歸正常評估 |
+| 🔴 二次 TJ | 曾動過 2 次 TJ | HSS 研究：僅 65% 回到 MLB |
+
+搜尋：`"[Pitcher] Tommy John surgery date"` / `"[Pitcher] velocity after TJ Statcast"`
+
+**其他重大傷病**：肩部手術（搜尋術後數據）、膝蓋/腳踝（搜尋 sprint speed）、腦震盪（注意適應期）。
+
+#### 球員年齡退化評估
+
+> **研究依據**（FanGraphs Aging Curve）：27-29 歲巔峰，30 歲後退化，35 歲後加速。
+
+**打者**：
+
+| 年齡 | 階段 |
+|------|------|
+| 20-26 | 📈 成長/巔峰期 |
+| 27-29 | ⚡ 巔峰期 |
+| 30-32 | 📉 初期退化 |
+| 33-35 | 📉📉 明顯退化 |
+| 36+ | 📉📉📉 快速退化 |
+
+**投手**：
+
+| 年齡 | 階段 |
+|------|------|
+| 20-24 | 📈 成長期 |
+| 25-29 | ⚡ 巔峰期 |
+| 30-33 | 📉 初期退化（球速每年約降 0.3-0.5 mph）|
+| 34-36 | 📉📉 明顯退化 |
+| 37+ | 📉📉📉 快速退化 |
+
+> **例外判斷**：若 30+ 歲但 Statcast 指標維持/提升 → 降低退化修正。
+> 若本季數據已反映退化 → 直接使用本季數據，不額外修正。
+
+#### 賽季階段修正
+
+| 階段 | 特性 | 修正依據 |
+|------|------|---------|
+| 🌱 開季期（3月底-4月） | 樣本少、天氣冷 | 用投影系統為主 |
+| ☀️ 夏季中段（5-7月） | 樣本充足 | 正常使用本季數據 |
+| 🔄 交易截止後（7月底-8月） | 陣容變動 | 搜尋最新交易確認陣容 |
+| 🏁 九月擴編（9月） | 名單擴大 | 搜尋確認今日實際陣容 |
+| 🏆 季後賽（10-11月） | 頂級投手、牛棚全開 | 得分壓縮 ×0.84-0.86（FanGraphs 20 年研究）|
+
+> 季後賽研究數據：場均得分從 4.94 降至 4.17（-16%），BABIP 從 .301 降至 .284。
+
+### 3.35 大小分信號計分表（必須執行）
+
+> ⚠️ **此步驟為強制性**，用於平衡大小分推薦，避免系統性偏向小分。
+
+分析完所有因子後，執行信號盤點：
+
+🐍 **有腳本** → `python3 predict.py` 的 `signal_table` 輸出已包含此計算
+📊 **無腳本** → 手動盤點以下因子：
+
+**🔺 大分信號（+分）**：
+
+| 信號 | 分數 | 判定依據 |
+|------|------|---------|
+| 雙方打線近 7 天 Hot | +2 | 場均得分 ≥ 5 |
+| 牛棚核心不可用 / 近 3 天高消耗 | +2 | 搜尋結果確認 |
+| 球場 Park Factor ≥ 105 | +1 | FanGraphs Park Factor |
+| 風向吹往外野（≥ 10 mph） | +1 | 天氣搜尋 |
+| 氣溫 ≥ 85°F | +1 | 天氣搜尋 |
+| 雙方先發投手 FIP ≥ 5.0 | +1 | Phase 2 投手數據 |
+| 打線 BABIP 偏低（≤ .270） | +1 | 回歸預期得分上升 |
+| Doubleheader 第二場 | +1 | Phase 1 比賽資訊 |
+| 雙方打線 wRC+ ≥ 110 | +1 | Phase 2 打線數據 |
+
+**🔻 小分信號（-分）**：
+
+| 信號 | 分數 | 判定依據 |
+|------|------|---------|
+| 雙方先發投手 FIP ≤ 3.0 | -2 | Phase 2 投手數據 |
+| 雙方打線近 7 天 Cold | -2 | 場均得分 ≤ 2 |
+| 球場 Park Factor ≤ 95 | -1 | FanGraphs Park Factor |
+| 風向吹進場內 / 逆風 | -1 | 天氣搜尋 |
+| 氣溫 ≤ 55°F | -1 | 天氣搜尋 |
+| 季後賽得分壓縮 | -1 | 賽季階段 |
+| 雙方打線 K% ≥ 25% | -1 | Phase 2 打線數據 |
+
+**判讀**：
+- 淨分 > 0 → 傾向大分
+- 淨分 < 0 → 傾向小分
+- 淨分 = 0 → 中性，不推薦大小分
+- |淨分| ≤ 1 → 信心低，降低星級
+
+### 3.4 近期狀態與 H2H 對戰歷史
+
+利用 Phase 1 的近 10 場戰績資料，結合 Phase 2 的搜尋結果：
+
+| 分析維度 | 來源 | 用途 |
+|---------|------|------|
+| 近期勝率 + 得失分差 | Phase 1 API | 整體實力 |
+| 連勝/連敗趨勢 | Phase 1 API | 動能判斷 |
+| 主/客場分拆戰績 | Phase 1 API | 本場主客場參考 |
+| 高/低得分比例（≥5 vs ≤2） | Phase 1 API | 打線穩定度 |
+| H2H 歷史對戰 | Phase 2 搜尋 | 心理優勢、投打匹配 |
+| 近 15 場狀態 | Phase 2 搜尋 | 趨勢判斷 |
+
+---
+
+## Phase 4: 預測輸出
+
+> **腳本偵測**：檢查 `scripts/predict.py` 和 `scripts/models/xgb_win_model.pkl` 是否存在。
+> 🐍 **有模型** → 合併所有資料為 JSON → `python3 predict.py --game-data merged.json`
+>   輸出包含 ML 預測 + Log5 交叉驗證 + 信號計分表
+> 📊 **無模型但有 predict.py** → predict.py 自動退回 Log5 + Pythagorean 公式
+> 📡 **都沒有** → 使用 SKILL.md 內建 Log5 公式 + 信號計分表手動計算
+>
+> **交叉驗證**：若 ML 和公式預測都有結果：
+> - 兩者方向一致 + 勝率差 < 15% → 信心 HIGH
+> - 兩者方向不一致 → 信心 LOW，降低盤口推薦星級
+
+### 4.1 盤口推薦星級系統
+
+| 星級 | 含義 | 判定標準 |
+|------|------|---------|
+| ⭐⭐⭐⭐⭐ | 強烈推薦 | 真實勝率 vs 隱含勝率差距 ≥ 15% |
+| ⭐⭐⭐⭐ | 推薦 | 差距 10-15% |
+| ⭐⭐⭐ | 中度推薦 | 差距 5-10% |
+| ⭐⭐ | 輕度傾向 | 差距 < 5% |
+| ⭐ | 僅供參考 | 價值極微或不確定性過高 |
+
+### 4.2 比分與盤口一致性檢查（必須執行）
+
+> 1. 計算預測比分的總分
+> 2. **預測總分 ≤ 盤口 → 不得推薦大分**
+> 3. **預測總分 ≥ 盤口 → 不得推薦小分**
+> 4. 差距 < 0.5 分 → 不推薦大小分
+> 5. 發現矛盾時，重新調整比分預測或盤口建議
+> 6. 不因「期望值」推薦與預測矛盾的方向
+
+### 4.3 輸出格式
+
+**TL;DR 摘要（放在最前面）**：
+
+```
+🎯 TL;DR
+預測：{主隊} {比分} - {比分} {客隊}（{主隊/客隊} 勝，勝率 {X}%）
+
+💰 盤口速查：
+| 盤口 | 方向 | 推薦指數 | 一句話理由 |
+|------|------|----------|-----------|
+| Moneyline | ✅/⚠️ ... | ⭐⭐⭐⭐ | ... |
+| Over/Under | ✅/⚠️ ... | ⭐⭐⭐ | ... |
+| Run Line | ✅/⚠️ ... | ⭐⭐ | ... |
+```
+
+**完整分析報告（TL;DR 之後）**：
+
+1. **比賽資訊** — 日期、主客場、球場、先發投手
+2. **雙方近 10 場戰績表**
+3. **先發投手對決** — 等級、進階數據、年齡退化、休息天數、近 5 場用球數
+4. **打線分析** — 評級、熱度、串聯分析、投打對決
+5. **牛棚分析** — 品質、可用性
+6. **球場 & 天氣** — Park Factor 修正、風向影響
+7. **條件修正摘要** — 開季初期 / 傷病 / 年齡退化 / 賽季階段（僅列出有觸發的修正）
+8. **勝率預測** — 含信心區間（勝率差距 < 8% 時加寬）
+9. **比分預測** — 含 Park Factor 修正 ×(PF/100)
+10. **盤口建議** — 含星級、理由、一致性檢查結果
+
+---
+
+## 語氣與風格
+
+- 分析性但易讀，避免純數字堆砌
+- **進階數據 > 傳統數據**，兩者兼用
+- 承認不確定性，MLB 單場隨機性約 40-45%
+- 若用戶使用中文溝通，使用**繁體中文**輸出
+- 明確標注數據來源
+- **所有修正係數必須基於可搜尋到的研究或數據，不使用臆測百分比**
+
+---
+
+## Edge Cases
+
+- 先發投手臨時更換 → 產生備案分析
+- Doubleheader → 牛棚消耗累積
+- Opener 策略 → 調整分析框架
+- Coors Field → 使用其 Park Factor（常 > 115）做線性修正
+- 跨聯盟比賽 → BvP 數據較少，增加不確定性
+- Innings Cap → 搜尋確認
+- 交易截止前後 → 搜尋最新交易
+- 九月擴編 → 搜尋確認今日陣容
+- 季後賽得分壓縮 → 預期得分 ×0.84-0.86
+- BABIP 回歸 → 極端值預期回歸 ~.300
+- 二次 TJ → HSS 研究：65% RTP，42% 能投 10+ 場
+- 多組盤口格式 → 統一換算
+- 本季樣本不足 → 優先用投影系統
+- 比分預測不確定 → 勝率差距 < 8% 時加寬信心區間
+- 老將退化 vs 年輕成長 → 搜尋 Statcast 數據趨勢判斷
