@@ -186,14 +186,14 @@ def main():
         cross_validation = "CONSISTENT" if ml_lean == formula_lean and pct_diff < 15 else "DIVERGENT"
 
     # 最終推薦
+    # 勝率：有 ML 時用 ML（XGBoost 勝率預測可靠）
+    # 比分：一律用 formula（ML 的 total_model 訓練資料有結構性缺陷，比分不可靠）
     if ml_pred:
         final_pct = ml_pred["home_win_pct"]
-        final_home = ml_pred["home_score"]
-        final_away = ml_pred["away_score"]
     else:
         final_pct = formula_pred["log5_pct"]
-        final_home = formula_pred["home_score"]
-        final_away = formula_pred["away_score"]
+    final_home = formula_pred["home_score"]
+    final_away = formula_pred["away_score"]
 
     result = {
         "ml_prediction": ml_pred,
