@@ -1118,6 +1118,68 @@ E[R_A] = 聯盟平均得分 × (A 隊打線 xwOBA / 聯盟平均 xwOBA) × (B �
 9. **比分預測** — 得分區間 + 情境機率分佈（按 4.31 格式）
 10. **盤口建議** — 含星級、理由、一致性檢查結果
 
+### 4.5 預測紀錄（Prediction Logging）
+
+> 每次完成預測後，將結果存入 `scripts/predictions.jsonl`。
+
+🐍 **有腳本** → `predict.py` 自動 append 紀錄
+📊 **無腳本** → 手動建立以下格式的 JSONL 紀錄：
+
+```json
+{
+  "date": "2026-04-10",
+  "game": "NYY vs BOS",
+  "home_team": "NYY",
+  "away_team": "BOS",
+  "home_sp": "Gerrit Cole",
+  "away_sp": "Brayan Bello",
+  "home_sp_starts": 3,
+  "away_sp_starts": 2,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 62.5,
+  "predicted_home_score": 4.8,
+  "predicted_away_score": 3.2,
+  "predicted_total": 8.0,
+  "adjusted_total": 8.7,
+  "signal_adjustments": {
+    "opening_inflation_home": 0.0,
+    "opening_inflation_away": 0.24,
+    "wind": 0.0,
+    "temperature": 0.0,
+    "park_factor": 0.15,
+    "umpire": 0.3,
+    "bullpen_fatigue": 0.0,
+    "platoon": 0.0
+  },
+  "ou_line": 8.5,
+  "ou_rec": "PASS",
+  "run_line_rec": "PASS",
+  "ml_rec": "NYY",
+  "ml_stars": 3,
+  "confidence": "MEDIUM",
+  "cross_validation": "CONSISTENT",
+  "tags": ["opening_season", "ace_matchup", "cold_weather"],
+  "umpire_name": "Angel Hernandez",
+  "umpire_ou_rate": 0.58,
+  "park_factor": 102,
+  "temperature_f": 52,
+  "wind_mph": 8,
+  "wind_direction": "in",
+  "actual_winner": null,
+  "actual_home_score": null,
+  "actual_away_score": null,
+  "actual_total": null,
+  "verified": false
+}
+```
+
+**賽後回填**：比賽結束後填入 `actual_*` 欄位並設 `verified: true`。
+**校準分析**：累積 30+ 場已驗證紀錄後，可觸發 `python3 calibration.py` 分析：
+- 勝負預測準確度
+- O/U 推薦命中率
+- 各信號修正值的實際效果 vs 預期
+- 開季膨脹因子校準
+
 ---
 
 ## 語氣與風格
