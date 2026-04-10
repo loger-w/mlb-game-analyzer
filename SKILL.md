@@ -255,6 +255,35 @@ https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId={球隊ID}&startDate={
 > - **比賽狀態 Final** → 詢問使用者是否要做賽後分析或查看比分
 > - **開季初期**（不足 10 場）→ 標註實際場數，Phase 3 權重調整
 
+### 1.65 Pythagorean Win% 計算
+
+> **從近 10 場戰績計算，用於判斷連勝/連敗是否含運氣成分。**
+
+**公式（Pythagenport — 變動指數，優於固定 1.83）**：
+```
+exponent = 1.50 × log10[(RS + RA) / G] + 0.45
+Pythagorean Win% = RS^exp / (RS^exp + RA^exp)
+```
+
+> RS = 近 10 場總得分，RA = 近 10 場總失分，G = 10
+> 來源：SABR、FanGraphs Sabermetrics Library
+> 固定指數 1.83 的 RMSE = 4.126 勝，Pythagenport RMSE = 3.991（更佳）
+
+🐍 **有腳本** → `fetch_game_data.py --extended` 可計算
+📊 **無腳本** → 手動計算（Phase 1 API 已提供 RS/RA）
+
+**回歸信號判斷（⚠️ 反向思考）**：
+- |實際勝率 - Pythagorean Win%| > 10%（≈ 1 場差距 / 10 場）→ 🚩 標註「回歸風險」
+  - 實際勝率 > Pythagorean → 連勝可能含運氣成分，球隊被高估
+  - 實際勝率 < Pythagorean → 連敗可能含運氣成分，球隊被低估
+- 同時檢查 SOS（Strength of Schedule）— 連勝期間是打弱隊還是強隊
+
+**輸出格式**（整合到 1.6 的確認訊息中）：
+```
+📊 {主隊} 近 10 場：{W}-{L}（Pyth {X}% | 實際 {Y}%）{回歸信號}
+📊 {客隊} 近 10 場：{W}-{L}（Pyth {X}% | 實際 {Y}%）{回歸信號}
+```
+
 ### 1.7 同系列賽前場比分驗證
 
 > ⚠️ **若本場為系列賽第 2 場或第 3 場，必須用 API 拉取前場實際比分。**
