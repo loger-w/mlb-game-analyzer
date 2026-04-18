@@ -232,6 +232,109 @@ O/U 推薦方向必須與 D1.5/D2 修正後總分一致：
 
 ---
 
+---
+
+## Kelly Sizing & Unit Output
+
+### 公式
+
+Fractional Kelly 以真實勝率 `p` 與 American odds 計算：
+
+```
+b = 100/|ml|            (ml < 0)  或  ml/100  (ml > 0)
+raw_kelly = max(0, (p × (b+1) − 1) / b)
+fractional = raw_kelly / divisor
+capped     = min(fractional, cap_pct)
+units      = round(capped / unit_size, 0.5)
+```
+
+**預設參數**（由 `predict.py` args 控制）：
+
+| 參數 | 預設值 | Source |
+|------|-------|--------|
+| `--kelly-divisor` | 4 (quarter-Kelly) | Thorp (2006) "The Kelly Criterion in Blackjack, Sports Betting, and the Stock Market"; Poundstone (2005) *Fortune's Formula* ch.14 — fractional Kelly reduces drawdown when p̂ carries ±5-10% estimation error |
+| `--kelly-cap` | 3.0 (% of bankroll) | Ruin-risk heuristic; tightened in V1 due to synthetic-label p̂ uncertainty (P1 blocker). Revisit post-P1. |
+| `--unit-size` | 1.0 (1u = 1% bankroll) | UX convention; rounds `capped / unit_size` to nearest 0.5 unit |
+
+### Odds 來源
+
+`predict.py --save` 自動讀 `odds_snapshots/` 中推薦時間最近的 Pinnacle snapshot：
+- Snapshot time 必須早於比賽開打時間
+- 隊名對照用 `TEAM_ABBREV`（全名 → 縮寫）
+- **ET 日期來源**：優先從 `args.game_data` 路徑（`analysis-data/YYYY-MM-DD/`）取；fallback 從 `_meta.game_date`（UTC ISO）轉 ET
+- Doubleheader 需 `--game-index 1` 或 `2`；缺此 arg 時 `ValueError` 會 surface 給使用者（不吞）
+
+CLI override（優先於 snapshot）：
+- `--ml-odds-home-dec` / `--ml-odds-away-dec`
+- `--ou-odds-over-dec` / `--ou-odds-under-dec`
+- `--rl-odds-home-dec` / `--rl-odds-away-dec`
+
+若 snapshot 與 CLI 都無對應市場 → 該市場 `kelly.*` = `null`。
+
+### 機率來源
+
+| 市場 | p 來源 | Source / Note |
+|------|-------|---------------|
+| ML | `ml_prediction.home_win_pct / 100`（XGBoost） | 不用 Log5，避免和 cross_validation 紀律打架 |
+| O/U | `1 − Φ(line; μ=formula_prediction.total, σ=4.5)` | σ=4.5 `[Source: reference/prediction.md D2/D5 baseline; pending empirical calibration from MLB 2020-2024 totals — P2 TODO]` |
+| RL -1.5 | `P(win) × P(margin ≥ 2 \| win)`，後者查表 | 熱門方用**市場 ML** 判定（非 model margin） — C2 修正 |
+
+### P(margin ≥ 2 \| win) 查表
+
+`[Source: reference/prediction.md Run Line -1.5 table range midpoints (58-60% / 60-63% / 63-67% / 67-72%); pending empirical calibration via pybaseball schedule_and_record game-level margins — P2 TODO]`
+
+| 熱門方 American ML | P(margin ≥ 2 \| win) |
+|--------------------|---------------------|
+| −130 ~ −110        | 0.59                |
+| −170 ~ −131        | 0.615               |
+| −220 ~ −171        | 0.65                |
+| ≤ −221             | 0.695               |
+
+**重要（C2）**：此表條件於 **bookmaker favorite**（American ML 較負方），不是 model predicted favorite。當 model 與 market 分歧時，bucket key 一律用 market ML — 否則查到錯的條件機率。
+
+### Side 標籤來源（C3）
+
+`kelly.rl.favorite_side` 的 `"HOME_-1.5"` / `"AWAY_-1.5"` 優先用 Pinnacle snapshot 的 `rl.home_point`（±1.5 是 Pinnacle 設定的事實）；snapshot 缺 point 時才用 market ML 推測。
+
+### prediction.json `kelly` 區塊 schema
+
+```jsonc
+"kelly": {
+  "snapshot_source": "odds_snapshots/2026-04-18_16-00-ET.json" | null,
+  "snapshot_time_et": "2026-04-18 16:00 ET" | null,
+  "params": {"divisor": 4, "cap_pct": 3.0, "unit_size_pct": 1.0},
+  "ml": {
+    "direction": "HOME" | "AWAY",
+    "decimal_odds": 1.83,
+    "raw_kelly_pct": 2.34, "fractional_pct": 0.59,
+    "capped_pct": 0.59, "units": 0.5
+  } | null,
+  "ou": {
+    "direction": "OVER" | "UNDER" | "PASS",
+    "line": 8.5,
+    "over": { ... } | null,
+    "under": { ... } | null
+  } | null,
+  "rl": {
+    "favorite_side": "HOME_-1.5" | "AWAY_-1.5",
+    "favorite": { ... } | null,
+    "underdog": { ... } | null
+  } | null,
+  "warnings": [
+    // e.g. "ml_guardrail_pass", "no_matching_snapshot", "team_name_mismatch: ..."
+  ]
+}
+```
+
+### 紀律
+
+- **Kelly 完全對齊 D1-D5 guardrail**：若 `final_ml_rec == "PASS"` / `final_ou_rec == "PASS"` / `final_rl_rec == "PASS"`，對應市場的 `kelly.*` 為 `null`，`warnings` 紀錄觸發原因（`ml_guardrail_pass` / `ou_guardrail_pass` / `rl_guardrail_pass`）
+- 反向保證：`kelly.<market>` 有數字時對應市場必然非 PASS — direction / stars 由既有 guardrail 決定，Kelly 不改方向只決定注碼
+- 負 edge（raw ≤ 0）→ 該市場的 Kelly 欄位全 `0`（非 null；0 是合法的「不下注」訊號）
+- **Snapshot 4h 延遲**：快速變盤（steam move）下 Kelly 可能在推薦與下注之間過時。V1 接受；P2 M5 將加 line movement + CLV tracking，屆時以實證資料量化延遲對 ROI 的影響。
+
+---
+
 ## 預測紀錄存放位置
 
 - **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`
