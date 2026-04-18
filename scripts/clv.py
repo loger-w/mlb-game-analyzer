@@ -140,7 +140,7 @@ def pin_rec_snapshot(
         commence_dt = datetime.fromisoformat(commence_utc.replace("Z", "+00:00"))
         snap_dt = datetime.fromisoformat(snapshot_time_utc.replace("Z", "+00:00"))
         minutes_before = int((commence_dt - snap_dt).total_seconds() // 60)
-    except ValueError:
+    except (ValueError, TypeError, AttributeError):
         minutes_before = None
 
     home_name = snapshot_game.get("home_team")
@@ -172,17 +172,20 @@ def pin_rec_snapshot(
             "under": _line(ou["Under"]["odds"], ou["Under"]["implied_pct"]),
         }
 
-    # RL
+    # RL — treat a missing `point` on either side as a malformed market (null the block)
+    # rather than defaulting to 0, which would silently mislabel favorite_side.
     rl_block = None
     rl = pinnacle.get("rl") or {}
     if home_name in rl and away_name in rl:
-        home_point = rl[home_name].get("point", 0)
-        favorite_side = "HOME" if home_point < 0 else "AWAY"
-        home_line = _line(rl[home_name]["odds"], rl[home_name]["implied_pct"])
-        home_line["point"] = home_point
-        away_line = _line(rl[away_name]["odds"], rl[away_name]["implied_pct"])
-        away_line["point"] = rl[away_name].get("point", 0)
-        rl_block = {"favorite_side": favorite_side, "home": home_line, "away": away_line}
+        home_point = rl[home_name].get("point")
+        away_point = rl[away_name].get("point")
+        if home_point is not None and away_point is not None:
+            favorite_side = "HOME" if home_point < 0 else "AWAY"
+            home_line = _line(rl[home_name]["odds"], rl[home_name]["implied_pct"])
+            home_line["point"] = home_point
+            away_line = _line(rl[away_name]["odds"], rl[away_name]["implied_pct"])
+            away_line["point"] = away_point
+            rl_block = {"favorite_side": favorite_side, "home": home_line, "away": away_line}
 
     return {
         "source": source_filename,
