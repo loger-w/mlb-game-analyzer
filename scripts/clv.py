@@ -197,3 +197,117 @@ def pin_rec_snapshot(
         "ou": ou_block,
         "rl": rl_block,
     }
+
+
+def compute_bet_placed(kelly_market_block: Optional[dict]) -> bool:
+    """Kelly market sub-block has units > 0 → True; else False."""
+    if not kelly_market_block:
+        return False
+    units = kelly_market_block.get("units", 0)
+    try:
+        return float(units) > 0
+    except (TypeError, ValueError):
+        return False
+
+
+def _side_cents_delta(start_pin: dict, end_pin: dict, market: str, side_key: str) -> Optional[int]:
+    """Return end_american - start_american for the given market/side. None if either missing."""
+    if not start_pin or not end_pin:
+        return None
+    s_m = start_pin.get(market)
+    e_m = end_pin.get(market)
+    if not s_m or not e_m:
+        return None
+    s_side = s_m.get(side_key)
+    e_side = e_m.get(side_key)
+    if not s_side or not e_side:
+        return None
+    return int(e_side["american"] - s_side["american"])
+
+
+def _interval_deltas(start_pin: Optional[dict], end_pin: Optional[dict]) -> Optional[dict]:
+    if start_pin is None or end_pin is None:
+        return None
+    ml_home = _side_cents_delta(start_pin, end_pin, "ml", "home")
+    rl_home = _side_cents_delta(start_pin, end_pin, "rl", "home")
+    ou_cents = _side_cents_delta(start_pin, end_pin, "ou", "over")
+    ou_point_delta = 0.0
+    if start_pin.get("ou") and end_pin.get("ou"):
+        try:
+            ou_point_delta = float(end_pin["ou"]["point"]) - float(start_pin["ou"]["point"])
+        except (TypeError, ValueError):
+            ou_point_delta = 0.0
+    return {
+        "ml_home_cents": ml_home if ml_home is not None else 0,
+        "ou_cents": ou_cents if ou_cents is not None else 0,
+        "ou_point_delta": round(ou_point_delta, 1),
+        "rl_home_cents": rl_home if rl_home is not None else 0,
+    }
+
+
+def detect_line_movement(
+    open_snap: Optional[dict],
+    rec_snap: dict,
+    close_snap: Optional[dict],
+    recommended_direction: dict,
+    steam_threshold_cents: int = 5,
+) -> dict:
+    """Compute open→rec and rec→close cents deltas, plus steam / RLM flags.
+
+    Cents convention: positive = recommended side's American odds increased during
+    the interval (price improved for the backer). Negative = price worsened.
+    Flag logic uses open_to_rec on the recommended side only.
+    """
+    open_to_rec = _interval_deltas(open_snap, rec_snap)
+    rec_to_close = _interval_deltas(rec_snap, close_snap)
+
+    steam = False
+    rlm = False
+    if open_to_rec is not None:
+        checks = []
+        # ML
+        if recommended_direction.get("ml") == "HOME":
+            checks.append(open_to_rec["ml_home_cents"])
+        elif recommended_direction.get("ml") == "AWAY":
+            c = _side_cents_delta(open_snap, rec_snap, "ml", "away")
+            if c is not None:
+                checks.append(c)
+        # RL
+        if recommended_direction.get("rl") == "HOME":
+            checks.append(open_to_rec["rl_home_cents"])
+        elif recommended_direction.get("rl") == "AWAY":
+            c = _side_cents_delta(open_snap, rec_snap, "rl", "away")
+            if c is not None:
+                checks.append(c)
+        # OU
+        if recommended_direction.get("ou") == "OVER":
+            checks.append(open_to_rec["ou_cents"])
+        elif recommended_direction.get("ou") == "UNDER":
+            c = _side_cents_delta(open_snap, rec_snap, "ou", "under")
+            if c is not None:
+                checks.append(c)
+
+        if checks:
+            max_favor = max(checks)
+            min_favor = min(checks)
+            if max_favor >= steam_threshold_cents:
+                steam = True
+            if min_favor <= -steam_threshold_cents:
+                rlm = True
+
+    warnings = []
+    if open_snap is None:
+        warnings.append("no_open_snapshot")
+    if close_snap is None:
+        warnings.append("no_close_snapshot")
+
+    return {
+        "open_snapshot": open_snap.get("source") if open_snap else None,
+        "rec_snapshot":  rec_snap.get("source"),
+        "close_snapshot": close_snap.get("source") if close_snap else None,
+        "open_to_rec": open_to_rec,
+        "rec_to_close": rec_to_close,
+        "flags": {"steam_toward_rec": steam, "rlm_suspected": rlm},
+        "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+        "warnings": warnings,
+    }

@@ -12,8 +12,10 @@ import pytest
 from clv import (
     _find_earliest_snapshot_of_date,
     _find_latest_snapshot_before,
+    compute_bet_placed,
     compute_clv_cents,
     compute_clv_pct_no_vig,
+    detect_line_movement,
     find_closing_snapshot,
     find_opening_snapshot,
     pin_rec_snapshot,
@@ -188,3 +190,94 @@ class TestPinRecSnapshot:
             game, game["commence_utc"], "x.json", "x", "2026-04-18T20:00:00+00:00",
         )
         assert pinned["rl"]["favorite_side"] == "HOME"
+
+
+def _pin(src, commence="2026-04-18T23:00:00Z"):
+    path = Path(__file__).parent / "fixtures" / src
+    with open(path, encoding="utf-8") as f:
+        snap = json.load(f)
+    return pin_rec_snapshot(
+        snap["games"][0],  # Cubs game
+        commence,
+        src,
+        snap["snapshot_time_et"],
+        snap["snapshot_time_utc"],
+    )
+
+
+class TestDetectLineMovement:
+    def test_rec_time_call_close_null(self):
+        open_pin = _pin("sample_snapshot_open.json")
+        rec_pin = _pin("sample_snapshot.json")
+        result = detect_line_movement(open_pin, rec_pin, None, {"ml": "HOME", "ou": "OVER", "rl": "HOME"})
+        assert result["rec_to_close"] is None
+        assert result["open_to_rec"] is not None
+        # Open ML HOME 1.80 → Rec ML HOME 1.74. 1.80=-125am, 1.74=-135am. rec - open = -135 - (-125) = -10c
+        assert result["open_to_rec"]["ml_home_cents"] == -10
+
+    def test_post_game_call_full(self):
+        open_pin = _pin("sample_snapshot_open.json")
+        rec_pin = _pin("sample_snapshot.json")
+        close_pin = _pin("sample_snapshot_close.json")
+        result = detect_line_movement(open_pin, rec_pin, close_pin,
+                                      {"ml": "HOME", "ou": "OVER", "rl": "HOME"})
+        assert result["rec_to_close"] is not None
+        # Rec 1.74 (-135am), Close 1.69 (-145am) → rec_to_close ml_home = -145 - (-135) = -10c
+        assert result["rec_to_close"]["ml_home_cents"] == -10
+
+    def test_open_missing(self):
+        rec_pin = _pin("sample_snapshot.json")
+        close_pin = _pin("sample_snapshot_close.json")
+        result = detect_line_movement(None, rec_pin, close_pin,
+                                      {"ml": "HOME", "ou": "OVER", "rl": "HOME"})
+        assert result["open_to_rec"] is None
+        assert result["rec_to_close"] is not None
+        assert result["flags"]["steam_toward_rec"] is False  # no open → can't detect
+        assert result["flags"]["rlm_suspected"] is False
+
+    def test_steam_flag_triggers(self):
+        open_pin = {"ml": {"home": {"decimal": 1.60, "american": -167, "implied_pct": 62.5},
+                           "away": {"decimal": 2.50, "american": 150, "implied_pct": 40.0}},
+                    "ou": None, "rl": None, "source": "o", "snapshot_time_et": "x",
+                    "snapshot_time_utc": "x", "commence_utc": "x", "minutes_before_first_pitch": 0}
+        rec_pin =  {"ml": {"home": {"decimal": 2.00, "american": 100, "implied_pct": 50.0},
+                           "away": {"decimal": 2.00, "american": 100, "implied_pct": 50.0}},
+                    "ou": None, "rl": None, "source": "r", "snapshot_time_et": "x",
+                    "snapshot_time_utc": "x", "commence_utc": "x", "minutes_before_first_pitch": 0}
+        result = detect_line_movement(open_pin, rec_pin, None, {"ml": "HOME", "ou": None, "rl": None})
+        assert result["flags"]["steam_toward_rec"] is True
+        assert result["flags"]["rlm_suspected"] is False
+
+    def test_rlm_flag_triggers(self):
+        open_pin = {"ml": {"home": {"decimal": 2.00, "american": 100, "implied_pct": 50.0},
+                           "away": {"decimal": 2.00, "american": 100, "implied_pct": 50.0}},
+                    "ou": None, "rl": None, "source": "o", "snapshot_time_et": "x",
+                    "snapshot_time_utc": "x", "commence_utc": "x", "minutes_before_first_pitch": 0}
+        rec_pin =  {"ml": {"home": {"decimal": 1.60, "american": -167, "implied_pct": 62.5},
+                           "away": {"decimal": 2.50, "american": 150, "implied_pct": 40.0}},
+                    "ou": None, "rl": None, "source": "r", "snapshot_time_et": "x",
+                    "snapshot_time_utc": "x", "commence_utc": "x", "minutes_before_first_pitch": 0}
+        result = detect_line_movement(open_pin, rec_pin, None, {"ml": "HOME", "ou": None, "rl": None})
+        assert result["flags"]["rlm_suspected"] is True
+        assert result["flags"]["steam_toward_rec"] is False
+
+    def test_ou_neutral_direction_no_flag(self):
+        open_pin = _pin("sample_snapshot_open.json")
+        rec_pin = _pin("sample_snapshot.json")
+        result = detect_line_movement(open_pin, rec_pin, None, {"ml": "HOME", "ou": None, "rl": "HOME"})
+        assert "steam_toward_rec" in result["flags"]
+        assert "rlm_suspected" in result["flags"]
+
+
+class TestComputeBetPlaced:
+    def test_null_market(self):
+        assert compute_bet_placed(None) is False
+
+    def test_zero_units(self):
+        assert compute_bet_placed({"units": 0.0, "direction": "HOME"}) is False
+
+    def test_positive_units(self):
+        assert compute_bet_placed({"units": 1.5, "direction": "HOME"}) is True
+
+    def test_missing_units_key(self):
+        assert compute_bet_placed({"direction": "HOME"}) is False
