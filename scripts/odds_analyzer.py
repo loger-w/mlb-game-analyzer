@@ -88,6 +88,18 @@ def decimal_to_american(dec: float) -> int:
     return int(round(-100 / (dec - 1)))
 
 
+def p_margin_ge_2_given_win(favorite_ml: int) -> float:
+    """P(margin >= 2 | win)，對齊 reference/prediction.md 的 Run Line -1.5 機率表。"""
+    ml = abs(favorite_ml)
+    if ml <= 130:
+        return 0.59
+    if ml <= 170:
+        return 0.615
+    if ml <= 220:
+        return 0.65
+    return 0.695
+
+
 def calc_ev(model_prob: float, ml: int) -> float:
     """計算期望值（Expected Value）"""
     if ml > 0:

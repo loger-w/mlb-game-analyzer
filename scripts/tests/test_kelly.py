@@ -90,3 +90,32 @@ def test_decimal_to_american_invalid():
         decimal_to_american(1.0)
     with pytest.raises(ValueError):
         decimal_to_american(0.5)
+
+
+from odds_analyzer import p_margin_ge_2_given_win
+
+
+def test_p_margin_bucket_shallow_favorite():
+    """-120 → 0.59"""
+    assert p_margin_ge_2_given_win(-120) == 0.59
+
+
+def test_p_margin_bucket_mid():
+    """-150 → 0.615"""
+    assert p_margin_ge_2_given_win(-150) == 0.615
+
+
+def test_p_margin_bucket_heavy():
+    """-200 → 0.65"""
+    assert p_margin_ge_2_given_win(-200) == 0.65
+
+
+def test_p_margin_bucket_monster():
+    """-250 → 0.695"""
+    assert p_margin_ge_2_given_win(-250) == 0.695
+
+
+def test_p_margin_positive_ml_treated_same():
+    """+250 underdog favorite scenario (hypothetical) → treat by magnitude."""
+    # abs value drives bucket
+    assert p_margin_ge_2_given_win(+250) == 0.695
