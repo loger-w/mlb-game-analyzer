@@ -517,6 +517,11 @@ def compute_kelly_block(
 
     # RL Kelly
     predicted_margin = formula_prediction.get("margin")
+    if predicted_margin is None:
+        hs = formula_prediction.get("home_score")
+        as_ = formula_prediction.get("away_score")
+        if hs is not None and as_ is not None:
+            predicted_margin = hs - as_
     if (not rl_is_pass
             and predicted_margin is not None and model_p_home is not None
             and ml_home_ml is not None and ml_away_ml is not None
