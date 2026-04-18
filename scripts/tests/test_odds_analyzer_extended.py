@@ -44,3 +44,40 @@ def test_analyze_ml_custom_kelly_params():
     kf = result["kelly_fractional"]
     # half-Kelly: fractional = raw / 2
     assert kf["fractional_pct"] == round(kf["raw_kelly_pct"] / 2, 4)
+
+
+from odds_analyzer import analyze_over_under
+
+
+def test_analyze_ou_kelly_both_sides():
+    """line=8.5, predicted=10.0 → Over 有 edge；Under 無 edge。"""
+    result = analyze_over_under(
+        line=8.5, predicted_total=10.0,
+        over_odds_ml=-110, under_odds_ml=-110,
+    )
+    assert result["direction"] == "OVER"
+    assert "kelly_fractional" in result
+    kf = result["kelly_fractional"]
+    assert "over" in kf and "under" in kf
+    # Over 應該有正 Kelly
+    assert kf["over"]["raw_kelly_pct"] > 0
+    # Under 應該 0
+    assert kf["under"]["raw_kelly_pct"] == 0
+
+
+def test_analyze_ou_no_odds_kelly_null():
+    """未傳 odds → kelly_fractional 為 null。"""
+    result = analyze_over_under(line=8.5, predicted_total=10.0)
+    assert result["kelly_fractional"] is None
+
+
+def test_analyze_ou_partial_odds():
+    """只有 Over odds → Under 側 null，Over 側有值。"""
+    result = analyze_over_under(
+        line=8.5, predicted_total=10.0, over_odds_ml=-110,
+    )
+    kf = result["kelly_fractional"]
+    assert kf is not None
+    assert kf["over"] is not None
+    assert kf["under"] is None
+    assert kf["over"]["raw_kelly_pct"] > 0

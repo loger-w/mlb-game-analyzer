@@ -250,8 +250,17 @@ def analyze_moneyline(
     }
 
 
-def analyze_over_under(line: float, predicted_total: float) -> dict:
-    """分析直線大小分盤口（無拆注）— G1: 使用 run 差距制"""
+def analyze_over_under(
+    line: float,
+    predicted_total: float,
+    over_odds_ml: int = None,
+    under_odds_ml: int = None,
+    kelly_params: dict = None,
+) -> dict:
+    """分析直線大小分盤口（無拆注）— 使用 run 差距制。
+
+    O/U 幾乎都是 .5 整數線，忽略 push 處理。
+    """
     diff = predicted_total - line
     stars = get_stars_ou(diff)
 
@@ -262,12 +271,43 @@ def analyze_over_under(line: float, predicted_total: float) -> dict:
     else:
         direction = "UNDER"
 
+    # 機率：P(Over) = 1 - Φ(line; μ=predicted_total, σ=_MLB_TOTAL_STD)
+    p_over = 1.0 - _normal_cdf(line, predicted_total, _MLB_TOTAL_STD)
+    p_under = 1.0 - p_over
+
+    # Kelly（若有 odds）
+    kelly_fractional = None
+    if over_odds_ml is not None or under_odds_ml is not None:
+        kp = kelly_params or {}
+        kelly_fractional = {"over": None, "under": None}
+        if over_odds_ml is not None:
+            kf = calc_fractional_kelly(
+                p_over, over_odds_ml,
+                divisor=kp.get("divisor", 4),
+                cap_pct=kp.get("cap_pct", 3.0),
+                unit_size_pct=kp.get("unit_size_pct", 1.0),
+            )
+            kf["decimal_odds"] = round(american_to_hk(over_odds_ml) + 1, 3)
+            kelly_fractional["over"] = kf
+        if under_odds_ml is not None:
+            kf = calc_fractional_kelly(
+                p_under, under_odds_ml,
+                divisor=kp.get("divisor", 4),
+                cap_pct=kp.get("cap_pct", 3.0),
+                unit_size_pct=kp.get("unit_size_pct", 1.0),
+            )
+            kf["decimal_odds"] = round(american_to_hk(under_odds_ml) + 1, 3)
+            kelly_fractional["under"] = kf
+
     return {
         "line": line,
         "predicted_total": round(predicted_total, 1),
         "diff": round(diff, 1),
         "direction": direction,
         "stars": stars,
+        "p_over": round(p_over, 4),
+        "p_under": round(p_under, 4),
+        "kelly_fractional": kelly_fractional,
     }
 
 
