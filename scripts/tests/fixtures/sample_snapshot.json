@@ -1,0 +1,59 @@
+{
+  "snapshot_time_utc": "2026-04-18T20:00:00+00:00",
+  "snapshot_time_et": "2026-04-18 16:00 ET",
+  "credits_remaining": "455",
+  "credits_used": "45",
+  "game_count": 2,
+  "games": [
+    {
+      "game": "New York Mets @ Chicago Cubs",
+      "away_team": "New York Mets",
+      "home_team": "Chicago Cubs",
+      "commence_utc": "2026-04-18T23:00:00Z",
+      "commence_et": "2026-04-18 19:00 ET",
+      "game_date_et": "2026-04-18",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Chicago Cubs": {"odds": 1.74, "implied_pct": 57.5},
+            "New York Mets": {"odds": 2.24, "implied_pct": 44.6}
+          },
+          "ou": {
+            "Over": {"odds": 1.93, "point": 8.0, "implied_pct": 51.8},
+            "Under": {"odds": 1.94, "point": 8.0, "implied_pct": 51.5}
+          },
+          "rl": {
+            "Chicago Cubs": {"odds": 1.56, "point": -1.5, "implied_pct": 64.1},
+            "New York Mets": {"odds": 2.58, "point": 1.5, "implied_pct": 38.8}
+          }
+        }
+      }
+    },
+    {
+      "game": "Baltimore Orioles @ Cleveland Guardians",
+      "away_team": "Baltimore Orioles",
+      "home_team": "Cleveland Guardians",
+      "commence_utc": "2026-04-18T22:11:00Z",
+      "commence_et": "2026-04-18 18:11 ET",
+      "game_date_et": "2026-04-18",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Baltimore Orioles": {"odds": 2.19, "implied_pct": 45.7},
+            "Cleveland Guardians": {"odds": 1.76, "implied_pct": 56.8}
+          },
+          "ou": {
+            "Over": {"odds": 1.93, "point": 8.0, "implied_pct": 51.8},
+            "Under": {"odds": 1.94, "point": 8.0, "implied_pct": 51.5}
+          },
+          "rl": {
+            "Baltimore Orioles": {"odds": 1.56, "point": 1.5, "implied_pct": 64.1},
+            "Cleveland Guardians": {"odds": 2.58, "point": -1.5, "implied_pct": 38.8}
+          }
+        }
+      }
+    }
+  ]
+}

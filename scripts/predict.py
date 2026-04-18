@@ -2,10 +2,13 @@
 """MLB Game Predictor — XGBoost 預測 + Log5 交叉驗證 + 信號計分表"""
 
 import argparse
+import glob
 import json
 import math
 import os
+import re
 import sys
+from datetime import datetime
 
 import joblib
 import numpy as np
@@ -35,6 +38,60 @@ def log5(home_pct: float, away_pct: float) -> float:
     """Log5 勝率公式"""
     p = (home_pct * (1 - away_pct)) / (home_pct * (1 - away_pct) + away_pct * (1 - home_pct))
     return p
+
+
+_SNAPSHOT_FILENAME_RE = re.compile(r"(\d{4}-\d{2}-\d{2})_(\d{2})-00-ET\.json$")
+
+
+def load_closest_snapshot(
+    game_date_et: str,
+    game_start_utc: str,
+    snapshot_dir: str = None,
+) -> dict | None:
+    """Find newest Pinnacle snapshot with snapshot_time < game_start_utc
+    and containing games on game_date_et.
+
+    Returns None if no match.
+    """
+    if snapshot_dir is None:
+        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        snapshot_dir = os.path.join(base, "odds_snapshots")
+
+    if not os.path.isdir(snapshot_dir):
+        return None
+
+    try:
+        game_start_dt = datetime.fromisoformat(game_start_utc.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+    candidates = []
+    for path in glob.glob(os.path.join(snapshot_dir, "*.json")):
+        name = os.path.basename(path)
+        m = _SNAPSHOT_FILENAME_RE.match(name)
+        if not m:
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                snap = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
+
+        snap_time = datetime.fromisoformat(snap["snapshot_time_utc"].replace("Z", "+00:00"))
+        if snap_time >= game_start_dt:
+            continue
+
+        has_date = any(g.get("game_date_et") == game_date_et for g in snap.get("games", []))
+        if not has_date:
+            continue
+
+        candidates.append((snap_time, snap))
+
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    return candidates[0][1]
 
 
 def pythagorean_runs(rs: float, ra: float, g: float = 10) -> float:
