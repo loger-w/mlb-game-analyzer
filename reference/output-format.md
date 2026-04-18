@@ -14,6 +14,13 @@
 | ML | ✅/⚠️ ... | ⭐⭐⭐⭐ | ... |
 | O/U | ✅/⚠️ ... | ⭐⭐⭐ | 基礎 {X} + 修正 {+Y} = {Z} vs Line {L} |
 | Run Line | ✅/⚠️/PASS | ⭐⭐⭐ | ... |
+
+💰 建議注碼（Quarter-Kelly, cap 3% of bankroll）
+| 市場 | 方向 | 注碼 | Pinnacle odds |
+|------|------|------|---------------|
+| ML   | {方向} | {units}u | {decimal_odds} |
+| O/U  | {方向} | {units}u | {decimal_odds} |
+| RL   | {方向或 PASS} | {units}u | {decimal_odds} |
 ```
 
 ## 完整報告（TL;DR 之後）

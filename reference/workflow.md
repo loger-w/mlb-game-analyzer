@@ -240,6 +240,8 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 | `--umpire` | 若有 | 主審姓名 |
 | `--umpire-ou-rate` | 若有 | 主審 Over% |
 
+> **自動 Odds 查詢**：`predict.py --save` 會自動從 `odds_snapshots/` 撈推薦時間最近的 Pinnacle snapshot 作為 Kelly 計算來源（Kelly 區塊詳見 `reference/prediction.md` Kelly Sizing 章節）。若需手動覆寫，加 `--ml-odds-home-dec 1.83` / `--ou-odds-over-dec 1.91` / `--rl-odds-home-dec 1.56` 等 args。Doubleheader 需指定 `--game-index 1` 或 `2`。
+
 > ⚠️ **勝率必須用 predict.py 的 `ml_prediction.home_win_pct`（XGBoost 模型）。**
 > **比分使用 `formula_prediction`**。手動估算只能作為輔助驗算。
 
