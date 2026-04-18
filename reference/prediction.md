@@ -232,8 +232,6 @@ O/U 推薦方向必須與 D1.5/D2 修正後總分一致：
 
 ---
 
----
-
 ## Kelly Sizing & Unit Output
 
 ### 公式
