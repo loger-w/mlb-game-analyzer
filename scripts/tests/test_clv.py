@@ -4,8 +4,19 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
+import json
+import shutil
+from pathlib import Path
+
 import pytest
-from clv import compute_clv_cents, compute_clv_pct_no_vig
+from clv import (
+    _find_earliest_snapshot_of_date,
+    _find_latest_snapshot_before,
+    compute_clv_cents,
+    compute_clv_pct_no_vig,
+    find_closing_snapshot,
+    find_opening_snapshot,
+)
 
 
 class TestComputeClvCents:
@@ -61,3 +72,68 @@ class TestComputeClvPctNoVig:
         result = compute_clv_pct_no_vig(1.74, 2.28, 1.56, 2.52)
         # Must be 2 decimal places
         assert abs(result - round(result, 2)) < 1e-9
+
+
+@pytest.fixture
+def temp_snapshot_dir(tmp_path):
+    fixtures = Path(__file__).parent / "fixtures"
+    snap_dir = tmp_path / "odds_snapshots"
+    snap_dir.mkdir()
+    # Name the files to match the real cron convention
+    shutil.copy(fixtures / "sample_snapshot_open.json",  snap_dir / "2026-04-18_00-00-ET.json")
+    shutil.copy(fixtures / "sample_snapshot.json",       snap_dir / "2026-04-18_16-00-ET.json")
+    shutil.copy(fixtures / "sample_snapshot_close.json", snap_dir / "2026-04-18_18-00-ET.json")
+    return str(snap_dir)
+
+
+class TestFindLatestSnapshotBefore:
+    def test_picks_latest_before_cutoff(self, temp_snapshot_dir):
+        # Open snap_time_utc=04:00, rec=20:00, close=22:10 UTC.
+        # cutoff 22:00 UTC -> both open+rec pass, pick rec (latest)
+        snap = _find_latest_snapshot_before(temp_snapshot_dir, "2026-04-18", "2026-04-18T22:00:00Z")
+        assert snap is not None
+        assert snap["snapshot_time_utc"] == "2026-04-18T20:00:00+00:00"
+
+    def test_excludes_after_cutoff(self, temp_snapshot_dir):
+        # cutoff 05:00 UTC -> only open (04:00) qualifies
+        snap = _find_latest_snapshot_before(temp_snapshot_dir, "2026-04-18", "2026-04-18T05:00:00Z")
+        assert snap["snapshot_time_utc"] == "2026-04-18T04:00:00+00:00"
+
+    def test_no_match_returns_none(self, temp_snapshot_dir):
+        snap = _find_latest_snapshot_before(temp_snapshot_dir, "2026-04-18", "2026-04-18T03:00:00Z")
+        assert snap is None
+
+    def test_wrong_date_returns_none(self, temp_snapshot_dir):
+        snap = _find_latest_snapshot_before(temp_snapshot_dir, "2026-04-19", "2026-04-19T23:00:00Z")
+        assert snap is None
+
+    def test_missing_dir_returns_none(self, tmp_path):
+        assert _find_latest_snapshot_before(str(tmp_path / "nope"), "2026-04-18", "2026-04-18T23:00:00Z") is None
+
+
+class TestFindEarliestSnapshotOfDate:
+    def test_picks_earliest(self, temp_snapshot_dir):
+        snap = _find_earliest_snapshot_of_date(temp_snapshot_dir, "2026-04-18")
+        assert snap["snapshot_time_utc"] == "2026-04-18T04:00:00+00:00"
+
+    def test_no_snapshots_returns_none(self, tmp_path):
+        (tmp_path / "odds_snapshots").mkdir()
+        assert _find_earliest_snapshot_of_date(str(tmp_path / "odds_snapshots"), "2026-04-18") is None
+
+
+class TestFindClosingSnapshot:
+    def test_closing_for_cubs_game(self, temp_snapshot_dir):
+        # Cubs game commence 23:00 UTC -> closing = latest before that = close snap at 22:10 UTC
+        snap = find_closing_snapshot("2026-04-18T23:00:00Z", "2026-04-18", temp_snapshot_dir)
+        assert snap["snapshot_time_utc"] == "2026-04-18T22:10:00+00:00"
+
+    def test_closing_for_earlier_game(self, temp_snapshot_dir):
+        # Orioles game commence 22:11 UTC -> closing = latest before = 20:00 UTC (rec), NOT 22:10
+        snap = find_closing_snapshot("2026-04-18T22:11:00Z", "2026-04-18", temp_snapshot_dir)
+        assert snap["snapshot_time_utc"] == "2026-04-18T20:00:00+00:00"
+
+
+class TestFindOpeningSnapshot:
+    def test_opening(self, temp_snapshot_dir):
+        snap = find_opening_snapshot("2026-04-18", temp_snapshot_dir)
+        assert snap["snapshot_time_utc"] == "2026-04-18T04:00:00+00:00"

@@ -64,47 +64,13 @@ def load_closest_snapshot(
     """Find newest Pinnacle snapshot with snapshot_time < game_start_utc
     and containing games on game_date_et.
 
-    Returns None if no match.
+    Returns None if no match. Thin wrapper over clv._find_latest_snapshot_before.
     """
+    from clv import _find_latest_snapshot_before
     if snapshot_dir is None:
         base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         snapshot_dir = os.path.join(base, "odds_snapshots")
-
-    if not os.path.isdir(snapshot_dir):
-        return None
-
-    try:
-        game_start_dt = datetime.fromisoformat(game_start_utc.replace("Z", "+00:00"))
-    except ValueError:
-        return None
-
-    candidates = []
-    for path in glob.glob(os.path.join(snapshot_dir, "*.json")):
-        name = os.path.basename(path)
-        m = _SNAPSHOT_FILENAME_RE.match(name)
-        if not m:
-            continue
-        try:
-            with open(path, encoding="utf-8") as f:
-                snap = json.load(f)
-        except (OSError, json.JSONDecodeError):
-            continue
-
-        snap_time = datetime.fromisoformat(snap["snapshot_time_utc"].replace("Z", "+00:00"))
-        if snap_time >= game_start_dt:
-            continue
-
-        has_date = any(g.get("game_date_et") == game_date_et for g in snap.get("games", []))
-        if not has_date:
-            continue
-
-        candidates.append((snap_time, snap))
-
-    if not candidates:
-        return None
-
-    candidates.sort(key=lambda x: x[0], reverse=True)
-    return candidates[0][1]
+    return _find_latest_snapshot_before(snapshot_dir, game_date_et, game_start_utc)
 
 
 _NAME_TO_ABBREV = dict(TEAM_ABBREV)
