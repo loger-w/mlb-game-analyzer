@@ -65,6 +65,8 @@ def load_closest_snapshot(
     """
     from clv import _find_latest_snapshot_before
     if snapshot_dir is None:
+        snapshot_dir = os.environ.get("MLB_SNAPSHOT_DIR_OVERRIDE")
+    if snapshot_dir is None:
         base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         snapshot_dir = os.path.join(base, "odds_snapshots")
     return _find_latest_snapshot_before(snapshot_dir, game_date_et, game_start_utc)
@@ -312,6 +314,158 @@ def predict_with_formula(data: dict) -> dict:
 # C1: ET timezone（對齊 fetch_odds.py:21 — MLB 球季 EDT = UTC-4）
 _ET_TZ = timezone(timedelta(hours=-4))
 _ANALYSIS_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
+
+
+def _abbrev_to_full_name(abbrev: str) -> str | None:
+    """Reverse TEAM_ABBREV. Returns None if not found."""
+    if not abbrev:
+        return None
+    for full, ab in TEAM_ABBREV.items():
+        if ab == abbrev:
+            return full
+    return None
+
+
+def _resolve_full_team_name(raw: str | None) -> str | None:
+    """Accept either a full team name or an abbrev; return the full name."""
+    if not raw:
+        return None
+    if raw in TEAM_ABBREV:
+        return raw  # already full
+    return _abbrev_to_full_name(raw)
+
+
+def _resolve_snap_dir() -> str:
+    override = os.environ.get("MLB_SNAPSHOT_DIR_OVERRIDE")
+    if override:
+        return override
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, "odds_snapshots")
+
+
+def _snapshot_source_filename(snap: dict, snap_dir: str) -> str | None:
+    """Recover which file in snap_dir produced this snap (match by snapshot_time_utc)."""
+    from clv import _SNAPSHOT_FILENAME_RE
+    target_utc = snap.get("snapshot_time_utc")
+    if not target_utc or not os.path.isdir(snap_dir):
+        return None
+    for name in os.listdir(snap_dir):
+        if not _SNAPSHOT_FILENAME_RE.match(name):
+            continue
+        try:
+            with open(os.path.join(snap_dir, name), encoding="utf-8") as f:
+                other = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
+        if other.get("snapshot_time_utc") == target_utc:
+            return name
+    return None
+
+
+def _extract_game_date_et(args, meta: dict) -> str | None:
+    """Derive game_date_et from --game-data analysis-data path segment, or UTC→ET fallback."""
+    game_date_et = None
+    if getattr(args, "game_data", None):
+        for part in os.path.normpath(args.game_data).split(os.sep):
+            if _ANALYSIS_DATE_RE.match(part):
+                game_date_et = part
+                break
+    if not game_date_et:
+        game_date_iso = meta.get("game_date") or ""
+        if game_date_iso:
+            try:
+                utc_dt = datetime.fromisoformat(game_date_iso.replace("Z", "+00:00"))
+                game_date_et = utc_dt.astimezone(_ET_TZ).strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+    return game_date_et
+
+
+def compute_clv_blocks(
+    args,
+    meta: dict,
+    final_ml_rec: str,
+    final_ou_rec: str,
+    final_rl_rec: str,
+) -> tuple[dict | None, dict]:
+    """P2 CLV: build (recommendation_snapshot, line_movement) for prediction.json.
+
+    - recommendation_snapshot: pinned Pinnacle block at rec-time (latest snap < commence);
+      None when no rec snap can be pinned.
+    - line_movement: always present; open→rec deltas when both sides pin, else a shell
+      with warnings so callers don't crash on missing keys.
+    """
+    from clv import (
+        pin_rec_snapshot,
+        find_opening_snapshot,
+        detect_line_movement,
+    )
+
+    snap_dir = _resolve_snap_dir()
+    game_date_iso = meta.get("game_date") or ""
+    commence_utc = game_date_iso if "T" in game_date_iso else None
+    game_date_et = _extract_game_date_et(args, meta)
+
+    home_full = _resolve_full_team_name(meta.get("home_team"))
+    away_full = _resolve_full_team_name(meta.get("away_team"))
+
+    def _find_game_in_snap(raw_snap):
+        if not raw_snap or not home_full or not away_full:
+            return None
+        for g in raw_snap.get("games", []):
+            if g.get("home_team") == home_full and g.get("away_team") == away_full:
+                return g
+        return None
+
+    rec_pinned = None
+    if game_date_et and commence_utc:
+        rec_raw = load_closest_snapshot(game_date_et, commence_utc, snap_dir)
+        rec_game = _find_game_in_snap(rec_raw)
+        if rec_raw is not None and rec_game is not None:
+            rec_pinned = pin_rec_snapshot(
+                rec_game, commence_utc,
+                _snapshot_source_filename(rec_raw, snap_dir),
+                rec_raw.get("snapshot_time_et"),
+                rec_raw.get("snapshot_time_utc"),
+            )
+
+    open_pinned = None
+    if game_date_et:
+        open_raw = find_opening_snapshot(game_date_et, snap_dir)
+        open_game = _find_game_in_snap(open_raw)
+        if open_raw is not None and open_game is not None:
+            open_pinned = pin_rec_snapshot(
+                open_game, commence_utc or "",
+                _snapshot_source_filename(open_raw, snap_dir),
+                open_raw.get("snapshot_time_et"),
+                open_raw.get("snapshot_time_utc"),
+            )
+
+    def _direction_or_none(rec):
+        return None if rec in (None, "PASS", "NEUTRAL") else rec
+
+    recommended_direction = {
+        "ml": _direction_or_none(final_ml_rec),
+        "ou": _direction_or_none(final_ou_rec),
+        "rl": rec_pinned["rl"]["favorite_side"] if rec_pinned and rec_pinned.get("rl") else None,
+    }
+
+    if rec_pinned is not None:
+        line_movement = detect_line_movement(open_pinned, rec_pinned, None, recommended_direction)
+    else:
+        # Preserve the output shape even when we couldn't pin a rec snap.
+        line_movement = {
+            "open_snapshot": open_pinned.get("source") if open_pinned else None,
+            "rec_snapshot": None,
+            "close_snapshot": None,
+            "open_to_rec": None,
+            "rec_to_close": None,
+            "flags": {"steam_toward_rec": False, "rlm_suspected": False},
+            "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+            "warnings": ["no_rec_snapshot"],
+        }
+
+    return rec_pinned, line_movement
 
 
 def compute_kelly_block(
@@ -810,6 +964,28 @@ def main():
             kelly_block = None
         # ValueError (doubleheader missing --game-index / bad decimal odds) 故意不吞
 
+        # === P2 CLV blocks: recommendation_snapshot + line_movement ===
+        try:
+            rec_pinned, line_movement = compute_clv_blocks(
+                args, meta,
+                final_ml_rec=final_ml_rec,
+                final_ou_rec=final_ou_rec,
+                final_rl_rec=final_rl_rec,
+            )
+        except (KeyError, IOError, json.JSONDecodeError, TypeError, AttributeError) as e:
+            print(f"⚠️ CLV block computation failed: {e}", file=sys.stderr)
+            rec_pinned = None
+            line_movement = {
+                "open_snapshot": None,
+                "rec_snapshot": None,
+                "close_snapshot": None,
+                "open_to_rec": None,
+                "rec_to_close": None,
+                "flags": {"steam_toward_rec": False, "rlm_suspected": False},
+                "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+                "warnings": ["clv_block_computation_failed"],
+            }
+
         record = {
             "date": record_date,
             "game_time": meta.get("game_date"),
@@ -855,6 +1031,8 @@ def main():
             "actual_total": None,
             "kelly": kelly_block,
             "verified": False,
+            "recommendation_snapshot": rec_pinned,
+            "line_movement": line_movement,
         }
         # 寫入 per-game prediction.json（放在 --game-data 所在資料夾）
         if args.output:
