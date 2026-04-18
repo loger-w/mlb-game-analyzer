@@ -114,7 +114,8 @@ def resolve_pinnacle_odds(
     snapshot: dict,
     home_abbrev: str,
     away_abbrev: str,
-    game_index: int = None,
+    *,
+    game_index: int | None = None,
 ) -> dict | None:
     """Extract Pinnacle decimal odds. For doubleheaders, game_index (1 or 2) required."""
     matches = []
