@@ -63,3 +63,30 @@ def test_half_kelly_divisor():
     assert result["capped_pct"] == 2.75
     # units = 2.75, round to nearest 0.5 = 3.0
     assert result["units"] == 3.0
+
+
+from odds_analyzer import decimal_to_american
+
+
+def test_decimal_to_american_favorite():
+    """dec=1.83 → American -120."""
+    assert decimal_to_american(1.83) == -120
+
+
+def test_decimal_to_american_underdog():
+    """dec=2.50 → American +150."""
+    assert decimal_to_american(2.50) == 150
+
+
+def test_decimal_to_american_even():
+    """dec=2.00 → American +100."""
+    assert decimal_to_american(2.00) == 100
+
+
+def test_decimal_to_american_invalid():
+    """dec<=1.0 should raise ValueError."""
+    import pytest
+    with pytest.raises(ValueError):
+        decimal_to_american(1.0)
+    with pytest.raises(ValueError):
+        decimal_to_american(0.5)

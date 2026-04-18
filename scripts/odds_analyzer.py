@@ -79,6 +79,15 @@ def american_to_hk(ml: int) -> float:
         return 100 / abs(ml)
 
 
+def decimal_to_american(dec: float) -> int:
+    """Decimal odds → American moneyline."""
+    if dec <= 1.0:
+        raise ValueError(f"Invalid decimal odds: {dec}")
+    if dec >= 2.0:
+        return int(round((dec - 1) * 100))
+    return int(round(-100 / (dec - 1)))
+
+
 def calc_ev(model_prob: float, ml: int) -> float:
     """計算期望值（Expected Value）"""
     if ml > 0:
