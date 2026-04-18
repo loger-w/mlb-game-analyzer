@@ -189,7 +189,12 @@ def get_stars_ou(run_diff: float) -> int:
         return 0  # 不推薦
 
 
-def analyze_moneyline(home_ml: int, away_ml: int, model_win_pct: float) -> dict:
+def analyze_moneyline(
+    home_ml: int,
+    away_ml: int,
+    model_win_pct: float,
+    kelly_params: dict = None,
+) -> dict:
     """分析 Moneyline 盤口"""
     home_implied = ml_to_implied_prob(home_ml)
     away_implied = ml_to_implied_prob(away_ml)
@@ -206,13 +211,27 @@ def analyze_moneyline(home_ml: int, away_ml: int, model_win_pct: float) -> dict:
         best_ev = home_ev
         best_kelly = home_kelly
         prob_diff = (model_win_pct - home_implied) * 100
+        kelly_prob = model_win_pct
+        kelly_ml = home_ml
     else:
         direction = "AWAY"
         best_ev = away_ev
         best_kelly = away_kelly
         prob_diff = ((1 - model_win_pct) - away_implied) * 100
+        kelly_prob = 1 - model_win_pct
+        kelly_ml = away_ml
 
     stars = get_stars_ml(prob_diff)
+
+    # Fractional Kelly
+    kp = kelly_params or {}
+    kf = calc_fractional_kelly(
+        kelly_prob, kelly_ml,
+        divisor=kp.get("divisor", 4),
+        cap_pct=kp.get("cap_pct", 3.0),
+        unit_size_pct=kp.get("unit_size_pct", 1.0),
+    )
+    kf["direction"] = direction
 
     return {
         "home_ml": home_ml,
@@ -225,7 +244,8 @@ def analyze_moneyline(home_ml: int, away_ml: int, model_win_pct: float) -> dict:
         "away_ev": away_ev,
         "direction": direction,
         "prob_diff": round(prob_diff, 1),
-        "kelly": round(best_kelly, 2),
+        "kelly": round(best_kelly, 2),       # 既有 raw 欄位保留
+        "kelly_fractional": kf,               # 新區塊
         "stars": stars,
     }
 
