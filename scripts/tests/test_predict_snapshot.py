@@ -382,3 +382,49 @@ def test_i1_divergent_forces_ml_kelly_null(tmp_path):
     assert "ml_guardrail_pass" in kelly_block["warnings"]
     assert "rl_guardrail_pass" in kelly_block["warnings"]
     assert kelly_block["ou"] is not None
+
+
+def test_compute_kelly_block_handles_full_team_names_in_meta(tmp_path):
+    """Real merged.json stores _meta.home_team as full names (e.g. 'Chicago Cubs').
+    compute_kelly_block must convert via TEAM_ABBREV before snapshot lookup.
+    """
+    game_dir = tmp_path / "2026-04-18" / "NYM@CHC"
+    game_dir.mkdir(parents=True)
+    merged_path = game_dir / "merged.json"
+    with open(os.path.join(FIXTURES, "sample_merged.json")) as f:
+        merged = json.load(f)
+    # Override to use FULL names (mimicking real project data)
+    merged["_meta"]["home_team"] = "Chicago Cubs"
+    merged["_meta"]["away_team"] = "New York Mets"
+    with open(merged_path, "w") as f:
+        json.dump(merged, f)
+
+    snap_dir = tmp_path / "odds_snapshots"
+    snap_dir.mkdir()
+    shutil.copy(
+        os.path.join(FIXTURES, "sample_snapshot.json"),
+        snap_dir / "2026-04-18_16-00-ET.json",
+    )
+
+    from predict import compute_kelly_block
+    import predict
+    orig = predict.load_closest_snapshot
+    predict.load_closest_snapshot = lambda gde, gsu, snapshot_dir=None: orig(gde, gsu, snapshot_dir=str(snap_dir))
+
+    try:
+        args = _make_args(merged_path)
+        kelly_block = compute_kelly_block(
+            args, merged,
+            ml_prediction={"home_win_pct": 60.0},
+            formula_prediction={"total": 9.5, "margin": 0.8},
+            final_ml_rec="CHC", final_ou_rec="OVER", final_rl_rec="PASS",
+        )
+    finally:
+        predict.load_closest_snapshot = orig
+
+    # Before fix: team_name_mismatch warning + ml/ou/rl all None
+    # After fix: full-name converts to abbrev, snapshot matches, ml populated
+    assert kelly_block["ml"] is not None, \
+        "Full team names in _meta must be converted to abbrevs via TEAM_ABBREV"
+    assert "team_name_mismatch" not in " ".join(kelly_block["warnings"])
+    assert kelly_block["snapshot_time_et"] is not None

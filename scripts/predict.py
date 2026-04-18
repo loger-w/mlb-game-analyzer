@@ -373,8 +373,14 @@ def compute_kelly_block(
 
     warnings = []
     meta = merged.get("_meta", {})
-    home_abbrev = meta.get("home_team") or "HOME"
-    away_abbrev = meta.get("away_team") or "AWAY"
+    # Real merged.json stores _meta.home_team/away_team as full team names
+    # (e.g. "Philadelphia Phillies"). TEAM_ABBREV maps full→abbrev; fall
+    # through to the raw value so already-abbrev'd inputs (fixtures/tests)
+    # still work.
+    home_raw = meta.get("home_team") or "HOME"
+    away_raw = meta.get("away_team") or "AWAY"
+    home_abbrev = TEAM_ABBREV.get(home_raw, home_raw)
+    away_abbrev = TEAM_ABBREV.get(away_raw, away_raw)
     game_date_iso = meta.get("game_date") or ""
 
     # === C1: ET 日期取得 ===
