@@ -115,3 +115,65 @@ def test_resolve_odds_missing_ou_market():
     assert result["ml"]["home_decimal"] == 1.70
     assert result["ou"] is None
     assert result["rl"] is None
+
+
+def test_resolve_odds_doubleheader_without_index_errors():
+    """同日同兩隊出現 2 場 → 需要 --game-index，未指定應 raise."""
+    snap = {
+        "snapshot_time_et": "2026-04-18 16:00 ET",
+        "games": [
+            {
+                "game": "NYM @ CHC",
+                "home_team": "Chicago Cubs",
+                "away_team": "New York Mets",
+                "commence_et": "2026-04-18 13:00 ET",
+                "game_date_et": "2026-04-18",
+                "bookmakers": {"pinnacle": {"ml": {
+                    "Chicago Cubs": {"odds": 1.80}, "New York Mets": {"odds": 2.10},
+                }, "ou": {}, "rl": {}}},
+            },
+            {
+                "game": "NYM @ CHC",
+                "home_team": "Chicago Cubs",
+                "away_team": "New York Mets",
+                "commence_et": "2026-04-18 19:00 ET",
+                "game_date_et": "2026-04-18",
+                "bookmakers": {"pinnacle": {"ml": {
+                    "Chicago Cubs": {"odds": 1.75}, "New York Mets": {"odds": 2.20},
+                }, "ou": {}, "rl": {}}},
+            },
+        ],
+    }
+    with pytest.raises(ValueError, match="doubleheader"):
+        resolve_pinnacle_odds(snap, home_abbrev="CHC", away_abbrev="NYM")
+
+
+def test_resolve_odds_doubleheader_with_index():
+    """--game-index 指定 G2 → 取第二場 (19:00)。"""
+    snap = {
+        "snapshot_time_et": "2026-04-18 16:00 ET",
+        "games": [
+            {
+                "game": "NYM @ CHC (G1)",
+                "home_team": "Chicago Cubs",
+                "away_team": "New York Mets",
+                "commence_et": "2026-04-18 13:00 ET",
+                "game_date_et": "2026-04-18",
+                "bookmakers": {"pinnacle": {"ml": {
+                    "Chicago Cubs": {"odds": 1.80}, "New York Mets": {"odds": 2.10},
+                }, "ou": {}, "rl": {}}},
+            },
+            {
+                "game": "NYM @ CHC (G2)",
+                "home_team": "Chicago Cubs",
+                "away_team": "New York Mets",
+                "commence_et": "2026-04-18 19:00 ET",
+                "game_date_et": "2026-04-18",
+                "bookmakers": {"pinnacle": {"ml": {
+                    "Chicago Cubs": {"odds": 1.75}, "New York Mets": {"odds": 2.20},
+                }, "ou": {}, "rl": {}}},
+            },
+        ],
+    }
+    res = resolve_pinnacle_odds(snap, home_abbrev="CHC", away_abbrev="NYM", game_index=2)
+    assert res["ml"]["home_decimal"] == 1.75  # G2

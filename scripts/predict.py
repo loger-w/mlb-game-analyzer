@@ -114,18 +114,10 @@ def resolve_pinnacle_odds(
     snapshot: dict,
     home_abbrev: str,
     away_abbrev: str,
+    game_index: int = None,
 ) -> dict | None:
-    """Extract Pinnacle decimal odds for a specific matchup.
-
-    Returns:
-        {
-            "ml": {home_decimal, away_decimal},
-            "ou": {line, over_decimal, under_decimal} or None,
-            "rl": {home_point, home_decimal, away_point, away_decimal} or None,
-            "snapshot_time_et": str,
-        }
-        or None if no matching game.
-    """
+    """Extract Pinnacle decimal odds. For doubleheaders, game_index (1 or 2) required."""
+    matches = []
     for g in snapshot.get("games", []):
         home_full = g.get("home_team")
         away_full = g.get("away_team")
@@ -133,46 +125,65 @@ def resolve_pinnacle_odds(
         ga = _NAME_TO_ABBREV.get(away_full)
         if gh != home_abbrev or ga != away_abbrev:
             continue
+        matches.append(g)
 
-        pin = g.get("bookmakers", {}).get("pinnacle")
-        if not pin:
-            continue
+    if not matches:
+        return None
 
-        ml = pin.get("ml", {})
-        ou = pin.get("ou", {})
-        rl = pin.get("rl", {})
+    if len(matches) > 1:
+        if game_index is None:
+            raise ValueError(
+                f"doubleheader detected for {away_abbrev}@{home_abbrev}; "
+                f"pass game_index=1 or 2"
+            )
+        # 按 commence_et 排序，game_index 1 基底
+        matches.sort(key=lambda g: g.get("commence_et", ""))
+        if game_index < 1 or game_index > len(matches):
+            raise ValueError(f"game_index {game_index} out of range (have {len(matches)} games)")
+        g = matches[game_index - 1]
+    else:
+        g = matches[0]
 
-        result = {
-            "snapshot_time_et": snapshot.get("snapshot_time_et"),
-            "ml": None,
-            "ou": None,
-            "rl": None,
+    pin = g.get("bookmakers", {}).get("pinnacle")
+    if not pin:
+        return None
+
+    ml = pin.get("ml", {})
+    ou = pin.get("ou", {})
+    rl = pin.get("rl", {})
+
+    home_full = g["home_team"]
+    away_full = g["away_team"]
+
+    result = {
+        "snapshot_time_et": snapshot.get("snapshot_time_et"),
+        "ml": None,
+        "ou": None,
+        "rl": None,
+    }
+
+    if home_full in ml and away_full in ml:
+        result["ml"] = {
+            "home_decimal": ml[home_full]["odds"],
+            "away_decimal": ml[away_full]["odds"],
         }
 
-        if home_full in ml and away_full in ml:
-            result["ml"] = {
-                "home_decimal": ml[home_full]["odds"],
-                "away_decimal": ml[away_full]["odds"],
-            }
+    if "Over" in ou and "Under" in ou:
+        result["ou"] = {
+            "line": ou["Over"].get("point"),
+            "over_decimal": ou["Over"]["odds"],
+            "under_decimal": ou["Under"]["odds"],
+        }
 
-        if "Over" in ou and "Under" in ou:
-            result["ou"] = {
-                "line": ou["Over"].get("point"),
-                "over_decimal": ou["Over"]["odds"],
-                "under_decimal": ou["Under"]["odds"],
-            }
+    if home_full in rl and away_full in rl:
+        result["rl"] = {
+            "home_point": rl[home_full].get("point"),
+            "home_decimal": rl[home_full]["odds"],
+            "away_point": rl[away_full].get("point"),
+            "away_decimal": rl[away_full]["odds"],
+        }
 
-        if home_full in rl and away_full in rl:
-            result["rl"] = {
-                "home_point": rl[home_full].get("point"),
-                "home_decimal": rl[home_full]["odds"],
-                "away_point": rl[away_full].get("point"),
-                "away_decimal": rl[away_full]["odds"],
-            }
-
-        return result
-
-    return None
+    return result
 
 
 def pythagorean_runs(rs: float, ra: float, g: float = 10) -> float:
