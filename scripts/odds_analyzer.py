@@ -31,7 +31,7 @@ def parse_bet_format(s: str) -> tuple[int, int]:
 
 # ── 機率估算（常態分佈近似）──────────────────────────────
 
-_MLB_TOTAL_STD = 3.5  # MLB 比賽總分標準差（典型值）
+_MLB_TOTAL_STD = 4.5  # 對齊 reference/prediction.md D2/D5 紀律（原 3.5 為既有 bug）
 
 
 def _normal_cdf(x: float, mean: float, std: float) -> float:
