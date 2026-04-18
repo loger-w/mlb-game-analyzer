@@ -5,6 +5,7 @@ import argparse
 import json
 import math
 import re
+import sys
 
 
 # ── 格式解析 ──────────────────────────────────────────────
@@ -100,8 +101,8 @@ def calc_kelly(model_prob: float, ml: int) -> float:
     return round(max(0, kelly) * 100, 2)
 
 
-def get_stars(prob_diff: float) -> int:
-    """根據勝率差距決定推薦星級"""
+def get_stars_ml(prob_diff: float) -> int:
+    """根據 ML 勝率差距決定推薦星級（reference ML 星級表）"""
     abs_diff = abs(prob_diff)
     if abs_diff >= 15:
         return 5
@@ -113,6 +114,25 @@ def get_stars(prob_diff: float) -> int:
         return 2
     else:
         return 1
+
+
+def get_stars_ou(run_diff: float) -> int:
+    """G1: 根據 O/U run 差距決定推薦星級（對齊 reference/prediction.md）
+
+    < 1.5 run = 不推薦（SD ≈ 4.5，在噪音範圍）
+    1.5-2.0 = ⭐⭐⭐
+    2.0-3.0 = ⭐⭐⭐⭐
+    > 3.0   = ⭐⭐⭐⭐⭐
+    """
+    abs_diff = abs(run_diff)
+    if abs_diff > 3.0:
+        return 5
+    elif abs_diff >= 2.0:
+        return 4
+    elif abs_diff >= 1.5:
+        return 3
+    else:
+        return 0  # 不推薦
 
 
 def analyze_moneyline(home_ml: int, away_ml: int, model_win_pct: float) -> dict:
@@ -138,7 +158,7 @@ def analyze_moneyline(home_ml: int, away_ml: int, model_win_pct: float) -> dict:
         best_kelly = away_kelly
         prob_diff = ((1 - model_win_pct) - away_implied) * 100
 
-    stars = get_stars(prob_diff)
+    stars = get_stars_ml(prob_diff)
 
     return {
         "home_ml": home_ml,
@@ -157,26 +177,23 @@ def analyze_moneyline(home_ml: int, away_ml: int, model_win_pct: float) -> dict:
 
 
 def analyze_over_under(line: float, predicted_total: float) -> dict:
-    """分析直線大小分盤口（無拆注）"""
+    """分析直線大小分盤口（無拆注）— G1: 使用 run 差距制"""
     diff = predicted_total - line
-    abs_diff = abs(diff)
+    stars = get_stars_ou(diff)
 
-    if abs_diff < 0.5:
-        direction = "NEUTRAL"
-        stars = 1
+    if stars == 0:
+        direction = "PASS"
     elif diff > 0:
         direction = "OVER"
-        stars = get_stars(abs_diff * 5)
     else:
         direction = "UNDER"
-        stars = get_stars(abs_diff * 5)
 
     return {
         "line": line,
         "predicted_total": round(predicted_total, 1),
         "diff": round(diff, 1),
         "direction": direction,
-        "stars": min(stars, 5),
+        "stars": stars,
     }
 
 
@@ -230,16 +247,15 @@ def analyze_weighted_ou(
         f"總分 >={base_line + 1}（全輸）":          "-100",
     }
 
-    # 方向 & 星級
+    # G1: 方向 & 星級（使用 run 差距制）
     diff = predicted_total - effective_line
-    if abs(diff) < 0.3:
-        direction, stars = "NEUTRAL", 1
+    stars = get_stars_ou(diff)
+    if stars == 0:
+        direction = "PASS"
     elif diff > 0:
         direction = "OVER"
-        stars = min(get_stars(abs(diff) * 5), 5)
     else:
         direction = "UNDER"
-        stars = min(get_stars(abs(diff) * 5), 5)
 
     return {
         "type": "weighted_ou",
@@ -395,6 +411,7 @@ def main():
     parser.add_argument("--handicap-odds-hk", type=float, help="Quarter handicap HK odds")
     parser.add_argument("--handicap-split-pct", type=int, default=50,
                         help="讓分拆注百分比，預設 50（標準四分球）。如 '1-20' → 傳入 20")
+    parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--test", action="store_true")
     args = parser.parse_args()
 
@@ -455,7 +472,14 @@ def main():
             split_pct=args.handicap_split_pct,
         )
 
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    json_output = json.dumps(result, indent=2, ensure_ascii=False)
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(json_output)
+        print(f"Saved to {args.output}", file=sys.stderr)
+    else:
+        print(json_output)
 
 
 if __name__ == "__main__":
