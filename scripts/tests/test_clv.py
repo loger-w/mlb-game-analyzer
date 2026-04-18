@@ -128,9 +128,10 @@ class TestFindClosingSnapshot:
         assert snap["snapshot_time_utc"] == "2026-04-18T22:10:00+00:00"
 
     def test_closing_for_earlier_game(self, temp_snapshot_dir):
-        # Orioles game commence 22:11 UTC -> closing = latest before = 20:00 UTC (rec), NOT 22:10
+        # Orioles game commence 22:11 UTC -> closing = latest snap before that = 22:10 UTC
+        # (1 min before first pitch, still a valid closing line under the 4h cadence model)
         snap = find_closing_snapshot("2026-04-18T22:11:00Z", "2026-04-18", temp_snapshot_dir)
-        assert snap["snapshot_time_utc"] == "2026-04-18T20:00:00+00:00"
+        assert snap["snapshot_time_utc"] == "2026-04-18T22:10:00+00:00"
 
 
 class TestFindOpeningSnapshot:
