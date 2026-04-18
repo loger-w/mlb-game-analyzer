@@ -53,9 +53,6 @@ def log5(home_pct: float, away_pct: float) -> float:
     return p
 
 
-_SNAPSHOT_FILENAME_RE = re.compile(r"(\d{4}-\d{2}-\d{2})_(\d{2})-00-ET\.json$")
-
-
 def load_closest_snapshot(
     game_date_et: str,
     game_start_utc: str,
