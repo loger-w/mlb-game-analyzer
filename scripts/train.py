@@ -10,7 +10,7 @@ from datetime import datetime
 import joblib
 import numpy as np
 import pandas as pd
-from xgboost import XGBClassifier, XGBRegressor
+from xgboost import XGBClassifier
 
 try:
     from pybaseball import pitching_stats, batting_stats, schedule_and_record
@@ -20,7 +20,6 @@ except ImportError:
 
 MODELS_DIR = os.path.join(os.path.dirname(__file__), "models")
 WIN_MODEL_PATH = os.path.join(MODELS_DIR, "xgb_win_model.pkl")
-TOTAL_MODEL_PATH = os.path.join(MODELS_DIR, "xgb_total_model.pkl")
 
 # 特徵欄位定義
 FEATURE_COLS = [
@@ -85,12 +84,11 @@ def build_season_data(year: int) -> pd.DataFrame:
     return team_stats
 
 
-def create_training_features(team_stats: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """生成訓練特徵（模擬對決）"""
+def create_training_features(team_stats: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+    """生成訓練特徵（模擬對決）— 僅保留勝負預測，總得分已移除"""
     teams = team_stats["Team"].tolist()
     X_rows = []
     y_win = []
-    y_total = []
 
     for i, home_team in enumerate(teams):
         for j, away_team in enumerate(teams):
@@ -112,16 +110,13 @@ def create_training_features(team_stats: pd.DataFrame) -> tuple[np.ndarray, np.n
             ]
             X_rows.append(features)
 
-            # 模擬勝負與得分（基於 Pythagorean）
+            # 模擬勝負（基於 Pythagorean）
             home_strength = home["team_wrc"] / 100 * (4.5 / max(home["team_fip"], 2.0))
             away_strength = away["team_wrc"] / 100 * (4.5 / max(away["team_fip"], 2.0))
             home_win_prob = (home_strength ** 2) / (home_strength ** 2 + away_strength ** 2) + 0.03  # 主場優勢
             y_win.append(1 if np.random.random() < home_win_prob else 0)
-            home_runs = max(0, np.random.poisson(home_strength * 1.05))
-            away_runs = max(0, np.random.poisson(away_strength * 0.95))
-            y_total.append(home_runs + away_runs)
 
-    return np.array(X_rows), np.array(y_win), np.array(y_total)
+    return np.array(X_rows), np.array(y_win)
 
 
 def train_models(years: list[int], validate: bool = False):
@@ -132,25 +127,23 @@ def train_models(years: list[int], validate: bool = False):
 
     for year in years:
         team_stats = build_season_data(year)
-        X, y_win, y_total = create_training_features(team_stats)
+        X, y_win = create_training_features(team_stats)
         all_X.append(X)
         all_y_win.append(y_win)
-        all_y_total.append(y_total)
 
     X = np.vstack(all_X)
     y_win = np.concatenate(all_y_win)
-    y_total = np.concatenate(all_y_total)
 
     print(f"Training data: {X.shape[0]} samples, {X.shape[1]} features", file=sys.stderr)
 
     if validate:
         from sklearn.model_selection import train_test_split
-        X_train, X_test, yw_train, yw_test, yt_train, yt_test = train_test_split(
-            X, y_win, y_total, test_size=0.2, random_state=42
+        X_train, X_test, yw_train, yw_test = train_test_split(
+            X, y_win, test_size=0.2, random_state=42
         )
     else:
-        X_train, yw_train, yt_train = X, y_win, y_total
-        X_test, yw_test, yt_test = None, None, None
+        X_train, yw_train = X, y_win
+        X_test, yw_test = None, None
 
     # 勝負預測模型
     win_model = XGBClassifier(
@@ -160,37 +153,24 @@ def train_models(years: list[int], validate: bool = False):
     )
     win_model.fit(X_train, yw_train)
 
-    # 總分預測模型
-    total_model = XGBRegressor(
-        n_estimators=200, max_depth=6, learning_rate=0.1,
-        subsample=0.8, colsample_bytree=0.8,
-        random_state=42,
-    )
-    total_model.fit(X_train, yt_train)
-
     # 儲存模型
     os.makedirs(MODELS_DIR, exist_ok=True)
     joblib.dump(win_model, WIN_MODEL_PATH)
-    joblib.dump(total_model, TOTAL_MODEL_PATH)
 
     result = {
         "status": "OK",
         "samples": X.shape[0],
         "features": X.shape[1],
         "win_model": WIN_MODEL_PATH,
-        "total_model": TOTAL_MODEL_PATH,
     }
 
     if validate and X_test is not None:
-        from sklearn.metrics import accuracy_score, mean_absolute_error
+        from sklearn.metrics import accuracy_score
         win_acc = accuracy_score(yw_test, win_model.predict(X_test))
-        total_mae = mean_absolute_error(yt_test, total_model.predict(X_test))
         result["validation"] = {
             "win_accuracy": round(win_acc * 100, 1),
-            "total_mae": round(total_mae, 2),
         }
         print(f"Win accuracy: {win_acc*100:.1f}%", file=sys.stderr)
-        print(f"Total MAE: {total_mae:.2f}", file=sys.stderr)
 
     print(json.dumps(result, indent=2))
 
