@@ -8,7 +8,7 @@ import math
 import os
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 import joblib
 import numpy as np
@@ -346,6 +346,199 @@ def predict_with_formula(data: dict) -> dict:
     }
 
 
+# C1: ET timezone（對齊 fetch_odds.py:21 — MLB 球季 EDT = UTC-4）
+_ET_TZ = timezone(timedelta(hours=-4))
+_ANALYSIS_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
+
+
+def compute_kelly_block(
+    args,
+    merged: dict,
+    ml_prediction: dict | None,
+    formula_prediction: dict,
+    final_ml_rec: str,
+    final_ou_rec: str,
+    final_rl_rec: str,
+) -> dict | None:
+    """Build the kelly block for prediction.json.
+
+    I1: PASS markets → kelly.{market} = None (kelly must align with D1-D5 guardrail).
+    C1: ET date extracted from analysis-data/YYYY-MM-DD/ path (fallback: UTC→ET).
+    C3: Pass Pinnacle rl.home_point into analyze_run_line for truthful side labeling.
+    """
+    from odds_analyzer import (
+        analyze_moneyline, analyze_over_under, analyze_run_line,
+        decimal_to_american,
+    )
+
+    warnings = []
+    meta = merged.get("_meta", {})
+    home_abbrev = meta.get("home_team") or "HOME"
+    away_abbrev = meta.get("away_team") or "AWAY"
+    game_date_iso = meta.get("game_date") or ""
+
+    # === C1: ET 日期取得 ===
+    game_date_et = None
+    if args.game_data:
+        for part in os.path.normpath(args.game_data).split(os.sep):
+            if _ANALYSIS_DATE_RE.match(part):
+                game_date_et = part
+                break
+    if not game_date_et and game_date_iso:
+        try:
+            utc_dt = datetime.fromisoformat(game_date_iso.replace("Z", "+00:00"))
+            game_date_et = utc_dt.astimezone(_ET_TZ).strftime("%Y-%m-%d")
+        except ValueError:
+            pass
+    game_start_utc = game_date_iso if "T" in game_date_iso else None
+
+    # === I1: Guardrail PASS 對齊 ===
+    ml_is_pass = final_ml_rec == "PASS"
+    ou_is_pass = final_ou_rec == "PASS"
+    rl_is_pass = final_rl_rec == "PASS"
+    if ml_is_pass:
+        warnings.append("ml_guardrail_pass")
+    if ou_is_pass:
+        warnings.append("ou_guardrail_pass")
+    if rl_is_pass:
+        warnings.append("rl_guardrail_pass")
+
+    # 1) Snapshot auto-lookup
+    snap_odds = None
+    snap_source = None
+    if not args.no_auto_odds:
+        snap = load_closest_snapshot(game_date_et, game_start_utc) if game_date_et and game_start_utc else None
+        if snap:
+            snap_odds = resolve_pinnacle_odds(
+                snap, home_abbrev, away_abbrev,
+                game_index=args.game_index,
+            )
+            snap_source = snap.get("snapshot_time_et")
+            if snap_odds is None:
+                warnings.append(f"team_name_mismatch: {home_abbrev} vs {away_abbrev}")
+        else:
+            warnings.append("no_matching_snapshot")
+
+    # 2) CLI overrides take precedence
+    def _pick(override_dec, snap_value):
+        if override_dec is not None:
+            return decimal_to_american(override_dec), override_dec
+        if snap_value is not None:
+            return decimal_to_american(snap_value), snap_value
+        return None, None
+
+    s_ml = (snap_odds or {}).get("ml") or {}
+    s_ou = (snap_odds or {}).get("ou") or {}
+    s_rl = (snap_odds or {}).get("rl") or {}
+
+    ml_home_ml, ml_home_dec = _pick(args.ml_odds_home_dec, s_ml.get("home_decimal"))
+    ml_away_ml, ml_away_dec = _pick(args.ml_odds_away_dec, s_ml.get("away_decimal"))
+    ou_over_ml, ou_over_dec = _pick(args.ou_odds_over_dec, s_ou.get("over_decimal"))
+    ou_under_ml, ou_under_dec = _pick(args.ou_odds_under_dec, s_ou.get("under_decimal"))
+    ou_line = s_ou.get("line") if s_ou else None
+    rl_home_ml, rl_home_dec = _pick(args.rl_odds_home_dec, s_rl.get("home_decimal"))
+    rl_away_ml, rl_away_dec = _pick(args.rl_odds_away_dec, s_rl.get("away_decimal"))
+    rl_home_point = s_rl.get("home_point") if s_rl else None
+
+    kelly_params = {
+        "divisor": args.kelly_divisor,
+        "cap_pct": args.kelly_cap,
+        "unit_size_pct": args.unit_size,
+    }
+
+    # 3) No odds at all → null kelly block + warnings
+    have_any = any([ml_home_dec, ml_away_dec, ou_over_dec, ou_under_dec, rl_home_dec, rl_away_dec])
+    if not have_any:
+        warnings.append("no_odds_available")
+        return {
+            "snapshot_source": None,
+            "snapshot_time_et": None,
+            "params": kelly_params,
+            "ml": None, "ou": None, "rl": None,
+            "warnings": warnings,
+        }
+
+    out = {
+        "snapshot_source": snap_source,
+        "snapshot_time_et": snap_source,
+        "params": kelly_params,
+        "ml": None, "ou": None, "rl": None,
+        "warnings": warnings,
+    }
+
+    # ML Kelly
+    model_p_home = None
+    if ml_prediction is not None:
+        pct = ml_prediction.get("home_win_pct")
+        if pct is not None:
+            model_p_home = pct / 100.0
+    if (not ml_is_pass
+            and model_p_home is not None
+            and ml_home_ml is not None and ml_away_ml is not None):
+        ml_res = analyze_moneyline(ml_home_ml, ml_away_ml, model_p_home, kelly_params)
+        kf = ml_res["kelly_fractional"]
+        out["ml"] = {
+            "direction": kf["direction"],
+            "decimal_odds": ml_home_dec if kf["direction"] == "HOME" else ml_away_dec,
+            "raw_kelly_pct": kf["raw_kelly_pct"],
+            "fractional_pct": kf["fractional_pct"],
+            "capped_pct": kf["capped_pct"],
+            "units": kf["units"],
+        }
+
+    # OU Kelly
+    predicted_total = formula_prediction.get("total")
+    if (not ou_is_pass
+            and predicted_total is not None and ou_line is not None
+            and (ou_over_ml or ou_under_ml)):
+        ou_res = analyze_over_under(ou_line, predicted_total, ou_over_ml, ou_under_ml, kelly_params)
+        kf = ou_res["kelly_fractional"]
+        if kf:
+            over_block = kf["over"] and {
+                "decimal_odds": ou_over_dec,
+                "raw_kelly_pct": kf["over"]["raw_kelly_pct"],
+                "fractional_pct": kf["over"]["fractional_pct"],
+                "capped_pct": kf["over"]["capped_pct"],
+                "units": kf["over"]["units"],
+            }
+            under_block = kf["under"] and {
+                "decimal_odds": ou_under_dec,
+                "raw_kelly_pct": kf["under"]["raw_kelly_pct"],
+                "fractional_pct": kf["under"]["fractional_pct"],
+                "capped_pct": kf["under"]["capped_pct"],
+                "units": kf["under"]["units"],
+            }
+            out["ou"] = {
+                "direction": ou_res["direction"],
+                "line": ou_line,
+                "over": over_block,
+                "under": under_block,
+            }
+
+    # RL Kelly
+    predicted_margin = formula_prediction.get("margin")
+    if (not rl_is_pass
+            and predicted_margin is not None and model_p_home is not None
+            and ml_home_ml is not None and ml_away_ml is not None
+            and (rl_home_ml or rl_away_ml)):
+        rl_res = analyze_run_line(
+            predicted_margin, model_p_home,
+            home_ml=ml_home_ml, away_ml=ml_away_ml,
+            home_rl_odds_ml=rl_home_ml, away_rl_odds_ml=rl_away_ml,
+            home_point=rl_home_point,
+            kelly_params=kelly_params,
+        )
+        kf = rl_res["kelly_fractional"]
+        if kf:
+            out["rl"] = {
+                "favorite_side": (kf.get("favorite_cover") or {}).get("side"),
+                "favorite": kf.get("favorite_cover"),
+                "underdog": kf.get("underdog_cover"),
+            }
+
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser(description="Predict MLB game outcome")
     parser.add_argument("--game-data", help="Path to JSON with merged game data")
@@ -373,6 +566,29 @@ def main():
     parser.add_argument("--wind-direction", help="Wind direction")
     parser.add_argument("--umpire", help="Home plate umpire name")
     parser.add_argument("--umpire-ou-rate", type=float, help="Umpire career Over pct")
+    # Kelly sizing parameters
+    parser.add_argument("--kelly-divisor", type=int, default=4,
+                        help="Kelly fraction divisor (default 4 = quarter-Kelly)")
+    parser.add_argument("--kelly-cap", type=float, default=3.0,
+                        help="Hard cap per bet, %% of bankroll (default 3.0)")
+    parser.add_argument("--unit-size", type=float, default=1.0,
+                        help="1 unit = this %% of bankroll (default 1.0)")
+    parser.add_argument("--no-auto-odds", action="store_true",
+                        help="Skip snapshot auto-lookup; use only CLI odds overrides")
+    parser.add_argument("--ml-odds-home-dec", type=float, default=None,
+                        help="Override: decimal odds for home ML")
+    parser.add_argument("--ml-odds-away-dec", type=float, default=None,
+                        help="Override: decimal odds for away ML")
+    parser.add_argument("--ou-odds-over-dec", type=float, default=None,
+                        help="Override: decimal odds for Over")
+    parser.add_argument("--ou-odds-under-dec", type=float, default=None,
+                        help="Override: decimal odds for Under")
+    parser.add_argument("--rl-odds-home-dec", type=float, default=None,
+                        help="Override: decimal odds for home RL")
+    parser.add_argument("--rl-odds-away-dec", type=float, default=None,
+                        help="Override: decimal odds for away RL")
+    parser.add_argument("--game-index", type=int, default=None,
+                        help="Doubleheader game number (1 or 2)")
     args = parser.parse_args()
 
     if args.test:
@@ -604,6 +820,20 @@ def main():
             final_rl_rec = "PASS"
             final_rl_stars = 0
 
+        # === Kelly Sizing 計算（I1: 對齊 guardrail；I4: tighten except） ===
+        kelly_block = None
+        try:
+            kelly_block = compute_kelly_block(
+                args, data, ml_pred, formula_pred,
+                final_ml_rec=final_ml_rec,
+                final_ou_rec=final_ou_rec,
+                final_rl_rec=final_rl_rec,
+            )
+        except (KeyError, IOError, json.JSONDecodeError) as e:
+            print(f"⚠️ Kelly computation failed: {e}", file=sys.stderr)
+            kelly_block = None
+        # ValueError (doubleheader missing --game-index / bad decimal odds) 故意不吞
+
         record = {
             "date": record_date,
             "game_time": meta.get("game_date"),
@@ -647,6 +877,7 @@ def main():
             "actual_home_score": None,
             "actual_away_score": None,
             "actual_total": None,
+            "kelly": kelly_block,
             "verified": False,
         }
         # 寫入 per-game prediction.json（放在 --game-data 所在資料夾）
