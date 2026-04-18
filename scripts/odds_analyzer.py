@@ -393,8 +393,20 @@ def analyze_weighted_ou(
     }
 
 
-def analyze_run_line(predicted_margin: float) -> dict:
-    """分析讓分盤（-1.5）"""
+def analyze_run_line(
+    predicted_margin: float,
+    model_home_win_pct: float = None,
+    home_ml: int = None,
+    away_ml: int = None,
+    home_rl_odds_ml: int = None,
+    away_rl_odds_ml: int = None,
+    home_point: float = None,       # Pinnacle snapshot 主隊 RL point（±1.5）
+    kelly_params: dict = None,
+) -> dict:
+    """分析讓分盤（-1.5）。
+
+    C2/C3 fix: 熱門方用市場 ML 判定（非 model margin）；side 標籤優先用 Pinnacle point。
+    """
     if abs(predicted_margin) < 1.5:
         direction = "NEUTRAL"
         stars = 1
@@ -408,10 +420,59 @@ def analyze_run_line(predicted_margin: float) -> dict:
         direction = "LEAN_FAVORITE" if predicted_margin > 0 else "LEAN_UNDERDOG"
         stars = 2
 
+    # Kelly：需要 model_home_win_pct + 市場 ML（判熱門）+ RL odds
+    kelly_fractional = None
+    have_ml = home_ml is not None and away_ml is not None
+    have_rl_odds = home_rl_odds_ml is not None or away_rl_odds_ml is not None
+    if model_home_win_pct is not None and have_ml and have_rl_odds:
+        # C2: 市場熱門方判定用 American ML 較負那方（不用 predicted_margin）
+        fav_is_home = home_ml < away_ml
+        fav_win_pct = model_home_win_pct if fav_is_home else (1 - model_home_win_pct)
+        fav_ml      = home_ml if fav_is_home else away_ml
+        fav_rl_odds = home_rl_odds_ml if fav_is_home else away_rl_odds_ml
+        dog_rl_odds = away_rl_odds_ml if fav_is_home else home_rl_odds_ml
+
+        p_cover_fav = fav_win_pct * p_margin_ge_2_given_win(fav_ml)
+        p_cover_dog = 1 - p_cover_fav
+
+        # C3: Side 標籤優先用 Pinnacle snapshot 的 point（source of truth）
+        if home_point is not None:
+            fav_side = "HOME_-1.5" if home_point < 0 else "AWAY_-1.5"
+            dog_side = "AWAY_+1.5" if home_point < 0 else "HOME_+1.5"
+        else:
+            fav_side = "HOME_-1.5" if fav_is_home else "AWAY_-1.5"
+            dog_side = "AWAY_+1.5" if fav_is_home else "HOME_+1.5"
+
+        kp = kelly_params or {}
+        kelly_fractional = {"favorite_cover": None, "underdog_cover": None}
+
+        if fav_rl_odds is not None:
+            kf = calc_fractional_kelly(
+                p_cover_fav, fav_rl_odds,
+                divisor=kp.get("divisor", 4),
+                cap_pct=kp.get("cap_pct", 3.0),
+                unit_size_pct=kp.get("unit_size_pct", 1.0),
+            )
+            kf["decimal_odds"] = round(american_to_hk(fav_rl_odds) + 1, 3)
+            kf["side"] = fav_side
+            kelly_fractional["favorite_cover"] = kf
+
+        if dog_rl_odds is not None:
+            kf = calc_fractional_kelly(
+                p_cover_dog, dog_rl_odds,
+                divisor=kp.get("divisor", 4),
+                cap_pct=kp.get("cap_pct", 3.0),
+                unit_size_pct=kp.get("unit_size_pct", 1.0),
+            )
+            kf["decimal_odds"] = round(american_to_hk(dog_rl_odds) + 1, 3)
+            kf["side"] = dog_side
+            kelly_fractional["underdog_cover"] = kf
+
     return {
         "predicted_margin": round(predicted_margin, 1),
         "direction": direction,
         "stars": stars,
+        "kelly_fractional": kelly_fractional,
     }
 
 
