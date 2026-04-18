@@ -436,6 +436,8 @@ def compute_kelly_block(
     ou_over_ml, ou_over_dec = _pick(args.ou_odds_over_dec, s_ou.get("over_decimal"))
     ou_under_ml, ou_under_dec = _pick(args.ou_odds_under_dec, s_ou.get("under_decimal"))
     ou_line = s_ou.get("line") if s_ou else None
+    if args.ou_line is not None:
+        ou_line = args.ou_line
     rl_home_ml, rl_home_dec = _pick(args.rl_odds_home_dec, s_rl.get("home_decimal"))
     rl_away_ml, rl_away_dec = _pick(args.rl_odds_away_dec, s_rl.get("away_decimal"))
     rl_home_point = s_rl.get("home_point") if s_rl else None
@@ -834,7 +836,7 @@ def main():
                 final_ou_rec=final_ou_rec,
                 final_rl_rec=final_rl_rec,
             )
-        except (KeyError, IOError, json.JSONDecodeError) as e:
+        except (KeyError, IOError, json.JSONDecodeError, TypeError, AttributeError) as e:
             print(f"⚠️ Kelly computation failed: {e}", file=sys.stderr)
             kelly_block = None
         # ValueError (doubleheader missing --game-index / bad decimal odds) 故意不吞
