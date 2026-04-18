@@ -177,3 +177,208 @@ def test_resolve_odds_doubleheader_with_index():
     }
     res = resolve_pinnacle_odds(snap, home_abbrev="CHC", away_abbrev="NYM", game_index=2)
     assert res["ml"]["home_decimal"] == 1.75  # G2
+
+
+import argparse
+
+
+def _make_args(game_data_path, **overrides):
+    """Build argparse.Namespace with all defaults compute_kelly_block expects."""
+    ns = argparse.Namespace(
+        game_data=str(game_data_path),
+        kelly_divisor=4, kelly_cap=3.0, unit_size=1.0,
+        no_auto_odds=False, game_index=None,
+        ml_odds_home_dec=None, ml_odds_away_dec=None,
+        ou_odds_over_dec=None, ou_odds_under_dec=None,
+        rl_odds_home_dec=None, rl_odds_away_dec=None,
+        ou_line=None,  # Task 11 follow-up 568f416 made this CLI arg a fallback inside compute_kelly_block
+    )
+    for k, v in overrides.items():
+        setattr(ns, k, v)
+    return ns
+
+
+def test_end_to_end_predict_with_snapshot(tmp_path):
+    """Happy path: 路徑含 ET 日期 → 抓 snapshot → kelly block 完整。"""
+    game_dir = tmp_path / "2026-04-18" / "NYM@CHC"
+    game_dir.mkdir(parents=True)
+    merged_path = game_dir / "merged.json"
+    shutil.copy(os.path.join(FIXTURES, "sample_merged.json"), merged_path)
+
+    snap_dir = tmp_path / "odds_snapshots"
+    snap_dir.mkdir()
+    shutil.copy(
+        os.path.join(FIXTURES, "sample_snapshot.json"),
+        snap_dir / "2026-04-18_16-00-ET.json",
+    )
+
+    from predict import compute_kelly_block
+    import predict
+    orig = predict.load_closest_snapshot
+    predict.load_closest_snapshot = lambda gde, gsu, snapshot_dir=None: orig(gde, gsu, snapshot_dir=str(snap_dir))
+
+    try:
+        with open(merged_path) as f:
+            merged = json.load(f)
+        ml_pred = {"home_win_pct": 60.0}
+        formula_pred = {"total": 9.5, "margin": 0.8}
+        args = _make_args(merged_path)
+        kelly_block = compute_kelly_block(
+            args, merged, ml_pred, formula_pred,
+            final_ml_rec="CHC", final_ou_rec="OVER", final_rl_rec="PASS",
+        )
+    finally:
+        predict.load_closest_snapshot = orig
+
+    assert kelly_block is not None
+    assert kelly_block["ml"] is not None
+    assert kelly_block["ml"]["raw_kelly_pct"] > 0
+    assert kelly_block["ml"]["capped_pct"] <= 3.0
+    assert kelly_block["ou"] is not None
+    assert kelly_block["ou"]["line"] == 8.0
+    assert kelly_block["rl"] is None
+    assert "rl_guardrail_pass" in kelly_block["warnings"]
+
+
+def test_c1_west_coast_late_game_finds_snapshot(tmp_path):
+    """C1 regression: UTC 2026-04-19T02:00:00Z（ET 22:00 前一天）應仍找到 ET 2026-04-18 的 snapshot。"""
+    game_dir = tmp_path / "2026-04-18" / "LAD@SF"
+    game_dir.mkdir(parents=True)
+    merged_path = game_dir / "merged.json"
+    with open(os.path.join(FIXTURES, "sample_merged.json")) as f:
+        merged = json.load(f)
+    merged["_meta"]["game_date"] = "2026-04-19T02:00:00Z"
+    merged["_meta"]["home_team"] = "CHC"
+    merged["_meta"]["away_team"] = "NYM"
+    with open(merged_path, "w") as f:
+        json.dump(merged, f)
+
+    snap_dir = tmp_path / "odds_snapshots"
+    snap_dir.mkdir()
+    shutil.copy(
+        os.path.join(FIXTURES, "sample_snapshot.json"),
+        snap_dir / "2026-04-18_20-00-ET.json",
+    )
+
+    from predict import compute_kelly_block
+    import predict
+    orig = predict.load_closest_snapshot
+    predict.load_closest_snapshot = lambda gde, gsu, snapshot_dir=None: orig(gde, gsu, snapshot_dir=str(snap_dir))
+
+    try:
+        args = _make_args(merged_path)
+        kelly_block = compute_kelly_block(
+            args, merged,
+            ml_prediction={"home_win_pct": 60.0},
+            formula_prediction={"total": 9.5, "margin": 0.8},
+            final_ml_rec="CHC", final_ou_rec="OVER", final_rl_rec="PASS",
+        )
+    finally:
+        predict.load_closest_snapshot = orig
+
+    assert kelly_block["ml"] is not None, "C1 bug: west-coast late game snapshot not found"
+    assert kelly_block["snapshot_time_et"] is not None
+    assert "no_matching_snapshot" not in kelly_block["warnings"]
+
+
+def test_c2_c3_model_market_split_uses_market_favorite(tmp_path):
+    """C2/C3 regression: model 與 market 熱門方分歧時，RL Kelly 必須查 market bucket。"""
+    game_dir = tmp_path / "2026-04-18" / "CHC@NYM"
+    game_dir.mkdir(parents=True)
+    merged_path = game_dir / "merged.json"
+    with open(os.path.join(FIXTURES, "sample_merged.json")) as f:
+        merged = json.load(f)
+    with open(merged_path, "w") as f:
+        json.dump(merged, f)
+
+    # 客製 snapshot：home=CHC 冷門 (+140), away=NYM 熱門 (-150), home_point=+1.5
+    snap = {
+        "snapshot_time_utc": "2026-04-18T20:00:00+00:00",
+        "snapshot_time_et": "2026-04-18 16:00 ET",
+        "games": [{
+            "game": "New York Mets @ Chicago Cubs",
+            "away_team": "New York Mets",
+            "home_team": "Chicago Cubs",
+            "commence_utc": "2026-04-18T23:00:00Z",
+            "commence_et": "2026-04-18 19:00 ET",
+            "game_date_et": "2026-04-18",
+            "bookmakers": {"pinnacle": {
+                "title": "Pinnacle",
+                "ml": {
+                    "Chicago Cubs": {"odds": 2.40, "implied_pct": 41.7},
+                    "New York Mets": {"odds": 1.67, "implied_pct": 59.9},
+                },
+                "ou": {"Over": {"odds": 1.91, "point": 8.5}, "Under": {"odds": 1.95, "point": 8.5}},
+                "rl": {
+                    "Chicago Cubs": {"odds": 3.00, "point": 1.5},
+                    "New York Mets": {"odds": 1.385, "point": -1.5},
+                },
+            }},
+        }],
+    }
+    snap_dir = tmp_path / "odds_snapshots"
+    snap_dir.mkdir()
+    with open(snap_dir / "2026-04-18_16-00-ET.json", "w") as f:
+        json.dump(snap, f)
+
+    from predict import compute_kelly_block
+    import predict
+    orig = predict.load_closest_snapshot
+    predict.load_closest_snapshot = lambda gde, gsu, snapshot_dir=None: orig(gde, gsu, snapshot_dir=str(snap_dir))
+
+    try:
+        args = _make_args(merged_path)
+        kelly_block = compute_kelly_block(
+            args, merged,
+            ml_prediction={"home_win_pct": 55.0},
+            formula_prediction={"total": 9.0, "margin": 0.5},
+            final_ml_rec="CHC", final_ou_rec="OVER",
+            final_rl_rec="NYM",
+        )
+    finally:
+        predict.load_closest_snapshot = orig
+
+    rl = kelly_block["rl"]
+    assert rl is not None
+    assert rl["favorite_side"] == "AWAY_-1.5"
+    assert rl["favorite"]["decimal_odds"] == pytest.approx(1.385, abs=0.01)
+    assert rl["favorite"]["raw_kelly_pct"] == 0
+    assert rl["underdog"]["raw_kelly_pct"] > 0
+
+
+def test_i1_divergent_forces_ml_kelly_null(tmp_path):
+    """I1 regression: final_ml_rec=PASS → kelly.ml 必為 null + warning 紀錄。"""
+    game_dir = tmp_path / "2026-04-18" / "NYM@CHC"
+    game_dir.mkdir(parents=True)
+    merged_path = game_dir / "merged.json"
+    shutil.copy(os.path.join(FIXTURES, "sample_merged.json"), merged_path)
+
+    snap_dir = tmp_path / "odds_snapshots"
+    snap_dir.mkdir()
+    shutil.copy(
+        os.path.join(FIXTURES, "sample_snapshot.json"),
+        snap_dir / "2026-04-18_16-00-ET.json",
+    )
+
+    from predict import compute_kelly_block
+    import predict
+    orig = predict.load_closest_snapshot
+    predict.load_closest_snapshot = lambda gde, gsu, snapshot_dir=None: orig(gde, gsu, snapshot_dir=str(snap_dir))
+
+    try:
+        with open(merged_path) as f:
+            merged = json.load(f)
+        args = _make_args(merged_path)
+        kelly_block = compute_kelly_block(
+            args, merged,
+            ml_prediction={"home_win_pct": 60.0},
+            formula_prediction={"total": 9.5, "margin": 0.8},
+            final_ml_rec="PASS", final_ou_rec="OVER", final_rl_rec="PASS",
+        )
+    finally:
+        predict.load_closest_snapshot = orig
+
+    assert kelly_block["ml"] is None, "I1: PASS 市場的 kelly 必為 null"
+    assert "ml_guardrail_pass" in kelly_block["warnings"]
+    assert "rl_guardrail_pass" in kelly_block["warnings"]
+    assert kelly_block["ou"] is not None
