@@ -383,3 +383,82 @@ CLI override（優先於 snapshot）：
 ```
 
 賽後回填 `actual_*` 並設 `verified: true`。
+
+## CLV 追蹤 (P2)
+
+P2 在 P3 的 4h Pinnacle snapshot 基建上加一層 Closing Line Value 追蹤，分成兩階段。
+
+### Rec-time blocks（prediction.json）
+
+**`recommendation_snapshot`** — 推薦時三市場完整 line，鎖檔後不動：
+
+```json
+{
+  "source": "2026-04-18_16-00-ET.json",
+  "snapshot_time_et": "2026-04-18 16:00 ET",
+  "snapshot_time_utc": "2026-04-18T20:00:00+00:00",
+  "commence_utc": "2026-04-18T23:00:00Z",
+  "minutes_before_first_pitch": 180,
+  "ml": {"home": {"decimal": 1.74, "american": -135, "implied_pct": 57.5}, "away": {"...": "..."}},
+  "ou": {"point": 8.0, "over": {"...": "..."}, "under": {"...": "..."}},
+  "rl": {"favorite_side": "HOME", "home": {"...": "...", "point": -1.5}, "away": {"...": "...", "point": 1.5}}
+}
+```
+
+無 snapshot → 整個 block `null`；某市場缺 → 該 key `null`。RL 若任一側缺 `point` 視為 malformed → `rl` 整塊 `null`（避免 `favorite_side` 被預設 `0 < 0` 誤標）。
+
+**`line_movement`** — open→rec 與 rec→close cents 移動量 + steam/RLM flag：
+
+```json
+{
+  "open_snapshot": "2026-04-18_00-00-ET.json",
+  "rec_snapshot":  "2026-04-18_16-00-ET.json",
+  "close_snapshot": null,
+  "open_to_rec": {"ml_home_cents": -4, "ou_cents": 0, "ou_point_delta": 0.0, "rl_home_cents": 3},
+  "rec_to_close": null,
+  "flags": {"steam_toward_rec": false, "rlm_suspected": false},
+  "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+  "warnings": []
+}
+```
+
+- `close_snapshot` / `rec_to_close` 於 post-game 階段由 `upload_results.py` 補進 `predictions.jsonl`，**不**改寫 `prediction.json`。
+- `flags.steam_toward_rec = true` ⇔ open→rec 間推薦方 American cents 增加 ≥ 5（line 收縮至我方）。
+- `flags.rlm_suspected = true` ⇔ 反向 ≥ 5 cents。
+- **Advisory only**：不進 `signal_table`、不影響 `final.home_win_pct`。
+
+### Post-game fields（predictions.jsonl）
+
+`upload_results.py` 在既有 `verified` / `ml_result` / `ou_result` / `run_line_result` 寫入之後補：
+
+```json
+{
+  "closing_line_source": "2026-04-18_22-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 50,
+  "closing_line": { "ml": {"...": "..."}, "ou": {"...": "..."}, "rl": {"...": "..."} },
+  "clv": {
+    "ml": {"cents": 4, "pct_no_vig": 1.8, "direction": "HOME", "bet_placed": true},
+    "ou": {"cents": 2, "pct_no_vig": 0.9, "direction": "OVER", "point_delta": 0.0, "bet_placed": false},
+    "rl": {"cents": -1, "pct_no_vig": -0.4, "direction": "HOME", "bet_placed": true}
+  },
+  "rec_to_close": {"ml_home_cents": 3, "ou_cents": 2, "ou_point_delta": 0.0, "rl_home_cents": 1},
+  "clv_warnings": []
+}
+```
+
+**三市場全算**（非 Kelly-bet only）— PASS 市場亦記錄 CLV 作為模型方向準度的 proxy。`bet_placed` 旗標區分「有下注」vs「僅觀察」，aggregate 分析時用 `WHERE bet_placed = true` 過濾即可取得下注績效。
+
+### Direction convention
+
+- `ml.direction`：`ml_rec`（PASS/NEUTRAL → `clv.ml` 本身為 `null`）
+- `ou.direction`：`ou_rec`（同上；`NEUTRAL` → 整 `clv.ou = null`）
+- `rl.direction`：`recommendation_snapshot.rl.favorite_side`（跟 Task 6 `line_movement` 一致）
+
+### CLV 格式定義
+
+- `cents`（主展示）：American odds 差額，正值 = 推薦方 rec-time line 比 closing 更優
+- `pct_no_vig`：兩側扣 vig 後推薦方 implied prob 差額（`close - rec`）的百分點，正值 = 我方被低估 → 賺到
+
+### 4h 粒度 caveat
+
+Closing line 採 4h cron 最後一筆 snapshot；與 first pitch 距離可能 0–4h。`closing_line_minutes_before_first_pitch > 240` 時 `clv_warnings` 加入 `closing_stale:Nmin`。Sub-hour steam 偵測不到，文檔化此 limit。
