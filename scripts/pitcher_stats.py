@@ -269,6 +269,108 @@ def fetch_statcast_barrels(mlbam_id: int, year: int) -> dict:
         return {"error": str(e)}
 
 
+def fetch_game_log(mlbam_id: int, year: int, limit: int = 3) -> list[dict]:
+    """C1: 取得近 N 場 Game Log（含用球數）"""
+    try:
+        resp = requests.get(
+            f"{MLB_API_BASE}/people/{mlbam_id}/stats",
+            params={"stats": "gameLog", "group": "pitching", "season": year},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        games = []
+        for sg in data.get("stats", []):
+            for split in sg.get("splits", [])[:limit]:
+                s = split.get("stat", {})
+                games.append({
+                    "date": split.get("date"),
+                    "opponent": split.get("opponent", {}).get("name"),
+                    "ip": parse_ip(s.get("inningsPitched", "0")),
+                    "era": float(s.get("era", 0)) if s.get("era") else None,
+                    "k": int(s.get("strikeOuts", 0)),
+                    "bb": int(s.get("baseOnBalls", 0)),
+                    "h": int(s.get("hits", 0)),
+                    "er": int(s.get("earnedRuns", 0)),
+                    "pitches": int(s.get("numberOfPitches", 0)),
+                    "strikes": int(s.get("strikes", 0)),
+                })
+        return games
+    except Exception as e:
+        return [{"error": str(e)}]
+
+
+def fetch_platoon_splits(mlbam_id: int, year: int) -> dict:
+    """C2: 取得投手 Platoon Splits（vs LHB / vs RHB）"""
+    try:
+        resp = requests.get(
+            f"{MLB_API_BASE}/people/{mlbam_id}/stats",
+            params={
+                "stats": "statSplits",
+                "group": "pitching",
+                "season": year,
+                "sitCodes": "vl,vr",
+            },
+            timeout=10,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        result = {}
+        for sg in data.get("stats", []):
+            for split in sg.get("splits", []):
+                desc = split.get("split", {}).get("description", "")
+                s = split.get("stat", {})
+                bf = int(s.get("battersFaced", 0))
+                k = int(s.get("strikeOuts", 0))
+                bb = int(s.get("baseOnBalls", 0))
+                key = "vs_left" if "Left" in desc else "vs_right"
+                result[key] = {
+                    "avg": s.get("avg"),
+                    "obp": s.get("obp"),
+                    "slg": s.get("slg"),
+                    "k": k,
+                    "bb": bb,
+                    "bf": bf,
+                    "k_pct": round(k / bf * 100, 1) if bf > 0 else 0.0,
+                    "bb_pct": round(bb / bf * 100, 1) if bf > 0 else 0.0,
+                }
+        return result if result else {"error": "No platoon split data"}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
+    """C3: 從 Statcast 原始資料計算 Whiff% 和 CSW%"""
+    try:
+        start = f"{year}-03-20"
+        end = f"{year}-11-05"
+        df = statcast_pitcher(start, end, mlbam_id)
+        if df.empty:
+            return {"error": "No Statcast data"}
+
+        total = len(df)
+        if "description" not in df.columns or total == 0:
+            return {"error": "No description column"}
+
+        swinging_strikes = len(df[df["description"].str.contains("swinging_strike", na=False)])
+        called_strikes = len(df[df["description"].str.contains("called_strike", na=False)])
+
+        return {
+            "whiff_pct": round(swinging_strikes / total * 100, 1),
+            "csw_pct": round((swinging_strikes + called_strikes) / total * 100, 1),
+            "total_pitches": total,
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def fetch_prior_year_stats(mlbam_id: int, year: int) -> dict:
+    """C4: 取得去年數據作為開季小樣本回歸基準"""
+    return fetch_mlb_api_stats(mlbam_id, year - 1)
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
@@ -276,6 +378,7 @@ def main():
     parser = argparse.ArgumentParser(description="Fetch pitcher advanced stats")
     parser.add_argument("--name", required=True, help="Pitcher full name (e.g. 'Gerrit Cole')")
     parser.add_argument("--year", type=int, default=datetime.now().year, help="Season year")
+    parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--test", action="store_true", help="Run test mode")
     args = parser.parse_args()
 
@@ -312,6 +415,21 @@ def main():
         statcast["barrel_pct"] = barrels.get("barrel_pct")
         statcast["ev95percent"] = barrels.get("ev95percent")
 
+    # 8. C1: 近 3 場 Game Log + 用球數
+    game_log = fetch_game_log(pitcher_id, args.year, limit=3)
+
+    # 9. C2: Platoon Splits（vs LHB / vs RHB）
+    platoon_splits = fetch_platoon_splits(pitcher_id, args.year)
+
+    # 10. C3: Whiff% / CSW%（從 Statcast 原始資料計算）
+    whiff_csw = fetch_whiff_csw(pitcher_id, args.year)
+    if "error" not in whiff_csw and "error" not in statcast:
+        statcast["whiff_pct"] = whiff_csw.get("whiff_pct")
+        statcast["csw_pct"] = whiff_csw.get("csw_pct")
+
+    # 11. C4: 去年數據
+    prior_year = fetch_prior_year_stats(pitcher_id, args.year)
+
     output = {
         "name": args.name,
         "mlbam_id": pitcher_id,
@@ -323,9 +441,19 @@ def main():
         "season": season,
         "expected": expected,
         "statcast": statcast,
+        "game_log": game_log,
+        "platoon_splits": platoon_splits,
+        "prior_year": prior_year,
     }
 
-    print(json.dumps(output, indent=2, ensure_ascii=False))
+    json_output = json.dumps(output, indent=2, ensure_ascii=False)
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(json_output)
+        print(f"Saved to {args.output}", file=sys.stderr)
+    else:
+        print(json_output)
 
 
 if __name__ == "__main__":

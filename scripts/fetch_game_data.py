@@ -104,7 +104,7 @@ def extract_game_info(game: dict) -> dict:
     }
 
 
-def fetch_recent_games(team_id: int, before_date: str, num_days: int = 20) -> list[dict]:
+def fetch_recent_games(team_id: int, before_date: str, num_days: int = 20, max_games: int = 10) -> list[dict]:
     """取得指定球隊在 before_date 前 num_days 天內已完成的比賽"""
     end_dt = datetime.strptime(before_date, "%Y-%m-%d") - timedelta(days=1)
     start_dt = datetime.strptime(before_date, "%Y-%m-%d") - timedelta(days=num_days)
@@ -140,7 +140,51 @@ def fetch_recent_games(team_id: int, before_date: str, num_days: int = 20) -> li
             })
 
     games.sort(key=lambda g: g["date"], reverse=True)
-    return games[:10]
+    return games[:max_games]
+
+
+def fetch_season_games(team_id: int, before_date: str, season_start: str = None) -> list[dict]:
+    """取得指定球隊本季所有已完成的比賽（從開季到 before_date 前一天）"""
+    end_dt = datetime.strptime(before_date, "%Y-%m-%d") - timedelta(days=1)
+    if season_start is None:
+        season_start = f"{end_dt.year}-03-20"  # MLB 開季通常在 3 月底
+    start_dt = datetime.strptime(season_start, "%Y-%m-%d")
+
+    params = {
+        "sportId": 1,
+        "teamId": team_id,
+        "startDate": start_dt.strftime("%Y-%m-%d"),
+        "endDate": end_dt.strftime("%Y-%m-%d"),
+        "hydrate": "linescore",
+    }
+    resp = requests.get(f"{MLB_API_BASE}/schedule", params=params, timeout=15)
+    resp.raise_for_status()
+    data = resp.json()
+
+    games = []
+    for date_entry in data.get("dates", []):
+        for game in date_entry.get("games", []):
+            if game["status"]["abstractGameState"] != "Final":
+                continue
+            # 僅計算例行賽
+            if game.get("gameType", "R") != "R":
+                continue
+            home = game["teams"]["home"]
+            away = game["teams"]["away"]
+            is_home = home["team"]["id"] == team_id
+            team_side = home if is_home else away
+            opp_side = away if is_home else home
+            games.append({
+                "date": game["gameDate"][:10],
+                "is_home": is_home,
+                "opponent": opp_side["team"]["name"],
+                "team_score": team_side.get("score") or 0,
+                "opp_score": opp_side.get("score") or 0,
+                "is_winner": team_side.get("isWinner", False),
+            })
+
+    games.sort(key=lambda g: g["date"], reverse=True)
+    return games
 
 
 def compute_recent_stats(games: list[dict]) -> dict:
@@ -215,6 +259,7 @@ def main():
     parser = argparse.ArgumentParser(description="Fetch MLB game data for analysis")
     parser.add_argument("--date", help="Game date (YYYY-MM-DD)")
     parser.add_argument("--team", help="Team name/abbreviation")
+    parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--test", action="store_true", help="Run with test data")
     args = parser.parse_args()
 
@@ -243,12 +288,25 @@ def main():
 
     game_info = extract_game_info(game)
 
-    # 2. 取雙方近 10 場戰績
+    # 2. 取雙方多窗口戰績
     home_id = game_info["home"]["team_id"]
     away_id = game_info["away"]["team_id"]
 
+    # 近 10 場（短期手感）
     home_recent = compute_recent_stats(fetch_recent_games(home_id, game_date))
     away_recent = compute_recent_stats(fetch_recent_games(away_id, game_date))
+
+    # 本季全部（賽季水準）
+    home_season_games = fetch_season_games(home_id, game_date)
+    away_season_games = fetch_season_games(away_id, game_date)
+    home_season = compute_recent_stats(home_season_games)
+    away_season = compute_recent_stats(away_season_games)
+
+    # 近 30 場（中期趨勢）— 如果不到 30 場則等於本季全部
+    home_30_games = home_season_games[:30] if len(home_season_games) >= 30 else home_season_games
+    away_30_games = away_season_games[:30] if len(away_season_games) >= 30 else away_season_games
+    home_recent_30 = compute_recent_stats(home_30_games)
+    away_recent_30 = compute_recent_stats(away_30_games)
 
     # 3. 檢查系列賽前場
     series_prev = fetch_series_prev(home_id, away_id, game_date)
@@ -257,10 +315,23 @@ def main():
         "game": game_info,
         "home_recent": home_recent,
         "away_recent": away_recent,
+        "home_recent_30": home_recent_30,
+        "away_recent_30": away_recent_30,
+        "home_season": home_season,
+        "away_season": away_season,
+        "home_season_games_count": len(home_season_games),
+        "away_season_games_count": len(away_season_games),
         "series_prev": series_prev,
     }
 
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    json_output = json.dumps(result, indent=2, ensure_ascii=False)
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(json_output)
+        print(f"Saved to {args.output}", file=sys.stderr)
+    else:
+        print(json_output)
 
 
 if __name__ == "__main__":

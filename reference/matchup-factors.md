@@ -22,6 +22,29 @@
 | 去年數據 | 本季樣本有限時回歸參考 |
 | 投影系統 | ZiPS/Steamer 交叉驗證 |
 
+### YoY Statcast 驗證
+
+⛔ **觸發條件（任一即觸發，由 `workflow.md` Phase 2 Step 2 閘門強制執行）**：
+- 本季 `|ERA − xERA| ≥ 1.5 run`
+- 本季 `IP < 30` 且 ERA 比 `prior_year.era` 低 ≥ 1.0 run
+
+**方法**：補跑 `pitcher_stats.py --year {YYYY-1}` 取得 prior year 完整 statcast，對比下列五項（當季 JSON 的 `prior_year` 區塊只有 rate stats，**無 statcast 深度**，必須獨立 fetch）：
+
+| 指標 | 結構性變化判定 |
+|------|---------------|
+| `statcast.avg_velo` / `max_velo` | ±0.5 mph 以上 = 實質變化（升 = 可能 new-version，降 = 年齡退化）|
+| `statcast.pitch_types`（使用率）| 主球種替換或 ±5% 以上 = 配球策略轉換 |
+| `statcast.whiff_pct` / `csw_pct` | 揮空率變化 → swing-miss 能力 |
+| `statcast.hard_hit_pct` / `barrel_pct` / `ev95percent` | 接觸品質（三項一致變化才可信）|
+| `expected.xera` / `xwoba` / `xba` | 去除運氣後的真實水平 |
+
+**判定規則**：
+- 所有 skill 指標持平 → ERA 偏離是**運氣/樣本**，按 xERA 估算預期得分
+- 三項以上一致改善 → **new-version**，下修對手得分預期
+- 一致退化（velo 降 + 接觸品質變差）→ ERA 低是假象，真實水平已退步
+
+**Platoon 樣本陷阱**：本季 vs_L / vs_R BF < 30 的 slash line 不可獨立引用；必須與 prior year 大樣本對照，否則註明「小樣本雜訊」。
+
 ### 投手實力分級
 
 | 等級 | 定義 | 參考標準 |
@@ -38,7 +61,7 @@
 
 ## 打線分析
 
-對打線核心（1-6 棒）查詢：xwOBA、OPS、OBP、SLG、ISO、K%/BB%、Hard Hit%、Barrel%、BABIP、xBA、xSLG。
+對打線核心（1-9 棒）查詢：xwOBA、OPS、OBP、SLG、ISO、K%/BB%、Hard Hit%、Barrel%、BABIP、xBA、xSLG。
 
 **打線評級**：🔴 Elite / 🟠 Strong / 🟡 Average / 🟢 Weak
 **近期熱度**（近 7 天）：💪 Hot / ⚖️ Normal / 😓 Cold
@@ -165,30 +188,8 @@
 
 | 階段 | 修正 |
 |------|------|
-| 🌱 開季（3月底-4月） | 投影系統為主 + 膨脹因子（見 prediction.md） |
-| ☀️ 夏季中段（5-7月） | 正常使用本季數據 |
-| 🔄 交易截止後（7月底-8月） | 搜尋最新交易確認陣容 |
-| 🏁 九月擴編 | 搜尋確認今日實際陣容 |
-| 🏆 季後賽 | 得分壓縮 ×0.84-0.86（FanGraphs 20 年研究） |
+| 🌱 開季（3月底-4月） | 投影系統為主，本季數據權重較低 |
+| ☀️ 夏季中段（5-10月） | 正常使用本季數據 |
 
 ### 影響分析的賽制規則
 - 全面 DH、Pitch Clock（15/18 秒）、三打者最低規則、防守布陣限制
-- 延長賽幽靈跑者（例行賽第 10 局起，季後賽不適用）
-- 季後賽：無幽靈跑者、無用球數上限
-
----
-
-## 讓分方向驗證（任何讓分推薦前必須執行）
-
-1. 確認 ML 負值方 = 熱門（讓分方）
-2. 用投手等級差 + 主場 + 牛棚**獨立驗證**熱門方
-3. 交叉比對使用者盤口格式（亞洲盤 +/- 可能反轉）
-4. **永遠用 Moneyline + 投手分析確認讓分方向，不要只看 +/- 符號**
-
-常見亞洲盤口格式：
-
-| 格式 | 說明 |
-|------|------|
-| 「A 隊讓 1.5 分」 | A 熱門，需贏 2+ 過盤 |
-| 「A -1.5 / B +1.5」 | 標準：A 讓分、B 受讓 |
-| 某些亞洲盤 | 可能反轉，必須用 ML 驗證 |

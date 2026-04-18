@@ -5,9 +5,49 @@ import argparse
 import json
 import sys
 
+import requests
+
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
+
+MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
+
+# E2: 30 座球場 Park Factor 對照表（5 年回歸值，2024-2025 基準）
+# 來源：FanGraphs Park Factors / ESPN Park Factors
+# 100 = 聯盟平均，>100 = 打者友善，<100 = 投手友善
+PARK_FACTORS = {
+    "Coors Field": 115,
+    "Fenway Park": 105,
+    "Citizens Bank Park": 104,
+    "Great American Ball Park": 104,
+    "Yankee Stadium": 104,
+    "Globe Life Field": 103,
+    "Guaranteed Rate Field": 102,
+    "Wrigley Field": 102,
+    "Nationals Park": 101,
+    "Rogers Centre": 101,
+    "Oriole Park at Camden Yards": 101,
+    "Busch Stadium": 100,
+    "Target Field": 100,
+    "Angel Stadium": 100,
+    "American Family Field": 100,
+    "Minute Maid Park": 100,
+    "PNC Park": 99,
+    "Comerica Park": 99,
+    "Chase Field": 99,
+    "Kauffman Stadium": 99,
+    "loanDepot park": 98,
+    "Dodger Stadium": 98,
+    "Progressive Field": 98,
+    "Truist Park": 98,
+    "Citi Field": 97,
+    "T-Mobile Park": 97,
+    "Tropicana Field": 96,
+    "Oracle Park": 96,
+    "Oakland Coliseum": 96,
+    "Petco Park": 95,
+}
 
 
 def load_json(path: str) -> dict:
@@ -53,24 +93,76 @@ def extract_lineup_features(lineup_data: dict, prefix: str) -> dict:
 
 
 def extract_game_features(game_data: dict) -> dict:
-    """從 fetch_game_data.py 輸出提取近期得失分
+    """從 fetch_game_data.py 輸出提取多窗口得失分
 
     對應 FEATURE_COLS: home_recent_rs, home_recent_ra, away_recent_rs, away_recent_ra
+    額外 pass-through: recent_30, season 窗口（供 predict.py 交叉驗證和趨勢標籤用）
     """
     home = game_data.get("home_recent", {})
     away = game_data.get("away_recent", {})
+    home_30 = game_data.get("home_recent_30", {})
+    away_30 = game_data.get("away_recent_30", {})
+    home_season = game_data.get("home_season", {})
+    away_season = game_data.get("away_season", {})
 
     h_rs = home.get("rs_per_game")
     h_ra = home.get("ra_per_game")
     a_rs = away.get("rs_per_game")
     a_ra = away.get("ra_per_game")
 
-    return {
+    result = {
+        # FEATURE_COLS（近 10 場，XGBoost 用）
         "home_recent_rs": h_rs if h_rs is not None else 4.5,
         "home_recent_ra": h_ra if h_ra is not None else 4.5,
         "away_recent_rs": a_rs if a_rs is not None else 4.5,
         "away_recent_ra": a_ra if a_ra is not None else 4.5,
+        # 近 30 場（交叉驗證用）
+        "home_recent_30_rs": home_30.get("rs_per_game") if home_30.get("rs_per_game") is not None else 4.5,
+        "home_recent_30_ra": home_30.get("ra_per_game") if home_30.get("ra_per_game") is not None else 4.5,
+        "away_recent_30_rs": away_30.get("rs_per_game") if away_30.get("rs_per_game") is not None else 4.5,
+        "away_recent_30_ra": away_30.get("ra_per_game") if away_30.get("ra_per_game") is not None else 4.5,
+        # 本季全部（趨勢標籤用）
+        "home_season_rs": home_season.get("rs_per_game") if home_season.get("rs_per_game") is not None else 4.5,
+        "home_season_ra": home_season.get("ra_per_game") if home_season.get("ra_per_game") is not None else 4.5,
+        "away_season_rs": away_season.get("rs_per_game") if away_season.get("rs_per_game") is not None else 4.5,
+        "away_season_ra": away_season.get("ra_per_game") if away_season.get("ra_per_game") is not None else 4.5,
+        # 賽季場次數
+        "home_season_games": game_data.get("home_season_games_count", 0),
+        "away_season_games": game_data.get("away_season_games_count", 0),
     }
+    return result
+
+
+def fetch_bullpen_era(team_id: int, year: int) -> float:
+    """E1: 從 MLB Stats API 自動取得球隊牛棚 ERA"""
+    try:
+        resp = requests.get(
+            f"{MLB_API_BASE}/teams/{team_id}/stats",
+            params={
+                "stats": "statSplits",
+                "group": "pitching",
+                "season": year,
+                "sitCodes": "rp",
+            },
+            timeout=10,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        for sg in data.get("stats", []):
+            for split in sg.get("splits", []):
+                era = split.get("stat", {}).get("era")
+                if era is not None:
+                    return float(era)
+    except Exception:
+        pass
+    return 4.00  # fallback
+
+
+def resolve_park_factor(venue_name: str | None) -> float:
+    """E2: 從球場名稱查 Park Factor 對照表"""
+    if venue_name and venue_name in PARK_FACTORS:
+        return float(PARK_FACTORS[venue_name])
+    return 100.0  # fallback
 
 
 def extract_meta(game_data: dict, home_pitcher: dict, away_pitcher: dict) -> dict:
@@ -101,12 +193,13 @@ def main():
     parser.add_argument("--away-pitcher", help="pitcher_stats.py output for away starter")
     parser.add_argument("--home-lineup", help="lineup_analyzer.py output for home team")
     parser.add_argument("--away-lineup", help="lineup_analyzer.py output for away team")
-    parser.add_argument("--home-bullpen-era", type=float, default=4.0,
-                        help="Home bullpen ERA (from WebSearch, not available via API)")
-    parser.add_argument("--away-bullpen-era", type=float, default=4.0,
-                        help="Away bullpen ERA (from WebSearch)")
-    parser.add_argument("--park-factor", type=float, default=100.0,
-                        help="Park factor (from WebSearch)")
+    parser.add_argument("--home-bullpen-era", type=float, default=None,
+                        help="Override home bullpen ERA (auto-fetched if omitted)")
+    parser.add_argument("--away-bullpen-era", type=float, default=None,
+                        help="Override away bullpen ERA (auto-fetched if omitted)")
+    parser.add_argument("--park-factor", type=float, default=None,
+                        help="Override park factor (auto-resolved from venue if omitted)")
+    parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--test", action="store_true")
     args = parser.parse_args()
 
@@ -123,18 +216,56 @@ def main():
     home_pitcher_data = load_json(args.home_pitcher)
     away_pitcher_data = load_json(args.away_pitcher)
 
+    # 從 game_data 取得 team_id 和 venue
+    game_info = game_data.get("game", {})
+    home_team_id = game_info.get("home", {}).get("team_id")
+    away_team_id = game_info.get("away", {}).get("team_id")
+    venue_name = game_info.get("venue")
+    game_year = int(game_info.get("date", "2026")[:4]) if game_info.get("date") else 2026
+
+    # E1: 自動抓牛棚 ERA（可手動 override）
+    if args.home_bullpen_era is not None:
+        home_bp_era = args.home_bullpen_era
+    elif home_team_id:
+        home_bp_era = fetch_bullpen_era(home_team_id, game_year)
+        print(f"Auto-fetched home bullpen ERA: {home_bp_era}", file=sys.stderr)
+    else:
+        home_bp_era = 4.00
+
+    if args.away_bullpen_era is not None:
+        away_bp_era = args.away_bullpen_era
+    elif away_team_id:
+        away_bp_era = fetch_bullpen_era(away_team_id, game_year)
+        print(f"Auto-fetched away bullpen ERA: {away_bp_era}", file=sys.stderr)
+    else:
+        away_bp_era = 4.00
+
+    # E2: 自動 Park Factor（可手動 override）
+    if args.park_factor is not None:
+        park_factor = args.park_factor
+    else:
+        park_factor = resolve_park_factor(venue_name)
+        print(f"Auto-resolved park factor for {venue_name}: {park_factor}", file=sys.stderr)
+
     merged = {}
     merged.update(extract_game_features(game_data))
     merged.update(extract_pitcher_features(home_pitcher_data, "home"))
     merged.update(extract_pitcher_features(away_pitcher_data, "away"))
     merged.update(extract_lineup_features(load_json(args.home_lineup), "home"))
     merged.update(extract_lineup_features(load_json(args.away_lineup), "away"))
-    merged["home_bullpen_era"] = args.home_bullpen_era
-    merged["away_bullpen_era"] = args.away_bullpen_era
-    merged["park_factor"] = args.park_factor
+    merged["home_bullpen_era"] = home_bp_era
+    merged["away_bullpen_era"] = away_bp_era
+    merged["park_factor"] = park_factor
     merged.update(extract_meta(game_data, home_pitcher_data, away_pitcher_data))
 
-    print(json.dumps(merged, indent=2, ensure_ascii=False))
+    json_output = json.dumps(merged, indent=2, ensure_ascii=False)
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(json_output)
+        print(f"Saved to {args.output}", file=sys.stderr)
+    else:
+        print(json_output)
 
 
 if __name__ == "__main__":
