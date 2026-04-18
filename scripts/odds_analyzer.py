@@ -101,6 +101,39 @@ def calc_kelly(model_prob: float, ml: int) -> float:
     return round(max(0, kelly) * 100, 2)
 
 
+def calc_fractional_kelly(
+    model_prob: float,
+    ml: int,
+    divisor: int = 4,
+    cap_pct: float = 3.0,
+    unit_size_pct: float = 1.0,
+) -> dict:
+    """Fractional Kelly with hard cap + unit conversion.
+
+    Args:
+        model_prob: 模型估計勝率 (0.0-1.0)
+        ml: American moneyline (正數或負數)
+        divisor: Kelly 分數係數（4 = quarter）
+        cap_pct: 每注上限（% of bankroll，3.0 = 3%）
+        unit_size_pct: 1 單位代表幾 % bankroll（1.0 = 1u = 1%）
+
+    Returns:
+        {raw_kelly_pct, fractional_pct, capped_pct, units}
+        無 edge 時全部 0（不是 None — 0 是合法的「不下注」訊號）。
+    """
+    raw = calc_kelly(model_prob, ml)          # already returns 0 if negative
+    fractional = round(raw / divisor, 4)
+    capped = round(min(fractional, cap_pct), 4)
+    # units：以 unit_size_pct 為 1u，round 到最近 0.5
+    units = round(capped / unit_size_pct * 2) / 2 if unit_size_pct > 0 else 0.0
+    return {
+        "raw_kelly_pct": raw,
+        "fractional_pct": fractional,
+        "capped_pct": capped,
+        "units": units,
+    }
+
+
 def get_stars_ml(prob_diff: float) -> int:
     """根據 ML 勝率差距決定推薦星級（reference ML 星級表）"""
     abs_diff = abs(prob_diff)
