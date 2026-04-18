@@ -119,3 +119,78 @@ def find_opening_snapshot(
 ) -> Optional[dict]:
     """Semantic wrapper: opening = earliest snapshot of the game day."""
     return _find_earliest_snapshot_of_date(snapshot_dir, game_date_et)
+
+
+def pin_rec_snapshot(
+    snapshot_game: dict,
+    commence_utc: str,
+    source_filename: str,
+    snapshot_time_et: str,
+    snapshot_time_utc: str,
+) -> dict:
+    """Convert one game's Pinnacle bookmaker block into canonical 3-market shape.
+
+    Missing markets yield null at that key. Returns the full block
+    as documented in spec §5.3.
+    """
+    pinnacle = snapshot_game.get("bookmakers", {}).get("pinnacle", {}) or {}
+
+    # minutes_before_first_pitch
+    try:
+        commence_dt = datetime.fromisoformat(commence_utc.replace("Z", "+00:00"))
+        snap_dt = datetime.fromisoformat(snapshot_time_utc.replace("Z", "+00:00"))
+        minutes_before = int((commence_dt - snap_dt).total_seconds() // 60)
+    except ValueError:
+        minutes_before = None
+
+    home_name = snapshot_game.get("home_team")
+    away_name = snapshot_game.get("away_team")
+
+    def _line(dec: float, implied: float) -> dict:
+        return {
+            "decimal": round(dec, 4),
+            "american": decimal_to_american(dec),
+            "implied_pct": round(implied, 2),
+        }
+
+    # ML
+    ml_block = None
+    ml = pinnacle.get("ml") or {}
+    if home_name in ml and away_name in ml:
+        ml_block = {
+            "home": _line(ml[home_name]["odds"], ml[home_name]["implied_pct"]),
+            "away": _line(ml[away_name]["odds"], ml[away_name]["implied_pct"]),
+        }
+
+    # OU
+    ou_block = None
+    ou = pinnacle.get("ou") or {}
+    if "Over" in ou and "Under" in ou:
+        ou_block = {
+            "point": ou["Over"].get("point"),
+            "over":  _line(ou["Over"]["odds"],  ou["Over"]["implied_pct"]),
+            "under": _line(ou["Under"]["odds"], ou["Under"]["implied_pct"]),
+        }
+
+    # RL
+    rl_block = None
+    rl = pinnacle.get("rl") or {}
+    if home_name in rl and away_name in rl:
+        home_point = rl[home_name].get("point", 0)
+        favorite_side = "HOME" if home_point < 0 else "AWAY"
+        home_line = _line(rl[home_name]["odds"], rl[home_name]["implied_pct"])
+        home_line["point"] = home_point
+        away_line = _line(rl[away_name]["odds"], rl[away_name]["implied_pct"])
+        away_line["point"] = rl[away_name].get("point", 0)
+        rl_block = {"favorite_side": favorite_side, "home": home_line, "away": away_line}
+
+    return {
+        "source": source_filename,
+        "snapshot_time_et": snapshot_time_et,
+        "snapshot_time_utc": snapshot_time_utc,
+        "commence_utc": commence_utc,
+        "minutes_before_first_pitch": minutes_before,
+        "ml": ml_block,
+        "ou": ou_block,
+        "rl": rl_block,
+    }

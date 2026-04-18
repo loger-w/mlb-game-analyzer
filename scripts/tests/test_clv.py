@@ -16,6 +16,7 @@ from clv import (
     compute_clv_pct_no_vig,
     find_closing_snapshot,
     find_opening_snapshot,
+    pin_rec_snapshot,
 )
 
 
@@ -138,3 +139,52 @@ class TestFindOpeningSnapshot:
     def test_opening(self, temp_snapshot_dir):
         snap = find_opening_snapshot("2026-04-18", temp_snapshot_dir)
         assert snap["snapshot_time_utc"] == "2026-04-18T04:00:00+00:00"
+
+
+class TestPinRecSnapshot:
+    @pytest.fixture
+    def sample_snap_full(self):
+        path = Path(__file__).parent / "fixtures" / "sample_snapshot.json"
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+
+    def test_pin_cubs_game(self, sample_snap_full):
+        game = sample_snap_full["games"][0]  # Cubs/Mets
+        pinned = pin_rec_snapshot(
+            snapshot_game=game,
+            commence_utc="2026-04-18T23:00:00Z",
+            source_filename="2026-04-18_16-00-ET.json",
+            snapshot_time_et=sample_snap_full["snapshot_time_et"],
+            snapshot_time_utc=sample_snap_full["snapshot_time_utc"],
+        )
+        assert pinned["source"] == "2026-04-18_16-00-ET.json"
+        assert pinned["commence_utc"] == "2026-04-18T23:00:00Z"
+        assert pinned["minutes_before_first_pitch"] == 180
+        assert pinned["ml"]["home"]["decimal"] == 1.74
+        assert pinned["ml"]["home"]["american"] == -135
+        assert pinned["ml"]["home"]["implied_pct"] == 57.5
+        assert pinned["ml"]["away"]["decimal"] == 2.24
+        assert pinned["ou"]["point"] == 8.0
+        assert pinned["ou"]["over"]["decimal"] == 1.93
+        assert pinned["rl"]["favorite_side"] == "HOME"
+        assert pinned["rl"]["home"]["point"] == -1.5
+        assert pinned["rl"]["away"]["point"] == 1.5
+
+    def test_missing_market_returns_null(self, sample_snap_full):
+        game = dict(sample_snap_full["games"][0])
+        game["bookmakers"] = {"pinnacle": {"title": "Pinnacle", "ml": game["bookmakers"]["pinnacle"]["ml"]}}
+        pinned = pin_rec_snapshot(
+            game, "2026-04-18T23:00:00Z",
+            "x.json", "x", "2026-04-18T20:00:00+00:00",
+        )
+        assert pinned["ml"] is not None
+        assert pinned["ou"] is None
+        assert pinned["rl"] is None
+
+    def test_favorite_side_away(self, sample_snap_full):
+        game = sample_snap_full["games"][1]  # Orioles/Guardians
+        # Guardians home point -1.5 → HOME favorite
+        pinned = pin_rec_snapshot(
+            game, game["commence_utc"], "x.json", "x", "2026-04-18T20:00:00+00:00",
+        )
+        assert pinned["rl"]["favorite_side"] == "HOME"
