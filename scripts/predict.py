@@ -22,6 +22,20 @@ MODELS_DIR = os.path.join(os.path.dirname(__file__), "models")
 WIN_MODEL_PATH = os.path.join(MODELS_DIR, "xgb_win_model.pkl")
 TOTAL_MODEL_PATH = os.path.join(MODELS_DIR, "xgb_total_model.pkl")
 
+# F2: 完整 30 隊隊名 → 縮寫映射（用於方向矛盾檢查）
+TEAM_ABBREV = {
+    "New York Yankees": "NYY", "New York Mets": "NYM", "Boston Red Sox": "BOS",
+    "Los Angeles Dodgers": "LAD", "Los Angeles Angels": "LAA", "Houston Astros": "HOU",
+    "Atlanta Braves": "ATL", "Philadelphia Phillies": "PHI", "San Diego Padres": "SD",
+    "San Francisco Giants": "SF", "Chicago Cubs": "CHC", "Chicago White Sox": "CWS",
+    "Cincinnati Reds": "CIN", "St. Louis Cardinals": "STL", "Milwaukee Brewers": "MIL",
+    "Pittsburgh Pirates": "PIT", "Arizona Diamondbacks": "ARI", "Colorado Rockies": "COL",
+    "Baltimore Orioles": "BAL", "Tampa Bay Rays": "TB", "Toronto Blue Jays": "TOR",
+    "Minnesota Twins": "MIN", "Kansas City Royals": "KC", "Detroit Tigers": "DET",
+    "Cleveland Guardians": "CLE", "Seattle Mariners": "SEA", "Athletics": "OAK",
+    "Texas Rangers": "TEX", "Miami Marlins": "MIA", "Washington Nationals": "WSH",
+}
+
 FEATURE_COLS = [
     "home_starter_fip", "home_starter_k_bb", "home_starter_whip",
     "away_starter_fip", "away_starter_k_bb", "away_starter_whip",
