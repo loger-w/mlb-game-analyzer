@@ -108,6 +108,74 @@ def load_closest_snapshot(
     return candidates[0][1]
 
 
+_NAME_TO_ABBREV = dict(TEAM_ABBREV)
+
+
+def resolve_pinnacle_odds(
+    snapshot: dict,
+    home_abbrev: str,
+    away_abbrev: str,
+) -> dict | None:
+    """Extract Pinnacle decimal odds for a specific matchup.
+
+    Returns:
+        {
+            "ml": {home_decimal, away_decimal},
+            "ou": {line, over_decimal, under_decimal} or None,
+            "rl": {home_point, home_decimal, away_point, away_decimal} or None,
+            "snapshot_time_et": str,
+        }
+        or None if no matching game.
+    """
+    for g in snapshot.get("games", []):
+        home_full = g.get("home_team")
+        away_full = g.get("away_team")
+        gh = _NAME_TO_ABBREV.get(home_full)
+        ga = _NAME_TO_ABBREV.get(away_full)
+        if gh != home_abbrev or ga != away_abbrev:
+            continue
+
+        pin = g.get("bookmakers", {}).get("pinnacle")
+        if not pin:
+            continue
+
+        ml = pin.get("ml", {})
+        ou = pin.get("ou", {})
+        rl = pin.get("rl", {})
+
+        result = {
+            "snapshot_time_et": snapshot.get("snapshot_time_et"),
+            "ml": None,
+            "ou": None,
+            "rl": None,
+        }
+
+        if home_full in ml and away_full in ml:
+            result["ml"] = {
+                "home_decimal": ml[home_full]["odds"],
+                "away_decimal": ml[away_full]["odds"],
+            }
+
+        if "Over" in ou and "Under" in ou:
+            result["ou"] = {
+                "line": ou["Over"].get("point"),
+                "over_decimal": ou["Over"]["odds"],
+                "under_decimal": ou["Under"]["odds"],
+            }
+
+        if home_full in rl and away_full in rl:
+            result["rl"] = {
+                "home_point": rl[home_full].get("point"),
+                "home_decimal": rl[home_full]["odds"],
+                "away_point": rl[away_full].get("point"),
+                "away_decimal": rl[away_full]["odds"],
+            }
+
+        return result
+
+    return None
+
+
 def pythagorean_runs(rs: float, ra: float, g: float = 10) -> float:
     """Pythagenport 動態指數公式（與 reference/teams-and-api.md 一致）
 

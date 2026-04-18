@@ -73,3 +73,45 @@ def test_load_closest_ignores_other_dates():
             snapshot_dir=tmp,
         )
         assert snap is None
+
+
+from predict import resolve_pinnacle_odds
+
+
+def test_resolve_odds_matches_teams():
+    """用 snapshot 找 CHC@NYM 的 Pinnacle odds。"""
+    with open(os.path.join(FIXTURES, "sample_snapshot.json")) as f:
+        snap = json.load(f)
+
+    result = resolve_pinnacle_odds(snap, home_abbrev="CHC", away_abbrev="NYM")
+    assert result is not None
+    assert result["ml"]["home_decimal"] == 1.74
+    assert result["ml"]["away_decimal"] == 2.24
+    assert result["ou"]["line"] == 8.0
+    assert result["ou"]["over_decimal"] == 1.93
+    assert result["ou"]["under_decimal"] == 1.94
+    assert result["rl"]["home_point"] == -1.5
+    assert result["rl"]["home_decimal"] == 1.56
+    assert result["rl"]["away_decimal"] == 2.58
+
+
+def test_resolve_odds_team_mismatch_returns_none():
+    """隊名對不上 → None。"""
+    with open(os.path.join(FIXTURES, "sample_snapshot.json")) as f:
+        snap = json.load(f)
+
+    # Miami Marlins 不在 fixture
+    result = resolve_pinnacle_odds(snap, home_abbrev="MIA", away_abbrev="ATL")
+    assert result is None
+
+
+def test_resolve_odds_missing_ou_market():
+    """早 snapshot 只有 ML 沒 OU/RL → ml 有值但 ou/rl 為 None。"""
+    with open(os.path.join(FIXTURES, "sample_snapshot_earlier.json")) as f:
+        snap = json.load(f)
+
+    result = resolve_pinnacle_odds(snap, home_abbrev="CHC", away_abbrev="NYM")
+    assert result is not None
+    assert result["ml"]["home_decimal"] == 1.70
+    assert result["ou"] is None
+    assert result["rl"] is None
