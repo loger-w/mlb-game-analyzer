@@ -824,8 +824,7 @@ def main():
         home_team = meta.get("home_team") or "HOME"
         away_team = meta.get("away_team") or "AWAY"
 
-        raw_date = (meta.get("game_date") or "")[:10]
-        record_date = raw_date if raw_date else _dt.now().strftime("%Y-%m-%d")
+        record_date = _extract_game_date_et(args, meta) or _dt.now().strftime("%Y-%m-%d")
 
         # === 護欄機制：星級自動上限 ===
         original_ml_stars = args.ml_stars
@@ -1000,11 +999,13 @@ def main():
             "game_pk": meta.get("game_pk"),
             "predicted_winner": result["final"]["recommended_winner"],
             "predicted_home_pct": result["final"]["home_win_pct"],
+            "xgb_raw_home_pct": ml_pred["home_win_pct"] if ml_pred else None,
             "predicted_home_score": adj_home,
             "predicted_away_score": adj_away,
             "predicted_total": adj_total,
             "formula_home_score": final_home,
             "formula_away_score": final_away,
+            "pre_signal_total": formula_pred["total"] if formula_pred else None,
             "adjusted_total": adj_total,
             "signal_adjustments": args.signal_adjustments if args.signal_adjustments is not None else {},
             "ou_line": args.ou_line,
