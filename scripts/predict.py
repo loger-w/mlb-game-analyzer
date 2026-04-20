@@ -203,6 +203,25 @@ def compute_trend_tags(data: dict) -> list[str]:
     return tags
 
 
+def _inactive_rl_override() -> dict:
+    """Return rl_override dict with active=False (all other fields null).
+
+    See docs/specs/2026-04-20-rl-threshold-relaxation.md (Step 4):
+    rl_override 欄位永遠存在，inactive 時其他欄位為 null，
+    讓下游 parser 能用固定路徑讀 active flag 而不擔心 KeyError。
+    """
+    return {
+        "active": False,
+        "path": None,
+        "diff": None,
+        "stars": None,
+        "tags": None,
+        "kelly_available": None,
+        "warnings": None,
+        "thresholds": None,
+    }
+
+
 def compute_signal_table(data: dict) -> dict:
     """F1: 信號計分表 — 使用 Run Value 修正（對齊 reference/prediction.md）
 
@@ -1031,6 +1050,7 @@ def main():
             "run_line_rec": final_rl_rec,
             "run_line": args.run_line,
             "run_line_stars": final_rl_stars,
+            "rl_override": _inactive_rl_override(),
             "ml_rec": final_ml_rec,
             "ml_stars": final_ml_stars,
             "original_ml_stars": original_ml_stars,
