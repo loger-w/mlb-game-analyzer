@@ -481,3 +481,131 @@ def test_compute_trend_tags_bullpen_boundary_exact_5_is_slump():
     })
     assert "home-bullpen-slump" in tags
     assert "away-bullpen-strong" in tags  # 3.0 應計入 strong（spec: `<= 3.0`）
+
+
+# === Task 4: apply_rl_guardrail 8 fixture tests ===
+from predict import apply_rl_guardrail
+
+
+def _rl(**overrides):
+    """Shorthand: build apply_rl_guardrail kwargs with sensible defaults."""
+    base = dict(
+        confidence="LOW",
+        adj_home=5.0,
+        adj_away=3.0,
+        trend_tags=[],
+        user_rl_rec=None,
+        user_rl_stars=None,
+        predicted_winner="HOME",
+        home_team="Atlanta Braves",
+        away_team="New York Mets",
+        kelly_rl_available=False,
+    )
+    base.update(overrides)
+    return base
+
+
+def test_rl1b_mid_diff_strong_tag_1star():
+    """Fixture 1: LOW + diff=1.8 + home-bullpen-slump → mid-diff+strong-tag, ATL 1★"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=5.4, adj_away=3.6,                  # diff = 1.8
+        trend_tags=["home-bullpen-slump"],
+    ))
+    assert rec == "ATL"
+    assert stars == 1
+    assert ov["active"] is True
+    assert ov["path"] == "mid-diff+strong-tag"
+    assert ov["diff"] == 1.8
+    assert ov["stars"] == 1
+    assert ov["tags"] == ["home-bullpen-slump"]
+    assert ov["warnings"] == []
+    assert ov["thresholds"] == {"diff_min": 1.5, "diff_big": 2.2, "diff_star": 2.0}
+
+
+def test_rl1b_big_diff_no_tag_2star():
+    """Fixture 2: LOW + diff=2.3 + 無強 tag → big-diff, ATL 2★"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=6.0, adj_away=3.7,                  # diff = 2.3
+        trend_tags=[],
+    ))
+    assert rec == "ATL"
+    assert stars == 2
+    assert ov["active"] is True
+    assert ov["path"] == "big-diff"
+    assert ov["tags"] == []  # pure-diff 路徑，tags 為空 list
+
+
+def test_rl1b_mid_diff_strong_tag_just_over_star_boundary():
+    """Fixture 3: LOW + diff=2.1 + home-pitching-slump → mid-diff+strong-tag, ATL 2★"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=5.6, adj_away=3.5,                  # diff = 2.1
+        trend_tags=["home-pitching-slump"],
+    ))
+    assert rec == "ATL"
+    assert stars == 2
+    assert ov["active"] is True
+    assert ov["path"] == "mid-diff+strong-tag"
+    assert ov["stars"] == 2
+
+
+def test_rl1b_diff_below_min_not_triggered():
+    """Fixture 4: LOW + diff=1.4 + home-bullpen-slump → 不觸發（diff<1.5）"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=5.2, adj_away=3.8,                  # diff = 1.4
+        trend_tags=["home-bullpen-slump"],
+    ))
+    assert rec == "PASS"
+    # user_rl_stars is None + rec 已是 PASS → RL-2 不觸發；stars 保持 None
+    assert stars is None
+    assert ov["active"] is False
+    assert ov["path"] is None
+
+
+def test_rl1b_mid_diff_without_strong_tag_not_triggered():
+    """Fixture 5: LOW + diff=1.8 + 無強 tag → 不觸發（中分差需 tag）"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=5.4, adj_away=3.6,                  # diff = 1.8
+        trend_tags=["home-hot-offense"],             # 非 strong tag
+    ))
+    assert rec == "PASS"
+    assert ov["active"] is False
+
+
+def test_rl1b_high_confidence_path_unchanged():
+    """Fixture 6: HIGH + 任意 diff + 任意 tag → 不觸發 RL-1b（RL-1/RL-2 原樣生效）"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        confidence="HIGH",
+        adj_home=6.0, adj_away=3.7,                  # diff = 2.3
+        trend_tags=["home-bullpen-slump"],
+    ))
+    # 未指定 user_rl_rec → 預設 PASS；RL-1b 不介入（confidence != LOW）
+    assert rec == "PASS"
+    assert ov["active"] is False
+
+
+def test_rl1b_respects_user_supplied_rec():
+    """Fixture 7: user 傳 --run-line-rec=NYY + LOW → RL-1b 不 override（尊重使用者）"""
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=6.0, adj_away=3.7,                  # 會觸發 big-diff 若無 user rec
+        user_rl_rec="NYY",
+        user_rl_stars=2,
+    ))
+    # RL-1b 不覆蓋 user rec；RL-1 則把 LOW + non-PASS user rec 打成 PASS
+    assert rec == "PASS"
+    assert stars == 0
+    assert ov["active"] is False
+
+
+def test_rl1b_defensive_direction_mismatch_still_triggers():
+    """Fixture 8: diff_side=HOME 但 predicted_winner=AWAY + LOW + diff=2.3
+    → 仍觸發 big-diff path，HOME abbr 2★，warnings 記 pw_diff_direction_mismatch
+    """
+    rec, stars, ov = apply_rl_guardrail(**_rl(
+        adj_home=6.0, adj_away=3.7,                  # diff_side=HOME, diff=2.3
+        predicted_winner="AWAY",                     # 刻意不一致
+    ))
+    assert rec == "ATL"                              # 仍按 diff_side 推 HOME abbr
+    assert stars == 2
+    assert ov["active"] is True
+    assert ov["path"] == "big-diff"
+    assert "pw_diff_direction_mismatch" in ov["warnings"]
