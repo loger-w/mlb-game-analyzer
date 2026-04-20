@@ -222,6 +222,127 @@ def _inactive_rl_override() -> dict:
     }
 
 
+def apply_rl_guardrail(
+    *,
+    confidence: str,
+    adj_home: float,
+    adj_away: float,
+    trend_tags: list[str],
+    user_rl_rec: str | None,
+    user_rl_stars: int | None,
+    predicted_winner: str,
+    home_team: str,
+    away_team: str,
+    kelly_rl_available: bool = False,
+) -> tuple[str, int, dict]:
+    """Apply RL guardrails and produce rl_override audit dict.
+
+    Rules (see docs/specs/2026-04-20-rl-threshold-relaxation.md):
+      RL-1b (new): confidence=LOW + user_rl_rec is None + |diff| gate
+                   → auto-upgrade to team-abbr + 1/2 stars.
+                   A  |diff| >= RL_DIFF_BIG                      → big-diff path (no tag needed)
+                   B  RL_DIFF_MIN <= |diff| < RL_DIFF_BIG + strong tag
+                                                                → mid-diff+strong-tag path
+                   Stars: |diff| <= RL_DIFF_STAR → 1; else 2.
+      RL-1  (existing): confidence=LOW + user supplied non-PASS rec
+                        → PASS (only fires when RL-1b did not override).
+      RL-2  (existing): non-PASS but stars unspecified → PASS.
+
+    Layering (Q5): RL-1b does NOT read force_ml_pass / cross_validation;
+    RL and ML guardrails operate independently.
+
+    Defensive (Q4): if predicted_winner != diff_side, record
+    'pw_diff_direction_mismatch' warning but do not block the override.
+
+    Args:
+      confidence: 'HIGH' | 'MEDIUM' | 'LOW' (result['final']['confidence'])
+      adj_home / adj_away: adjusted scores (already applied signal/adjusted args)
+      trend_tags: full trend_tags list from compute_trend_tags(data)
+      user_rl_rec: args.run_line_rec (None if user did not supply)
+      user_rl_stars: args.run_line_stars (None if user did not supply)
+      predicted_winner: 'HOME' | 'AWAY' (result['final']['recommended_winner'])
+      home_team / away_team: full team names (used by TEAM_ABBREV lookup)
+      kelly_rl_available: True iff kelly_block['rl'] is not None
+
+    Returns:
+      (final_rl_rec, final_rl_stars, rl_override_dict)
+    """
+    final_rl_rec = user_rl_rec if user_rl_rec is not None else "PASS"
+    final_rl_stars = user_rl_stars
+    rl_override = _inactive_rl_override()
+
+    diff = abs(adj_home - adj_away)
+    diff_side = "HOME" if adj_home > adj_away else "AWAY"
+    strong_rl = RL_STRONG_TAGS & set(trend_tags)
+
+    # RL-1b gate: 只在「LOW + 使用者沒給 rec + diff 達門檻」時考慮升級
+    override_path = None
+    if (
+        confidence == "LOW"
+        and user_rl_rec is None
+        and diff >= RL_DIFF_MIN
+    ):
+        if diff >= RL_DIFF_BIG:
+            override_path = "big-diff"
+        elif strong_rl:
+            override_path = "mid-diff+strong-tag"
+
+    if override_path is not None:
+        warnings: list[str] = []
+        if predicted_winner != diff_side:
+            warnings.append("pw_diff_direction_mismatch")
+            print(
+                f"⚠️ RL-1b: predicted_winner={predicted_winner} 與 diff_side={diff_side} 不一致 "
+                f"(pw 應來自同一 adj_home/adj_away，可能是上游 bug)",
+                file=sys.stderr,
+            )
+
+        fav_team = home_team if diff_side == "HOME" else away_team
+        fav_abbr = TEAM_ABBREV.get(fav_team, "")
+
+        if fav_abbr:  # 防禦：abbr 查不到時不 override
+            stars = 2 if diff > RL_DIFF_STAR else 1
+            final_rl_rec = fav_abbr
+            final_rl_stars = stars
+            rl_override = {
+                "active": True,
+                "path": override_path,
+                "diff": round(diff, 2),
+                "stars": stars,
+                "tags": sorted(strong_rl),
+                "kelly_available": bool(kelly_rl_available),
+                "warnings": warnings,
+                "thresholds": {
+                    "diff_min": RL_DIFF_MIN,
+                    "diff_big": RL_DIFF_BIG,
+                    "diff_star": RL_DIFF_STAR,
+                },
+            }
+            print(
+                f"ℹ️ RL-1b 放寬（{override_path}）：LOW + |diff|={diff:.2f} "
+                f"tags={sorted(strong_rl) or '(pure-diff)'} → {fav_abbr} {stars}★",
+                file=sys.stderr,
+            )
+
+    # RL-1: user-supplied rec + LOW → PASS（只在未 override 時生效）
+    if (
+        not rl_override["active"]
+        and confidence == "LOW"
+        and final_rl_rec != "PASS"
+    ):
+        print(f"⚠️ 讓分盤從 {final_rl_rec} 改為 PASS（confidence = LOW）", file=sys.stderr)
+        final_rl_rec = "PASS"
+        final_rl_stars = 0
+
+    # RL-2: 非 PASS 但 stars 未指定 → PASS
+    if final_rl_rec != "PASS" and final_rl_stars is None:
+        print(f"⚠️ 讓分盤從 {final_rl_rec} 改為 PASS（未指定 --run-line-stars）", file=sys.stderr)
+        final_rl_rec = "PASS"
+        final_rl_stars = 0
+
+    return final_rl_rec, final_rl_stars, rl_override
+
+
 def compute_signal_table(data: dict) -> dict:
     """F1: 信號計分表 — 使用 Run Value 修正（對齊 reference/prediction.md）
 
@@ -969,21 +1090,20 @@ def main():
             final_ou_rec = "PASS"
             final_ou_stars = 0
 
-        # === 護欄機制：讓分盤自動 PASS ===
-        final_rl_rec = args.run_line_rec if args.run_line_rec is not None else "PASS"
-        final_rl_stars = args.run_line_stars
-
-        # RL-1: LOW confidence → PASS（規則：ML 信心 < MEDIUM 時不推受讓）
-        if result["final"]["confidence"] == "LOW" and final_rl_rec != "PASS":
-            print(f"⚠️ 讓分盤從 {final_rl_rec} 改為 PASS（confidence = LOW）", file=sys.stderr)
-            final_rl_rec = "PASS"
-            final_rl_stars = 0
-
-        # RL-2: 非 PASS 但 stars 未指定 → PASS
-        if final_rl_rec != "PASS" and final_rl_stars is None:
-            print(f"⚠️ 讓分盤從 {final_rl_rec} 改為 PASS（未指定 --run-line-stars）", file=sys.stderr)
-            final_rl_rec = "PASS"
-            final_rl_stars = 0
+        # === 護欄機制：讓分盤（RL-1b 放寬 + RL-1 LOW-PASS + RL-2 stars required）===
+        # 邏輯封裝於 apply_rl_guardrail；rl_override 產出 audit dict 寫入 saved record
+        final_rl_rec, final_rl_stars, rl_override = apply_rl_guardrail(
+            confidence=result["final"]["confidence"],
+            adj_home=adj_home,
+            adj_away=adj_away,
+            trend_tags=trend_tags,
+            user_rl_rec=args.run_line_rec,
+            user_rl_stars=args.run_line_stars,
+            predicted_winner=result["final"]["recommended_winner"],
+            home_team=home_team,
+            away_team=away_team,
+            kelly_rl_available=False,  # Kelly 尚未計算，稍後回填
+        )
 
         # === Kelly Sizing 計算（I1: 對齊 guardrail；I4: tighten except） ===
         kelly_block = None
@@ -998,6 +1118,12 @@ def main():
             print(f"⚠️ Kelly computation failed: {e}", file=sys.stderr)
             kelly_block = None
         # ValueError (doubleheader missing --game-index / bad decimal odds) 故意不吞
+
+        # 回填 rl_override.kelly_available（Q3：sticker 狀態用於後續分桶分析）
+        if rl_override["active"]:
+            rl_override["kelly_available"] = bool(
+                kelly_block is not None and kelly_block.get("rl") is not None
+            )
 
         # === P2 CLV blocks: recommendation_snapshot + line_movement ===
         try:
@@ -1050,7 +1176,7 @@ def main():
             "run_line_rec": final_rl_rec,
             "run_line": args.run_line,
             "run_line_stars": final_rl_stars,
-            "rl_override": _inactive_rl_override(),
+            "rl_override": rl_override,
             "ml_rec": final_ml_rec,
             "ml_stars": final_ml_stars,
             "original_ml_stars": original_ml_stars,
