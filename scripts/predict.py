@@ -35,6 +35,17 @@ TEAM_ABBREV = {
     "Texas Rangers": "TEX", "Miami Marlins": "MIA", "Washington Nationals": "WSH",
 }
 
+# === RL relaxation thresholds (see docs/specs/2026-04-20-rl-threshold-relaxation.md) ===
+RL_DIFF_MIN = 1.5       # 觸發 RL-1b 最低分差
+RL_DIFF_BIG = 2.2       # 免強 tag 門檻
+RL_DIFF_STAR = 2.0      # 1★/2★ 邊界
+RL_STRONG_TAGS = frozenset({
+    "home-pitching-slump", "away-pitching-slump",
+    "home-bullpen-slump", "away-bullpen-slump",
+})
+BULLPEN_SLUMP_ERA = 5.0  # 對齊既有 signal_table bullpen 規則
+BULLPEN_STRONG_ERA = 3.0
+
 FEATURE_COLS = [
     "home_starter_fip", "home_starter_k_bb", "home_starter_whip",
     "away_starter_fip", "away_starter_k_bb", "away_starter_whip",
@@ -182,6 +193,12 @@ def compute_trend_tags(data: dict) -> list[str]:
             tags.append(f"{side}-pitching-slump")
         elif ra_season > 0 and ra_10 < ra_season * 0.8:
             tags.append(f"{side}-pitching-hot")
+
+        bp_era = data.get(f"{side}_bullpen_era", 4.0)
+        if bp_era >= BULLPEN_SLUMP_ERA:
+            tags.append(f"{side}-bullpen-slump")
+        elif bp_era <= BULLPEN_STRONG_ERA:
+            tags.append(f"{side}-bullpen-strong")
 
     return tags
 

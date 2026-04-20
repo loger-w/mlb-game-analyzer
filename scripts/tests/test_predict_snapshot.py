@@ -428,3 +428,56 @@ def test_compute_kelly_block_handles_full_team_names_in_meta(tmp_path):
         "Full team names in _meta must be converted to abbrevs via TEAM_ABBREV"
     assert "team_name_mismatch" not in " ".join(kelly_block["warnings"])
     assert kelly_block["snapshot_time_et"] is not None
+
+
+# === Task 1: compute_trend_tags bullpen 擴充 ===
+from predict import compute_trend_tags
+
+
+def test_compute_trend_tags_bullpen_slump_home():
+    tags = compute_trend_tags({
+        "home_bullpen_era": 5.2, "away_bullpen_era": 4.0,
+        "home_recent_rs": 4.5, "home_recent_ra": 4.5,
+        "home_season_rs": 4.5, "home_season_ra": 4.5,
+        "away_recent_rs": 4.5, "away_recent_ra": 4.5,
+        "away_season_rs": 4.5, "away_season_ra": 4.5,
+    })
+    assert "home-bullpen-slump" in tags
+    assert "away-bullpen-slump" not in tags
+    assert "home-bullpen-strong" not in tags
+
+
+def test_compute_trend_tags_bullpen_strong_away():
+    tags = compute_trend_tags({
+        "home_bullpen_era": 4.0, "away_bullpen_era": 2.8,
+        "home_recent_rs": 4.5, "home_recent_ra": 4.5,
+        "home_season_rs": 4.5, "home_season_ra": 4.5,
+        "away_recent_rs": 4.5, "away_recent_ra": 4.5,
+        "away_season_rs": 4.5, "away_season_ra": 4.5,
+    })
+    assert "away-bullpen-strong" in tags
+    assert "home-bullpen-slump" not in tags
+
+
+def test_compute_trend_tags_bullpen_neutral_no_tag():
+    tags = compute_trend_tags({
+        "home_bullpen_era": 4.0, "away_bullpen_era": 4.0,
+        "home_recent_rs": 4.5, "home_recent_ra": 4.5,
+        "home_season_rs": 4.5, "home_season_ra": 4.5,
+        "away_recent_rs": 4.5, "away_recent_ra": 4.5,
+        "away_season_rs": 4.5, "away_season_ra": 4.5,
+    })
+    assert not any("bullpen" in t for t in tags)
+
+
+def test_compute_trend_tags_bullpen_boundary_exact_5_is_slump():
+    """5.0 應計入 slump（spec: `>= 5.0`）"""
+    tags = compute_trend_tags({
+        "home_bullpen_era": 5.0, "away_bullpen_era": 3.0,
+        "home_recent_rs": 4.5, "home_recent_ra": 4.5,
+        "home_season_rs": 4.5, "home_season_ra": 4.5,
+        "away_recent_rs": 4.5, "away_recent_ra": 4.5,
+        "away_season_rs": 4.5, "away_season_ra": 4.5,
+    })
+    assert "home-bullpen-slump" in tags
+    assert "away-bullpen-strong" in tags  # 3.0 應計入 strong（spec: `<= 3.0`）
