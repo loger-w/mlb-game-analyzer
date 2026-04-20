@@ -66,6 +66,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 | 「phase3_summary 就是 checklist，腦袋記得就好。」 | 對話壓縮後結論就沒了。Phase 4 沒 anchor = 用記憶預測。 |
 | 「Roster 看起來沒變動，跳過 Step 1 直接分析。」 | Step 1 是阻塞閘門。IL 遺漏 → Phase 3 牛棚傷兵基礎就錯。 |
 | 「Agent 子代理平行跑 WebSearch 比較快。」 | 子代理沒 WebSearch 權限，輸出是幻想。主對話平行跑才對。 |
+| 「SKILL.md 只寫 `predict.py --save`，`--game-data` 或 `$GAME_DIR` 就用記憶中的吧。」 | `$GAME_DIR` 是 reference/workflow.md 的 shell 變數，未載入就等同未定義。唯一合法命令是 `predict.py --game-data analysis-data/<date>/<AWAY>@<HOME>/merged.json --save`，`prediction.json` 自動落在同層。省略或腦補 = predict.py 報錯或寫錯位置。 |
 
 **以上任何一項 = 停下來，回到對應 Phase 的閘門檢查清單。**
 
@@ -85,6 +86,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 - 同場推了對立方向因為「兩邊都有理由」
 - 用 shell redirect `>` 因為「比較快」
 - 用 Agent 子代理跑 WebSearch
+- 下 `predict.py` 時省略 `--game-data`，或把 `prediction.json` 寫到 `analysis-data/<date>/<AWAY>@<HOME>/` 以外位置（不論 `games/` 是否存在，均禁止寫入）
 
 **以上任何一項 = 停下來，回到對應的 Phase 閘門。**
 
@@ -125,6 +127,8 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 - **執行**：`predict.py --save` → `assemble_analysis.py --validate` → `upload_prediction.py`
 - **紀律 D1-D5**：D1 模型覆蓋 / D1.5 INSUFFICIENT_SAMPLE / D2 信號修正 / D3 同場互斥 / D4 受讓偏見防護 / D5 比分一致性 — 由 `predict.py` guardrail 自動執行，完整條文見 `reference/prediction.md`「分析紀律」
 - **賽後彙總 / 回填**：轉交 `mlb-post-game-review`
+
+> ⚠️ 寫 `prediction.json` 前確認 `--game-data` 指向 `analysis-data/<date>/<AWAY>@<HOME>/merged.json`；不對就停下來重新定位，不得自建替代目錄。
 
 → 詳細（`--save` 參數表、輸出前驗證清單、輸出格式）：`reference/workflow.md#phase-4預測輸出`
 
