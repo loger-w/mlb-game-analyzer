@@ -234,7 +234,7 @@ def apply_rl_guardrail(
     home_team: str,
     away_team: str,
     kelly_rl_available: bool = False,
-) -> tuple[str, int, dict]:
+) -> tuple[str, int | None, dict]:
     """Apply RL guardrails and produce rl_override audit dict.
 
     Rules (see docs/specs/2026-04-20-rl-threshold-relaxation.md):
@@ -266,6 +266,8 @@ def apply_rl_guardrail(
 
     Returns:
       (final_rl_rec, final_rl_stars, rl_override_dict)
+      Note: final_rl_stars is None when no override fires AND user_rl_stars is None
+      AND final_rl_rec stays "PASS" (HIGH/MEDIUM path with no user input).
     """
     final_rl_rec = user_rl_rec if user_rl_rec is not None else "PASS"
     final_rl_stars = user_rl_stars
