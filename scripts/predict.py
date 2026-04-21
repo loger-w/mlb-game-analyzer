@@ -224,7 +224,6 @@ def _inactive_rl_override() -> dict:
 
 def apply_rl_guardrail(
     *,
-    confidence: str,
     adj_home: float,
     adj_away: float,
     trend_tags: list[str],
@@ -237,25 +236,30 @@ def apply_rl_guardrail(
 ) -> tuple[str, int | None, dict]:
     """Apply RL guardrails and produce rl_override audit dict.
 
-    Rules (see docs/specs/2026-04-20-rl-threshold-relaxation.md):
-      RL-1b (new): confidence=LOW + user_rl_rec is None + |diff| gate
-                   → auto-upgrade to team-abbr + 1/2 stars.
-                   A  |diff| >= RL_DIFF_BIG                      → big-diff path (no tag needed)
-                   B  RL_DIFF_MIN <= |diff| < RL_DIFF_BIG + strong tag
-                                                                → mid-diff+strong-tag path
-                   Stars: |diff| <= RL_DIFF_STAR → 1; else 2.
-      RL-1  (existing): confidence=LOW + user supplied non-PASS rec
-                        → PASS (only fires when RL-1b did not override).
-      RL-2  (existing): non-PASS but stars unspecified → PASS.
+    Symmetric to ML/OU guardrails (spec: docs/superpowers/specs/2026-04-21-rl-symmetrization-design.md):
+    each market reads only its own evidence. RL no longer reads `confidence`
+    (which is ML market's output). Gate = `diff + strong_tags + user_rl_rec`.
 
-    Layering (Q5): RL-1b does NOT read force_ml_pass / cross_validation;
-    RL and ML guardrails operate independently.
+    Rules:
+      RL-1b (auto-推薦): user_rl_rec in (None, "PASS") AND |diff| >= RL_DIFF_MIN
+                        → auto-upgrade to team-abbr + 1/2 stars.
+                        A  |diff| >= RL_DIFF_BIG                        → big-diff (no tag needed)
+                        B  RL_DIFF_MIN <= |diff| < RL_DIFF_BIG + strong tag
+                                                                        → mid-diff+strong-tag
+                        Stars: |diff| <= RL_DIFF_STAR → 1; else 2.
+      RL-2  (existing): 非 PASS 但 stars unspecified → PASS (sanity check, 對等 OU).
+
+    PASS-as-unspecified: user_rl_rec == "PASS" treated as None at gate
+    (skill workflow 預設值). user 傳 team abbr (如 "NYY") 則被尊重，不 override。
 
     Defensive (Q4): if predicted_winner != diff_side, record
     'pw_diff_direction_mismatch' warning but do not block the override.
 
+    Removed from pre-2026-04-21 version (see spec §Context):
+      - RL-1 hard gate (confidence=LOW + non-PASS user rec → PASS): deleted.
+      - RL-1b confidence=="LOW" condition: relaxed to (None, "PASS") gate.
+
     Args:
-      confidence: 'HIGH' | 'MEDIUM' | 'LOW' (result['final']['confidence'])
       adj_home / adj_away: adjusted scores (already applied signal/adjusted args)
       trend_tags: full trend_tags list from compute_trend_tags(data)
       user_rl_rec: args.run_line_rec (None if user did not supply)
@@ -267,7 +271,7 @@ def apply_rl_guardrail(
     Returns:
       (final_rl_rec, final_rl_stars, rl_override_dict)
       Note: final_rl_stars is None when no override fires AND user_rl_stars is None
-      AND final_rl_rec stays "PASS" (HIGH/MEDIUM path with no user input).
+      AND final_rl_rec stays "PASS".
     """
     final_rl_rec = user_rl_rec if user_rl_rec is not None else "PASS"
     final_rl_stars = user_rl_stars
@@ -277,13 +281,9 @@ def apply_rl_guardrail(
     diff_side = "HOME" if adj_home > adj_away else "AWAY"
     strong_rl = RL_STRONG_TAGS & set(trend_tags)
 
-    # RL-1b gate: 只在「LOW + 使用者沒給 rec + diff 達門檻」時考慮升級
+    # RL-1b gate (symmetric to ML/OU): 只讀 diff + tags + user input；不讀 confidence
     override_path = None
-    if (
-        confidence == "LOW"
-        and user_rl_rec is None
-        and diff >= RL_DIFF_MIN
-    ):
+    if user_rl_rec in (None, "PASS") and diff >= RL_DIFF_MIN:
         if diff >= RL_DIFF_BIG:
             override_path = "big-diff"
         elif strong_rl:
@@ -321,20 +321,12 @@ def apply_rl_guardrail(
                 },
             }
             print(
-                f"ℹ️ RL-1b 放寬（{override_path}）：LOW + |diff|={diff:.2f} "
+                f"ℹ️ RL-1b 自動推薦（{override_path}）：|diff|={diff:.2f} "
                 f"tags={sorted(strong_rl) or '(pure-diff)'} → {fav_abbr} {stars}★",
                 file=sys.stderr,
             )
 
-    # RL-1: user-supplied rec + LOW → PASS（只在未 override 時生效）
-    if (
-        not rl_override["active"]
-        and confidence == "LOW"
-        and final_rl_rec != "PASS"
-    ):
-        print(f"⚠️ 讓分盤從 {final_rl_rec} 改為 PASS（confidence = LOW）", file=sys.stderr)
-        final_rl_rec = "PASS"
-        final_rl_stars = 0
+    # RL-1（舊 confidence=LOW hard gate）整段刪除 — 不對稱的市場間依賴不再存在
 
     # RL-2: 非 PASS 但 stars 未指定 → PASS
     if final_rl_rec != "PASS" and final_rl_stars is None:
@@ -1092,10 +1084,10 @@ def main():
             final_ou_rec = "PASS"
             final_ou_stars = 0
 
-        # === 護欄機制：讓分盤（RL-1b 放寬 + RL-1 LOW-PASS + RL-2 stars required）===
+        # === 護欄機制：讓分盤（RL-1b 自動推薦 + RL-2 stars required）===
+        # 對稱 ML/OU（spec 2026-04-21）：不再讀 confidence，只看 diff + tags + user input
         # 邏輯封裝於 apply_rl_guardrail；rl_override 產出 audit dict 寫入 saved record
         final_rl_rec, final_rl_stars, rl_override = apply_rl_guardrail(
-            confidence=result["final"]["confidence"],
             adj_home=adj_home,
             adj_away=adj_away,
             trend_tags=trend_tags,

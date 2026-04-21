@@ -231,7 +231,7 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 | `--ou-rec` | 是 | OVER / UNDER / PASS |
 | `--ml-rec` | 是 | 隊伍縮寫或 PASS |
 | `--ml-stars` | 是 | 0-5 |
-| `--run-line-rec` | 是 | 隊伍縮寫或 PASS |
+| `--run-line-rec` | 可選 | 隊伍縮寫或 PASS（Phase 3 有明確 RL 結論時傳 team abbr；無結論時省略或傳 PASS，RL-1b 會依 diff/tag 自主評估） |
 | `--signal-adjustments` | 建議 | JSON 格式，如 `'{"puk_il":0.3}'` |
 | `--tags` | 建議 | 逗號分隔，如 `divergent,early-season` |
 | `--temperature` | 若有 | 氣溫 °F |
