@@ -180,6 +180,15 @@ $PYTHON scripts/odds_analyzer.py --hk-home {hk} --hk-away {hk} ... -o $GAME_DIR/
 
 ---
 
+## Phase 2 → Phase 3 轉換檢查（Plan B 2026-04-22 §4.7）
+
+⛔ 進入 Phase 3 前必須：
+
+1. **TaskList 檢查**：Phase 2 產生的 V 類 tasks（B7 YoY 補跑）全部 complete
+2. 有 pending task 不得進 Phase 3
+
+---
+
 ## Phase 3：綜合分析（順序執行）
 
 > ⛔ **分析前查表**：Read `reference/matchup-factors.md`（投手分級、打線評級、牛棚傷兵修正、條件修正值）
@@ -213,6 +222,15 @@ description: 回歸 ~.300 後判定 Hot/Cold 是否調整；結論寫入 phase3_
 ```
 
 此 task 必須 complete 才能進 Phase 3.5。
+
+### Phase 3 → Phase 3.5 轉換檢查（Plan B 2026-04-22 §4.7）
+
+⛔ 進入 Phase 3.5（phase3_summary.md 存檔）前必須：
+
+1. **TaskList 檢查**：本 Phase 產生的 V 類 tasks（B9 牛棚雙向、B10 BABIP 回歸）全部 complete
+2. 有 pending task 不得進 Phase 3.5
+
+> Phase 4（predict.py --save）會透過 phase3_summary.md grep 硬擋缺 section 的情況（第 2 層 code 防線，Plan B §4.5）。
 
 ### 3.5 分析結論存檔（phase3_summary.md）
 
