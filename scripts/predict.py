@@ -79,6 +79,21 @@ def should_force_ml_pass(ml_pred: dict | None, formula_pred: dict | None) -> boo
     return ml_lean != formula_lean
 
 
+def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
+    """W2（Plan B 2026-04-22 §4.2）：`--ml-rec` 必須是 team abbr / PASS / None。
+
+    舊 bug：傳 "HOME"/"AWAY" 字面值會寫進 predictions.jsonl，導致
+    `review_stats.is_home_team` 查表失敗 → 反向判 WIN/LOSS（cumulative #9）。
+    """
+    valid = team_abbrevs | {"PASS"} | {None}
+    if ml_rec not in valid:
+        sorted_abbrs = sorted(team_abbrevs)
+        sys.exit(
+            f"⛔ --ml-rec 必須是 team abbr（如 NYY）或 PASS，收到 {ml_rec!r}\n"
+            f"  合法值: {sorted_abbrs + ['PASS']}"
+        )
+
+
 _SNAPSHOT_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-ET\.json$")
 
 
@@ -768,6 +783,9 @@ def main():
     if args.test:
         print(json.dumps({"test": "OK", "message": "predict test mode"}))
         return
+
+    # W2: ml_rec schema validation（Plan B 2026-04-22 §4.2）
+    validate_ml_rec(args.ml_rec, set(TEAM_ABBREV.values()))
 
     if not args.game_data:
         parser.error("--game-data is required unless --test is specified")

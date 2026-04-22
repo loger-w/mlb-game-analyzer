@@ -686,3 +686,40 @@ def test_w1_run_line_stars_arg_removed():
     assert result.returncode != 0
     combined = (result.stderr + result.stdout)
     assert "unrecognized arguments" in combined or "--run-line-stars" in combined
+
+
+# ============================================================================
+# Plan B 2026-04-22 — W2: --ml-rec schema validation
+# ============================================================================
+
+def test_w2_ml_rec_accepts_valid_abbr():
+    from predict import validate_ml_rec, TEAM_ABBREV
+    validate_ml_rec("NYY", set(TEAM_ABBREV.values()))
+
+
+def test_w2_ml_rec_accepts_pass():
+    from predict import validate_ml_rec, TEAM_ABBREV
+    validate_ml_rec("PASS", set(TEAM_ABBREV.values()))
+
+
+def test_w2_ml_rec_accepts_none():
+    from predict import validate_ml_rec, TEAM_ABBREV
+    validate_ml_rec(None, set(TEAM_ABBREV.values()))
+
+
+def test_w2_ml_rec_rejects_literal_home():
+    from predict import validate_ml_rec, TEAM_ABBREV
+    with pytest.raises(SystemExit):
+        validate_ml_rec("HOME", set(TEAM_ABBREV.values()))
+
+
+def test_w2_ml_rec_rejects_literal_away():
+    from predict import validate_ml_rec, TEAM_ABBREV
+    with pytest.raises(SystemExit):
+        validate_ml_rec("AWAY", set(TEAM_ABBREV.values()))
+
+
+def test_w2_ml_rec_rejects_bogus():
+    from predict import validate_ml_rec, TEAM_ABBREV
+    with pytest.raises(SystemExit):
+        validate_ml_rec("ZZZ", set(TEAM_ABBREV.values()))
