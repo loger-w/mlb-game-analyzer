@@ -695,3 +695,57 @@ def test_rl1b_not_gated_by_confidence_medium_case():
     assert ov["active"] is True
     assert ov["path"] == "mid-diff+strong-tag"
     assert ov["tags"] == ["home-bullpen-slump"]
+
+
+# ============================================================================
+# should_force_ml_pass helper tests (α 實作 — D1 改讀 ml_lean vs formula_lean)
+# ============================================================================
+from predict import should_force_ml_pass
+
+
+def test_should_force_ml_pass_direction_mismatch_returns_true():
+    """ml 看 HOME、formula 看 AWAY → 方向分歧 → True"""
+    assert should_force_ml_pass(
+        ml_pred={"home_win_pct": 60},
+        formula_pred={"log5_pct": 40},
+    ) is True
+
+
+def test_should_force_ml_pass_both_lean_home_returns_false():
+    """ml 看 HOME、formula 看 HOME → 方向一致 → False（不 force PASS）"""
+    assert should_force_ml_pass(
+        ml_pred={"home_win_pct": 60},
+        formula_pred={"log5_pct": 55},
+    ) is False
+
+
+def test_should_force_ml_pass_both_lean_away_returns_false():
+    """ml 看 AWAY、formula 看 AWAY → 方向一致 → False"""
+    assert should_force_ml_pass(
+        ml_pred={"home_win_pct": 40},
+        formula_pred={"log5_pct": 45},
+    ) is False
+
+
+def test_should_force_ml_pass_none_ml_pred_returns_false():
+    """ml_pred 缺失（NO_ML_MODEL）→ False（無模型不比對）"""
+    assert should_force_ml_pass(
+        ml_pred=None,
+        formula_pred={"log5_pct": 60},
+    ) is False
+
+
+def test_should_force_ml_pass_none_formula_pred_returns_false():
+    """formula_pred 缺失 → False"""
+    assert should_force_ml_pass(
+        ml_pred={"home_win_pct": 60},
+        formula_pred=None,
+    ) is False
+
+
+def test_should_force_ml_pass_boundary_50_home_formula_45_returns_true():
+    """ml=50.1 (HOME) vs formula=45 (AWAY) → 分歧 → True"""
+    assert should_force_ml_pass(
+        ml_pred={"home_win_pct": 50.1},
+        formula_pred={"log5_pct": 45},
+    ) is True
