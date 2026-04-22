@@ -52,46 +52,6 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 
 ---
 
-## Rationalizations — 藉口 vs 現實
-
-下表把分析壓力下最常出現的內心獨白配上它的反駁。**Red Flags 抓行為，此表抓想法**。
-
-| 心裡想的 | 實際上 |
-|---------|--------|
-| 「腳本失敗，但我記得這個投手數據大概…」 | 記憶與訓練資料不是來源。回報錯誤等使用者指示，禁止靜默改走 WebSearch 或記憶。 |
-| 「BvP 12 PA 趨勢看起來很明顯，可以引用。」 | PA<15 是雜訊，不是訊號。硬推結論 = 無根據推薦。 |
-| 「近 7 天 Hot 很明顯，BABIP 就不用查了吧。」 | 近 7 天 .400 BABIP 回歸後跟 .280 差不多。未檢查 = Hot/Cold 判定無效。 |
-| 「牛棚核心 IL 了，O/U 修一下就好。」 | 牛棚雙向閘門：同隊 ML 也必須下修。只修一側 = Phase 3 未完成。 |
-| 「同場 ML 推 A，A 的受讓也推，兩邊都有理由。」 | D3 硬規則互斥。訊號方向 = 勝率強度，不是「兩邊下注對沖」。 |
-| 「phase3_summary 就是 checklist，腦袋記得就好。」 | 對話壓縮後結論就沒了。Phase 4 沒 anchor = 用記憶預測。 |
-| 「Roster 看起來沒變動，跳過 Step 1 直接分析。」 | Step 1 是阻塞閘門。IL 遺漏 → Phase 3 牛棚傷兵基礎就錯。 |
-| 「Agent 子代理平行跑 WebSearch 比較快。」 | 子代理沒 WebSearch 權限，輸出是幻想。主對話平行跑才對。 |
-| 「SKILL.md 只寫 `predict.py --save`，`--game-data` 或 `$GAME_DIR` 就用記憶中的吧。」 | `$GAME_DIR` 是 reference/workflow.md 的 shell 變數，未載入就等同未定義。唯一合法命令是 `predict.py --game-data analysis-data/<date>/<AWAY>@<HOME>/merged.json --save`，`prediction.json` 自動落在同層。省略或腦補 = predict.py 報錯或寫錯位置。 |
-
-**以上任何一項 = 停下來，回到對應 Phase 的閘門檢查清單。**
-
----
-
-## Red Flags — 停下來，回到流程
-
-如果你發現自己正在：
-- **使用訓練資料或記憶的投手/球員數據**（所有核心數據必須來自腳本 API 輸出，禁止臆測或幻想）
-- **在用戶說中文的對話裡用英文輸出報告**（搜尋優先英文，輸出照用戶語言；中文 → 繁體中文）
-- 用記憶中的數據代替腳本輸出
-- WebSearch 失敗後「差不多就好」繼續分析
-- 跳過 Roster 檢查因為「應該沒問題」
-- 牛棚傷兵只修了 O/U 就急著往下走
-- BvP 樣本不足卻引用結論因為「看起來有趨勢」
-- 沒寫 `phase3_summary.md` 就開始 Phase 4
-- 同場推了對立方向因為「兩邊都有理由」
-- 用 shell redirect `>` 因為「比較快」
-- 用 Agent 子代理跑 WebSearch
-- 下 `predict.py` 時省略 `--game-data`，或把 `prediction.json` 寫到 `analysis-data/<date>/<AWAY>@<HOME>/` 以外位置（不論 `games/` 是否存在，均禁止寫入）
-
-**以上任何一項 = 停下來，回到對應的 Phase 閘門。**
-
----
-
 ## 初始化
 
 **每次對話開始時執行一次**：Python 指令偵測、`$GAME_DIR` 設定、`scripts/**/*.py` Glob 偵測。
@@ -136,7 +96,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 
 ## Common Pitfalls & Edge Cases
 
-最高優先 3 項技術漏洞（與 Red Flags 不重疊；完整清單見 `reference/pitfalls.md`）：
+最高優先 3 項技術漏洞（與 flags-checklist 不重疊；完整清單見下方連結）：
 
 1. **Hot/Cold 判定未查 BABIP**
    近 7 天 BABIP 極端值（≤ .260 或 ≥ .370）預期回歸 ~.300，未檢查 = Hot/Cold 判定無效。
@@ -147,7 +107,8 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 3. **Phase 3 summary 寫入「初步盤口推薦」或星級**
    盤口推薦 single source = Phase 4 `prediction.json`。Summary 只放基本面，避免 stale。
 
-→ 完整清單（13 項 Common Mistakes + 12 項 Edge Cases）：`reference/pitfalls.md`
+→ 完整紀律 flag（13 條）：`reference/flags-checklist.md`
+→ Edge Cases + 修正係數：`reference/pitfalls.md`
 
 ---
 
