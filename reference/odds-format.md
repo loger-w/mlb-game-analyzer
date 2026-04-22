@@ -50,39 +50,3 @@
 
 兩者為獨立市場，定價不同屬正常。
 分析時以**獨贏盤隱含勝率為主要參考**，讓分盤作為交叉驗證。
-
-## CLV cents 約定 (P2)
-
-**Definition:** `clv_cents = american(rec_decimal) - american(close_decimal)`，計算的是推薦方那一側。
-
-- 正值 = rec-time line 比 closing 更優（beat closing）
-- 負值 = rec-time line 比 closing 更差（line moved against us）
-- 零 = 無變化
-
-**Examples:**
-
-| Rec decimal | Close decimal | Rec American | Close American | CLV cents |
-|---|---|---|---|---|
-| 1.74 | 1.56 | -135 | -179 | +44 |
-| 2.28 | 2.52 | +128 | +152 | -24 |
-| 1.91 | 1.91 | -110 | -110 | 0 |
-| 1.83 | 1.91 | -120 | -110 | -10 |
-
-## No-vig implied probability delta
-
-**Definition:**
-```
-p_no_vig(side, snap) = (1 / side_dec) / (1/side_dec + 1/other_dec)
-clv_pct_no_vig = (p_no_vig_close - p_no_vig_rec) × 100
-```
-
-正值 = 市場在閉線時將推薦方機率上修 → 我們在 rec 時以低估價格下注 → 賺到。
-
-**Rounding:** `round(_, 2)`。
-
-## 應用場景
-
-- **單場診斷**：`clv.ml.cents` 一眼判斷這注是否 beat closing
-- **聚合 ROI 驗證**：500+ bets 上 `avg(clv_cents)` 是 +EV 判定的最強 proxy
-- **P1 retrain 驗證**：新模型的 bet 分布 vs 舊模型的 CLV 分布比較（用 `bet_placed=true` 過濾）
-- **PASS 市場方向準度**：以 `bet_placed=false` 檢視模型方向 CLV 符號，驗模型方向準度

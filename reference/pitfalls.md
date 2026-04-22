@@ -15,7 +15,6 @@
 | BvP 樣本 < 15 PA 卻引用結論 | PA < 15 必須丟棄，標註「BvP 樣本不足」 |
 | Hot/Cold 判定未檢查 BABIP | BABIP 回歸閘門：極端值預期回歸 ~.300 |
 | Phase 3 summary 寫「初步盤口推薦」/ 星級 | 盤口推薦僅在 Phase 4 `prediction.json` 產生；summary 只放基本面，避免 stale |
-| INSUFFICIENT_SAMPLE 時自創 ml_rec 規則 | 交由 predict.py guardrail 自動判定（見 `prediction.md` D1.5） |
 | Phase 3 結論未存檔就進 Phase 4 | 必須寫入 `phase3_summary.md`，防止對話壓縮遺失 |
 | 同場推薦對立方向（如 ML 推 A 隊又推 A 隊受讓） | D3 硬性規則禁止同場對立方向 |
 | 用 shell redirect `>` 存腳本輸出 | 必須使用 `--output / -o` 參數 |
@@ -37,7 +36,6 @@
 | 二次 TJ | **65% RTP**（HSS 研究），42% 能投 10+ 場；復出首年大幅降級 |
 | 亞洲盤口格式歧義 | 必須用 ML + 投手分析驗證；見 `odds-format.md` |
 | 使用者質疑結果 | 回顧量化信號，獨立驗證後才決定是否修正；不得直接妥協 |
-| 本季樣本不足（<30 場） | 優先用投影系統（ZiPS / Steamer），觸發 D1.5 紀律 |
 | BABIP 回歸 | 極端值（≤ .260 或 ≥ .370）預期回歸聯盟平均 **~.300**；近 7 天 BABIP 必檢查 |
 | 信號修正 vs O/U 差距 < 1.5 | 不推薦（SD ≈ 4.5 run，在噪音範圍內） |
 
@@ -53,7 +51,5 @@
 | 聯盟平均 BABIP | ~.300（需 ~800 AB 穩定） | `matchup-factors.md` |
 | MLB 單場隨機性 | ~40-45% | 業界共識 |
 | 總分預測 SD | ~4.5 run | `prediction.md` D2 |
-| 溫度每 10°F | 影響 ~1% 球飛距離 | `matchup-factors.md` |
-| 海拔每 800 ft | 增加 ~1% 距離 | `matchup-factors.md` |
 
 > 以上係數已分散在 `matchup-factors.md` / `prediction.md` 的相關章節，此表僅為速查。

@@ -39,10 +39,8 @@ Glob(pattern="**/*.py")  ← 從 SKILL.md 所在目錄執行
 **🐍 腳本模式（腳本偵測成功即啟用）**
 
 - ⛔ 禁止使用 WebFetch / WebSearch 收集比賽**核心數據**
-- ✅ 允許使用 WebSearch 的**唯一例外**（僅限三類）：
-  1. 天氣預報（溫度、風速、降雨機率）
-  2. 主審分配（umpire assignment）
-  3. 當日最新傷兵快訊（IL 異動）
+- ✅ 允許使用 WebSearch 的**唯一例外**（僅限一類）：
+  1. 當日最新傷兵快訊（IL 異動）— 優先用 API 40 人名單 + IL 名單；WebSearch 僅作補充查詢
 - ⛔ 任何腳本失敗 → 向使用者回報錯誤，禁止靜默改用 WebSearch
 - ⛔ 所有腳本輸出必須使用 `--output / -o` 參數存檔，禁止使用 shell redirect `>`
 
@@ -155,14 +153,13 @@ $PYTHON scripts/merge_game_data.py \
 - 自動取得牛棚 ERA + Park Factor
 - 輸出 `merged.json`，作為 Phase 4 `predict.py` 的輸入
 
-#### 3b. 環境補充（WebSearch 例外）
+#### 3b. 環境補充
 
 | 任務 | 核心指標 |
 |------|---------|
-| 傷兵細節（雙方） | 以 Step 1 IL 為基礎，WebSearch 補充傷病細節 |
-| 球場 & 天氣 | Park Factor / 溫度 / 風向 |
+| 傷兵名單 | 以 Step 1 的 40 人名單 + IL 名單為主（API 抓取） |
+| 球場 | Park Factor（查 `matchup-factors.md` §Park Factor；未來接大數據 md 檔） |
 | 盤口賠率 | ML / Run Line / O/U + 讓分方向驗證 |
-| 主審傾向（best effort） | O/U 紀錄 / K Boost |
 
 盤口分析（使用者提供盤口數據後執行，輸入格式見 `reference/odds-format.md`）：
 
@@ -181,7 +178,7 @@ $PYTHON scripts/odds_analyzer.py --hk-home {hk} --hk-away {hk} ... -o $GAME_DIR/
 |------|---------|------|------|
 | 3.1 投打對決 | 投手分級 + 打線評級 + Platoon + 球種 | ⛔ BvP：PA>=15 才可引用 | `matchup-factors.md` |
 | 3.2 牛棚 | 品質 + 可用性 + 近 3 天消耗 + 傷兵修正 | ⛔ 雙向閘門：O/U 和 ML 修正值皆填 | `matchup-factors.md` |
-| 3.3 條件修正 | 傷病/TJ/角色轉換/年齡/球場/天氣/主審 | 僅符合條件時觸發 | `matchup-factors.md` + `prediction.md` |
+| 3.3 條件修正 | 傷病/TJ/角色轉換/年齡/球場 | 僅符合條件時觸發 | `matchup-factors.md` + `prediction.md` |
 | 3.4 近期狀態 | 多窗口趨勢 + H2H + 連勝敗 | ⛔ BABIP 回歸閘門：Hot/Cold 前必檢查 | `matchup-factors.md` |
 
 ### 3.5 分析結論存檔（phase3_summary.md）
@@ -247,7 +244,7 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 ### 4.1 PASS 規則與星級護欄
 
-- PASS 門檻、開季限定、星級護欄規則 → 見 `prediction.md`「PASS 門檻 + 星級護欄」章節
+- PASS 門檻、星級護欄規則 → 見 `prediction.md`「PASS 門檻 + 星級護欄」章節
 - predict.py 自動執行星級護欄，確認輸出中的降級警告
 
 ### 4.2 比分與信號修正
@@ -256,58 +253,39 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 ### 4.3 盤口推薦
 
-- ⛔ **紀律閘門 D1/D2/D1.5** → 見 `prediction.md`「分析紀律」
+- ⛔ **紀律閘門 D1/D2** → 見 `prediction.md`「分析紀律」
 - O/U、ML、Run Line、讓分方向交叉驗證 → 見 `prediction.md`「讓分方向交叉驗證」
 
 ### 4.4 硬性規則（Phase 4 閘門）
 
 - ⛔ **D3：禁止同場對立方向推薦** → 見 `prediction.md` D3
-- ⛔ **D4：受讓盤偏見防護（賽季場次 < 30）** → 見 `prediction.md` D4
 - ⛔ **D5：比分與盤口一致性** → 見 `prediction.md` D5
 
 ### 4.5 比賽敘事
 
 - 根據量化觸發條件選擇劇本 → 見 `prediction.md`「比賽敘事觸發條件」
 
-### 4.6 結構化分析 + 推薦上傳
+### 4.6 寫入 prediction.json
 
-⛔ **predict.py --save 成功後，必須依序執行：**
+⛔ **predict.py --save 成功後，prediction.json 自動落在 `$GAME_DIR/prediction.json`**（單數 JSON、per-game 真相來源）。
 
 ```bash
-# 結構化分析
-$PYTHON scripts/assemble_analysis.py \
-  --game $GAME_DIR/game_data.json \
-  --home-pitcher $GAME_DIR/home_pitcher.json \
-  --away-pitcher $GAME_DIR/away_pitcher.json \
-  --home-lineup $GAME_DIR/home_lineup.json \
-  --away-lineup $GAME_DIR/away_lineup.json \
-  --home-roster $GAME_DIR/home_roster.json \
-  --away-roster $GAME_DIR/away_roster.json \
-  --merged $GAME_DIR/merged.json \
-  -o $GAME_DIR/analysis.json --validate
-
-# 上傳推薦
-$PYTHON scripts/upload_prediction.py --last 1 --analysis-dir $GAME_DIR --test   # 先預覽
-$PYTHON scripts/upload_prediction.py --last 1 --analysis-dir $GAME_DIR           # 實際上傳
+# predict.py --save 已完成 prediction.json 寫入；無需額外動作
 ```
 
-每場結果寫入 `$GAME_DIR/prediction.json`（單數 JSON，per-game 真相來源）。
-
-> **當日彙總與賽後回填**（`summarize_predictions.py` / `upload_results.py` / `review_stats.py`）請交由 `mlb-post-game-review` skill 處理，不屬於本 skill 範圍。
+> **當日彙總與賽後回填**（`summarize_predictions.py` / `fetch_results.py` / `review_stats.py`）請交由 `mlb-post-game-review` skill 處理，不屬於本 skill 範圍。
 
 ### 4.7 輸出前驗證
 
 ⛔ **輸出前必須逐項檢查：**
 
-- [ ] D1 / D1.5 / D2 紀律通過？
+- [ ] D1 / D2 紀律通過？
 - [ ] D3 同場無對立推薦？
-- [ ] D4 受讓盤偏見防護（若 <30 場）？
 - [ ] D5 比分與盤口一致性？
 - [ ] 讓分方向已交叉驗證？
 - [ ] 牛棚傷兵雙向反映（O/U + ML）？
 - [ ] 星級護欄降級警告已確認？
 - [ ] Roster 一致？
-- [ ] `assemble_analysis.py` 驗證通過？
 
 ### 4.8 輸出格式
 
