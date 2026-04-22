@@ -132,7 +132,18 @@ $PYTHON scripts/lineup_analyzer.py --team {客隊} --year YYYY --opposing-pitche
 **Step 2 閘門（腳本輸出後逐項確認）：**
 - [ ] 投手有 `role_change` 標記？→ 是 = ⛔ **僅用先發場次數據，牛棚期 ERA/FIP 不可用於先發評估**
 - [ ] 打線數據僅含 active roster 球員？（比對 Step 1 roster）
-- [ ] **ERA vs xERA 落差閘門**：任一投手 `|ERA − xERA| ≥ 1.5` 或 `IP < 30` 且本季 ERA 比 `prior_year.era` 低 ≥ 1.0 → ⛔ **必須補跑** `pitcher_stats.py --name "..." --year {YYYY-1} -o $GAME_DIR/{side}_pitcher_{YYYY-1}.json` 並執行 YoY Statcast 對比（方法見 `matchup-factors.md#yoy-statcast-驗證`）。未完成不得進 Phase 3；不得以「風險提示」代替驗證（見 `pitfalls.md`）。
+- [ ] **ERA vs xERA 落差閘門**：任一投手 `|ERA − xERA| ≥ 1.5` 或 `IP < 30` 且本季 ERA 比 `prior_year.era` 低 ≥ 1.0 → ⛔ **必須補跑** `pitcher_stats.py --name "..." --year {YYYY-1} -o $GAME_DIR/{side}_pitcher_{YYYY-1}.json` 並執行 YoY Statcast 對比（方法見 `matchup-factors.md#yoy-statcast-驗證`）。未完成不得進 Phase 3；不得以「風險提示」代替驗證（見 `flags-checklist.md` #13）。
+
+**B7 TaskCreate 樣板（Plan B 2026-04-22 §4.7，第 3 層 forcing function）：**
+
+觸發 YoY 時，同步 TaskCreate 追蹤補跑進度：
+
+```
+subject: 補跑 {side} YoY 對比（{pitcher_name}）
+description: 對比 5 項 Statcast 指標（avg_velo / pitch_types / whiff_pct / hard_hit_pct / xera）；結論寫入 phase3_summary.md §YoY 對比結論
+```
+
+此 task 必須 complete 才能進 Phase 3.5（summary 存檔）。predict.py --save 會硬擋 prior year file 缺失（§4.3）。
 
 ### Step 3（可平行）：合併數據 + 環境補充
 
@@ -226,16 +237,17 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 | `--adjusted-away` | 建議 | 分析後調整的客隊得分 |
 | `--ou-line` | 是 | 有效大小分線（四分球取中位，如 9.5） |
 | `--ou-rec` | 是 | OVER / UNDER / PASS |
-| `--ml-rec` | 是 | 隊伍縮寫或 PASS |
+| `--ml-rec` | 是 | 隊伍縮寫或 PASS（Plan B 2026-04-22 W2：`HOME` / `AWAY` 字面值會被 reject） |
 | `--ml-stars` | 是 | 0-5 |
-| `--run-line-rec` | 可選 | 隊伍縮寫或 PASS（Phase 3 有明確 RL 結論時傳 team abbr；無結論時省略或傳 PASS，RL-1b 會依 diff/tag 自主評估） |
-| `--signal-adjustments` | 建議 | JSON 格式，如 `'{"puk_il":0.3}'` |
+| `--signal-adjustments` | 建議 | JSON 格式，如 `'{"puk_il":0.3}'`（未知 key 會 stderr warning） |
 | `--tags` | 建議 | 逗號分隔，如 `divergent,early-season` |
 | `--temperature` | 若有 | 氣溫 °F |
 | `--wind-mph` | 若有 | 風速 mph |
 | `--wind-direction` | 若有 | 風向 |
 | `--umpire` | 若有 | 主審姓名 |
 | `--umpire-ou-rate` | 若有 | 主審 Over% |
+
+> **RL 推薦（Plan B 2026-04-22 W1）**：無 `--run-line-rec` / `--run-line-stars` CLI args，已廢除。RL 全走 `predict.py` auto override（RL-1b gate：|adj 比分差| ≥ 1.5 + strong tag 或 big-diff ≥ 2.2）。
 
 > **自動 Odds 查詢**：`predict.py --save` 會自動從 `odds_snapshots/` 撈推薦時間最近的 Pinnacle snapshot 作為 Kelly 計算來源（Kelly 區塊詳見 `reference/prediction.md` Kelly Sizing 章節）。若需手動覆寫，加 `--ml-odds-home-dec 1.83` / `--ou-odds-over-dec 1.91` / `--rl-odds-home-dec 1.56` 等 args。Doubleheader 需指定 `--game-index 1` 或 `2`。
 
