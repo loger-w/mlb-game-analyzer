@@ -929,3 +929,38 @@ def test_ynew3_empty_user_tags_no_cap():
     new_cap, reason = apply_divergent_user_tag_cap([], current_cap=5)
     assert new_cap == 5
     assert reason is None
+
+
+# ============================================================================
+# Plan B 2026-04-22 — Y-new-1: home 2-star audit tag
+# ============================================================================
+
+def test_ynew1_home_2star_triggers_tag():
+    from predict import should_add_home_2star_tag
+    assert should_add_home_2star_tag("HOME", 2, "NYY") is True
+
+
+def test_ynew1_away_2star_no_tag():
+    from predict import should_add_home_2star_tag
+    assert should_add_home_2star_tag("AWAY", 2, "BOS") is False
+
+
+def test_ynew1_home_3star_no_tag():
+    from predict import should_add_home_2star_tag
+    assert should_add_home_2star_tag("HOME", 3, "NYY") is False
+
+
+def test_ynew1_home_2star_pass_no_tag():
+    """final_ml_rec == PASS → tag 無意義（推薦已消）。"""
+    from predict import should_add_home_2star_tag
+    assert should_add_home_2star_tag("HOME", 2, "PASS") is False
+
+
+def test_ynew1_home_2star_none_rec_no_tag():
+    from predict import should_add_home_2star_tag
+    assert should_add_home_2star_tag("HOME", 2, None) is False
+
+
+def test_ynew1_home_none_stars_no_tag():
+    from predict import should_add_home_2star_tag
+    assert should_add_home_2star_tag("HOME", None, "NYY") is False

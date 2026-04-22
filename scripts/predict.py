@@ -147,6 +147,22 @@ def apply_divergent_user_tag_cap(
     return current_cap, None
 
 
+def should_add_home_2star_tag(
+    predicted_winner: str, final_ml_stars: int | None, final_ml_rec: str | None
+) -> bool:
+    """Y-new-1（Plan B §4.4）：主場 2 星推薦 audit tag（cumulative #1 連 4 天觸發）。
+
+    規則尚在觀察期（條件難定義，先 audit-only），tag `home-2star-risk` 供
+    post-game review 分桶；不 cap / 不 force PASS。
+    """
+    return (
+        predicted_winner == "HOME"
+        and final_ml_stars == 2
+        and final_ml_rec is not None
+        and final_ml_rec != "PASS"
+    )
+
+
 def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
     """W2（Plan B 2026-04-22 §4.2）：`--ml-rec` 必須是 team abbr / PASS / None。
 
@@ -1090,6 +1106,12 @@ def main():
         # Y2 audit tag（Plan B §4.4）
         if y2_triggered and "xgb-predicted-divergent" not in all_tags:
             all_tags.append("xgb-predicted-divergent")
+
+        # Y-new-1 audit tag（Plan B §4.4）：主場 2 星（cumulative #1，觀察期先 tag 不 cap）
+        if should_add_home_2star_tag(
+            result["final"]["recommended_winner"], final_ml_stars, final_ml_rec
+        ) and "home-2star-risk" not in all_tags:
+            all_tags.append("home-2star-risk")
 
         # === 護欄機制：O/U 自動 PASS ===
         final_ou_rec = args.ou_rec if args.ou_rec is not None else result["final"]["over_under_lean"]
