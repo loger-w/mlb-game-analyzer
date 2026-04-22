@@ -96,7 +96,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 
 **每次對話開始時執行一次**：Python 指令偵測、`$GAME_DIR` 設定、`scripts/**/*.py` Glob 偵測。
 
-- 腳本偵測成功 → 切換 **🐍 腳本模式**（WebSearch 僅限天氣 / 主審 / 傷兵快訊三類例外）
+- 腳本偵測成功 → 切換 **🐍 腳本模式**（WebSearch 僅限傷兵快訊一類例外；傷兵優先用 API 40 人 + IL 名單）
 - 腳本偵測失敗 → **禁止自動改用 WebSearch**，先詢問使用者腳本路徑
 
 > 完整初始化步驟（含 bash 指令、模式切換規範）：`reference/workflow.md`「初始化」章節
@@ -124,8 +124,8 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 
 ## Phase 4：預測輸出
 
-- **執行**：`predict.py --save` → `assemble_analysis.py --validate` → `upload_prediction.py`
-- **紀律 D1-D5**：D1 模型覆蓋 / D1.5 INSUFFICIENT_SAMPLE / D2 信號修正 / D3 同場互斥 / D4 受讓偏見防護 / D5 比分一致性 — 由 `predict.py` guardrail 自動執行，完整條文見 `reference/prediction.md`「分析紀律」
+- **執行**：`predict.py --save`（自動寫 `prediction.json` 到 `$GAME_DIR`）
+- **紀律 D1-D5**：D1 模型覆蓋（α 實作：ml_lean vs formula_lean）/ D2 信號修正 / D3 同場互斥 / D5 比分一致性 — 由 `predict.py` guardrail 自動執行，完整條文見 `reference/prediction.md`「分析紀律」
 - **賽後彙總 / 回填**：轉交 `mlb-post-game-review`
 
 > ⚠️ 寫 `prediction.json` 前確認 `--game-data` 指向 `analysis-data/<date>/<AWAY>@<HOME>/merged.json`；不對就停下來重新定位，不得自建替代目錄。
@@ -160,18 +160,3 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 
 ---
 
-## CLV 追蹤 (P2)
-
-每個推薦自動記錄三市場完整 rec-time line（`recommendation_snapshot`）+ 當日開盤對 rec 的 line 移動（`line_movement`）。比賽結束後 `upload_results.py` 自動：
-
-- 找比賽開打前最後一筆 snapshot 當 closing line
-- 算 CLV（American cents 主展示、no-vig pct 副欄）
-- 三市場都算（PASS 市場亦記，旗標 `bet_placed=false`）
-
-**Advisory only** — 不進 `signal_table`、不影響 `final.*`。目的是為 P1 retrain 提供 CLV baseline（500+ bets 上驗證新模型是否真的提升 edge）。
-
-**粒度限制**：closing line 採現有 4h cron 最後 snapshot，距 first pitch 0-4h。Sub-hour steam 偵測不到；若 `closing_line_minutes_before_first_pitch > 240` 則 `clv_warnings` 標記 `closing_stale`。
-
-**歷史 backfill**：`python scripts/backfill_clv.py --date YYYY-MM-DD --no-dry-run`（預設 dry-run；`--force` 覆寫已存在欄位）。
-
-詳細 schema 見 `reference/prediction.md` §CLV 追蹤、cents/pct 換算見 `reference/odds-format.md`。
