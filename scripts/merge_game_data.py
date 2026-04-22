@@ -92,6 +92,54 @@ def extract_lineup_features(lineup_data: dict, prefix: str) -> dict:
     }
 
 
+def extract_pitcher_nested(
+    pitcher_data: dict | None,
+    prior_pitcher_data: dict | None,
+    prefix: str,
+) -> dict:
+    """Plan B §4.6：產 nested `{prefix}_pitcher` dict，包含 era/xera/ip + prior_year.era。
+
+    給 predict.py 的 pitcher_triggers_yoy 讀（B7 YoY 觸發判斷）。
+    與現有 `extract_pitcher_features` 共存（不動 flat keys，確保 review_stats 等 backward-compat）。
+    """
+    season = pitcher_data.get("season", {}) if pitcher_data else {}
+    if "error" in season:
+        season = {}
+    prior_season = (prior_pitcher_data or {}).get("season", {}) if prior_pitcher_data else {}
+    if "error" in prior_season:
+        prior_season = {}
+
+    era = season.get("era")
+    xera = season.get("xera")
+    ip = season.get("ip")
+    delta = None
+    if era is not None and xera is not None:
+        delta = round(abs(era - xera), 3)
+
+    return {
+        f"{prefix}_pitcher": {
+            "era": era,
+            "xera": xera,
+            "ip": ip,
+            "era_xera_delta": delta,
+            "prior_year": {"era": prior_season.get("era")},
+        }
+    }
+
+
+def extract_lineup_nested(lineup_data: dict | None, prefix: str) -> dict:
+    """Plan B §4.6：產 nested `{prefix}_lineup` dict，包含 recent_babip。
+
+    給 predict.py 的 lineup_triggers_babip 讀（B10 BABIP 回歸觸發判斷）。
+    """
+    recent = lineup_data.get("last7_babip") if lineup_data else None
+    return {
+        f"{prefix}_lineup": {
+            "recent_babip": recent,
+        }
+    }
+
+
 def extract_game_features(game_data: dict) -> dict:
     """從 fetch_game_data.py 輸出提取多窗口得失分
 
@@ -247,12 +295,20 @@ def main():
         park_factor = resolve_park_factor(venue_name)
         print(f"Auto-resolved park factor for {venue_name}: {park_factor}", file=sys.stderr)
 
+    home_lineup_data = load_json(args.home_lineup)
+    away_lineup_data = load_json(args.away_lineup)
+
     merged = {}
     merged.update(extract_game_features(game_data))
     merged.update(extract_pitcher_features(home_pitcher_data, "home"))
     merged.update(extract_pitcher_features(away_pitcher_data, "away"))
-    merged.update(extract_lineup_features(load_json(args.home_lineup), "home"))
-    merged.update(extract_lineup_features(load_json(args.away_lineup), "away"))
+    merged.update(extract_lineup_features(home_lineup_data, "home"))
+    merged.update(extract_lineup_features(away_lineup_data, "away"))
+    # Plan B §4.6: nested dict 供 B7 YoY / B10 BABIP 觸發判斷；flat keys 保留 backward-compat
+    merged.update(extract_pitcher_nested(home_pitcher_data, None, "home"))
+    merged.update(extract_pitcher_nested(away_pitcher_data, None, "away"))
+    merged.update(extract_lineup_nested(home_lineup_data, "home"))
+    merged.update(extract_lineup_nested(away_lineup_data, "away"))
     merged["home_bullpen_era"] = home_bp_era
     merged["away_bullpen_era"] = away_bp_era
     merged["park_factor"] = park_factor
