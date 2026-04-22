@@ -857,3 +857,37 @@ def test_y2_boundary_50_treated_as_away_lean():
     from predict import check_xgb_divergent
     assert check_xgb_divergent({"home_win_pct": 50.0}, "HOME") is True
     assert check_xgb_divergent({"home_win_pct": 50.0}, "AWAY") is False
+
+
+# ============================================================================
+# Plan B 2026-04-22 — Y-new-2: close game (|adj_diff| < 0.5) cap to 1
+# ============================================================================
+
+def test_ynew2_close_game_caps_to_1():
+    from predict import apply_close_game_cap
+    new_cap, reason = apply_close_game_cap(4.2, 4.5, current_cap=5)
+    assert new_cap == 1
+    assert reason is not None
+    assert "近身戰" in reason
+
+
+def test_ynew2_wide_game_no_cap():
+    from predict import apply_close_game_cap
+    new_cap, reason = apply_close_game_cap(4.2, 6.8, current_cap=5)
+    assert new_cap == 5
+    assert reason is None
+
+
+def test_ynew2_respects_tighter_existing_cap():
+    """current_cap 已更緊時不回升。"""
+    from predict import apply_close_game_cap
+    new_cap, _ = apply_close_game_cap(4.2, 4.5, current_cap=0)
+    assert new_cap == 0
+
+
+def test_ynew2_boundary_0_5_not_triggered():
+    """|diff| == 0.5 正好不觸發（strictly less than）。"""
+    from predict import apply_close_game_cap
+    new_cap, reason = apply_close_game_cap(4.0, 4.5, current_cap=5)
+    assert new_cap == 5
+    assert reason is None

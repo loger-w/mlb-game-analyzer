@@ -120,6 +120,20 @@ def check_xgb_divergent(ml_pred: dict | None, predicted_winner: str) -> bool:
     return xgb_home_lean != predicted_winner
 
 
+def apply_close_game_cap(
+    adj_home: float, adj_away: float, current_cap: int
+) -> tuple[int, str | None]:
+    """Y-new-2（Plan B §4.4）：調整後比分差 < 0.5 → 上限 1 星（SD ≈ 4.5，噪音範圍）。
+
+    cumulative #3 連 4 天觸發，規則下沉到 code 層。
+    """
+    diff = abs(adj_home - adj_away)
+    if diff < 0.5:
+        reason = f"近身戰 |adj 比分差|={diff:.2f} < 0.5 上限 1（Y-new-2）"
+        return min(current_cap, 1), reason
+    return current_cap, None
+
+
 def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
     """W2（Plan B 2026-04-22 §4.2）：`--ml-rec` 必須是 team abbr / PASS / None。
 
@@ -1027,6 +1041,11 @@ def main():
                 direction_override = True
                 ml_stars_cap = min(ml_stars_cap, 2)
                 cap_reasons.append(f"ml_rec={args.ml_rec} 與 XGBoost predicted_winner={predicted_winner}({home_abbr if predicted_winner == 'HOME' else away_abbr}) 方向矛盾，上限 2")
+
+        # Y-new-2（Plan B §4.4）：近身戰（|adj 比分差| < 0.5）上限 1 星（cumulative #3）
+        ml_stars_cap, y_new_2_reason = apply_close_game_cap(adj_home, adj_away, ml_stars_cap)
+        if y_new_2_reason:
+            cap_reasons.append(y_new_2_reason)
 
         # 套用星級上限
         final_ml_stars = args.ml_stars
