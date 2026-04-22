@@ -192,6 +192,28 @@ $PYTHON scripts/odds_analyzer.py --hk-home {hk} --hk-away {hk} ... -o $GAME_DIR/
 | 3.3 條件修正 | 傷病/TJ/角色轉換/年齡/球場 | 僅符合條件時觸發 | `matchup-factors.md` + `prediction.md` |
 | 3.4 近期狀態 | 多窗口趨勢 + H2H + 連勝敗 | ⛔ BABIP 回歸閘門：Hot/Cold 前必檢查 | `matchup-factors.md` |
 
+**B9 牛棚雙向閘門擴充（Plan B 2026-04-22 §4.7，第 3 層 TaskCreate forcing function）：**
+
+⛔ 偵測核心（Closer / Primary Setup / High-leverage）IL 任一人時，立即 TaskCreate：
+
+```
+subject: 牛棚雙向修正值（核心 {N} 人 IL）
+description: 同時計算 ML 修正（-%）+ OU 修正（+run）；寫入 phase3_summary.md §牛棚雙向修正值；呼叫 predict.py 時 --signal-adjustments 含 bullpen_il_{side}
+```
+
+此 task 必須 complete 才能進 Phase 3.5。predict.py --save 會硬擋缺 section（§4.5）。
+
+**B10 BABIP 回歸閘門擴充（Plan B 2026-04-22 §4.7）：**
+
+⛔ 偵測任一打線近 7 天 BABIP ≤ .260 或 ≥ .370 時，立即 TaskCreate：
+
+```
+subject: BABIP 回歸判定（{team} 近 7 天 {value}）
+description: 回歸 ~.300 後判定 Hot/Cold 是否調整；結論寫入 phase3_summary.md §BABIP 回歸判定
+```
+
+此 task 必須 complete 才能進 Phase 3.5。
+
 ### 3.5 分析結論存檔（phase3_summary.md）
 
 ⛔ **Phase 3 完成後、Phase 4 開始前，必須將分析結論寫入 `$GAME_DIR/phase3_summary.md`。**
