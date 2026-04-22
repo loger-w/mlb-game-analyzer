@@ -105,6 +105,21 @@ def should_force_ml_pass(ml_pred: dict | None, formula_pred: dict | None) -> boo
     return ml_lean != formula_lean
 
 
+def check_xgb_divergent(ml_pred: dict | None, predicted_winner: str) -> bool:
+    """Y2（Plan B 2026-04-22 §4.4）：XGBoost 勝率方向 vs predicted_winner 矛盾。
+
+    情境：signal_adjustments 翻轉 xgb 方向（如 xgb 61% HOME 但信號調整後 adj_away > adj_home
+    → predicted_winner = AWAY）。此時 xgb 與最終推薦方向不一致 = 高不確定性，強制 PASS。
+
+    與 D1 α 互不重疊：D1 比 ml_lean vs formula_lean（兩模型分歧）；Y2 比 xgb vs 最終推薦
+    （signal 翻轉 xgb）。三者（D1、Y2、A6 user vs model）可獨立或同時觸發。
+    """
+    if not ml_pred:
+        return False
+    xgb_home_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
+    return xgb_home_lean != predicted_winner
+
+
 def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
     """W2（Plan B 2026-04-22 §4.2）：`--ml-rec` 必須是 team abbr / PASS / None。
 
@@ -981,6 +996,19 @@ def main():
             force_ml_pass = True
             cap_reasons.append("ml/formula 方向分歧 強制 PASS（α 實作）")
 
+        # Y2（Plan B §4.4）：xgb_home_lean vs predicted_winner 矛盾（signal 翻轉 xgb）→ 強制 PASS
+        # cumulative #8 連 2 天 3 次觀察後升級 force PASS
+        y2_triggered = False
+        if check_xgb_divergent(ml_pred, result["final"]["recommended_winner"]):
+            ml_stars_cap = 0
+            force_ml_pass = True
+            y2_triggered = True
+            xgb_home_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
+            pw = result["final"]["recommended_winner"]
+            cap_reasons.append(
+                f"xgb_home_lean={xgb_home_lean} vs predicted_winner={pw} 方向矛盾 強制 PASS（Y2）"
+            )
+
         # 規則 4：XGBoost 勝率 50-55% → 上限 2
         rec_side_pct = final_pct if result["final"]["recommended_winner"] == "HOME" else (100 - final_pct)
         if 50 <= rec_side_pct < 55:
@@ -1020,6 +1048,10 @@ def main():
         if direction_override and "direction-override" not in user_tags:
             user_tags.append("direction-override")
         all_tags = list(dict.fromkeys(user_tags + trend_tags))  # 去重保序
+
+        # Y2 audit tag（Plan B §4.4）
+        if y2_triggered and "xgb-predicted-divergent" not in all_tags:
+            all_tags.append("xgb-predicted-divergent")
 
         # === 護欄機制：O/U 自動 PASS ===
         final_ou_rec = args.ou_rec if args.ou_rec is not None else result["final"]["over_under_lean"]

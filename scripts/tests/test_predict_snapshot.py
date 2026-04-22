@@ -825,3 +825,35 @@ def test_w3_pitcher_suffix_known(capsys):
     captured = capsys.readouterr()
     assert "castillo_velo_decline" not in captured.err
     assert "rocker_new_arsenal" not in captured.err
+
+
+# ============================================================================
+# Plan B 2026-04-22 — Y2: xgb_home_lean vs predicted_winner divergent force PASS
+# ============================================================================
+
+def test_y2_xgb_diverges_returns_true():
+    """xgb 61% HOME but predicted_winner AWAY → True。"""
+    from predict import check_xgb_divergent
+    assert check_xgb_divergent({"home_win_pct": 61.0}, "AWAY") is True
+
+
+def test_y2_xgb_aligned_home_returns_false():
+    from predict import check_xgb_divergent
+    assert check_xgb_divergent({"home_win_pct": 58.0}, "HOME") is False
+
+
+def test_y2_xgb_aligned_away_returns_false():
+    from predict import check_xgb_divergent
+    assert check_xgb_divergent({"home_win_pct": 42.0}, "AWAY") is False
+
+
+def test_y2_ml_pred_none_returns_false():
+    from predict import check_xgb_divergent
+    assert check_xgb_divergent(None, "HOME") is False
+
+
+def test_y2_boundary_50_treated_as_away_lean():
+    """home_win_pct == 50.0 → AWAY lean（> 50 才算 HOME）。"""
+    from predict import check_xgb_divergent
+    assert check_xgb_divergent({"home_win_pct": 50.0}, "HOME") is True
+    assert check_xgb_divergent({"home_win_pct": 50.0}, "AWAY") is False
