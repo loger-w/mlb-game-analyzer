@@ -1,25 +1,7 @@
-# 常見錯誤與邊界條件
+# 邊界條件與修正係數
 
-> 合併自舊 SKILL.md 的 Common Mistakes + Edge Cases。SKILL.md 只留一行摘要 + 指到這裡。
-
----
-
-## Common Mistakes（常見錯誤）
-
-| 錯誤 | 正確做法 |
-|------|---------|
-| 用訓練資料回答投手數據 | 所有數據必須來自腳本 API 輸出，禁止臆測 |
-| WebSearch 失敗後靜默改用記憶中的資料 | 向使用者回報錯誤，等待指示 |
-| 跳過 Roster 檢查直接分析投手 | Step 1 閘門必須通過才能進 Step 2 |
-| 牛棚傷兵只修正 O/U 未修正 ML | 牛棚傷兵雙向閘門：O/U 和 ML 修正值皆填後才繼續 |
-| BvP 樣本 < 15 PA 卻引用結論 | PA < 15 必須丟棄，標註「BvP 樣本不足」 |
-| Hot/Cold 判定未檢查 BABIP | BABIP 回歸閘門：極端值預期回歸 ~.300 |
-| Phase 3 summary 寫「初步盤口推薦」/ 星級 | 盤口推薦僅在 Phase 4 `prediction.json` 產生；summary 只放基本面，避免 stale |
-| Phase 3 結論未存檔就進 Phase 4 | 必須寫入 `phase3_summary.md`，防止對話壓縮遺失 |
-| 同場推薦對立方向（如 ML 推 A 隊又推 A 隊受讓） | D3 硬性規則禁止同場對立方向 |
-| 用 shell redirect `>` 存腳本輸出 | 必須使用 `--output / -o` 參數 |
-| 用 Agent 子代理去跑 WebSearch | 子代理無法存取 WebSearch / WebFetch，必須在主對話中執行 |
-| ERA vs xERA 落差僅寫成「風險提示」代替驗證 | 可驗證的現象不得掛成條件性風險。觸發 `|ERA−xERA| ≥ 1.5` 或 `IP<30 且 ERA 低於 prior year ≥1.0` → 必須補跑 `pitcher_stats.py --year {YYYY-1}` 並執行 YoY Statcast 對比（見 `matchup-factors.md#yoy-statcast-驗證`，閘門在 `workflow.md` Phase 2 Step 2） |
+> 本檔專收 Edge Cases（非紀律違規的特殊情境）+ 具體修正係數速查。
+> 13 條紀律違規 Flag → `flags-checklist.md`。
 
 ---
 
