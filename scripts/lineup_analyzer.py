@@ -461,9 +461,30 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
         "avg_bb_pct": round(avg_bb_pct, 1),
         "over_under_lean": over_under_lean,
         "recent_heat": recent_heat,
+        "last7_babip": compute_last7_babip(core_lineup),  # Plan B §4.6（B10 觸發用）
         "chain": chain,
         "lineup": core_lineup,
     }
+
+
+def compute_last7_babip(core_lineup: list[dict]) -> float | None:
+    """近 7 天 BABIP 平均（Plan B 2026-04-22 §4.6）。
+
+    從 core_lineup 每個打者的 `last_7.babip` 取值；非數值或缺失則忽略。
+    空結果回 None（「沒數據」vs「平均 0」的語義差別）。
+    """
+    values = []
+    for b in core_lineup:
+        val = (b.get("last_7") or {}).get("babip")
+        if val is None:
+            continue
+        try:
+            values.append(float(val))
+        except (ValueError, TypeError):
+            continue
+    if not values:
+        return None
+    return round(sum(values) / len(values), 3)
 
 
 def main():
