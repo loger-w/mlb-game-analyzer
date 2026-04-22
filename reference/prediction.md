@@ -30,12 +30,9 @@ E[R_A] = 聯盟平均得分 × (A 隊打線 xwOBA / 聯盟平均 xwOBA) × (B �
 |------|-----------|
 | 牛棚前日重操（5+ IP） | +0.5（加到對手得分） |
 | 牛棚核心 2+ 人 IL | +1.0（加到對手得分） |
-| 溫度 ≥ 85°F | +0.15 |
-| 風向吹往外野 ≥ 10 mph | +0.7 |
 | Park Factor 修正 | (PF - 100) × 0.05（用 5 年回歸 PF） |
 | 雙方打線近 7 天 Hot（場均 ≥ 5） | +0.5（需 BABIP 反向檢查） |
 | Platoon 劣勢（全打線 vs 同手投手） | +0.4（加到投手得分） |
-| 主審 Over% ≥ 57%（100+ 場） | +0.3 |
 | Doubleheader 第二場 | +0.3 |
 | 投手多/少休息日（vs 5 天） | ±0.04/day |
 
@@ -45,10 +42,7 @@ E[R_A] = 聯盟平均得分 × (A 隊打線 xwOBA / 聯盟平均 xwOBA) × (B �
 |------|-----------|
 | 雙方先發皆 🟠 Strong Ace+ | -1.0 |
 | 雙方先發皆 🟡 Solid+ | -0.5 |
-| 溫度 ≤ 55°F（僅 5 月後生效） | -0.15 |
-| 風向吹進場內 ≥ 10 mph | -0.6 |
 | 雙方打線近 7 天 Cold（場均 ≤ 2） | -0.5（需 BABIP 反向檢查） |
-| 主審 Under% ≥ 57%（100+ 場） | -0.3 |
 | 季後賽得分壓縮 | ×0.84-0.86 |
 
 
@@ -127,7 +121,6 @@ P(win by 2+) = P(win) × P(margin ≥ 2 | win)
 | 單方碾壓 | 投手差 ≥ 2 級 + 打線差 ≥ 1 級 | 中段拉開，可能 cover -1.5 |
 | 牛棚崩盤 | 一方牛棚核心 2+ IL + 前日 5+ IP 消耗 | 6 局後大量失分 |
 | 硬幣翻轉 | ML 差 < 5% + 投手同級 | 均勢，單場隨機性 ~45% |
-| 開季混沌 | 雙方先發 ≤ 2 場 + 開季前 2 週 | 得分波動極大，預測可靠度低 |
 
 ---
 
@@ -135,24 +128,13 @@ P(win by 2+) = P(win) × P(margin ≥ 2 | win)
 
 ### D1：模型覆蓋紀律
 
-ML + Log5 方向一致時（CONSISTENT），**不得因軟性因素翻轉勝方**（Platoon 劣勢、連勝動能、H2H 等）。
+ML (XGBoost) 與 Log5 (Formula) 方向一致時（即 `ml_lean == formula_lean`），**不得因軟性因素翻轉勝方**（Platoon 劣勢、連勝動能、H2H 等）。
 
 - 可調整：勝率幅度 ±5%、信心降級、星級降級
 - 可覆蓋：模型未計入的重大因素（先發臨時更換等）、用戶明確要求
-- **不可覆蓋：DIVERGENT → ML 強制 PASS**（信號不足時硬選方向無正期望值）
+- **不可覆蓋**：方向分歧（`ml_lean != formula_lean`）→ ML 強制 PASS
 - **原則**：模型方向 > 直覺。軟性因素影響幅度，不影響方向。
-
-### D1.5：INSUFFICIENT_SAMPLE 紀律
-
-`cross_validation == "INSUFFICIENT_SAMPLE"` 觸發條件：`min(home_season_games, away_season_games) < 30`（開季期）。此時 XGBoost 模型訓練分佈外，需要用 formula log5 做方向交叉驗證。
-
-| 情境 | ml_rec 處理 | ml_stars 上限 |
-|------|-----------|-------------|
-| ml_pred 與 formula log5 **方向一致**（都 > 50% 或都 < 50%） | 允許推薦 | 2 |
-| ml_pred 與 formula log5 **方向不一致**（跨 50% 邊界） | **強制 PASS**（比照 DIVERGENT） | 0 |
-| `\|ml_pct − formula_log5_pct\| > 20%` | 額外降 confidence 至 LOW | — |
-
-**原則**：樣本不足時，兩個獨立估計器（XGBoost / Log5 Pythagorean）應互相支持才可信；方向分歧等同沒有訊號。此規則由 `predict.py` guardrail 自動執行，分析者不需自創判斷。
+- **實作**：`predict.py` 當場比對 `ml_lean` / `formula_lean`，不讀 `cross_validation` 字串（α 實作，見 spec 2026-04-22-mlb-skill-slimming-design.md §3.2）。`cross_validation` 欄位仍寫入（含 `INSUFFICIENT_SAMPLE` / `DIVERGENT` / `CONSISTENT` / `NO_ML_MODEL`）但僅供觀察。
 
 ### D2：信號修正紀律
 
@@ -175,22 +157,9 @@ ML + Log5 方向一致時（CONSISTENT），**不得因軟性因素翻轉勝方*
 
 **原則**：ML 勝率越高，模型訊號越強，應該走 ML；勝率不夠高時走受讓盤才有價值。
 
-### D4：受讓盤偏見防護（賽季場次 < 30 時）
-
-開季樣本不足時，XGBoost 對大熱門受讓的 cover 機率容易高估（訓練資料含滿季結構，開季波動大）。
-
-當 `min(home_season_games, away_season_games) < 30` 時：
-
-- **大熱門受讓**（ML ≤ -250）：受讓推薦星級上限 **⭐⭐**
-- **首選**：不推讓分盤，走 ML
-- **次選**：若要推讓分，推「讓分方」而非「受讓方」
-- **絕對禁止**：把受讓推成 ⭐⭐⭐ 以上
-
-此規則與 D1.5 INSUFFICIENT_SAMPLE 併行：若 D1.5 觸發 PASS，本規則也視為滿足（無推薦即無違規）。
-
 ### D5：比分與盤口一致性（硬性規則）
 
-O/U 推薦方向必須與 D1.5/D2 修正後總分一致：
+O/U 推薦方向必須與 D2 修正後總分一致：
 
 | 修正後總分 vs O/U line | 允許推薦 |
 |----------------------|---------|
@@ -212,23 +181,14 @@ O/U 推薦方向必須與 D1.5/D2 修正後總分一致：
 |------|----------|------|
 | O/U | 修正後總分與 O/U line 差距 < 1.5 run | D2 / D5 |
 | ML | ml_pct vs 隱含勝率差距 < 5% | ML 星級 |
-| ML | `cross_validation == DIVERGENT`（ML 與 formula log5 方向衝突） | D1 |
-| ML | D1.5 方向不一致（INSUFFICIENT_SAMPLE + 跨 50% 邊界） | D1.5 |
+| ML | ml/formula 方向分歧（`ml_lean != formula_lean`） | D1（α 實作） |
 | Run Line -1.5 | 熱門方 ML > -150（P(cover) < 40%） | Run Line 星級 |
 
 ### 星級上限護欄
 
 | 觸發條件 | ml_stars 上限 | ou/rl 影響 |
 |---------|--------------|-----------|
-| `cross_validation == INSUFFICIENT_SAMPLE` + 方向一致 | **2** | 不變 |
-| 受讓盤偏見防護（D4）+ 大熱門受讓 | **2** | — |
 | `\|ml_pct − formula_log5_pct\| > 20%` | — | confidence 降 LOW |
-
-### 開季限定規則（4 月前 2 週 + 雙方先發 ≤ 2 場）
-
-- 預測可靠度標註為 **LOW**
-- Tag 自動加 `early-season`
-- 比賽敘事選 `開季混沌` 劇本（見「比賽敘事觸發條件」）
 
 ---
 
@@ -329,7 +289,7 @@ CLI override（優先於 snapshot）：
 - **Kelly 完全對齊 D1-D5 guardrail**：若 `final_ml_rec == "PASS"` / `final_ou_rec == "PASS"` / `final_rl_rec == "PASS"`，對應市場的 `kelly.*` 為 `null`，`warnings` 紀錄觸發原因（`ml_guardrail_pass` / `ou_guardrail_pass` / `rl_guardrail_pass`）
 - 反向保證：`kelly.<market>` 有數字時對應市場必然非 PASS — direction / stars 由既有 guardrail 決定，Kelly 不改方向只決定注碼
 - 負 edge（raw ≤ 0）→ 該市場的 Kelly 欄位全 `0`（非 null；0 是合法的「不下注」訊號）
-- **Snapshot 4h 延遲**：快速變盤（steam move）下 Kelly 可能在推薦與下注之間過時。V1 接受；P2 M5 將加 line movement + CLV tracking，屆時以實證資料量化延遲對 ROI 的影響。
+- **Snapshot 4h 延遲**：快速變盤（steam move）下 Kelly 可能在推薦與下注之間過時。V1 接受此限制。
 
 ---
 
@@ -339,7 +299,7 @@ CLI override（優先於 snapshot）：
   單筆 JSON、pretty-printed。由 `predict.py --save` 產生。**屬於 mlb-game-analyzer skill**。
 - **Per-date summary（快取）**：`analysis-data/{YYYY-MM-DD}/predictions.jsonl`
   當日所有場次的 JSONL。由 `summarize_predictions.py --date {date}` 全量重建。**屬於 mlb-post-game-review skill**。
-- **賽後回填**：`upload_results.py --date {date}` 同時更新 per-date jsonl 與 per-game prediction.json。**屬於 mlb-post-game-review skill**。
+- **賽後回填**：`fetch_results.py --date {date}` 從 MLB Stats API 抓 Final 比分，寫 `actual_*` + `verified=true`，同時更新 per-date jsonl 與 per-game prediction.json。**屬於 mlb-post-game-review skill**。
 
 ## 預測紀錄格式（prediction.json / predictions.jsonl）
 
@@ -383,82 +343,3 @@ CLI override（優先於 snapshot）：
 ```
 
 賽後回填 `actual_*` 並設 `verified: true`。
-
-## CLV 追蹤 (P2)
-
-P2 在 P3 的 4h Pinnacle snapshot 基建上加一層 Closing Line Value 追蹤，分成兩階段。
-
-### Rec-time blocks（prediction.json）
-
-**`recommendation_snapshot`** — 推薦時三市場完整 line，鎖檔後不動：
-
-```json
-{
-  "source": "2026-04-18_16-00-ET.json",
-  "snapshot_time_et": "2026-04-18 16:00 ET",
-  "snapshot_time_utc": "2026-04-18T20:00:00+00:00",
-  "commence_utc": "2026-04-18T23:00:00Z",
-  "minutes_before_first_pitch": 180,
-  "ml": {"home": {"decimal": 1.74, "american": -135, "implied_pct": 57.5}, "away": {"...": "..."}},
-  "ou": {"point": 8.0, "over": {"...": "..."}, "under": {"...": "..."}},
-  "rl": {"favorite_side": "HOME", "home": {"...": "...", "point": -1.5}, "away": {"...": "...", "point": 1.5}}
-}
-```
-
-無 snapshot → 整個 block `null`；某市場缺 → 該 key `null`。RL 若任一側缺 `point` 視為 malformed → `rl` 整塊 `null`（避免 `favorite_side` 被預設 `0 < 0` 誤標）。
-
-**`line_movement`** — open→rec 與 rec→close cents 移動量 + steam/RLM flag：
-
-```json
-{
-  "open_snapshot": "2026-04-18_00-00-ET.json",
-  "rec_snapshot":  "2026-04-18_16-00-ET.json",
-  "close_snapshot": null,
-  "open_to_rec": {"ml_home_cents": -4, "ou_cents": 0, "ou_point_delta": 0.0, "rl_home_cents": 3},
-  "rec_to_close": null,
-  "flags": {"steam_toward_rec": false, "rlm_suspected": false},
-  "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
-  "warnings": []
-}
-```
-
-- `close_snapshot` / `rec_to_close` 於 post-game 階段由 `upload_results.py` 補進 `predictions.jsonl`，**不**改寫 `prediction.json`。
-- `flags.steam_toward_rec = true` ⇔ open→rec 間推薦方 American cents 增加 ≥ 5（line 收縮至我方）。
-- `flags.rlm_suspected = true` ⇔ 反向 ≥ 5 cents。
-- **Advisory only**：不進 `signal_table`、不影響 `final.home_win_pct`。
-
-### Post-game fields（predictions.jsonl）
-
-`upload_results.py` 在既有 `verified` / `ml_result` / `ou_result` / `run_line_result` 寫入之後補：
-
-```json
-{
-  "closing_line_source": "2026-04-18_22-00-ET.json",
-  "closing_line_minutes_before_first_pitch": 50,
-  "closing_line": { "ml": {"...": "..."}, "ou": {"...": "..."}, "rl": {"...": "..."} },
-  "clv": {
-    "ml": {"cents": 4, "pct_no_vig": 1.8, "direction": "HOME", "bet_placed": true},
-    "ou": {"cents": 2, "pct_no_vig": 0.9, "direction": "OVER", "point_delta": 0.0, "bet_placed": false},
-    "rl": {"cents": -1, "pct_no_vig": -0.4, "direction": "HOME", "bet_placed": true}
-  },
-  "rec_to_close": {"ml_home_cents": 3, "ou_cents": 2, "ou_point_delta": 0.0, "rl_home_cents": 1},
-  "clv_warnings": []
-}
-```
-
-**三市場全算**（非 Kelly-bet only）— PASS 市場亦記錄 CLV 作為模型方向準度的 proxy。`bet_placed` 旗標區分「有下注」vs「僅觀察」，aggregate 分析時用 `WHERE bet_placed = true` 過濾即可取得下注績效。
-
-### Direction convention
-
-- `ml.direction`：`ml_rec`（PASS/NEUTRAL → `clv.ml` 本身為 `null`）
-- `ou.direction`：`ou_rec`（同上；`NEUTRAL` → 整 `clv.ou = null`）
-- `rl.direction`：`recommendation_snapshot.rl.favorite_side`（跟 Task 6 `line_movement` 一致）
-
-### CLV 格式定義
-
-- `cents`（主展示）：American odds 差額，正值 = 推薦方 rec-time line 比 closing 更優
-- `pct_no_vig`：兩側扣 vig 後推薦方 implied prob 差額（`close - rec`）的百分點，正值 = 我方被低估 → 賺到
-
-### 4h 粒度 caveat
-
-Closing line 採 4h cron 最後一筆 snapshot；與 first pitch 距離可能 0–4h。`closing_line_minutes_before_first_pitch > 240` 時 `clv_warnings` 加入 `closing_stale:Nmin`。Sub-hour steam 偵測不到，文檔化此 limit。
