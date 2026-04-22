@@ -80,3 +80,40 @@ def test_nested_lineup_none_data_tolerant():
     from merge_game_data import extract_lineup_nested
     result = extract_lineup_nested(None, prefix="away")
     assert result["away_lineup"]["recent_babip"] is None
+
+
+# ============================================================================
+# Plan B 2026-04-22 Task 4.3 — --home-pitcher-prior / --away-pitcher-prior args
+# ============================================================================
+
+def test_cli_accepts_prior_pitcher_args():
+    """argparse 接受 --home-pitcher-prior / --away-pitcher-prior。"""
+    import subprocess
+    merge_py = os.path.join(os.path.dirname(__file__), "..", "merge_game_data.py")
+    # --test mode 會跳過所有實際工作，只驗 argparse 不報錯
+    result = subprocess.run(
+        [sys.executable, merge_py, "--test",
+         "--home-pitcher-prior", "/tmp/not_exist.json",
+         "--away-pitcher-prior", "/tmp/not_exist.json"],
+        capture_output=True, text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "unrecognized" not in result.stderr
+
+
+def test_prior_pitcher_extract_chain():
+    """extract_pitcher_nested 傳 prior_data 會正確填 prior_year.era（端到端）。"""
+    from merge_game_data import extract_pitcher_nested
+    pitcher = {"season": {"era": 3.50, "xera": 2.80, "ip": 45.0}}
+    prior = {"season": {"era": 4.20, "xera": 3.90, "ip": 180.0}}
+    result = extract_pitcher_nested(pitcher, prior, "home")
+    assert result["home_pitcher"]["era"] == 3.50
+    assert result["home_pitcher"]["prior_year"]["era"] == 4.20
+
+
+def test_prior_pitcher_none_no_prior():
+    """無 prior data → prior_year.era = None（正常情況，非 bug）。"""
+    from merge_game_data import extract_pitcher_nested
+    pitcher = {"season": {"era": 3.50, "xera": 2.80, "ip": 45.0}}
+    result = extract_pitcher_nested(pitcher, None, "home")
+    assert result["home_pitcher"]["prior_year"]["era"] is None

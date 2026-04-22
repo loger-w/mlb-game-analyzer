@@ -241,6 +241,10 @@ def main():
     parser.add_argument("--away-pitcher", help="pitcher_stats.py output for away starter")
     parser.add_argument("--home-lineup", help="lineup_analyzer.py output for home team")
     parser.add_argument("--away-lineup", help="lineup_analyzer.py output for away team")
+    parser.add_argument("--home-pitcher-prior", default=None,
+                        help="Optional prior-year pitcher_stats.py output for home starter (B7 YoY)")
+    parser.add_argument("--away-pitcher-prior", default=None,
+                        help="Optional prior-year pitcher_stats.py output for away starter (B7 YoY)")
     parser.add_argument("--home-bullpen-era", type=float, default=None,
                         help="Override home bullpen ERA (auto-fetched if omitted)")
     parser.add_argument("--away-bullpen-era", type=float, default=None,
@@ -263,6 +267,8 @@ def main():
     game_data = load_json(args.game)
     home_pitcher_data = load_json(args.home_pitcher)
     away_pitcher_data = load_json(args.away_pitcher)
+    home_pitcher_prior_data = load_json(args.home_pitcher_prior) if args.home_pitcher_prior else None
+    away_pitcher_prior_data = load_json(args.away_pitcher_prior) if args.away_pitcher_prior else None
 
     # 從 game_data 取得 team_id 和 venue
     game_info = game_data.get("game", {})
@@ -305,8 +311,8 @@ def main():
     merged.update(extract_lineup_features(home_lineup_data, "home"))
     merged.update(extract_lineup_features(away_lineup_data, "away"))
     # Plan B §4.6: nested dict 供 B7 YoY / B10 BABIP 觸發判斷；flat keys 保留 backward-compat
-    merged.update(extract_pitcher_nested(home_pitcher_data, None, "home"))
-    merged.update(extract_pitcher_nested(away_pitcher_data, None, "away"))
+    merged.update(extract_pitcher_nested(home_pitcher_data, home_pitcher_prior_data, "home"))
+    merged.update(extract_pitcher_nested(away_pitcher_data, away_pitcher_prior_data, "away"))
     merged.update(extract_lineup_nested(home_lineup_data, "home"))
     merged.update(extract_lineup_nested(away_lineup_data, "away"))
     merged["home_bullpen_era"] = home_bp_era
