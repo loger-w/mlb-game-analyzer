@@ -83,6 +83,8 @@ def lookup_pitcher_id(name: str) -> int | None:
             result = playerid_lookup(last, first)
         if result.empty:
             return None
+        if "mlb_played_last" in result.columns and len(result) > 1:
+            result = result.sort_values("mlb_played_last", ascending=False, na_position="last")
         return int(result.iloc[0]["key_mlbam"])
     except Exception:
         return None
