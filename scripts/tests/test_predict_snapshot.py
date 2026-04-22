@@ -964,3 +964,83 @@ def test_ynew1_home_2star_none_rec_no_tag():
 def test_ynew1_home_none_stars_no_tag():
     from predict import should_add_home_2star_tag
     assert should_add_home_2star_tag("HOME", None, "NYY") is False
+
+
+# ============================================================================
+# Plan B 2026-04-22 — B7 YoY / B10 BABIP trigger helpers
+# ============================================================================
+
+def test_pitcher_yoy_triggered_by_era_xera_gap():
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 3.50, "xera": 1.88, "ip": 45.0, "prior_year": {"era": 4.00}}) is True
+
+
+def test_pitcher_yoy_triggered_by_small_ip_era_drop():
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 2.50, "xera": 2.40, "ip": 25.0, "prior_year": {"era": 3.80}}) is True
+
+
+def test_pitcher_yoy_not_triggered_normal():
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 3.80, "xera": 3.50, "ip": 45.0, "prior_year": {"era": 3.90}}) is False
+
+
+def test_pitcher_yoy_boundary_1_5_triggers():
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 5.00, "xera": 3.50, "ip": 45.0, "prior_year": {"era": 4.00}}) is True
+
+
+def test_pitcher_yoy_boundary_just_under_not_triggered():
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 5.00, "xera": 3.51, "ip": 45.0, "prior_year": {"era": 4.00}}) is False
+
+
+def test_pitcher_yoy_none_tolerant():
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy(None) is False
+    assert pitcher_triggers_yoy({}) is False
+    assert pitcher_triggers_yoy({"era": None}) is False
+
+
+def test_pitcher_yoy_no_prior_year_era_gap_still_triggers():
+    """era-xera gap ≥ 1.5 路徑獨立於 prior_year。"""
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 5.00, "xera": 3.40, "ip": 45.0, "prior_year": {"era": None}}) is True
+
+
+def test_pitcher_yoy_no_prior_year_small_ip_not_triggered():
+    """小 IP 但無 prior year 比較對象 → 不觸發 IP 路徑（era gap 獨立路徑若不符也 False）。"""
+    from predict import pitcher_triggers_yoy
+    assert pitcher_triggers_yoy({"era": 2.50, "xera": 2.40, "ip": 25.0, "prior_year": {"era": None}}) is False
+
+
+def test_lineup_babip_low_extreme_triggers():
+    from predict import lineup_triggers_babip
+    assert lineup_triggers_babip({"recent_babip": 0.250}) is True
+
+
+def test_lineup_babip_high_extreme_triggers():
+    from predict import lineup_triggers_babip
+    assert lineup_triggers_babip({"recent_babip": 0.380}) is True
+
+
+def test_lineup_babip_normal_no_trigger():
+    from predict import lineup_triggers_babip
+    assert lineup_triggers_babip({"recent_babip": 0.300}) is False
+
+
+def test_lineup_babip_boundary_260_triggers():
+    from predict import lineup_triggers_babip
+    assert lineup_triggers_babip({"recent_babip": 0.260}) is True
+
+
+def test_lineup_babip_boundary_370_triggers():
+    from predict import lineup_triggers_babip
+    assert lineup_triggers_babip({"recent_babip": 0.370}) is True
+
+
+def test_lineup_babip_none_no_trigger():
+    from predict import lineup_triggers_babip
+    assert lineup_triggers_babip({"recent_babip": None}) is False
+    assert lineup_triggers_babip({}) is False
+    assert lineup_triggers_babip(None) is False
