@@ -35,6 +35,13 @@ TEAM_ABBREV = {
     "Texas Rangers": "TEX", "Miami Marlins": "MIA", "Washington Nationals": "WSH",
 }
 
+# W4: --game-data 路徑規範（Plan B 2026-04-22 §4.2）
+# 合法格式: analysis-data/YYYY-MM-DD/AWAY@HOME[-G1|-G2]/merged.json
+GAME_DATA_PATTERN = re.compile(
+    r"analysis-data[/\\]\d{4}-\d{2}-\d{2}[/\\][A-Z]{2,3}@[A-Z]{2,3}(-G[12])?[/\\]merged\.json$"
+)
+
+
 # === RL relaxation thresholds (see docs/specs/2026-04-20-rl-threshold-relaxation.md) ===
 RL_DIFF_MIN = 1.5       # 觸發 RL-1b 最低分差
 RL_DIFF_BIG = 2.2       # 免強 tag 門檻
@@ -91,6 +98,19 @@ def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
         sys.exit(
             f"⛔ --ml-rec 必須是 team abbr（如 NYY）或 PASS，收到 {ml_rec!r}\n"
             f"  合法值: {sorted_abbrs + ['PASS']}"
+        )
+
+
+def validate_game_data_path(path: str) -> None:
+    """W4（Plan B §4.2）：`--game-data` 路徑必須是 analysis-data/{date}/{AWAY}@{HOME}[-G1|G2]/merged.json。
+
+    支援 Windows 反斜線 + absolute / relative path。腦補路徑（如 /tmp/foo.json）直接 reject。
+    """
+    normalized = path.replace("\\", "/")
+    if not GAME_DATA_PATTERN.search(normalized):
+        sys.exit(
+            f"⛔ --game-data 路徑不符規範: {path}\n"
+            f"  合法格式: analysis-data/YYYY-MM-DD/AWAY@HOME[-G1|-G2]/merged.json"
         )
 
 
@@ -789,6 +809,9 @@ def main():
 
     if not args.game_data:
         parser.error("--game-data is required unless --test is specified")
+
+    # W4: game_data path regex（Plan B 2026-04-22 §4.2）
+    validate_game_data_path(args.game_data)
 
     with open(args.game_data, "r") as f:
         data = json.load(f)

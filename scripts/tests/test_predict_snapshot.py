@@ -723,3 +723,42 @@ def test_w2_ml_rec_rejects_bogus():
     from predict import validate_ml_rec, TEAM_ABBREV
     with pytest.raises(SystemExit):
         validate_ml_rec("ZZZ", set(TEAM_ABBREV.values()))
+
+
+# ============================================================================
+# Plan B 2026-04-22 — W4: --game-data path regex validation
+# ============================================================================
+
+def test_w4_game_data_valid_unix_path():
+    from predict import validate_game_data_path
+    validate_game_data_path("analysis-data/2026-04-23/NYY@BOS/merged.json")
+    validate_game_data_path("/abs/path/to/analysis-data/2026-04-23/NYY@BOS/merged.json")
+
+
+def test_w4_game_data_valid_windows_path():
+    from predict import validate_game_data_path
+    validate_game_data_path(r"C:\projects\analysis-data\2026-04-23\NYY@BOS\merged.json")
+
+
+def test_w4_game_data_valid_doubleheader():
+    from predict import validate_game_data_path
+    validate_game_data_path("analysis-data/2026-04-23/NYY@BOS-G1/merged.json")
+    validate_game_data_path("analysis-data/2026-04-23/NYY@BOS-G2/merged.json")
+
+
+def test_w4_game_data_rejects_missing_date():
+    from predict import validate_game_data_path
+    with pytest.raises(SystemExit):
+        validate_game_data_path("analysis-data/NYY@BOS/merged.json")
+
+
+def test_w4_game_data_rejects_wrong_filename():
+    from predict import validate_game_data_path
+    with pytest.raises(SystemExit):
+        validate_game_data_path("analysis-data/2026-04-23/NYY@BOS/foo.json")
+
+
+def test_w4_game_data_rejects_bogus_tmp_path():
+    from predict import validate_game_data_path
+    with pytest.raises(SystemExit):
+        validate_game_data_path("/tmp/foo.json")
