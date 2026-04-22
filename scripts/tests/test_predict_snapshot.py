@@ -490,16 +490,13 @@ from predict import apply_rl_guardrail
 def _rl(**overrides):
     """Shorthand: build apply_rl_guardrail kwargs with sensible defaults.
 
-    Note: `confidence` kwarg removed after 2026-04-21 RL symmetrization
-    (docs/superpowers/specs/2026-04-21-rl-symmetrization-design.md).
-    RL guardrail no longer reads confidence — symmetric with ML/OU.
+    Plan B 2026-04-22（W1）：`user_rl_rec` / `user_rl_stars` kwargs 廢除；
+    RL 全走 auto override。
     """
     base = dict(
         adj_home=5.0,
         adj_away=3.0,
         trend_tags=[],
-        user_rl_rec=None,
-        user_rl_stars=None,
         predicted_winner="HOME",
         home_team="Atlanta Braves",
         away_team="New York Mets",
@@ -575,27 +572,8 @@ def test_rl1b_mid_diff_without_strong_tag_not_triggered():
     assert ov["active"] is False
 
 
-def test_rl1b_high_confidence_user_supplied_abbr_respected():
-    """Fixture 6a: HIGH 情境 + user 傳 NYY + diff=2.3 → 尊重 user，不 override。
-
-    新對稱設計下 RL 不再讀 confidence；user 明確傳 team abbr 時，
-    RL-1b gate（`user_rl_rec in (None, "PASS")`）不觸發，保留 user 判斷。
-    """
-    rec, stars, ov = apply_rl_guardrail(**_rl(
-        adj_home=6.0, adj_away=3.7,                  # diff = 2.3
-        trend_tags=["home-bullpen-slump"],
-        user_rl_rec="NYY",
-        user_rl_stars=2,
-    ))
-    assert rec == "NYY"
-    assert stars == 2
-    assert ov["active"] is False
-
-
-def test_rl1b_high_confidence_no_user_rec_auto_triggers():
-    """Fixture 6b: HIGH 情境 + user 省略 + diff=2.3 + home-pitching-slump
-    → 觸發 big-diff 2★（新對稱行為：不再以 confidence 為 hard gate）。
-    """
+def test_rl1b_auto_big_diff_triggers_without_user_input():
+    """Fixture 6: diff=2.3 + home-pitching-slump → 觸發 big-diff 2★（自動路徑，無 user input）。"""
     rec, stars, ov = apply_rl_guardrail(**_rl(
         adj_home=6.0, adj_away=3.7,                  # diff = 2.3
         trend_tags=["home-pitching-slump"],
@@ -604,25 +582,6 @@ def test_rl1b_high_confidence_no_user_rec_auto_triggers():
     assert stars == 2
     assert ov["active"] is True
     assert ov["path"] == "big-diff"
-
-
-def test_rl1b_respects_user_supplied_rec():
-    """Fixture 7: user 傳 --run-line-rec=NYY + diff=2.3 → 尊重 user rec。
-
-    新對稱設計下 RL-1 hard gate 移除；user 傳 non-None non-PASS 的 rec
-    會被直接保留（Phase 3 判斷優先），RL-1b 不 override（gate: user_rl_rec
-    in (None, "PASS")）。
-    """
-    rec, stars, ov = apply_rl_guardrail(**_rl(
-        adj_home=6.0, adj_away=3.7,                  # diff = 2.3（若無 user rec 會觸發 big-diff）
-        user_rl_rec="NYY",
-        user_rl_stars=2,
-    ))
-    # 舊行為：RL-1 把 NYY 砍為 PASS（confidence=LOW hard gate）
-    # 新行為：尊重 user；RL-1b gate 不符（NYY not in (None, "PASS")），不 override
-    assert rec == "NYY"
-    assert stars == 2
-    assert ov["active"] is False
 
 
 def test_rl1b_defensive_direction_mismatch_still_triggers():
@@ -641,60 +600,6 @@ def test_rl1b_defensive_direction_mismatch_still_triggers():
     assert ov["active"] is True
     assert ov["path"] == "big-diff"
     assert "pw_diff_direction_mismatch" in ov["warnings"]
-
-
-def test_rl1b_user_pass_treated_as_unspecified():
-    """Fixture 9: user 傳 PASS + diff=2.3 + home-pitching-slump → big-diff 2★。
-
-    PASS-as-unspecified 語義：skill workflow.md 預設 --run-line-rec=PASS，
-    RL-1b gate 視同 None（user 未明確否決）。此 fixture 直接驗證此語義。
-    """
-    rec, stars, ov = apply_rl_guardrail(**_rl(
-        adj_home=6.0, adj_away=3.7,                  # diff = 2.3
-        trend_tags=["home-pitching-slump"],
-        user_rl_rec="PASS",
-    ))
-    assert rec == "ATL"
-    assert stars == 2
-    assert ov["active"] is True
-    assert ov["path"] == "big-diff"
-
-
-def test_rl1b_not_gated_by_confidence_high_case():
-    """Fixture 10: HIGH-like 情境 + user PASS + diff=2.3 → 觸發 big-diff 2★。
-
-    對稱性核心測試：function body 不再因 confidence 產生行為差。
-    等價於 fixture 6b 但顯式用 PASS（而非 None）當 user input，
-    驗證 PASS 與 None 在 gate 判斷上等價。
-    """
-    rec, stars, ov = apply_rl_guardrail(**_rl(
-        adj_home=6.0, adj_away=3.7,                  # diff = 2.3
-        trend_tags=["home-pitching-slump"],
-        user_rl_rec="PASS",
-    ))
-    assert rec == "ATL"
-    assert stars == 2
-    assert ov["active"] is True
-    assert ov["path"] == "big-diff"
-
-
-def test_rl1b_not_gated_by_confidence_medium_case():
-    """Fixture 11: MEDIUM-like 情境 + user PASS + diff=1.8 + bullpen-slump
-    → mid-diff+strong-tag 1★。
-
-    驗證 MEDIUM/INSUFFICIENT_SAMPLE 情境下 RL 仍能按 diff+tag 觸發，
-    不因「非 LOW confidence」而被擋（舊 RL-1b 要 LOW 才觸發）。
-    """
-    rec, stars, ov = apply_rl_guardrail(**_rl(
-        adj_home=5.4, adj_away=3.6,                  # diff = 1.8
-        trend_tags=["home-bullpen-slump"],
-        user_rl_rec="PASS",
-    ))
-    assert rec == "ATL"
-    assert stars == 1
-    assert ov["active"] is True
-    assert ov["path"] == "mid-diff+strong-tag"
-    assert ov["tags"] == ["home-bullpen-slump"]
 
 
 # ============================================================================
@@ -749,3 +654,35 @@ def test_should_force_ml_pass_boundary_50_home_formula_45_returns_true():
         ml_pred={"home_win_pct": 50.1},
         formula_pred={"log5_pct": 45},
     ) is True
+
+
+# ============================================================================
+# Plan B 2026-04-22 — W1: 廢除 --run-line-rec / --run-line-stars
+# ============================================================================
+import subprocess
+
+
+def _predict_py_path():
+    return os.path.join(os.path.dirname(__file__), "..", "predict.py")
+
+
+def test_w1_run_line_rec_arg_removed():
+    """W1（Plan B §4.2）：--run-line-rec argparse 已廢除，應 reject。"""
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(), "--test", "--run-line-rec", "NYY"],
+        capture_output=True, text=True,
+    )
+    assert result.returncode != 0
+    combined = (result.stderr + result.stdout)
+    assert "unrecognized arguments" in combined or "--run-line-rec" in combined
+
+
+def test_w1_run_line_stars_arg_removed():
+    """W1（Plan B §4.2）：--run-line-stars argparse 已廢除，應 reject。"""
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(), "--test", "--run-line-stars", "2"],
+        capture_output=True, text=True,
+    )
+    assert result.returncode != 0
+    combined = (result.stderr + result.stdout)
+    assert "unrecognized arguments" in combined or "--run-line-stars" in combined

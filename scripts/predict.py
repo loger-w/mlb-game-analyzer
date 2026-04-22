@@ -271,8 +271,6 @@ def apply_rl_guardrail(
     adj_home: float,
     adj_away: float,
     trend_tags: list[str],
-    user_rl_rec: str | None,
-    user_rl_stars: int | None,
     predicted_winner: str,
     home_team: str,
     away_team: str,
@@ -280,54 +278,46 @@ def apply_rl_guardrail(
 ) -> tuple[str, int | None, dict]:
     """Apply RL guardrails and produce rl_override audit dict.
 
-    Symmetric to ML/OU guardrails (spec: docs/superpowers/specs/2026-04-21-rl-symmetrization-design.md):
-    each market reads only its own evidence. RL no longer reads `confidence`
-    (which is ML market's output). Gate = `diff + strong_tags + user_rl_rec`.
+    Plan B 2026-04-22（W1）：廢除 `--run-line-rec` / `--run-line-stars` CLI args；
+    RL 全走 auto override。沒有 user input 路徑。
 
     Rules:
-      RL-1b (auto-推薦): user_rl_rec in (None, "PASS") AND |diff| >= RL_DIFF_MIN
-                        → auto-upgrade to team-abbr + 1/2 stars.
-                        A  |diff| >= RL_DIFF_BIG                        → big-diff (no tag needed)
+      RL-1b (auto-推薦): |diff| >= RL_DIFF_MIN → auto-upgrade to team-abbr + 1/2 stars.
+                        A  |diff| >= RL_DIFF_BIG                  → big-diff (no tag needed)
                         B  RL_DIFF_MIN <= |diff| < RL_DIFF_BIG + strong tag
-                                                                        → mid-diff+strong-tag
+                                                                  → mid-diff+strong-tag
                         Stars: |diff| <= RL_DIFF_STAR → 1; else 2.
-      RL-2  (existing): 非 PASS 但 stars unspecified → PASS (sanity check, 對等 OU).
-
-    PASS-as-unspecified: user_rl_rec == "PASS" treated as None at gate
-    (skill workflow 預設值). user 傳 team abbr (如 "NYY") 則被尊重，不 override。
 
     Defensive (Q4): if predicted_winner != diff_side, record
     'pw_diff_direction_mismatch' warning but do not block the override.
 
-    Removed from pre-2026-04-21 version (see spec §Context):
-      - RL-1 hard gate (confidence=LOW + non-PASS user rec → PASS): deleted.
-      - RL-1b confidence=="LOW" condition: relaxed to (None, "PASS") gate.
+    Removed in Plan B 2026-04-22 (W1):
+      - `user_rl_rec` / `user_rl_stars` kwargs（CLI args 廢除；cumulative #10 RL 繞過消除）
+      - RL-1 hard gate（原已於 2026-04-21 symmetrization 刪除）
+      - RL-2 sanity gate（「非 PASS 但 stars 未指定 → PASS」— 沒有 user input 後此分支永不觸發）
 
     Args:
       adj_home / adj_away: adjusted scores (already applied signal/adjusted args)
       trend_tags: full trend_tags list from compute_trend_tags(data)
-      user_rl_rec: args.run_line_rec (None if user did not supply)
-      user_rl_stars: args.run_line_stars (None if user did not supply)
       predicted_winner: 'HOME' | 'AWAY' (result['final']['recommended_winner'])
       home_team / away_team: full team names (used by TEAM_ABBREV lookup)
       kelly_rl_available: True iff kelly_block['rl'] is not None
 
     Returns:
       (final_rl_rec, final_rl_stars, rl_override_dict)
-      Note: final_rl_stars is None when no override fires AND user_rl_stars is None
-      AND final_rl_rec stays "PASS".
+      Note: final_rl_stars is None when no override fires AND final_rl_rec stays "PASS".
     """
-    final_rl_rec = user_rl_rec if user_rl_rec is not None else "PASS"
-    final_rl_stars = user_rl_stars
+    final_rl_rec = "PASS"
+    final_rl_stars = None
     rl_override = _inactive_rl_override()
 
     diff = abs(adj_home - adj_away)
     diff_side = "HOME" if adj_home > adj_away else "AWAY"
     strong_rl = RL_STRONG_TAGS & set(trend_tags)
 
-    # RL-1b gate (symmetric to ML/OU): 只讀 diff + tags + user input；不讀 confidence
+    # RL-1b gate: 只讀 diff + tags
     override_path = None
-    if user_rl_rec in (None, "PASS") and diff >= RL_DIFF_MIN:
+    if diff >= RL_DIFF_MIN:
         if diff >= RL_DIFF_BIG:
             override_path = "big-diff"
         elif strong_rl:
@@ -369,14 +359,6 @@ def apply_rl_guardrail(
                 f"tags={sorted(strong_rl) or '(pure-diff)'} → {fav_abbr} {stars}★",
                 file=sys.stderr,
             )
-
-    # RL-1（舊 confidence=LOW hard gate）整段刪除 — 不對稱的市場間依賴不再存在
-
-    # RL-2: 非 PASS 但 stars 未指定 → PASS
-    if final_rl_rec != "PASS" and final_rl_stars is None:
-        print(f"⚠️ 讓分盤從 {final_rl_rec} 改為 PASS（未指定 --run-line-stars）", file=sys.stderr)
-        final_rl_rec = "PASS"
-        final_rl_stars = 0
 
     return final_rl_rec, final_rl_stars, rl_override
 
@@ -746,10 +728,10 @@ def main():
     parser.add_argument("--ou-rec", choices=["OVER", "UNDER", "PASS"], help="O/U recommendation")
     parser.add_argument("--ml-rec", help="ML recommendation (team abbr or PASS)")
     parser.add_argument("--ml-stars", type=int, choices=[0, 1, 2, 3, 4, 5], help="ML star rating")
-    parser.add_argument("--run-line-rec", help="Run line recommendation (team abbr or PASS)")
     parser.add_argument("--run-line", help="Run line value, e.g. '-1.5' or '1+50'")
     parser.add_argument("--ou-stars", type=int, choices=[0, 1, 2, 3, 4, 5], help="O/U star rating")
-    parser.add_argument("--run-line-stars", type=int, choices=[0, 1, 2, 3, 4, 5], help="Run line star rating")
+    # --run-line-rec / --run-line-stars: 廢除於 Plan B 2026-04-22（W1）
+    # RL 全走 apply_rl_guardrail 自動 override（RL-1b gate）
     parser.add_argument("--signal-adjustments", type=json.loads,
                         help='Signal adjustments JSON, e.g. \'{"puk_il":0.3}\'')
     parser.add_argument("--tags", help="Comma-separated tags, e.g. divergent,early-season")
@@ -978,8 +960,6 @@ def main():
             adj_home=adj_home,
             adj_away=adj_away,
             trend_tags=trend_tags,
-            user_rl_rec=args.run_line_rec,
-            user_rl_stars=args.run_line_stars,
             predicted_winner=result["final"]["recommended_winner"],
             home_team=home_team,
             away_team=away_team,
