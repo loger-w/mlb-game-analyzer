@@ -9,6 +9,7 @@ import os
 import re
 import sys
 from datetime import datetime, timezone, timedelta
+from pathlib import Path
 
 import joblib
 import numpy as np
@@ -947,6 +948,11 @@ def main():
                         help="Override: decimal odds for away RL")
     parser.add_argument("--game-index", type=int, default=None,
                         help="Doubleheader game number (1 or 2)")
+    # Plan B 2026-04-22 edge-case 跳過旗（測試 / 非正式流程用）
+    parser.add_argument("--skip-yoy-check", action="store_true",
+                        help="Bypass B7 YoY prior year file existence check (Plan B)")
+    parser.add_argument("--skip-phase3-check", action="store_true",
+                        help="Bypass phase3_summary.md section check (Plan B)")
     args = parser.parse_args()
 
     if args.test:
@@ -1062,6 +1068,62 @@ def main():
         away_team = meta.get("away_team") or "AWAY"
 
         record_date = _extract_game_date_et(args, meta) or _dt.now().strftime("%Y-%m-%d")
+
+        # Plan B §4.3：B7 YoY prior year 檔存在性檢查（第 1 層硬擋）
+        if not args.skip_yoy_check:
+            game_dir_b7 = Path(args.game_data).parent
+            game_date_iso = meta.get("game_date") or ""
+            current_year = int(game_date_iso[:4]) if game_date_iso[:4].isdigit() else _dt.now().year
+            prior_year = current_year - 1
+            for side in ("home", "away"):
+                side_pitcher = data.get(f"{side}_pitcher")
+                if pitcher_triggers_yoy(side_pitcher):
+                    prior_file = game_dir_b7 / f"{side}_pitcher_{prior_year}.json"
+                    if not prior_file.exists():
+                        pitcher_name = meta.get(f"{side}_sp", "UNKNOWN")
+                        era = side_pitcher.get("era")
+                        xera = side_pitcher.get("xera")
+                        delta_str = f"{abs(era - xera):.2f}" if (era is not None and xera is not None) else "N/A"
+                        sys.exit(
+                            f"⛔ B7 YoY 紀律：{pitcher_name} |ERA-xERA|={delta_str} "
+                            f"或 IP<30 yoy drop 觸發，但缺 prior year data。\n"
+                            f"請先跑：\n"
+                            f"  pitcher_stats.py --name \"{pitcher_name}\" --year {prior_year} "
+                            f"-o {prior_file}\n"
+                            f"再重跑 predict.py；或加 --skip-yoy-check 跳過（測試用）。"
+                        )
+
+        # Plan B §4.5：phase3_summary.md section header 檢查（第 2 層防線）
+        if not args.skip_phase3_check:
+            game_dir_p3 = Path(args.game_data).parent
+            phase3_path = game_dir_p3 / "phase3_summary.md"
+            if not phase3_path.exists():
+                sys.exit(
+                    f"⛔ {phase3_path} 不存在 — Phase 3 結論未存檔\n"
+                    f"  請先寫入分析結論（見 reference/workflow.md#3.5）；"
+                    f"或加 --skip-phase3-check 跳過（測試用）。"
+                )
+            p3_content = phase3_path.read_text(encoding="utf-8")
+
+            required_sections = []
+            if (pitcher_triggers_yoy(data.get("home_pitcher"))
+                    or pitcher_triggers_yoy(data.get("away_pitcher"))):
+                required_sections.append("## YoY 對比結論")
+            if (lineup_triggers_babip(data.get("home_lineup"))
+                    or lineup_triggers_babip(data.get("away_lineup"))):
+                required_sections.append("## BABIP 回歸判定")
+            sig_adj = args.signal_adjustments or {}
+            if "bullpen_il_home" in sig_adj or "bullpen_il_away" in sig_adj:
+                required_sections.append("## 牛棚雙向修正值")
+
+            missing = [s for s in required_sections
+                       if not re.search(rf"^{re.escape(s)}\b", p3_content, re.M)]
+            if missing:
+                sys.exit(
+                    f"⛔ phase3_summary.md 缺必要 section（Plan B §4.5）:\n"
+                    f"  {missing}\n"
+                    f"  請先補上；或加 --skip-phase3-check 跳過（測試用）。"
+                )
 
         # === 護欄機制：星級自動上限 ===
         original_ml_stars = args.ml_stars

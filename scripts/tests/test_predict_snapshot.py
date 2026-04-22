@@ -1044,3 +1044,189 @@ def test_lineup_babip_none_no_trigger():
     assert lineup_triggers_babip({"recent_babip": None}) is False
     assert lineup_triggers_babip({}) is False
     assert lineup_triggers_babip(None) is False
+
+
+# ============================================================================
+# Plan B 2026-04-22 Tasks 5.2 / 5.3 — B7 YoY file check + phase3_summary grep
+# ============================================================================
+
+def _minimal_merged_json(
+    home_era=3.8, home_xera=3.5, home_ip=50.0, home_prior_era=3.9,
+    away_era=3.8, away_xera=3.5, away_ip=50.0, away_prior_era=3.9,
+    home_babip=0.300, away_babip=0.300,
+):
+    """產最小合法 merged.json content（dict）。
+    預設不觸發任何 B7/B10，測試時覆蓋 fields 來觸發。
+    """
+    return {
+        "_meta": {
+            "home_team": "New York Yankees", "away_team": "Boston Red Sox",
+            "home_sp": "Max Fried", "away_sp": "Garrett Crochet",
+            "home_sp_starts": 3, "away_sp_starts": 3,
+            "game_date": "2026-04-23T23:05:00Z", "venue": "Yankee Stadium",
+            "game_pk": 999,
+        },
+        "home_starter_fip": 3.50, "home_starter_k_bb": 18.0, "home_starter_whip": 1.20,
+        "away_starter_fip": 3.80, "away_starter_k_bb": 22.0, "away_starter_whip": 1.15,
+        "home_batting_xwoba": 0.330, "home_batting_ops": 0.780, "home_batting_k_pct": 20.0,
+        "away_batting_xwoba": 0.340, "away_batting_ops": 0.800, "away_batting_k_pct": 21.0,
+        "home_pitcher": {
+            "era": home_era, "xera": home_xera, "ip": home_ip,
+            "era_xera_delta": abs(home_era - home_xera) if (home_era and home_xera) else None,
+            "prior_year": {"era": home_prior_era},
+        },
+        "away_pitcher": {
+            "era": away_era, "xera": away_xera, "ip": away_ip,
+            "era_xera_delta": abs(away_era - away_xera) if (away_era and away_xera) else None,
+            "prior_year": {"era": away_prior_era},
+        },
+        "home_lineup": {"recent_babip": home_babip},
+        "away_lineup": {"recent_babip": away_babip},
+        "home_bullpen_era": 4.0, "away_bullpen_era": 4.0, "park_factor": 100,
+        "home_season_games": 22, "away_season_games": 22,
+        "home_recent_rs": 4.5, "home_recent_ra": 4.5,
+        "away_recent_rs": 4.5, "away_recent_ra": 4.5,
+    }
+
+
+def _setup_game_dir(tmp_path, date="2026-04-23", matchup="NYY@BOS", **merged_overrides):
+    """建 analysis-data/<date>/<matchup>/merged.json，回傳 game_dir + merged_path。"""
+    game_dir = tmp_path / "analysis-data" / date / matchup
+    game_dir.mkdir(parents=True)
+    merged_path = game_dir / "merged.json"
+    merged_path.write_text(json.dumps(_minimal_merged_json(**merged_overrides)))
+    return game_dir, merged_path
+
+
+def test_yoy_check_triggered_missing_file_exits(tmp_path):
+    """B7 觸發（home era-xera≥1.5）+ 缺 prior year file → sys.exit with hint。"""
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
+    )
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode != 0
+    assert "B7" in result.stderr or "YoY" in result.stderr
+    assert "pitcher_stats.py" in result.stderr
+
+
+def test_yoy_check_triggered_with_file_proceeds_past_yoy(tmp_path):
+    """B7 觸發 + prior year file 存在 → YoY check 通過（後續可能因 phase3 check 卡住但不在 B7）。"""
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
+    )
+    # 建 prior year file
+    (game_dir / "home_pitcher_2025.json").write_text(json.dumps({"season": {"era": 4.0}}))
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save", "--skip-phase3-check"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    # 要麼 returncode == 0 或 stderr 不含 B7 錯誤
+    assert "B7 YoY" not in result.stderr, f"should pass B7 check; stderr: {result.stderr}"
+
+
+def test_yoy_skip_flag_bypasses(tmp_path):
+    """--skip-yoy-check 即便觸發 + 缺檔也不阻擋。"""
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
+    )
+    # 寫一個 phase3_summary.md 讓 phase3 check 通過
+    (game_dir / "phase3_summary.md").write_text("# test summary\n")
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save", "--skip-yoy-check"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    # 應跑到 predict.py 後半段（可能成功或因其他原因失敗，但不應是 B7）
+    assert "B7 YoY" not in result.stderr
+
+
+def test_yoy_no_trigger_no_check(tmp_path):
+    """無 YoY 觸發 + 缺 prior year file → 也不 exit（因 trigger 不成立）。"""
+    game_dir, merged_path = _setup_game_dir(tmp_path)  # 預設不觸發
+    (game_dir / "phase3_summary.md").write_text("# test summary\n")
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert "B7 YoY" not in result.stderr
+
+
+def test_phase3_missing_file_exits(tmp_path):
+    """phase3_summary.md 不存在 → exit。"""
+    game_dir, merged_path = _setup_game_dir(tmp_path)
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode != 0
+    assert "phase3_summary" in result.stderr
+
+
+def test_phase3_yoy_trigger_missing_section_exits(tmp_path):
+    """B7 觸發 + phase3_summary.md 存在但缺 '## YoY 對比結論' → exit。"""
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
+    )
+    (game_dir / "home_pitcher_2025.json").write_text(json.dumps({"season": {"era": 4.0}}))
+    (game_dir / "phase3_summary.md").write_text(
+        "# basic summary\n\n## 投打對決\n無 YoY section\n", encoding="utf-8"
+    )
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode != 0
+    assert "phase3_summary" in result.stderr
+    assert "YoY 對比結論" in result.stderr
+
+
+def test_phase3_babip_trigger_missing_section_exits(tmp_path):
+    """B10 觸發（BABIP≤.260）+ 缺 '## BABIP 回歸判定' → exit。"""
+    game_dir, merged_path = _setup_game_dir(tmp_path, home_babip=0.250)
+    (game_dir / "phase3_summary.md").write_text("# basic summary\n")
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode != 0
+    assert "BABIP 回歸判定" in result.stderr
+
+
+def test_phase3_skip_flag_bypasses(tmp_path):
+    """--skip-phase3-check 即便缺 phase3_summary.md 也放行。"""
+    game_dir, merged_path = _setup_game_dir(tmp_path)
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save", "--skip-phase3-check"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    # phase3 check 不會阻擋；可能 returncode 非 0 但錯誤不是 phase3_summary
+    assert "phase3_summary" not in result.stderr
+
+
+def test_phase3_all_sections_present_passes(tmp_path):
+    """所有必要 section 都在 → phase3 check 通過。"""
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0,
+        home_babip=0.250,
+    )
+    (game_dir / "home_pitcher_2025.json").write_text(json.dumps({"season": {"era": 4.0}}))
+    (game_dir / "phase3_summary.md").write_text(
+        "# summary\n\n## YoY 對比結論\n OK\n\n## BABIP 回歸判定\n OK\n", encoding="utf-8"
+    )
+    result = subprocess.run(
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    # phase3 check 不卡；整體可能成功
+    assert "phase3_summary.md 缺必要 section" not in result.stderr
