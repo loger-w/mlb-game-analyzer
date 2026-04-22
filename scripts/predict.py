@@ -64,6 +64,21 @@ def log5(home_pct: float, away_pct: float) -> float:
     return p
 
 
+def should_force_ml_pass(ml_pred: dict | None, formula_pred: dict | None) -> bool:
+    """α 實作（spec 2026-04-22 §3.2）：ml_lean 與 formula_lean 方向分歧 → 強制 PASS。
+
+    取代原 D1（讀 cross_validation == "DIVERGENT"）和 D1.5 方向分歧 branch。
+    cross_validation 欄位仍寫入 prediction.json 作歷史觀察，但決策邏輯不依賴字串。
+
+    Returns True iff 兩個模型都存在且方向分歧（跨 50% 邊界）；其餘情境 False。
+    """
+    if not ml_pred or not formula_pred:
+        return False
+    ml_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
+    formula_lean = "HOME" if formula_pred["log5_pct"] > 50 else "AWAY"
+    return ml_lean != formula_lean
+
+
 _SNAPSHOT_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-ET\.json$")
 
 
@@ -879,36 +894,12 @@ def main():
         force_ml_pass = False  # 強制 ml_rec = PASS 旗標
         cap_reasons = []
 
-        # F4: 規則 1：DIVERGENT → 強制 PASS（ml_stars = 0）
-        if cross_validation == "DIVERGENT":
+        # α 實作：D1 方向分歧 → 強制 PASS（不依賴 cross_validation 字串）
+        # cross_validation 欄位仍寫入 prediction.json（觀察用）
+        if should_force_ml_pass(ml_pred, formula_pred):
             ml_stars_cap = 0
             force_ml_pass = True
-            cap_reasons.append("DIVERGENT 強制 PASS")
-
-        # D1.5: 規則 2：INSUFFICIENT_SAMPLE → 方向檢查
-        # ml_pred 與 formula log5 方向分歧 → 強制 PASS（比照 DIVERGENT）
-        # 方向一致 → 上限 2（樣本不足時保守）
-        if cross_validation == "INSUFFICIENT_SAMPLE" and ml_pred and formula_pred:
-            ml_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-            formula_lean = "HOME" if formula_pred["log5_pct"] > 50 else "AWAY"
-            if ml_lean != formula_lean:
-                ml_stars_cap = 0
-                force_ml_pass = True
-                cap_reasons.append("INSUFFICIENT_SAMPLE + 方向分歧 強制 PASS")
-            else:
-                ml_stars_cap = min(ml_stars_cap, 2)
-                cap_reasons.append("INSUFFICIENT_SAMPLE 方向一致 上限 2")
-        elif cross_validation == "INSUFFICIENT_SAMPLE":
-            # fallback：缺 ml_pred 或 formula_pred 時套舊規則
-            ml_stars_cap = min(ml_stars_cap, 3)
-            cap_reasons.append("INSUFFICIENT_SAMPLE 上限 3（無方向資料）")
-
-        # 規則 3：開季（先發場次 < 5）→ 上限 3
-        home_sp_starts = meta.get("home_sp_starts") or 0
-        away_sp_starts = meta.get("away_sp_starts") or 0
-        if home_sp_starts < 5 or away_sp_starts < 5:
-            ml_stars_cap = min(ml_stars_cap, 3)
-            cap_reasons.append("開季（先發場次 < 5）上限 3")
+            cap_reasons.append("ml/formula 方向分歧 強制 PASS（α 實作）")
 
         # 規則 4：XGBoost 勝率 50-55% → 上限 2
         rec_side_pct = final_pct if result["final"]["recommended_winner"] == "HOME" else (100 - final_pct)
@@ -935,7 +926,7 @@ def main():
             print(f"⚠️ ml_stars 從 {final_ml_stars} 降為 {ml_stars_cap}（原因：{'; '.join(cap_reasons)}）", file=sys.stderr)
             final_ml_stars = ml_stars_cap
 
-        # 套用 ml_rec 強制 PASS（DIVERGENT / INSUFFICIENT_SAMPLE 方向分歧）
+        # 套用 ml_rec 強制 PASS（ml/formula 方向分歧 — α 實作）
         final_ml_rec = args.ml_rec
         if force_ml_pass and final_ml_rec and final_ml_rec != "PASS":
             print(f"⚠️ ml_rec 從 {final_ml_rec} 改為 PASS（原因：{'; '.join(cap_reasons)}）", file=sys.stderr)
