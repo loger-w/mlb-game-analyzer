@@ -762,3 +762,66 @@ def test_w4_game_data_rejects_bogus_tmp_path():
     from predict import validate_game_data_path
     with pytest.raises(SystemExit):
         validate_game_data_path("/tmp/foo.json")
+
+
+# ============================================================================
+# Plan B 2026-04-22 — W3: signal_adjustments allowlist warning
+# ============================================================================
+
+def test_w3_signal_adjustments_known_prefix_silent(capsys):
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys({"bullpen_il_home": 0.3, "weather_mild_hr": 0.1})
+    captured = capsys.readouterr()
+    assert "unknown signal key" not in captured.err.lower()
+
+
+def test_w3_signal_adjustments_unknown_warns(capsys):
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys({"zzz_totally_bogus_xyz": 0.5})
+    captured = capsys.readouterr()
+    assert "zzz_totally_bogus_xyz" in captured.err
+
+
+def test_w3_signal_adjustments_mixed(capsys):
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys({
+        "bullpen_il_home": 0.3,
+        "zzz_bogus": 0.2,
+        "park_factor_adj": 0.1,
+    })
+    captured = capsys.readouterr()
+    assert "zzz_bogus" in captured.err
+    assert "bullpen_il_home" not in captured.err
+    assert "park_factor_adj" not in captured.err
+
+
+def test_w3_signal_adjustments_empty_or_none(capsys):
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys(None)
+    warn_unknown_signal_keys({})
+    captured = capsys.readouterr()
+    assert captured.err == ""
+
+
+def test_w3_never_exits():
+    """W3: 即便全部未知，也只警告不 exit。"""
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys({"bogus1": 1, "bogus2": 2, "bogus3": 3})  # should not raise
+
+
+def test_w3_team_abbr_prefix_known(capsys):
+    """現有 94 個 signal key 中，team abbr prefix（如 nyy_, bal_）應被識別。"""
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys({"nyy_lhp_disadvantage": 0.2, "bal_bullpen_depth": -0.1})
+    captured = capsys.readouterr()
+    assert "nyy_lhp_disadvantage" not in captured.err
+    assert "bal_bullpen_depth" not in captured.err
+
+
+def test_w3_pitcher_suffix_known(capsys):
+    """pitcher 個人化 signal（如 castillo_velo_decline）應被識別。"""
+    from predict import warn_unknown_signal_keys
+    warn_unknown_signal_keys({"castillo_velo_decline": 0.3, "rocker_new_arsenal": 0.2})
+    captured = capsys.readouterr()
+    assert "castillo_velo_decline" not in captured.err
+    assert "rocker_new_arsenal" not in captured.err

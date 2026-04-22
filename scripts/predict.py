@@ -41,6 +41,25 @@ GAME_DATA_PATTERN = re.compile(
     r"analysis-data[/\\]\d{4}-\d{2}-\d{2}[/\\][A-Z]{2,3}@[A-Z]{2,3}(-G[12])?[/\\]merged\.json$"
 )
 
+# W3: signal_adjustments 合法 key 前綴 / 模式（Plan B 2026-04-22 §4.2）
+# 設計：prefix + pattern，非靜態完整 key（pitcher 名每週變動）
+# 2026-04-18~21 predictions.jsonl 觀察到 94 unique keys；以下涵蓋其中大多數。
+SIGNAL_KEYS_PREFIXES = frozenset({
+    "bullpen_", "weather_", "cold_", "babip_", "park_",
+    "coors_", "lineup_", "both_", "env_", "home_", "away_",
+    "wind_", "sp_", "kelly_", "early_", "pitcher_",
+})
+
+# pitcher / player 個人化 signal 的後綴模式
+SIGNAL_PITCHER_SUFFIX_RE = re.compile(
+    r"_(velo|xera|era|bb|hr|hrluck|luck|new|role|small|ev|partial|gap|"
+    r"regression|decline|collapse|wildness|drop|arsenal|il|out|variance|"
+    r"platoon|disadvantage|reversion|reversal|warmth|vs|improvement|"
+    r"half|solid|strong|weak|depth|edge|buffer|k_collapse|tempered|"
+    r"cluster|cold|hot|in|pair|comerica|oracle|april|rhh|lhh|luck_regression|"
+    r"age_risk|walk_collapse|hr_risk)(_|$)"
+)
+
 
 # === RL relaxation thresholds (see docs/specs/2026-04-20-rl-threshold-relaxation.md) ===
 RL_DIFF_MIN = 1.5       # 觸發 RL-1b 最低分差
@@ -111,6 +130,41 @@ def validate_game_data_path(path: str) -> None:
         sys.exit(
             f"⛔ --game-data 路徑不符規範: {path}\n"
             f"  合法格式: analysis-data/YYYY-MM-DD/AWAY@HOME[-G1|-G2]/merged.json"
+        )
+
+
+# W3: team abbr 小寫前綴（在函數定義之後初始化，確保 TEAM_ABBREV 已載入）
+_SIGNAL_TEAM_PREFIXES = frozenset(
+    abbr.lower() + "_" for abbr in TEAM_ABBREV.values()
+)
+
+
+def _is_known_signal_key(key: str) -> bool:
+    """W3: 判斷 signal key 是否在 allowlist 範圍（prefix / team / pitcher pattern）。"""
+    for prefix in SIGNAL_KEYS_PREFIXES:
+        if key.startswith(prefix):
+            return True
+    for prefix in _SIGNAL_TEAM_PREFIXES:
+        if key.startswith(prefix):
+            return True
+    if SIGNAL_PITCHER_SUFFIX_RE.search(key):
+        return True
+    return False
+
+
+def warn_unknown_signal_keys(signals: dict | None) -> None:
+    """W3（Plan B §4.2）：未知 signal_adjustments key → stderr warning，不 exit。
+
+    原則：允許新 signal 擴充（pitcher 名每週變動），但 typo / 幻想 key 留記錄。
+    """
+    if not signals:
+        return
+    unknown = [k for k in signals if not _is_known_signal_key(k)]
+    if unknown:
+        print(
+            f"⚠️ unknown signal key(s): {sorted(unknown)}\n"
+            f"  若為新 signal 請更新 SIGNAL_KEYS_PREFIXES；若為 typo 請修正",
+            file=sys.stderr,
         )
 
 
@@ -806,6 +860,9 @@ def main():
 
     # W2: ml_rec schema validation（Plan B 2026-04-22 §4.2）
     validate_ml_rec(args.ml_rec, set(TEAM_ABBREV.values()))
+
+    # W3: signal_adjustments allowlist warning（Plan B 2026-04-22 §4.2）
+    warn_unknown_signal_keys(args.signal_adjustments)
 
     if not args.game_data:
         parser.error("--game-data is required unless --test is specified")
