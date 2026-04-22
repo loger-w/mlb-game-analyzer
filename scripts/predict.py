@@ -134,6 +134,19 @@ def apply_close_game_cap(
     return current_cap, None
 
 
+def apply_divergent_user_tag_cap(
+    user_tags: list[str], current_cap: int
+) -> tuple[int, str | None]:
+    """Y-new-3（Plan B §4.4）：user-supplied 'divergent' tag → 上限 2 星。
+
+    'divergent' 是 Phase 3 Claude 手動加的 user tag（非 compute_trend_tags 自動產生），
+    代表基本面判讀與模型輸出方向不一致。cumulative #4 顯示推薦場 0W-4L。
+    """
+    if "divergent" in user_tags:
+        return min(current_cap, 2), "'divergent' tag 上限 2（Y-new-3）"
+    return current_cap, None
+
+
 def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
     """W2（Plan B 2026-04-22 §4.2）：`--ml-rec` 必須是 team abbr / PASS / None。
 
@@ -1046,6 +1059,12 @@ def main():
         ml_stars_cap, y_new_2_reason = apply_close_game_cap(adj_home, adj_away, ml_stars_cap)
         if y_new_2_reason:
             cap_reasons.append(y_new_2_reason)
+
+        # Y-new-3（Plan B §4.4）：user-supplied 'divergent' tag 上限 2 星（cumulative #4）
+        user_tags_raw = [t.strip() for t in (args.tags or "").split(",") if t.strip()]
+        ml_stars_cap, y_new_3_reason = apply_divergent_user_tag_cap(user_tags_raw, ml_stars_cap)
+        if y_new_3_reason:
+            cap_reasons.append(y_new_3_reason)
 
         # 套用星級上限
         final_ml_stars = args.ml_stars

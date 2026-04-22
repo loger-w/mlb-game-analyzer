@@ -891,3 +891,41 @@ def test_ynew2_boundary_0_5_not_triggered():
     new_cap, reason = apply_close_game_cap(4.0, 4.5, current_cap=5)
     assert new_cap == 5
     assert reason is None
+
+
+# ============================================================================
+# Plan B 2026-04-22 — Y-new-3: divergent user tag caps to 2
+# ============================================================================
+
+def test_ynew3_divergent_caps_to_2():
+    from predict import apply_divergent_user_tag_cap
+    new_cap, reason = apply_divergent_user_tag_cap(["divergent"], current_cap=5)
+    assert new_cap == 2
+    assert reason is not None
+    assert "divergent" in reason
+
+
+def test_ynew3_no_divergent_no_cap():
+    from predict import apply_divergent_user_tag_cap
+    new_cap, reason = apply_divergent_user_tag_cap(["early-season", "weather"], current_cap=5)
+    assert new_cap == 5
+    assert reason is None
+
+
+def test_ynew3_mixed_tags_with_divergent():
+    from predict import apply_divergent_user_tag_cap
+    new_cap, _ = apply_divergent_user_tag_cap(["early-season", "divergent", "bullpen-il"], current_cap=5)
+    assert new_cap == 2
+
+
+def test_ynew3_respects_tighter_cap():
+    from predict import apply_divergent_user_tag_cap
+    new_cap, _ = apply_divergent_user_tag_cap(["divergent"], current_cap=1)
+    assert new_cap == 1
+
+
+def test_ynew3_empty_user_tags_no_cap():
+    from predict import apply_divergent_user_tag_cap
+    new_cap, reason = apply_divergent_user_tag_cap([], current_cap=5)
+    assert new_cap == 5
+    assert reason is None
