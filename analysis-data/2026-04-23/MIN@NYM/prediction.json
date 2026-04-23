@@ -1,0 +1,87 @@
+{
+  "date": "2026-04-23",
+  "game_time": "2026-04-23T23:10:00Z",
+  "game": "Minnesota Twins vs New York Mets",
+  "home_team": "New York Mets",
+  "away_team": "Minnesota Twins",
+  "home_sp": "Christian Scott",
+  "away_sp": "Joe Ryan",
+  "home_sp_starts": null,
+  "away_sp_starts": 5,
+  "venue": "Citi Field",
+  "game_pk": 823639,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 44.8,
+  "xgb_raw_home_pct": null,
+  "predicted_home_score": 2.3,
+  "predicted_away_score": 5.7,
+  "predicted_total": 8.0,
+  "formula_home_score": 2.3,
+  "formula_away_score": 5.0,
+  "pre_signal_total": 7.3,
+  "adjusted_total": 8.0,
+  "signal_adjustments": {
+    "bullpen_il_home": 0.5,
+    "babip_regression_away": 0.2,
+    "post_tj_rust_home": 0.3,
+    "weather": -0.1
+  },
+  "ou_line": 7.5,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "MIN",
+  "run_line": null,
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "big-diff",
+    "diff": 3.4,
+    "stars": 2,
+    "tags": [],
+    "kelly_available": false,
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "MIN",
+  "ml_stars": 3,
+  "original_ml_stars": 3,
+  "confidence": "MEDIUM",
+  "cross_validation": "NO_ML_MODEL",
+  "tags": [
+    "early-season",
+    "post-tj-starter",
+    "bullpen-il-home",
+    "pitcher-edge-away",
+    "home-cold-offense"
+  ],
+  "park_factor": 97.0,
+  "temperature_f": 58.0,
+  "wind_mph": 8.0,
+  "wind_direction": "N",
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": null,
+  "actual_home_score": null,
+  "actual_away_score": null,
+  "actual_total": null,
+  "kelly": {
+    "snapshot_source": "2026-04-23 08:00 ET",
+    "snapshot_time_et": "2026-04-23 08:00 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass"
+    ]
+  },
+  "verified": false
+}

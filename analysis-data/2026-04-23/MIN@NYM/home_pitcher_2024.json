@@ -1,0 +1,107 @@
+{
+  "name": "Christian Scott",
+  "mlbam_id": 681035,
+  "age": 26,
+  "birth_date": "1999-06-15",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "season": {
+    "era": 4.56,
+    "whip": 1.2,
+    "k_pct": 19.8,
+    "bb_pct": 6.1,
+    "k_bb_pct": 13.7,
+    "fip": 4.41,
+    "xfip": 3.97,
+    "hr_per_9": 1.52,
+    "gb_pct": 34.7,
+    "ip": 47.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 4.22,
+    "xwoba": 0.321,
+    "xba": 0.244
+  },
+  "statcast": {
+    "avg_velo": 90.0,
+    "max_velo": 97.4,
+    "hard_hit_pct": 20.1,
+    "pitch_types": {
+      "FF": 53.2,
+      "ST": 18.8,
+      "SL": 17.3,
+      "FS": 10.5,
+      "FC": 0.2
+    },
+    "barrel_pct": 10.5,
+    "ev95percent": 35.7,
+    "whiff_pct": 11.1,
+    "csw_pct": 25.1
+  },
+  "game_log": [
+    {
+      "date": "2024-05-04",
+      "opponent": "Tampa Bay Rays",
+      "ip": 6.666666666666667,
+      "era": 1.35,
+      "k": 6,
+      "bb": 1,
+      "h": 5,
+      "er": 1,
+      "pitches": 94,
+      "strikes": 67
+    },
+    {
+      "date": "2024-05-11",
+      "opponent": "Atlanta Braves",
+      "ip": 6.0,
+      "era": 2.84,
+      "k": 8,
+      "bb": 2,
+      "h": 6,
+      "er": 3,
+      "pitches": 91,
+      "strikes": 55
+    },
+    {
+      "date": "2024-05-17",
+      "opponent": "Miami Marlins",
+      "ip": 4.0,
+      "era": 4.32,
+      "k": 3,
+      "bb": 1,
+      "h": 7,
+      "er": 4,
+      "pitches": 84,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".333",
+      "obp": ".375",
+      "slg": ".567",
+      "k": 17,
+      "bb": 5,
+      "bf": 97,
+      "k_pct": 17.5,
+      "bb_pct": 5.2
+    },
+    "vs_right": {
+      "avg": ".167",
+      "obp": ".232",
+      "slg": ".300",
+      "k": 22,
+      "bb": 7,
+      "bf": 100,
+      "k_pct": 22.0,
+      "bb_pct": 7.0
+    }
+  },
+  "prior_year": {
+    "error": "No 2023 pitching stats found"
+  }
+}
