@@ -98,6 +98,28 @@ def apply_scores_to_predictions(date: str, scores: list[dict], analysis_data_dir
     return count
 
 
+def merge_scores_into_records(records: list[dict], scores: list[dict]) -> int:
+    """把 Final 比分 in-place 寫到 jsonl records 的 actual_* 欄位，回傳匹配筆數"""
+    def last_token(name: str) -> str:
+        return (name or "").split()[-1].lower()
+
+    count = 0
+    for s in scores:
+        s_home = last_token(s["home_team"])
+        s_away = last_token(s["away_team"])
+        for r in records:
+            if last_token(r.get("home_team", "")) == s_home and \
+               last_token(r.get("away_team", "")) == s_away:
+                r["actual_home_score"] = s["home_score"]
+                r["actual_away_score"] = s["away_score"]
+                r["actual_winner"] = "HOME" if s["home_score"] > s["away_score"] else "AWAY"
+                r["actual_total"] = s["home_score"] + s["away_score"]
+                r["verified"] = True
+                count += 1
+                break
+    return count
+
+
 def load_records(date: str) -> list[dict]:
     """讀取指定日期的 analysis-data/{date}/predictions.jsonl"""
     path = daily_jsonl_path(date)
@@ -189,6 +211,9 @@ def main():
     except SystemExit:
         print(f"INFO: predictions.jsonl 不存在，請先跑 summarize_predictions.py --date {args.date}", file=sys.stderr)
         return
+
+    # Step 3.5: 把 Final 比分也 merge 進 jsonl records（避免 step 5 覆寫 per-game）
+    merge_scores_into_records(records, scores)
 
     # Step 4: 計算 result codes + 雙寫
     updated = update_records(records)
