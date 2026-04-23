@@ -1,0 +1,217 @@
+{
+  "date": "2026-04-21",
+  "game_time": "2026-04-21T23:40:00Z",
+  "game": "Baltimore Orioles vs Kansas City Royals",
+  "home_team": "Kansas City Royals",
+  "away_team": "Baltimore Orioles",
+  "home_sp": "Kris Bubic",
+  "away_sp": "Shane Baz",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Kauffman Stadium",
+  "game_pk": 824127,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 52.4,
+  "xgb_raw_home_pct": 52.4,
+  "predicted_home_score": 5.2,
+  "predicted_away_score": 4.8,
+  "predicted_total": 10.0,
+  "formula_home_score": 3.7,
+  "formula_away_score": 3.4,
+  "pre_signal_total": 7.1,
+  "adjusted_total": 10.0,
+  "signal_adjustments": {
+    "kc_bullpen_era_disparity": 0.7,
+    "bal_bullpen_core_il_2": 0.3,
+    "kc_lefty_vs_baz_platoon": 0.3,
+    "both_offenses_cold_discount": -0.3
+  },
+  "ou_line": 9.5,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "rl_override": {
+    "active": false,
+    "path": null,
+    "diff": null,
+    "stars": null,
+    "tags": null,
+    "kelly_available": null,
+    "warnings": null,
+    "thresholds": null
+  },
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 0,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "early-season",
+    "weak-vs-weak",
+    "bullpen-disparity",
+    "home-bullpen-slump"
+  ],
+  "park_factor": 99.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 6,
+  "actual_away_score": 5,
+  "actual_total": 11,
+  "kelly": {
+    "snapshot_source": "2026-04-21 08:22 ET",
+    "snapshot_time_et": "2026-04-21 08:22 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ml_guardrail_pass",
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-21_08-00-ET.json",
+    "snapshot_time_et": "2026-04-21 08:22 ET",
+    "snapshot_time_utc": "2026-04-21T12:22:57.956141+00:00",
+    "commence_utc": "2026-04-21T23:40:00Z",
+    "minutes_before_first_pitch": 677,
+    "ml": {
+      "home": {
+        "decimal": 1.81,
+        "american": -123,
+        "implied_pct": 55.2
+      },
+      "away": {
+        "decimal": 2.14,
+        "american": 114,
+        "implied_pct": 46.7
+      }
+    },
+    "ou": {
+      "point": 9.5,
+      "over": {
+        "decimal": 2.01,
+        "american": 101,
+        "implied_pct": 49.8
+      },
+      "under": {
+        "decimal": 1.88,
+        "american": -114,
+        "implied_pct": 53.2
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.59,
+        "american": 159,
+        "implied_pct": 38.6,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.56,
+        "american": -179,
+        "implied_pct": 64.1,
+        "point": 1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-20_20-00-ET.json",
+    "rec_snapshot": "2026-04-21_08-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": 9,
+      "ou_cents": 219,
+      "ou_point_delta": 1.0,
+      "rl_home_cents": 48
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [
+    "closing_stale:614min"
+  ],
+  "closing_line_source": "2026-04-21_09-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 614,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 1.82,
+        "american": -122,
+        "implied_pct": 54.9
+      },
+      "away": {
+        "decimal": 2.13,
+        "american": 113,
+        "implied_pct": 46.9
+      }
+    },
+    "ou": {
+      "point": 9.5,
+      "over": {
+        "decimal": 2.05,
+        "american": 105,
+        "implied_pct": 48.8
+      },
+      "under": {
+        "decimal": 1.85,
+        "american": -118,
+        "implied_pct": 54.1
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.6,
+        "american": 160,
+        "implied_pct": 38.5,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.56,
+        "american": -179,
+        "implied_pct": 64.1,
+        "point": 1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": -1,
+      "pct_no_vig": -0.09,
+      "direction": "HOME",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 1,
+    "ou_cents": 4,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 1
+  }
+}

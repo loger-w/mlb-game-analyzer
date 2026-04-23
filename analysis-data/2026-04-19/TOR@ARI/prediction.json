@@ -1,0 +1,209 @@
+{
+  "date": "2026-04-19",
+  "game_time": "2026-04-19T20:10:00Z",
+  "game": "Toronto Blue Jays vs Arizona Diamondbacks",
+  "home_team": "Arizona Diamondbacks",
+  "away_team": "Toronto Blue Jays",
+  "home_sp": "Ryne Nelson",
+  "away_sp": "Kevin Gausman",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Chase Field",
+  "game_pk": 825100,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 60.0,
+  "xgb_raw_home_pct": 64.0,
+  "predicted_home_score": 3.0,
+  "predicted_away_score": 6.2,
+  "predicted_total": 9.2,
+  "formula_home_score": 2.2,
+  "formula_away_score": 5.1,
+  "pre_signal_total": 7.3,
+  "adjusted_total": 9.2,
+  "signal_adjustments": {
+    "ari_bullpen_core_il_3plus_+1.0_to_TOR": 1.0,
+    "tor_bullpen_core_il_1to2_+0.5_to_ARI": 0.5,
+    "gausman_ip_under_30_regression_+0.3_to_ARI": 0.3,
+    "nelson_lob_luck_risk_+0.3_to_TOR": 0.3,
+    "tor_lineup_4_starters_il_-0.2_to_TOR": -0.2
+  },
+  "ou_line": 8.0,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "PASS",
+  "run_line": "-1.5",
+  "run_line_stars": null,
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 0,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "early-season",
+    "insufficient-sample",
+    "score-model-divergent",
+    "elite-pitcher-vs-backend",
+    "bullpen-depleted-both",
+    "all-markets-pass",
+    "home-hot-offense"
+  ],
+  "park_factor": 99.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": "Alan Porter",
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 4,
+  "actual_away_score": 10,
+  "actual_total": 14,
+  "kelly": {
+    "snapshot_source": "2026-04-19 10:04 ET",
+    "snapshot_time_et": "2026-04-19 10:04 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ml_guardrail_pass",
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-19_10-00-ET.json",
+    "snapshot_time_et": "2026-04-19 10:04 ET",
+    "snapshot_time_utc": "2026-04-19T14:04:25.331586+00:00",
+    "commence_utc": "2026-04-19T20:10:00Z",
+    "minutes_before_first_pitch": 365,
+    "ml": {
+      "home": {
+        "decimal": 1.95,
+        "american": -105,
+        "implied_pct": 51.3
+      },
+      "away": {
+        "decimal": 1.97,
+        "american": -103,
+        "implied_pct": 50.8
+      }
+    },
+    "ou": {
+      "point": 8.0,
+      "over": {
+        "decimal": 1.87,
+        "american": -115,
+        "implied_pct": 53.5
+      },
+      "under": {
+        "decimal": 2.03,
+        "american": 103,
+        "implied_pct": 49.3
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.56,
+        "american": -179,
+        "implied_pct": 64.1,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.59,
+        "american": 159,
+        "implied_pct": 38.6,
+        "point": -1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-18_16-00-ET.json",
+    "rec_snapshot": "2026-04-19_10-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": 38,
+      "ou_cents": -7,
+      "ou_point_delta": -1.0,
+      "rl_home_cents": -320
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [],
+  "closing_line_source": "2026-04-19_16-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 9,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 2.01,
+        "american": 101,
+        "implied_pct": 49.8
+      },
+      "away": {
+        "decimal": 1.91,
+        "american": -110,
+        "implied_pct": 52.4
+      }
+    },
+    "ou": {
+      "point": 8.0,
+      "over": {
+        "decimal": 1.96,
+        "american": -104,
+        "implied_pct": 51.0
+      },
+      "under": {
+        "decimal": 1.93,
+        "american": -108,
+        "implied_pct": 51.8
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.59,
+        "american": -169,
+        "implied_pct": 62.9,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.52,
+        "american": 152,
+        "implied_pct": 39.7,
+        "point": -1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": 7,
+      "pct_no_vig": 1.1,
+      "direction": "AWAY",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 206,
+    "ou_cents": 11,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 10
+  }
+}

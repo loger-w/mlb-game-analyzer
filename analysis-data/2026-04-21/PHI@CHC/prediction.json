@@ -1,0 +1,206 @@
+{
+  "date": "2026-04-21",
+  "game_time": "2026-04-21T23:40:00Z",
+  "game": "Philadelphia Phillies vs Chicago Cubs",
+  "home_team": "Chicago Cubs",
+  "away_team": "Philadelphia Phillies",
+  "home_sp": "Shota Imanaga",
+  "away_sp": "Jes繳s Luzardo",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Wrigley Field",
+  "game_pk": 824690,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 91.0,
+  "xgb_raw_home_pct": 91.0,
+  "predicted_home_score": 3.3,
+  "predicted_away_score": 2.4,
+  "predicted_total": 5.7,
+  "formula_home_score": 3.3,
+  "formula_away_score": 2.4,
+  "pre_signal_total": 5.7,
+  "adjusted_total": 5.7,
+  "signal_adjustments": {},
+  "ou_line": 9.9,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "PASS",
+  "run_line": "-1.75",
+  "run_line_stars": null,
+  "rl_override": {
+    "active": false,
+    "path": null,
+    "diff": null,
+    "stars": null,
+    "tags": null,
+    "kelly_available": null,
+    "warnings": null,
+    "thresholds": null
+  },
+  "ml_rec": null,
+  "ml_stars": null,
+  "original_ml_stars": null,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [],
+  "park_factor": 102.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 7,
+  "actual_away_score": 4,
+  "actual_total": 11,
+  "kelly": {
+    "snapshot_source": null,
+    "snapshot_time_et": null,
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-21_09-00-ET.json",
+    "snapshot_time_et": "2026-04-21 09:25 ET",
+    "snapshot_time_utc": "2026-04-21T13:25:03.373612+00:00",
+    "commence_utc": "2026-04-21T23:40:00Z",
+    "minutes_before_first_pitch": 614,
+    "ml": {
+      "home": {
+        "decimal": 1.9,
+        "american": -111,
+        "implied_pct": 52.6
+      },
+      "away": {
+        "decimal": 2.02,
+        "american": 102,
+        "implied_pct": 49.5
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.94,
+        "american": -106,
+        "implied_pct": 51.5
+      },
+      "under": {
+        "decimal": 1.94,
+        "american": -106,
+        "implied_pct": 51.5
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.82,
+        "american": 182,
+        "implied_pct": 35.5,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.49,
+        "american": -204,
+        "implied_pct": 67.1,
+        "point": 1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-20_20-00-ET.json",
+    "rec_snapshot": "2026-04-21_09-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": 1,
+      "ou_cents": -4,
+      "ou_point_delta": 1.5,
+      "rl_home_cents": 341
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [
+    "closing_stale:614min"
+  ],
+  "closing_line_source": "2026-04-21_09-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 614,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 1.9,
+        "american": -111,
+        "implied_pct": 52.6
+      },
+      "away": {
+        "decimal": 2.02,
+        "american": 102,
+        "implied_pct": 49.5
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.94,
+        "american": -106,
+        "implied_pct": 51.5
+      },
+      "under": {
+        "decimal": 1.94,
+        "american": -106,
+        "implied_pct": 51.5
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.82,
+        "american": 182,
+        "implied_pct": 35.5,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.49,
+        "american": -204,
+        "implied_pct": 67.1,
+        "point": 1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": 0,
+      "pct_no_vig": 0.0,
+      "direction": "HOME",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 0,
+    "ou_cents": 0,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 0
+  }
+}

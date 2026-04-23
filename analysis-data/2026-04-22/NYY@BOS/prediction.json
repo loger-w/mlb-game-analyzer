@@ -1,0 +1,91 @@
+{
+  "date": "2026-04-22",
+  "game_time": "2026-04-22T22:45:00Z",
+  "game": "New York Yankees vs Boston Red Sox",
+  "home_team": "Boston Red Sox",
+  "away_team": "New York Yankees",
+  "home_sp": "Ranger Suarez",
+  "away_sp": "Max Fried",
+  "home_sp_starts": 4,
+  "away_sp_starts": 5,
+  "venue": "Fenway Park",
+  "game_pk": 824774,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 34.5,
+  "xgb_raw_home_pct": 34.5,
+  "predicted_home_score": 2.85,
+  "predicted_away_score": 4.35,
+  "predicted_total": 7.2,
+  "formula_home_score": 3.1,
+  "formula_away_score": 4.6,
+  "pre_signal_total": 7.7,
+  "adjusted_total": 7.2,
+  "signal_adjustments": {
+    "both_solid_plus": -0.5
+  },
+  "ou_line": 8.7,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "rl_override": {
+    "active": false,
+    "path": null,
+    "diff": null,
+    "stars": null,
+    "tags": null,
+    "kelly_available": null,
+    "warnings": null,
+    "thresholds": null
+  },
+  "ml_rec": "NYY",
+  "ml_stars": 4,
+  "original_ml_stars": 4,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "lhp_vs_lhp",
+    "suarez_xera_regression",
+    "nyy_babip_regression_up",
+    "fenway_pf105",
+    "away-pitching-slump"
+  ],
+  "park_factor": 105.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 1,
+  "actual_away_score": 4,
+  "actual_total": 5,
+  "kelly": {
+    "snapshot_source": "2026-04-22 11:07 ET",
+    "snapshot_time_et": "2026-04-22 11:07 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "AWAY",
+      "decimal_odds": 1.78,
+      "raw_kelly_pct": 21.34,
+      "fractional_pct": 5.335,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "ml_result": "WIN",
+  "ou_result": "PASS",
+  "run_line_result": "PASS"
+}

@@ -1,0 +1,494 @@
+{
+  "team": "CHC",
+  "team_id": 112,
+  "tier": "🟡 Average",
+  "avg_ops": 0.768,
+  "avg_xwoba": 0.33,
+  "avg_babip": 0.3,
+  "avg_k_pct": 20.6,
+  "avg_bb_pct": 10.7,
+  "over_under_lean": 0,
+  "recent_heat": "🔥 Hot",
+  "chain": {
+    "obp_top3": 0.357,
+    "slg_mid": 0.354
+  },
+  "lineup": [
+    {
+      "mlbam_id": 608324,
+      "pa": 101,
+      "avg": 0.244,
+      "obp": 0.317,
+      "slg": 0.344,
+      "ops": 0.661,
+      "iso": 0.1,
+      "babip": 0.274,
+      "k_pct": 15.8,
+      "bb_pct": 9.9,
+      "name": "Alex Bregman",
+      "position": "3B",
+      "xwoba": 0.302,
+      "xba": 0.245,
+      "xslg": 0.361,
+      "ev95pct": 46.7,
+      "barrel_pct": 5.3,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".222",
+          "obp": ".300",
+          "slg": ".333",
+          "ops": ".633",
+          "pa": 30
+        },
+        "vs_rhp": {
+          "avg": ".254",
+          "obp": ".324",
+          "slg": ".349",
+          "ops": ".673",
+          "pa": 71
+        }
+      },
+      "last_7": {
+        "avg": ".310",
+        "obp": ".375",
+        "slg": ".379",
+        "ops": ".754",
+        "babip": ".409",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".333",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 663538,
+      "pa": 101,
+      "avg": 0.322,
+      "obp": 0.396,
+      "slg": 0.506,
+      "ops": 0.902,
+      "iso": 0.184,
+      "babip": 0.333,
+      "k_pct": 10.9,
+      "bb_pct": 9.9,
+      "name": "Nico Hoerner",
+      "position": "2B",
+      "xwoba": 0.347,
+      "xba": 0.301,
+      "xslg": 0.405,
+      "ev95pct": 26.9,
+      "barrel_pct": 3.8,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".393",
+          "obp": ".469",
+          "slg": ".643",
+          "ops": "1.112",
+          "pa": 32
+        },
+        "vs_rhp": {
+          "avg": ".288",
+          "obp": ".362",
+          "slg": ".441",
+          "ops": ".803",
+          "pa": 69
+        }
+      },
+      "last_7": {
+        "avg": ".333",
+        "obp": ".344",
+        "slg": ".533",
+        "ops": ".877",
+        "babip": ".333",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".200",
+        "obp": ".200",
+        "slg": ".400",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 664023,
+      "pa": 92,
+      "avg": 0.244,
+      "obp": 0.359,
+      "slg": 0.526,
+      "ops": 0.885,
+      "iso": 0.282,
+      "babip": 0.302,
+      "k_pct": 31.5,
+      "bb_pct": 14.1,
+      "name": "Ian Happ",
+      "position": "LF",
+      "xwoba": 0.366,
+      "xba": 0.23,
+      "xslg": 0.503,
+      "ev95pct": 49.0,
+      "barrel_pct": 18.4,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".207",
+          "obp": ".258",
+          "slg": ".483",
+          "ops": ".741",
+          "pa": 31
+        },
+        "vs_rhp": {
+          "avg": ".265",
+          "obp": ".410",
+          "slg": ".551",
+          "ops": ".961",
+          "pa": 61
+        }
+      },
+      "last_7": {
+        "avg": ".346",
+        "obp": ".469",
+        "slg": ".654",
+        "ops": "1.123",
+        "babip": ".467",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 6,
+        "avg": ".167",
+        "obp": ".167",
+        "slg": ".167",
+        "h": 1,
+        "hr": 0,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691718,
+      "pa": 92,
+      "avg": 0.214,
+      "obp": 0.275,
+      "slg": 0.298,
+      "ops": 0.573,
+      "iso": 0.084,
+      "babip": 0.293,
+      "k_pct": 27.2,
+      "bb_pct": 5.4,
+      "name": "Pete Crow-Armstrong",
+      "position": "CF",
+      "xwoba": 0.251,
+      "xba": 0.199,
+      "xslg": 0.308,
+      "ev95pct": 45.0,
+      "barrel_pct": 5.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".222",
+          "obp": ".282",
+          "slg": ".306",
+          "ops": ".588",
+          "pa": 39
+        },
+        "vs_rhp": {
+          "avg": ".208",
+          "obp": ".269",
+          "slg": ".292",
+          "ops": ".561",
+          "pa": 53
+        }
+      },
+      "last_7": {
+        "avg": ".240",
+        "obp": ".345",
+        "slg": ".360",
+        "ops": ".705",
+        "babip": ".316",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 6,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".333",
+        "h": 2,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 621020,
+      "pa": 90,
+      "avg": 0.192,
+      "obp": 0.322,
+      "slg": 0.411,
+      "ops": 0.733,
+      "iso": 0.219,
+      "babip": 0.188,
+      "k_pct": 24.4,
+      "bb_pct": 16.7,
+      "name": "Dansby Swanson",
+      "position": "SS",
+      "xwoba": 0.349,
+      "xba": 0.222,
+      "xslg": 0.447,
+      "ev95pct": 52.8,
+      "barrel_pct": 15.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".217",
+          "obp": ".286",
+          "slg": ".478",
+          "ops": ".764",
+          "pa": 28
+        },
+        "vs_rhp": {
+          "avg": ".180",
+          "obp": ".339",
+          "slg": ".380",
+          "ops": ".719",
+          "pa": 62
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".345",
+        "slg": ".625",
+        "ops": ".970",
+        "babip": ".176",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 8,
+        "avg": ".333",
+        "obp": ".500",
+        "slg": ".500",
+        "h": 2,
+        "hr": 0,
+        "so": 2,
+        "bb": 2,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 683737,
+      "pa": 88,
+      "avg": 0.169,
+      "obp": 0.261,
+      "slg": 0.195,
+      "ops": 0.456,
+      "iso": 0.026,
+      "babip": 0.217,
+      "k_pct": 20.5,
+      "bb_pct": 11.4,
+      "name": "Michael Busch",
+      "position": "1B",
+      "xwoba": 0.255,
+      "xba": 0.194,
+      "xslg": 0.265,
+      "ev95pct": 28.3,
+      "barrel_pct": 3.3,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".158",
+          "obp": ".320",
+          "slg": ".158",
+          "ops": ".478",
+          "pa": 25
+        },
+        "vs_rhp": {
+          "avg": ".172",
+          "obp": ".238",
+          "slg": ".207",
+          "ops": ".445",
+          "pa": 63
+        }
+      },
+      "last_7": {
+        "avg": ".269",
+        "obp": ".345",
+        "slg": ".269",
+        "ops": ".614",
+        "babip": ".350",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 608348,
+      "pa": 64,
+      "avg": 0.315,
+      "obp": 0.422,
+      "slg": 0.481,
+      "ops": 0.903,
+      "iso": 0.166,
+      "babip": 0.366,
+      "k_pct": 17.2,
+      "bb_pct": 15.6,
+      "name": "Carson Kelly",
+      "position": "C",
+      "xwoba": 0.408,
+      "xba": 0.304,
+      "xslg": 0.525,
+      "ev95pct": 58.1,
+      "barrel_pct": 14.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".318",
+          "obp": ".464",
+          "slg": ".636",
+          "ops": "1.100",
+          "pa": 28
+        },
+        "vs_rhp": {
+          "avg": ".313",
+          "obp": ".389",
+          "slg": ".375",
+          "ops": ".764",
+          "pa": 36
+        }
+      },
+      "last_7": {
+        "avg": ".333",
+        "obp": ".417",
+        "slg": ".667",
+        "ops": "1.084",
+        "babip": ".333",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 7,
+        "avg": ".500",
+        "obp": ".571",
+        "slg": "1.167",
+        "h": 3,
+        "hr": 1,
+        "so": 1,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 807713,
+      "pa": 60,
+      "avg": 0.273,
+      "obp": 0.305,
+      "slg": 0.473,
+      "ops": 0.778,
+      "iso": 0.2,
+      "babip": 0.302,
+      "k_pct": 18.3,
+      "bb_pct": 5.0,
+      "name": "Matt Shaw",
+      "position": "3B",
+      "xwoba": 0.331,
+      "xba": 0.288,
+      "xslg": 0.449,
+      "ev95pct": 34.8,
+      "barrel_pct": 8.7,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".321",
+          "obp": ".345",
+          "slg": ".571",
+          "ops": ".916",
+          "pa": 29
+        },
+        "vs_rhp": {
+          "avg": ".222",
+          "obp": ".267",
+          "slg": ".370",
+          "ops": ".637",
+          "pa": 31
+        }
+      },
+      "last_7": {
+        "avg": ".353",
+        "obp": ".389",
+        "slg": ".588",
+        "ops": ".977",
+        "babip": ".462",
+        "pa": 18
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".600",
+        "obp": ".600",
+        "slg": "1.200",
+        "h": 3,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 694208,
+      "pa": 50,
+      "avg": 0.378,
+      "obp": 0.42,
+      "slg": 0.6,
+      "ops": 1.02,
+      "iso": 0.222,
+      "babip": 0.424,
+      "k_pct": 20.0,
+      "bb_pct": 8.0,
+      "name": "Moisés Ballesteros",
+      "position": "C",
+      "xwoba": 0.365,
+      "xba": 0.284,
+      "xslg": 0.52,
+      "ev95pct": 58.3,
+      "barrel_pct": 13.9,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".000",
+          "obp": ".000",
+          "slg": ".000",
+          "ops": ".000",
+          "pa": 3
+        },
+        "vs_rhp": {
+          "avg": ".405",
+          "obp": ".447",
+          "slg": ".643",
+          "ops": "1.090",
+          "pa": 47
+        }
+      },
+      "last_7": {
+        "avg": ".643",
+        "obp": ".667",
+        "slg": "1.143",
+        "ops": "1.810",
+        "babip": ".700",
+        "pa": 15
+      },
+      "bvp": null
+    }
+  ]
+}

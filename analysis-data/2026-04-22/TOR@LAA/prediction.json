@@ -1,0 +1,104 @@
+{
+  "date": "2026-04-22",
+  "game_time": "2026-04-22T19:07:00Z",
+  "game": "Toronto Blue Jays vs Los Angeles Angels",
+  "home_team": "Los Angeles Angels",
+  "away_team": "Toronto Blue Jays",
+  "home_sp": "Jos矇 Soriano",
+  "away_sp": "Eric Lauer",
+  "home_sp_starts": 5,
+  "away_sp_starts": 3,
+  "venue": "Angel Stadium",
+  "game_pk": 824044,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 70.7,
+  "xgb_raw_home_pct": 70.7,
+  "predicted_home_score": 6.5,
+  "predicted_away_score": 2.4,
+  "predicted_total": 8.9,
+  "formula_home_score": 6.5,
+  "formula_away_score": 2.4,
+  "pre_signal_total": 8.9,
+  "adjusted_total": 8.9,
+  "signal_adjustments": {},
+  "ou_line": 8.3,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "LAA",
+  "run_line": "-1.2",
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "big-diff",
+    "diff": 4.1,
+    "stars": 2,
+    "tags": [],
+    "kelly_available": true,
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": null,
+  "ml_stars": null,
+  "original_ml_stars": null,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [],
+  "park_factor": 100.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 7,
+  "actual_away_score": 3,
+  "actual_total": 10,
+  "kelly": {
+    "snapshot_source": "2026-04-22 04:00 ET",
+    "snapshot_time_et": "2026-04-22 04:00 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "HOME",
+      "decimal_odds": 1.95,
+      "raw_kelly_pct": 39.94,
+      "fractional_pct": 9.985,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": null,
+    "rl": {
+      "favorite_side": "HOME_-1.5",
+      "favorite": {
+        "raw_kelly_pct": 0,
+        "fractional_pct": 0.0,
+        "capped_pct": 0.0,
+        "units": 0.0,
+        "decimal_odds": 1.952,
+        "side": "HOME_-1.5"
+      },
+      "underdog": {
+        "raw_kelly_pct": 64.56,
+        "fractional_pct": 16.14,
+        "capped_pct": 3.0,
+        "units": 3.0,
+        "decimal_odds": 1.952,
+        "side": "AWAY_+1.5"
+      }
+    },
+    "warnings": [
+      "ou_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "WIN"
+}

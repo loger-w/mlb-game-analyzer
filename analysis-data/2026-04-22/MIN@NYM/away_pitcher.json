@@ -1,0 +1,66 @@
+{
+  "name": "Connor Prielipp",
+  "mlbam_id": 687570,
+  "age": 25,
+  "birth_date": "2001-01-10",
+  "pitch_hand": "L",
+  "age_assessment": "🟢 正值巔峰",
+  "tier": "⚪ Rookie Debut (MLB 首秀 / 極早期樣本)",
+  "rookie_debut": true,
+  "season": {
+    "era": null,
+    "whip": 1.30,
+    "k_pct": 28.0,
+    "bb_pct": 11.0,
+    "k_bb_pct": 17.0,
+    "fip": 4.20,
+    "xfip": 4.20,
+    "hr_per_9": 0.80,
+    "gb_pct": 45.0,
+    "ip": 0.0,
+    "games": 0,
+    "gs": 0,
+    "_note": "MLB 0 樣本；以 2026 AAA (15.2 IP, ERA 2.30, K/9 12.64, BB/9 4.60) + 2025 AA (61.2 IP, ERA 3.65, K/9 10.65, BB/9 2.63) 推估 MLB 首年基準 FIP ~4.20。LHP。"
+  },
+  "expected": {
+    "xera": 4.20,
+    "xwoba": 0.320,
+    "xba": 0.245
+  },
+  "statcast": {
+    "avg_velo": null,
+    "max_velo": null,
+    "hard_hit_pct": null,
+    "pitch_types": {},
+    "barrel_pct": null,
+    "whiff_pct": null,
+    "csw_pct": null,
+    "_note": "MLB 0 樣本；AAA/AA 報告主要三種球路：FF ~94-96 mph、SL 為主武器、CH"
+  },
+  "game_log": [],
+  "platoon_splits": {
+    "vs_left": {"avg": null, "obp": null, "slg": null, "_note": "MLB 0 樣本；左投制左打通常優勢"},
+    "vs_right": {"avg": null, "obp": null, "slg": null, "_note": "MLB 0 樣本"}
+  },
+  "prior_year": {
+    "era": 4.11,
+    "whip": 1.52,
+    "k_pct": null,
+    "bb_pct": null,
+    "fip": 3.15,
+    "ip": 82.2,
+    "games": 24,
+    "gs": 23,
+    "_note": "2025 合併 AA + AAA：AA 3.65 ERA 61.2 IP + AAA 5.14 ERA 21.0 IP → 合併 ERA ~4.11"
+  },
+  "minor_league_2026_aaa": {
+    "ip": 15.2,
+    "era": 2.30,
+    "whip": 1.21,
+    "k_per_9": 12.64,
+    "bb_per_9": 4.60,
+    "hr_per_9": 0.57,
+    "opp_avg": 0.204,
+    "gs": 4
+  }
+}

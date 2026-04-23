@@ -1,0 +1,238 @@
+{
+  "date": "2026-04-21",
+  "game_time": "2026-04-21T22:40:00Z",
+  "game": "Cincinnati Reds vs Tampa Bay Rays",
+  "home_team": "Tampa Bay Rays",
+  "away_team": "Cincinnati Reds",
+  "home_sp": "Steven Matz",
+  "away_sp": "Chase Burns",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Tropicana Field",
+  "game_pk": 822995,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 64.9,
+  "xgb_raw_home_pct": 64.9,
+  "predicted_home_score": 4.0,
+  "predicted_away_score": 3.3,
+  "predicted_total": 7.3,
+  "formula_home_score": 4.0,
+  "formula_away_score": 3.3,
+  "pre_signal_total": 7.3,
+  "adjusted_total": 7.3,
+  "signal_adjustments": {},
+  "ou_line": 7.5,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "TB",
+  "run_line": "0",
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": false,
+    "path": null,
+    "diff": null,
+    "stars": null,
+    "tags": null,
+    "kelly_available": null,
+    "warnings": null,
+    "thresholds": null
+  },
+  "ml_rec": "TB",
+  "ml_stars": 2,
+  "original_ml_stars": 2,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "divergent-xgb-vs-market",
+    "early-season",
+    "d1_5",
+    "rl_zero_pickem",
+    "home-bullpen-slump",
+    "away-hot-offense",
+    "away-bullpen-strong"
+  ],
+  "park_factor": 96.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 6,
+  "actual_away_score": 12,
+  "actual_total": 18,
+  "kelly": {
+    "snapshot_source": "2026-04-21 09:25 ET",
+    "snapshot_time_et": "2026-04-21 09:25 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "HOME",
+      "decimal_odds": 1.95,
+      "raw_kelly_pct": 28.04,
+      "fractional_pct": 7.01,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": null,
+    "rl": {
+      "favorite_side": "AWAY_-1.5",
+      "favorite": {
+        "raw_kelly_pct": 0,
+        "fractional_pct": 0.0,
+        "capped_pct": 0.0,
+        "units": 0.0,
+        "decimal_odds": 1.952,
+        "side": "AWAY_-1.5"
+      },
+      "underdog": {
+        "raw_kelly_pct": 57.55,
+        "fractional_pct": 14.3875,
+        "capped_pct": 3.0,
+        "units": 3.0,
+        "decimal_odds": 1.952,
+        "side": "HOME_+1.5"
+      }
+    },
+    "warnings": [
+      "ou_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-21_09-00-ET.json",
+    "snapshot_time_et": "2026-04-21 09:25 ET",
+    "snapshot_time_utc": "2026-04-21T13:25:03.373612+00:00",
+    "commence_utc": "2026-04-21T22:40:00Z",
+    "minutes_before_first_pitch": 554,
+    "ml": {
+      "home": {
+        "decimal": 1.98,
+        "american": -102,
+        "implied_pct": 50.5
+      },
+      "away": {
+        "decimal": 1.94,
+        "american": -106,
+        "implied_pct": 51.5
+      }
+    },
+    "ou": {
+      "point": 7.5,
+      "over": {
+        "decimal": 2.02,
+        "american": 102,
+        "implied_pct": 49.5
+      },
+      "under": {
+        "decimal": 1.87,
+        "american": -115,
+        "implied_pct": 53.5
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.56,
+        "american": -179,
+        "implied_pct": 64.1,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.61,
+        "american": 161,
+        "implied_pct": 38.3,
+        "point": -1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-20_20-00-ET.json",
+    "rec_snapshot": "2026-04-21_09-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": -338,
+      "ou_cents": 212,
+      "ou_point_delta": -1.0,
+      "rl_home_cents": -51
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "LOSS",
+  "ou_result": "PASS",
+  "run_line_result": "LOSS",
+  "clv_warnings": [
+    "closing_stale:554min"
+  ],
+  "closing_line_source": "2026-04-21_09-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 554,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 1.98,
+        "american": -102,
+        "implied_pct": 50.5
+      },
+      "away": {
+        "decimal": 1.94,
+        "american": -106,
+        "implied_pct": 51.5
+      }
+    },
+    "ou": {
+      "point": 7.5,
+      "over": {
+        "decimal": 2.02,
+        "american": 102,
+        "implied_pct": 49.5
+      },
+      "under": {
+        "decimal": 1.87,
+        "american": -115,
+        "implied_pct": 53.5
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.56,
+        "american": -179,
+        "implied_pct": 64.1,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.61,
+        "american": 161,
+        "implied_pct": 38.3,
+        "point": -1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": 0,
+      "pct_no_vig": 0.0,
+      "direction": "AWAY",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 0,
+    "ou_cents": 0,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 0
+  }
+}

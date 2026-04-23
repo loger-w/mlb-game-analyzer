@@ -1,0 +1,464 @@
+{
+  "team": "ATH",
+  "team_id": 133,
+  "tier": "🟡 Average",
+  "avg_ops": 0.695,
+  "avg_xwoba": 0.325,
+  "avg_babip": 0.312,
+  "avg_k_pct": 24.4,
+  "avg_bb_pct": 10.2,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "chain": {
+    "obp_top3": 0.364,
+    "slg_mid": 0.403
+  },
+  "lineup": [
+    {
+      "mlbam_id": 701762,
+      "pa": 95,
+      "avg": 0.225,
+      "obp": 0.421,
+      "slg": 0.352,
+      "ops": 0.773,
+      "iso": 0.127,
+      "babip": 0.378,
+      "k_pct": 33.7,
+      "bb_pct": 25.3,
+      "name": "Nick Kurtz",
+      "position": "1B",
+      "xwoba": 0.397,
+      "xba": 0.237,
+      "xslg": 0.474,
+      "ev95pct": 64.1,
+      "barrel_pct": 17.9,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".292",
+          "obp": ".469",
+          "slg": ".333",
+          "ops": ".802",
+          "pa": 32
+        },
+        "vs_rhp": {
+          "avg": ".191",
+          "obp": ".397",
+          "slg": ".362",
+          "ops": ".759",
+          "pa": 63
+        }
+      },
+      "last_7": {
+        "avg": ".273",
+        "obp": ".500",
+        "slg": ".455",
+        "ops": ".955",
+        "babip": ".385",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".500",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691016,
+      "pa": 95,
+      "avg": 0.202,
+      "obp": 0.295,
+      "slg": 0.369,
+      "ops": 0.664,
+      "iso": 0.167,
+      "babip": 0.25,
+      "k_pct": 23.2,
+      "bb_pct": 11.6,
+      "name": "Tyler Soderstrom",
+      "position": "LF",
+      "xwoba": 0.31,
+      "xba": 0.216,
+      "xslg": 0.392,
+      "ev95pct": 45.2,
+      "barrel_pct": 9.7,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".125",
+          "obp": ".192",
+          "slg": ".208",
+          "ops": ".400",
+          "pa": 26
+        },
+        "vs_rhp": {
+          "avg": ".233",
+          "obp": ".333",
+          "slg": ".433",
+          "ops": ".766",
+          "pa": 69
+        }
+      },
+      "last_7": {
+        "avg": ".160",
+        "obp": ".323",
+        "slg": ".280",
+        "ops": ".603",
+        "babip": ".211",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 6,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": "1.000",
+        "h": 2,
+        "hr": 1,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 669127,
+      "pa": 93,
+      "avg": 0.31,
+      "obp": 0.376,
+      "slg": 0.571,
+      "ops": 0.947,
+      "iso": 0.261,
+      "babip": 0.385,
+      "k_pct": 28.0,
+      "bb_pct": 9.7,
+      "name": "Shea Langeliers",
+      "position": "C",
+      "xwoba": 0.365,
+      "xba": 0.27,
+      "xslg": 0.515,
+      "ev95pct": 46.6,
+      "barrel_pct": 12.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".190",
+          "obp": ".261",
+          "slg": ".476",
+          "ops": ".737",
+          "pa": 23
+        },
+        "vs_rhp": {
+          "avg": ".349",
+          "obp": ".414",
+          "slg": ".603",
+          "ops": "1.017",
+          "pa": 70
+        }
+      },
+      "last_7": {
+        "avg": ".346",
+        "obp": ".469",
+        "slg": ".538",
+        "ops": "1.007",
+        "babip": ".444",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".250",
+        "obp": ".400",
+        "slg": ".250",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 805779,
+      "pa": 92,
+      "avg": 0.253,
+      "obp": 0.261,
+      "slg": 0.352,
+      "ops": 0.613,
+      "iso": 0.099,
+      "babip": 0.273,
+      "k_pct": 13.0,
+      "bb_pct": 1.1,
+      "name": "Jacob Wilson",
+      "position": "SS",
+      "xwoba": 0.27,
+      "xba": 0.266,
+      "xslg": 0.346,
+      "ev95pct": 35.4,
+      "barrel_pct": 2.5,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".238",
+          "obp": ".238",
+          "slg": ".333",
+          "ops": ".571",
+          "pa": 21
+        },
+        "vs_rhp": {
+          "avg": ".257",
+          "obp": ".268",
+          "slg": ".357",
+          "ops": ".625",
+          "pa": 71
+        }
+      },
+      "last_7": {
+        "avg": ".258",
+        "obp": ".281",
+        "slg": ".452",
+        "ops": ".733",
+        "babip": ".231",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 4,
+        "avg": ".250",
+        "obp": ".250",
+        "slg": ".250",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691777,
+      "pa": 84,
+      "avg": 0.26,
+      "obp": 0.31,
+      "slg": 0.455,
+      "ops": 0.765,
+      "iso": 0.195,
+      "babip": 0.4,
+      "k_pct": 36.9,
+      "bb_pct": 4.8,
+      "name": "Max Muncy",
+      "position": "3B",
+      "xwoba": 0.326,
+      "xba": 0.25,
+      "xslg": 0.447,
+      "ev95pct": 63.8,
+      "barrel_pct": 14.9,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".231",
+          "obp": ".310",
+          "slg": ".577",
+          "ops": ".887",
+          "pa": 29
+        },
+        "vs_rhp": {
+          "avg": ".275",
+          "obp": ".309",
+          "slg": ".392",
+          "ops": ".701",
+          "pa": 55
+        }
+      },
+      "last_7": {
+        "avg": ".095",
+        "obp": ".259",
+        "slg": ".190",
+        "ops": ".449",
+        "babip": ".167",
+        "pa": 27
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 671732,
+      "pa": 75,
+      "avg": 0.191,
+      "obp": 0.267,
+      "slg": 0.309,
+      "ops": 0.576,
+      "iso": 0.118,
+      "babip": 0.234,
+      "k_pct": 25.3,
+      "bb_pct": 9.3,
+      "name": "Lawrence Butler",
+      "position": "RF",
+      "xwoba": 0.308,
+      "xba": 0.258,
+      "xslg": 0.375,
+      "ev95pct": 46.9,
+      "barrel_pct": 6.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".250",
+          "slg": ".222",
+          "ops": ".472",
+          "pa": 20
+        },
+        "vs_rhp": {
+          "avg": ".200",
+          "obp": ".273",
+          "slg": ".340",
+          "ops": ".613",
+          "pa": 55
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".292",
+        "slg": ".409",
+        "ops": ".701",
+        "babip": ".250",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 6,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 643446,
+      "pa": 74,
+      "avg": 0.266,
+      "obp": 0.351,
+      "slg": 0.344,
+      "ops": 0.695,
+      "iso": 0.078,
+      "babip": 0.315,
+      "k_pct": 14.9,
+      "bb_pct": 9.5,
+      "name": "Jeff McNeil",
+      "position": "2B",
+      "xwoba": 0.325,
+      "xba": 0.281,
+      "xslg": 0.344,
+      "ev95pct": 33.3,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".182",
+          "obp": ".400",
+          "slg": ".273",
+          "ops": ".673",
+          "pa": 15
+        },
+        "vs_rhp": {
+          "avg": ".283",
+          "obp": ".339",
+          "slg": ".358",
+          "ops": ".697",
+          "pa": 59
+        }
+      },
+      "last_7": {
+        "avg": ".150",
+        "obp": ".308",
+        "slg": ".250",
+        "ops": ".558",
+        "babip": ".150",
+        "pa": 26
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 672016,
+      "pa": 60,
+      "avg": 0.17,
+      "obp": 0.228,
+      "slg": 0.189,
+      "ops": 0.417,
+      "iso": 0.019,
+      "babip": 0.31,
+      "k_pct": 40.0,
+      "bb_pct": 6.7,
+      "name": "Denzel Clarke",
+      "position": "CF",
+      "xwoba": 0.194,
+      "xba": 0.163,
+      "xslg": 0.19,
+      "ev95pct": 46.9,
+      "barrel_pct": 3.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".217",
+          "obp": ".250",
+          "slg": ".261",
+          "ops": ".511",
+          "pa": 25
+        },
+        "vs_rhp": {
+          "avg": ".133",
+          "obp": ".212",
+          "slg": ".133",
+          "ops": ".345",
+          "pa": 35
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".250",
+        "slg": ".267",
+        "ops": ".517",
+        "babip": ".500",
+        "pa": 18
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 666126,
+      "pa": 43,
+      "avg": 0.27,
+      "obp": 0.372,
+      "slg": 0.432,
+      "ops": 0.804,
+      "iso": 0.162,
+      "babip": 0.265,
+      "k_pct": 4.7,
+      "bb_pct": 14.0,
+      "name": "Carlos Cortes",
+      "position": "LF",
+      "xwoba": 0.429,
+      "xba": 0.346,
+      "xslg": 0.546,
+      "ev95pct": 45.7,
+      "barrel_pct": 14.3,
+      "platoon": {
+        "vs_lhp": {
+          "avg": "1.000",
+          "obp": "1.000",
+          "slg": "2.000",
+          "ops": "3.000",
+          "pa": 1
+        },
+        "vs_rhp": {
+          "avg": ".250",
+          "obp": ".357",
+          "slg": ".389",
+          "ops": ".746",
+          "pa": 42
+        }
+      },
+      "last_7": {
+        "avg": ".211",
+        "obp": ".286",
+        "slg": ".263",
+        "ops": ".549",
+        "babip": ".222",
+        "pa": 21
+      },
+      "bvp": null
+    }
+  ]
+}

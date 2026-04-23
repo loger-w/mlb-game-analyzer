@@ -1,0 +1,118 @@
+{
+  "name": "Nick Martínez",
+  "mlbam_id": 607259,
+  "age": 35,
+  "birth_date": "1990-08-05",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟢 Back-end Starter",
+  "season": {
+    "era": 4.45,
+    "whip": 1.21,
+    "k_pct": 17.0,
+    "bb_pct": 6.1,
+    "k_bb_pct": 10.9,
+    "fip": 4.19,
+    "xfip": 4.0,
+    "hr_per_9": 1.2,
+    "gb_pct": 45.7,
+    "ip": 165.66666666666666,
+    "games": 40,
+    "gs": 26
+  },
+  "expected": {
+    "xera": 4.04,
+    "xwoba": 0.312,
+    "xba": 0.257
+  },
+  "statcast": {
+    "avg_velo": 86.9,
+    "max_velo": 95.1,
+    "hard_hit_pct": 23.6,
+    "pitch_types": {
+      "FC": 21.0,
+      "FF": 20.7,
+      "CH": 19.8,
+      "SI": 17.2,
+      "CU": 10.9
+    },
+    "barrel_pct": 6.9,
+    "ev95percent": 34.5,
+    "whiff_pct": 8.4,
+    "csw_pct": 25.9
+  },
+  "game_log": [
+    {
+      "date": "2025-03-30",
+      "opponent": "San Francisco Giants",
+      "ip": 6.0,
+      "era": 6.0,
+      "k": 5,
+      "bb": 1,
+      "h": 4,
+      "er": 4,
+      "pitches": 83,
+      "strikes": 54
+    },
+    {
+      "date": "2025-04-04",
+      "opponent": "Milwaukee Brewers",
+      "ip": 4.666666666666667,
+      "era": 5.91,
+      "k": 2,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 92,
+      "strikes": 51
+    },
+    {
+      "date": "2025-04-09",
+      "opponent": "San Francisco Giants",
+      "ip": 5.666666666666667,
+      "era": 6.06,
+      "k": 8,
+      "bb": 1,
+      "h": 7,
+      "er": 4,
+      "pitches": 93,
+      "strikes": 65
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".244",
+      "obp": ".300",
+      "slg": ".420",
+      "k": 65,
+      "bb": 22,
+      "bf": 311,
+      "k_pct": 20.9,
+      "bb_pct": 7.1
+    },
+    "vs_right": {
+      "avg": ".263",
+      "obp": ".307",
+      "slg": ".447",
+      "k": 51,
+      "bb": 20,
+      "bf": 372,
+      "k_pct": 13.7,
+      "bb_pct": 5.4
+    }
+  },
+  "prior_year": {
+    "era": 3.1,
+    "whip": 1.03,
+    "k_pct": 20.4,
+    "bb_pct": 3.2,
+    "k_bb_pct": 17.2,
+    "fip": 3.04,
+    "xfip": 3.48,
+    "hr_per_9": 0.82,
+    "gb_pct": 41.1,
+    "ip": 142.33333333333334,
+    "games": 42,
+    "gs": 16
+  }
+}

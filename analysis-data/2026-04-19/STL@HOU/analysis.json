@@ -1,0 +1,1265 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-04-19T14:07:16.813983+00:00",
+  "meta": {
+    "game_pk": 824205,
+    "date": "2026-04-19T18:10:00Z",
+    "venue": "Daikin Park",
+    "home_team": "HOU",
+    "away_team": "STL",
+    "home_sp": "Mike Burrows",
+    "away_sp": "Matthew Liberatore",
+    "series_game": 3
+  },
+  "recent_form": {
+    "home": {
+      "record_10": "2-8",
+      "streak": -3,
+      "rs_per_game": 3.8,
+      "ra_per_game": 6.0,
+      "run_diff": -22,
+      "last_5_results": [
+        "L",
+        "L",
+        "L",
+        "W",
+        "W"
+      ]
+    },
+    "away": {
+      "record_10": "7-3",
+      "streak": 4,
+      "rs_per_game": 5.0,
+      "ra_per_game": 5.1,
+      "run_diff": -1,
+      "last_5_results": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "L"
+      ]
+    },
+    "series_prev": {
+      "home_score": 4,
+      "away_score": 9,
+      "winner": "away"
+    }
+  },
+  "pitching_matchup": {
+    "home_sp": {
+      "name": "Mike Burrows",
+      "mlbam_id": 681347,
+      "age": 26,
+      "pitch_hand": "R",
+      "tier": "BELOW_AVERAGE",
+      "age_phase": "PRIME",
+      "season": {
+        "era": 6.55,
+        "fip": 5.37,
+        "xfip": 3.95,
+        "whip": 1.82,
+        "k_pct": 17.5,
+        "bb_pct": 6.8,
+        "k_bb_pct": 10.7,
+        "hr_per_9": 2.05,
+        "gb_pct": 40.9,
+        "ip": 22.0,
+        "gs": 4
+      },
+      "expected": {
+        "xera": 4.3,
+        "xwoba": 0.33,
+        "xba": 0.261
+      },
+      "statcast": {
+        "avg_velo": 90.0,
+        "max_velo": 96.5,
+        "hard_hit_pct": 24.7,
+        "barrel_pct": 6.5,
+        "whiff_pct": 11.8,
+        "csw_pct": 27.3,
+        "ev95percent": 36.4,
+        "pitch_types": {
+          "CH": 26.1,
+          "FF": 24.8,
+          "SL": 20.0,
+          "SI": 18.0,
+          "CU": 11.1
+        }
+      },
+      "platoon_splits": {
+        "vs_left": {
+          "avg": ".408",
+          "obp": ".463",
+          "slg": ".694",
+          "k_pct": 11.1,
+          "bb_pct": 9.3,
+          "bf": 54
+        },
+        "vs_right": {
+          "avg": ".283",
+          "obp": ".327",
+          "slg": ".413",
+          "k_pct": 24.5,
+          "bb_pct": 4.1,
+          "bf": 49
+        }
+      },
+      "game_log": [
+        {
+          "date": "2026-03-27",
+          "opponent": "Los Angeles Angels",
+          "ip": 5.666666666666667,
+          "era": 7.94,
+          "k": 6,
+          "bb": 2,
+          "h": 9,
+          "er": 5,
+          "pitches": 94,
+          "strikes": 59
+        },
+        {
+          "date": "2026-04-01",
+          "opponent": "Boston Red Sox",
+          "ip": 5.0,
+          "era": 5.91,
+          "k": 6,
+          "bb": 3,
+          "h": 5,
+          "er": 2,
+          "pitches": 84,
+          "strikes": 55
+        },
+        {
+          "date": "2026-04-07",
+          "opponent": "Colorado Rockies",
+          "ip": 5.333333333333333,
+          "era": 5.63,
+          "k": 3,
+          "bb": 1,
+          "h": 8,
+          "er": 3,
+          "pitches": 87,
+          "strikes": 58
+        }
+      ],
+      "prior_year": {
+        "era": 3.94,
+        "whip": 1.24,
+        "k_pct": 24.1,
+        "bb_pct": 7.7,
+        "k_bb_pct": 16.4,
+        "fip": 3.81,
+        "xfip": 3.36,
+        "hr_per_9": 1.22,
+        "gb_pct": 46.4,
+        "ip": 96.0,
+        "games": 23,
+        "gs": 19
+      }
+    },
+    "away_sp": {
+      "name": "Matthew Liberatore",
+      "mlbam_id": 669461,
+      "age": 26,
+      "pitch_hand": "L",
+      "tier": "BELOW_AVERAGE",
+      "age_phase": "PRIME",
+      "season": {
+        "era": 4.29,
+        "fip": 6.2,
+        "xfip": 4.9,
+        "whip": 1.57,
+        "k_pct": 12.8,
+        "bb_pct": 8.5,
+        "k_bb_pct": 4.3,
+        "hr_per_9": 2.14,
+        "gb_pct": 40.8,
+        "ip": 21.0,
+        "gs": 4
+      },
+      "expected": {
+        "xera": 5.71,
+        "xwoba": 0.373,
+        "xba": 0.309
+      },
+      "statcast": {
+        "avg_velo": 89.4,
+        "max_velo": 96.8,
+        "hard_hit_pct": 29.4,
+        "barrel_pct": 8.1,
+        "whiff_pct": 8.1,
+        "csw_pct": 24.2,
+        "ev95percent": 44.6,
+        "pitch_types": {
+          "FF": 34.1,
+          "SL": 24.9,
+          "CH": 17.8,
+          "SI": 9.6,
+          "CU": 9.4
+        }
+      },
+      "platoon_splits": {
+        "vs_left": {
+          "avg": ".429",
+          "obp": ".455",
+          "slg": ".857",
+          "k_pct": 22.7,
+          "bb_pct": 4.5,
+          "bf": 22
+        },
+        "vs_right": {
+          "avg": ".254",
+          "obp": ".324",
+          "slg": ".365",
+          "k_pct": 9.7,
+          "bb_pct": 9.7,
+          "bf": 72
+        }
+      },
+      "game_log": [
+        {
+          "date": "2026-03-26",
+          "opponent": "Tampa Bay Rays",
+          "ip": 5.0,
+          "era": 1.8,
+          "k": 2,
+          "bb": 2,
+          "h": 7,
+          "er": 1,
+          "pitches": 78,
+          "strikes": 49
+        },
+        {
+          "date": "2026-04-01",
+          "opponent": "New York Mets",
+          "ip": 6.0,
+          "era": 1.64,
+          "k": 2,
+          "bb": 1,
+          "h": 3,
+          "er": 1,
+          "pitches": 76,
+          "strikes": 47
+        },
+        {
+          "date": "2026-04-07",
+          "opponent": "Washington Nationals",
+          "ip": 5.0,
+          "era": 3.38,
+          "k": 6,
+          "bb": 2,
+          "h": 9,
+          "er": 4,
+          "pitches": 92,
+          "strikes": 60
+        }
+      ],
+      "prior_year": {
+        "era": 4.21,
+        "whip": 1.31,
+        "k_pct": 18.8,
+        "bb_pct": 6.2,
+        "k_bb_pct": 12.6,
+        "fip": 3.91,
+        "xfip": 3.88,
+        "hr_per_9": 1.13,
+        "gb_pct": 42.6,
+        "ip": 151.66666666666666,
+        "games": 29,
+        "gs": 29
+      }
+    },
+    "advantage": "home"
+  },
+  "lineup_analysis": {
+    "home": {
+      "team": "HOU",
+      "tier": "STRONG",
+      "recent_heat": "NORMAL",
+      "avg_ops": 0.819,
+      "avg_xwoba": 0.342,
+      "avg_babip": 0.309,
+      "avg_k_pct": 19.0,
+      "avg_bb_pct": 11.8,
+      "chain": {
+        "obp_top3": 0.412,
+        "slg_mid": 0.438
+      },
+      "lineup": [
+        {
+          "name": "Yordan Alvarez",
+          "mlbam_id": 670541,
+          "position": "LF",
+          "ops": 1.274,
+          "xwoba": 0.554,
+          "babip": 0.298,
+          "k_pct": 11.1,
+          "bb_pct": 19.2,
+          "xba": 0.364,
+          "xslg": 0.862,
+          "ev95pct": 50.0,
+          "barrel_pct": 22.7,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".522",
+              "obp": ".600",
+              "slg": "1.130",
+              "ops": "1.730",
+              "pa": 30
+            },
+            "vs_rhp": {
+              "avg": ".264",
+              "obp": ".435",
+              "slg": ".642",
+              "ops": "1.077",
+              "pa": 69
+            }
+          },
+          "last_7": {
+            "avg": ".308",
+            "obp": ".419",
+            "slg": ".769",
+            "ops": "1.188",
+            "babip": ".263",
+            "pa": 31
+          },
+          "bvp": {
+            "pa": 1,
+            "avg": ".000",
+            "obp": ".000",
+            "slg": ".000",
+            "h": 0,
+            "hr": 0,
+            "so": 0,
+            "bb": 0,
+            "sample_sufficient": false
+          }
+        },
+        {
+          "name": "Jose Altuve",
+          "mlbam_id": 514888,
+          "position": "LF",
+          "ops": 0.862,
+          "xwoba": 0.346,
+          "babip": 0.333,
+          "k_pct": 20.2,
+          "bb_pct": 16.0,
+          "xba": 0.259,
+          "xslg": 0.397,
+          "ev95pct": 38.3,
+          "barrel_pct": 8.3,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".333",
+              "obp": ".500",
+              "slg": ".381",
+              "ops": ".881",
+              "pa": 28
+            },
+            "vs_rhp": {
+              "avg": ".259",
+              "obp": ".348",
+              "slg": ".500",
+              "ops": ".848",
+              "pa": 66
+            }
+          },
+          "last_7": {
+            "avg": ".233",
+            "obp": ".303",
+            "slg": ".400",
+            "ops": ".703",
+            "babip": ".286",
+            "pa": 33
+          },
+          "bvp": null
+        },
+        {
+          "name": "Cam Smith",
+          "mlbam_id": 701358,
+          "position": "RF",
+          "ops": 0.802,
+          "xwoba": 0.402,
+          "babip": 0.302,
+          "k_pct": 21.6,
+          "bb_pct": 12.5,
+          "xba": 0.301,
+          "xslg": 0.537,
+          "ev95pct": 51.8,
+          "barrel_pct": 17.9,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".167",
+              "obp": ".273",
+              "slg": ".333",
+              "ops": ".606",
+              "pa": 22
+            },
+            "vs_rhp": {
+              "avg": ".286",
+              "obp": ".375",
+              "slg": ".482",
+              "ops": ".857",
+              "pa": 65
+            }
+          },
+          "last_7": {
+            "avg": ".143",
+            "obp": ".269",
+            "slg": ".190",
+            "ops": ".459",
+            "babip": ".167",
+            "pa": 27
+          },
+          "bvp": null
+        },
+        {
+          "name": "Christian Walker",
+          "mlbam_id": 572233,
+          "position": "1B",
+          "ops": 0.852,
+          "xwoba": 0.344,
+          "babip": 0.276,
+          "k_pct": 17.0,
+          "bb_pct": 11.4,
+          "xba": 0.254,
+          "xslg": 0.448,
+          "ev95pct": 48.4,
+          "barrel_pct": 12.9,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".222",
+              "obp": ".318",
+              "slg": ".500",
+              "ops": ".818",
+              "pa": 22
+            },
+            "vs_rhp": {
+              "avg": ".276",
+              "obp": ".364",
+              "slg": ".500",
+              "ops": ".864",
+              "pa": 66
+            }
+          },
+          "last_7": {
+            "avg": ".136",
+            "obp": ".259",
+            "slg": ".273",
+            "ops": ".532",
+            "babip": ".133",
+            "pa": 27
+          },
+          "bvp": null
+        },
+        {
+          "name": "Carlos Correa",
+          "mlbam_id": 621043,
+          "position": "SS",
+          "ops": 0.729,
+          "xwoba": 0.361,
+          "babip": 0.31,
+          "k_pct": 15.9,
+          "bb_pct": 12.2,
+          "xba": 0.286,
+          "xslg": 0.454,
+          "ev95pct": 40.7,
+          "barrel_pct": 10.2,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".222",
+              "obp": ".333",
+              "slg": ".389",
+              "ops": ".722",
+              "pa": 21
+            },
+            "vs_rhp": {
+              "avg": ".278",
+              "obp": ".361",
+              "slg": ".370",
+              "ops": ".731",
+              "pa": 61
+            }
+          },
+          "last_7": {
+            "avg": ".269",
+            "obp": ".367",
+            "slg": ".385",
+            "ops": ".752",
+            "babip": ".350",
+            "pa": 30
+          },
+          "bvp": {
+            "pa": 3,
+            "avg": ".000",
+            "obp": ".000",
+            "slg": ".000",
+            "h": 0,
+            "hr": 0,
+            "so": 0,
+            "bb": 0,
+            "sample_sufficient": false
+          }
+        },
+        {
+          "name": "Isaac Paredes",
+          "mlbam_id": 670623,
+          "position": "3B",
+          "ops": 0.568,
+          "xwoba": 0.267,
+          "babip": 0.25,
+          "k_pct": 21.4,
+          "bb_pct": 10.0,
+          "xba": 0.186,
+          "xslg": 0.235,
+          "ev95pct": 22.7,
+          "barrel_pct": 0.0,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".250",
+              "obp": ".348",
+              "slg": ".400",
+              "ops": ".748",
+              "pa": 23
+            },
+            "vs_rhp": {
+              "avg": ".154",
+              "obp": ".298",
+              "slg": ".179",
+              "ops": ".477",
+              "pa": 47
+            }
+          },
+          "last_7": {
+            "avg": ".130",
+            "obp": ".259",
+            "slg": ".130",
+            "ops": ".389",
+            "babip": ".176",
+            "pa": 27
+          },
+          "bvp": {
+            "pa": 3,
+            "avg": ".000",
+            "obp": ".000",
+            "slg": ".000",
+            "h": 0,
+            "hr": 0,
+            "so": 0,
+            "bb": 0,
+            "sample_sufficient": false
+          }
+        },
+        {
+          "name": "Joey Loperfido",
+          "mlbam_id": 694388,
+          "position": "LF",
+          "ops": 0.678,
+          "xwoba": 0.28,
+          "babip": 0.375,
+          "k_pct": 28.8,
+          "bb_pct": 9.1,
+          "xba": 0.232,
+          "xslg": 0.302,
+          "ev95pct": 40.0,
+          "barrel_pct": 5.0,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".111",
+              "obp": ".111",
+              "slg": ".111",
+              "ops": ".222",
+              "pa": 9
+            },
+            "vs_rhp": {
+              "avg": ".286",
+              "obp": ".368",
+              "slg": ".388",
+              "ops": ".756",
+              "pa": 57
+            }
+          },
+          "last_7": {
+            "avg": ".227",
+            "obp": ".292",
+            "slg": ".318",
+            "ops": ".610",
+            "babip": ".357",
+            "pa": 24
+          },
+          "bvp": {
+            "pa": 1,
+            "avg": ".000",
+            "obp": ".000",
+            "slg": ".000",
+            "h": 0,
+            "hr": 0,
+            "so": 0,
+            "bb": 0,
+            "sample_sufficient": false
+          }
+        },
+        {
+          "name": "Yainer Diaz",
+          "mlbam_id": 673237,
+          "position": "C",
+          "ops": 0.476,
+          "xwoba": 0.229,
+          "babip": 0.204,
+          "k_pct": 15.9,
+          "bb_pct": 4.8,
+          "xba": 0.208,
+          "xslg": 0.257,
+          "ev95pct": 26.0,
+          "barrel_pct": 2.0,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".222",
+              "obp": ".263",
+              "slg": ".222",
+              "ops": ".485",
+              "pa": 19
+            },
+            "vs_rhp": {
+              "avg": ".171",
+              "obp": ".205",
+              "slg": ".268",
+              "ops": ".473",
+              "pa": 44
+            }
+          },
+          "last_7": {
+            "avg": ".115",
+            "obp": ".115",
+            "slg": ".231",
+            "ops": ".346",
+            "babip": ".095",
+            "pa": 26
+          },
+          "bvp": null
+        },
+        {
+          "name": "Christian Vázquez",
+          "mlbam_id": 543877,
+          "position": "C",
+          "ops": 1.132,
+          "xwoba": 0.295,
+          "babip": 0.435,
+          "k_pct": 18.9,
+          "bb_pct": 10.8,
+          "xba": 0.251,
+          "xslg": 0.311,
+          "ev95pct": 23.1,
+          "barrel_pct": 3.8,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".429",
+              "obp": ".429",
+              "slg": "1.000",
+              "ops": "1.429",
+              "pa": 8
+            },
+            "vs_rhp": {
+              "avg": ".360",
+              "obp": ".448",
+              "slg": ".600",
+              "ops": "1.048",
+              "pa": 29
+            }
+          },
+          "last_7": {
+            "avg": ".400",
+            "obp": ".464",
+            "slg": ".680",
+            "ops": "1.144",
+            "babip": ".474",
+            "pa": 28
+          },
+          "bvp": null
+        }
+      ]
+    },
+    "away": {
+      "team": "STL",
+      "tier": "AVERAGE",
+      "recent_heat": "NORMAL",
+      "avg_ops": 0.697,
+      "avg_xwoba": 0.321,
+      "avg_babip": 0.283,
+      "avg_k_pct": 22.5,
+      "avg_bb_pct": 10.8,
+      "chain": {
+        "obp_top3": 0.385,
+        "slg_mid": 0.514
+      },
+      "lineup": [
+        {
+          "name": "Iván Herrera",
+          "mlbam_id": 671056,
+          "position": "C",
+          "ops": 0.716,
+          "xwoba": 0.399,
+          "babip": 0.211,
+          "k_pct": 12.9,
+          "bb_pct": 19.4,
+          "xba": 0.286,
+          "xslg": 0.466,
+          "ev95pct": 49.2,
+          "barrel_pct": 8.5,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".174",
+              "obp": ".367",
+              "slg": ".304",
+              "ops": ".671",
+              "pa": 30
+            },
+            "vs_rhp": {
+              "avg": ".213",
+              "obp": ".397",
+              "slg": ".340",
+              "ops": ".737",
+              "pa": 63
+            }
+          },
+          "last_7": {
+            "avg": ".200",
+            "obp": ".375",
+            "slg": ".440",
+            "ops": ".815",
+            "babip": ".150",
+            "pa": 32
+          },
+          "bvp": null
+        },
+        {
+          "name": "JJ Wetherholt",
+          "mlbam_id": 802139,
+          "position": "SS",
+          "ops": 0.755,
+          "xwoba": 0.35,
+          "babip": 0.25,
+          "k_pct": 16.3,
+          "bb_pct": 15.2,
+          "xba": 0.218,
+          "xslg": 0.368,
+          "ev95pct": 37.3,
+          "barrel_pct": 6.8,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".269",
+              "obp": ".364",
+              "slg": ".500",
+              "ops": ".864",
+              "pa": 33
+            },
+            "vs_rhp": {
+              "avg": ".217",
+              "obp": ".390",
+              "slg": ".304",
+              "ops": ".694",
+              "pa": 59
+            }
+          },
+          "last_7": {
+            "avg": ".250",
+            "obp": ".406",
+            "slg": ".500",
+            "ops": ".906",
+            "babip": ".200",
+            "pa": 32
+          },
+          "bvp": null
+        },
+        {
+          "name": "Alec Burleson",
+          "mlbam_id": 676475,
+          "position": "1B",
+          "ops": 0.87,
+          "xwoba": 0.418,
+          "babip": 0.303,
+          "k_pct": 10.0,
+          "bb_pct": 13.3,
+          "xba": 0.296,
+          "xslg": 0.605,
+          "ev95pct": 52.2,
+          "barrel_pct": 13.0,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".222",
+              "obp": ".250",
+              "slg": ".333",
+              "ops": ".583",
+              "pa": 28
+            },
+            "vs_rhp": {
+              "avg": ".340",
+              "obp": ".452",
+              "slg": ".560",
+              "ops": "1.012",
+              "pa": 62
+            }
+          },
+          "last_7": {
+            "avg": ".393",
+            "obp": ".433",
+            "slg": ".714",
+            "ops": "1.147",
+            "babip": ".409",
+            "pa": 30
+          },
+          "bvp": null
+        },
+        {
+          "name": "Jordan Walker",
+          "mlbam_id": 691023,
+          "position": "RF",
+          "ops": 1.038,
+          "xwoba": 0.437,
+          "babip": 0.364,
+          "k_pct": 29.4,
+          "bb_pct": 9.4,
+          "xba": 0.303,
+          "xslg": 0.672,
+          "ev95pct": 59.6,
+          "barrel_pct": 23.1,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".350",
+              "obp": ".409",
+              "slg": ".900",
+              "ops": "1.309",
+              "pa": 22
+            },
+            "vs_rhp": {
+              "avg": ".298",
+              "obp": ".365",
+              "slg": ".579",
+              "ops": ".944",
+              "pa": 63
+            }
+          },
+          "last_7": {
+            "avg": ".310",
+            "obp": ".375",
+            "slg": ".655",
+            "ops": "1.030",
+            "babip": ".375",
+            "pa": 32
+          },
+          "bvp": null
+        },
+        {
+          "name": "Nolan Gorman",
+          "mlbam_id": 669357,
+          "position": "2B",
+          "ops": 0.657,
+          "xwoba": 0.246,
+          "babip": 0.275,
+          "k_pct": 30.6,
+          "bb_pct": 9.7,
+          "xba": 0.172,
+          "xslg": 0.313,
+          "ev95pct": 39.5,
+          "barrel_pct": 4.7,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".100",
+              "obp": ".250",
+              "slg": ".100",
+              "ops": ".350",
+              "pa": 12
+            },
+            "vs_rhp": {
+              "avg": ".245",
+              "obp": ".300",
+              "slg": ".415",
+              "ops": ".715",
+              "pa": 60
+            }
+          },
+          "last_7": {
+            "avg": ".200",
+            "obp": ".222",
+            "slg": ".320",
+            "ops": ".542",
+            "babip": ".267",
+            "pa": 27
+          },
+          "bvp": null
+        },
+        {
+          "name": "Masyn Winn",
+          "mlbam_id": 691026,
+          "position": "SS",
+          "ops": 0.612,
+          "xwoba": 0.308,
+          "babip": 0.233,
+          "k_pct": 20.3,
+          "bb_pct": 13.0,
+          "xba": 0.221,
+          "xslg": 0.311,
+          "ev95pct": 27.3,
+          "barrel_pct": 4.5,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".313",
+              "obp": ".389",
+              "slg": ".438",
+              "ops": ".827",
+              "pa": 18
+            },
+            "vs_rhp": {
+              "avg": ".143",
+              "obp": ".294",
+              "slg": ".238",
+              "ops": ".532",
+              "pa": 51
+            }
+          },
+          "last_7": {
+            "avg": ".208",
+            "obp": ".345",
+            "slg": ".375",
+            "ops": ".720",
+            "babip": ".267",
+            "pa": 29
+          },
+          "bvp": null
+        },
+        {
+          "name": "Victor Scott II",
+          "mlbam_id": 687363,
+          "position": "CF",
+          "ops": 0.528,
+          "xwoba": 0.255,
+          "babip": 0.324,
+          "k_pct": 25.0,
+          "bb_pct": 5.0,
+          "xba": 0.241,
+          "xslg": 0.284,
+          "ev95pct": 21.4,
+          "barrel_pct": 0.0,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".389",
+              "obp": ".400",
+              "slg": ".389",
+              "ops": ".789",
+              "pa": 21
+            },
+            "vs_rhp": {
+              "avg": ".152",
+              "obp": ".200",
+              "slg": ".182",
+              "ops": ".382",
+              "pa": 39
+            }
+          },
+          "last_7": {
+            "avg": ".133",
+            "obp": ".235",
+            "slg": ".133",
+            "ops": ".368",
+            "babip": ".200",
+            "pa": 17
+          },
+          "bvp": null
+        },
+        {
+          "name": "Nathan Church",
+          "mlbam_id": 701675,
+          "position": "LF",
+          "ops": 0.564,
+          "xwoba": 0.241,
+          "babip": 0.281,
+          "k_pct": 28.0,
+          "bb_pct": 4.0,
+          "xba": 0.196,
+          "xslg": 0.298,
+          "ev95pct": 30.3,
+          "barrel_pct": 6.1,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".400",
+              "obp": ".429",
+              "slg": ".400",
+              "ops": ".829",
+              "pa": 7
+            },
+            "vs_rhp": {
+              "avg": ".195",
+              "obp": ".233",
+              "slg": ".293",
+              "ops": ".526",
+              "pa": 43
+            }
+          },
+          "last_7": {
+            "avg": ".357",
+            "obp": ".412",
+            "slg": ".429",
+            "ops": ".841",
+            "babip": ".417",
+            "pa": 17
+          },
+          "bvp": null
+        },
+        {
+          "name": "Thomas Saggese",
+          "mlbam_id": 695336,
+          "position": "2B",
+          "ops": 0.533,
+          "xwoba": 0.231,
+          "babip": 0.31,
+          "k_pct": 29.8,
+          "bb_pct": 8.5,
+          "xba": 0.175,
+          "xslg": 0.261,
+          "ev95pct": 31.0,
+          "barrel_pct": 3.4,
+          "platoon": {
+            "vs_lhp": {
+              "avg": ".100",
+              "obp": ".308",
+              "slg": ".100",
+              "ops": ".408",
+              "pa": 13
+            },
+            "vs_rhp": {
+              "avg": ".242",
+              "obp": ".265",
+              "slg": ".303",
+              "ops": ".568",
+              "pa": 34
+            }
+          },
+          "last_7": {
+            "avg": ".217",
+            "obp": ".217",
+            "slg": ".261",
+            "ops": ".478",
+            "babip": ".333",
+            "pa": 23
+          },
+          "bvp": null
+        }
+      ]
+    },
+    "advantage": "home"
+  },
+  "bullpen_and_injuries": {
+    "home": {
+      "team": "HOU",
+      "bullpen_era": 6.11,
+      "il_pitchers": [
+        {
+          "name": "Bennett Sousa",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        },
+        {
+          "name": "Brandon Walter",
+          "status": "Injured 60-Day",
+          "position": "Pitcher",
+          "impact": "CRITICAL"
+        },
+        {
+          "name": "Cody Bolton",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        },
+        {
+          "name": "Cristian Javier",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        },
+        {
+          "name": "Hayden Wesneski",
+          "status": "Injured 60-Day",
+          "position": "Pitcher",
+          "impact": "CRITICAL"
+        },
+        {
+          "name": "Hunter Brown",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        },
+        {
+          "name": "Josh Hader",
+          "status": "Injured 60-Day",
+          "position": "Pitcher",
+          "impact": "CRITICAL"
+        },
+        {
+          "name": "Nate Pearson",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        },
+        {
+          "name": "Ronel Blanco",
+          "status": "Injured 60-Day",
+          "position": "Pitcher",
+          "impact": "CRITICAL"
+        },
+        {
+          "name": "Tatsuya Imai",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        }
+      ],
+      "il_position_players": [
+        {
+          "name": "Jake Meyers",
+          "status": "Injured 10-Day",
+          "position": "Outfielder",
+          "impact": "MINOR"
+        },
+        {
+          "name": "Jeremy Peña",
+          "status": "Injured 10-Day",
+          "position": "Shortstop",
+          "impact": "MINOR"
+        },
+        {
+          "name": "Zach Dezenzo",
+          "status": "Injured 10-Day",
+          "position": "Outfielder",
+          "impact": "MINOR"
+        }
+      ],
+      "injury_impact_summary": "CRITICAL"
+    },
+    "away": {
+      "team": "STL",
+      "bullpen_era": 5.33,
+      "il_pitchers": [
+        {
+          "name": "Hunter Dobbins",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        },
+        {
+          "name": "Matt Pushard",
+          "status": "Injured 15-Day",
+          "position": "Pitcher",
+          "impact": "SIGNIFICANT"
+        }
+      ],
+      "il_position_players": [
+        {
+          "name": "Lars Nootbaar",
+          "status": "Injured 60-Day",
+          "position": "Outfielder",
+          "impact": "CRITICAL"
+        }
+      ],
+      "injury_impact_summary": "CRITICAL"
+    }
+  },
+  "environment": {
+    "venue": "Daikin Park",
+    "park_factor": 100.0,
+    "temperature_f": null,
+    "wind_mph": null,
+    "wind_direction": null,
+    "roof": null
+  },
+  "signal_adjustments": {
+    "signals": [],
+    "total_run_adjustment": 0.0
+  },
+  "win_probability": {
+    "xgboost_home_pct": 67.2,
+    "log5_home_pct": 48.3,
+    "pythag_home_pct": 45.0,
+    "cross_validation": "INSUFFICIENT_SAMPLE",
+    "confidence": "LOW"
+  },
+  "score_prediction": {
+    "home_score": 7,
+    "away_score": 6,
+    "total": 13.1,
+    "home_range": [
+      5,
+      9
+    ],
+    "away_range": [
+      4,
+      8
+    ],
+    "scenarios": [
+      {
+        "type": "BLOWOUT_FAV",
+        "pct": 6,
+        "example_score": "5-10"
+      },
+      {
+        "type": "COMFORTABLE_FAV",
+        "pct": 15,
+        "example_score": "6-8"
+      },
+      {
+        "type": "CLOSE_FAV",
+        "pct": 24,
+        "example_score": "5-7"
+      },
+      {
+        "type": "CLOSE_DOG",
+        "pct": 24,
+        "example_score": "6-7"
+      },
+      {
+        "type": "COMFORTABLE_DOG",
+        "pct": 18,
+        "example_score": "8-5"
+      },
+      {
+        "type": "BLOWOUT_DOG",
+        "pct": 13,
+        "example_score": "10-4"
+      }
+    ]
+  },
+  "betting_recommendations": {
+    "moneyline": {
+      "direction": "PASS",
+      "stars": 0,
+      "line": null,
+      "model_pct": 0,
+      "implied_pct": 0,
+      "edge": 0,
+      "reasons": [],
+      "risk": "HIGH"
+    },
+    "run_line": {
+      "direction": "PASS",
+      "stars": 0,
+      "line": null,
+      "model_pct": 0,
+      "implied_pct": 0,
+      "edge": 0,
+      "reasons": [],
+      "risk": "HIGH"
+    },
+    "over_under": {
+      "direction": "PASS",
+      "stars": 0,
+      "line": null,
+      "model_pct": 0,
+      "implied_pct": 0,
+      "edge": 0,
+      "reasons": [],
+      "risk": "HIGH"
+    }
+  }
+}

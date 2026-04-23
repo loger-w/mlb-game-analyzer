@@ -1,0 +1,494 @@
+{
+  "team": "SEA",
+  "team_id": 136,
+  "tier": "🟡 Average",
+  "avg_ops": 0.675,
+  "avg_xwoba": 0.328,
+  "avg_babip": 0.291,
+  "avg_k_pct": 25.3,
+  "avg_bb_pct": 12.7,
+  "over_under_lean": -1,
+  "recent_heat": "⚖️ Normal",
+  "chain": {
+    "obp_top3": 0.322,
+    "slg_mid": 0.292
+  },
+  "lineup": [
+    {
+      "mlbam_id": 663728,
+      "pa": 91,
+      "avg": 0.163,
+      "obp": 0.253,
+      "slg": 0.275,
+      "ops": 0.528,
+      "iso": 0.112,
+      "babip": 0.22,
+      "k_pct": 31.9,
+      "bb_pct": 11.0,
+      "name": "Cal Raleigh",
+      "position": "C",
+      "xwoba": 0.303,
+      "xba": 0.2,
+      "xslg": 0.402,
+      "ev95pct": 26.9,
+      "barrel_pct": 9.6,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".053",
+          "obp": ".174",
+          "slg": ".053",
+          "ops": ".227",
+          "pa": 23
+        },
+        "vs_rhp": {
+          "avg": ".197",
+          "obp": ".279",
+          "slg": ".344",
+          "ops": ".623",
+          "pa": 68
+        }
+      },
+      "last_7": {
+        "avg": ".214",
+        "obp": ".258",
+        "slg": ".357",
+        "ops": ".615",
+        "babip": ".250",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 21,
+        "avg": ".294",
+        "obp": ".429",
+        "slg": ".529",
+        "h": 5,
+        "hr": 1,
+        "so": 2,
+        "bb": 3,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 677594,
+      "pa": 91,
+      "avg": 0.203,
+      "obp": 0.308,
+      "slg": 0.278,
+      "ops": 0.586,
+      "iso": 0.075,
+      "babip": 0.283,
+      "k_pct": 27.5,
+      "bb_pct": 11.0,
+      "name": "Julio Rodríguez",
+      "position": "CF",
+      "xwoba": 0.296,
+      "xba": 0.211,
+      "xslg": 0.342,
+      "ev95pct": 38.9,
+      "barrel_pct": 7.4,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".318",
+          "slg": ".333",
+          "ops": ".651",
+          "pa": 22
+        },
+        "vs_rhp": {
+          "avg": ".213",
+          "obp": ".304",
+          "slg": ".262",
+          "ops": ".566",
+          "pa": 69
+        }
+      },
+      "last_7": {
+        "avg": ".320",
+        "obp": ".433",
+        "slg": ".560",
+        "ops": ".993",
+        "babip": ".438",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 21,
+        "avg": ".381",
+        "obp": ".381",
+        "slg": ".571",
+        "h": 8,
+        "hr": 1,
+        "so": 8,
+        "bb": 0,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 668227,
+      "pa": 89,
+      "avg": 0.284,
+      "obp": 0.404,
+      "slg": 0.378,
+      "ops": 0.782,
+      "iso": 0.094,
+      "babip": 0.339,
+      "k_pct": 15.7,
+      "bb_pct": 13.5,
+      "name": "Randy Arozarena",
+      "position": "LF",
+      "xwoba": 0.367,
+      "xba": 0.282,
+      "xslg": 0.406,
+      "ev95pct": 38.3,
+      "barrel_pct": 6.7,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".313",
+          "obp": ".421",
+          "slg": ".313",
+          "ops": ".734",
+          "pa": 19
+        },
+        "vs_rhp": {
+          "avg": ".276",
+          "obp": ".400",
+          "slg": ".397",
+          "ops": ".797",
+          "pa": 70
+        }
+      },
+      "last_7": {
+        "avg": ".308",
+        "obp": ".400",
+        "slg": ".346",
+        "ops": ".746",
+        "babip": ".348",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 31,
+        "avg": ".107",
+        "obp": ".161",
+        "slg": ".179",
+        "h": 3,
+        "hr": 0,
+        "so": 9,
+        "bb": 1,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 647304,
+      "pa": 87,
+      "avg": 0.141,
+      "obp": 0.23,
+      "slg": 0.218,
+      "ops": 0.448,
+      "iso": 0.077,
+      "babip": 0.148,
+      "k_pct": 17.2,
+      "bb_pct": 9.2,
+      "name": "Josh Naylor",
+      "position": "1B",
+      "xwoba": 0.304,
+      "xba": 0.236,
+      "xslg": 0.377,
+      "ev95pct": 34.9,
+      "barrel_pct": 6.3,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".158",
+          "obp": ".200",
+          "slg": ".158",
+          "ops": ".358",
+          "pa": 20
+        },
+        "vs_rhp": {
+          "avg": ".136",
+          "obp": ".239",
+          "slg": ".237",
+          "ops": ".476",
+          "pa": 67
+        }
+      },
+      "last_7": {
+        "avg": ".192",
+        "obp": ".300",
+        "slg": ".423",
+        "ops": ".723",
+        "babip": ".158",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 11,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 702284,
+      "pa": 82,
+      "avg": 0.225,
+      "obp": 0.329,
+      "slg": 0.366,
+      "ops": 0.695,
+      "iso": 0.141,
+      "babip": 0.286,
+      "k_pct": 24.4,
+      "bb_pct": 12.2,
+      "name": "Cole Young",
+      "position": "2B",
+      "xwoba": 0.318,
+      "xba": 0.231,
+      "xslg": 0.366,
+      "ev95pct": 29.4,
+      "barrel_pct": 7.8,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".300",
+          "obp": ".364",
+          "slg": ".600",
+          "ops": ".964",
+          "pa": 22
+        },
+        "vs_rhp": {
+          "avg": ".196",
+          "obp": ".317",
+          "slg": ".275",
+          "ops": ".592",
+          "pa": 60
+        }
+      },
+      "last_7": {
+        "avg": ".136",
+        "obp": ".321",
+        "slg": ".136",
+        "ops": ".457",
+        "babip": ".176",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".333",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 680977,
+      "pa": 71,
+      "avg": 0.304,
+      "obp": 0.437,
+      "slg": 0.518,
+      "ops": 0.955,
+      "iso": 0.214,
+      "babip": 0.333,
+      "k_pct": 16.9,
+      "bb_pct": 12.7,
+      "name": "Brendan Donovan",
+      "position": "2B",
+      "xwoba": 0.339,
+      "xba": 0.238,
+      "xslg": 0.344,
+      "ev95pct": 26.7,
+      "barrel_pct": 4.4,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".200",
+          "obp": ".238",
+          "slg": ".200",
+          "ops": ".438",
+          "pa": 21
+        },
+        "vs_rhp": {
+          "avg": ".361",
+          "obp": ".520",
+          "slg": ".694",
+          "ops": "1.214",
+          "pa": 50
+        }
+      },
+      "last_7": {
+        "avg": ".278",
+        "obp": ".462",
+        "slg": ".333",
+        "ops": ".795",
+        "babip": ".313",
+        "pa": 26
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".333",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 670042,
+      "pa": 68,
+      "avg": 0.317,
+      "obp": 0.368,
+      "slg": 0.603,
+      "ops": 0.971,
+      "iso": 0.286,
+      "babip": 0.471,
+      "k_pct": 36.8,
+      "bb_pct": 4.4,
+      "name": "Luke Raley",
+      "position": "RF",
+      "xwoba": 0.429,
+      "xba": 0.321,
+      "xslg": 0.642,
+      "ev95pct": 52.6,
+      "barrel_pct": 21.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".500",
+          "obp": ".500",
+          "slg": ".500",
+          "ops": "1.000",
+          "pa": 2
+        },
+        "vs_rhp": {
+          "avg": ".311",
+          "obp": ".364",
+          "slg": ".607",
+          "ops": ".971",
+          "pa": 66
+        }
+      },
+      "last_7": {
+        "avg": ".440",
+        "obp": ".462",
+        "slg": ".720",
+        "ops": "1.182",
+        "babip": ".625",
+        "pa": 26
+      },
+      "bvp": {
+        "pa": 15,
+        "avg": ".267",
+        "obp": ".267",
+        "slg": ".400",
+        "h": 4,
+        "hr": 0,
+        "so": 7,
+        "bb": 0,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 660844,
+      "pa": 53,
+      "avg": 0.163,
+      "obp": 0.321,
+      "slg": 0.209,
+      "ops": 0.53,
+      "iso": 0.046,
+      "babip": 0.292,
+      "k_pct": 35.8,
+      "bb_pct": 18.9,
+      "name": "Leo Rivas",
+      "position": "2B",
+      "xwoba": 0.232,
+      "xba": 0.126,
+      "xslg": 0.154,
+      "ev95pct": 4.2,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".071",
+          "obp": ".188",
+          "slg": ".071",
+          "ops": ".259",
+          "pa": 16
+        },
+        "vs_rhp": {
+          "avg": ".207",
+          "obp": ".378",
+          "slg": ".276",
+          "ops": ".654",
+          "pa": 37
+        }
+      },
+      "last_7": {
+        "avg": ".167",
+        "obp": ".423",
+        "slg": ".167",
+        "ops": ".590",
+        "babip": ".333",
+        "pa": 26
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 641487,
+      "pa": 51,
+      "avg": 0.179,
+      "obp": 0.373,
+      "slg": 0.205,
+      "ops": 0.578,
+      "iso": 0.026,
+      "babip": 0.25,
+      "k_pct": 21.6,
+      "bb_pct": 21.6,
+      "name": "J.P. Crawford",
+      "position": "SS",
+      "xwoba": 0.361,
+      "xba": 0.222,
+      "xslg": 0.363,
+      "ev95pct": 35.7,
+      "barrel_pct": 7.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".125",
+          "obp": ".364",
+          "slg": ".125",
+          "ops": ".489",
+          "pa": 11
+        },
+        "vs_rhp": {
+          "avg": ".194",
+          "obp": ".375",
+          "slg": ".226",
+          "ops": ".601",
+          "pa": 40
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".433",
+        "slg": ".227",
+        "ops": ".660",
+        "babip": ".278",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 22,
+        "avg": ".150",
+        "obp": ".227",
+        "slg": ".300",
+        "h": 3,
+        "hr": 1,
+        "so": 4,
+        "bb": 2,
+        "sample_sufficient": true
+      }
+    }
+  ]
+}

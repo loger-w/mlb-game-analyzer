@@ -1,0 +1,116 @@
+{
+  "team": "Toronto Blue Jays",
+  "team_id": 141,
+  "active_roster": {
+    "pitchers": [
+      "Braydon Fisher",
+      "Dylan Cease",
+      "Eric Lauer",
+      "Jeff Hoffman",
+      "Joe Mantiply",
+      "Kevin Gausman",
+      "Louis Varland",
+      "Mason Fluharty",
+      "Max Scherzer",
+      "Patrick Corbin",
+      "Spencer Miles",
+      "Tommy Nance",
+      "Tyler Rogers"
+    ],
+    "position_players": [
+      "Andrés Giménez",
+      "Brandon Valenzuela",
+      "Daulton Varsho",
+      "Davis Schneider",
+      "Eloy Jiménez",
+      "Ernie Clement",
+      "Jesús Sánchez",
+      "Kazuma Okamoto",
+      "Lenyn Sosa",
+      "Myles Straw",
+      "Nathan Lukes",
+      "Tyler Heineman",
+      "Vladimir Guerrero Jr."
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Addison Barger",
+      "status": "Injured 10-Day",
+      "position": "Third Base"
+    },
+    {
+      "name": "Alejandro Kirk",
+      "status": "Injured 10-Day",
+      "position": "Catcher"
+    },
+    {
+      "name": "Anthony Santander",
+      "status": "Injured 60-Day",
+      "position": "Outfielder"
+    },
+    {
+      "name": "Bowden Francis",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Cody Ponce",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "George Springer",
+      "status": "Injured 10-Day",
+      "position": "Outfielder"
+    },
+    {
+      "name": "José Berríos",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Lazaro Estrada",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Shane Bieber",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Trey Yesavage",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Yimi García",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    }
+  ],
+  "not_active_40man": [
+    "Adam Macko",
+    "Brendon Little",
+    "Chase Lee",
+    "Jake Bloss",
+    "Jonatan Clase",
+    "Ricky Tiedemann",
+    "Tyler Fitzgerald"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 11,
+    "total_40man_not_active": 7
+  },
+  "player_check": {
+    "query": "Eric Lauer",
+    "on_active_roster": true,
+    "on_injured_list": false,
+    "on_40man_not_active": false,
+    "found": true
+  }
+}

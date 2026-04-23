@@ -1,0 +1,205 @@
+{
+  "date": "2026-04-19",
+  "game_time": "2026-04-19T18:10:00Z",
+  "game": "St. Louis Cardinals vs Houston Astros",
+  "home_team": "Houston Astros",
+  "away_team": "St. Louis Cardinals",
+  "home_sp": "Mike Burrows",
+  "away_sp": "Matthew Liberatore",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Daikin Park",
+  "game_pk": 824205,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 67.2,
+  "xgb_raw_home_pct": 67.2,
+  "predicted_home_score": 7.2,
+  "predicted_away_score": 5.9,
+  "predicted_total": 13.1,
+  "formula_home_score": 7.2,
+  "formula_away_score": 5.9,
+  "pre_signal_total": 13.1,
+  "adjusted_total": 13.1,
+  "signal_adjustments": {},
+  "ou_line": null,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "ml_rec": null,
+  "ml_stars": null,
+  "original_ml_stars": null,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "home-cold-offense"
+  ],
+  "park_factor": 100.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 5,
+  "actual_away_score": 7,
+  "actual_total": 12,
+  "kelly": {
+    "snapshot_source": "2026-04-19 10:04 ET",
+    "snapshot_time_et": "2026-04-19 10:04 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "HOME",
+      "decimal_odds": 1.7,
+      "raw_kelly_pct": 20.3,
+      "fractional_pct": 5.075,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-19_10-00-ET.json",
+    "snapshot_time_et": "2026-04-19 10:04 ET",
+    "snapshot_time_utc": "2026-04-19T14:04:25.331586+00:00",
+    "commence_utc": "2026-04-19T18:10:00Z",
+    "minutes_before_first_pitch": 245,
+    "ml": {
+      "home": {
+        "decimal": 1.7,
+        "american": -143,
+        "implied_pct": 58.8
+      },
+      "away": {
+        "decimal": 2.3,
+        "american": 130,
+        "implied_pct": 43.5
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.93,
+        "american": -108,
+        "implied_pct": 51.8
+      },
+      "under": {
+        "decimal": 1.96,
+        "american": -104,
+        "implied_pct": 51.0
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.46,
+        "american": 146,
+        "implied_pct": 40.7,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.61,
+        "american": -164,
+        "implied_pct": 62.1,
+        "point": 1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-18_16-00-ET.json",
+    "rec_snapshot": "2026-04-19_10-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": -10,
+      "ou_cents": -5,
+      "ou_point_delta": -0.5,
+      "rl_home_cents": -2
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": false,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [
+    "closing_stale:245min"
+  ],
+  "closing_line_source": "2026-04-19_10-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 245,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 1.7,
+        "american": -143,
+        "implied_pct": 58.8
+      },
+      "away": {
+        "decimal": 2.3,
+        "american": 130,
+        "implied_pct": 43.5
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.93,
+        "american": -108,
+        "implied_pct": 51.8
+      },
+      "under": {
+        "decimal": 1.96,
+        "american": -104,
+        "implied_pct": 51.0
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.46,
+        "american": 146,
+        "implied_pct": 40.7,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.61,
+        "american": -164,
+        "implied_pct": 62.1,
+        "point": 1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": 0,
+      "pct_no_vig": 0.0,
+      "direction": "HOME",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 0,
+    "ou_cents": 0,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 0
+  }
+}

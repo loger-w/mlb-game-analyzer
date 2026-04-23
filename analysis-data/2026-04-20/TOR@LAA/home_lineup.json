@@ -1,0 +1,494 @@
+{
+  "team": "LAA",
+  "team_id": 108,
+  "tier": "🟡 Average",
+  "avg_ops": 0.744,
+  "avg_xwoba": 0.325,
+  "avg_babip": 0.261,
+  "avg_k_pct": 24.8,
+  "avg_bb_pct": 11.9,
+  "over_under_lean": 1,
+  "recent_heat": "🔥 Hot",
+  "chain": {
+    "obp_top3": 0.372,
+    "slg_mid": 0.407
+  },
+  "lineup": [
+    {
+      "mlbam_id": 687263,
+      "pa": 108,
+      "avg": 0.244,
+      "obp": 0.37,
+      "slg": 0.467,
+      "ops": 0.837,
+      "iso": 0.223,
+      "babip": 0.309,
+      "k_pct": 27.8,
+      "bb_pct": 15.7,
+      "name": "Zach Neto",
+      "position": "SS",
+      "xwoba": 0.334,
+      "xba": 0.204,
+      "xslg": 0.422,
+      "ev95pct": 40.0,
+      "barrel_pct": 11.7,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".294",
+          "obp": ".478",
+          "slg": ".471",
+          "ops": ".949",
+          "pa": 23
+        },
+        "vs_rhp": {
+          "avg": ".233",
+          "obp": ".341",
+          "slg": ".466",
+          "ops": ".807",
+          "pa": 85
+        }
+      },
+      "last_7": {
+        "avg": ".231",
+        "obp": ".375",
+        "slg": ".308",
+        "ops": ".683",
+        "babip": ".429",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".400",
+        "obp": ".400",
+        "slg": "1.600",
+        "h": 2,
+        "hr": 2,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 545361,
+      "pa": 102,
+      "avg": 0.234,
+      "obp": 0.422,
+      "slg": 0.558,
+      "ops": 0.98,
+      "iso": 0.324,
+      "babip": 0.216,
+      "k_pct": 18.6,
+      "bb_pct": 22.5,
+      "name": "Mike Trout",
+      "position": "RF",
+      "xwoba": 0.49,
+      "xba": 0.289,
+      "xslg": 0.734,
+      "ev95pct": 46.6,
+      "barrel_pct": 25.9,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".286",
+          "obp": ".474",
+          "slg": ".643",
+          "ops": "1.117",
+          "pa": 19
+        },
+        "vs_rhp": {
+          "avg": ".222",
+          "obp": ".410",
+          "slg": ".540",
+          "ops": ".950",
+          "pa": 83
+        }
+      },
+      "last_7": {
+        "avg": ".292",
+        "obp": ".469",
+        "slg": ".958",
+        "ops": "1.427",
+        "babip": ".133",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 9,
+        "avg": ".111",
+        "obp": ".111",
+        "slg": ".111",
+        "h": 1,
+        "hr": 0,
+        "so": 6,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 666176,
+      "pa": 99,
+      "avg": 0.28,
+      "obp": 0.323,
+      "slg": 0.398,
+      "ops": 0.721,
+      "iso": 0.118,
+      "babip": 0.324,
+      "k_pct": 19.2,
+      "bb_pct": 3.0,
+      "name": "Jo Adell",
+      "position": "CF",
+      "xwoba": 0.32,
+      "xba": 0.268,
+      "xslg": 0.42,
+      "ev95pct": 51.4,
+      "barrel_pct": 5.4,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".370",
+          "obp": ".452",
+          "slg": ".704",
+          "ops": "1.156",
+          "pa": 31
+        },
+        "vs_rhp": {
+          "avg": ".242",
+          "obp": ".265",
+          "slg": ".273",
+          "ops": ".538",
+          "pa": 68
+        }
+      },
+      "last_7": {
+        "avg": ".241",
+        "obp": ".313",
+        "slg": ".517",
+        "ops": ".830",
+        "babip": ".250",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 694384,
+      "pa": 92,
+      "avg": 0.222,
+      "obp": 0.304,
+      "slg": 0.321,
+      "ops": 0.625,
+      "iso": 0.099,
+      "babip": 0.239,
+      "k_pct": 14.1,
+      "bb_pct": 10.9,
+      "name": "Nolan Schanuel",
+      "position": "1B",
+      "xwoba": 0.306,
+      "xba": 0.258,
+      "xslg": 0.341,
+      "ev95pct": 30.4,
+      "barrel_pct": 1.4,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".235",
+          "obp": ".300",
+          "slg": ".235",
+          "ops": ".535",
+          "pa": 20
+        },
+        "vs_rhp": {
+          "avg": ".219",
+          "obp": ".306",
+          "slg": ".344",
+          "ops": ".650",
+          "pa": 72
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".344",
+        "slg": ".250",
+        "ops": ".594",
+        "babip": ".280",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": "1.333",
+        "h": 1,
+        "hr": 1,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 624585,
+      "pa": 83,
+      "avg": 0.232,
+      "obp": 0.337,
+      "slg": 0.493,
+      "ops": 0.83,
+      "iso": 0.261,
+      "babip": 0.297,
+      "k_pct": 34.9,
+      "bb_pct": 12.0,
+      "name": "Jorge Soler",
+      "position": "RF",
+      "xwoba": 0.328,
+      "xba": 0.216,
+      "xslg": 0.421,
+      "ev95pct": 42.9,
+      "barrel_pct": 14.3,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".231",
+          "obp": ".429",
+          "slg": ".462",
+          "ops": ".891",
+          "pa": 21
+        },
+        "vs_rhp": {
+          "avg": ".232",
+          "obp": ".306",
+          "slg": ".500",
+          "ops": ".806",
+          "pa": 62
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".333",
+        "slg": ".643",
+        "ops": ".976",
+        "babip": ".250",
+        "pa": 33
+      },
+      "bvp": {
+        "pa": 8,
+        "avg": ".000",
+        "obp": ".250",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 3,
+        "bb": 2,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 660162,
+      "pa": 79,
+      "avg": 0.169,
+      "obp": 0.316,
+      "slg": 0.338,
+      "ops": 0.654,
+      "iso": 0.169,
+      "babip": 0.229,
+      "k_pct": 34.2,
+      "bb_pct": 15.2,
+      "name": "Yoán Moncada",
+      "position": "3B",
+      "xwoba": 0.279,
+      "xba": 0.144,
+      "xslg": 0.296,
+      "ev95pct": 42.1,
+      "barrel_pct": 7.9,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".056",
+          "obp": ".227",
+          "slg": ".056",
+          "ops": ".283",
+          "pa": 22
+        },
+        "vs_rhp": {
+          "avg": ".213",
+          "obp": ".351",
+          "slg": ".447",
+          "ops": ".798",
+          "pa": 57
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".300",
+        "slg": ".444",
+        "ops": ".744",
+        "babip": ".250",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".333",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 681351,
+      "pa": 75,
+      "avg": 0.21,
+      "obp": 0.333,
+      "slg": 0.274,
+      "ops": 0.607,
+      "iso": 0.064,
+      "babip": 0.261,
+      "k_pct": 21.3,
+      "bb_pct": 12.0,
+      "name": "Logan O'Hoppe",
+      "position": "C",
+      "xwoba": 0.307,
+      "xba": 0.189,
+      "xslg": 0.329,
+      "ev95pct": 40.4,
+      "barrel_pct": 10.6,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".333",
+          "slg": ".313",
+          "ops": ".646",
+          "pa": 18
+        },
+        "vs_rhp": {
+          "avg": ".196",
+          "obp": ".333",
+          "slg": ".261",
+          "ops": ".594",
+          "pa": 57
+        }
+      },
+      "last_7": {
+        "avg": ".217",
+        "obp": ".333",
+        "slg": ".391",
+        "ops": ".724",
+        "babip": ".250",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 672724,
+      "pa": 70,
+      "avg": 0.274,
+      "obp": 0.348,
+      "slg": 0.532,
+      "ops": 0.88,
+      "iso": 0.258,
+      "babip": 0.31,
+      "k_pct": 22.9,
+      "bb_pct": 8.6,
+      "name": "Oswald Peraza",
+      "position": "3B",
+      "xwoba": 0.338,
+      "xba": 0.268,
+      "xslg": 0.423,
+      "ev95pct": 38.3,
+      "barrel_pct": 10.6,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".381",
+          "obp": ".381",
+          "slg": ".905",
+          "ops": "1.286",
+          "pa": 22
+        },
+        "vs_rhp": {
+          "avg": ".220",
+          "obp": ".333",
+          "slg": ".341",
+          "ops": ".674",
+          "pa": 48
+        }
+      },
+      "last_7": {
+        "avg": ".400",
+        "obp": ".500",
+        "slg": ".800",
+        "ops": "1.300",
+        "babip": ".429",
+        "pa": 24
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 666139,
+      "pa": 66,
+      "avg": 0.155,
+      "obp": 0.231,
+      "slg": 0.328,
+      "ops": 0.559,
+      "iso": 0.173,
+      "babip": 0.167,
+      "k_pct": 30.3,
+      "bb_pct": 7.6,
+      "name": "Josh Lowe",
+      "position": "RF",
+      "xwoba": 0.226,
+      "xba": 0.149,
+      "xslg": 0.265,
+      "ev95pct": 22.5,
+      "barrel_pct": 7.5,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".083",
+          "obp": ".083",
+          "slg": ".083",
+          "ops": ".166",
+          "pa": 13
+        },
+        "vs_rhp": {
+          "avg": ".174",
+          "obp": ".264",
+          "slg": ".391",
+          "ops": ".655",
+          "pa": 53
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".227",
+        "slg": ".350",
+        "ops": ".577",
+        "babip": ".188",
+        "pa": 22
+      },
+      "bvp": {
+        "pa": 4,
+        "avg": ".250",
+        "obp": ".250",
+        "slg": ".250",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

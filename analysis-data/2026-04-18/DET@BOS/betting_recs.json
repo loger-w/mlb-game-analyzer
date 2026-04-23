@@ -1,0 +1,41 @@
+{
+  "moneyline": {
+    "direction": "PASS",
+    "stars": 0,
+    "line": null,
+    "model_pct": 0,
+    "implied_pct": 0,
+    "edge": 0,
+    "reasons": [
+      "INSUFFICIENT_SAMPLE",
+      "MODEL_DIVERGENCE",
+      "EARLY_SEASON_CAP"
+    ],
+    "risk": "HIGH"
+  },
+  "run_line": {
+    "direction": "PASS",
+    "stars": 0,
+    "line": "1+50",
+    "model_pct": 0,
+    "implied_pct": 0,
+    "edge": 0,
+    "reasons": [
+      "LOW_CONFIDENCE"
+    ],
+    "risk": "HIGH"
+  },
+  "over_under": {
+    "direction": "PASS",
+    "stars": 0,
+    "line": 7.4,
+    "model_pct": 0,
+    "implied_pct": 0,
+    "edge": 0,
+    "reasons": [
+      "WEATHER_SUPPRESSIVE",
+      "INSUFFICIENT_SAMPLE"
+    ],
+    "risk": "HIGH"
+  }
+}

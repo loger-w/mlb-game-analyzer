@@ -1,0 +1,225 @@
+{
+  "date": "2026-04-21",
+  "game_time": "2026-04-21T22:40:00Z",
+  "game": "Milwaukee Brewers vs Detroit Tigers",
+  "home_team": "Detroit Tigers",
+  "away_team": "Milwaukee Brewers",
+  "home_sp": "Keider Montero",
+  "away_sp": "Kyle Harrison",
+  "home_sp_starts": 3,
+  "away_sp_starts": 3,
+  "venue": "Comerica Park",
+  "game_pk": 824290,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 79.8,
+  "xgb_raw_home_pct": 79.8,
+  "predicted_home_score": 4.2,
+  "predicted_away_score": 3.8,
+  "predicted_total": 8.0,
+  "formula_home_score": 4.4,
+  "formula_away_score": 1.7,
+  "pre_signal_total": 6.1,
+  "adjusted_total": 8.0,
+  "signal_adjustments": {
+    "mil_bullpen_il": 0.2,
+    "montero_xera_regression": 0.3,
+    "mil_lineup_il": -0.3,
+    "park_comerica": -0.05,
+    "weather_mild_hr": 0.1
+  },
+  "ou_line": 8.5,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "rl_override": {
+    "active": false,
+    "path": null,
+    "diff": null,
+    "stars": null,
+    "tags": null,
+    "kelly_available": null,
+    "warnings": null,
+    "thresholds": null
+  },
+  "ml_rec": "DET",
+  "ml_stars": 2,
+  "original_ml_stars": 2,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "divergent",
+    "early-season",
+    "yoy-validated-montero",
+    "home-pitching-hot",
+    "away-cold-offense"
+  ],
+  "park_factor": 99.0,
+  "temperature_f": 64.0,
+  "wind_mph": 13.0,
+  "wind_direction": "out-to-left",
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 4,
+  "actual_away_score": 12,
+  "actual_total": 16,
+  "kelly": {
+    "snapshot_source": "2026-04-21 08:22 ET",
+    "snapshot_time_et": "2026-04-21 08:22 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "HOME",
+      "decimal_odds": 1.9,
+      "raw_kelly_pct": 57.38,
+      "fractional_pct": 14.345,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-21_08-00-ET.json",
+    "snapshot_time_et": "2026-04-21 08:22 ET",
+    "snapshot_time_utc": "2026-04-21T12:22:57.956141+00:00",
+    "commence_utc": "2026-04-21T22:40:00Z",
+    "minutes_before_first_pitch": 617,
+    "ml": {
+      "home": {
+        "decimal": 1.9,
+        "american": -111,
+        "implied_pct": 52.6
+      },
+      "away": {
+        "decimal": 2.03,
+        "american": 103,
+        "implied_pct": 49.3
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.99,
+        "american": -101,
+        "implied_pct": 50.3
+      },
+      "under": {
+        "decimal": 1.9,
+        "american": -111,
+        "implied_pct": 52.6
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.82,
+        "american": 182,
+        "implied_pct": 35.5,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.49,
+        "american": -204,
+        "implied_pct": 67.1,
+        "point": 1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-20_20-00-ET.json",
+    "rec_snapshot": "2026-04-21_08-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": 5,
+      "ou_cents": -202,
+      "ou_point_delta": 0.0,
+      "rl_home_cents": 6
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "LOSS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [
+    "closing_stale:554min"
+  ],
+  "closing_line_source": "2026-04-21_09-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 554,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 1.93,
+        "american": -108,
+        "implied_pct": 51.8
+      },
+      "away": {
+        "decimal": 2.0,
+        "american": 100,
+        "implied_pct": 50.0
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.95,
+        "american": -105,
+        "implied_pct": 51.3
+      },
+      "under": {
+        "decimal": 1.93,
+        "american": -108,
+        "implied_pct": 51.8
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.85,
+        "american": 185,
+        "implied_pct": 35.1,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.48,
+        "american": -208,
+        "implied_pct": 67.6,
+        "point": 1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": -3,
+      "pct_no_vig": -0.39,
+      "direction": "HOME",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 3,
+    "ou_cents": -4,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 3
+  }
+}

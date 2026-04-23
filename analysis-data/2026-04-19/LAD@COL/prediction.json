@@ -1,0 +1,211 @@
+{
+  "date": "2026-04-19",
+  "game_time": "2026-04-19T19:10:00Z",
+  "game": "Los Angeles Dodgers vs Colorado Rockies",
+  "home_team": "Colorado Rockies",
+  "away_team": "Los Angeles Dodgers",
+  "home_sp": "Michael Lorenzen",
+  "away_sp": "Roki Sasaki",
+  "home_sp_starts": 4,
+  "away_sp_starts": 3,
+  "venue": "Coors Field",
+  "game_pk": 824371,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 31.8,
+  "xgb_raw_home_pct": 31.8,
+  "predicted_home_score": 4.9,
+  "predicted_away_score": 6.9,
+  "predicted_total": 11.8,
+  "formula_home_score": 7.5,
+  "formula_away_score": 7.9,
+  "pre_signal_total": 15.4,
+  "adjusted_total": 11.8,
+  "signal_adjustments": {
+    "lad_bullpen_3plus_il": 1.0,
+    "lorenzen_yoy_decline": 0.5,
+    "lorenzen_vs_lhb": 0.5,
+    "sasaki_bb_high": 0.4,
+    "betts_edman_il": -0.6,
+    "pages_babip_regression": -0.2,
+    "col_k_vs_sasaki_fs": -0.3,
+    "coors_april_adjusted": -0.3
+  },
+  "ou_line": 12.0,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 0,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "early-season",
+    "insufficient-sample",
+    "bullpen-depleted",
+    "pass-all"
+  ],
+  "park_factor": 115.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 9,
+  "actual_away_score": 6,
+  "actual_total": 15,
+  "kelly": {
+    "snapshot_source": "2026-04-19 09:42 ET",
+    "snapshot_time_et": "2026-04-19 09:42 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ml_guardrail_pass",
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-19_09-00-ET.json",
+    "snapshot_time_et": "2026-04-19 09:42 ET",
+    "snapshot_time_utc": "2026-04-19T13:42:03.266006+00:00",
+    "commence_utc": "2026-04-19T19:10:00Z",
+    "minutes_before_first_pitch": 327,
+    "ml": {
+      "home": {
+        "decimal": 3.39,
+        "american": 239,
+        "implied_pct": 29.5
+      },
+      "away": {
+        "decimal": 1.37,
+        "american": -270,
+        "implied_pct": 73.0
+      }
+    },
+    "ou": {
+      "point": 11.5,
+      "over": {
+        "decimal": 1.9,
+        "american": -111,
+        "implied_pct": 52.6
+      },
+      "under": {
+        "decimal": 1.99,
+        "american": -101,
+        "implied_pct": 50.3
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 2.57,
+        "american": 157,
+        "implied_pct": 38.9,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 1.57,
+        "american": -175,
+        "implied_pct": 63.7,
+        "point": -1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-18_16-00-ET.json",
+    "rec_snapshot": "2026-04-19_09-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": -14,
+      "ou_cents": -214,
+      "ou_point_delta": 0.5,
+      "rl_home_cents": -4
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": false,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [
+    "closing_stale:305min"
+  ],
+  "closing_line_source": "2026-04-19_10-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 305,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 3.39,
+        "american": 239,
+        "implied_pct": 29.5
+      },
+      "away": {
+        "decimal": 1.37,
+        "american": -270,
+        "implied_pct": 73.0
+      }
+    },
+    "ou": {
+      "point": 11.5,
+      "over": {
+        "decimal": 1.89,
+        "american": -112,
+        "implied_pct": 52.9
+      },
+      "under": {
+        "decimal": 1.99,
+        "american": -101,
+        "implied_pct": 50.3
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 2.57,
+        "american": 157,
+        "implied_pct": 38.9,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 1.57,
+        "american": -175,
+        "implied_pct": 63.7,
+        "point": -1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": 0,
+      "pct_no_vig": 0.0,
+      "direction": "AWAY",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 0,
+    "ou_cents": -1,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 0
+  }
+}

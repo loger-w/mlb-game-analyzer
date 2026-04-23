@@ -1,0 +1,113 @@
+{
+  "date": "2026-04-22",
+  "game_time": "2026-04-22T20:10:00Z",
+  "game": "Athletics vs Seattle Mariners",
+  "home_team": "Seattle Mariners",
+  "away_team": "Athletics",
+  "home_sp": "Logan Gilbert",
+  "away_sp": "Aaron Civale",
+  "home_sp_starts": 5,
+  "away_sp_starts": 4,
+  "venue": "T-Mobile Park",
+  "game_pk": 823147,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 54.3,
+  "xgb_raw_home_pct": 45.2,
+  "predicted_home_score": 4.6,
+  "predicted_away_score": 2.4,
+  "predicted_total": 7.0,
+  "formula_home_score": 4.1,
+  "formula_away_score": 3.0,
+  "pre_signal_total": 7.1,
+  "adjusted_total": 7.0,
+  "signal_adjustments": {
+    "civale_xera_gap": 0.5,
+    "gilbert_bad_luck": -0.7,
+    "oak_hot_7d": 0.2,
+    "sea_bullpen_edge": -0.1,
+    "rooker_il": -0.1
+  },
+  "ou_line": 7.9,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "SEA",
+  "run_line": null,
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "mid-diff+strong-tag",
+    "diff": 2.2,
+    "stars": 2,
+    "tags": [
+      "home-pitching-slump"
+    ],
+    "kelly_available": true,
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 0,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "divergent",
+    "early-season",
+    "civale-xera-mirage",
+    "gilbert-bad-luck",
+    "home-pitching-slump",
+    "xgb-predicted-divergent"
+  ],
+  "park_factor": 97.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 5,
+  "actual_away_score": 4,
+  "actual_total": 9,
+  "kelly": {
+    "snapshot_source": "2026-04-22 04:00 ET",
+    "snapshot_time_et": "2026-04-22 04:00 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "favorite_side": "HOME_-1.5",
+      "favorite": {
+        "raw_kelly_pct": 0,
+        "fractional_pct": 0.0,
+        "capped_pct": 0.0,
+        "units": 0.0,
+        "decimal_odds": 2.19,
+        "side": "HOME_-1.5"
+      },
+      "underdog": {
+        "raw_kelly_pct": 31.54,
+        "fractional_pct": 7.885,
+        "capped_pct": 3.0,
+        "units": 3.0,
+        "decimal_odds": 1.752,
+        "side": "AWAY_+1.5"
+      }
+    },
+    "warnings": [
+      "ml_guardrail_pass",
+      "ou_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "LOSS"
+}

@@ -1,0 +1,107 @@
+{
+  "name": "Shohei Ohtani",
+  "mlbam_id": 660271,
+  "age": 31,
+  "birth_date": "1994-07-05",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "season": {
+    "era": 2.87,
+    "whip": 1.04,
+    "k_pct": 33.0,
+    "bb_pct": 4.8,
+    "k_bb_pct": 28.2,
+    "fip": 1.87,
+    "xfip": 2.06,
+    "hr_per_9": 0.57,
+    "gb_pct": 51.9,
+    "ip": 47.0,
+    "games": 14,
+    "gs": 14
+  },
+  "expected": {
+    "xera": 2.55,
+    "xwoba": 0.25,
+    "xba": 0.214
+  },
+  "statcast": {
+    "avg_velo": 91.5,
+    "max_velo": 101.7,
+    "hard_hit_pct": 22.2,
+    "pitch_types": {
+      "FF": 39.9,
+      "ST": 21.1,
+      "SL": 11.0,
+      "CU": 10.5,
+      "FC": 6.4
+    },
+    "barrel_pct": 3.4,
+    "ev95percent": 30.8,
+    "whiff_pct": 15.0,
+    "csw_pct": 30.6
+  },
+  "game_log": [
+    {
+      "date": "2025-06-16",
+      "opponent": "San Diego Padres",
+      "ip": 1.0,
+      "era": 9.0,
+      "k": 0,
+      "bb": 0,
+      "h": 2,
+      "er": 1,
+      "pitches": 28,
+      "strikes": 16
+    },
+    {
+      "date": "2025-06-22",
+      "opponent": "Washington Nationals",
+      "ip": 1.0,
+      "era": 4.5,
+      "k": 2,
+      "bb": 0,
+      "h": 0,
+      "er": 0,
+      "pitches": 18,
+      "strikes": 12
+    },
+    {
+      "date": "2025-06-28",
+      "opponent": "Kansas City Royals",
+      "ip": 2.0,
+      "era": 2.25,
+      "k": 1,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 27,
+      "strikes": 20
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".179",
+      "obp": ".217",
+      "slg": ".205",
+      "k": 32,
+      "bb": 4,
+      "bf": 83,
+      "k_pct": 38.6,
+      "bb_pct": 4.8
+    },
+    "vs_right": {
+      "avg": ".265",
+      "obp": ".295",
+      "slg": ".398",
+      "k": 30,
+      "bb": 5,
+      "bf": 105,
+      "k_pct": 28.6,
+      "bb_pct": 4.8
+    }
+  },
+  "prior_year": {
+    "error": "No 2024 pitching stats found"
+  }
+}

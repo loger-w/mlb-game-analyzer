@@ -1,0 +1,79 @@
+{
+  "moneyline": {
+    "home_ml": 114,
+    "away_ml": -123,
+    "home_implied_pct": 46.7,
+    "away_implied_pct": 55.2,
+    "model_home_pct": 42.0,
+    "model_away_pct": 58.0,
+    "home_ev": -10.12,
+    "away_ev": 5.15,
+    "direction": "AWAY",
+    "prob_diff": 2.8,
+    "kelly": 6.34,
+    "kelly_fractional": {
+      "raw_kelly_pct": 6.34,
+      "fractional_pct": 1.585,
+      "capped_pct": 1.585,
+      "units": 1.5,
+      "direction": "AWAY"
+    },
+    "stars": 2
+  },
+  "over_under": {
+    "type": "weighted_ou",
+    "base_line": 9,
+    "split_pct": 55,
+    "effective_line": 9.28,
+    "odds_hk": 0.94,
+    "predicted_total": 8.8,
+    "diff_vs_effective": -0.47,
+    "scenarios_over": {
+      "總分 >=10（全贏）": "+94.0",
+      "總分 = 9（輸 55%）": "-55.0",
+      "總分 <=8（全輸）": "-100"
+    },
+    "scenarios_under": {
+      "總分 <=8（全贏）": "+94.0",
+      "總分 = 9（贏 55%）": "+51.7",
+      "總分 >=10（全輸）": "-100"
+    },
+    "ev_over_pct": -11.01,
+    "ev_under_pct": 5.25,
+    "prob_breakdown": {
+      "P(<=8)": 47.3,
+      "P(=9)": 8.8,
+      "P(>=10)": 43.8
+    },
+    "direction": "PASS",
+    "stars": 0
+  },
+  "run_line": {
+    "predicted_margin": -0.8,
+    "direction": "NEUTRAL",
+    "stars": 1,
+    "kelly_fractional": null
+  },
+  "consistency_check": "PASS",
+  "quarter_handicap": {
+    "type": "quarter_handicap",
+    "low_line": 1.0,
+    "high_line": 1.5,
+    "split_pct": 50,
+    "giving_side": "away",
+    "odds_hk": 0.95,
+    "predicted_margin": 0.8,
+    "scenarios_giving": {
+      "贏 2+ 分（全贏）": "+95.0",
+      "贏 1 分（輸 50%）": "-50.0",
+      "輸（全輸）": "-100"
+    },
+    "scenarios_receiving": {
+      "贏（全贏）": "+95.0",
+      "輸 1 分（贏 50%）": "+47.5",
+      "輸 2+ 分（全輸）": "-100"
+    },
+    "direction": "LEAN_RECEIVING",
+    "stars": 2
+  }
+}

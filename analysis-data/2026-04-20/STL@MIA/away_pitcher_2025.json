@@ -1,0 +1,118 @@
+{
+  "name": "Michael McGreevy",
+  "mlbam_id": 700241,
+  "age": 25,
+  "birth_date": "2000-07-08",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "season": {
+    "era": 4.42,
+    "whip": 1.25,
+    "k_pct": 14.5,
+    "bb_pct": 5.0,
+    "k_bb_pct": 9.5,
+    "fip": 4.15,
+    "xfip": 3.91,
+    "hr_per_9": 1.13,
+    "gb_pct": 53.0,
+    "ip": 95.66666666666667,
+    "games": 17,
+    "gs": 16
+  },
+  "expected": {
+    "xera": 4.67,
+    "xwoba": 0.333,
+    "xba": 0.274
+  },
+  "statcast": {
+    "avg_velo": 88.3,
+    "max_velo": 95.9,
+    "hard_hit_pct": 26.6,
+    "pitch_types": {
+      "FF": 25.4,
+      "SI": 22.6,
+      "ST": 20.4,
+      "CU": 11.7,
+      "CH": 9.9
+    },
+    "barrel_pct": 8.8,
+    "ev95percent": 40.1,
+    "whiff_pct": 7.9,
+    "csw_pct": 24.1
+  },
+  "game_log": [
+    {
+      "date": "2025-05-04",
+      "opponent": "New York Mets",
+      "ip": 5.666666666666667,
+      "era": 0.0,
+      "k": 5,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 80,
+      "strikes": 50
+    },
+    {
+      "date": "2025-06-08",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 6.0,
+      "era": 3.09,
+      "k": 5,
+      "bb": 0,
+      "h": 8,
+      "er": 4,
+      "pitches": 101,
+      "strikes": 65
+    },
+    {
+      "date": "2025-06-19",
+      "opponent": "Chicago White Sox",
+      "ip": 5.0,
+      "era": 2.7,
+      "k": 5,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 76,
+      "strikes": 47
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".318",
+      "obp": ".368",
+      "slg": ".543",
+      "k": 27,
+      "bb": 14,
+      "bf": 190,
+      "k_pct": 14.2,
+      "bb_pct": 7.4
+    },
+    "vs_right": {
+      "avg": ".225",
+      "obp": ".255",
+      "slg": ".325",
+      "k": 31,
+      "bb": 6,
+      "bf": 210,
+      "k_pct": 14.8,
+      "bb_pct": 2.9
+    }
+  },
+  "prior_year": {
+    "era": 1.96,
+    "whip": 0.78,
+    "k_pct": 20.9,
+    "bb_pct": 2.3,
+    "k_bb_pct": 18.6,
+    "fip": 2.36,
+    "xfip": 2.53,
+    "hr_per_9": 0.39,
+    "gb_pct": 73.5,
+    "ip": 23.0,
+    "games": 4,
+    "gs": 3
+  }
+}

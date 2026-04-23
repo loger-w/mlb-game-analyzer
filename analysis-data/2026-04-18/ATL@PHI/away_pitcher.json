@@ -1,0 +1,117 @@
+{
+  "name": "Chris Sale",
+  "mlbam_id": 519242,
+  "age": 37,
+  "birth_date": "1989-03-30",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "🟡 Solid Starter",
+  "season": {
+    "era": 3.27,
+    "whip": 1.05,
+    "k_pct": 24.7,
+    "bb_pct": 6.7,
+    "k_bb_pct": 18.0,
+    "fip": 4.28,
+    "xfip": 3.16,
+    "hr_per_9": 1.64,
+    "gb_pct": 48.8,
+    "ip": 22.0,
+    "games": 4,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 3.87,
+    "xwoba": 0.315,
+    "xba": 0.226
+  },
+  "statcast": {
+    "avg_velo": 87.0,
+    "max_velo": 99.4,
+    "hard_hit_pct": 20.0,
+    "pitch_types": {
+      "SL": 41.0,
+      "FF": 41.0,
+      "CH": 11.0,
+      "SI": 7.0
+    },
+    "barrel_pct": 10.3,
+    "ev95percent": 32.8,
+    "whiff_pct": 12.2,
+    "csw_pct": 31.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Kansas City Royals",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 3,
+      "h": 3,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Athletics",
+      "ip": 6.0,
+      "era": 0.75,
+      "k": 3,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 79,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Los Angeles Angels",
+      "ip": 4.0,
+      "era": 3.94,
+      "k": 7,
+      "bb": 2,
+      "h": 5,
+      "er": 6,
+      "pitches": 77,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".313",
+      "obp": ".389",
+      "slg": ".438",
+      "k": 3,
+      "bb": 1,
+      "bf": 18,
+      "k_pct": 16.7,
+      "bb_pct": 5.6
+    },
+    "vs_right": {
+      "avg": ".188",
+      "obp": ".268",
+      "slg": ".375",
+      "k": 19,
+      "bb": 5,
+      "bf": 71,
+      "k_pct": 26.8,
+      "bb_pct": 7.0
+    }
+  },
+  "prior_year": {
+    "era": 2.58,
+    "whip": 1.07,
+    "k_pct": 32.4,
+    "bb_pct": 6.3,
+    "k_bb_pct": 26.1,
+    "fip": 2.38,
+    "xfip": 2.39,
+    "hr_per_9": 0.79,
+    "gb_pct": 44.5,
+    "ip": 125.66666666666667,
+    "games": 21,
+    "gs": 20
+  }
+}

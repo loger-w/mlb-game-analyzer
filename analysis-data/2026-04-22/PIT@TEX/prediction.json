@@ -1,0 +1,91 @@
+{
+  "date": "2026-04-22",
+  "game_time": "2026-04-23T00:05:00Z",
+  "game": "Pittsburgh Pirates vs Texas Rangers",
+  "home_team": "Texas Rangers",
+  "away_team": "Pittsburgh Pirates",
+  "home_sp": "Jack Leiter",
+  "away_sp": "Braxton Ashcraft",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Globe Life Field",
+  "game_pk": 822913,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 52.0,
+  "xgb_raw_home_pct": null,
+  "predicted_home_score": 2.7,
+  "predicted_away_score": 5.0,
+  "predicted_total": 7.7,
+  "formula_home_score": 1.8,
+  "formula_away_score": 4.7,
+  "pre_signal_total": 6.5,
+  "adjusted_total": 7.7,
+  "signal_adjustments": {
+    "sp_small_sample_away": 0.9,
+    "bullpen_il_home": 0.3,
+    "sp_platoon_leiter": 0.2,
+    "sp_hr_regression_home": -0.2
+  },
+  "ou_line": 9.0,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "PIT",
+  "run_line": null,
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "big-diff",
+    "diff": 2.3,
+    "stars": 2,
+    "tags": [],
+    "kelly_available": false,
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "PIT",
+  "ml_stars": 2,
+  "original_ml_stars": 2,
+  "confidence": "MEDIUM",
+  "cross_validation": "NO_ML_MODEL",
+  "tags": [
+    "small-sample",
+    "divergent",
+    "platoon-edge",
+    "home-bullpen-strong"
+  ],
+  "park_factor": 103.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 4,
+  "actual_away_score": 8,
+  "actual_total": 12,
+  "kelly": {
+    "snapshot_source": null,
+    "snapshot_time_et": null,
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "no_matching_snapshot",
+      "no_odds_available"
+    ]
+  },
+  "verified": true,
+  "ml_result": "WIN",
+  "ou_result": "PASS",
+  "run_line_result": "WIN"
+}

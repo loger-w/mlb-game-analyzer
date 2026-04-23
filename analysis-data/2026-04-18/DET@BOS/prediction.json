@@ -1,0 +1,197 @@
+{
+  "date": "2026-04-18",
+  "game_time": "2026-04-18T20:10:00Z",
+  "game": "Detroit Tigers vs Boston Red Sox",
+  "home_team": "Boston Red Sox",
+  "away_team": "Detroit Tigers",
+  "home_sp": "Brayan Bello",
+  "away_sp": "Tarik Skubal",
+  "home_sp_starts": 3,
+  "away_sp_starts": 4,
+  "venue": "Fenway Park",
+  "game_pk": 824775,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 10.6,
+  "predicted_home_score": 2.5,
+  "predicted_away_score": 6.8,
+  "predicted_total": 9.3,
+  "formula_home_score": 2.5,
+  "formula_away_score": 6.8,
+  "adjusted_total": 9.3,
+  "signal_adjustments": {},
+  "ou_line": 7.0,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "PASS",
+  "run_line": "1.5",
+  "run_line_stars": 0,
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 2,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "early-season",
+    "weather-suppressive",
+    "yoy-regression-bello"
+  ],
+  "park_factor": 105.0,
+  "temperature_f": 50.0,
+  "wind_mph": 9.0,
+  "wind_direction": "In",
+  "umpire_name": "Ryan Additon",
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 1,
+  "actual_away_score": 4,
+  "actual_total": 5,
+  "kelly": {
+    "snapshot_source": "2026-04-18 12:30 ET",
+    "snapshot_time_et": "2026-04-18 12:30 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ml_guardrail_pass",
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-18_12-00-ET.json",
+    "snapshot_time_et": "2026-04-18 12:30 ET",
+    "snapshot_time_utc": "2026-04-18T16:30:11.055900+00:00",
+    "commence_utc": "2026-04-18T20:10:00Z",
+    "minutes_before_first_pitch": 219,
+    "ml": {
+      "home": {
+        "decimal": 2.32,
+        "american": 132,
+        "implied_pct": 43.1
+      },
+      "away": {
+        "decimal": 1.7,
+        "american": -143,
+        "implied_pct": 58.8
+      }
+    },
+    "ou": {
+      "point": 7.0,
+      "over": {
+        "decimal": 2.02,
+        "american": 102,
+        "implied_pct": 49.5
+      },
+      "under": {
+        "decimal": 1.87,
+        "american": -115,
+        "implied_pct": 53.5
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.75,
+        "american": -133,
+        "implied_pct": 57.1,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.21,
+        "american": 121,
+        "implied_pct": 45.2,
+        "point": -1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-18_00-00-ET.json",
+    "rec_snapshot": "2026-04-18_12-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": -13,
+      "ou_cents": 222,
+      "ou_point_delta": 0.0,
+      "rl_home_cents": -11
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [],
+  "closing_line_source": "2026-04-18_16-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 9,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 2.26,
+        "american": 126,
+        "implied_pct": 44.2
+      },
+      "away": {
+        "decimal": 1.73,
+        "american": -137,
+        "implied_pct": 57.8
+      }
+    },
+    "ou": {
+      "point": 6.5,
+      "over": {
+        "decimal": 1.85,
+        "american": -118,
+        "implied_pct": 54.1
+      },
+      "under": {
+        "decimal": 2.04,
+        "american": 104,
+        "implied_pct": 49.0
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.7,
+        "american": -143,
+        "implied_pct": 58.8,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.28,
+        "american": 128,
+        "implied_pct": 43.9,
+        "point": -1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": -7,
+      "pct_no_vig": -1.48,
+      "direction": "AWAY",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": -6,
+    "ou_cents": -220,
+    "ou_point_delta": -0.5,
+    "rl_home_cents": -10
+  }
+}

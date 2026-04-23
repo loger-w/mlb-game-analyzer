@@ -1,0 +1,87 @@
+{
+  "date": "2026-04-22",
+  "game_time": "2026-04-23T01:45:00Z",
+  "game": "Los Angeles Dodgers vs San Francisco Giants",
+  "home_team": "San Francisco Giants",
+  "away_team": "Los Angeles Dodgers",
+  "home_sp": "Tyler Mahle",
+  "away_sp": "Shohei Ohtani",
+  "home_sp_starts": 4,
+  "away_sp_starts": 3,
+  "venue": "Oracle Park",
+  "game_pk": 823231,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 48.5,
+  "xgb_raw_home_pct": null,
+  "predicted_home_score": 3.0,
+  "predicted_away_score": 7.0,
+  "predicted_total": 10.0,
+  "formula_home_score": 2.0,
+  "formula_away_score": 8.2,
+  "pre_signal_total": 10.2,
+  "adjusted_total": 10.0,
+  "signal_adjustments": {
+    "bullpen_il_sf": 0.5,
+    "bullpen_il_lad": 1.0
+  },
+  "ou_line": 8.5,
+  "ou_rec": "OVER",
+  "ou_stars": 3,
+  "run_line_rec": "LAD",
+  "run_line": null,
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "big-diff",
+    "diff": 4.0,
+    "stars": 2,
+    "tags": [],
+    "kelly_available": false,
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "LAD",
+  "ml_stars": 2,
+  "original_ml_stars": 3,
+  "confidence": "MEDIUM",
+  "cross_validation": "NO_ML_MODEL",
+  "tags": [
+    "bullpen-heavy-il",
+    "small-sample-sp",
+    "ace-vs-below-avg"
+  ],
+  "park_factor": 96.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 3,
+  "actual_away_score": 0,
+  "actual_total": 3,
+  "kelly": {
+    "snapshot_source": null,
+    "snapshot_time_et": null,
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "no_matching_snapshot",
+      "no_odds_available"
+    ]
+  },
+  "verified": true,
+  "ml_result": "LOSS",
+  "ou_result": "LOSS",
+  "run_line_result": "LOSS"
+}

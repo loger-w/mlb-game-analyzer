@@ -1,0 +1,140 @@
+{
+  "date": "2026-04-19",
+  "game_time": "2026-04-19T17:40:00Z",
+  "game": "Baltimore Orioles vs Cleveland Guardians",
+  "home_team": "Cleveland Guardians",
+  "away_team": "Baltimore Orioles",
+  "home_sp": "Joey Cantillo",
+  "away_sp": "Trevor Rogers",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Progressive Field",
+  "game_pk": 824452,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 34.8,
+  "xgb_raw_home_pct": 34.8,
+  "predicted_home_score": 3.1,
+  "predicted_away_score": 3.4,
+  "predicted_total": 6.5,
+  "formula_home_score": 3.1,
+  "formula_away_score": 3.4,
+  "pre_signal_total": 6.5,
+  "adjusted_total": 6.5,
+  "signal_adjustments": {},
+  "ou_line": null,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "ml_rec": null,
+  "ml_stars": null,
+  "original_ml_stars": null,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "home-hot-offense",
+    "home-pitching-slump"
+  ],
+  "park_factor": 98.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": null,
+  "actual_home_score": null,
+  "actual_away_score": null,
+  "actual_total": null,
+  "kelly": {
+    "snapshot_source": "2026-04-19 08:00 ET",
+    "snapshot_time_et": "2026-04-19 08:00 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "AWAY",
+      "decimal_odds": 2.01,
+      "raw_kelly_pct": 30.74,
+      "fractional_pct": 7.685,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": false,
+  "recommendation_snapshot": {
+    "source": "2026-04-19_08-00-ET.json",
+    "snapshot_time_et": "2026-04-19 08:00 ET",
+    "snapshot_time_utc": "2026-04-19T12:00:02.739112+00:00",
+    "commence_utc": "2026-04-19T17:40:00Z",
+    "minutes_before_first_pitch": 339,
+    "ml": {
+      "home": {
+        "decimal": 1.9,
+        "american": -111,
+        "implied_pct": 52.6
+      },
+      "away": {
+        "decimal": 2.01,
+        "american": 101,
+        "implied_pct": 49.8
+      }
+    },
+    "ou": {
+      "point": 7.0,
+      "over": {
+        "decimal": 1.98,
+        "american": -102,
+        "implied_pct": 50.5
+      },
+      "under": {
+        "decimal": 1.89,
+        "american": -112,
+        "implied_pct": 52.9
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.95,
+        "american": 195,
+        "implied_pct": 33.9,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.44,
+        "american": -227,
+        "implied_pct": 69.4,
+        "point": 1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-18_16-00-ET.json",
+    "rec_snapshot": "2026-04-19_08-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": 22,
+      "ou_cents": -206,
+      "ou_point_delta": -0.5,
+      "rl_home_cents": 32
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "name": "Shohei Ohtani",
+  "mlbam_id": 660271,
+  "age": 31,
+  "birth_date": "1994-07-05",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "season": {
+    "era": 0.5,
+    "whip": 0.72,
+    "k_pct": 26.1,
+    "bb_pct": 8.7,
+    "k_bb_pct": 17.4,
+    "fip": 2.1,
+    "xfip": 3.4,
+    "hr_per_9": 0.0,
+    "gb_pct": 51.4,
+    "ip": 18.0,
+    "games": 3,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 2.3,
+    "xwoba": 0.244,
+    "xba": 0.185
+  },
+  "statcast": {
+    "avg_velo": 89.4,
+    "max_velo": 100.4,
+    "hard_hit_pct": 19.2,
+    "pitch_types": {
+      "FF": 40.7,
+      "ST": 19.0,
+      "CU": 17.6,
+      "FS": 11.8,
+      "SI": 8.0
+    },
+    "barrel_pct": 4.5,
+    "ev95percent": 38.6,
+    "whiff_pct": 14.6,
+    "csw_pct": 29.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Cleveland Guardians",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 3,
+      "h": 1,
+      "er": 0,
+      "pitches": 87,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Toronto Blue Jays",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 2,
+      "bb": 1,
+      "h": 4,
+      "er": 0,
+      "pitches": 96,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "New York Mets",
+      "ip": 6.0,
+      "era": 0.5,
+      "k": 10,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 63
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".083",
+      "obp": ".175",
+      "slg": ".167",
+      "k": 8,
+      "bb": 3,
+      "bf": 40,
+      "k_pct": 20.0,
+      "bb_pct": 7.5
+    },
+    "vs_right": {
+      "avg": ".154",
+      "obp": ".241",
+      "slg": ".231",
+      "k": 10,
+      "bb": 3,
+      "bf": 29,
+      "k_pct": 34.5,
+      "bb_pct": 10.3
+    }
+  },
+  "prior_year": {
+    "era": 2.87,
+    "whip": 1.04,
+    "k_pct": 33.0,
+    "bb_pct": 4.8,
+    "k_bb_pct": 28.2,
+    "fip": 1.87,
+    "xfip": 2.06,
+    "hr_per_9": 0.57,
+    "gb_pct": 51.9,
+    "ip": 47.0,
+    "games": 14,
+    "gs": 14
+  }
+}

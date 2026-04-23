@@ -1,0 +1,126 @@
+{
+  "team": "Baltimore Orioles",
+  "team_id": 110,
+  "active_roster": {
+    "pitchers": [
+      "Albert Suárez",
+      "Anthony Nunez",
+      "Cameron Foster",
+      "Chris Bassitt",
+      "Dean Kremer",
+      "Grant Wolfram",
+      "Kyle Bradish",
+      "Rico Garcia",
+      "Ryan Helsley",
+      "Shane Baz",
+      "Trevor Rogers",
+      "Tyler Wells",
+      "Yennier Cano"
+    ],
+    "position_players": [
+      "Blaze Alexander",
+      "Coby Mayo",
+      "Colton Cowser",
+      "Dylan Beavers",
+      "Gunnar Henderson",
+      "Jeremiah Jackson",
+      "Johnathan Rodríguez",
+      "Leody Taveras",
+      "Pete Alonso",
+      "Sam Huff",
+      "Samuel Basallo",
+      "Taylor Ward",
+      "Weston Wilson"
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Adley Rutschman",
+      "status": "Injured 10-Day",
+      "position": "Catcher"
+    },
+    {
+      "name": "Andrew Kittredge",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Colin Selby",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Dietrich Enns",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Félix Bautista",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Heston Kjerstad",
+      "status": "Injured 10-Day",
+      "position": "Outfielder"
+    },
+    {
+      "name": "Jackson Holliday",
+      "status": "Injured 10-Day",
+      "position": "Second Base"
+    },
+    {
+      "name": "Jordan Westburg",
+      "status": "Injured 60-Day",
+      "position": "Third Base"
+    },
+    {
+      "name": "Keegan Akin",
+      "status": "Injured 15-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Ryan Mountcastle",
+      "status": "Injured 60-Day",
+      "position": "First Base"
+    },
+    {
+      "name": "Tyler O'Neill",
+      "status": "Injured 7-Day",
+      "position": "Outfielder"
+    },
+    {
+      "name": "Yaramil Hiraldo",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    },
+    {
+      "name": "Zach Eflin",
+      "status": "Injured 60-Day",
+      "position": "Pitcher"
+    }
+  ],
+  "not_active_40man": [
+    "Brandon Young",
+    "Cade Povich",
+    "Christian Encarnacion-Strand",
+    "Jose Espada",
+    "Maverick Handley",
+    "Nick Raquet",
+    "Reed Trimble"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 13,
+    "total_40man_not_active": 7
+  },
+  "player_check": {
+    "query": "Dean Kremer",
+    "on_active_roster": true,
+    "on_injured_list": false,
+    "on_40man_not_active": false,
+    "found": true
+  }
+}

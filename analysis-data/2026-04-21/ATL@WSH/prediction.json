@@ -1,0 +1,244 @@
+{
+  "date": "2026-04-21",
+  "game_time": "2026-04-21T22:45:00Z",
+  "game": "Atlanta Braves vs Washington Nationals",
+  "home_team": "Washington Nationals",
+  "away_team": "Atlanta Braves",
+  "home_sp": "Foster Griffin",
+  "away_sp": "Reynaldo L籀pez",
+  "home_sp_starts": 4,
+  "away_sp_starts": 4,
+  "venue": "Nationals Park",
+  "game_pk": 822747,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 43.1,
+  "xgb_raw_home_pct": 63.6,
+  "predicted_home_score": 3.2,
+  "predicted_away_score": 6.2,
+  "predicted_total": 9.4,
+  "formula_home_score": 4.9,
+  "formula_away_score": 5.1,
+  "pre_signal_total": 10.0,
+  "adjusted_total": 9.4,
+  "signal_adjustments": {
+    "bullpen_gap": 0.3,
+    "pitcher_era_xera_divergent": -0.2,
+    "weather_cool": -0.2,
+    "lineup_hot_atl": 0.1
+  },
+  "ou_line": 9.5,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "ATL",
+  "run_line": "-1",
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "big-diff",
+    "diff": 3.0,
+    "stars": 2,
+    "tags": [
+      "away-pitching-slump",
+      "home-bullpen-slump"
+    ],
+    "kelly_available": true,
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 2,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "divergent",
+    "rotation-depleted-wsh",
+    "small-sample-ip",
+    "atl-hot-streak",
+    "home-bullpen-slump",
+    "away-pitching-slump",
+    "away-bullpen-strong"
+  ],
+  "park_factor": 101.0,
+  "temperature_f": 55.0,
+  "wind_mph": 13.0,
+  "wind_direction": "in-LF",
+  "umpire_name": "Erich Bacchus",
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 11,
+  "actual_away_score": 4,
+  "actual_total": 15,
+  "kelly": {
+    "snapshot_source": "2026-04-21 09:25 ET",
+    "snapshot_time_et": "2026-04-21 09:25 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "favorite_side": "AWAY_-1.5",
+      "favorite": {
+        "raw_kelly_pct": 0,
+        "fractional_pct": 0.0,
+        "capped_pct": 0.0,
+        "units": 0.0,
+        "decimal_odds": 1.952,
+        "side": "AWAY_-1.5"
+      },
+      "underdog": {
+        "raw_kelly_pct": 55.97,
+        "fractional_pct": 13.9925,
+        "capped_pct": 3.0,
+        "units": 3.0,
+        "decimal_odds": 1.952,
+        "side": "HOME_+1.5"
+      }
+    },
+    "warnings": [
+      "ml_guardrail_pass",
+      "ou_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-21_09-00-ET.json",
+    "snapshot_time_et": "2026-04-21 09:25 ET",
+    "snapshot_time_utc": "2026-04-21T13:25:03.373612+00:00",
+    "commence_utc": "2026-04-21T22:45:00Z",
+    "minutes_before_first_pitch": 559,
+    "ml": {
+      "home": {
+        "decimal": 2.22,
+        "american": 122,
+        "implied_pct": 45.0
+      },
+      "away": {
+        "decimal": 1.76,
+        "american": -132,
+        "implied_pct": 56.8
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.92,
+        "american": -109,
+        "implied_pct": 52.1
+      },
+      "under": {
+        "decimal": 1.97,
+        "american": -103,
+        "implied_pct": 50.8
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.73,
+        "american": -137,
+        "implied_pct": 57.8,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.24,
+        "american": 124,
+        "implied_pct": 44.6,
+        "point": -1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-20_20-00-ET.json",
+    "rec_snapshot": "2026-04-21_09-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": 349,
+      "ou_cents": -1,
+      "ou_point_delta": -0.5,
+      "rl_home_cents": 0
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": true,
+      "rlm_suspected": false
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "PASS",
+  "ou_result": "PASS",
+  "run_line_result": "LOSS",
+  "clv_warnings": [
+    "closing_stale:559min"
+  ],
+  "closing_line_source": "2026-04-21_09-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 559,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 2.22,
+        "american": 122,
+        "implied_pct": 45.0
+      },
+      "away": {
+        "decimal": 1.76,
+        "american": -132,
+        "implied_pct": 56.8
+      }
+    },
+    "ou": {
+      "point": 8.5,
+      "over": {
+        "decimal": 1.92,
+        "american": -109,
+        "implied_pct": 52.1
+      },
+      "under": {
+        "decimal": 1.97,
+        "american": -103,
+        "implied_pct": 50.8
+      }
+    },
+    "rl": {
+      "favorite_side": "AWAY",
+      "home": {
+        "decimal": 1.73,
+        "american": -137,
+        "implied_pct": 57.8,
+        "point": 1.5
+      },
+      "away": {
+        "decimal": 2.24,
+        "american": 124,
+        "implied_pct": 44.6,
+        "point": -1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": 0,
+      "pct_no_vig": 0.0,
+      "direction": "AWAY",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 0,
+    "ou_cents": 0,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 0
+  }
+}

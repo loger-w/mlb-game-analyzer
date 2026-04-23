@@ -1,0 +1,118 @@
+{
+  "name": "Max Scherzer",
+  "mlbam_id": 453286,
+  "age": 41,
+  "birth_date": "1984-07-27",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "⚪ Below Average",
+  "season": {
+    "era": 9.58,
+    "whip": 1.45,
+    "k_pct": 19.6,
+    "bb_pct": 8.7,
+    "k_bb_pct": 10.9,
+    "fip": 7.55,
+    "xfip": 4.53,
+    "hr_per_9": 3.48,
+    "gb_pct": 23.8,
+    "ip": 10.333333333333334,
+    "games": 3,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 9.03,
+    "xwoba": 0.447,
+    "xba": 0.315
+  },
+  "statcast": {
+    "avg_velo": 88.1,
+    "max_velo": 95.8,
+    "hard_hit_pct": 18.9,
+    "pitch_types": {
+      "FF": 48.8,
+      "SL": 19.6,
+      "CH": 14.2,
+      "CU": 12.3,
+      "FC": 5.0
+    },
+    "barrel_pct": 18.8,
+    "ev95percent": 43.8,
+    "whiff_pct": 8.8,
+    "csw_pct": 23.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Colorado Rockies",
+      "ip": 6.0,
+      "era": 1.5,
+      "k": 4,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 83,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 2.0,
+      "era": 3.38,
+      "k": 2,
+      "bb": 1,
+      "h": 2,
+      "er": 2,
+      "pitches": 36,
+      "strikes": 24
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Minnesota Twins",
+      "ip": 2.3333333333333335,
+      "era": 9.58,
+      "k": 3,
+      "bb": 2,
+      "h": 5,
+      "er": 8,
+      "pitches": 68,
+      "strikes": 41
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".280",
+      "obp": ".367",
+      "slg": ".520",
+      "k": 5,
+      "bb": 3,
+      "bf": 30,
+      "k_pct": 16.7,
+      "bb_pct": 10.0
+    },
+    "vs_right": {
+      "avg": ".267",
+      "obp": ".313",
+      "slg": ".667",
+      "k": 4,
+      "bb": 1,
+      "bf": 16,
+      "k_pct": 25.0,
+      "bb_pct": 6.2
+    }
+  },
+  "prior_year": {
+    "era": 5.19,
+    "whip": 1.29,
+    "k_pct": 22.9,
+    "bb_pct": 6.4,
+    "k_bb_pct": 16.5,
+    "fip": 4.89,
+    "xfip": 3.71,
+    "hr_per_9": 2.01,
+    "gb_pct": 31.1,
+    "ip": 85.0,
+    "games": 17,
+    "gs": 17
+  }
+}

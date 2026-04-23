@@ -1,0 +1,107 @@
+{
+  "date": "2026-04-22",
+  "game_time": "2026-04-22T17:10:00Z",
+  "game": "Houston Astros vs Cleveland Guardians",
+  "home_team": "Cleveland Guardians",
+  "away_team": "Houston Astros",
+  "home_sp": "Tanner Bibee",
+  "away_sp": "Peter Lambert",
+  "home_sp_starts": 5,
+  "away_sp_starts": 1,
+  "venue": "Progressive Field",
+  "game_pk": 824449,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 73.6,
+  "xgb_raw_home_pct": 73.6,
+  "predicted_home_score": 6.0,
+  "predicted_away_score": 5.5,
+  "predicted_total": 11.5,
+  "formula_home_score": 0.6,
+  "formula_away_score": 5.1,
+  "pre_signal_total": 5.7,
+  "adjusted_total": 11.5,
+  "signal_adjustments": {
+    "bullpen_il_away": 0.3
+  },
+  "ou_line": 8.5,
+  "ou_rec": "OVER",
+  "ou_stars": 4,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "rl_override": {
+    "active": false,
+    "path": null,
+    "diff": null,
+    "stars": null,
+    "tags": null,
+    "kelly_available": null,
+    "warnings": null,
+    "thresholds": null
+  },
+  "ml_rec": "CLE",
+  "ml_stars": 3,
+  "original_ml_stars": 3,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "away-bullpen-slump",
+    "away-pitching-slump",
+    "early-season",
+    "home-pitching-slump",
+    "home-bullpen-slump"
+  ],
+  "park_factor": 98.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "AWAY",
+  "actual_home_score": 0,
+  "actual_away_score": 2,
+  "actual_total": 2,
+  "kelly": {
+    "snapshot_source": "2026-04-22 04:00 ET",
+    "snapshot_time_et": "2026-04-22 04:00 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "HOME",
+      "decimal_odds": 1.74,
+      "raw_kelly_pct": 37.96,
+      "fractional_pct": 9.49,
+      "capped_pct": 3.0,
+      "units": 3.0
+    },
+    "ou": {
+      "direction": "UNDER",
+      "line": 8.5,
+      "over": {
+        "decimal_odds": 1.94,
+        "raw_kelly_pct": 0,
+        "fractional_pct": 0.0,
+        "capped_pct": 0.0,
+        "units": 0.0
+      },
+      "under": {
+        "decimal_odds": 1.94,
+        "raw_kelly_pct": 45.02,
+        "fractional_pct": 11.255,
+        "capped_pct": 3.0,
+        "units": 3.0
+      }
+    },
+    "rl": null,
+    "warnings": [
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "ml_result": "LOSS",
+  "ou_result": "LOSS",
+  "run_line_result": "PASS"
+}

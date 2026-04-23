@@ -1,0 +1,208 @@
+{
+  "date": "2026-04-18",
+  "game_time": "2026-04-18T17:35:00Z",
+  "game": "Kansas City Royals vs New York Yankees",
+  "home_team": "New York Yankees",
+  "away_team": "Kansas City Royals",
+  "home_sp": "Will Warren",
+  "away_sp": "Noah Cameron",
+  "home_sp_starts": 4,
+  "away_sp_starts": 3,
+  "venue": "Yankee Stadium",
+  "game_pk": 823558,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 59.3,
+  "predicted_home_score": 5.3,
+  "predicted_away_score": 3.2,
+  "predicted_total": 8.5,
+  "formula_home_score": 4.4,
+  "formula_away_score": 3.6,
+  "adjusted_total": 8.5,
+  "signal_adjustments": {
+    "kc_bullpen_core_il": 0.4,
+    "park_lf_wind": 0.2,
+    "warren_xera_divergence": -0.2
+  },
+  "ou_line": 8.0,
+  "ou_rec": "PASS",
+  "ou_stars": null,
+  "run_line_rec": "PASS",
+  "run_line": null,
+  "run_line_stars": null,
+  "ml_rec": "NYY",
+  "ml_stars": 2,
+  "original_ml_stars": 3,
+  "confidence": "LOW",
+  "cross_validation": "INSUFFICIENT_SAMPLE",
+  "tags": [
+    "early-season",
+    "insufficient-sample",
+    "home-pitching-slump",
+    "away-cold-offense"
+  ],
+  "park_factor": 104.0,
+  "temperature_f": 67.0,
+  "wind_mph": 10.0,
+  "wind_direction": "out to LF",
+  "umpire_name": null,
+  "umpire_ou_rate": null,
+  "actual_winner": "HOME",
+  "actual_home_score": 13,
+  "actual_away_score": 4,
+  "actual_total": 17,
+  "kelly": {
+    "snapshot_source": "2026-04-18 08:00 ET",
+    "snapshot_time_et": "2026-04-18 08:00 ET",
+    "params": {
+      "divisor": 4,
+      "cap_pct": 3.0,
+      "unit_size_pct": 1.0
+    },
+    "ml": {
+      "direction": "AWAY",
+      "decimal_odds": 2.53,
+      "raw_kelly_pct": 1.94,
+      "fractional_pct": 0.485,
+      "capped_pct": 0.485,
+      "units": 0.5
+    },
+    "ou": null,
+    "rl": null,
+    "warnings": [
+      "ou_guardrail_pass",
+      "rl_guardrail_pass"
+    ]
+  },
+  "verified": true,
+  "recommendation_snapshot": {
+    "source": "2026-04-18_08-00-ET.json",
+    "snapshot_time_et": "2026-04-18 08:00 ET",
+    "snapshot_time_utc": "2026-04-18T12:00:02.749212+00:00",
+    "commence_utc": "2026-04-18T17:35:00Z",
+    "minutes_before_first_pitch": 334,
+    "ml": {
+      "home": {
+        "decimal": 1.59,
+        "american": -169,
+        "implied_pct": 62.9
+      },
+      "away": {
+        "decimal": 2.53,
+        "american": 153,
+        "implied_pct": 39.5
+      }
+    },
+    "ou": {
+      "point": 8.0,
+      "over": {
+        "decimal": 1.88,
+        "american": -114,
+        "implied_pct": 53.2
+      },
+      "under": {
+        "decimal": 1.98,
+        "american": -102,
+        "implied_pct": 50.5
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.23,
+        "american": 123,
+        "implied_pct": 44.8,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.72,
+        "american": -139,
+        "implied_pct": 58.1,
+        "point": 1.5
+      }
+    }
+  },
+  "line_movement": {
+    "open_snapshot": "2026-04-18_00-00-ET.json",
+    "rec_snapshot": "2026-04-18_08-00-ET.json",
+    "close_snapshot": null,
+    "open_to_rec": {
+      "ml_home_cents": -8,
+      "ou_cents": 0,
+      "ou_point_delta": 0.0,
+      "rl_home_cents": -7
+    },
+    "rec_to_close": null,
+    "flags": {
+      "steam_toward_rec": false,
+      "rlm_suspected": true
+    },
+    "granularity_note": "4h snapshot cadence; sub-hour steam not detectable",
+    "warnings": [
+      "no_close_snapshot"
+    ]
+  },
+  "ml_result": "WIN",
+  "ou_result": "PASS",
+  "run_line_result": "PASS",
+  "clv_warnings": [],
+  "closing_line_source": "2026-04-18_13-00-ET.json",
+  "closing_line_minutes_before_first_pitch": 3,
+  "closing_line": {
+    "ml": {
+      "home": {
+        "decimal": 1.63,
+        "american": -159,
+        "implied_pct": 61.3
+      },
+      "away": {
+        "decimal": 2.46,
+        "american": 146,
+        "implied_pct": 40.7
+      }
+    },
+    "ou": {
+      "point": 8.0,
+      "over": {
+        "decimal": 2.0,
+        "american": 100,
+        "implied_pct": 50.0
+      },
+      "under": {
+        "decimal": 1.89,
+        "american": -112,
+        "implied_pct": 52.9
+      }
+    },
+    "rl": {
+      "favorite_side": "HOME",
+      "home": {
+        "decimal": 2.37,
+        "american": 137,
+        "implied_pct": 42.2,
+        "point": -1.5
+      },
+      "away": {
+        "decimal": 1.66,
+        "american": -152,
+        "implied_pct": 60.2,
+        "point": 1.5
+      }
+    }
+  },
+  "clv": {
+    "ml": null,
+    "ou": null,
+    "rl": {
+      "cents": -14,
+      "pct_no_vig": -2.35,
+      "direction": "HOME",
+      "bet_placed": false
+    }
+  },
+  "rec_to_close": {
+    "ml_home_cents": 10,
+    "ou_cents": 214,
+    "ou_point_delta": 0.0,
+    "rl_home_cents": 14
+  }
+}
