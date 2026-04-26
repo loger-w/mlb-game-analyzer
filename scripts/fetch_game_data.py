@@ -85,6 +85,46 @@ def compute_trend_arrows(rs10: float, ra10: float, rs30: float, ra30: float) -> 
     }
 
 
+def detect_current_series(games: list[dict], current_opp_team_name: str, current_game_date: str) -> list[dict]:
+    """從 games[0]（最近一場）往後掃描，連續對 current_opp_team_name 的場次收集為當前系列賽。
+    結果按日期升序排列；同日多場（doubleheader）標 (DH-N)。
+    games 應是 home_recent 格式（按日期 desc 排序）。
+
+    返回 list[dict]，每個 dict 含原 game 欄位 + "label"（如 "G1" 或 "G2 (DH-2)"）。
+    若 games 空或 games[0] 對手不同，返回空 list。
+    """
+    matched = []
+    for g in games:
+        if g.get("opponent") == current_opp_team_name:
+            matched.append(g)
+        else:
+            break
+    if not matched:
+        return []
+
+    # 升序排列；同日內保留原順序
+    matched.sort(key=lambda g: g["date"])
+
+    # 偵測 doubleheader：同日 ≥ 2 場
+    by_date: dict[str, int] = {}
+    for g in matched:
+        by_date[g["date"]] = by_date.get(g["date"], 0) + 1
+
+    result = []
+    g_num = 1
+    dh_counters: dict[str, int] = {}
+    for g in matched:
+        date = g["date"]
+        if by_date[date] > 1:
+            dh_counters[date] = dh_counters.get(date, 0) + 1
+            label = f"G{g_num} (DH-{dh_counters[date]})"
+        else:
+            label = f"G{g_num}"
+        result.append({**g, "label": label})
+        g_num += 1
+    return result
+
+
 def resolve_team_id(team_input: str) -> int:
     """將隊名（中文/英文/縮寫）轉為 team ID"""
     # Direct match (abbreviation or Chinese)
