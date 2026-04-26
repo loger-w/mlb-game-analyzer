@@ -66,7 +66,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 ## Phase 2：投打驗證與資料擴充
 
 - **Step 1（🔒 阻塞）**：先發必須在 active roster + IL 已記錄，未通過不得進 Step 2
-- **Step 2 閘門**：`role_change` 處理；`|ERA−xERA| ≥ 1.5` 或 `IP<30 且 ERA 比 prior year 低 ≥1.0` → 必須補跑 `pitcher_stats.py --year {YYYY-1}` 做 YoY Statcast 對比
+- **Step 2 閘門**：`role_change` 處理；ERA-xERA / IP 落差閘門 → 詳見 `reference/workflow.md` §Phase 2 Step 2
 
 → 詳細：`reference/workflow.md#phase-2投打驗證與資料擴充`
 
@@ -85,7 +85,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 ## Phase 4：預測輸出
 
 - **執行**：`predict.py --save`（自動寫 `prediction.json` 到 `$GAME_DIR`）
-- **紀律 D1-D5**：D1 模型覆蓋（α 實作：ml_lean vs formula_lean）/ D2 信號修正 / D3 同場互斥 / D5 比分一致性 — 由 `predict.py` guardrail 自動執行，完整條文見 `reference/prediction.md`「分析紀律」
+- **紀律 D1-D5**：D1 formula 方向 / D2 信號修正 / D3 同場互斥 / D5 比分一致性 — 由 `predict.py` guardrail 自動執行，完整條文見 `reference/prediction.md`「分析紀律」
 - **賽後彙總 / 回填**：轉交 `mlb-post-game-review`
 
 > ⚠️ 寫 `prediction.json` 前確認 `--game-data` 指向 `analysis-data/<date>/<AWAY>@<HOME>/merged.json`；不對就停下來重新定位，不得自建替代目錄。
@@ -94,21 +94,10 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 
 ---
 
-## Common Pitfalls & Edge Cases
+## Common Pitfalls
 
-最高優先 3 項技術漏洞（與 flags-checklist 不重疊；完整清單見下方連結）：
-
-1. **Hot/Cold 判定未查 BABIP**
-   近 7 天 BABIP 極端值（≤ .260 或 ≥ .370）預期回歸 ~.300，未檢查 = Hot/Cold 判定無效。
-
-2. **ERA vs xERA 落差 ≥ 1.5 僅寫成「風險提示」**
-   可驗證的現象不得掛成條件性風險。必須補跑 `pitcher_stats.py --year {YYYY-1}` + YoY Statcast 對比。
-
-3. **Phase 3 summary 寫入「初步盤口推薦」或星級**
-   盤口推薦 single source = Phase 4 `prediction.json`。Summary 只放基本面，避免 stale。
-
-→ 完整紀律 flag（13 條）：`reference/flags-checklist.md`
-→ Edge Cases + 修正係數：`reference/pitfalls.md`
+紀律違規 13 條 + 觸發處理：見 `reference/flags-checklist.md`。
+邊界條件（Coors 4 月、Doubleheader、TJ 復出等）：見 `reference/matchup-factors.md` 與 `prediction.md`。
 
 ---
 
@@ -118,6 +107,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 - 承認不確定性：MLB 單場隨機性約 40-45%
 - 明確標注數據來源
 - 修正係數必須基於可搜尋到的研究或數據
+- 使用者質疑結果時：回顧量化信號、獨立驗證後才決定是否修正；不直接妥協
 
 ---
 

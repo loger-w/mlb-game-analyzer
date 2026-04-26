@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MLB Game Predictor — XGBoost 預測 + Log5 交叉驗證 + 信號計分表"""
+"""MLB Game Predictor — Log5 + 期望得分公式 + 信號計分表"""
 
 import argparse
 import glob
@@ -1036,11 +1036,11 @@ def main():
         force_ml_pass = False  # 強制 ml_rec = PASS 旗標
         cap_reasons = []
 
-        # 規則 4：XGBoost 勝率 50-55% → 上限 2
+        # 規則 4：formula 勝率 50-55% → 上限 2
         rec_side_pct = final_pct if result["final"]["recommended_winner"] == "HOME" else (100 - final_pct)
         if 50 <= rec_side_pct < 55:
             ml_stars_cap = min(ml_stars_cap, 2)
-            cap_reasons.append(f"XGBoost 勝率 {rec_side_pct:.1f}%（50-55%）上限 2")
+            cap_reasons.append(f"formula 勝率 {rec_side_pct:.1f}%（50-55%）上限 2")
 
         # F2: 規則 5：方向矛盾（ml_rec 與 predicted_winner 不一致）→ 上限 2
         direction_override = False
@@ -1053,7 +1053,7 @@ def main():
             if (predicted_winner == "HOME" and rec_is_away) or (predicted_winner == "AWAY" and rec_is_home):
                 direction_override = True
                 ml_stars_cap = min(ml_stars_cap, 2)
-                cap_reasons.append(f"ml_rec={args.ml_rec} 與 XGBoost predicted_winner={predicted_winner}({home_abbr if predicted_winner == 'HOME' else away_abbr}) 方向矛盾，上限 2")
+                cap_reasons.append(f"ml_rec={args.ml_rec} 與 formula predicted_winner={predicted_winner}({home_abbr if predicted_winner == 'HOME' else away_abbr}) 方向矛盾，上限 2")
 
         # Y-new-2（Plan B §4.4）：近身戰（|adj 比分差| < 0.5）上限 1 星（cumulative #3）
         ml_stars_cap, y_new_2_reason = apply_close_game_cap(adj_home, adj_away, ml_stars_cap)

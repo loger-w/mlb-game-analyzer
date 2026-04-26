@@ -2,9 +2,9 @@
 
 ## 比分預測方法
 
-> ⚠️ **total_model（xgb_total_model.pkl）訓練資料有結構性缺陷，比分預測不可靠。**
-> 勝率使用 XGBoost win_model，比分使用 formula 公式計算。
-> predict.py 已實作此邏輯：`ml_prediction` 用於勝率，`formula_prediction` 用於比分。
+> 勝率與比分皆來自 `formula_prediction`（Log5 + 期望得分公式）。
+> XGBoost 路徑於 2026-04 重構移除（spec 2026-04-26-mlb-skill-slimming-design）；
+> 舊 `cross_validation` / `ml_prediction` / `xgb_raw_home_pct` 欄位不再產出。
 
 ### 步驟 1 — 計算雙方期望得分
 
@@ -119,15 +119,16 @@ P(win by 2+) = P(win) × P(margin ≥ 2 | win)
 
 ## 分析紀律
 
-### D1：模型覆蓋紀律
+### D1：模型輸出紀律
 
-ML (XGBoost) 與 Log5 (Formula) 方向一致時（即 `ml_lean == formula_lean`），**不得因軟性因素翻轉勝方**（Platoon 劣勢、連勝動能、H2H 等）。
+`formula_prediction.lean`（HOME 或 AWAY）為唯一決定方向的依據。
 
 - 可調整：勝率幅度 ±5%、信心降級、星級降級
 - 可覆蓋：模型未計入的重大因素（先發臨時更換等）、用戶明確要求
-- **不可覆蓋**：方向分歧（`ml_lean != formula_lean`）→ ML 強制 PASS
-- **原則**：模型方向 > 直覺。軟性因素影響幅度，不影響方向。
-- **實作**：`predict.py` 當場比對 `ml_lean` / `formula_lean`，不讀 `cross_validation` 字串（α 實作，見 spec 2026-04-22-mlb-skill-slimming-design.md §3.2）。`cross_validation` 欄位仍寫入（含 `INSUFFICIENT_SAMPLE` / `DIVERGENT` / `CONSISTENT` / `NO_ML_MODEL`）但僅供觀察。
+- 不可覆蓋：軟性因素（Platoon / 連勝動能 / H2H 等）影響強度，不影響方向
+- ML 路徑（XGBoost）於 2026-04 重構移除，`cross_validation` 欄位不再產出
+
+> 預測紀錄歷史檔仍含 `cross_validation` 欄位（pre-2026-04），僅供觀察，新預測不寫入。
 
 ### D2：信號修正紀律
 
@@ -142,7 +143,7 @@ ML (XGBoost) 與 Log5 (Formula) 方向一致時（即 `ml_lean == formula_lean`�
 
 同一場比賽不得同時推薦 ML 勝方 A + A 的受讓（盤口邏輯上互斥會互咬）。
 
-| XGBoost home_win_pct | ML 推薦 | 受讓推薦 |
+| formula home_win_pct | ML 推薦 | 受讓推薦 |
 |----------------------|---------|---------|
 | ≥ 60% | 可推 ML 勝方 | ⛔ 不得推「對方受讓」 |
 | 55%-60% | 二選一（ML 或對方受讓） | 二選一（ML 或對方受讓） |
@@ -226,7 +227,7 @@ CLI override（優先於 snapshot）：
 
 | 市場 | p 來源 | Source / Note |
 |------|-------|---------------|
-| ML | `ml_prediction.home_win_pct / 100`（XGBoost） | 不用 Log5，避免和 cross_validation 紀律打架 |
+| ML | `formula_prediction.log5_pct / 100`（Log5） | 由 P1 重構統一 — XGBoost 已移除 |
 | O/U | `1 − Φ(line; μ=formula_prediction.total, σ=4.5)` | σ=4.5 `[Source: reference/prediction.md D2/D5 baseline; pending empirical calibration from MLB 2020-2024 totals — P2 TODO]` |
 | RL -1.5 | `P(win) × P(margin ≥ 2 \| win)`，後者查表 | 熱門方用**市場 ML** 判定（非 model margin） — C2 修正 |
 
@@ -319,7 +320,6 @@ CLI override（優先於 snapshot）：
   "ml_rec": "XXX",
   "ml_stars": 0,
   "confidence": "HIGH/MEDIUM/LOW",
-  "cross_validation": "CONSISTENT/DIVERGENT/INSUFFICIENT_SAMPLE/NO_ML_MODEL",
   "tags": [],
   "umpire_name": null,
   "umpire_ou_rate": null,

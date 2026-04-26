@@ -171,7 +171,7 @@
 - UNIQLO Field at Dodger Stadium：Runs 98 / HR 121 — 抑制總得分但加成 HR
 
 **近期重大改造**（影響 PF 解讀）：
-- Camden Yards 2025 季前左外野牆移近、降低 → 從投手友善 0.96 → 打者友善
+- Camden Yards 2025 季前左外野牆移近、降低 → 預期由投手友善（96）逐步轉為打者友善（3 年加權尚未反映完整效應）
 - Progressive Field 2024 移除外野貨櫃 → 風洞效應，LHB HR +16%
 - 臨時主場：Athletics（Sutter Health）/ Rays（Steinbrenner）— 樣本期短
 
