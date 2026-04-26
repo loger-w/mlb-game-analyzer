@@ -42,6 +42,24 @@ FULL_NAMES = {
 }
 
 
+# Reverse lookup: team_id → English abbreviation (for summary md output).
+# Excludes Chinese keys via isascii() filter.
+TEAM_ID_TO_ABBR = {tid: abbr for abbr, tid in TEAM_MAP.items() if abbr.isascii() and abbr.isupper()}
+
+
+def team_abbr(team_id: int | None, team_name: str) -> str:
+    """team_id 優先反查 TEAM_ID_TO_ABBR；team_id 為 None 時用 team_name 透過 FULL_NAMES
+    反查；都失敗 fallback 用 team_name 前 3 字大寫。"""
+    if team_id is not None and team_id in TEAM_ID_TO_ABBR:
+        return TEAM_ID_TO_ABBR[team_id]
+    name_lower = (team_name or "").lower()
+    if name_lower in FULL_NAMES:
+        tid = FULL_NAMES[name_lower]
+        if tid in TEAM_ID_TO_ABBR:
+            return TEAM_ID_TO_ABBR[tid]
+    return (team_name or "")[:3].upper()
+
+
 def resolve_team_id(team_input: str) -> int:
     """將隊名（中文/英文/縮寫）轉為 team ID"""
     # Direct match (abbreviation or Chinese)
