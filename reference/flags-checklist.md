@@ -11,7 +11,7 @@
 
 ### 2. BvP 樣本 < 15 PA 硬推結論
 - 觸發：BvP `PA < 15` 但仍寫成趨勢
-- 處理：標註「樣本不足」，不引用。詳見 `matchup-factors.md` §BvP
+- 處理：標註「樣本不足」，不引用。詳見 `matchup-factors.md` §打線分析
 
 ### 3. Hot/Cold 判定未檢查 BABIP
 - 觸發：近 7 天 BABIP `≤ .260` 或 `≥ .370`，未做回歸判定
@@ -53,7 +53,7 @@
 - 觸發：使用者中文 → 報告卻是英文
 - 處理：報告語言對齊使用者；搜尋可用英文
 
-### 13. ERA-xERA 落差 ≥ 1.5 僅寫「風險提示」
+### 13. ERA-xERA 落差僅寫「風險提示」
 - 觸發：`|ERA − xERA| ≥ 1.5` 或 `IP < 30 且 ERA 比 prior_year 低 ≥ 1.0`，但僅寫提示未補跑 YoY
 - 處理：必須補跑 `pitcher_stats.py --year {YYYY-1}`。詳見 `workflow.md` §Phase 2 Step 2
 

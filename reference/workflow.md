@@ -132,7 +132,7 @@ $PYTHON scripts/lineup_analyzer.py --team {客隊} --year YYYY --opposing-pitche
 **Step 2 閘門（腳本輸出後逐項確認）：**
 - [ ] 投手有 `role_change` 標記？→ 是 = ⛔ **僅用先發場次數據，牛棚期 ERA/FIP 不可用於先發評估**
 - [ ] 打線數據僅含 active roster 球員？（比對 Step 1 roster）
-- [ ] **ERA vs xERA 落差閘門**：任一投手 `|ERA − xERA| ≥ 1.5` 或 `IP < 30` 且本季 ERA 比 `prior_year.era` 低 ≥ 1.0 → ⛔ **必須補跑** `pitcher_stats.py --name "..." --year {YYYY-1} -o $GAME_DIR/{side}_pitcher_{YYYY-1}.json` 並執行 YoY Statcast 對比（方法見 `matchup-factors.md#yoy-statcast-驗證`）。未完成不得進 Phase 3；不得以「風險提示」代替驗證（見 `flags-checklist.md` #13）。
+- [ ] **ERA vs xERA 落差閘門**（觸發條件 / 處理見 `flags-checklist.md` §13）：補跑 `pitcher_stats.py --name "..." --year {YYYY-1} -o $GAME_DIR/{side}_pitcher_{YYYY-1}.json`，YoY Statcast 對比方法見 `matchup-factors.md#yoy-statcast-驗證`。未完成不得進 Phase 3；不得以「風險提示」代替驗證。
 
 **B7 TaskCreate 樣板（Plan B 2026-04-22 §4.7，第 3 層 forcing function）：**
 
