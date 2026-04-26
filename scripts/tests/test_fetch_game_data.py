@@ -135,3 +135,49 @@ def test_detect_current_series_doubleheader():
     labels = [g["label"] for g in result]
     assert "G1 (DH-1)" in labels
     assert "G2 (DH-2)" in labels
+
+
+def test_format_streak_context_winning_streak():
+    """連勝 → '連勝對手 → ABBR (MM-DD), ...'，升序排列"""
+    from fetch_game_data import format_streak_context
+    games = [
+        {"date": "2026-04-25", "opponent": "Los Angeles Angels", "is_winner": True},
+        {"date": "2026-04-24", "opponent": "Los Angeles Angels", "is_winner": True},
+        {"date": "2026-04-22", "opponent": "Baltimore Orioles", "is_winner": False},
+    ]
+    result = format_streak_context(games, 2)
+    assert result is not None
+    assert "連勝對手" in result
+    assert "LAA" in result
+    assert "04-24" in result
+    assert "04-25" in result
+    # 升序：04-24 應在 04-25 前
+    assert result.index("04-24") < result.index("04-25")
+
+
+def test_format_streak_context_losing_streak():
+    """連敗 → '連敗對手 → ABBR (MM-DD), ...'"""
+    from fetch_game_data import format_streak_context
+    games = [
+        {"date": "2026-04-25", "opponent": "Kansas City Royals", "is_winner": False},
+        {"date": "2026-04-24", "opponent": "Kansas City Royals", "is_winner": False},
+        {"date": "2026-04-22", "opponent": "Toronto Blue Jays", "is_winner": False},
+    ]
+    result = format_streak_context(games, -3)
+    assert result is not None
+    assert "連敗對手" in result
+    assert "KC" in result
+    assert "TOR" in result
+    # TOR (04-22) 應排在最前（升序）
+    assert result.index("TOR") < result.index("KC")
+
+
+def test_format_streak_context_streak_zero_returns_none():
+    from fetch_game_data import format_streak_context
+    games = [{"date": "2026-04-25", "opponent": "X", "is_winner": True}]
+    assert format_streak_context(games, 0) is None
+
+
+def test_format_streak_context_empty_games_returns_none():
+    from fetch_game_data import format_streak_context
+    assert format_streak_context([], 2) is None

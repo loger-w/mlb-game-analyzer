@@ -125,6 +125,21 @@ def detect_current_series(games: list[dict], current_opp_team_name: str, current
     return result
 
 
+def format_streak_context(games: list[dict], streak: int) -> str | None:
+    """格式化連勝/連敗對手列表（升序）。streak=0 或 games 空回 None。"""
+    if streak == 0 or not games:
+        return None
+    n = abs(streak)
+    label = "連勝對手" if streak > 0 else "連敗對手"
+    items = []
+    for g in games[:n]:
+        abbr = team_abbr(None, g.get("opponent", ""))
+        date_short = g.get("date", "")[5:]  # MM-DD
+        items.append(f"{abbr} ({date_short})")
+    items.reverse()  # games 是 desc → 反轉後為 asc
+    return f"{label} → " + ", ".join(items)
+
+
 def resolve_team_id(team_input: str) -> int:
     """將隊名（中文/英文/縮寫）轉為 team ID"""
     # Direct match (abbreviation or Chinese)
