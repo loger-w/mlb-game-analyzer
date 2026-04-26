@@ -140,6 +140,169 @@ def format_streak_context(games: list[dict], streak: int) -> str | None:
     return f"{label} → " + ", ".join(items)
 
 
+def _fmt_signed(n) -> str:
+    """格式化有號數值。None → '—'；正數加 +；負數用 '−'（U+2212）"""
+    if n is None:
+        return "—"
+    if n > 0:
+        return f"+{n}" if isinstance(n, int) else f"+{n:.2f}"
+    if n < 0:
+        return f"−{abs(n)}" if isinstance(n, int) else f"−{abs(n):.2f}"
+    return "0"
+
+
+def _fmt_streak(s) -> str:
+    if s is None or s == 0:
+        return "0"
+    return f"+{s}" if s > 0 else f"−{abs(s)}"
+
+
+def _fmt_num(n) -> str:
+    if n is None:
+        return "—"
+    return f"{n:.2f}"
+
+
+def _fmt_record_row(d: dict) -> str:
+    rec = d.get("record", "—")
+    rs = _fmt_num(d.get("rs_per_game"))
+    ra = _fmt_num(d.get("ra_per_game"))
+    diff = _fmt_signed(d.get("run_diff"))
+    streak = _fmt_streak(d.get("streak"))
+    return f"{rec}  (RS {rs} / RA {ra} / diff {diff} / streak {streak})"
+
+
+def _fmt_record_row_no_streak(d: dict) -> str:
+    rec = d.get("record", "—")
+    rs = _fmt_num(d.get("rs_per_game"))
+    ra = _fmt_num(d.get("ra_per_game"))
+    diff = _fmt_signed(d.get("run_diff"))
+    return f"{rec} (RS {rs} / RA {ra} / diff {diff})"
+
+
+def format_summary_md(result: dict) -> str:
+    """組合 game_data_summary.md 完整內容。
+    Hard sections（必出現）：比賽資訊 / 戰績摘要 / 趨勢
+    Soft sections（缺資料省略）：當前系列賽 / Streak 脈絡
+    Fail-fast：result.game 缺失或雙方 team_id 缺失 → raise ValueError
+    """
+    if "game" not in result:
+        raise ValueError("result.game missing — cannot generate summary")
+    game = result["game"]
+    home = game.get("home", {})
+    away = game.get("away", {})
+    if not home.get("team_id") or not away.get("team_id"):
+        raise ValueError("home/away team_id missing — cannot generate summary")
+
+    home_abbr = team_abbr(home["team_id"], home.get("team", ""))
+    away_abbr = team_abbr(away["team_id"], away.get("team", ""))
+    game_date = game.get("date", "")[:10]
+
+    lines = [f"# Game Data Summary — {away_abbr} @ {home_abbr} ({game_date})", ""]
+
+    # ========== 比賽資訊（hard） ==========
+    lines += [
+        "## 比賽資訊",
+        f"- 日期 (ET): {game_date}",
+        f"- 開賽 (UTC ISO): {game.get('date', '—')}",
+        f"- 球場: {game.get('venue', '—')}",
+        f"- 狀態: {game.get('status', '—')}",
+        f"- 先發: {away.get('probable_pitcher', 'TBD')} ({away_abbr}) vs {home.get('probable_pitcher', 'TBD')} ({home_abbr})",
+        "",
+    ]
+
+    # ========== 戰績摘要（hard） ==========
+    home_recent = result.get("home_recent", {})
+    away_recent = result.get("away_recent", {})
+    home_30 = result.get("home_recent_30", {})
+    away_30 = result.get("away_recent_30", {})
+    home_season = result.get("home_season", {})
+    away_season = result.get("away_season", {})
+    home_n = result.get("home_season_games_count", 0)
+    away_n = result.get("away_season_games_count", 0)
+
+    lines += [
+        "## 戰績摘要",
+        "",
+        f"| 區間 | {home_abbr}（主） | {away_abbr}（客） |",
+        "|------|---------|----------|",
+        f"| 近 10 場 | {_fmt_record_row(home_recent)} | {_fmt_record_row(away_recent)} |",
+        f"| 近 30 場 | {_fmt_record_row_no_streak(home_30)} | {_fmt_record_row_no_streak(away_30)} |",
+        f"| 本季 | {home_season.get('record', '—')} ({home_n} 場) | {away_season.get('record', '—')} ({away_n} 場) |",
+        "",
+    ]
+
+    # ========== 趨勢（hard） ==========
+    if (home_recent.get("rs_per_game") is not None
+            and home_30.get("rs_per_game") is not None
+            and away_recent.get("rs_per_game") is not None
+            and away_30.get("rs_per_game") is not None):
+        h = compute_trend_arrows(home_recent["rs_per_game"], home_recent["ra_per_game"],
+                                 home_30["rs_per_game"], home_30["ra_per_game"])
+        a = compute_trend_arrows(away_recent["rs_per_game"], away_recent["ra_per_game"],
+                                 away_30["rs_per_game"], away_30["ra_per_game"])
+        lines += [
+            "## 趨勢（近 10 vs 近 30）",
+            f"- {home_abbr}: 攻{h['off_arrow']} (RS {home_recent['rs_per_game']:.2f} vs {home_30['rs_per_game']:.2f}，{_fmt_signed(h['off_delta'])}) | 守{h['def_arrow']} (RA {home_recent['ra_per_game']:.2f} vs {home_30['ra_per_game']:.2f}，{_fmt_signed(h['def_delta'])})",
+            f"- {away_abbr}: 攻{a['off_arrow']} (RS {away_recent['rs_per_game']:.2f} vs {away_30['rs_per_game']:.2f}，{_fmt_signed(a['off_delta'])}) | 守{a['def_arrow']} (RA {away_recent['ra_per_game']:.2f} vs {away_30['ra_per_game']:.2f}，{_fmt_signed(a['def_delta'])})",
+            "",
+            "> 規則：|Δ| ≥ 0.5 才標箭頭。攻↑ = RS 上升；守↓ = RA 上升（防守變差）。",
+            "",
+        ]
+    else:
+        lines += ["## 趨勢（近 10 vs 近 30）", "- —（資料不足）", ""]
+
+    # ========== 當前系列賽（soft） ==========
+    home_games = home_recent.get("games", [])
+    if home_games:
+        away_team_name = away.get("team", "")
+        series = detect_current_series(home_games, away_team_name, game_date)
+        lines.append(f"## 當前系列賽 ({away_abbr} @ {home_abbr})")
+        if not series:
+            lines += [
+                f"- G1 ({game_date[5:]}): 本場",
+                "- 系列累計: 本系列首戰，無前場",
+                "",
+            ]
+        else:
+            home_wins = 0
+            away_wins = 0
+            for g in series:
+                if g.get("is_home"):
+                    home_score, away_score = g.get("team_score", 0), g.get("opp_score", 0)
+                    winner_abbr = home_abbr if g.get("is_winner") else away_abbr
+                else:
+                    home_score, away_score = g.get("opp_score", 0), g.get("team_score", 0)
+                    winner_abbr = away_abbr if g.get("is_winner") else home_abbr
+                if winner_abbr == home_abbr:
+                    home_wins += 1
+                else:
+                    away_wins += 1
+                lines.append(
+                    f"- {g['label']} ({g['date'][5:]}): {home_abbr} {home_score}-{away_score} {away_abbr} → {winner_abbr} 勝"
+                )
+            this_g = f"G{len(series) + 1}"
+            lines.append(f"- {this_g} ({game_date[5:]}): 本場")
+            lines.append(f"- 系列累計: **{home_abbr} {home_wins}-{away_wins} {away_abbr}**")
+            lines.append("")
+
+    # ========== Streak 脈絡（soft） ==========
+    h_streak = home_recent.get("streak") or 0
+    a_streak = away_recent.get("streak") or 0
+    h_ctx = format_streak_context(home_games, h_streak) if home_games else None
+    away_games = away_recent.get("games", [])
+    a_ctx = format_streak_context(away_games, a_streak) if away_games else None
+    if h_ctx or a_ctx:
+        lines.append("## Streak 脈絡")
+        if h_ctx:
+            lines.append(f"- {home_abbr} {_fmt_streak(h_streak)}: {h_ctx}")
+        if a_ctx:
+            lines.append(f"- {away_abbr} {_fmt_streak(a_streak)}: {a_ctx}")
+        lines.append("")
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def resolve_team_id(team_input: str) -> int:
     """將隊名（中文/英文/縮寫）轉為 team ID"""
     # Direct match (abbreviation or Chinese)

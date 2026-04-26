@@ -181,3 +181,98 @@ def test_format_streak_context_streak_zero_returns_none():
 def test_format_streak_context_empty_games_returns_none():
     from fetch_game_data import format_streak_context
     assert format_streak_context([], 2) is None
+
+
+def _make_minimal_result(home_games=None, away_games=None, series_prev=None):
+    """測試用 result_dict 工廠"""
+    return {
+        "game": {
+            "gamePk": 824122,
+            "date": "2026-04-26T23:20:00Z",
+            "status": "Preview",
+            "venue": "Kauffman Stadium",
+            "home": {"team": "Kansas City Royals", "team_id": 118, "probable_pitcher": "Seth Lugo"},
+            "away": {"team": "Los Angeles Angels", "team_id": 108, "probable_pitcher": "Reid Detmers"},
+        },
+        "home_recent": {"record": "3-7", "rs_per_game": 5.10, "ra_per_game": 6.00,
+                        "run_diff": -9, "streak": 2, "games": home_games or []},
+        "away_recent": {"record": "3-7", "rs_per_game": 4.00, "ra_per_game": 4.50,
+                        "run_diff": -5, "streak": -3, "games": away_games or []},
+        "home_recent_30": {"record": "10-18", "rs_per_game": 3.79, "ra_per_game": 4.54,
+                           "run_diff": -21, "streak": 2, "games": []},
+        "away_recent_30": {"record": "12-16", "rs_per_game": 4.64, "ra_per_game": 4.79,
+                           "run_diff": -4, "streak": -3, "games": []},
+        "home_season": {"record": "10-18", "rs_per_game": 3.79, "ra_per_game": 4.54,
+                        "run_diff": -21, "streak": 2, "games": []},
+        "away_season": {"record": "12-16", "rs_per_game": 4.64, "ra_per_game": 4.79,
+                        "run_diff": -4, "streak": -3, "games": []},
+        "home_season_games_count": 28,
+        "away_season_games_count": 28,
+        "series_prev": series_prev,
+    }
+
+
+def test_format_summary_md_smoke_full_game():
+    """完整 result_dict → markdown 含所有 hard sections + 標題"""
+    from fetch_game_data import format_summary_md
+    home_games = [
+        {"date": "2026-04-25", "is_home": True, "opponent": "Los Angeles Angels",
+         "team_score": 12, "opp_score": 1, "is_winner": True},
+        {"date": "2026-04-24", "is_home": True, "opponent": "Los Angeles Angels",
+         "team_score": 6, "opp_score": 3, "is_winner": True},
+    ]
+    away_games = [
+        {"date": "2026-04-25", "is_home": False, "opponent": "Kansas City Royals",
+         "team_score": 1, "opp_score": 12, "is_winner": False},
+        {"date": "2026-04-24", "is_home": False, "opponent": "Kansas City Royals",
+         "team_score": 3, "opp_score": 6, "is_winner": False},
+        {"date": "2026-04-22", "is_home": True, "opponent": "Toronto Blue Jays",
+         "team_score": 2, "opp_score": 4, "is_winner": False},
+    ]
+    md = format_summary_md(_make_minimal_result(home_games, away_games))
+    assert "# Game Data Summary — LAA @ KC (2026-04-26)" in md
+    assert "## 比賽資訊" in md
+    assert "## 戰績摘要" in md
+    assert "## 趨勢" in md
+    assert "## 當前系列賽" in md
+    assert "## Streak 脈絡" in md
+    assert "Reid Detmers" in md
+    assert "Seth Lugo" in md
+    # 系列累計：KC 2-0 LAA
+    assert "KC 2-0 LAA" in md or "**KC 2-0 LAA**" in md
+
+
+def test_format_summary_md_first_game_of_series():
+    """無前場 → 系列賽 section 顯示「本系列首戰」"""
+    from fetch_game_data import format_summary_md
+    home_games = [
+        {"date": "2026-04-25", "is_home": True, "opponent": "Detroit Tigers",
+         "team_score": 5, "opp_score": 3, "is_winner": True},
+    ]
+    md = format_summary_md(_make_minimal_result(home_games=home_games))
+    assert "本系列首戰" in md
+
+
+def test_format_summary_md_empty_games_omits_soft_sections():
+    """games 空 → 系列賽 + Streak 脈絡 sections 整段省略；hard sections 仍存在"""
+    from fetch_game_data import format_summary_md
+    md = format_summary_md(_make_minimal_result())
+    assert "## 戰績摘要" in md  # hard section 保留
+    assert "## 當前系列賽" not in md  # soft section 省略
+    assert "## Streak 脈絡" not in md
+
+
+def test_format_summary_md_raises_on_missing_game():
+    from fetch_game_data import format_summary_md
+    import pytest
+    with pytest.raises(ValueError):
+        format_summary_md({})
+
+
+def test_format_summary_md_raises_on_missing_team_id():
+    from fetch_game_data import format_summary_md
+    import pytest
+    bad = _make_minimal_result()
+    bad["game"]["home"]["team_id"] = None
+    with pytest.raises(ValueError):
+        format_summary_md(bad)
