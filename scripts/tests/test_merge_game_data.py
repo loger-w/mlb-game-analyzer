@@ -117,3 +117,50 @@ def test_prior_pitcher_none_no_prior():
     pitcher = {"season": {"era": 3.50, "xera": 2.80, "ip": 45.0}}
     result = extract_pitcher_nested(pitcher, None, "home")
     assert result["home_pitcher"]["prior_year"]["era"] is None
+
+
+# ============================================================================
+# 2026-04-26 — Park Factor JSON 化 + alias 解析（spec §7.1.2）
+# ============================================================================
+
+def test_resolve_park_factor_canonical_name():
+    """正式球場名直接命中 JSON 表。"""
+    from merge_game_data import resolve_park_factor
+    assert resolve_park_factor("Coors Field") == 131.0
+    assert resolve_park_factor("T-Mobile Park") == 82.0
+
+
+def test_resolve_park_factor_alias_old_name():
+    """舊球場名透過 alias 解析到新名 — 向後相容。"""
+    from merge_game_data import resolve_park_factor
+    # Tropicana → Steinbrenner（Rays 臨時主場）
+    assert resolve_park_factor("Tropicana Field") == 100.0
+    # Oakland Coliseum → Sutter Health Park
+    assert resolve_park_factor("Oakland Coliseum") == 109.0
+    # Minute Maid → Daikin
+    assert resolve_park_factor("Minute Maid Park") == 98.0
+    # Dodger Stadium → UNIQLO Field at Dodger Stadium
+    assert resolve_park_factor("Dodger Stadium") == 98.0
+    # Guaranteed Rate → Rate Field
+    assert resolve_park_factor("Guaranteed Rate Field") == 97.0
+    # Camden Yards → Oriole Park at Camden Yards
+    assert resolve_park_factor("Camden Yards") == 96.0
+
+
+def test_resolve_park_factor_unknown_returns_default():
+    """未知球場名回傳 100.0（聯盟平均，安全 fallback）。"""
+    from merge_game_data import resolve_park_factor
+    assert resolve_park_factor("Nonexistent Stadium") == 100.0
+
+
+def test_resolve_park_factor_none_returns_default():
+    """None venue 回傳 100.0。"""
+    from merge_game_data import resolve_park_factor
+    assert resolve_park_factor(None) == 100.0
+
+
+def test_resolve_park_factor_returns_float():
+    """回傳型別必為 float（predict.py 後續做 PF / 100 浮點除法）。"""
+    from merge_game_data import resolve_park_factor
+    result = resolve_park_factor("Coors Field")
+    assert isinstance(result, float)

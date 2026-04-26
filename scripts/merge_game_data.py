@@ -5,6 +5,8 @@ import argparse
 import json
 import sys
 
+from pathlib import Path
+
 import requests
 
 if sys.platform == "win32":
@@ -13,41 +15,11 @@ if sys.platform == "win32":
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
 
-# E2: 30 座球場 Park Factor 對照表（5 年回歸值，2024-2025 基準）
-# 來源：FanGraphs Park Factors / ESPN Park Factors
-# 100 = 聯盟平均，>100 = 打者友善，<100 = 投手友善
-PARK_FACTORS = {
-    "Coors Field": 115,
-    "Fenway Park": 105,
-    "Citizens Bank Park": 104,
-    "Great American Ball Park": 104,
-    "Yankee Stadium": 104,
-    "Globe Life Field": 103,
-    "Guaranteed Rate Field": 102,
-    "Wrigley Field": 102,
-    "Nationals Park": 101,
-    "Rogers Centre": 101,
-    "Oriole Park at Camden Yards": 101,
-    "Busch Stadium": 100,
-    "Target Field": 100,
-    "Angel Stadium": 100,
-    "American Family Field": 100,
-    "Minute Maid Park": 100,
-    "PNC Park": 99,
-    "Comerica Park": 99,
-    "Chase Field": 99,
-    "Kauffman Stadium": 99,
-    "loanDepot park": 98,
-    "Dodger Stadium": 98,
-    "Progressive Field": 98,
-    "Truist Park": 98,
-    "Citi Field": 97,
-    "T-Mobile Park": 97,
-    "Tropicana Field": 96,
-    "Oracle Park": 96,
-    "Oakland Coliseum": 96,
-    "Petco Park": 95,
-}
+# Park Factor 資料（2023-2025 3 年加權，Baseball Savant；HR PF 暫不啟用）
+_PF_DATA_PATH = Path(__file__).parent / "data" / "park_factors.json"
+_PF_DATA = json.loads(_PF_DATA_PATH.read_text(encoding="utf-8"))
+PARK_FACTORS = _PF_DATA["park_factors"]
+PARK_ALIASES = _PF_DATA["_aliases"]
 
 
 def load_json(path: str) -> dict:
@@ -206,10 +178,18 @@ def fetch_bullpen_era(team_id: int, year: int) -> float:
 
 
 def resolve_park_factor(venue_name: str | None) -> float:
-    """E2: 從球場名稱查 Park Factor 對照表"""
-    if venue_name and venue_name in PARK_FACTORS:
-        return float(PARK_FACTORS[venue_name])
-    return 100.0  # fallback
+    """以 venue_name 解析 runs PF（HR PF 暫不啟用）。
+
+    舊球場名透過 _aliases 表解析到 canonical 新名（如 Tropicana → Steinbrenner）。
+    未知 venue 回傳 100.0（聯盟平均，安全 fallback）。
+    """
+    if not venue_name:
+        return 100.0
+    canonical = PARK_ALIASES.get(venue_name, venue_name)
+    entry = PARK_FACTORS.get(canonical)
+    if entry:
+        return float(entry["runs_pf"])
+    return 100.0
 
 
 def extract_meta(game_data: dict, home_pitcher: dict, away_pitcher: dict) -> dict:
