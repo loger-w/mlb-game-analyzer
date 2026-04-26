@@ -591,6 +591,17 @@ def main():
         with open(args.output, "w", encoding="utf-8") as f:
             f.write(json_output)
         print(f"Saved to {args.output}", file=sys.stderr)
+
+        # 額外輸出 summary md（同目錄 game_data_summary.md）
+        from pathlib import Path
+        summary_path = Path(args.output).parent / "game_data_summary.md"
+        try:
+            summary_md = format_summary_md(result)
+            with open(summary_path, "w", encoding="utf-8") as f:
+                f.write(summary_md)
+            print(f"Saved summary to {summary_path}", file=sys.stderr)
+        except ValueError as e:
+            print(f"Skipped summary (data incomplete): {e}", file=sys.stderr)
     else:
         print(json_output)
 
