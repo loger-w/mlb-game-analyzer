@@ -66,11 +66,17 @@ $PYTHON scripts/fetch_game_data.py --date {YYYY-MM-DD} --team {team} -o $GAME_DI
 
 > 僅使用 `gameType = "R"` 例行賽，排除春訓。
 
+> 腳本同時輸出 `game_data_summary.md` 至同目錄（~30-50 行 markdown，含戰績 / 趨勢 / 當前系列賽 / Streak 脈絡）。
+
 ### 1.3 Pythagorean Win%
 
 - 從近 10 場計算 Pythagorean Win%（腳本 predict.py 內建 Pythagenport 公式）
 
 ### 1.4 輸出確認
+
+✅ Read `$GAME_DIR/game_data_summary.md`，依其內容填入下方輸出模板。
+
+ℹ️ 一般情況下無需 Read `game_data.json`；僅在 summary 缺漏 / 使用者明確要求查驗 / 除錯時 Read 完整 JSON。
 
 ```
 📅 {日期} — {客隊} @ {主隊}（{球場}）
@@ -89,6 +95,7 @@ $PYTHON scripts/fetch_game_data.py --date {YYYY-MM-DD} --team {team} -o $GAME_DI
 ### 1.5 Phase 1 閘門
 
 - [ ] `game_data.json` 已輸出
+- [ ] `game_data_summary.md` 已輸出
 - [ ] `gameType == "R"`（例行賽）
 - [ ] Doubleheader → 列出所有場次供使用者選擇
 - [ ] 無比賽 → 建議查前後日期

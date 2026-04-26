@@ -23,7 +23,7 @@ description: Use when the user asks about MLB game predictions, matchup analysis
 
 | Phase | 主要產出 |
 |-------|---------|
-| 1. 資料收集 | `game_data.json`（`fetch_game_data.py`，例行賽） |
+| 1. 資料收集 | `game_data.json` + `game_data_summary.md`（`fetch_game_data.py`，例行賽） |
 | 2. 投打驗證 | `merged.json`（roster + pitcher + lineup + merge；Step 1 roster + Step 2 role_change 閘門） |
 | 3. 綜合分析 | `phase3_summary.md`（投打 / 牛棚 / 條件修正；BvP PA≥15、牛棚雙向、BABIP 回歸閘門） |
 | 4. 預測輸出 | `prediction.json` + 報告（`predict.py`；紀律 D1-D5 自動執行） |
