@@ -71,9 +71,13 @@ mlb-game-analyzer skill 累積至今包含：
 
 依 `superpowers:writing-skills` 的 token-efficiency 規範：
 
-- 常駐載入的 SKILL.md 內容 < 200 字
-- 其他 reference 檔 < 500 字
-- 跨檔重複內容用 cross-reference，不要原樣複製
+| 類別 | 字數上限 |
+|---|---|
+| getting-started workflows | < 150 字 |
+| Frequently-loaded skills（每對話自動載入） | < 200 字 |
+| **Other skills（user-invoked，本 skill 屬此類）** | **< 500 字** |
+
+**mlb-game-analyzer 屬「Other skills」**：使用者明確要求分析比賽時才載入，不是常駐。所以 `SKILL.md` 字數目標 < 500（當前 ~482 字，臨界）。
 
 實作策略：**規則本身（含具體 threshold）只在 canonical 檔詳述，觸發點（workflow.md / SKILL.md / flags-checklist.md）只放 1-2 行 inline 提醒 + 跨檔 ref**。
 
@@ -107,6 +111,19 @@ P1 / P2 是純代碼變動，由 unit test 把關，不需走 TDD。
 
 **Phase 目標**：清掉死碼，不動 reference 文件，不動紀律規則。
 
+### 5.0 P1.0 — 記錄 baseline metrics（先做）
+
+P1 動工前記錄三個基準值，供 Section 8.2 的「瘦身 30%」驗收使用：
+
+```bash
+wc -l SKILL.md > /tmp/baseline_skill_md_lines.txt
+wc -l reference/*.md > /tmp/baseline_reference_lines.txt
+wc -l scripts/*.py > /tmp/baseline_scripts_lines.txt
+wc -w SKILL.md reference/*.md > /tmp/baseline_words.txt
+```
+
+把 baseline 數字（總行數 / 總字數）寫進本 spec 的 「11.5 baseline」段（用 commit 記錄），重構結束後對比。
+
 ### 5.1 P1.1 — 刪除 XGBoost 路徑
 
 #### 刪除檔案
@@ -120,7 +137,7 @@ P1 / P2 是純代碼變動，由 unit test 把關，不需走 TDD。
 - L611-626：刪 `predict_with_ml()` 整個函式
 - 主流程呼叫 `predict_with_ml()` 處：移除呼叫，改僅走 formula
 - 移除產出 `xgb_raw_home_pct` 欄位的程式碼
-- 移除 `cross_validation` 邏輯中與 ML 比對相關的部分（保留 `INSUFFICIENT_SAMPLE`，刪除 `DIVERGENT` / `CONSISTENT` / `NO_ML_MODEL`）
+- 移除 `cross_validation` 欄位本身（CONSISTENT / DIVERGENT / INSUFFICIENT_SAMPLE / NO_ML_MODEL 全 4 種狀態都是 ML 比對語意，無 ML 後整個欄位失去意義 — 連同 `predict.py` 中產出此欄位的邏輯一起刪除；BvP < 15 PA 之類的 sample 警示由 workflow / matchup-factors 既有規則承擔）
 - D1 紀律 α 實作（`ml_lean vs formula_lean` 比對）：移除比對，改僅依 formula_lean 決定方向（reference/prediction.md 文件改寫延到 P3b）
 
 #### 改動 `scripts/requirements.txt`
@@ -377,20 +394,29 @@ XGBoost 已清，D1 原本「`ml_lean vs formula_lean` 比對」變單模型。�
 - 觸發點（workflow / SKILL / flags）有 1-2 行 inline 提醒 + cross-ref
 - 沒有相同 threshold 出現超過 2 次（一次 canonical + 一次觸發點 inline）
 
-具體 grep 命令：
+具體 grep 命令（明確列舉每條 threshold）：
 
 ```bash
-grep -rn "0.260\|0.370\|ERA.*xERA\|≥ 1.5" SKILL.md reference/
+# BABIP 閾值
+grep -rn "\.260\|\.370" SKILL.md reference/
+# ERA-xERA 落差
+grep -rn "ERA.*xERA\|≥ *1\.5\|>= *1\.5" SKILL.md reference/
+# IP 與 prior_year ERA delta 閾值
+grep -rn "IP *< *30\|≥ *1\.0\|>= *1\.0" SKILL.md reference/
+# BvP PA 閾值
+grep -rn "PA *≥ *15\|PA *>= *15\|< *15" SKILL.md reference/
+# O/U 噪音閾值
+grep -rn "1\.5 *run\|< *1\.5" SKILL.md reference/
 ```
 
-每個 threshold 出現 ≤ 2 處才合格。
+合格條件：每條 threshold 在「SKILL.md + reference/*.md」總出現次數 ≤ 2（一次 canonical 在 matchup-factors.md，一次觸發點 inline）。
 
 #### 7.2.6 P3b 完成條件
 
 - [ ] `pitfalls.md` 不存在
 - [ ] `flags-checklist.md` 行數 < 80
-- [ ] `SKILL.md` 行數 < 150
-- [ ] grep 確認每條 threshold（`.260` / `.370` / `1.5` 等）出現次數 ≤ 2
+- [ ] `SKILL.md` 行數 < 150 **且** `wc -w SKILL.md` < 500（writing-skills「Other skills」規範）
+- [ ] grep 確認每條 threshold 在「SKILL.md + reference/*.md」出現次數 ≤ 2，threshold 列舉：`.260` / `.370`（BABIP）/ `1.5`（ERA-xERA / O/U noise）/ `30`（IP 閾值）/ `1.0`（prior_year ERA delta）/ `15`（BvP PA）
 - [ ] D1 紀律改寫完成，不再提 ML / XGBoost / cross_validation 邏輯
 - [ ] cross-ref 全部指向有效 anchor（matchup-factors.md 章節 ID 對齊）
 
@@ -459,7 +485,8 @@ grep -rn "0.260\|0.370\|ERA.*xERA\|≥ 1.5" SKILL.md reference/
 
 - [ ] `pytest scripts/tests/` 全綠
 - [ ] `python scripts/predict.py --game-data <merged.json> --save` 對 2026-04-25 任一場跑得通且輸出合理（與既存 prediction 比較 PF 影響的差異是預期的）
-- [ ] 全 skill 行數比改前少 30% 以上（excluding analysis-data/odds_snapshots）
+- [ ] 全 skill 行數比改前少 30% 以上（excluding analysis-data/odds_snapshots，對比 P1.0 記錄的 baseline）
+- [ ] `SKILL.md` 字數比改前少 ≥ 30%（對比 P1.0 baseline）；絕對值 < 500 字
 - [ ] grep 找不到任何「dead code」殘留：`predict_with_ml`、`xgb_`、`closing_line`、`clv`、`upload`、`cross_validation`（除歷史 prediction.json）
 
 ### 8.3 文件級驗證
@@ -661,11 +688,13 @@ grep -rn "0.260\|0.370\|ERA.*xERA\|≥ 1.5" SKILL.md reference/
 
 ### C.5 T5 — D3 對立方向
 
-**Setup**：formula 算出 home_win_pct = 65%。
+**Setup**：formula 算出 home_win_pct = 65%。Game = NYM @ PHI（主隊 PHI）。
 
-**期望 AI 行為**：推 `ml_rec: HOME`、`run_line_rec: PASS` 或 `HOME -1.5`，**不**推「AWAY +1.5」。
+**期望 AI 行為**：
+- ml_rec 為**主隊縮寫**（此例：`PHI`），不得是字面值 `HOME`（workflow.md L280：predict.py 會 reject `HOME` 字面值）
+- run_line_rec 為 `PHI` / `PHI -1.5` / `PASS` 任一，**不得**為 `NYM` / `NYM +1.5`
 
-**判定 PASS**：subagent 輸出 ml_rec = HOME 縮寫且 run_line_rec 非「AWAY +1.5」。
+**判定 PASS**：subagent 產出的 prediction.json 中 `ml_rec == "PHI"`（主隊 abbrev），且 `run_line_rec` ∉ {`NYM`, `NYM +1.5`, `AWAY +1.5`}。
 
 ### C.6 T6 — D5 比分一致性
 
