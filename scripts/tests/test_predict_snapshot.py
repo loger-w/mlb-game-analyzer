@@ -220,11 +220,10 @@ def test_end_to_end_predict_with_snapshot(tmp_path):
     try:
         with open(merged_path) as f:
             merged = json.load(f)
-        ml_pred = {"home_win_pct": 60.0}
-        formula_pred = {"total": 9.5, "margin": 0.8}
+        formula_pred = {"total": 9.5, "margin": 0.8, "log5_pct": 60.0}
         args = _make_args(merged_path)
         kelly_block = compute_kelly_block(
-            args, merged, ml_pred, formula_pred,
+            args, merged, formula_pred,
             final_ml_rec="CHC", final_ou_rec="OVER", final_rl_rec="PASS",
         )
     finally:
@@ -269,8 +268,7 @@ def test_c1_west_coast_late_game_finds_snapshot(tmp_path):
         args = _make_args(merged_path)
         kelly_block = compute_kelly_block(
             args, merged,
-            ml_prediction={"home_win_pct": 60.0},
-            formula_prediction={"total": 9.5, "margin": 0.8},
+            formula_prediction={"total": 9.5, "margin": 0.8, "log5_pct": 60.0},
             final_ml_rec="CHC", final_ou_rec="OVER", final_rl_rec="PASS",
         )
     finally:
@@ -330,8 +328,7 @@ def test_c2_c3_model_market_split_uses_market_favorite(tmp_path):
         args = _make_args(merged_path)
         kelly_block = compute_kelly_block(
             args, merged,
-            ml_prediction={"home_win_pct": 55.0},
-            formula_prediction={"total": 9.0, "margin": 0.5},
+            formula_prediction={"total": 9.0, "margin": 0.5, "log5_pct": 55.0},
             final_ml_rec="CHC", final_ou_rec="OVER",
             final_rl_rec="NYM",
         )
@@ -371,8 +368,7 @@ def test_i1_divergent_forces_ml_kelly_null(tmp_path):
         args = _make_args(merged_path)
         kelly_block = compute_kelly_block(
             args, merged,
-            ml_prediction={"home_win_pct": 60.0},
-            formula_prediction={"total": 9.5, "margin": 0.8},
+            formula_prediction={"total": 9.5, "margin": 0.8, "log5_pct": 60.0},
             final_ml_rec="PASS", final_ou_rec="OVER", final_rl_rec="PASS",
         )
     finally:
@@ -415,8 +411,7 @@ def test_compute_kelly_block_handles_full_team_names_in_meta(tmp_path):
         args = _make_args(merged_path)
         kelly_block = compute_kelly_block(
             args, merged,
-            ml_prediction={"home_win_pct": 60.0},
-            formula_prediction={"total": 9.5, "margin": 0.8},
+            formula_prediction={"total": 9.5, "margin": 0.8, "log5_pct": 60.0},
             final_ml_rec="CHC", final_ou_rec="OVER", final_rl_rec="PASS",
         )
     finally:
@@ -603,60 +598,6 @@ def test_rl1b_defensive_direction_mismatch_still_triggers():
 
 
 # ============================================================================
-# should_force_ml_pass helper tests (α 實作 — D1 改讀 ml_lean vs formula_lean)
-# ============================================================================
-from predict import should_force_ml_pass
-
-
-def test_should_force_ml_pass_direction_mismatch_returns_true():
-    """ml 看 HOME、formula 看 AWAY → 方向分歧 → True"""
-    assert should_force_ml_pass(
-        ml_pred={"home_win_pct": 60},
-        formula_pred={"log5_pct": 40},
-    ) is True
-
-
-def test_should_force_ml_pass_both_lean_home_returns_false():
-    """ml 看 HOME、formula 看 HOME → 方向一致 → False（不 force PASS）"""
-    assert should_force_ml_pass(
-        ml_pred={"home_win_pct": 60},
-        formula_pred={"log5_pct": 55},
-    ) is False
-
-
-def test_should_force_ml_pass_both_lean_away_returns_false():
-    """ml 看 AWAY、formula 看 AWAY → 方向一致 → False"""
-    assert should_force_ml_pass(
-        ml_pred={"home_win_pct": 40},
-        formula_pred={"log5_pct": 45},
-    ) is False
-
-
-def test_should_force_ml_pass_none_ml_pred_returns_false():
-    """ml_pred 缺失（NO_ML_MODEL）→ False（無模型不比對）"""
-    assert should_force_ml_pass(
-        ml_pred=None,
-        formula_pred={"log5_pct": 60},
-    ) is False
-
-
-def test_should_force_ml_pass_none_formula_pred_returns_false():
-    """formula_pred 缺失 → False"""
-    assert should_force_ml_pass(
-        ml_pred={"home_win_pct": 60},
-        formula_pred=None,
-    ) is False
-
-
-def test_should_force_ml_pass_boundary_50_home_formula_45_returns_true():
-    """ml=50.1 (HOME) vs formula=45 (AWAY) → 分歧 → True"""
-    assert should_force_ml_pass(
-        ml_pred={"home_win_pct": 50.1},
-        formula_pred={"log5_pct": 45},
-    ) is True
-
-
-# ============================================================================
 # Plan B 2026-04-22 — W1: 廢除 --run-line-rec / --run-line-stars
 # ============================================================================
 import subprocess
@@ -825,38 +766,6 @@ def test_w3_pitcher_suffix_known(capsys):
     captured = capsys.readouterr()
     assert "castillo_velo_decline" not in captured.err
     assert "rocker_new_arsenal" not in captured.err
-
-
-# ============================================================================
-# Plan B 2026-04-22 — Y2: xgb_home_lean vs predicted_winner divergent force PASS
-# ============================================================================
-
-def test_y2_xgb_diverges_returns_true():
-    """xgb 61% HOME but predicted_winner AWAY → True。"""
-    from predict import check_xgb_divergent
-    assert check_xgb_divergent({"home_win_pct": 61.0}, "AWAY") is True
-
-
-def test_y2_xgb_aligned_home_returns_false():
-    from predict import check_xgb_divergent
-    assert check_xgb_divergent({"home_win_pct": 58.0}, "HOME") is False
-
-
-def test_y2_xgb_aligned_away_returns_false():
-    from predict import check_xgb_divergent
-    assert check_xgb_divergent({"home_win_pct": 42.0}, "AWAY") is False
-
-
-def test_y2_ml_pred_none_returns_false():
-    from predict import check_xgb_divergent
-    assert check_xgb_divergent(None, "HOME") is False
-
-
-def test_y2_boundary_50_treated_as_away_lean():
-    """home_win_pct == 50.0 → AWAY lean（> 50 才算 HOME）。"""
-    from predict import check_xgb_divergent
-    assert check_xgb_divergent({"home_win_pct": 50.0}, "HOME") is True
-    assert check_xgb_divergent({"home_win_pct": 50.0}, "AWAY") is False
 
 
 # ============================================================================

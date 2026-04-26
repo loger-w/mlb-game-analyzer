@@ -59,7 +59,7 @@ def load_json(path: str) -> dict:
 def extract_pitcher_features(pitcher_data: dict, prefix: str) -> dict:
     """從 pitcher_stats.py 輸出提取 predict.py 所需特徵
 
-    對應 FEATURE_COLS: {prefix}_starter_fip, {prefix}_starter_k_bb, {prefix}_starter_whip
+    輸出欄位: {prefix}_starter_fip, {prefix}_starter_k_bb, {prefix}_starter_whip
     """
     season = pitcher_data.get("season", {})
     if "error" in season:
@@ -79,7 +79,7 @@ def extract_pitcher_features(pitcher_data: dict, prefix: str) -> dict:
 def extract_lineup_features(lineup_data: dict, prefix: str) -> dict:
     """從 lineup_analyzer.py 輸出提取 predict.py 所需特徵
 
-    對應 FEATURE_COLS: {prefix}_batting_xwoba, {prefix}_batting_ops, {prefix}_batting_k_pct
+    輸出欄位: {prefix}_batting_xwoba, {prefix}_batting_ops, {prefix}_batting_k_pct
     """
     xwoba = lineup_data.get("avg_xwoba")
     ops = lineup_data.get("avg_ops")
@@ -143,8 +143,8 @@ def extract_lineup_nested(lineup_data: dict | None, prefix: str) -> dict:
 def extract_game_features(game_data: dict) -> dict:
     """從 fetch_game_data.py 輸出提取多窗口得失分
 
-    對應 FEATURE_COLS: home_recent_rs, home_recent_ra, away_recent_rs, away_recent_ra
-    額外 pass-through: recent_30, season 窗口（供 predict.py 交叉驗證和趨勢標籤用）
+    輸出欄位: home_recent_rs, home_recent_ra, away_recent_rs, away_recent_ra
+    額外 pass-through: recent_30, season 窗口（供 predict.py 趨勢標籤用）
     """
     home = game_data.get("home_recent", {})
     away = game_data.get("away_recent", {})
@@ -159,7 +159,6 @@ def extract_game_features(game_data: dict) -> dict:
     a_ra = away.get("ra_per_game")
 
     result = {
-        # FEATURE_COLS（近 10 場，XGBoost 用）
         "home_recent_rs": h_rs if h_rs is not None else 4.5,
         "home_recent_ra": h_ra if h_ra is not None else 4.5,
         "away_recent_rs": a_rs if a_rs is not None else 4.5,

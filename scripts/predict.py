@@ -11,16 +11,10 @@ import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-import joblib
-import numpy as np
-
 # Fix Windows encoding for emoji output
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
-
-MODELS_DIR = os.path.join(os.path.dirname(__file__), "models")
-WIN_MODEL_PATH = os.path.join(MODELS_DIR, "xgb_win_model.pkl")
 
 # F2: 完整 30 隊隊名 → 縮寫映射（用於方向矛盾檢查）
 TEAM_ABBREV = {
@@ -73,52 +67,10 @@ RL_STRONG_TAGS = frozenset({
 BULLPEN_SLUMP_ERA = 5.0  # 對齊既有 signal_table bullpen 規則
 BULLPEN_STRONG_ERA = 3.0
 
-FEATURE_COLS = [
-    "home_starter_fip", "home_starter_k_bb", "home_starter_whip",
-    "away_starter_fip", "away_starter_k_bb", "away_starter_whip",
-    "home_batting_xwoba", "home_batting_ops", "home_batting_k_pct",
-    "away_batting_xwoba", "away_batting_ops", "away_batting_k_pct",
-    "home_bullpen_era", "away_bullpen_era",
-    "home_recent_rs", "home_recent_ra",
-    "away_recent_rs", "away_recent_ra",
-    "park_factor",
-]
-
-
 def log5(home_pct: float, away_pct: float) -> float:
     """Log5 勝率公式"""
     p = (home_pct * (1 - away_pct)) / (home_pct * (1 - away_pct) + away_pct * (1 - home_pct))
     return p
-
-
-def should_force_ml_pass(ml_pred: dict | None, formula_pred: dict | None) -> bool:
-    """α 實作（spec 2026-04-22 §3.2）：ml_lean 與 formula_lean 方向分歧 → 強制 PASS。
-
-    取代原 D1（讀 cross_validation == "DIVERGENT"）和 D1.5 方向分歧 branch。
-    cross_validation 欄位仍寫入 prediction.json 作歷史觀察，但決策邏輯不依賴字串。
-
-    Returns True iff 兩個模型都存在且方向分歧（跨 50% 邊界）；其餘情境 False。
-    """
-    if not ml_pred or not formula_pred:
-        return False
-    ml_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-    formula_lean = "HOME" if formula_pred["log5_pct"] > 50 else "AWAY"
-    return ml_lean != formula_lean
-
-
-def check_xgb_divergent(ml_pred: dict | None, predicted_winner: str) -> bool:
-    """Y2（Plan B 2026-04-22 §4.4）：XGBoost 勝率方向 vs predicted_winner 矛盾。
-
-    情境：signal_adjustments 翻轉 xgb 方向（如 xgb 61% HOME 但信號調整後 adj_away > adj_home
-    → predicted_winner = AWAY）。此時 xgb 與最終推薦方向不一致 = 高不確定性，強制 PASS。
-
-    與 D1 α 互不重疊：D1 比 ml_lean vs formula_lean（兩模型分歧）；Y2 比 xgb vs 最終推薦
-    （signal 翻轉 xgb）。三者（D1、Y2、A6 user vs model）可獨立或同時觸發。
-    """
-    if not ml_pred:
-        return False
-    xgb_home_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-    return xgb_home_lean != predicted_winner
 
 
 def apply_close_game_cap(
@@ -608,24 +560,6 @@ def compute_signal_table(data: dict) -> dict:
     }
 
 
-def predict_with_ml(features: list[float]) -> dict | None:
-    """用 XGBoost 模型預測主隊勝率（若模型不存在或特徵不匹配則 graceful fallback）"""
-    if not os.path.exists(WIN_MODEL_PATH):
-        return None
-
-    try:
-        win_model = joblib.load(WIN_MODEL_PATH)
-        X = np.array([features])
-        win_prob = float(win_model.predict_proba(X)[0][1])  # 主隊勝率
-    except Exception:
-        # 模型特徵欄位不匹配時 graceful fallback
-        return None
-
-    return {
-        "home_win_pct": round(win_prob * 100, 1),
-    }
-
-
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 
@@ -700,7 +634,6 @@ def _extract_game_date_et(args, meta: dict) -> str | None:
 def compute_kelly_block(
     args,
     merged: dict,
-    ml_prediction: dict | None,
     formula_prediction: dict,
     final_ml_rec: str,
     final_ou_rec: str,
@@ -820,12 +753,11 @@ def compute_kelly_block(
         "warnings": warnings,
     }
 
-    # ML Kelly
+    # ML Kelly — 用 formula log5 作為 model_p_home（XGBoost 路徑已於 P1 移除）
     model_p_home = None
-    if ml_prediction is not None:
-        pct = ml_prediction.get("home_win_pct")
-        if pct is not None:
-            model_p_home = pct / 100.0
+    pct = formula_prediction.get("log5_pct")
+    if pct is not None:
+        model_p_home = pct / 100.0
     if (not ml_is_pass
             and model_p_home is not None
             and ml_home_ml is not None and ml_away_ml is not None):
@@ -974,12 +906,6 @@ def main():
     with open(args.game_data, "r") as f:
         data = json.load(f)
 
-    # 建構特徵向量
-    features = [data.get(col, 0) for col in FEATURE_COLS]
-
-    # ML 預測
-    ml_pred = predict_with_ml(features)
-
     # 公式預測
     formula_pred = predict_with_formula(data)
 
@@ -1003,25 +929,8 @@ def main():
         }
         formula_30_pred = predict_with_formula(data_30)
 
-    # 交叉驗證
-    cross_validation = "NO_ML_MODEL"
-    if ml_pred:
-        if min_season_games < 30:
-            cross_validation = "INSUFFICIENT_SAMPLE"
-        else:
-            ml_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-            xval_formula = formula_30_pred if formula_30_pred else formula_pred
-            formula_lean = "HOME" if xval_formula["log5_pct"] > 50 else "AWAY"
-            pct_diff = abs(ml_pred["home_win_pct"] - xval_formula["log5_pct"])
-            cross_validation = "CONSISTENT" if ml_lean == formula_lean else "DIVERGENT"
-
     # 最終推薦
-    # 勝率：有 ML 時用 ML（XGBoost 勝率預測可靠）
-    # 比分：一律用 formula（ML 的 total_model 訓練資料有結構性缺陷，比分不可靠）
-    if ml_pred:
-        final_pct = ml_pred["home_win_pct"]
-    else:
-        final_pct = formula_pred["log5_pct"]
+    final_pct = formula_pred["log5_pct"]
     final_home = formula_pred["home_score"]
     final_away = formula_pred["away_score"]
 
@@ -1030,26 +939,22 @@ def main():
     adj_away = args.adjusted_away if args.adjusted_away is not None else final_away
     adj_total = round(adj_home + adj_away, 1)
 
-    # 決定最終方向：adjusted 比分優先於 XGBoost
+    # 決定最終方向：adjusted 比分優先於 formula 勝率
     has_adjusted = args.adjusted_home is not None or args.adjusted_away is not None
     if has_adjusted and (adj_home > adj_away) != (final_pct > 50):
-        # adjusted 比分方向與 XGBoost 相反 → 使用 Log5 勝率
         adjusted_winner = "HOME" if adj_home > adj_away else "AWAY"
-        adjusted_pct = formula_pred["log5_pct"] if adjusted_winner == "HOME" else round(100 - formula_pred["log5_pct"], 1)
         display_home_pct = round(formula_pred["log5_pct"], 1)
     else:
         adjusted_winner = "HOME" if final_pct > 50 else "AWAY"
         display_home_pct = round(final_pct, 1)
 
     result = {
-        "ml_prediction": ml_pred,
         "formula_prediction": formula_pred,
-        "cross_validation": cross_validation,
         "signal_table": signal_table,
         "final": {
             "recommended_winner": adjusted_winner,
             "home_win_pct": display_home_pct,
-            "confidence": "HIGH" if cross_validation == "CONSISTENT" else ("MEDIUM" if cross_validation == "NO_ML_MODEL" else "LOW"),
+            "confidence": "MEDIUM",
             "predicted_home_score": adj_home,
             "predicted_away_score": adj_away,
             "predicted_total": adj_total,
@@ -1131,26 +1036,6 @@ def main():
         force_ml_pass = False  # 強制 ml_rec = PASS 旗標
         cap_reasons = []
 
-        # α 實作：D1 方向分歧 → 強制 PASS（不依賴 cross_validation 字串）
-        # cross_validation 欄位仍寫入 prediction.json（觀察用）
-        if should_force_ml_pass(ml_pred, formula_pred):
-            ml_stars_cap = 0
-            force_ml_pass = True
-            cap_reasons.append("ml/formula 方向分歧 強制 PASS（α 實作）")
-
-        # Y2（Plan B §4.4）：xgb_home_lean vs predicted_winner 矛盾（signal 翻轉 xgb）→ 強制 PASS
-        # cumulative #8 連 2 天 3 次觀察後升級 force PASS
-        y2_triggered = False
-        if check_xgb_divergent(ml_pred, result["final"]["recommended_winner"]):
-            ml_stars_cap = 0
-            force_ml_pass = True
-            y2_triggered = True
-            xgb_home_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-            pw = result["final"]["recommended_winner"]
-            cap_reasons.append(
-                f"xgb_home_lean={xgb_home_lean} vs predicted_winner={pw} 方向矛盾 強制 PASS（Y2）"
-            )
-
         # 規則 4：XGBoost 勝率 50-55% → 上限 2
         rec_side_pct = final_pct if result["final"]["recommended_winner"] == "HOME" else (100 - final_pct)
         if 50 <= rec_side_pct < 55:
@@ -1187,7 +1072,7 @@ def main():
             print(f"⚠️ ml_stars 從 {final_ml_stars} 降為 {ml_stars_cap}（原因：{'; '.join(cap_reasons)}）", file=sys.stderr)
             final_ml_stars = ml_stars_cap
 
-        # 套用 ml_rec 強制 PASS（ml/formula 方向分歧 — α 實作）
+        # 套用 ml_rec 強制 PASS
         final_ml_rec = args.ml_rec
         if force_ml_pass and final_ml_rec and final_ml_rec != "PASS":
             print(f"⚠️ ml_rec 從 {final_ml_rec} 改為 PASS（原因：{'; '.join(cap_reasons)}）", file=sys.stderr)
@@ -1201,10 +1086,6 @@ def main():
         if direction_override and "direction-override" not in user_tags:
             user_tags.append("direction-override")
         all_tags = list(dict.fromkeys(user_tags + trend_tags))  # 去重保序
-
-        # Y2 audit tag（Plan B §4.4）
-        if y2_triggered and "xgb-predicted-divergent" not in all_tags:
-            all_tags.append("xgb-predicted-divergent")
 
         # Y-new-1 audit tag（Plan B §4.4）：主場 2 星（cumulative #1，觀察期先 tag 不 cap）
         if should_add_home_2star_tag(
@@ -1236,7 +1117,7 @@ def main():
             final_ou_rec = "PASS"
             final_ou_stars = 0
 
-        # OU-3: 非 PASS 但 stars 未指定 → PASS（防止 upload 套 default 3 星）
+        # OU-3: 非 PASS 但 stars 未指定 → PASS
         if final_ou_rec != "PASS" and final_ou_stars is None:
             print(f"⚠️ O/U 從 {final_ou_rec} 改為 PASS（未指定 --ou-stars）", file=sys.stderr)
             final_ou_rec = "PASS"
@@ -1259,7 +1140,7 @@ def main():
         kelly_block = None
         try:
             kelly_block = compute_kelly_block(
-                args, data, ml_pred, formula_pred,
+                args, data, formula_pred,
                 final_ml_rec=final_ml_rec,
                 final_ou_rec=final_ou_rec,
                 final_rl_rec=final_rl_rec,
@@ -1289,7 +1170,6 @@ def main():
             "game_pk": meta.get("game_pk"),
             "predicted_winner": result["final"]["recommended_winner"],
             "predicted_home_pct": result["final"]["home_win_pct"],
-            "xgb_raw_home_pct": ml_pred["home_win_pct"] if ml_pred else None,
             "predicted_home_score": adj_home,
             "predicted_away_score": adj_away,
             "predicted_total": adj_total,
@@ -1309,7 +1189,6 @@ def main():
             "ml_stars": final_ml_stars,
             "original_ml_stars": original_ml_stars,
             "confidence": result["final"]["confidence"],
-            "cross_validation": result["cross_validation"],
             "tags": all_tags,
             "park_factor": data.get("park_factor"),
             "temperature_f": args.temperature,
