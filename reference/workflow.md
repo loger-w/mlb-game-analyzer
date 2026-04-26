@@ -325,7 +325,7 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 # predict.py --save 已完成 prediction.json 寫入；無需額外動作
 ```
 
-> **當日彙總與賽後回填**（`summarize_predictions.py` / `fetch_results.py` / `review_stats.py`）請交由 `mlb-post-game-review` skill 處理，不屬於本 skill 範圍。
+> **當日彙總與賽後回填**請交由 `mlb-post-game-review` skill 處理，不屬於本 skill 範圍。
 
 ### 4.7 輸出前驗證
 

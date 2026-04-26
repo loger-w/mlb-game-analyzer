@@ -291,8 +291,8 @@ CLI override（優先於 snapshot）：
 - **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`
   單筆 JSON、pretty-printed。由 `predict.py --save` 產生。**屬於 mlb-game-analyzer skill**。
 - **Per-date summary（快取）**：`analysis-data/{YYYY-MM-DD}/predictions.jsonl`
-  當日所有場次的 JSONL。由 `summarize_predictions.py --date {date}` 全量重建。**屬於 mlb-post-game-review skill**。
-- **賽後回填**：`fetch_results.py --date {date}` 從 MLB Stats API 抓 Final 比分，寫 `actual_*` + `verified=true`，同時更新 per-date jsonl 與 per-game prediction.json。**屬於 mlb-post-game-review skill**。
+  當日所有場次 JSONL，由 `mlb-post-game-review` skill 重建。
+- **賽後回填**：`actual_*` / `verified=true` 由 `mlb-post-game-review` skill 回填。
 
 ## 預測紀錄格式（prediction.json / predictions.jsonl）
 
