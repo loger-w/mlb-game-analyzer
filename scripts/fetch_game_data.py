@@ -60,6 +60,31 @@ def team_abbr(team_id: int | None, team_name: str) -> str:
     return (team_name or "")[:3].upper()
 
 
+def compute_trend_arrows(rs10: float, ra10: float, rs30: float, ra30: float) -> dict:
+    """近10 vs 近30 趨勢箭頭。|Δ| ≥ 0.5 才標箭頭。
+    攻↑ = RS 上升；守↓ = RA 上升（防守變差）；守↑ = RA 下降。"""
+    off_delta = round(rs10 - rs30, 2)
+    def_delta = round(ra10 - ra30, 2)
+    if off_delta >= 0.5:
+        off_arrow = "↑"
+    elif off_delta <= -0.5:
+        off_arrow = "↓"
+    else:
+        off_arrow = "→"
+    if def_delta >= 0.5:
+        def_arrow = "↓"
+    elif def_delta <= -0.5:
+        def_arrow = "↑"
+    else:
+        def_arrow = "→"
+    return {
+        "off_arrow": off_arrow,
+        "def_arrow": def_arrow,
+        "off_delta": off_delta,
+        "def_delta": def_delta,
+    }
+
+
 def resolve_team_id(team_input: str) -> int:
     """將隊名（中文/英文/縮寫）轉為 team ID"""
     # Direct match (abbreviation or Chinese)
