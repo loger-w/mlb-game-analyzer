@@ -41,7 +41,7 @@ mlb-game-analyzer skill 累積至今包含：
 ### 非目標
 
 - ❌ 復活 XGBoost ML 路徑（決議 D1 = 全清光）
-- ❌ 重建 fetch_odds + 盤口追蹤系統（決議 D9，留待後續另開設計）
+- ❌ 重建 fetch_odds + 盤口追蹤系統（決議 D9，留待後續另開設計） ※ **2026-04-27 superseded**：盤口/Kelly 系統整個從本 skill 移除，趨勢追蹤改在外部系統設計，詳見 `2026-04-27-mlb-odds-removal-design.md`
 - ❌ 修改 formula / signals / guardrails / Kelly 邏輯
 - ❌ 新增任何功能（HR PF 加進 JSON 但暫不啟用）
 - ❌ 重構 mlb-post-game-review skill（它在另一台電腦，本 phase 不負責）
@@ -60,7 +60,7 @@ mlb-game-analyzer skill 累積至今包含：
 | **D6** | `flags-checklist.md` | 精煉為「2-3 行/條」索引格式 |
 | **D7** | `prediction.md` 內部 RL 表（出現 2 次） | 去重，保留 Kelly 章節版本 |
 | **D8** | 多處規則重複（BABIP / ERA-xERA 等） | Just-in-time 重整：matchup-factors.md 升為 canonical 來源；其他檔規則處改 1-2 行 inline + cross-ref |
-| **D9** | `fetch_odds.py` & 盤口追蹤系統 | 保持現狀，留待後續另開設計（用戶未來會做 smart money 流向追蹤） |
+| **D9** | `fetch_odds.py` & 盤口追蹤系統 | ~~保持現狀，留待後續另開設計~~ **superseded 2026-04-27**：整個盤口/Kelly 系統從本 skill 移除（含 Kelly Sizing），趨勢追蹤改在外部系統設計。詳見 `2026-04-27-mlb-odds-removal-design.md` |
 | **D10** | 執行順序 | B 三階段（P1 代碼清理 → P2 scripts 搬家 → P3 文件重整 + PF 更新 + 壓力測試） |
 
 ---
@@ -532,7 +532,7 @@ grep -rn "1\.5 *run\|< *1\.5" SKILL.md reference/
 
 完成本重構後，獨立規劃的工作：
 
-1. **fetch_odds + 盤口追蹤系統重做**（D9）：smart money 流向追蹤、開盤到收盤的盤口移動、Pinnacle 多時間點 snapshot
+1. ~~**fetch_odds + 盤口追蹤系統重做**（D9）：smart money 流向追蹤、開盤到收盤的盤口移動、Pinnacle 多時間點 snapshot~~ ※ **2026-04-27 superseded**：盤口系統已從本 skill 整個移除，趨勢追蹤改在外部系統重建
 2. **大數據 Park Factor 整合**：LHB / RHB 拆分、單月 PF（Coors 4 月）、HR PF 在 predict.py 啟用
 3. **mlb-post-game-review skill 整理**（在另一台電腦）：補上 fetch_results / summarize / review_stats / diagnose_metrics + analysis-logs 結構
 

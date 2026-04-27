@@ -1,19 +1,19 @@
 ---
 name: mlb-game-analyzer
-description: Use when the user asks about MLB game predictions, matchup analysis, betting lines, score predictions, pitcher duels, or "who will win" questions for any specific MLB game — including queries like "analyze today's Yankees game" or "Dodgers vs Padres"
+description: Use when the user asks about MLB game predictions, matchup analysis, score predictions, pitcher duels, or "who will win" questions for any specific MLB game — including queries like "analyze today's Yankees game" or "Dodgers vs Padres"
 ---
 
 # MLB Game Analyzer — 單場對決分析與比分預測
 
 ## Overview
 
-系統化的 MLB 單場對決分析流程 skill。資料透過 `scripts/` 下的 Python 腳本取自 MLB Stats API，經過投打、牛棚、環境、盤口四層修正後，輸出勝率與比分預測。
+系統化的 MLB 單場對決分析流程 skill。資料透過 `scripts/` 下的 Python 腳本取自 MLB Stats API，經過投打、牛棚、環境三層修正後，輸出勝率與比分預測。
 
 ---
 
 ## When to Use
 
-特定 MLB 比賽的勝負預測 / 對戰組合分析 / 盤口推薦（ML / O/U / Run Line）/ 先發投手對決 / 進階數據解讀。
+特定 MLB 比賽的勝負預測 / 對戰組合分析 / 推薦方向（ML / O/U / Run Line）/ 先發投手對決 / 進階數據解讀。
 
 **不適用**：整季預測 / 球員個人比較 / 賽後回顧（轉 `mlb-post-game-review`）/ 歷史統計查詢。
 
@@ -24,7 +24,8 @@ description: Use when the user asks about MLB game predictions, matchup analysis
 | Phase | 主要產出 |
 |-------|---------|
 | 1. 資料收集 | `game_data.json` + `game_data_summary.md`（`fetch_game_data.py`，例行賽） |
-| 2. 投打驗證 | `merged.json`（roster + pitcher + lineup + merge；Step 1 roster + Step 2 role_change 閘門） |
+| 2. 投打驗證 | `merged.json` + `merged_summary.md`（roster + pitcher + lineup + merge；Step 1 roster + Step 2 role_change 閘門） |
+|  | 各腳本同時產出 `*_summary.md`（含 🚨 Trigger section：Flag 13 / Flag 3 自動偵測） |
 | 3. 綜合分析 | `phase3_summary.md`（投打 / 牛棚 / 條件修正；BvP PA≥15、牛棚雙向、BABIP 回歸閘門） |
 | 4. 預測輸出 | `prediction.json` + 報告（`predict.py`；紀律 D1-D5 自動執行） |
 

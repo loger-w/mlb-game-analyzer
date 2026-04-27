@@ -43,6 +43,9 @@ Glob(pattern="**/*.py")  ← 從 SKILL.md 所在目錄執行
   1. 當日最新傷兵快訊（IL 異動）— 優先用 API 40 人名單 + IL 名單；WebSearch 僅作補充查詢
 - ⛔ 任何腳本失敗 → 向使用者回報錯誤，禁止靜默改用 WebSearch
 - ⛔ 所有腳本輸出必須使用 `--output / -o` 參數存檔，禁止使用 shell redirect `>`
+- ✅ Phase 1 / Phase 2 階段優先使用 **Read 工具讀 `*_summary.md`** 取得結構化摘要；JSON 僅由 `predict.py` / `merge_game_data.py` 機械讀取
+- ⛔ 禁止用 `python -c` 萃取 Phase 1 / 2 JSON 欄位（schema 已透過 `*_summary.md` 公開）
+- ⛔ 隊伍縮寫一律用 `KC` / `LAA` / `NYY` 等英文縮寫；純數字 team_id 已被 `roster_checker.py` 拒絕
 
 ---
 
@@ -65,8 +68,6 @@ $PYTHON scripts/fetch_game_data.py --date {YYYY-MM-DD} --team {team} -o $GAME_DI
 - **系列賽前場驗證**：自動偵測同系列賽前場並拉取實際比分
 
 > 僅使用 `gameType = "R"` 例行賽，排除春訓。
-
-> 腳本同時輸出 `game_data_summary.md` 至同目錄（~30-50 行 markdown，含戰績 / 趨勢 / 當前系列賽 / Streak 脈絡）。
 
 ### 1.3 Pythagorean Win%
 
@@ -106,21 +107,26 @@ $PYTHON scripts/fetch_game_data.py --date {YYYY-MM-DD} --team {team} -o $GAME_DI
 
 ## Phase 2：投打驗證與資料擴充
 
-> ⚠️ **嚴禁使用 Agent 子代理執行 WebSearch**（子代理無法存取 WebSearch/WebFetch）。
-> 必須在主對話中直接平行呼叫多個 WebSearch。
-
 ### Step 1（🔒 阻塞）：Roster 檢查
 
 ⛔ **必須完成 Step 1 並通過閘門後，才能執行 Step 2。**
 
 ```bash
-$PYTHON scripts/roster_checker.py --team {主隊teamId} --season {year} -o $GAME_DIR/home_roster.json
-$PYTHON scripts/roster_checker.py --team {客隊teamId} --season {year} -o $GAME_DIR/away_roster.json
+# CLI 已標準化為「縮寫」：KC / LAA / NYY；純數字 ID 會被拒絕
+$PYTHON scripts/roster_checker.py --team {主隊縮寫} --season {year} -o $GAME_DIR/home_roster.json
+$PYTHON scripts/roster_checker.py --team {客隊縮寫} --season {year} -o $GAME_DIR/away_roster.json
+
+# 可選：傳 --expected-starter 讓腳本自動偵測「先發不在 active」trigger
+$PYTHON scripts/roster_checker.py --team {主隊縮寫} --season {year} \
+  --expected-starter "{主隊投手}" -o $GAME_DIR/home_roster.json
 ```
+
+> 腳本同時輸出 `home_roster_summary.md` / `away_roster_summary.md`（含 active 投手 / 野手 / IL 分類 + 觸發 section）。
 
 **Step 1 閘門（逐項確認，未通過不得繼續）：**
 - [ ] 雙方 roster JSON 已輸出
-- [ ] 主隊先發投手在 active roster？→ 否 = 暫停 Skill 並告知使用者
+- [ ] Read `home_roster_summary.md` / `away_roster_summary.md` 取得 active + IL 摘要
+- [ ] 主隊先發投手在 active roster？→ 否 = 暫停 Skill 並告知使用者（傳 `--expected-starter` 時 MD 會自動 🚨）
 - [ ] 客隊先發投手在 active roster？→ 否 = 暫停 Skill 並告知使用者
 - [ ] IL 名單已記錄 → 作為 Phase 3 牛棚/傷兵分析基礎
 
@@ -131,15 +137,22 @@ $PYTHON scripts/roster_checker.py --team {客隊teamId} --season {year} -o $GAME
 $PYTHON scripts/pitcher_stats.py --name "{主隊投手}" --year YYYY -o $GAME_DIR/home_pitcher.json
 $PYTHON scripts/pitcher_stats.py --name "{客隊投手}" --year YYYY -o $GAME_DIR/away_pitcher.json
 
-# 打線（可平行）
-$PYTHON scripts/lineup_analyzer.py --team {主隊} --year YYYY --opposing-pitcher-id {客隊投手ID} -o $GAME_DIR/home_lineup.json
-$PYTHON scripts/lineup_analyzer.py --team {客隊} --year YYYY --opposing-pitcher-id {主隊投手ID} -o $GAME_DIR/away_lineup.json
+# 打線（可平行）— --team 接縮寫 / 全名 / 中文（純數字 ID 已被拒絕）
+$PYTHON scripts/lineup_analyzer.py --team {主隊縮寫} --year YYYY --opposing-pitcher-id {客隊投手ID} -o $GAME_DIR/home_lineup.json
+$PYTHON scripts/lineup_analyzer.py --team {客隊縮寫} --year YYYY --opposing-pitcher-id {主隊投手ID} -o $GAME_DIR/away_lineup.json
 ```
 
+> 每個腳本都同時輸出 `<basename>_summary.md`：
+> - `home_pitcher_summary.md` / `away_pitcher_summary.md` — Season + Statcast + Platoon + Recent + Prior + 🚨 Triggers (Flag 13 自動偵測)
+> - `home_lineup_summary.md` / `away_lineup_summary.md` — team-level + 9 人 table + Platoon + last7 + BvP + 🚨 Triggers (Flag 3 自動偵測)
+
 **Step 2 閘門（腳本輸出後逐項確認）：**
+- [ ] Read `home_pitcher_summary.md` / `away_pitcher_summary.md` 確認 Statcast / Platoon / Triggers
+- [ ] Read `home_lineup_summary.md` / `away_lineup_summary.md` 確認 tier / heat / Triggers
 - [ ] 投手有 `role_change` 標記？→ 是 = ⛔ **僅用先發場次數據，牛棚期 ERA/FIP 不可用於先發評估**
 - [ ] 打線數據僅含 active roster 球員？（比對 Step 1 roster）
-- [ ] **ERA vs xERA 落差閘門**（觸發條件 / 處理見 `flags-checklist.md` §13）：補跑 `pitcher_stats.py --name "..." --year {YYYY-1} -o $GAME_DIR/{side}_pitcher_{YYYY-1}.json`，YoY Statcast 對比方法見 `matchup-factors.md#yoy-statcast-驗證`。未完成不得進 Phase 3；不得以「風險提示」代替驗證。
+- [ ] **MD 出現 `## 🚨 Triggers / Flag 13` ?**（ERA-xERA gap 已由 `pitcher_stats.detect_triggers` 自動算）→ 是 = 補跑 `pitcher_stats.py --name "..." --year {YYYY-1} -o $GAME_DIR/{side}_pitcher_{YYYY-1}.json`，YoY Statcast 對比方法見 `matchup-factors.md#yoy-statcast-驗證`。未完成不得進 Phase 3；不得以「風險提示」代替驗證。
+- [ ] **MD 出現 `## 🚨 Triggers / Flag 3` ?**（last7 BABIP 極端值已由 `lineup_analyzer.detect_triggers` 自動算）→ 是 = TaskCreate B10 BABIP 回歸判定（見 §B10 樣板）
 
 **B7 TaskCreate 樣板（Plan B 2026-04-22 §4.7，第 3 層 forcing function）：**
 
@@ -170,6 +183,11 @@ $PYTHON scripts/merge_game_data.py \
 
 - 自動取得牛棚 ERA + Park Factor
 - 輸出 `merged.json`，作為 Phase 4 `predict.py` 的輸入
+- 同時輸出 `merged_summary.md` — Phase 2 整合一頁總覽（投手對決 / 打線 / 牛棚 / Park / 多窗口 RS-RA / Trigger 摘要）
+
+**Step 3a 閘門：**
+- [ ] Read `merged_summary.md` 取得 Phase 2 整合視角
+- [ ] 確認 `## 🚨 Triggers (Phase 2 整合視角)` 內列出的所有 Flag 都已有對應 TaskCreate
 
 #### 3b. 環境補充
 
@@ -177,13 +195,6 @@ $PYTHON scripts/merge_game_data.py \
 |------|---------|
 | 傷兵名單 | 以 Step 1 的 40 人名單 + IL 名單為主（API 抓取） |
 | 球場 | Park Factor（查 `matchup-factors.md` §Park Factor；未來接大數據 md 檔） |
-| 盤口賠率 | ML / Run Line / O/U + 讓分方向驗證 |
-
-盤口分析（使用者提供盤口數據後執行，輸入格式見 `reference/odds-format.md`）：
-
-```bash
-$PYTHON scripts/odds_analyzer.py --hk-home {hk} --hk-away {hk} ... -o $GAME_DIR/odds_analysis.json
-```
 
 ---
 
@@ -296,9 +307,7 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 > **RL 推薦（Plan B 2026-04-22 W1）**：無 `--run-line-rec` / `--run-line-stars` CLI args，已廢除。RL 全走 `predict.py` auto override（RL-1b gate：|adj 比分差| ≥ 1.5 + strong tag 或 big-diff ≥ 2.2）。
 
-> **自動 Odds 查詢**：`predict.py --save` 會自動從 `odds_snapshots/` 撈推薦時間最近的 Pinnacle snapshot 作為 Kelly 計算來源（Kelly 區塊詳見 `reference/prediction.md` Kelly Sizing 章節）。若需手動覆寫，加 `--ml-odds-home-dec 1.83` / `--ou-odds-over-dec 1.91` / `--rl-odds-home-dec 1.56` 等 args。Doubleheader 需指定 `--game-index 1` 或 `2`。
-
-> ⚠️ **勝率與比分皆用 predict.py 的 `formula_prediction`**（XGBoost 路徑於 2026-04 重構移除）。手動估算只能作為輔助驗算。
+> ⚠️ **勝率與比分皆用 predict.py 的 `formula_prediction`**（XGBoost 路徑於 2026-04 重構移除；Kelly / 盤口 snapshot 系統於 2026-04-27 重構移除）。手動估算只能作為輔助驗算。
 
 ### 4.1 PASS 規則與星級護欄
 
@@ -309,10 +318,10 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 - 比分公式 + Run Value 信號修正 → 見 `prediction.md`「比分預測方法 + 信號 → Run Value 修正表」
 
-### 4.3 盤口推薦
+### 4.3 推薦結果
 
 - ⛔ **紀律閘門 D1/D2** → 見 `prediction.md`「分析紀律」
-- O/U、ML、Run Line、讓分方向交叉驗證 → 見 `prediction.md`「讓分方向交叉驗證」
+- O/U、ML、Run Line 方向交叉驗證 → 見 `prediction.md`「讓分方向交叉驗證」
 
 ### 4.4 硬性規則（Phase 4 閘門）
 
