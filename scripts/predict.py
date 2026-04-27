@@ -1260,6 +1260,16 @@ def main():
             json.dump(record, f, ensure_ascii=False, indent=2)
         print(f"Saved to {prediction_path}", file=sys.stderr)
 
+        # 額外輸出 prediction_summary.md（同目錄）
+        summary_path = Path(prediction_path).parent / "prediction_summary.md"
+        try:
+            summary_md = format_prediction_summary_md(record, signal_table, cap_reasons)
+            with open(summary_path, "w", encoding="utf-8") as f:
+                f.write(summary_md)
+            print(f"Saved summary to {summary_path}", file=sys.stderr)
+        except ValueError as e:
+            print(f"Skipped summary (data incomplete): {e}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()
