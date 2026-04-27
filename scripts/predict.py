@@ -486,6 +486,130 @@ def format_signal_table_md(auto_signals: list[dict], user_signals: dict) -> str:
     return "\n".join(lines)
 
 
+def _stars_str(stars: int | None) -> str:
+    """渲染星級；None / 0 → '—'，否則 ⭐ * stars。"""
+    if not stars:
+        return "—"
+    return "⭐" * stars
+
+
+def format_recommendation_rows(
+    record: dict, cap_reasons: list[str]
+) -> tuple[str, str]:
+    """產生 (tldr_table_md, full_rows_md)。共用 reason 字串確保 TL;DR 與
+    推薦結果 section 一致（同來源避免漂移）。
+
+    一句話理由規則見 spec section 2「推薦行 一句話理由 + tag 折進規則」。
+    """
+    home_team = record.get("home_team", "")
+    away_team = record.get("away_team", "")
+    home_abbr = TEAM_ABBREV.get(home_team, home_team[:3].upper())
+    away_abbr = TEAM_ABBREV.get(away_team, away_team[:3].upper())
+    pct = record.get("predicted_home_pct", 0.0)
+    pw = record.get("predicted_winner", "HOME")
+    side = "HOME" if pct > 50 else "AWAY"
+    tags = record.get("tags") or []
+
+    # ===== ML row =====
+    ml_rec = record.get("ml_rec") or "PASS"
+    ml_stars = record.get("ml_stars")
+    original_ml_stars = record.get("original_ml_stars")
+
+    # Folded tags for ML row
+    ml_folded = [t for t in tags if t in ("divergent", "direction-override", "home-2star-risk")]
+
+    if ml_rec == "PASS":
+        ml_dir = "PASS"
+        ml_stars_str = "—"
+        ml_reason = f"Log5 {pct:.1f}% ({side})"
+    else:
+        ml_dir = ml_rec
+        ml_stars_str = _stars_str(ml_stars)
+        reason_parts = [f"Log5 {pct:.1f}% ({side})"]
+        if ml_folded:
+            reason_parts.append("audit " + ", ".join(f"`{t}`" for t in ml_folded))
+        ml_reason = "，".join(reason_parts)
+
+    # ===== O/U row =====
+    ou_rec = record.get("ou_rec") or "PASS"
+    ou_stars = record.get("ou_stars")
+    ou_line = record.get("ou_line")
+    adj_total = record.get("adjusted_total")
+
+    if ou_line is not None and adj_total is not None:
+        gap = abs(adj_total - ou_line)
+        gap_str = f"adj_total {adj_total:.1f} vs line {ou_line}，差距 {gap:.1f} run"
+    else:
+        gap = None
+        gap_str = "—"
+
+    if ou_rec == "PASS":
+        ou_dir = "PASS"
+        ou_stars_str = "—"
+        if gap is not None and gap < 1.5:
+            ou_reason = f"差距 {gap:.1f} < 1.5 run"
+        else:
+            ou_reason = gap_str
+    else:
+        ou_dir = ou_rec
+        ou_stars_str = _stars_str(ou_stars)
+        ou_reason = gap_str
+
+    # ===== Run Line row =====
+    rl_rec = record.get("run_line_rec") or "PASS"
+    rl_stars = record.get("run_line_stars")
+    rl_override = record.get("rl_override") or {}
+
+    if rl_override.get("active"):
+        rl_dir = rl_rec
+        rl_stars_str = _stars_str(rl_stars)
+        path = rl_override.get("path", "?")
+        diff = rl_override.get("diff", 0.0)
+        ov_tags = rl_override.get("tags") or []
+        if ov_tags:
+            tag_str = ", ".join(f"`{t}`" for t in ov_tags)
+            rl_reason = f"override `{path}`，|diff|={diff:.1f}，tags={tag_str}"
+        else:
+            rl_reason = f"override `{path}`，|diff|={diff:.1f}"
+    else:
+        rl_dir = "PASS"
+        rl_stars_str = "—"
+        adj_home = record.get("predicted_home_score") or 0
+        adj_away = record.get("predicted_away_score") or 0
+        diff = abs(adj_home - adj_away)
+        rl_reason = f"|diff|={diff:.1f} < 1.5（RL_DIFF_MIN）"
+
+    # ===== TL;DR table =====
+    tldr_lines = [
+        "| 市場 | 方向 | 推薦指數 | 一句話理由 |",
+        "|------|------|----------|-----------|",
+        f"| ML | {ml_dir} | {ml_stars_str} | {ml_reason} |",
+        f"| O/U | {ou_dir} | {ou_stars_str} | {ou_reason} |",
+        f"| Run Line | {rl_dir} | {rl_stars_str} | {rl_reason} |",
+    ]
+    tldr = "\n".join(tldr_lines)
+
+    # ===== Full rows =====
+    def _full_row(market: str, direction: str, stars_str: str, reason: str) -> str:
+        if stars_str == "—":
+            head = f"**{direction}**"
+        else:
+            head = f"**{direction} {stars_str}**"
+        return f"- **{market}**: {head} — {reason}"
+
+    full_lines = [_full_row("ML", ml_dir, ml_stars_str, ml_reason)]
+    # ML cap reason appended
+    if (original_ml_stars is not None and ml_stars is not None
+            and original_ml_stars > ml_stars and cap_reasons):
+        full_lines[0] += f"（原 {_stars_str(original_ml_stars)} 降為 {_stars_str(ml_stars)}：{'; '.join(cap_reasons)}）"
+
+    full_lines.append(_full_row("O/U", ou_dir, ou_stars_str, ou_reason))
+    full_lines.append(_full_row("Run Line", rl_dir, rl_stars_str, rl_reason))
+
+    full = "\n".join(full_lines)
+    return tldr, full
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 

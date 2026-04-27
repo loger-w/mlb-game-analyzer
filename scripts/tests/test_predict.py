@@ -806,3 +806,123 @@ def test_format_signal_table_both_empty():
     result = format_signal_table_md([], {})
     # 兩段都顯示「（無）」
     assert result.count("（無）") == 2
+
+
+def _make_minimal_record(**overrides):
+    """Phase 4 test record factory."""
+    base = {
+        "date": "2026-04-26",
+        "home_team": "Kansas City Royals",
+        "away_team": "Los Angeles Angels",
+        "predicted_winner": "HOME",
+        "predicted_home_pct": 51.9,
+        "predicted_home_score": 3.1,
+        "predicted_away_score": 2.6,
+        "formula_home_score": 3.1,
+        "formula_away_score": 2.6,
+        "adjusted_total": 5.7,
+        "signal_adjustments": {},
+        "ou_line": 9.0,
+        "ou_rec": "UNDER",
+        "ou_stars": 2,
+        "ml_rec": "KC",
+        "ml_stars": 2,
+        "original_ml_stars": 2,
+        "run_line_rec": "PASS",
+        "run_line_stars": None,
+        "rl_override": {
+            "active": False, "path": None, "diff": None, "stars": None,
+            "tags": None, "warnings": None, "thresholds": None,
+        },
+        "tags": [],
+        "temperature_f": None,
+        "wind_mph": None,
+        "wind_direction": None,
+        "umpire_name": None,
+        "umpire_ou_rate": None,
+    }
+    base.update(overrides)
+    return base
+
+
+def test_format_recommendation_rows_full_pass():
+    from predict import format_recommendation_rows
+    record = _make_minimal_record(
+        ml_rec="PASS", ml_stars=None,
+        ou_rec="PASS", ou_stars=None,
+        run_line_rec="PASS",
+    )
+    tldr, full = format_recommendation_rows(record, [])
+    # TL;DR 表頭存在
+    assert "| 市場 |" in tldr
+    # 三行都 PASS
+    assert tldr.count("PASS") >= 3
+    assert full.count("PASS") >= 3
+
+
+def test_format_recommendation_rows_ml_with_audit_tag():
+    from predict import format_recommendation_rows
+    record = _make_minimal_record(tags=["home-2star-risk"])
+    tldr, full = format_recommendation_rows(record, [])
+    assert "audit" in tldr
+    assert "`home-2star-risk`" in tldr
+    assert "audit" in full
+    # ml direction = KC
+    assert "| ML | KC |" in tldr or "| KC |" in tldr
+
+
+def test_format_recommendation_rows_ml_cap_appended_in_full():
+    """ml_stars < original_ml_stars → full rows 附加降級原因"""
+    from predict import format_recommendation_rows
+    record = _make_minimal_record(ml_stars=2, original_ml_stars=4)
+    cap_reasons = ["formula 勝率 51.9%（50-55%）上限 2"]
+    _tldr, full = format_recommendation_rows(record, cap_reasons)
+    assert "原" in full or "降為" in full or "上限" in full
+    # cap reason text 必須出現
+    assert "50-55%" in full
+
+
+def test_format_recommendation_rows_rl_inactive():
+    """rl_override.active=False → reason 提及 RL_DIFF_MIN"""
+    from predict import format_recommendation_rows
+    record = _make_minimal_record()
+    tldr, full = format_recommendation_rows(record, [])
+    assert "RL_DIFF_MIN" in tldr or "1.5" in tldr
+    assert "PASS" in tldr
+
+
+def test_format_recommendation_rows_rl_active_big_diff():
+    """rl_override.active=True big-diff → reason 含 path + diff + tags"""
+    from predict import format_recommendation_rows
+    record = _make_minimal_record(
+        run_line_rec="LAA",
+        run_line_stars=2,
+        predicted_home_score=2.0,
+        predicted_away_score=4.6,
+        rl_override={
+            "active": True,
+            "path": "big-diff",
+            "diff": 2.6,
+            "stars": 2,
+            "tags": ["home-bullpen-slump", "home-pitching-slump"],
+            "warnings": [],
+            "thresholds": {"diff_min": 1.5, "diff_big": 2.2, "diff_star": 2.0},
+        },
+    )
+    tldr, full = format_recommendation_rows(record, [])
+    assert "big-diff" in tldr
+    assert "2.6" in tldr
+    # tags 折進 RL row 一句話理由
+    assert "home-bullpen-slump" in tldr or "home-pitching-slump" in tldr
+
+
+def test_format_recommendation_rows_ou_pass_due_to_small_gap():
+    """ou_rec=PASS 且 |adj_total - ou_line| < 1.5 → reason 提及差距"""
+    from predict import format_recommendation_rows
+    record = _make_minimal_record(
+        ou_rec="PASS", ou_stars=None,
+        adjusted_total=8.8, ou_line=9.0,
+    )
+    tldr, _full = format_recommendation_rows(record, [])
+    assert "0.2" in tldr  # gap
+    assert "PASS" in tldr
