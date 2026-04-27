@@ -926,3 +926,63 @@ def test_format_recommendation_rows_ou_pass_due_to_small_gap():
     tldr, _full = format_recommendation_rows(record, [])
     assert "0.2" in tldr  # gap
     assert "PASS" in tldr
+
+
+# ============================================================================
+# Task 4: format_discipline_check
+# ============================================================================
+
+def test_format_discipline_check_all_pass():
+    from predict import format_discipline_check
+    record = _make_minimal_record()
+    result = format_discipline_check(record)
+    # 4 行（D1/D2/D3/D5；D4 已棄用）
+    assert result.count("\n") == 3
+    assert "✅ D1" in result
+    assert "✅ D2" in result
+    assert "✅ D3" in result
+    assert "✅ D5" in result
+
+
+def test_format_discipline_check_d1_direction_override():
+    from predict import format_discipline_check
+    record = _make_minimal_record(tags=["direction-override"])
+    result = format_discipline_check(record)
+    assert "⚠️ D1" in result
+    assert "direction-override" in result
+
+
+def test_format_discipline_check_d1_ml_pass():
+    from predict import format_discipline_check
+    record = _make_minimal_record(ml_rec="PASS", ml_stars=None)
+    result = format_discipline_check(record)
+    assert "✅ D1" in result
+    assert "PASS" in result
+
+
+def test_format_discipline_check_d3_violation():
+    """ml 推主隊 + run_line 推客隊 → D3 ⚠️"""
+    from predict import format_discipline_check
+    record = _make_minimal_record(
+        ml_rec="KC", run_line_rec="LAA", run_line_stars=2,
+    )
+    result = format_discipline_check(record)
+    assert "⚠️ D3" in result
+
+
+def test_format_discipline_check_d5_violation():
+    """ou_rec=OVER 但 adj_total <= ou_line → D5 ⚠️"""
+    from predict import format_discipline_check
+    record = _make_minimal_record(
+        ou_rec="OVER", adjusted_total=8.5, ou_line=9.0,
+    )
+    result = format_discipline_check(record)
+    assert "⚠️ D5" in result
+
+
+def test_format_discipline_check_d5_ou_pass_skipped():
+    """ou_rec=PASS → D5 永遠 ✅"""
+    from predict import format_discipline_check
+    record = _make_minimal_record(ou_rec="PASS", ou_stars=None)
+    result = format_discipline_check(record)
+    assert "✅ D5" in result

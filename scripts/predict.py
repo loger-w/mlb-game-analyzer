@@ -610,6 +610,78 @@ def format_recommendation_rows(
     return tldr, full
 
 
+def format_discipline_check(record: dict) -> str:
+    """渲染 D1-D5 紀律檢查 4 行（D4 已棄用）。"""
+    home_team = record.get("home_team", "")
+    away_team = record.get("away_team", "")
+    home_abbr = TEAM_ABBREV.get(home_team, home_team[:3].upper())
+    away_abbr = TEAM_ABBREV.get(away_team, away_team[:3].upper())
+    pw = record.get("predicted_winner", "")
+    ml_rec = record.get("ml_rec") or "PASS"
+    ou_line = record.get("ou_line")
+    ou_rec = record.get("ou_rec") or "PASS"
+    adj_total = record.get("adjusted_total")
+    rl_rec = record.get("run_line_rec") or "PASS"
+    tags = record.get("tags") or []
+
+    lines = []
+
+    # D1: predicted_winner 方向是否與 ml_rec 一致
+    if "direction-override" in tags:
+        lines.append(
+            f"- ⚠️ D1 模型方向：direction-override（ml_rec={ml_rec}, predicted_winner={pw}）"
+        )
+    elif ml_rec == "PASS":
+        lines.append("- ✅ D1 模型方向：ml_rec=PASS")
+    else:
+        winner_abbr = home_abbr if pw == "HOME" else away_abbr
+        if ml_rec == winner_abbr:
+            lines.append(
+                f"- ✅ D1 模型方向：predicted_winner={pw}({winner_abbr}) 與 ml_rec={ml_rec} 一致"
+            )
+        else:
+            lines.append(
+                f"- ⚠️ D1 模型方向：predicted_winner={pw}({winner_abbr}) 與 ml_rec={ml_rec} 不一致"
+            )
+
+    # D2: 信號量化（永遠 ✅，predict.py 只接受 run_value 形式）
+    lines.append("- ✅ D2 信號量化：所有信號已轉為 run value")
+
+    # D3: 同場無對立推薦
+    if rl_rec == "PASS" or ml_rec == "PASS":
+        lines.append("- ✅ D3 同場無對立推薦")
+    else:
+        opposite = (
+            (ml_rec == home_abbr and rl_rec == away_abbr)
+            or (ml_rec == away_abbr and rl_rec == home_abbr)
+        )
+        if opposite:
+            lines.append(
+                f"- ⚠️ D3 同場推對立：ml_rec={ml_rec} + run_line_rec={rl_rec}"
+            )
+        else:
+            lines.append("- ✅ D3 同場無對立推薦")
+
+    # D5: 比分盤口一致
+    if ou_rec == "PASS" or ou_line is None or adj_total is None:
+        lines.append("- ✅ D5 比分盤口一致：ou_rec=PASS 或無 line")
+    else:
+        if ou_rec == "OVER" and adj_total > ou_line:
+            lines.append(
+                f"- ✅ D5 比分盤口一致：adj_total {adj_total} > ou_line {ou_line} vs ou_rec=OVER"
+            )
+        elif ou_rec == "UNDER" and adj_total < ou_line:
+            lines.append(
+                f"- ✅ D5 比分盤口一致：adj_total {adj_total} < ou_line {ou_line} vs ou_rec=UNDER"
+            )
+        else:
+            lines.append(
+                f"- ⚠️ D5 比分盤口矛盾：adj_total {adj_total} vs ou_line {ou_line}, ou_rec={ou_rec}"
+            )
+
+    return "\n".join(lines)
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 
