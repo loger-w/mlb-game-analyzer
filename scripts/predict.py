@@ -456,6 +456,36 @@ def _format_pct_with_flip(
     )
 
 
+def format_signal_table_md(auto_signals: list[dict], user_signals: dict) -> str:
+    """組 auto + user 兩個 mini-table；各自空時顯示「（無）」一行。"""
+    lines = ["### Auto signals"]
+    if auto_signals:
+        lines.append("| 信號 | ±run |")
+        lines.append("|------|------|")
+        total = 0.0
+        for s in auto_signals:
+            rv = s["run_value"]
+            lines.append(f"| {s['signal']} | {rv:+.2f} |")
+            total += rv
+        lines.append(f"| **總和** | **{total:+.2f}** |")
+    else:
+        lines.append("（無）")
+
+    lines.append("")
+    lines.append("### User-supplied signals")
+    if user_signals:
+        lines.append("| Key | ±run |")
+        lines.append("|-----|------|")
+        total = 0.0
+        for k, v in user_signals.items():
+            lines.append(f"| `{k}` | {v:+.2f} |")
+            total += v
+        lines.append(f"| **總和** | **{total:+.2f}** |")
+    else:
+        lines.append("（無）")
+    return "\n".join(lines)
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 

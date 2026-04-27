@@ -763,3 +763,46 @@ def test_format_pct_adjusted_flip_away_to_home():
     assert "44.2% (HOME)" in result
     assert "5.0 > 4.0" in result
     assert "HOME 勝" in result
+
+
+def test_format_signal_table_both_populated():
+    from predict import format_signal_table_md
+    auto = [
+        {"signal": "Park Factor 106（修正 +0.30）", "run_value": 0.30},
+        {"signal": "雙方先發 FIP ≤ 3.0（Ace 級）", "run_value": -1.0},
+    ]
+    user = {"bullpen_il_away": 0.5, "pitcher_yoy_home": 0.3}
+    result = format_signal_table_md(auto, user)
+    assert "### Auto signals" in result
+    assert "### User-supplied signals" in result
+    assert "Park Factor 106" in result
+    assert "+0.30" in result
+    assert "-1.00" in result
+    assert "`bullpen_il_away`" in result
+    # auto 總和 = -0.70；user 總和 = +0.80
+    assert "**-0.70**" in result
+    assert "**+0.80**" in result
+
+
+def test_format_signal_table_auto_empty():
+    from predict import format_signal_table_md
+    result = format_signal_table_md([], {"foo": 0.5})
+    assert "### Auto signals" in result
+    # auto empty → 「（無）」一行
+    assert "（無）" in result
+    assert "`foo`" in result
+
+
+def test_format_signal_table_user_empty():
+    from predict import format_signal_table_md
+    auto = [{"signal": "X", "run_value": 0.5}]
+    result = format_signal_table_md(auto, {})
+    assert "X" in result
+    assert "（無）" in result
+
+
+def test_format_signal_table_both_empty():
+    from predict import format_signal_table_md
+    result = format_signal_table_md([], {})
+    # 兩段都顯示「（無）」
+    assert result.count("（無）") == 2
