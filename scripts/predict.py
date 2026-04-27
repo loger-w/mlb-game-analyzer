@@ -2,7 +2,6 @@
 """MLB Game Predictor — Log5 + 期望得分公式 + 信號計分表"""
 
 import argparse
-import glob
 import json
 import math
 import os
@@ -42,7 +41,7 @@ GAME_DATA_PATTERN = re.compile(
 SIGNAL_KEYS_PREFIXES = frozenset({
     "bullpen_", "weather_", "cold_", "babip_", "park_",
     "coors_", "lineup_", "both_", "env_", "home_", "away_",
-    "wind_", "sp_", "kelly_", "early_", "pitcher_",
+    "wind_", "sp_", "early_", "pitcher_",
 })
 
 # pitcher / player 個人化 signal 的後綴模式
@@ -216,134 +215,6 @@ def warn_unknown_signal_keys(signals: dict | None) -> None:
         )
 
 
-_SNAPSHOT_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-ET\.json$")
-
-
-def load_closest_snapshot(
-    game_date_et: str,
-    game_start_utc: str,
-    snapshot_dir: str = None,
-) -> dict | None:
-    """Find newest Pinnacle snapshot with snapshot_time < game_start_utc
-    and containing games on game_date_et.
-
-    Returns None if no match. Kelly 需要。
-    """
-    if snapshot_dir is None:
-        snapshot_dir = os.environ.get("MLB_SNAPSHOT_DIR_OVERRIDE")
-    if snapshot_dir is None:
-        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        snapshot_dir = os.path.join(base, "odds_snapshots")
-    if not os.path.isdir(snapshot_dir):
-        return None
-    try:
-        cutoff_dt = datetime.fromisoformat(game_start_utc.replace("Z", "+00:00"))
-    except (ValueError, AttributeError):
-        return None
-    candidates = []
-    for path in glob.glob(os.path.join(snapshot_dir, "*.json")):
-        name = os.path.basename(path)
-        if not _SNAPSHOT_FILENAME_RE.match(name):
-            continue
-        try:
-            with open(path, encoding="utf-8") as f:
-                snap = json.load(f)
-        except (OSError, json.JSONDecodeError):
-            continue
-        if not any(g.get("game_date_et") == game_date_et for g in snap.get("games", [])):
-            continue
-        try:
-            snap_dt = datetime.fromisoformat(snap["snapshot_time_utc"].replace("Z", "+00:00"))
-        except (KeyError, ValueError):
-            continue
-        if snap_dt < cutoff_dt:
-            candidates.append((snap_dt, snap))
-    if not candidates:
-        return None
-    candidates.sort(key=lambda x: x[0], reverse=True)
-    return candidates[0][1]
-
-
-_NAME_TO_ABBREV = dict(TEAM_ABBREV)
-
-
-def resolve_pinnacle_odds(
-    snapshot: dict,
-    home_abbrev: str,
-    away_abbrev: str,
-    *,
-    game_index: int | None = None,
-) -> dict | None:
-    """Extract Pinnacle decimal odds. For doubleheaders, game_index (1 or 2) required."""
-    matches = []
-    for g in snapshot.get("games", []):
-        home_full = g.get("home_team")
-        away_full = g.get("away_team")
-        gh = _NAME_TO_ABBREV.get(home_full)
-        ga = _NAME_TO_ABBREV.get(away_full)
-        if gh != home_abbrev or ga != away_abbrev:
-            continue
-        matches.append(g)
-
-    if not matches:
-        return None
-
-    if len(matches) > 1:
-        if game_index is None:
-            raise ValueError(
-                f"doubleheader detected for {away_abbrev}@{home_abbrev}; "
-                f"pass game_index=1 or 2"
-            )
-        # 按 commence_et 排序，game_index 1 基底
-        matches.sort(key=lambda g: g.get("commence_et", ""))
-        if game_index < 1 or game_index > len(matches):
-            raise ValueError(f"game_index {game_index} out of range (have {len(matches)} games)")
-        g = matches[game_index - 1]
-    else:
-        g = matches[0]
-
-    pin = g.get("bookmakers", {}).get("pinnacle")
-    if not pin:
-        return None
-
-    ml = pin.get("ml", {})
-    ou = pin.get("ou", {})
-    rl = pin.get("rl", {})
-
-    home_full = g["home_team"]
-    away_full = g["away_team"]
-
-    result = {
-        "snapshot_time_et": snapshot.get("snapshot_time_et"),
-        "ml": None,
-        "ou": None,
-        "rl": None,
-    }
-
-    if home_full in ml and away_full in ml:
-        result["ml"] = {
-            "home_decimal": ml[home_full]["odds"],
-            "away_decimal": ml[away_full]["odds"],
-        }
-
-    if "Over" in ou and "Under" in ou:
-        result["ou"] = {
-            "line": ou["Over"].get("point"),
-            "over_decimal": ou["Over"]["odds"],
-            "under_decimal": ou["Under"]["odds"],
-        }
-
-    if home_full in rl and away_full in rl:
-        result["rl"] = {
-            "home_point": rl[home_full].get("point"),
-            "home_decimal": rl[home_full]["odds"],
-            "away_point": rl[away_full].get("point"),
-            "away_decimal": rl[away_full]["odds"],
-        }
-
-    return result
-
-
 def pythagorean_runs(rs: float, ra: float, g: float = 10) -> float:
     """Pythagenport 動態指數公式（與 reference/teams-and-api.md 一致）
 
@@ -397,7 +268,6 @@ def _inactive_rl_override() -> dict:
         "diff": None,
         "stars": None,
         "tags": None,
-        "kelly_available": None,
         "warnings": None,
         "thresholds": None,
     }
@@ -411,7 +281,6 @@ def apply_rl_guardrail(
     predicted_winner: str,
     home_team: str,
     away_team: str,
-    kelly_rl_available: bool = False,
 ) -> tuple[str, int | None, dict]:
     """Apply RL guardrails and produce rl_override audit dict.
 
@@ -428,17 +297,11 @@ def apply_rl_guardrail(
     Defensive (Q4): if predicted_winner != diff_side, record
     'pw_diff_direction_mismatch' warning but do not block the override.
 
-    Removed in Plan B 2026-04-22 (W1):
-      - `user_rl_rec` / `user_rl_stars` kwargs（CLI args 廢除；cumulative #10 RL 繞過消除）
-      - RL-1 hard gate（原已於 2026-04-21 symmetrization 刪除）
-      - RL-2 sanity gate（「非 PASS 但 stars 未指定 → PASS」— 沒有 user input 後此分支永不觸發）
-
     Args:
       adj_home / adj_away: adjusted scores (already applied signal/adjusted args)
       trend_tags: full trend_tags list from compute_trend_tags(data)
       predicted_winner: 'HOME' | 'AWAY' (result['final']['recommended_winner'])
       home_team / away_team: full team names (used by TEAM_ABBREV lookup)
-      kelly_rl_available: True iff kelly_block['rl'] is not None
 
     Returns:
       (final_rl_rec, final_rl_stars, rl_override_dict)
@@ -483,7 +346,6 @@ def apply_rl_guardrail(
                 "diff": round(diff, 2),
                 "stars": stars,
                 "tags": sorted(strong_rl),
-                "kelly_available": bool(kelly_rl_available),
                 "warnings": warnings,
                 "thresholds": {
                     "diff_min": RL_DIFF_MIN,
@@ -607,7 +469,7 @@ def predict_with_formula(data: dict) -> dict:
     }
 
 
-# C1: ET timezone（對齊 fetch_odds.py:21 — MLB 球季 EDT = UTC-4）
+# ET timezone（MLB 球季 EDT = UTC-4）
 _ET_TZ = timezone(timedelta(hours=-4))
 _ANALYSIS_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
 
@@ -629,205 +491,6 @@ def _extract_game_date_et(args, meta: dict) -> str | None:
             except ValueError:
                 pass
     return game_date_et
-
-
-def compute_kelly_block(
-    args,
-    merged: dict,
-    formula_prediction: dict,
-    final_ml_rec: str,
-    final_ou_rec: str,
-    final_rl_rec: str,
-) -> dict | None:
-    """Build the kelly block for prediction.json.
-
-    I1: PASS markets → kelly.{market} = None (kelly must align with D1-D5 guardrail).
-    C1: ET date extracted from analysis-data/YYYY-MM-DD/ path (fallback: UTC→ET).
-    C3: Pass Pinnacle rl.home_point into analyze_run_line for truthful side labeling.
-    """
-    from odds_analyzer import (
-        analyze_moneyline, analyze_over_under, analyze_run_line,
-        decimal_to_american,
-    )
-
-    warnings = []
-    meta = merged.get("_meta", {})
-    # Real merged.json stores _meta.home_team/away_team as full team names
-    # (e.g. "Philadelphia Phillies"). TEAM_ABBREV maps full→abbrev; fall
-    # through to the raw value so already-abbrev'd inputs (fixtures/tests)
-    # still work.
-    home_raw = meta.get("home_team") or "HOME"
-    away_raw = meta.get("away_team") or "AWAY"
-    home_abbrev = TEAM_ABBREV.get(home_raw, home_raw)
-    away_abbrev = TEAM_ABBREV.get(away_raw, away_raw)
-    game_date_iso = meta.get("game_date") or ""
-
-    # === C1: ET 日期取得 ===
-    game_date_et = None
-    if args.game_data:
-        for part in os.path.normpath(args.game_data).split(os.sep):
-            if _ANALYSIS_DATE_RE.match(part):
-                game_date_et = part
-                break
-    if not game_date_et and game_date_iso:
-        try:
-            utc_dt = datetime.fromisoformat(game_date_iso.replace("Z", "+00:00"))
-            game_date_et = utc_dt.astimezone(_ET_TZ).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
-    game_start_utc = game_date_iso if "T" in game_date_iso else None
-
-    # === I1: Guardrail PASS 對齊 ===
-    ml_is_pass = final_ml_rec == "PASS"
-    ou_is_pass = final_ou_rec == "PASS"
-    rl_is_pass = final_rl_rec == "PASS"
-    if ml_is_pass:
-        warnings.append("ml_guardrail_pass")
-    if ou_is_pass:
-        warnings.append("ou_guardrail_pass")
-    if rl_is_pass:
-        warnings.append("rl_guardrail_pass")
-
-    # 1) Snapshot auto-lookup
-    snap_odds = None
-    snap_source = None
-    if not args.no_auto_odds:
-        snap = load_closest_snapshot(game_date_et, game_start_utc) if game_date_et and game_start_utc else None
-        if snap:
-            snap_odds = resolve_pinnacle_odds(
-                snap, home_abbrev, away_abbrev,
-                game_index=args.game_index,
-            )
-            snap_source = snap.get("snapshot_time_et")
-            if snap_odds is None:
-                warnings.append(f"team_name_mismatch: {home_abbrev} vs {away_abbrev}")
-        else:
-            warnings.append("no_matching_snapshot")
-
-    # 2) CLI overrides take precedence
-    def _pick(override_dec, snap_value):
-        if override_dec is not None:
-            return decimal_to_american(override_dec), override_dec
-        if snap_value is not None:
-            return decimal_to_american(snap_value), snap_value
-        return None, None
-
-    s_ml = (snap_odds or {}).get("ml") or {}
-    s_ou = (snap_odds or {}).get("ou") or {}
-    s_rl = (snap_odds or {}).get("rl") or {}
-
-    ml_home_ml, ml_home_dec = _pick(args.ml_odds_home_dec, s_ml.get("home_decimal"))
-    ml_away_ml, ml_away_dec = _pick(args.ml_odds_away_dec, s_ml.get("away_decimal"))
-    ou_over_ml, ou_over_dec = _pick(args.ou_odds_over_dec, s_ou.get("over_decimal"))
-    ou_under_ml, ou_under_dec = _pick(args.ou_odds_under_dec, s_ou.get("under_decimal"))
-    ou_line = s_ou.get("line") if s_ou else None
-    if args.ou_line is not None:
-        ou_line = args.ou_line
-    rl_home_ml, rl_home_dec = _pick(args.rl_odds_home_dec, s_rl.get("home_decimal"))
-    rl_away_ml, rl_away_dec = _pick(args.rl_odds_away_dec, s_rl.get("away_decimal"))
-    rl_home_point = s_rl.get("home_point") if s_rl else None
-
-    kelly_params = {
-        "divisor": args.kelly_divisor,
-        "cap_pct": args.kelly_cap,
-        "unit_size_pct": args.unit_size,
-    }
-
-    # 3) No odds at all → null kelly block + warnings
-    have_any = any([ml_home_dec, ml_away_dec, ou_over_dec, ou_under_dec, rl_home_dec, rl_away_dec])
-    if not have_any:
-        warnings.append("no_odds_available")
-        return {
-            "snapshot_source": None,
-            "snapshot_time_et": None,
-            "params": kelly_params,
-            "ml": None, "ou": None, "rl": None,
-            "warnings": warnings,
-        }
-
-    out = {
-        "snapshot_source": snap_source,
-        "snapshot_time_et": snap_source,
-        "params": kelly_params,
-        "ml": None, "ou": None, "rl": None,
-        "warnings": warnings,
-    }
-
-    # ML Kelly — 用 formula log5 作為 model_p_home（XGBoost 路徑已於 P1 移除）
-    model_p_home = None
-    pct = formula_prediction.get("log5_pct")
-    if pct is not None:
-        model_p_home = pct / 100.0
-    if (not ml_is_pass
-            and model_p_home is not None
-            and ml_home_ml is not None and ml_away_ml is not None):
-        ml_res = analyze_moneyline(ml_home_ml, ml_away_ml, model_p_home, kelly_params)
-        kf = ml_res["kelly_fractional"]
-        out["ml"] = {
-            "direction": kf["direction"],
-            "decimal_odds": ml_home_dec if kf["direction"] == "HOME" else ml_away_dec,
-            "raw_kelly_pct": kf["raw_kelly_pct"],
-            "fractional_pct": kf["fractional_pct"],
-            "capped_pct": kf["capped_pct"],
-            "units": kf["units"],
-        }
-
-    # OU Kelly
-    predicted_total = formula_prediction.get("total")
-    if (not ou_is_pass
-            and predicted_total is not None and ou_line is not None
-            and (ou_over_ml or ou_under_ml)):
-        ou_res = analyze_over_under(ou_line, predicted_total, ou_over_ml, ou_under_ml, kelly_params)
-        kf = ou_res["kelly_fractional"]
-        if kf:
-            over_block = kf["over"] and {
-                "decimal_odds": ou_over_dec,
-                "raw_kelly_pct": kf["over"]["raw_kelly_pct"],
-                "fractional_pct": kf["over"]["fractional_pct"],
-                "capped_pct": kf["over"]["capped_pct"],
-                "units": kf["over"]["units"],
-            }
-            under_block = kf["under"] and {
-                "decimal_odds": ou_under_dec,
-                "raw_kelly_pct": kf["under"]["raw_kelly_pct"],
-                "fractional_pct": kf["under"]["fractional_pct"],
-                "capped_pct": kf["under"]["capped_pct"],
-                "units": kf["under"]["units"],
-            }
-            out["ou"] = {
-                "direction": ou_res["direction"],
-                "line": ou_line,
-                "over": over_block,
-                "under": under_block,
-            }
-
-    # RL Kelly
-    predicted_margin = formula_prediction.get("margin")
-    if predicted_margin is None:
-        hs = formula_prediction.get("home_score")
-        as_ = formula_prediction.get("away_score")
-        if hs is not None and as_ is not None:
-            predicted_margin = hs - as_
-    if (not rl_is_pass
-            and predicted_margin is not None and model_p_home is not None
-            and ml_home_ml is not None and ml_away_ml is not None
-            and (rl_home_ml or rl_away_ml)):
-        rl_res = analyze_run_line(
-            predicted_margin, model_p_home,
-            home_ml=ml_home_ml, away_ml=ml_away_ml,
-            home_rl_odds_ml=rl_home_ml, away_rl_odds_ml=rl_away_ml,
-            home_point=rl_home_point,
-            kelly_params=kelly_params,
-        )
-        kf = rl_res["kelly_fractional"]
-        if kf:
-            out["rl"] = {
-                "favorite_side": (kf.get("favorite_cover") or {}).get("side"),
-                "favorite": kf.get("favorite_cover"),
-                "underdog": kf.get("underdog_cover"),
-            }
-
-    return out
 
 
 def main():
@@ -857,29 +520,6 @@ def main():
     parser.add_argument("--wind-direction", help="Wind direction")
     parser.add_argument("--umpire", help="Home plate umpire name")
     parser.add_argument("--umpire-ou-rate", type=float, help="Umpire career Over pct")
-    # Kelly sizing parameters
-    parser.add_argument("--kelly-divisor", type=int, default=4,
-                        help="Kelly fraction divisor (default 4 = quarter-Kelly)")
-    parser.add_argument("--kelly-cap", type=float, default=3.0,
-                        help="Hard cap per bet, %% of bankroll (default 3.0)")
-    parser.add_argument("--unit-size", type=float, default=1.0,
-                        help="1 unit = this %% of bankroll (default 1.0)")
-    parser.add_argument("--no-auto-odds", action="store_true",
-                        help="Skip snapshot auto-lookup; use only CLI odds overrides")
-    parser.add_argument("--ml-odds-home-dec", type=float, default=None,
-                        help="Override: decimal odds for home ML")
-    parser.add_argument("--ml-odds-away-dec", type=float, default=None,
-                        help="Override: decimal odds for away ML")
-    parser.add_argument("--ou-odds-over-dec", type=float, default=None,
-                        help="Override: decimal odds for Over")
-    parser.add_argument("--ou-odds-under-dec", type=float, default=None,
-                        help="Override: decimal odds for Under")
-    parser.add_argument("--rl-odds-home-dec", type=float, default=None,
-                        help="Override: decimal odds for home RL")
-    parser.add_argument("--rl-odds-away-dec", type=float, default=None,
-                        help="Override: decimal odds for away RL")
-    parser.add_argument("--game-index", type=int, default=None,
-                        help="Doubleheader game number (1 or 2)")
     # Plan B 2026-04-22 edge-case 跳過旗（測試 / 非正式流程用）
     parser.add_argument("--skip-yoy-check", action="store_true",
                         help="Bypass B7 YoY prior year file existence check (Plan B)")
@@ -1133,28 +773,7 @@ def main():
             predicted_winner=result["final"]["recommended_winner"],
             home_team=home_team,
             away_team=away_team,
-            kelly_rl_available=False,  # Kelly 尚未計算，稍後回填
         )
-
-        # === Kelly Sizing 計算（I1: 對齊 guardrail；I4: tighten except） ===
-        kelly_block = None
-        try:
-            kelly_block = compute_kelly_block(
-                args, data, formula_pred,
-                final_ml_rec=final_ml_rec,
-                final_ou_rec=final_ou_rec,
-                final_rl_rec=final_rl_rec,
-            )
-        except (KeyError, IOError, json.JSONDecodeError, TypeError, AttributeError) as e:
-            print(f"⚠️ Kelly computation failed: {e}", file=sys.stderr)
-            kelly_block = None
-        # ValueError (doubleheader missing --game-index / bad decimal odds) 故意不吞
-
-        # 回填 rl_override.kelly_available（Q3：sticker 狀態用於後續分桶分析）
-        if rl_override["active"]:
-            rl_override["kelly_available"] = bool(
-                kelly_block is not None and kelly_block.get("rl") is not None
-            )
 
         record = {
             "date": record_date,
@@ -1200,7 +819,6 @@ def main():
             "actual_home_score": None,
             "actual_away_score": None,
             "actual_total": None,
-            "kelly": kelly_block,
             "verified": False,
         }
         # 寫入 per-game prediction.json（放在 --game-data 所在資料夾）
