@@ -422,6 +422,40 @@ def compute_signal_table(data: dict) -> dict:
     }
 
 
+def _format_pct_with_flip(
+    formula_pct: float,
+    predicted_winner: str,
+    adj_home: float,
+    adj_away: float,
+    has_adjusted: bool,
+) -> str:
+    """渲染勝率行；adjusted 比分翻轉方向時加 ⚠️ 註明。
+
+    formula_pct 是 home_win_pct（永遠以主隊視角）；side label 固定為 HOME。
+    翻轉條件：has_adjusted=True 且 (formula_pct > 50) != (predicted_winner == "HOME")
+    """
+    if not has_adjusted:
+        return f"Formula log5: **{formula_pct:.1f}% (HOME)**"
+    formula_winner = "HOME" if formula_pct > 50 else "AWAY"
+    if formula_winner == predicted_winner:
+        return f"Formula log5: **{formula_pct:.1f}% (HOME)**"
+    cmp = "<" if adj_home < adj_away else ">"
+    # Format adjusted scores: use 2 decimal places, but strip trailing zeros after the decimal point
+    # while preserving at least one decimal place (e.g., 5.0, 4.85)
+    adj_home_str = f"{adj_home:.2f}".rstrip("0").rstrip(".") if "." in f"{adj_home:.2f}" else f"{adj_home:.1f}"
+    adj_away_str = f"{adj_away:.2f}".rstrip("0").rstrip(".") if "." in f"{adj_away:.2f}" else f"{adj_away:.1f}"
+    # Ensure at least one decimal place
+    if "." not in adj_home_str:
+        adj_home_str += ".0"
+    if "." not in adj_away_str:
+        adj_away_str += ".0"
+    return (
+        f"⚠️ Formula {formula_pct:.1f}% (HOME) → adjusted 比分 "
+        f"{adj_home_str} {cmp} {adj_away_str} 判 {predicted_winner} 勝"
+        "（pct 未隨翻轉重算）"
+    )
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 

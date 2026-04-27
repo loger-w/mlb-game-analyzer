@@ -720,3 +720,46 @@ def test_phase3_all_sections_present_passes(tmp_path):
     )
     # phase3 check 不卡；整體可能成功
     assert "phase3_summary.md 缺必要 section" not in result.stderr
+
+
+# ============================================================================
+# Task 1: _format_pct_with_flip
+# ============================================================================
+
+def test_format_pct_no_adjusted_home_winner():
+    from predict import _format_pct_with_flip
+    result = _format_pct_with_flip(51.9, "HOME", 0.0, 0.0, has_adjusted=False)
+    assert result == "Formula log5: **51.9% (HOME)**"
+
+
+def test_format_pct_no_adjusted_away_winner():
+    """pct 永遠是 home 勝率；side label 為 HOME (主隊勝率視角)"""
+    from predict import _format_pct_with_flip
+    result = _format_pct_with_flip(44.2, "AWAY", 0.0, 0.0, has_adjusted=False)
+    assert result == "Formula log5: **44.2% (HOME)**"
+
+
+def test_format_pct_adjusted_no_flip():
+    """adjusted 比分仍與 formula 同方向 → 維持 formula log5 顯示"""
+    from predict import _format_pct_with_flip
+    result = _format_pct_with_flip(51.9, "HOME", 5.0, 4.0, has_adjusted=True)
+    assert result == "Formula log5: **51.9% (HOME)**"
+
+
+def test_format_pct_adjusted_flip_home_to_away():
+    from predict import _format_pct_with_flip
+    result = _format_pct_with_flip(51.9, "AWAY", 4.4, 4.85, has_adjusted=True)
+    assert result.startswith("⚠️")
+    assert "51.9% (HOME)" in result
+    assert "4.4 < 4.85" in result
+    assert "AWAY 勝" in result
+    assert "pct 未隨翻轉重算" in result
+
+
+def test_format_pct_adjusted_flip_away_to_home():
+    from predict import _format_pct_with_flip
+    result = _format_pct_with_flip(44.2, "HOME", 5.0, 4.0, has_adjusted=True)
+    assert result.startswith("⚠️")
+    assert "44.2% (HOME)" in result
+    assert "5.0 > 4.0" in result
+    assert "HOME 勝" in result
