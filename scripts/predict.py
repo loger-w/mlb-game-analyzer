@@ -729,6 +729,16 @@ def format_env_block(record: dict) -> str | None:
     return "\n".join(lines)
 
 
+def format_trend_tags_block(tags: list[str], recommendation_tags: set[str]) -> str | None:
+    """扣除已折進推薦行的 tags；剩下空 → None。"""
+    remaining = [t for t in tags if t not in recommendation_tags]
+    if not remaining:
+        return None
+    lines = ["## 趨勢標記"]
+    lines.append("- " + "、".join(f"`{t}`" for t in remaining))
+    return "\n".join(lines)
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 

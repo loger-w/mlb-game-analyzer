@@ -1064,3 +1064,39 @@ def test_format_env_block_all_null_returns_none():
     from predict import format_env_block
     record = _make_minimal_record()  # all env fields None
     assert format_env_block(record) is None
+
+
+def test_format_trend_tags_block_pure_trend():
+    from predict import format_trend_tags_block
+    tags = ["home-hot-offense", "home-pitching-slump", "away-bullpen-strong"]
+    result = format_trend_tags_block(tags, set())
+    assert result is not None
+    assert "## 趨勢標記" in result
+    assert "`home-hot-offense`" in result
+    assert "`home-pitching-slump`" in result
+    assert "`away-bullpen-strong`" in result
+
+
+def test_format_trend_tags_block_all_folded_returns_none():
+    """所有 tags 都已折進推薦 → None"""
+    from predict import format_trend_tags_block
+    tags = ["divergent", "home-2star-risk"]
+    folded = {"divergent", "home-2star-risk"}
+    assert format_trend_tags_block(tags, folded) is None
+
+
+def test_format_trend_tags_block_partial_fold():
+    """部分折進 → 剩下的列出"""
+    from predict import format_trend_tags_block
+    tags = ["home-hot-offense", "divergent", "home-bullpen-slump"]
+    folded = {"divergent"}
+    result = format_trend_tags_block(tags, folded)
+    assert result is not None
+    assert "`home-hot-offense`" in result
+    assert "`home-bullpen-slump`" in result
+    assert "`divergent`" not in result
+
+
+def test_format_trend_tags_block_empty_tags_returns_none():
+    from predict import format_trend_tags_block
+    assert format_trend_tags_block([], set()) is None
