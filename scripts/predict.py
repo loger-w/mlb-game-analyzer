@@ -682,6 +682,35 @@ def format_discipline_check(record: dict) -> str:
     return "\n".join(lines)
 
 
+def format_rl_override_block(rl_override: dict) -> str | None:
+    """RL override active=True 時渲染細節 section；inactive 回 None。"""
+    if not rl_override or not rl_override.get("active"):
+        return None
+    path = rl_override.get("path")
+    diff = rl_override.get("diff")
+    stars = rl_override.get("stars")
+    tags = rl_override.get("tags") or []
+    warnings = rl_override.get("warnings") or []
+    thr = rl_override.get("thresholds") or {}
+
+    lines = ["## Run Line override 細節"]
+    lines.append(f"- 路徑: `{path}`")
+    if diff is not None:
+        lines.append(f"- |diff|: {diff:.2f}")
+    if stars is not None:
+        lines.append(f"- stars: {stars}")
+    if tags:
+        lines.append(f"- 觸發 tags: {', '.join(f'`{t}`' for t in tags)}")
+    if warnings:
+        lines.append(f"- ⚠️ warnings: {', '.join(warnings)}")
+    if thr:
+        lines.append(
+            f"- thresholds: diff_min={thr.get('diff_min')}, "
+            f"diff_big={thr.get('diff_big')}, diff_star={thr.get('diff_star')}"
+        )
+    return "\n".join(lines)
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 

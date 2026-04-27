@@ -986,3 +986,47 @@ def test_format_discipline_check_d5_ou_pass_skipped():
     record = _make_minimal_record(ou_rec="PASS", ou_stars=None)
     result = format_discipline_check(record)
     assert "✅ D5" in result
+
+
+def test_format_rl_override_active_big_diff():
+    from predict import format_rl_override_block
+    rl = {
+        "active": True, "path": "big-diff", "diff": 2.6, "stars": 2,
+        "tags": ["home-bullpen-slump", "home-pitching-slump"],
+        "warnings": [],
+        "thresholds": {"diff_min": 1.5, "diff_big": 2.2, "diff_star": 2.0},
+    }
+    result = format_rl_override_block(rl)
+    assert result is not None
+    assert "## Run Line override 細節" in result
+    assert "big-diff" in result
+    assert "2.6" in result
+    assert "home-bullpen-slump" in result
+
+
+def test_format_rl_override_active_with_warnings():
+    from predict import format_rl_override_block
+    rl = {
+        "active": True, "path": "mid-diff+strong-tag", "diff": 1.8, "stars": 1,
+        "tags": ["away-pitching-slump"],
+        "warnings": ["pw_diff_direction_mismatch"],
+        "thresholds": {"diff_min": 1.5, "diff_big": 2.2, "diff_star": 2.0},
+    }
+    result = format_rl_override_block(rl)
+    assert result is not None
+    assert "pw_diff_direction_mismatch" in result
+    assert "⚠️" in result
+
+
+def test_format_rl_override_inactive_returns_none():
+    from predict import format_rl_override_block
+    rl = {
+        "active": False, "path": None, "diff": None, "stars": None,
+        "tags": None, "warnings": None, "thresholds": None,
+    }
+    assert format_rl_override_block(rl) is None
+
+
+def test_format_rl_override_empty_dict_returns_none():
+    from predict import format_rl_override_block
+    assert format_rl_override_block({}) is None
