@@ -27,7 +27,7 @@ description: Use when the user asks about MLB game predictions, matchup analysis
 | 2. 投打驗證 | `merged.json` + `merged_summary.md`（roster + pitcher + lineup + merge；Step 1 roster + Step 2 role_change 閘門） |
 |  | 各腳本同時產出 `*_summary.md`（含 🚨 Trigger section：Flag 13 / Flag 3 自動偵測） |
 | 3. 綜合分析 | `phase3_summary.md`（投打 / 牛棚 / 條件修正；BvP PA≥15、牛棚雙向、BABIP 回歸閘門） |
-| 4. 預測輸出 | `prediction.json` + 報告（`predict.py`；紀律 D1-D5 自動執行） |
+| 4. 預測輸出 | `prediction.json` + `prediction_summary.md`（`predict.py`；紀律 D1-D5 自動執行） |
 
 > 命令、參數、checklist：`reference/workflow.md`
 

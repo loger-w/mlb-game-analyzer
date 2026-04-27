@@ -309,6 +309,8 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 > ⚠️ **勝率與比分皆用 predict.py 的 `formula_prediction`**（XGBoost 路徑於 2026-04 重構移除；Kelly / 盤口 snapshot 系統於 2026-04-27 重構移除）。手動估算只能作為輔助驗算。
 
+> 腳本同時輸出 `prediction_summary.md` 至同目錄（含 ready-to-paste TL;DR + Section 8-10）。
+
 ### 4.1 PASS 規則與星級護欄
 
 - PASS 門檻、星級護欄規則 → 見 `prediction.md`「PASS 門檻 + 星級護欄」章節
@@ -344,8 +346,13 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 ### 4.7 輸出前驗證
 
+✅ Read `$GAME_DIR/prediction_summary.md`，確認 `## 紀律檢查` section 全 ✅；TL;DR + Section 8-10 直接複製進最終報告。
+
+ℹ️ 一般情況下無需 Read `prediction.json`；僅在 summary 缺漏 / 除錯 / 使用者明確要求查驗時 Read JSON。
+
 ⛔ **輸出前必須逐項檢查：**
 
+- [ ] `prediction_summary.md` 已輸出
 - [ ] D1 / D2 紀律通過？
 - [ ] D3 同場無對立推薦？
 - [ ] D5 比分與盤口一致性？
@@ -356,4 +363,4 @@ $PYTHON scripts/predict.py --game-data $GAME_DIR/merged.json --save [分析後�
 
 ### 4.8 輸出格式
 
-完整模板見 `reference/output-format.md`（TL;DR + 10 段完整報告）。
+完整 TL;DR + Section 8-10 模板已內化於 `prediction_summary.md`，AI 直接複製貼上。Section 1-7（基本面：球場、戰績、投手、打線、牛棚、條件修正等）由 AI 從 `game_data_summary.md` / `merged_summary.md` / `phase3_summary.md` 補充。
