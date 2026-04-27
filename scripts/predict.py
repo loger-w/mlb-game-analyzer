@@ -739,6 +739,116 @@ def format_trend_tags_block(tags: list[str], recommendation_tags: set[str]) -> s
     return "\n".join(lines)
 
 
+def format_prediction_summary_md(
+    record: dict, signal_table: dict, cap_reasons: list[str]
+) -> str:
+    """組合 prediction_summary.md 完整內容。
+    Hard sections（必出現）：TL;DR / 比分預測 / 勝率預測 / 信號修正表 / 推薦結果 / 紀律檢查
+    Soft sections（缺資料省略）：Run Line override 細節 / 環境補充 / 趨勢標記
+    Fail-fast：缺 home_team / away_team / predicted_winner → raise ValueError
+    """
+    if "home_team" not in record or "away_team" not in record:
+        raise ValueError("record missing home_team / away_team")
+    if "predicted_winner" not in record:
+        raise ValueError("record missing predicted_winner")
+
+    home_team = record["home_team"]
+    away_team = record["away_team"]
+    home_abbr = TEAM_ABBREV.get(home_team, home_team[:3].upper())
+    away_abbr = TEAM_ABBREV.get(away_team, away_team[:3].upper())
+    date = record.get("date", "—")
+
+    pw = record["predicted_winner"]
+    pct = record.get("predicted_home_pct", 0.0)
+    home_score = record.get("predicted_home_score", 0.0)
+    away_score = record.get("predicted_away_score", 0.0)
+    formula_home = record.get("formula_home_score", 0.0)
+    formula_away = record.get("formula_away_score", 0.0)
+    formula_total = round(formula_home + formula_away, 1)
+    adj_total = record.get("adjusted_total", 0.0)
+    ou_line = record.get("ou_line")
+
+    # has_adjusted: predicted_score 與 formula_score 不同 = 用戶有傳 --adjusted-*
+    has_adjusted = (
+        abs(formula_home - home_score) > 0.01 or abs(formula_away - away_score) > 0.01
+    )
+
+    tldr_table, full_rows = format_recommendation_rows(record, cap_reasons)
+
+    lines = [
+        f"# Prediction Summary — {away_abbr} @ {home_abbr} ({date})",
+        "",
+        "## TL;DR",
+        f"- 預測比分: **{home_abbr} {home_score:.1f} − {away_score:.1f} {away_abbr}**"
+        f"（{pw} 勝，勝率 {pct:.1f}%）",
+        "- 比賽走勢: <!-- narrative: AI 依 reference/prediction.md「比賽敘事觸發條件」選 1-2 句填入 -->",
+        "",
+        "📊 推薦速查:",
+        "",
+        tldr_table,
+        "",
+        "---",
+        "",
+        "## 比分預測",
+        f"- Formula 比分: {home_abbr} {formula_home:.1f} / {away_abbr} {formula_away:.1f}"
+        f"（總分 {formula_total:.1f}）",
+    ]
+    if has_adjusted:
+        lines.append(
+            f"- Adjusted 比分: {home_abbr} {home_score:.1f} / {away_abbr} {away_score:.1f}"
+            f"（總分 {adj_total:.1f}）"
+        )
+    if ou_line is not None:
+        gap = abs(adj_total - ou_line)
+        lines.append(
+            f"- O/U gap: |adj_total {adj_total:.1f} − line {ou_line}| = {gap:.1f}"
+        )
+
+    lines.extend([
+        "",
+        "## 勝率預測",
+        f"- {_format_pct_with_flip(pct, pw, home_score, away_score, has_adjusted)}",
+        "",
+        "## 信號修正表",
+        "",
+        format_signal_table_md(
+            signal_table.get("signals") or [],
+            record.get("signal_adjustments") or {},
+        ),
+        "",
+        "## 推薦結果",
+        full_rows,
+        "",
+        "## 紀律檢查 (D1-D5)",
+        format_discipline_check(record),
+    ])
+
+    # Soft sections
+    rl_block = format_rl_override_block(record.get("rl_override") or {})
+    if rl_block:
+        lines.extend(["", rl_block])
+
+    env_block = format_env_block(record)
+    if env_block:
+        lines.extend(["", env_block])
+
+    # Build folded tags set: 已被推薦行折入的不再進趨勢標記
+    tags = record.get("tags") or []
+    folded: set[str] = set()
+    for t in ("divergent", "direction-override", "home-2star-risk"):
+        if t in tags:
+            folded.add(t)
+    rl_override = record.get("rl_override") or {}
+    if rl_override.get("active") and rl_override.get("tags"):
+        folded.update(rl_override["tags"])
+
+    trend_block = format_trend_tags_block(tags, folded)
+    if trend_block:
+        lines.extend(["", trend_block])
+
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 

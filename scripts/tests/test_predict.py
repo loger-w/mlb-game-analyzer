@@ -1100,3 +1100,117 @@ def test_format_trend_tags_block_partial_fold():
 def test_format_trend_tags_block_empty_tags_returns_none():
     from predict import format_trend_tags_block
     assert format_trend_tags_block([], set()) is None
+
+
+def test_format_prediction_summary_md_smoke_full():
+    """完整 record → markdown 含所有 hard sections"""
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(
+        tags=["home-hot-offense", "home-pitching-slump", "away-bullpen-slump", "home-2star-risk"],
+    )
+    signal_table = {
+        "signals": [{"signal": "Park Factor 106（修正 +0.30）", "run_value": 0.30}],
+        "total_run_adjustment": 0.30,
+    }
+    md = format_prediction_summary_md(record, signal_table, [])
+    assert "# Prediction Summary — LAA @ KC (2026-04-26)" in md
+    assert "## TL;DR" in md
+    assert "## 比分預測" in md
+    assert "## 勝率預測" in md
+    assert "## 信號修正表" in md
+    assert "## 推薦結果" in md
+    assert "## 紀律檢查" in md
+    # narrative placeholder
+    assert "<!-- narrative:" in md
+    # auto signal in table
+    assert "Park Factor 106" in md
+    # 趨勢標記 soft section（含未折進的 tags）
+    assert "## 趨勢標記" in md
+    assert "`home-hot-offense`" in md
+
+
+def test_format_prediction_summary_md_all_pass():
+    """全 PASS 場景 → 三行 PASS，無對立 / 無 cap"""
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(
+        ml_rec="PASS", ml_stars=None, original_ml_stars=None,
+        ou_rec="PASS", ou_stars=None,
+        run_line_rec="PASS",
+    )
+    signal_table = {"signals": [], "total_run_adjustment": 0.0}
+    md = format_prediction_summary_md(record, signal_table, [])
+    assert md.count("PASS") >= 3
+
+
+def test_format_prediction_summary_md_rl_override_active():
+    """rl_override.active → Run Line override 細節 section 出現"""
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(
+        run_line_rec="LAA", run_line_stars=2,
+        predicted_home_score=2.0, predicted_away_score=4.6,
+        rl_override={
+            "active": True, "path": "big-diff", "diff": 2.6, "stars": 2,
+            "tags": ["home-bullpen-slump"],
+            "warnings": [],
+            "thresholds": {"diff_min": 1.5, "diff_big": 2.2, "diff_star": 2.0},
+        },
+    )
+    signal_table = {"signals": [], "total_run_adjustment": 0.0}
+    md = format_prediction_summary_md(record, signal_table, [])
+    assert "## Run Line override 細節" in md
+
+
+def test_format_prediction_summary_md_adjusted_flip():
+    """adjusted 翻轉 → 勝率行有 ⚠️ 註明"""
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(
+        predicted_winner="AWAY",
+        predicted_home_pct=51.9,
+        predicted_home_score=4.4,
+        predicted_away_score=4.85,
+        formula_home_score=3.1,  # 與 predicted 不同 → has_adjusted=True
+        formula_away_score=2.6,
+        adjusted_total=9.25,
+    )
+    signal_table = {"signals": [], "total_run_adjustment": 0.0}
+    md = format_prediction_summary_md(record, signal_table, [])
+    assert "⚠️" in md
+    assert "未隨翻轉重算" in md
+
+
+def test_format_prediction_summary_md_all_soft_omitted():
+    """soft sections 不適用 → 全省略，只剩 hard sections"""
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(tags=[])
+    signal_table = {"signals": [], "total_run_adjustment": 0.0}
+    md = format_prediction_summary_md(record, signal_table, [])
+    assert "## Run Line override 細節" not in md
+    assert "## 環境補充" not in md
+    assert "## 趨勢標記" not in md
+
+
+def test_format_prediction_summary_md_raises_on_missing_home_team():
+    from predict import format_prediction_summary_md
+    import pytest as _pytest
+    bad = _make_minimal_record()
+    del bad["home_team"]
+    with _pytest.raises(ValueError):
+        format_prediction_summary_md(bad, {"signals": [], "total_run_adjustment": 0}, [])
+
+
+def test_format_prediction_summary_md_raises_on_missing_away_team():
+    from predict import format_prediction_summary_md
+    import pytest as _pytest
+    bad = _make_minimal_record()
+    del bad["away_team"]
+    with _pytest.raises(ValueError):
+        format_prediction_summary_md(bad, {"signals": [], "total_run_adjustment": 0}, [])
+
+
+def test_format_prediction_summary_md_raises_on_missing_predicted_winner():
+    from predict import format_prediction_summary_md
+    import pytest as _pytest
+    bad = _make_minimal_record()
+    del bad["predicted_winner"]
+    with _pytest.raises(ValueError):
+        format_prediction_summary_md(bad, {"signals": [], "total_run_adjustment": 0}, [])
