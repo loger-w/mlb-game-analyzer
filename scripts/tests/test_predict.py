@@ -1030,3 +1030,37 @@ def test_format_rl_override_inactive_returns_none():
 def test_format_rl_override_empty_dict_returns_none():
     from predict import format_rl_override_block
     assert format_rl_override_block({}) is None
+
+
+def test_format_env_block_all_present():
+    from predict import format_env_block
+    record = _make_minimal_record(
+        temperature_f=72.0, wind_mph=8.5, wind_direction="LF→RF",
+        umpire_name="John Doe", umpire_ou_rate=0.51,
+    )
+    result = format_env_block(record)
+    assert result is not None
+    assert "## 環境補充" in result
+    assert "72" in result
+    assert "8.5" in result
+    assert "LF→RF" in result
+    assert "John Doe" in result
+    assert "0.51" in result
+
+
+def test_format_env_block_partial():
+    from predict import format_env_block
+    record = _make_minimal_record(temperature_f=68.0, umpire_name="Jane")
+    result = format_env_block(record)
+    assert result is not None
+    assert "68" in result
+    assert "Jane" in result
+    # 沒有 wind / ou_rate row
+    assert "風速" not in result
+    assert "Over%" not in result
+
+
+def test_format_env_block_all_null_returns_none():
+    from predict import format_env_block
+    record = _make_minimal_record()  # all env fields None
+    assert format_env_block(record) is None

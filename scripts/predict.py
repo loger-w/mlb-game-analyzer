@@ -711,6 +711,24 @@ def format_rl_override_block(rl_override: dict) -> str | None:
     return "\n".join(lines)
 
 
+def format_env_block(record: dict) -> str | None:
+    """渲染環境補充 section；所有欄位皆 null → None（整段省略）。"""
+    fields = [
+        ("氣溫 (°F)", record.get("temperature_f")),
+        ("風速 (mph)", record.get("wind_mph")),
+        ("風向", record.get("wind_direction")),
+        ("主審", record.get("umpire_name")),
+        ("主審 Over%", record.get("umpire_ou_rate")),
+    ]
+    non_null = [(k, v) for k, v in fields if v is not None]
+    if not non_null:
+        return None
+    lines = ["## 環境補充"]
+    for k, v in non_null:
+        lines.append(f"- {k}: {v}")
+    return "\n".join(lines)
+
+
 def predict_with_formula(data: dict) -> dict:
     """F3: 用 Log5 + 期望得分公式預測（納入對方投手壓制力）
 
