@@ -781,7 +781,7 @@ def format_prediction_summary_md(
         "## TL;DR",
         f"- 預測比分: **{home_abbr} {home_score:.1f} − {away_score:.1f} {away_abbr}**"
         f"（{pw} 勝，勝率 {pct:.1f}%）",
-        "- 比賽走勢: <!-- narrative: AI 依 reference/prediction.md「比賽敘事觸發條件」選 1-2 句填入 -->",
+        "- 比賽走勢: <!-- narrative: AI 根據先發 tier、牛棚壓力、打線強度選 1-2 句描述比賽走向（不含星級 / 盤口） -->",
         "",
         "📊 推薦速查:",
         "",
