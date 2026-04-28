@@ -14,8 +14,8 @@
 - 處理：標註「樣本不足」，不引用。詳見 `matchup-factors.md` §打線分析
 
 ### 3. Hot/Cold 判定未檢查 BABIP
-- 觸發：近 7 天 BABIP `≤ .260` 或 `≥ .370`，未做回歸判定
-- 處理：跳到 `matchup-factors.md` §BABIP 回歸檢查
+- 觸發：近 7 天 BABIP `≤ .260` 或 `≥ .370`
+- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 phase3_skeleton 的「## 風險提示」段。AI 在敘事中判讀「可能回歸 / 可能持續」**不自動 ±run value**。詳見 `matchup-factors.md` §BABIP 回歸檢查
 
 ### 4. 牛棚傷兵只修 O/U 未修 ML
 - 觸發：核心（Closer / Primary Setup / High-leverage）IL 但 phase3_summary 缺 ML 修正 (-%) 或 OU 修正 (+run)
@@ -28,10 +28,6 @@
 ### 6. 不寫 phase3_summary.md 就進 Phase 4
 - 觸發：缺 `$GAME_DIR/phase3_summary.md` 但呼叫 `predict.py --save`
 - 處理：predict.py 會 reject。詳見 `workflow.md` §Phase 3.5
-
-### 7. 跳過 Roster 檢查
-- 觸發：Phase 2 Step 1 未通過就進 Step 2
-- 處理：阻塞閘門。詳見 `workflow.md` §Phase 2 Step 1
 
 ### 8. Agent 子代理跑 WebSearch / WebFetch
 - 觸發：dispatch subagent 帶 WebSearch task
@@ -53,9 +49,9 @@
 - 觸發：使用者中文 → 報告卻是英文
 - 處理：報告語言對齊使用者；搜尋可用英文
 
-### 13. ERA-xERA 落差僅寫「風險提示」
-- 觸發：`|ERA − xERA| ≥ 1.5` 或 `IP < 30 且 ERA 比 prior_year 低 ≥ 1.0`，但僅寫提示未補跑 YoY
-- 處理：必須補跑 `pitcher_stats.py --year {YYYY-1}`。詳見 `workflow.md` §Phase 2 Step 2
+### 13. ERA-xERA 落差 / 小樣本回歸風險
+- 觸發：`|ERA − xERA| ≥ 1.5` 或 `IP < 30 且 ERA 比 prior_year 低 ≥ 1.0`
+- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 phase3_skeleton 的「## 風險提示」段。AI 在敘事中判讀「運氣 / 結構性退化 / 樣本噪音」**不自動補跑 YoY、不自動下修預測**
 
 ---
 
