@@ -4,7 +4,7 @@
 import argparse
 import json
 import sys
-
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -75,14 +75,18 @@ def extract_pitcher_nested(
     與現有 `extract_pitcher_features` 共存（不動 flat keys，確保 review_stats 等 backward-compat）。
     """
     season = pitcher_data.get("season", {}) if pitcher_data else {}
-    if "error" in season:
+    if isinstance(season, dict) and "error" in season:
         season = {}
+    expected = pitcher_data.get("expected", {}) if pitcher_data else {}
+    if isinstance(expected, dict) and "error" in expected:
+        expected = {}
     prior_season = (prior_pitcher_data or {}).get("season", {}) if prior_pitcher_data else {}
-    if "error" in prior_season:
+    if isinstance(prior_season, dict) and "error" in prior_season:
         prior_season = {}
 
     era = season.get("era")
-    xera = season.get("xera")
+    # xera 來源優先序：season.xera (legacy/test) → expected.xera (pitcher_stats 實際輸出位置)
+    xera = season.get("xera") if season.get("xera") is not None else expected.get("xera")
     ip = season.get("ip")
     delta = None
     if era is not None and xera is not None:
@@ -213,6 +217,129 @@ def extract_meta(game_data: dict, home_pitcher: dict, away_pitcher: dict) -> dic
     }
 
 
+def _md_fmt(v, decimals: int = 2) -> str:
+    """格式化數值；None → '—'。"""
+    if v is None:
+        return "—"
+    if isinstance(v, (int, float)):
+        if decimals == 0:
+            return f"{v:.0f}"
+        return f"{v:.{decimals}f}"
+    return str(v)
+
+
+def format_md(merged: dict, command: str | None = None) -> str:
+    """渲染 merged.json 一頁總覽 MD（Phase 2 整合）。
+
+    純函數：只讀 merged dict。包含 _meta / 投手 / 打線 / 牛棚 / Park / 多窗口戰績 / 觸發摘要。
+    """
+    meta = merged.get("_meta", {}) or {}
+    home_team = meta.get("home_team", "?")
+    away_team = meta.get("away_team", "?")
+    home_sp = meta.get("home_sp", "?")
+    away_sp = meta.get("away_sp", "?")
+    home_gs = meta.get("home_sp_starts")
+    away_gs = meta.get("away_sp_starts")
+    venue = meta.get("venue", "—")
+    game_pk = meta.get("game_pk", "—")
+    game_date = meta.get("game_date", "—")
+
+    lines = [
+        f"# Merged Phase 2 — {away_team} @ {home_team}",
+        f"**game_pk**: {game_pk} | **date**: {game_date}",
+        f"**venue**: {venue} | **park_factor (runs)**: {_md_fmt(merged.get('park_factor'), 1)}",
+        f"**先發**: {away_sp} ({away_team}, GS {away_gs}) vs {home_sp} ({home_team}, GS {home_gs})",
+        "",
+        "---",
+        "",
+    ]
+
+    # 觸發摘要：從 nested dict 推回 trigger 提示
+    trigger_lines = []
+    for side, label in [("home", home_team), ("away", away_team)]:
+        p = merged.get(f"{side}_pitcher", {}) or {}
+        delta = p.get("era_xera_delta")
+        if delta is not None and delta >= 1.5:
+            trigger_lines.append(
+                f"- **{label} 投手 Flag 13**：|ERA - xERA| = {delta:.2f}（≥ 1.5）；"
+                f"prior_year ERA = {_md_fmt(p.get('prior_year', {}).get('era'))}"
+            )
+        l = merged.get(f"{side}_lineup", {}) or {}
+        recent_babip = l.get("recent_babip")
+        if recent_babip is not None:
+            try:
+                rb = float(recent_babip)
+                if rb <= 0.260 or rb >= 0.370:
+                    trigger_lines.append(
+                        f"- **{label} 打線 Flag 3**：last7 BABIP = {rb:.3f}（極端值，回歸風險）"
+                    )
+            except (ValueError, TypeError):
+                pass
+    if trigger_lines:
+        lines += ["## 🚨 Triggers (Phase 2 整合視角)", ""] + trigger_lines + ["", "---", ""]
+
+    # 投手對決
+    lines += [
+        "## Starting Pitchers",
+        "",
+        "| | Home | Away |",
+        "|---|------|------|",
+        f"| 投手 | {home_sp} | {away_sp} |",
+        f"| FIP | {_md_fmt(merged.get('home_starter_fip'))} | {_md_fmt(merged.get('away_starter_fip'))} |",
+        f"| K-BB% | {_md_fmt(merged.get('home_starter_k_bb'), 1)} | {_md_fmt(merged.get('away_starter_k_bb'), 1)} |",
+        f"| WHIP | {_md_fmt(merged.get('home_starter_whip'))} | {_md_fmt(merged.get('away_starter_whip'))} |",
+        f"| ERA / xERA | {_md_fmt((merged.get('home_pitcher') or {}).get('era'))} / {_md_fmt((merged.get('home_pitcher') or {}).get('xera'))} | {_md_fmt((merged.get('away_pitcher') or {}).get('era'))} / {_md_fmt((merged.get('away_pitcher') or {}).get('xera'))} |",
+        f"| era_xera_delta | {_md_fmt((merged.get('home_pitcher') or {}).get('era_xera_delta'), 3)} | {_md_fmt((merged.get('away_pitcher') or {}).get('era_xera_delta'), 3)} |",
+        f"| prior_year ERA | {_md_fmt(((merged.get('home_pitcher') or {}).get('prior_year') or {}).get('era'))} | {_md_fmt(((merged.get('away_pitcher') or {}).get('prior_year') or {}).get('era'))} |",
+        "",
+    ]
+
+    # 打線
+    lines += [
+        "## Lineups",
+        "",
+        "| | Home | Away |",
+        "|---|------|------|",
+        f"| xwOBA | {_md_fmt(merged.get('home_batting_xwoba'), 3)} | {_md_fmt(merged.get('away_batting_xwoba'), 3)} |",
+        f"| OPS | {_md_fmt(merged.get('home_batting_ops'), 3)} | {_md_fmt(merged.get('away_batting_ops'), 3)} |",
+        f"| K% | {_md_fmt(merged.get('home_batting_k_pct'), 1)} | {_md_fmt(merged.get('away_batting_k_pct'), 1)} |",
+        f"| last7 BABIP | {_md_fmt((merged.get('home_lineup') or {}).get('recent_babip'), 3)} | {_md_fmt((merged.get('away_lineup') or {}).get('recent_babip'), 3)} |",
+        "",
+    ]
+
+    # 牛棚 / Park
+    lines += [
+        "## Bullpen / Park",
+        "",
+        "| | Home | Away |",
+        "|---|------|------|",
+        f"| Bullpen ERA | {_md_fmt(merged.get('home_bullpen_era'))} | {_md_fmt(merged.get('away_bullpen_era'))} |",
+        "",
+    ]
+
+    # 多窗口得失分
+    lines += [
+        "## Multi-Window RS / RA (per game)",
+        "",
+        "| 視窗 | Home RS | Home RA | Away RS | Away RA |",
+        "|------|---------|---------|---------|---------|",
+        f"| 近 10 | {_md_fmt(merged.get('home_recent_rs'))} | {_md_fmt(merged.get('home_recent_ra'))} | {_md_fmt(merged.get('away_recent_rs'))} | {_md_fmt(merged.get('away_recent_ra'))} |",
+        f"| 近 30 | {_md_fmt(merged.get('home_recent_30_rs'))} | {_md_fmt(merged.get('home_recent_30_ra'))} | {_md_fmt(merged.get('away_recent_30_rs'))} | {_md_fmt(merged.get('away_recent_30_ra'))} |",
+        f"| 本季 ({_md_fmt(merged.get('home_season_games'), 0)}/{_md_fmt(merged.get('away_season_games'), 0)} 場) | {_md_fmt(merged.get('home_season_rs'))} | {_md_fmt(merged.get('home_season_ra'))} | {_md_fmt(merged.get('away_season_rs'))} | {_md_fmt(merged.get('away_season_ra'))} |",
+        "",
+    ]
+
+    lines += [
+        "---",
+        "",
+        "## Source",
+        f"- Generated by: `{command or 'merge_game_data.py'}`",
+        f"- Generated at: `{datetime.now(timezone.utc).isoformat(timespec='seconds')}`",
+        "- JSON sibling: see same directory `merged.json`",
+    ]
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def main():
     parser = argparse.ArgumentParser(description="Merge all script outputs for predict.py")
     parser.add_argument("--game", help="fetch_game_data.py output JSON path")
@@ -231,6 +358,7 @@ def main():
     parser.add_argument("--park-factor", type=float, default=None,
                         help="Override park factor (auto-resolved from venue if omitted)")
     parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
+    parser.add_argument("--no-md", action="store_true", help="Skip MD summary output (only write JSON)")
     parser.add_argument("--test", action="store_true")
     args = parser.parse_args()
 
@@ -305,6 +433,15 @@ def main():
         with open(args.output, "w", encoding="utf-8") as f:
             f.write(json_output)
         print(f"Saved to {args.output}", file=sys.stderr)
+
+        if not args.no_md:
+            json_path = Path(args.output)
+            md_path = json_path.with_name(json_path.stem + "_summary.md")
+            try:
+                md_path.write_text(format_md(merged, command="merge_game_data.py"), encoding="utf-8")
+                print(f"Saved summary to {md_path}", file=sys.stderr)
+            except Exception as e:
+                print(f"Skipped summary md: {e}", file=sys.stderr)
     else:
         print(json_output)
 

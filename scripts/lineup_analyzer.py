@@ -6,9 +6,12 @@ import contextlib
 import io
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
+from pathlib import Path
 
 import requests
+
+from _team_resolver import resolve_team_id
 
 
 @contextlib.contextmanager
@@ -21,47 +24,22 @@ def _redirect_pybaseball_stdout():
     if output:
         sys.stderr.write(output)
 
-try:
-    from pybaseball import (
-        statcast_batter_expected_stats,
-        statcast_batter_exitvelo_barrels,
-    )
-except ImportError:
-    print(json.dumps({"error": "pybaseball not installed. Run: pip install pybaseball"}))
-    sys.exit(1)
+def _import_pybaseball():
+    """Lazy import：pybaseball 在實際抓 Statcast 時才載入。
+    讓 format_md / detect_triggers 等純函式在沒有 pybaseball 的環境下也能測試。"""
+    try:
+        from pybaseball import (
+            statcast_batter_expected_stats,
+            statcast_batter_exitvelo_barrels,
+        )
+        return statcast_batter_expected_stats, statcast_batter_exitvelo_barrels
+    except ImportError as e:
+        raise RuntimeError(
+            "pybaseball not installed or cannot import. Run: pip install pybaseball"
+        ) from e
 
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
-
-TEAM_MAP = {
-    # English abbreviations
-    "NYY": 147, "NYM": 121, "BOS": 111, "LAD": 119, "LAA": 108,
-    "HOU": 117, "ATL": 144, "PHI": 143, "SD": 135, "SF": 137,
-    "CHC": 112, "CWS": 145, "CIN": 113, "STL": 138, "MIL": 158,
-    "PIT": 134, "ARI": 109, "COL": 115, "BAL": 110, "TB": 139,
-    "TOR": 141, "MIN": 142, "KC": 118, "DET": 116, "CLE": 114,
-    "SEA": 136, "OAK": 133, "TEX": 140, "MIA": 146, "WSH": 120,
-    # Chinese names
-    "洋基": 147, "大都會": 121, "紅襪": 111, "道奇": 119, "天使": 108,
-    "太空人": 117, "勇士": 144, "費城人": 143, "教士": 135, "巨人": 137,
-    "小熊": 112, "白襪": 145, "紅人": 113, "紅雀": 138, "釀酒人": 158,
-    "海盜": 134, "響尾蛇": 109, "落磯": 115, "金鶯": 110, "光芒": 139,
-    "藍鳥": 141, "雙城": 142, "皇家": 118, "老虎": 116, "守護者": 114,
-    "水手": 136, "運動家": 133, "遊騎兵": 140, "馬林魚": 146, "國民": 120,
-}
-
-FULL_NAMES = {
-    "new york yankees": 147, "new york mets": 121, "boston red sox": 111,
-    "los angeles dodgers": 119, "los angeles angels": 108, "houston astros": 117,
-    "atlanta braves": 144, "philadelphia phillies": 143, "san diego padres": 135,
-    "san francisco giants": 137, "chicago cubs": 112, "chicago white sox": 145,
-    "cincinnati reds": 113, "st. louis cardinals": 138, "milwaukee brewers": 158,
-    "pittsburgh pirates": 134, "arizona diamondbacks": 109, "colorado rockies": 115,
-    "baltimore orioles": 110, "tampa bay rays": 139, "toronto blue jays": 141,
-    "minnesota twins": 142, "kansas city royals": 118, "detroit tigers": 116,
-    "cleveland guardians": 114, "seattle mariners": 136, "athletics": 133,
-    "texas rangers": 140, "miami marlins": 146, "washington nationals": 120,
-}
 
 # xwOBA-based tier thresholds (replacing wRC+)
 TIER_MAP = [
@@ -78,22 +56,6 @@ TIER_MAP_OPS = [
     ("🟡 Average", lambda ops: ops >= 0.700),
     ("🟢 Weak", lambda _: True),
 ]
-
-
-def resolve_team_id(team_input: str) -> int:
-    """將隊名（中文/英文/縮寫）轉為 team ID"""
-    upper = team_input.upper()
-    if upper in TEAM_MAP:
-        return TEAM_MAP[upper]
-    if team_input in TEAM_MAP:
-        return TEAM_MAP[team_input]
-    lower = team_input.lower()
-    if lower in FULL_NAMES:
-        return FULL_NAMES[lower]
-    for name, tid in FULL_NAMES.items():
-        if lower in name:
-            return tid
-    raise ValueError(f"Unknown team: {team_input}")
 
 
 def fetch_team_roster(team_id: int, year: int) -> list[dict]:
@@ -174,6 +136,7 @@ def fetch_statcast_batting_leaderboard(year: int) -> tuple[dict, dict]:
     """
     expected_map = {}
     barrels_map = {}
+    statcast_batter_expected_stats, statcast_batter_exitvelo_barrels = _import_pybaseball()
 
     try:
         with _redirect_pybaseball_stdout():
@@ -206,22 +169,22 @@ def fetch_statcast_batting_leaderboard(year: int) -> tuple[dict, dict]:
 
 
 def fetch_il_names(team_id: int, year: int) -> set[str]:
-    """從 40Man roster 取得 IL 球員姓名集合"""
-    try:
-        resp = requests.get(
-            f"{MLB_API_BASE}/teams/{team_id}/roster",
-            params={"rosterType": "40Man", "season": year},
-            timeout=10,
-        )
-        resp.raise_for_status()
-        il_names = set()
-        for entry in resp.json().get("roster", []):
-            status_code = entry.get("status", {}).get("code", "A")
-            if status_code in ("D7", "D10", "D15", "D60"):
-                il_names.add(entry.get("person", {}).get("fullName", ""))
-        return il_names
-    except Exception:
-        return set()
+    """從 40Man roster 取得 IL 球員姓名集合。
+
+    失敗時直接 raise — IL 過濾是 lineup 正確性的必要條件，
+    不可 silent fallback（會把「IL fetch 壞了」偽裝成「沒人 IL」）。
+    """
+    resp = requests.get(
+        f"{MLB_API_BASE}/teams/{team_id}/roster",
+        params={"rosterType": "40Man", "season": year},
+        timeout=10,
+    )
+    resp.raise_for_status()
+    return {
+        entry.get("person", {}).get("fullName", "")
+        for entry in resp.json().get("roster", [])
+        if entry.get("status", {}).get("code", "A") in ("D7", "D10", "D15", "D60")
+    }
 
 
 def fetch_player_last7(mlbam_id: int) -> dict | None:
@@ -487,16 +450,224 @@ def compute_last7_babip(core_lineup: list[dict]) -> float | None:
     return round(sum(values) / len(values), 3)
 
 
+def detect_triggers(data: dict) -> list[dict]:
+    """偵測打線層級 Flag。回傳觸發列表，未觸發則回空 list。
+
+    Flag 3：last7_babip ≤ 0.260（極端低）或 ≥ 0.370（極端高）
+    """
+    triggers = []
+    last7 = data.get("last7_babip")
+    if last7 is None:
+        return triggers
+    try:
+        v = float(last7)
+    except (ValueError, TypeError):
+        return triggers
+    if v <= 0.260:
+        triggers.append({
+            "flag": 3,
+            "name": "BABIP 回歸（極端低）",
+            "value": v,
+            "threshold": "≤ 0.260",
+            "interpretation": "近 7 天 BABIP 偏低，預示反彈（運氣差於常態）。",
+            "action": "Phase 3.4 Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）",
+        })
+    elif v >= 0.370:
+        triggers.append({
+            "flag": 3,
+            "name": "BABIP 回歸（極端高）",
+            "value": v,
+            "threshold": "≥ 0.370",
+            "interpretation": "近 7 天 BABIP 偏高，預示回歸 ~.300（熱度含運氣成份）。",
+            "action": "Phase 3.4 Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）",
+        })
+    return triggers
+
+
+def _md_fmt(v, decimals: int = 3) -> str:
+    """格式化數值；None → '—'。"""
+    if v is None:
+        return "—"
+    if isinstance(v, (int, float)):
+        if decimals == 0:
+            return f"{v:.0f}"
+        return f"{v:.{decimals}f}"
+    return str(v)
+
+
+def format_md(data: dict, command: str | None = None) -> str:
+    """渲染打線分析 MD 摘要（厚 MD：team-level + 9 人 table + Triggers）。
+
+    純函數：只讀 data dict，不呼叫外部 API。
+    """
+    if "error" in data:
+        return f"# Lineup Analysis — ERROR\n\n{data['error']}\n"
+
+    team = data.get("team", "?")
+    team_id = data.get("team_id", "?")
+    tier = data.get("tier", "—")
+    avg_ops = data.get("avg_ops")
+    avg_xwoba = data.get("avg_xwoba")
+    avg_babip = data.get("avg_babip")
+    avg_k = data.get("avg_k_pct")
+    avg_bb = data.get("avg_bb_pct")
+    heat = data.get("recent_heat", "—")
+    last7_babip = data.get("last7_babip")
+    over_under = data.get("over_under_lean", 0)
+    chain = data.get("chain", {}) or {}
+    lineup = data.get("lineup", []) or []
+
+    lines = [
+        f"# Lineup Analysis — {team} (team_id {team_id})",
+        f"**Tier**: {tier}",
+        f"**Recent heat**: {heat}",
+        f"**Lineup size**: {len(lineup)}",
+        "",
+        "---",
+        "",
+    ]
+
+    triggers = detect_triggers(data)
+    if triggers:
+        lines += ["## 🚨 Triggers", ""]
+        for t in triggers:
+            lines += [
+                f"### Flag {t['flag']} 觸發 — {t['name']}",
+                f"- 數值：**{t['value']:.3f}**（觸發閾值 {t['threshold']}）",
+                f"- 解讀：{t['interpretation']}",
+                f"- 處理：{t['action']}",
+                "",
+            ]
+        lines += ["---", ""]
+
+    # Team-level stats
+    lines += [
+        "## Team-Level Aggregates",
+        "",
+        "| 指標 | 數值 |",
+        "|------|------|",
+        f"| avg OPS | {_md_fmt(avg_ops)} |",
+        f"| avg xwOBA | {_md_fmt(avg_xwoba)} |",
+        f"| avg BABIP | {_md_fmt(avg_babip)} |",
+        f"| avg K% | {_md_fmt(avg_k, 1)} |",
+        f"| avg BB% | {_md_fmt(avg_bb, 1)} |",
+        f"| last7 BABIP | {_md_fmt(last7_babip)} |",
+        f"| over_under_lean | {over_under:+d} |",
+        f"| chain OBP top3 | {_md_fmt(chain.get('obp_top3'))} |",
+        f"| chain SLG mid | {_md_fmt(chain.get('slg_mid'))} |",
+        "",
+    ]
+
+    # Lineup table
+    if lineup:
+        lines += [
+            "## Core Lineup (sorted by PA)",
+            "",
+            "| # | Name | Pos | PA | AVG | OBP | SLG | OPS | xwOBA | xBA | BABIP | K% | BB% |",
+            "|---|------|-----|----|-----|-----|-----|-----|-------|-----|-------|----|----|",
+        ]
+        for i, b in enumerate(lineup, start=1):
+            lines.append(
+                f"| {i} | {b.get('name', '?')} | {b.get('position', '—')} | "
+                f"{b.get('pa', '—')} | {_md_fmt(b.get('avg'))} | {_md_fmt(b.get('obp'))} | "
+                f"{_md_fmt(b.get('slg'))} | {_md_fmt(b.get('ops'))} | "
+                f"{_md_fmt(b.get('xwoba'))} | {_md_fmt(b.get('xba'))} | "
+                f"{_md_fmt(b.get('babip'))} | {_md_fmt(b.get('k_pct'), 1)} | {_md_fmt(b.get('bb_pct'), 1)} |"
+            )
+        lines.append("")
+
+        # Statcast 物理數據
+        if any(b.get("ev95pct") is not None or b.get("barrel_pct") is not None for b in lineup):
+            lines += [
+                "## Statcast (Hard Contact)",
+                "",
+                "| # | Name | EV95% | Barrel% |",
+                "|---|------|-------|---------|",
+            ]
+            for i, b in enumerate(lineup, start=1):
+                lines.append(
+                    f"| {i} | {b.get('name', '?')} | {_md_fmt(b.get('ev95pct'), 1)} | {_md_fmt(b.get('barrel_pct'), 1)} |"
+                )
+            lines.append("")
+
+        # Last 7 days
+        if any(b.get("last_7") for b in lineup):
+            lines += [
+                "## Last 7 Days",
+                "",
+                "| # | Name | PA | AVG | OBP | SLG | OPS | BABIP |",
+                "|---|------|----|-----|-----|-----|-----|-------|",
+            ]
+            for i, b in enumerate(lineup, start=1):
+                l7 = b.get("last_7") or {}
+                lines.append(
+                    f"| {i} | {b.get('name', '?')} | {l7.get('pa', '—')} | "
+                    f"{l7.get('avg', '—')} | {l7.get('obp', '—')} | {l7.get('slg', '—')} | "
+                    f"{l7.get('ops', '—')} | {l7.get('babip', '—')} |"
+                )
+            lines.append("")
+
+        # Platoon
+        if any(b.get("platoon") for b in lineup):
+            lines += [
+                "## Platoon Splits",
+                "",
+                "| # | Name | vs LHP (PA / OPS) | vs RHP (PA / OPS) |",
+                "|---|------|-------------------|-------------------|",
+            ]
+            for i, b in enumerate(lineup, start=1):
+                p = b.get("platoon") or {}
+                lhp = p.get("vs_lhp") or {}
+                rhp = p.get("vs_rhp") or {}
+                lhp_str = f"{lhp.get('pa', '—')} / {lhp.get('ops', '—')}" if lhp else "—"
+                rhp_str = f"{rhp.get('pa', '—')} / {rhp.get('ops', '—')}" if rhp else "—"
+                lines.append(f"| {i} | {b.get('name', '?')} | {lhp_str} | {rhp_str} |")
+            lines.append("")
+
+        # BvP（如有）
+        if any(b.get("bvp") for b in lineup):
+            lines += [
+                "## BvP (vs opposing starter)",
+                "",
+                "| # | Name | PA | AVG | OBP | SLG | H | HR | SO | BB | sample≥15? |",
+                "|---|------|----|-----|-----|-----|----|----|----|----|------------|",
+            ]
+            for i, b in enumerate(lineup, start=1):
+                v = b.get("bvp")
+                if not v:
+                    continue
+                lines.append(
+                    f"| {i} | {b.get('name', '?')} | {v.get('pa', '—')} | {v.get('avg', '—')} | "
+                    f"{v.get('obp', '—')} | {v.get('slg', '—')} | {v.get('h', '—')} | "
+                    f"{v.get('hr', '—')} | {v.get('so', '—')} | {v.get('bb', '—')} | "
+                    f"{'✅' if v.get('sample_sufficient') else '❌（PA<15）'} |"
+                )
+            lines.append("")
+
+    # Source
+    lines += [
+        "---",
+        "",
+        "## Source",
+        f"- Generated by: `{command or 'lineup_analyzer.py'}`",
+        f"- Generated at: `{datetime.now(timezone.utc).isoformat(timespec='seconds')}`",
+        "- JSON sibling: see same directory `<basename>.json`",
+    ]
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 
     parser = argparse.ArgumentParser(description="Analyze team lineup")
-    parser.add_argument("--team", required=True, help="Team name or abbreviation")
+    parser.add_argument("--team", required=True, help="Team abbreviation (e.g., KC, LAA), full name, or Chinese name")
     parser.add_argument("--year", type=int, default=datetime.now().year)
     parser.add_argument("--opposing-pitcher-id", type=int, default=None,
                         help="Opposing pitcher MLBAM ID for BvP lookup")
     parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
+    parser.add_argument("--no-md", action="store_true",
+                        help="Skip MD summary output (only write JSON)")
     parser.add_argument("--test", action="store_true")
     args = parser.parse_args()
 
@@ -511,6 +682,18 @@ def main():
         with open(args.output, "w", encoding="utf-8") as f:
             f.write(json_output)
         print(f"Saved to {args.output}", file=sys.stderr)
+
+        if not args.no_md:
+            json_path = Path(args.output)
+            md_path = json_path.with_name(json_path.stem + "_summary.md")
+            command = f"lineup_analyzer.py --team {args.team} --year {args.year}" + (
+                f" --opposing-pitcher-id {args.opposing_pitcher_id}" if args.opposing_pitcher_id else ""
+            )
+            try:
+                md_path.write_text(format_md(result, command=command), encoding="utf-8")
+                print(f"Saved summary to {md_path}", file=sys.stderr)
+            except Exception as e:
+                print(f"Skipped summary md: {e}", file=sys.stderr)
     else:
         print(json_output)
 

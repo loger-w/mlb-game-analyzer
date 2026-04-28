@@ -6,7 +6,8 @@ import contextlib
 import io
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
+from pathlib import Path
 
 import requests
 
@@ -21,16 +22,21 @@ def _redirect_pybaseball_stdout():
     if output:
         sys.stderr.write(output)
 
-try:
-    from pybaseball import (
-        playerid_lookup,
-        statcast_pitcher,
-        statcast_pitcher_expected_stats,
-        statcast_pitcher_exitvelo_barrels,
-    )
-except ImportError:
-    print(json.dumps({"error": "pybaseball not installed. Run: pip install pybaseball"}))
-    sys.exit(1)
+def _import_pybaseball():
+    """Lazy import：pybaseball 在實際抓 Statcast 時才載入。
+    讓 format_md / detect_triggers 等純函式在沒有 pybaseball 的環境下也能測試。"""
+    try:
+        from pybaseball import (
+            playerid_lookup,
+            statcast_pitcher,
+            statcast_pitcher_expected_stats,
+            statcast_pitcher_exitvelo_barrels,
+        )
+        return playerid_lookup, statcast_pitcher, statcast_pitcher_expected_stats, statcast_pitcher_exitvelo_barrels
+    except ImportError as e:
+        raise RuntimeError(
+            "pybaseball not installed or cannot import. Run: pip install pybaseball"
+        ) from e
 
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
@@ -78,6 +84,7 @@ def lookup_pitcher_id(name: str) -> int | None:
         return None
     last = parts[-1]
     first = parts[0]
+    playerid_lookup, _, _, _ = _import_pybaseball()
     try:
         with _redirect_pybaseball_stdout():
             result = playerid_lookup(last, first)
@@ -190,6 +197,7 @@ def fetch_mlb_api_stats(mlbam_id: int, year: int) -> dict:
 
 def fetch_statcast_expected(mlbam_id: int, year: int) -> dict:
     """從 Statcast expected stats 取得 xERA, xwOBA 等"""
+    _, _, statcast_pitcher_expected_stats, _ = _import_pybaseball()
     try:
         df = statcast_pitcher_expected_stats(year, minPA=1)
         if df.empty:
@@ -211,6 +219,7 @@ def fetch_statcast_expected(mlbam_id: int, year: int) -> dict:
 
 def fetch_statcast_stats(mlbam_id: int, year: int) -> dict:
     """從 Statcast 取投手物理數據（球速、球種等）"""
+    _, statcast_pitcher, _, _ = _import_pybaseball()
     try:
         start = f"{year}-03-20"
         end = f"{year}-11-05"
@@ -253,6 +262,7 @@ def fetch_statcast_stats(mlbam_id: int, year: int) -> dict:
 
 def fetch_statcast_barrels(mlbam_id: int, year: int) -> dict:
     """從 Statcast exit velo/barrels leaderboard 取 Barrel% 等"""
+    _, _, _, statcast_pitcher_exitvelo_barrels = _import_pybaseball()
     try:
         df = statcast_pitcher_exitvelo_barrels(year, minBBE=1)
         if df.empty:
@@ -345,6 +355,7 @@ def fetch_platoon_splits(mlbam_id: int, year: int) -> dict:
 
 def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
     """C3: 從 Statcast 原始資料計算 Whiff% 和 CSW%"""
+    _, statcast_pitcher, _, _ = _import_pybaseball()
     try:
         start = f"{year}-03-20"
         end = f"{year}-11-05"
@@ -373,6 +384,286 @@ def fetch_prior_year_stats(mlbam_id: int, year: int) -> dict:
     return fetch_mlb_api_stats(mlbam_id, year - 1)
 
 
+def detect_triggers(data: dict) -> list[dict]:
+    """偵測投手層級 Flag。回傳觸發列表。
+
+    Flag 13：
+    - |ERA - xERA| ≥ 1.5  → ERA 與 xERA 落差過大
+    - IP < 30 且 prior_year_ERA - current_ERA ≥ 1.0 → 開季小樣本超過去年水準
+    """
+    triggers = []
+    season = data.get("season") or {}
+    expected = data.get("expected") or {}
+    prior = data.get("prior_year") or {}
+
+    if isinstance(season, dict) and "error" in season:
+        season = {}
+    if isinstance(expected, dict) and "error" in expected:
+        expected = {}
+    if isinstance(prior, dict) and "error" in prior:
+        prior = {}
+
+    era = season.get("era")
+    xera = expected.get("xera")
+    ip = season.get("ip")
+    prior_era = prior.get("era")
+
+    # 條件 1: |ERA - xERA| ≥ 1.5
+    if era is not None and xera is not None:
+        gap = era - xera
+        if abs(gap) >= 1.5:
+            triggers.append({
+                "flag": 13,
+                "name": "ERA-xERA gap",
+                "value": round(gap, 3),
+                "threshold": "|gap| ≥ 1.5",
+                "details": {
+                    "era": era,
+                    "xera": xera,
+                    "ip": ip,
+                    "prior_year_era": prior_era,
+                },
+                "interpretation": (
+                    "ERA 顯著低於 xERA（運氣 / 樣本影響，預示回升）"
+                    if gap < 0
+                    else "ERA 顯著高於 xERA（壓制力被掩蓋，預示反彈）"
+                ),
+                "action": (
+                    "必須補跑 `pitcher_stats.py --name \"...\" --year <YYYY-1>` 進行 YoY Statcast 對比；"
+                    "TaskCreate B7 樣板（見 workflow.md §Phase 2 Step 2）"
+                ),
+            })
+
+    # 條件 2: IP < 30 且 prior_year_ERA - current_ERA ≥ 1.0
+    if (
+        ip is not None
+        and ip < 30
+        and era is not None
+        and prior_era is not None
+        and (prior_era - era) >= 1.0
+    ):
+        triggers.append({
+            "flag": 13,
+            "name": "Small-sample regression risk",
+            "value": round(prior_era - era, 3),
+            "threshold": "IP<30 且 prior_year_ERA − current_ERA ≥ 1.0",
+            "details": {
+                "ip": ip,
+                "current_era": era,
+                "prior_year_era": prior_era,
+            },
+            "interpretation": "本季 ERA 大幅優於去年但樣本不足 → 預示回歸",
+            "action": (
+                "補跑 prior year + 對比 Statcast 5 項（avg_velo / pitch_types / whiff_pct / hard_hit_pct / xera）"
+            ),
+        })
+    return triggers
+
+
+def _md_fmt(v, decimals: int = 2) -> str:
+    """格式化數值；None → '—'。"""
+    if v is None:
+        return "—"
+    if isinstance(v, (int, float)):
+        if decimals == 0:
+            return f"{v:.0f}"
+        return f"{v:.{decimals}f}"
+    return str(v)
+
+
+def format_md(data: dict, command: str | None = None) -> str:
+    """渲染投手 MD 摘要（厚 MD：Season + Statcast + Platoon + Recent + Prior + Triggers）。
+
+    純函數：只讀 data dict，不呼叫外部 API。
+    """
+    name = data.get("name", "?")
+    mlbam_id = data.get("mlbam_id", "?")
+    age = data.get("age", "?")
+    birth = data.get("birth_date", "—")
+    hand = data.get("pitch_hand", "?")
+    age_assessment = data.get("age_assessment", "—")
+    tier = data.get("tier", "—")
+
+    season = data.get("season") or {}
+    expected = data.get("expected") or {}
+    statcast = data.get("statcast") or {}
+    platoon = data.get("platoon_splits") or {}
+    game_log = data.get("game_log") or []
+    prior = data.get("prior_year") or {}
+
+    # 過濾 error 字典
+    if isinstance(season, dict) and "error" in season:
+        season_err = season.get("error")
+        season = {}
+    else:
+        season_err = None
+    if isinstance(expected, dict) and "error" in expected:
+        expected = {}
+    if isinstance(statcast, dict) and "error" in statcast:
+        statcast = {}
+    if isinstance(prior, dict) and "error" in prior:
+        prior = {}
+
+    pitch_types = statcast.get("pitch_types") or {}
+
+    lines = [
+        f"# Pitcher — {name} (MLBAM {mlbam_id})",
+        f"**Hand**: {hand}HP | **Age**: {age} ({birth})",
+        f"**Tier**: {tier}",
+        f"**Age assessment**: {age_assessment}",
+        "",
+        "---",
+        "",
+    ]
+
+    triggers = detect_triggers(data)
+    if triggers:
+        lines += ["## 🚨 Triggers", ""]
+        for t in triggers:
+            lines += [
+                f"### Flag {t['flag']} 觸發 — {t['name']}",
+                f"- 數值：**{t['value']}**（觸發閾值 {t['threshold']}）",
+            ]
+            details = t.get("details") or {}
+            if details:
+                detail_str = ", ".join(f"{k}={_md_fmt(v)}" for k, v in details.items())
+                lines.append(f"- 細節：{detail_str}")
+            lines += [
+                f"- 解讀：{t['interpretation']}",
+                f"- 處理：{t['action']}",
+                "",
+            ]
+        lines += ["---", ""]
+
+    # Season stats
+    lines += [
+        "## Season Stats",
+        "",
+        "| 指標 | 數值 |",
+        "|------|------|",
+        f"| Games / GS | {_md_fmt(season.get('games'), 0)} / {_md_fmt(season.get('gs'), 0)} |",
+        f"| IP | {_md_fmt(season.get('ip'))} |",
+        f"| ERA | {_md_fmt(season.get('era'))} |",
+        f"| WHIP | {_md_fmt(season.get('whip'))} |",
+        f"| FIP | {_md_fmt(season.get('fip'))} |",
+        f"| xFIP | {_md_fmt(season.get('xfip'))} |",
+        f"| K% | {_md_fmt(season.get('k_pct'), 1)} |",
+        f"| BB% | {_md_fmt(season.get('bb_pct'), 1)} |",
+        f"| K-BB% | {_md_fmt(season.get('k_bb_pct'), 1)} |",
+        f"| HR/9 | {_md_fmt(season.get('hr_per_9'))} |",
+        f"| GB% | {_md_fmt(season.get('gb_pct'), 1)} |",
+        "",
+    ]
+    if season_err:
+        lines.append(f"> ⚠️ Season stats error: `{season_err}`")
+        lines.append("")
+
+    # Expected
+    lines += [
+        "## Expected (Statcast)",
+        "",
+        "| 指標 | 數值 |",
+        "|------|------|",
+        f"| xERA | {_md_fmt(expected.get('xera'))} |",
+        f"| xwOBA | {_md_fmt(expected.get('xwoba'), 3)} |",
+        f"| xBA | {_md_fmt(expected.get('xba'), 3)} |",
+        "",
+    ]
+
+    # Statcast Physical
+    lines += [
+        "## Statcast Physical",
+        "",
+        "| 指標 | 數值 |",
+        "|------|------|",
+        f"| avg velocity (mph) | {_md_fmt(statcast.get('avg_velo'), 1)} |",
+        f"| max velocity (mph) | {_md_fmt(statcast.get('max_velo'), 1)} |",
+        f"| whiff% | {_md_fmt(statcast.get('whiff_pct'), 1)} |",
+        f"| csw% | {_md_fmt(statcast.get('csw_pct'), 1)} |",
+        f"| hard_hit% | {_md_fmt(statcast.get('hard_hit_pct'), 1)} |",
+        f"| EV ≥95% | {_md_fmt(statcast.get('ev95percent'), 1)} |",
+        f"| barrel% | {_md_fmt(statcast.get('barrel_pct'), 1)} |",
+        "",
+    ]
+
+    # Pitch Mix
+    if pitch_types:
+        lines += ["## Pitch Mix (% usage)", "", "| 球種 | % |", "|------|---|"]
+        for pt, pct in pitch_types.items():
+            lines.append(f"| {pt} | {_md_fmt(pct, 1)} |")
+        lines.append("")
+
+    # Platoon
+    if platoon and "error" not in platoon:
+        lines += ["## Platoon Splits", ""]
+        for key, label in [("vs_left", "vs LHB"), ("vs_right", "vs RHB")]:
+            p = platoon.get(key)
+            if not p:
+                continue
+            lines += [
+                f"### {label}（{p.get('bf', '—')} BF）",
+                "",
+                "| AVG | OBP | SLG | K | BB | K% | BB% |",
+                "|-----|-----|-----|---|----|----|-----|",
+                (
+                    f"| {p.get('avg', '—')} | {p.get('obp', '—')} | {p.get('slg', '—')} | "
+                    f"{p.get('k', '—')} | {p.get('bb', '—')} | "
+                    f"{_md_fmt(p.get('k_pct'), 1)} | {_md_fmt(p.get('bb_pct'), 1)} |"
+                ),
+                "",
+            ]
+
+    # Recent starts
+    if game_log:
+        valid = [g for g in game_log if isinstance(g, dict) and "error" not in g]
+        if valid:
+            lines += [
+                f"## Recent {len(valid)} Starts",
+                "",
+                "| 日期 | 對手 | IP | ER | K | BB | H | Pitches | Strikes |",
+                "|------|------|-----|----|----|----|----|---------|---------|",
+            ]
+            for g in valid:
+                lines.append(
+                    f"| {g.get('date', '—')} | {g.get('opponent', '—')} | "
+                    f"{_md_fmt(g.get('ip'), 1)} | {_md_fmt(g.get('er'), 0)} | "
+                    f"{_md_fmt(g.get('k'), 0)} | {_md_fmt(g.get('bb'), 0)} | "
+                    f"{_md_fmt(g.get('h'), 0)} | {_md_fmt(g.get('pitches'), 0)} | {_md_fmt(g.get('strikes'), 0)} |"
+                )
+            lines.append("")
+
+    # Prior year
+    if prior:
+        lines += [
+            "## Prior Year",
+            "",
+            "| 指標 | 數值 |",
+            "|------|------|",
+            f"| Games / GS | {_md_fmt(prior.get('games'), 0)} / {_md_fmt(prior.get('gs'), 0)} |",
+            f"| IP | {_md_fmt(prior.get('ip'))} |",
+            f"| ERA | {_md_fmt(prior.get('era'))} |",
+            f"| WHIP | {_md_fmt(prior.get('whip'))} |",
+            f"| FIP | {_md_fmt(prior.get('fip'))} |",
+            f"| xFIP | {_md_fmt(prior.get('xfip'))} |",
+            f"| K% | {_md_fmt(prior.get('k_pct'), 1)} |",
+            f"| BB% | {_md_fmt(prior.get('bb_pct'), 1)} |",
+            f"| HR/9 | {_md_fmt(prior.get('hr_per_9'))} |",
+            f"| GB% | {_md_fmt(prior.get('gb_pct'), 1)} |",
+            "",
+        ]
+
+    # Source
+    lines += [
+        "---",
+        "",
+        "## Source",
+        f"- Generated by: `{command or 'pitcher_stats.py'}`",
+        f"- Generated at: `{datetime.now(timezone.utc).isoformat(timespec='seconds')}`",
+        "- JSON sibling: see same directory `<basename>.json`",
+    ]
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
@@ -381,6 +672,7 @@ def main():
     parser.add_argument("--name", required=True, help="Pitcher full name (e.g. 'Gerrit Cole')")
     parser.add_argument("--year", type=int, default=datetime.now().year, help="Season year")
     parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
+    parser.add_argument("--no-md", action="store_true", help="Skip MD summary output (only write JSON)")
     parser.add_argument("--test", action="store_true", help="Run test mode")
     args = parser.parse_args()
 
@@ -454,6 +746,16 @@ def main():
         with open(args.output, "w", encoding="utf-8") as f:
             f.write(json_output)
         print(f"Saved to {args.output}", file=sys.stderr)
+
+        if not args.no_md:
+            json_path = Path(args.output)
+            md_path = json_path.with_name(json_path.stem + "_summary.md")
+            command = f"pitcher_stats.py --name \"{args.name}\" --year {args.year}"
+            try:
+                md_path.write_text(format_md(output, command=command), encoding="utf-8")
+                print(f"Saved summary to {md_path}", file=sys.stderr)
+            except Exception as e:
+                print(f"Skipped summary md: {e}", file=sys.stderr)
     else:
         print(json_output)
 
