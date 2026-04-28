@@ -166,7 +166,7 @@ def format_summary_md(result: dict) -> str:
         f"- 開賽 (UTC ISO): {game.get('date', '—')}",
         f"- 球場: {game.get('venue', '—')}",
         f"- 狀態: {game.get('status', '—')}",
-        f"- 先發: {away.get('probable_pitcher', 'TBD')} ({away_abbr}) vs {home.get('probable_pitcher', 'TBD')} ({home_abbr})",
+        f"- 先發: {away.get('probable_pitcher', 'TBD')} ({away_abbr}, {away.get('probable_pitcher_id') or '—'}) vs {home.get('probable_pitcher', 'TBD')} ({home_abbr}, {home.get('probable_pitcher_id') or '—'})",
         "",
     ]
 
@@ -296,11 +296,13 @@ def extract_game_info(game: dict) -> dict:
             "team": home["team"]["name"],
             "team_id": home["team"]["id"],
             "probable_pitcher": home.get("probablePitcher", {}).get("fullName", "TBD"),
+            "probable_pitcher_id": home.get("probablePitcher", {}).get("id"),
         },
         "away": {
             "team": away["team"]["name"],
             "team_id": away["team"]["id"],
             "probable_pitcher": away.get("probablePitcher", {}).get("fullName", "TBD"),
+            "probable_pitcher_id": away.get("probablePitcher", {}).get("id"),
         },
     }
 
