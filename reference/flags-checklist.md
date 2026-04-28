@@ -15,7 +15,7 @@
 
 ### 3. Hot/Cold 判定未檢查 BABIP
 - 觸發：近 7 天 BABIP `≤ .260` 或 `≥ .370`
-- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 phase3_skeleton 的「## 風險提示」段。AI 在敘事中判讀「可能回歸 / 可能持續」**不自動 ±run value**。詳見 `matchup-factors.md` §BABIP 回歸檢查
+- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 phase3_skeleton 的「## 風險提示」段。AI 在敘事中判讀「可能回歸 / 可能持續」**不自動 ±run value**。詳見 `matchup-factors.md` §BABIP 回歸風險標註
 
 ### 4. 牛棚傷兵只修 O/U 未修 ML
 - 觸發：核心（Closer / Primary Setup / High-leverage）IL 但 phase3_summary 缺 ML 修正 (-%) 或 OU 修正 (+run)
