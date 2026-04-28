@@ -161,10 +161,21 @@
 ## 球場 & 天氣
 
 ### Park Factor
-以 100 為聯盟平均。**修正公式**：預期得分 × (PF / 100)。使用 **5 年回歸 PF**（單季不可靠）。
+資料源：`scripts/data/park_factors.json`（2023-2025 3 年加權，Baseball Savant）
+- 修正公式：`E[R] × (PF / 100)`
+- 解析：100 = 聯盟平均；> 100 打者友善；< 100 投手友善
 
-**Coors Field 特殊**：4 月 PF = 112（非全年 128），5 月後恢復 128。
-> 物理依據：4 月丹佛 ~50-60°F，空氣密度比夏季高 ~8-10%。
+**分裂型球場**（Runs PF 與 HR PF 反向，特別處理）：
+- Kauffman Stadium：Runs 106 / HR 91 — 利安打與三壘打，壓制 HR
+- PNC Park：Runs 102 / HR 83 — 利二三壘打，HR 嚴重壓制
+- UNIQLO Field at Dodger Stadium：Runs 98 / HR 121 — 抑制總得分但加成 HR
+
+**近期重大改造**（影響 PF 解讀）：
+- Camden Yards 2025 季前左外野牆移近、降低 → 預期由投手友善（96）逐步轉為打者友善（3 年加權尚未反映完整效應）
+- Progressive Field 2024 移除外野貨櫃 → 風洞效應，LHB HR +16%
+- 臨時主場：Athletics（Sutter Health）/ Rays（Steinbrenner）— 樣本期短
+
+> ⛔ Coors Field 4 月：物理上空氣密度比夏季高 ~8-10%，4 月 PF ≈ 112，5 月後恢復 131。
 
 ### 影響分析的賽制規則
 - 全面 DH、Pitch Clock（15/18 秒）、三打者最低規則、防守布陣限制

@@ -2,9 +2,9 @@
 
 ## 比分預測方法
 
-> ⚠️ **total_model（xgb_total_model.pkl）訓練資料有結構性缺陷，比分預測不可靠。**
-> 勝率使用 XGBoost win_model，比分使用 formula 公式計算。
-> predict.py 已實作此邏輯：`ml_prediction` 用於勝率，`formula_prediction` 用於比分。
+> 勝率與比分皆來自 `formula_prediction`（Log5 + 期望得分公式）。
+> XGBoost 路徑於 2026-04 重構移除（spec 2026-04-26-mlb-skill-slimming-design）；
+> 舊 `cross_validation` / `ml_prediction` / `xgb_raw_home_pct` 欄位不再產出。
 
 ### 步驟 1 — 計算雙方期望得分
 
@@ -80,14 +80,18 @@ E[R_A] = 聯盟平均得分 × (A 隊打線 xwOBA / 聯盟平均 xwOBA) × (B �
 P(win by 2+) = P(win) × P(margin ≥ 2 | win)
 ```
 
-**P(margin ≥ 2 | win) 參考值**：
+**P(margin ≥ 2 \| win) 查表**
 
-| 熱門方 ML | P(margin ≥ 2 \| win) |
-|-----------|---------------------|
-| -110~-130 | ~58-60% |
-| -130~-170 | ~60-63% |
-| -170~-220 | ~63-67% |
-| -220+ | ~67-72% |
+`[Source: Run Line -1.5 table range midpoints (58-60% / 60-63% / 63-67% / 67-72%); pending empirical calibration via pybaseball schedule_and_record game-level margins — P2 TODO]`
+
+| 熱門方 American ML | P(margin ≥ 2 \| win) |
+|--------------------|---------------------|
+| −130 ~ −110        | 0.59                |
+| −170 ~ −131        | 0.615               |
+| −220 ~ −171        | 0.65                |
+| ≤ −221             | 0.695               |
+
+**重要**：此表條件於 **bookmaker favorite**（American ML 較負方），不是 model predicted favorite。當 model 與 market 分歧時，bucket key 一律用 market ML — 否則查到錯的條件機率。
 
 **Run Line -1.5 星級（區分主/客場）**：
 
@@ -126,15 +130,16 @@ P(win by 2+) = P(win) × P(margin ≥ 2 | win)
 
 ## 分析紀律
 
-### D1：模型覆蓋紀律
+### D1：模型輸出紀律
 
-ML (XGBoost) 與 Log5 (Formula) 方向一致時（即 `ml_lean == formula_lean`），**不得因軟性因素翻轉勝方**（Platoon 劣勢、連勝動能、H2H 等）。
+`formula_prediction.lean`（HOME 或 AWAY）為唯一決定方向的依據。
 
 - 可調整：勝率幅度 ±5%、信心降級、星級降級
 - 可覆蓋：模型未計入的重大因素（先發臨時更換等）、用戶明確要求
-- **不可覆蓋**：方向分歧（`ml_lean != formula_lean`）→ ML 強制 PASS
-- **原則**：模型方向 > 直覺。軟性因素影響幅度，不影響方向。
-- **實作**：`predict.py` 當場比對 `ml_lean` / `formula_lean`，不讀 `cross_validation` 字串（α 實作，見 spec 2026-04-22-mlb-skill-slimming-design.md §3.2）。`cross_validation` 欄位仍寫入（含 `INSUFFICIENT_SAMPLE` / `DIVERGENT` / `CONSISTENT` / `NO_ML_MODEL`）但僅供觀察。
+- 不可覆蓋：軟性因素（Platoon / 連勝動能 / H2H 等）影響強度，不影響方向
+- ML 路徑（XGBoost）於 2026-04 重構移除，`cross_validation` 欄位不再產出
+
+> 預測紀錄歷史檔仍含 `cross_validation` 欄位（pre-2026-04），僅供觀察，新預測不寫入。
 
 ### D2：信號修正紀律
 
@@ -149,7 +154,7 @@ ML (XGBoost) 與 Log5 (Formula) 方向一致時（即 `ml_lean == formula_lean`�
 
 同一場比賽不得同時推薦 ML 勝方 A + A 的受讓（盤口邏輯上互斥會互咬）。
 
-| XGBoost home_win_pct | ML 推薦 | 受讓推薦 |
+| formula home_win_pct | ML 推薦 | 受讓推薦 |
 |----------------------|---------|---------|
 | ≥ 60% | 可推 ML 勝方 | ⛔ 不得推「對方受讓」 |
 | 55%-60% | 二選一（ML 或對方受讓） | 二選一（ML 或對方受讓） |
@@ -192,114 +197,13 @@ O/U 推薦方向必須與 D2 修正後總分一致：
 
 ---
 
-## Kelly Sizing & Unit Output
-
-### 公式
-
-Fractional Kelly 以真實勝率 `p` 與 American odds 計算：
-
-```
-b = 100/|ml|            (ml < 0)  或  ml/100  (ml > 0)
-raw_kelly = max(0, (p × (b+1) − 1) / b)
-fractional = raw_kelly / divisor
-capped     = min(fractional, cap_pct)
-units      = round(capped / unit_size, 0.5)
-```
-
-**預設參數**（由 `predict.py` args 控制）：
-
-| 參數 | 預設值 | Source |
-|------|-------|--------|
-| `--kelly-divisor` | 4 (quarter-Kelly) | Thorp (2006) "The Kelly Criterion in Blackjack, Sports Betting, and the Stock Market"; Poundstone (2005) *Fortune's Formula* ch.14 — fractional Kelly reduces drawdown when p̂ carries ±5-10% estimation error |
-| `--kelly-cap` | 3.0 (% of bankroll) | Ruin-risk heuristic; tightened in V1 due to synthetic-label p̂ uncertainty (P1 blocker). Revisit post-P1. |
-| `--unit-size` | 1.0 (1u = 1% bankroll) | UX convention; rounds `capped / unit_size` to nearest 0.5 unit |
-
-### Odds 來源
-
-`predict.py --save` 自動讀 `odds_snapshots/` 中推薦時間最近的 Pinnacle snapshot：
-- Snapshot time 必須早於比賽開打時間
-- 隊名對照用 `TEAM_ABBREV`（全名 → 縮寫）
-- **ET 日期來源**：優先從 `args.game_data` 路徑（`analysis-data/YYYY-MM-DD/`）取；fallback 從 `_meta.game_date`（UTC ISO）轉 ET
-- Doubleheader 需 `--game-index 1` 或 `2`；缺此 arg 時 `ValueError` 會 surface 給使用者（不吞）
-
-CLI override（優先於 snapshot）：
-- `--ml-odds-home-dec` / `--ml-odds-away-dec`
-- `--ou-odds-over-dec` / `--ou-odds-under-dec`
-- `--rl-odds-home-dec` / `--rl-odds-away-dec`
-
-若 snapshot 與 CLI 都無對應市場 → 該市場 `kelly.*` = `null`。
-
-### 機率來源
-
-| 市場 | p 來源 | Source / Note |
-|------|-------|---------------|
-| ML | `ml_prediction.home_win_pct / 100`（XGBoost） | 不用 Log5，避免和 cross_validation 紀律打架 |
-| O/U | `1 − Φ(line; μ=formula_prediction.total, σ=4.5)` | σ=4.5 `[Source: reference/prediction.md D2/D5 baseline; pending empirical calibration from MLB 2020-2024 totals — P2 TODO]` |
-| RL -1.5 | `P(win) × P(margin ≥ 2 \| win)`，後者查表 | 熱門方用**市場 ML** 判定（非 model margin） — C2 修正 |
-
-### P(margin ≥ 2 \| win) 查表
-
-`[Source: reference/prediction.md Run Line -1.5 table range midpoints (58-60% / 60-63% / 63-67% / 67-72%); pending empirical calibration via pybaseball schedule_and_record game-level margins — P2 TODO]`
-
-| 熱門方 American ML | P(margin ≥ 2 \| win) |
-|--------------------|---------------------|
-| −130 ~ −110        | 0.59                |
-| −170 ~ −131        | 0.615               |
-| −220 ~ −171        | 0.65                |
-| ≤ −221             | 0.695               |
-
-**重要（C2）**：此表條件於 **bookmaker favorite**（American ML 較負方），不是 model predicted favorite。當 model 與 market 分歧時，bucket key 一律用 market ML — 否則查到錯的條件機率。
-
-### Side 標籤來源（C3）
-
-`kelly.rl.favorite_side` 的 `"HOME_-1.5"` / `"AWAY_-1.5"` 優先用 Pinnacle snapshot 的 `rl.home_point`（±1.5 是 Pinnacle 設定的事實）；snapshot 缺 point 時才用 market ML 推測。
-
-### prediction.json `kelly` 區塊 schema
-
-```jsonc
-"kelly": {
-  "snapshot_source": "odds_snapshots/2026-04-18_16-00-ET.json" | null,
-  "snapshot_time_et": "2026-04-18 16:00 ET" | null,
-  "params": {"divisor": 4, "cap_pct": 3.0, "unit_size_pct": 1.0},
-  "ml": {
-    "direction": "HOME" | "AWAY",
-    "decimal_odds": 1.83,
-    "raw_kelly_pct": 2.34, "fractional_pct": 0.59,
-    "capped_pct": 0.59, "units": 0.5
-  } | null,
-  "ou": {
-    "direction": "OVER" | "UNDER" | "PASS",
-    "line": 8.5,
-    "over": { ... } | null,
-    "under": { ... } | null
-  } | null,
-  "rl": {
-    "favorite_side": "HOME_-1.5" | "AWAY_-1.5",
-    "favorite": { ... } | null,
-    "underdog": { ... } | null
-  } | null,
-  "warnings": [
-    // e.g. "ml_guardrail_pass", "no_matching_snapshot", "team_name_mismatch: ..."
-  ]
-}
-```
-
-### 紀律
-
-- **Kelly 完全對齊 D1-D5 guardrail**：若 `final_ml_rec == "PASS"` / `final_ou_rec == "PASS"` / `final_rl_rec == "PASS"`，對應市場的 `kelly.*` 為 `null`，`warnings` 紀錄觸發原因（`ml_guardrail_pass` / `ou_guardrail_pass` / `rl_guardrail_pass`）
-- 反向保證：`kelly.<market>` 有數字時對應市場必然非 PASS — direction / stars 由既有 guardrail 決定，Kelly 不改方向只決定注碼
-- 負 edge（raw ≤ 0）→ 該市場的 Kelly 欄位全 `0`（非 null；0 是合法的「不下注」訊號）
-- **Snapshot 4h 延遲**：快速變盤（steam move）下 Kelly 可能在推薦與下注之間過時。V1 接受此限制。
-
----
-
 ## 預測紀錄存放位置
 
 - **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`
   單筆 JSON、pretty-printed。由 `predict.py --save` 產生。**屬於 mlb-game-analyzer skill**。
 - **Per-date summary（快取）**：`analysis-data/{YYYY-MM-DD}/predictions.jsonl`
-  當日所有場次的 JSONL。由 `summarize_predictions.py --date {date}` 全量重建。**屬於 mlb-post-game-review skill**。
-- **賽後回填**：`fetch_results.py --date {date}` 從 MLB Stats API 抓 Final 比分，寫 `actual_*` + `verified=true`，同時更新 per-date jsonl 與 per-game prediction.json。**屬於 mlb-post-game-review skill**。
+  當日所有場次 JSONL，由 `mlb-post-game-review` skill 重建。
+- **賽後回填**：`actual_*` / `verified=true` 由 `mlb-post-game-review` skill 回填。
 
 ## 預測紀錄格式（prediction.json / predictions.jsonl）
 
@@ -326,7 +230,6 @@ CLI override（優先於 snapshot）：
   "ml_rec": "XXX",
   "ml_stars": 0,
   "confidence": "HIGH/MEDIUM/LOW",
-  "cross_validation": "CONSISTENT/DIVERGENT/INSUFFICIENT_SAMPLE/NO_ML_MODEL",
   "tags": [],
   "umpire_name": null,
   "umpire_ou_rate": null,

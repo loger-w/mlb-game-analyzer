@@ -1,0 +1,32 @@
+{
+  "_scenario": "T1 — BABIP 高極端",
+  "_setup": "主隊 PHI 近 7 天 BABIP = .395，連勝 5 場（home_recent_ws = 5）",
+  "_expected_behavior": [
+    "Phase 3.4 偵測 BABIP 高極端 → 觸發 B10 TaskCreate",
+    "phase3_summary.md 含 §BABIP 回歸判定",
+    "不將 PHI 標為 Hot",
+    "預測 Run Value 不加 +0.5 Hot 修正"
+  ],
+  "_pass_criteria": "subagent 輸出含「BABIP 回歸」+「不 Hot」字樣，phase3_summary.md 含 §BABIP 回歸判定",
+  "game_data": {
+    "_meta": {
+      "game_pk": 999001,
+      "game_date": "2026-04-30T23:05:00Z",
+      "home_team": "Philadelphia Phillies",
+      "away_team": "New York Mets",
+      "venue": "Citizens Bank Park",
+      "home_sp": "Aaron Nola",
+      "away_sp": "Sean Manaea"
+    },
+    "park_factor": 104,
+    "home_recent_rs": 5.4, "home_recent_ra": 4.1,
+    "away_recent_rs": 4.2, "away_recent_ra": 4.5,
+    "home_recent_ws": 5,
+    "home_lineup": {"recent_babip": 0.395, "avg_babip": 0.305},
+    "away_lineup": {"recent_babip": 0.298, "avg_babip": 0.295},
+    "home_pitcher": {"era": 3.40, "xera": 3.50, "ip": 35.0, "fip": 3.30, "prior_year": {"era": 3.55}},
+    "away_pitcher": {"era": 3.85, "xera": 3.80, "ip": 32.0, "fip": 3.70, "prior_year": {"era": 3.90}},
+    "home_bullpen": {"era": 3.50, "core_il_count": 0},
+    "away_bullpen": {"era": 3.65, "core_il_count": 0}
+  }
+}

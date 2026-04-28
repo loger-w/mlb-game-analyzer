@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""MLB Game Predictor — XGBoost 預測 + Log5 交叉驗證 + 信號計分表"""
+"""MLB Game Predictor — Log5 + 期望得分公式 + 信號計分表"""
 
 import argparse
-import glob
 import json
 import math
 import os
@@ -11,16 +10,10 @@ import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-import joblib
-import numpy as np
-
 # Fix Windows encoding for emoji output
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
-
-MODELS_DIR = os.path.join(os.path.dirname(__file__), "models")
-WIN_MODEL_PATH = os.path.join(MODELS_DIR, "xgb_win_model.pkl")
 
 # F2: 完整 30 隊隊名 → 縮寫映射（用於方向矛盾檢查）
 TEAM_ABBREV = {
@@ -48,7 +41,7 @@ GAME_DATA_PATTERN = re.compile(
 SIGNAL_KEYS_PREFIXES = frozenset({
     "bullpen_", "weather_", "cold_", "babip_", "park_",
     "coors_", "lineup_", "both_", "env_", "home_", "away_",
-    "wind_", "sp_", "kelly_", "early_", "pitcher_",
+    "wind_", "sp_", "early_", "pitcher_",
 })
 
 # pitcher / player 個人化 signal 的後綴模式
@@ -73,52 +66,10 @@ RL_STRONG_TAGS = frozenset({
 BULLPEN_SLUMP_ERA = 5.0  # 對齊既有 signal_table bullpen 規則
 BULLPEN_STRONG_ERA = 3.0
 
-FEATURE_COLS = [
-    "home_starter_fip", "home_starter_k_bb", "home_starter_whip",
-    "away_starter_fip", "away_starter_k_bb", "away_starter_whip",
-    "home_batting_xwoba", "home_batting_ops", "home_batting_k_pct",
-    "away_batting_xwoba", "away_batting_ops", "away_batting_k_pct",
-    "home_bullpen_era", "away_bullpen_era",
-    "home_recent_rs", "home_recent_ra",
-    "away_recent_rs", "away_recent_ra",
-    "park_factor",
-]
-
-
 def log5(home_pct: float, away_pct: float) -> float:
     """Log5 勝率公式"""
     p = (home_pct * (1 - away_pct)) / (home_pct * (1 - away_pct) + away_pct * (1 - home_pct))
     return p
-
-
-def should_force_ml_pass(ml_pred: dict | None, formula_pred: dict | None) -> bool:
-    """α 實作（spec 2026-04-22 §3.2）：ml_lean 與 formula_lean 方向分歧 → 強制 PASS。
-
-    取代原 D1（讀 cross_validation == "DIVERGENT"）和 D1.5 方向分歧 branch。
-    cross_validation 欄位仍寫入 prediction.json 作歷史觀察，但決策邏輯不依賴字串。
-
-    Returns True iff 兩個模型都存在且方向分歧（跨 50% 邊界）；其餘情境 False。
-    """
-    if not ml_pred or not formula_pred:
-        return False
-    ml_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-    formula_lean = "HOME" if formula_pred["log5_pct"] > 50 else "AWAY"
-    return ml_lean != formula_lean
-
-
-def check_xgb_divergent(ml_pred: dict | None, predicted_winner: str) -> bool:
-    """Y2（Plan B 2026-04-22 §4.4）：XGBoost 勝率方向 vs predicted_winner 矛盾。
-
-    情境：signal_adjustments 翻轉 xgb 方向（如 xgb 61% HOME 但信號調整後 adj_away > adj_home
-    → predicted_winner = AWAY）。此時 xgb 與最終推薦方向不一致 = 高不確定性，強制 PASS。
-
-    與 D1 α 互不重疊：D1 比 ml_lean vs formula_lean（兩模型分歧）；Y2 比 xgb vs 最終推薦
-    （signal 翻轉 xgb）。三者（D1、Y2、A6 user vs model）可獨立或同時觸發。
-    """
-    if not ml_pred:
-        return False
-    xgb_home_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-    return xgb_home_lean != predicted_winner
 
 
 def apply_close_game_cap(
@@ -264,134 +215,6 @@ def warn_unknown_signal_keys(signals: dict | None) -> None:
         )
 
 
-_SNAPSHOT_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-ET\.json$")
-
-
-def load_closest_snapshot(
-    game_date_et: str,
-    game_start_utc: str,
-    snapshot_dir: str = None,
-) -> dict | None:
-    """Find newest Pinnacle snapshot with snapshot_time < game_start_utc
-    and containing games on game_date_et.
-
-    Returns None if no match. Kelly 需要。
-    """
-    if snapshot_dir is None:
-        snapshot_dir = os.environ.get("MLB_SNAPSHOT_DIR_OVERRIDE")
-    if snapshot_dir is None:
-        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        snapshot_dir = os.path.join(base, "odds_snapshots")
-    if not os.path.isdir(snapshot_dir):
-        return None
-    try:
-        cutoff_dt = datetime.fromisoformat(game_start_utc.replace("Z", "+00:00"))
-    except (ValueError, AttributeError):
-        return None
-    candidates = []
-    for path in glob.glob(os.path.join(snapshot_dir, "*.json")):
-        name = os.path.basename(path)
-        if not _SNAPSHOT_FILENAME_RE.match(name):
-            continue
-        try:
-            with open(path, encoding="utf-8") as f:
-                snap = json.load(f)
-        except (OSError, json.JSONDecodeError):
-            continue
-        if not any(g.get("game_date_et") == game_date_et for g in snap.get("games", [])):
-            continue
-        try:
-            snap_dt = datetime.fromisoformat(snap["snapshot_time_utc"].replace("Z", "+00:00"))
-        except (KeyError, ValueError):
-            continue
-        if snap_dt < cutoff_dt:
-            candidates.append((snap_dt, snap))
-    if not candidates:
-        return None
-    candidates.sort(key=lambda x: x[0], reverse=True)
-    return candidates[0][1]
-
-
-_NAME_TO_ABBREV = dict(TEAM_ABBREV)
-
-
-def resolve_pinnacle_odds(
-    snapshot: dict,
-    home_abbrev: str,
-    away_abbrev: str,
-    *,
-    game_index: int | None = None,
-) -> dict | None:
-    """Extract Pinnacle decimal odds. For doubleheaders, game_index (1 or 2) required."""
-    matches = []
-    for g in snapshot.get("games", []):
-        home_full = g.get("home_team")
-        away_full = g.get("away_team")
-        gh = _NAME_TO_ABBREV.get(home_full)
-        ga = _NAME_TO_ABBREV.get(away_full)
-        if gh != home_abbrev or ga != away_abbrev:
-            continue
-        matches.append(g)
-
-    if not matches:
-        return None
-
-    if len(matches) > 1:
-        if game_index is None:
-            raise ValueError(
-                f"doubleheader detected for {away_abbrev}@{home_abbrev}; "
-                f"pass game_index=1 or 2"
-            )
-        # 按 commence_et 排序，game_index 1 基底
-        matches.sort(key=lambda g: g.get("commence_et", ""))
-        if game_index < 1 or game_index > len(matches):
-            raise ValueError(f"game_index {game_index} out of range (have {len(matches)} games)")
-        g = matches[game_index - 1]
-    else:
-        g = matches[0]
-
-    pin = g.get("bookmakers", {}).get("pinnacle")
-    if not pin:
-        return None
-
-    ml = pin.get("ml", {})
-    ou = pin.get("ou", {})
-    rl = pin.get("rl", {})
-
-    home_full = g["home_team"]
-    away_full = g["away_team"]
-
-    result = {
-        "snapshot_time_et": snapshot.get("snapshot_time_et"),
-        "ml": None,
-        "ou": None,
-        "rl": None,
-    }
-
-    if home_full in ml and away_full in ml:
-        result["ml"] = {
-            "home_decimal": ml[home_full]["odds"],
-            "away_decimal": ml[away_full]["odds"],
-        }
-
-    if "Over" in ou and "Under" in ou:
-        result["ou"] = {
-            "line": ou["Over"].get("point"),
-            "over_decimal": ou["Over"]["odds"],
-            "under_decimal": ou["Under"]["odds"],
-        }
-
-    if home_full in rl and away_full in rl:
-        result["rl"] = {
-            "home_point": rl[home_full].get("point"),
-            "home_decimal": rl[home_full]["odds"],
-            "away_point": rl[away_full].get("point"),
-            "away_decimal": rl[away_full]["odds"],
-        }
-
-    return result
-
-
 def pythagorean_runs(rs: float, ra: float, g: float = 10) -> float:
     """Pythagenport 動態指數公式（與 reference/teams-and-api.md 一致）
 
@@ -445,7 +268,6 @@ def _inactive_rl_override() -> dict:
         "diff": None,
         "stars": None,
         "tags": None,
-        "kelly_available": None,
         "warnings": None,
         "thresholds": None,
     }
@@ -459,7 +281,6 @@ def apply_rl_guardrail(
     predicted_winner: str,
     home_team: str,
     away_team: str,
-    kelly_rl_available: bool = False,
 ) -> tuple[str, int | None, dict]:
     """Apply RL guardrails and produce rl_override audit dict.
 
@@ -476,17 +297,11 @@ def apply_rl_guardrail(
     Defensive (Q4): if predicted_winner != diff_side, record
     'pw_diff_direction_mismatch' warning but do not block the override.
 
-    Removed in Plan B 2026-04-22 (W1):
-      - `user_rl_rec` / `user_rl_stars` kwargs（CLI args 廢除；cumulative #10 RL 繞過消除）
-      - RL-1 hard gate（原已於 2026-04-21 symmetrization 刪除）
-      - RL-2 sanity gate（「非 PASS 但 stars 未指定 → PASS」— 沒有 user input 後此分支永不觸發）
-
     Args:
       adj_home / adj_away: adjusted scores (already applied signal/adjusted args)
       trend_tags: full trend_tags list from compute_trend_tags(data)
       predicted_winner: 'HOME' | 'AWAY' (result['final']['recommended_winner'])
       home_team / away_team: full team names (used by TEAM_ABBREV lookup)
-      kelly_rl_available: True iff kelly_block['rl'] is not None
 
     Returns:
       (final_rl_rec, final_rl_stars, rl_override_dict)
@@ -531,7 +346,6 @@ def apply_rl_guardrail(
                 "diff": round(diff, 2),
                 "stars": stars,
                 "tags": sorted(strong_rl),
-                "kelly_available": bool(kelly_rl_available),
                 "warnings": warnings,
                 "thresholds": {
                     "diff_min": RL_DIFF_MIN,
@@ -608,22 +422,431 @@ def compute_signal_table(data: dict) -> dict:
     }
 
 
-def predict_with_ml(features: list[float]) -> dict | None:
-    """用 XGBoost 模型預測主隊勝率（若模型不存在或特徵不匹配則 graceful fallback）"""
-    if not os.path.exists(WIN_MODEL_PATH):
-        return None
+def _format_pct_with_flip(
+    formula_pct: float,
+    predicted_winner: str,
+    adj_home: float,
+    adj_away: float,
+    has_adjusted: bool,
+) -> str:
+    """渲染勝率行；adjusted 比分翻轉方向時加 ⚠️ 註明。
 
-    try:
-        win_model = joblib.load(WIN_MODEL_PATH)
-        X = np.array([features])
-        win_prob = float(win_model.predict_proba(X)[0][1])  # 主隊勝率
-    except Exception:
-        # 模型特徵欄位不匹配時 graceful fallback
-        return None
+    formula_pct 是 home_win_pct（永遠以主隊視角）；side label 固定為 HOME。
+    翻轉條件：has_adjusted=True 且 (formula_pct > 50) != (predicted_winner == "HOME")
+    """
+    if not has_adjusted:
+        return f"Formula log5: **{formula_pct:.1f}% (HOME)**"
+    formula_winner = "HOME" if formula_pct > 50 else "AWAY"
+    if formula_winner == predicted_winner:
+        return f"Formula log5: **{formula_pct:.1f}% (HOME)**"
+    cmp = "<" if adj_home < adj_away else ">"
+    # Format adjusted scores: use 2 decimal places, but strip trailing zeros after the decimal point
+    # while preserving at least one decimal place (e.g., 5.0, 4.85)
+    adj_home_str = f"{adj_home:.2f}".rstrip("0").rstrip(".") if "." in f"{adj_home:.2f}" else f"{adj_home:.1f}"
+    adj_away_str = f"{adj_away:.2f}".rstrip("0").rstrip(".") if "." in f"{adj_away:.2f}" else f"{adj_away:.1f}"
+    # Ensure at least one decimal place
+    if "." not in adj_home_str:
+        adj_home_str += ".0"
+    if "." not in adj_away_str:
+        adj_away_str += ".0"
+    return (
+        f"⚠️ Formula {formula_pct:.1f}% (HOME) → adjusted 比分 "
+        f"{adj_home_str} {cmp} {adj_away_str} 判 {predicted_winner} 勝"
+        "（pct 未隨翻轉重算）"
+    )
 
-    return {
-        "home_win_pct": round(win_prob * 100, 1),
-    }
+
+def format_signal_table_md(auto_signals: list[dict], user_signals: dict) -> str:
+    """組 auto + user 兩個 mini-table；各自空時顯示「（無）」一行。"""
+    lines = ["### Auto signals"]
+    if auto_signals:
+        lines.append("| 信號 | ±run |")
+        lines.append("|------|------|")
+        total = 0.0
+        for s in auto_signals:
+            rv = s["run_value"]
+            lines.append(f"| {s['signal']} | {rv:+.2f} |")
+            total += rv
+        lines.append(f"| **總和** | **{total:+.2f}** |")
+    else:
+        lines.append("（無）")
+
+    lines.append("")
+    lines.append("### User-supplied signals")
+    if user_signals:
+        lines.append("| Key | ±run |")
+        lines.append("|-----|------|")
+        total = 0.0
+        for k, v in user_signals.items():
+            lines.append(f"| `{k}` | {v:+.2f} |")
+            total += v
+        lines.append(f"| **總和** | **{total:+.2f}** |")
+    else:
+        lines.append("（無）")
+    return "\n".join(lines)
+
+
+def _stars_str(stars: int | None) -> str:
+    """渲染星級；None / 0 → '—'，否則 ⭐ * stars。"""
+    if not stars:
+        return "—"
+    return "⭐" * stars
+
+
+def format_recommendation_rows(
+    record: dict, cap_reasons: list[str]
+) -> tuple[str, str]:
+    """產生 (tldr_table_md, full_rows_md)。共用 reason 字串確保 TL;DR 與
+    推薦結果 section 一致（同來源避免漂移）。
+
+    一句話理由規則見 spec section 2「推薦行 一句話理由 + tag 折進規則」。
+    """
+    home_team = record.get("home_team", "")
+    away_team = record.get("away_team", "")
+    home_abbr = TEAM_ABBREV.get(home_team, home_team[:3].upper())
+    away_abbr = TEAM_ABBREV.get(away_team, away_team[:3].upper())
+    pct = record.get("predicted_home_pct", 0.0)
+    pw = record.get("predicted_winner", "HOME")
+    side = "HOME" if pct > 50 else "AWAY"
+    tags = record.get("tags") or []
+
+    # ===== ML row =====
+    ml_rec = record.get("ml_rec") or "PASS"
+    ml_stars = record.get("ml_stars")
+    original_ml_stars = record.get("original_ml_stars")
+
+    # Folded tags for ML row
+    ml_folded = [t for t in tags if t in ("divergent", "direction-override", "home-2star-risk")]
+
+    if ml_rec == "PASS":
+        ml_dir = "PASS"
+        ml_stars_str = "—"
+        ml_reason = f"Log5 {pct:.1f}% ({side})"
+    else:
+        ml_dir = ml_rec
+        ml_stars_str = _stars_str(ml_stars)
+        reason_parts = [f"Log5 {pct:.1f}% ({side})"]
+        if ml_folded:
+            reason_parts.append("audit " + ", ".join(f"`{t}`" for t in ml_folded))
+        ml_reason = "，".join(reason_parts)
+
+    # ===== O/U row =====
+    ou_rec = record.get("ou_rec") or "PASS"
+    ou_stars = record.get("ou_stars")
+    ou_line = record.get("ou_line")
+    adj_total = record.get("adjusted_total")
+
+    if ou_line is not None and adj_total is not None:
+        gap = abs(adj_total - ou_line)
+        gap_str = f"adj_total {adj_total:.1f} vs line {ou_line}，差距 {gap:.1f} run"
+    else:
+        gap = None
+        gap_str = "—"
+
+    if ou_rec == "PASS":
+        ou_dir = "PASS"
+        ou_stars_str = "—"
+        if gap is not None and gap < 1.5:
+            ou_reason = f"差距 {gap:.1f} < 1.5 run"
+        else:
+            ou_reason = gap_str
+    else:
+        ou_dir = ou_rec
+        ou_stars_str = _stars_str(ou_stars)
+        ou_reason = gap_str
+
+    # ===== Run Line row =====
+    rl_rec = record.get("run_line_rec") or "PASS"
+    rl_stars = record.get("run_line_stars")
+    rl_override = record.get("rl_override") or {}
+
+    if rl_override.get("active"):
+        rl_dir = rl_rec
+        rl_stars_str = _stars_str(rl_stars)
+        path = rl_override.get("path", "?")
+        diff = rl_override.get("diff", 0.0)
+        ov_tags = rl_override.get("tags") or []
+        if ov_tags:
+            tag_str = ", ".join(f"`{t}`" for t in ov_tags)
+            rl_reason = f"override `{path}`，|diff|={diff:.1f}，tags={tag_str}"
+        else:
+            rl_reason = f"override `{path}`，|diff|={diff:.1f}"
+    else:
+        rl_dir = "PASS"
+        rl_stars_str = "—"
+        adj_home = record.get("predicted_home_score") or 0
+        adj_away = record.get("predicted_away_score") or 0
+        diff = abs(adj_home - adj_away)
+        rl_reason = f"|diff|={diff:.1f} < 1.5（RL_DIFF_MIN）"
+
+    # ===== TL;DR table =====
+    tldr_lines = [
+        "| 市場 | 方向 | 推薦指數 | 一句話理由 |",
+        "|------|------|----------|-----------|",
+        f"| ML | {ml_dir} | {ml_stars_str} | {ml_reason} |",
+        f"| O/U | {ou_dir} | {ou_stars_str} | {ou_reason} |",
+        f"| Run Line | {rl_dir} | {rl_stars_str} | {rl_reason} |",
+    ]
+    tldr = "\n".join(tldr_lines)
+
+    # ===== Full rows =====
+    def _full_row(market: str, direction: str, stars_str: str, reason: str) -> str:
+        if stars_str == "—":
+            head = f"**{direction}**"
+        else:
+            head = f"**{direction} {stars_str}**"
+        return f"- **{market}**: {head} — {reason}"
+
+    full_lines = [_full_row("ML", ml_dir, ml_stars_str, ml_reason)]
+    # ML cap reason appended
+    if (original_ml_stars is not None and ml_stars is not None
+            and original_ml_stars > ml_stars and cap_reasons):
+        full_lines[0] += f"（原 {_stars_str(original_ml_stars)} 降為 {_stars_str(ml_stars)}：{'; '.join(cap_reasons)}）"
+
+    full_lines.append(_full_row("O/U", ou_dir, ou_stars_str, ou_reason))
+    full_lines.append(_full_row("Run Line", rl_dir, rl_stars_str, rl_reason))
+
+    full = "\n".join(full_lines)
+    return tldr, full
+
+
+def format_discipline_check(record: dict) -> str:
+    """渲染 D1-D5 紀律檢查 4 行（D4 已棄用）。"""
+    home_team = record.get("home_team", "")
+    away_team = record.get("away_team", "")
+    home_abbr = TEAM_ABBREV.get(home_team, home_team[:3].upper())
+    away_abbr = TEAM_ABBREV.get(away_team, away_team[:3].upper())
+    pw = record.get("predicted_winner", "")
+    ml_rec = record.get("ml_rec") or "PASS"
+    ou_line = record.get("ou_line")
+    ou_rec = record.get("ou_rec") or "PASS"
+    adj_total = record.get("adjusted_total")
+    rl_rec = record.get("run_line_rec") or "PASS"
+    tags = record.get("tags") or []
+
+    lines = []
+
+    # D1: predicted_winner 方向是否與 ml_rec 一致
+    if "direction-override" in tags:
+        lines.append(
+            f"- ⚠️ D1 模型方向：direction-override（ml_rec={ml_rec}, predicted_winner={pw}）"
+        )
+    elif ml_rec == "PASS":
+        lines.append("- ✅ D1 模型方向：ml_rec=PASS")
+    else:
+        winner_abbr = home_abbr if pw == "HOME" else away_abbr
+        if ml_rec == winner_abbr:
+            lines.append(
+                f"- ✅ D1 模型方向：predicted_winner={pw}({winner_abbr}) 與 ml_rec={ml_rec} 一致"
+            )
+        else:
+            lines.append(
+                f"- ⚠️ D1 模型方向：predicted_winner={pw}({winner_abbr}) 與 ml_rec={ml_rec} 不一致"
+            )
+
+    # D2: 信號量化（永遠 ✅，predict.py 只接受 run_value 形式）
+    lines.append("- ✅ D2 信號量化：所有信號已轉為 run value")
+
+    # D3: 同場無對立推薦
+    if rl_rec == "PASS" or ml_rec == "PASS":
+        lines.append("- ✅ D3 同場無對立推薦")
+    else:
+        opposite = (
+            (ml_rec == home_abbr and rl_rec == away_abbr)
+            or (ml_rec == away_abbr and rl_rec == home_abbr)
+        )
+        if opposite:
+            lines.append(
+                f"- ⚠️ D3 同場推對立：ml_rec={ml_rec} + run_line_rec={rl_rec}"
+            )
+        else:
+            lines.append("- ✅ D3 同場無對立推薦")
+
+    # D5: 比分盤口一致
+    if ou_rec == "PASS" or ou_line is None or adj_total is None:
+        lines.append("- ✅ D5 比分盤口一致：ou_rec=PASS 或無 line")
+    else:
+        if ou_rec == "OVER" and adj_total > ou_line:
+            lines.append(
+                f"- ✅ D5 比分盤口一致：adj_total {adj_total} > ou_line {ou_line} vs ou_rec=OVER"
+            )
+        elif ou_rec == "UNDER" and adj_total < ou_line:
+            lines.append(
+                f"- ✅ D5 比分盤口一致：adj_total {adj_total} < ou_line {ou_line} vs ou_rec=UNDER"
+            )
+        else:
+            lines.append(
+                f"- ⚠️ D5 比分盤口矛盾：adj_total {adj_total} vs ou_line {ou_line}, ou_rec={ou_rec}"
+            )
+
+    return "\n".join(lines)
+
+
+def format_rl_override_block(rl_override: dict) -> str | None:
+    """RL override active=True 時渲染細節 section；inactive 回 None。"""
+    if not rl_override or not rl_override.get("active"):
+        return None
+    path = rl_override.get("path")
+    diff = rl_override.get("diff")
+    stars = rl_override.get("stars")
+    tags = rl_override.get("tags") or []
+    warnings = rl_override.get("warnings") or []
+    thr = rl_override.get("thresholds") or {}
+
+    lines = ["## Run Line override 細節"]
+    lines.append(f"- 路徑: `{path}`")
+    if diff is not None:
+        lines.append(f"- |diff|: {diff:.2f}")
+    if stars is not None:
+        lines.append(f"- stars: {stars}")
+    if tags:
+        lines.append(f"- 觸發 tags: {', '.join(f'`{t}`' for t in tags)}")
+    if warnings:
+        lines.append(f"- ⚠️ warnings: {', '.join(warnings)}")
+    if thr:
+        lines.append(
+            f"- thresholds: diff_min={thr.get('diff_min')}, "
+            f"diff_big={thr.get('diff_big')}, diff_star={thr.get('diff_star')}"
+        )
+    return "\n".join(lines)
+
+
+def format_env_block(record: dict) -> str | None:
+    """渲染環境補充 section；所有欄位皆 null → None（整段省略）。"""
+    fields = [
+        ("氣溫 (°F)", record.get("temperature_f")),
+        ("風速 (mph)", record.get("wind_mph")),
+        ("風向", record.get("wind_direction")),
+        ("主審", record.get("umpire_name")),
+        ("主審 Over%", record.get("umpire_ou_rate")),
+    ]
+    non_null = [(k, v) for k, v in fields if v is not None]
+    if not non_null:
+        return None
+    lines = ["## 環境補充"]
+    for k, v in non_null:
+        lines.append(f"- {k}: {v}")
+    return "\n".join(lines)
+
+
+def format_trend_tags_block(tags: list[str], recommendation_tags: set[str]) -> str | None:
+    """扣除已折進推薦行的 tags；剩下空 → None。"""
+    remaining = [t for t in tags if t not in recommendation_tags]
+    if not remaining:
+        return None
+    lines = ["## 趨勢標記"]
+    lines.append("- " + "、".join(f"`{t}`" for t in remaining))
+    return "\n".join(lines)
+
+
+def format_prediction_summary_md(
+    record: dict, signal_table: dict, cap_reasons: list[str]
+) -> str:
+    """組合 prediction_summary.md 完整內容。
+    Hard sections（必出現）：TL;DR / 比分預測 / 勝率預測 / 信號修正表 / 推薦結果 / 紀律檢查
+    Soft sections（缺資料省略）：Run Line override 細節 / 環境補充 / 趨勢標記
+    Fail-fast：缺 home_team / away_team / predicted_winner → raise ValueError
+    """
+    if "home_team" not in record or "away_team" not in record:
+        raise ValueError("record missing home_team / away_team")
+    if "predicted_winner" not in record:
+        raise ValueError("record missing predicted_winner")
+
+    home_team = record["home_team"]
+    away_team = record["away_team"]
+    home_abbr = TEAM_ABBREV.get(home_team, home_team[:3].upper())
+    away_abbr = TEAM_ABBREV.get(away_team, away_team[:3].upper())
+    date = record.get("date", "—")
+
+    pw = record["predicted_winner"]
+    pct = record.get("predicted_home_pct", 0.0)
+    home_score = record.get("predicted_home_score", 0.0)
+    away_score = record.get("predicted_away_score", 0.0)
+    formula_home = record.get("formula_home_score", 0.0)
+    formula_away = record.get("formula_away_score", 0.0)
+    formula_total = round(formula_home + formula_away, 1)
+    adj_total = record.get("adjusted_total", 0.0)
+    ou_line = record.get("ou_line")
+
+    # has_adjusted: predicted_score 與 formula_score 不同 = 用戶有傳 --adjusted-*
+    has_adjusted = (
+        abs(formula_home - home_score) > 0.01 or abs(formula_away - away_score) > 0.01
+    )
+
+    tldr_table, full_rows = format_recommendation_rows(record, cap_reasons)
+
+    lines = [
+        f"# Prediction Summary — {away_abbr} @ {home_abbr} ({date})",
+        "",
+        "## TL;DR",
+        f"- 預測比分: **{home_abbr} {home_score:.1f} − {away_score:.1f} {away_abbr}**"
+        f"（{pw} 勝，勝率 {pct:.1f}%）",
+        "- 比賽走勢: <!-- narrative: AI 依 reference/prediction.md「比賽敘事觸發條件」選 1-2 句填入 -->",
+        "",
+        "📊 推薦速查:",
+        "",
+        tldr_table,
+        "",
+        "---",
+        "",
+        "## 比分預測",
+        f"- Formula 比分: {home_abbr} {formula_home:.1f} / {away_abbr} {formula_away:.1f}"
+        f"（總分 {formula_total:.1f}）",
+    ]
+    if has_adjusted:
+        lines.append(
+            f"- Adjusted 比分: {home_abbr} {home_score:.1f} / {away_abbr} {away_score:.1f}"
+            f"（總分 {adj_total:.1f}）"
+        )
+    if ou_line is not None:
+        gap = abs(adj_total - ou_line)
+        lines.append(
+            f"- O/U gap: |adj_total {adj_total:.1f} − line {ou_line}| = {gap:.1f}"
+        )
+
+    lines.extend([
+        "",
+        "## 勝率預測",
+        f"- {_format_pct_with_flip(pct, pw, home_score, away_score, has_adjusted)}",
+        "",
+        "## 信號修正表",
+        "",
+        format_signal_table_md(
+            signal_table.get("signals") or [],
+            record.get("signal_adjustments") or {},
+        ),
+        "",
+        "## 推薦結果",
+        full_rows,
+        "",
+        "## 紀律檢查 (D1-D5)",
+        format_discipline_check(record),
+    ])
+
+    # Soft sections
+    rl_block = format_rl_override_block(record.get("rl_override") or {})
+    if rl_block:
+        lines.extend(["", rl_block])
+
+    env_block = format_env_block(record)
+    if env_block:
+        lines.extend(["", env_block])
+
+    # Build folded tags set: 已被推薦行折入的不再進趨勢標記
+    tags = record.get("tags") or []
+    folded: set[str] = set()
+    for t in ("divergent", "direction-override", "home-2star-risk"):
+        if t in tags:
+            folded.add(t)
+    rl_override = record.get("rl_override") or {}
+    if rl_override.get("active") and rl_override.get("tags"):
+        folded.update(rl_override["tags"])
+
+    trend_block = format_trend_tags_block(tags, folded)
+    if trend_block:
+        lines.extend(["", trend_block])
+
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def predict_with_formula(data: dict) -> dict:
@@ -673,7 +896,7 @@ def predict_with_formula(data: dict) -> dict:
     }
 
 
-# C1: ET timezone（對齊 fetch_odds.py:21 — MLB 球季 EDT = UTC-4）
+# ET timezone（MLB 球季 EDT = UTC-4）
 _ET_TZ = timezone(timedelta(hours=-4))
 _ANALYSIS_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
 
@@ -695,207 +918,6 @@ def _extract_game_date_et(args, meta: dict) -> str | None:
             except ValueError:
                 pass
     return game_date_et
-
-
-def compute_kelly_block(
-    args,
-    merged: dict,
-    ml_prediction: dict | None,
-    formula_prediction: dict,
-    final_ml_rec: str,
-    final_ou_rec: str,
-    final_rl_rec: str,
-) -> dict | None:
-    """Build the kelly block for prediction.json.
-
-    I1: PASS markets → kelly.{market} = None (kelly must align with D1-D5 guardrail).
-    C1: ET date extracted from analysis-data/YYYY-MM-DD/ path (fallback: UTC→ET).
-    C3: Pass Pinnacle rl.home_point into analyze_run_line for truthful side labeling.
-    """
-    from odds_analyzer import (
-        analyze_moneyline, analyze_over_under, analyze_run_line,
-        decimal_to_american,
-    )
-
-    warnings = []
-    meta = merged.get("_meta", {})
-    # Real merged.json stores _meta.home_team/away_team as full team names
-    # (e.g. "Philadelphia Phillies"). TEAM_ABBREV maps full→abbrev; fall
-    # through to the raw value so already-abbrev'd inputs (fixtures/tests)
-    # still work.
-    home_raw = meta.get("home_team") or "HOME"
-    away_raw = meta.get("away_team") or "AWAY"
-    home_abbrev = TEAM_ABBREV.get(home_raw, home_raw)
-    away_abbrev = TEAM_ABBREV.get(away_raw, away_raw)
-    game_date_iso = meta.get("game_date") or ""
-
-    # === C1: ET 日期取得 ===
-    game_date_et = None
-    if args.game_data:
-        for part in os.path.normpath(args.game_data).split(os.sep):
-            if _ANALYSIS_DATE_RE.match(part):
-                game_date_et = part
-                break
-    if not game_date_et and game_date_iso:
-        try:
-            utc_dt = datetime.fromisoformat(game_date_iso.replace("Z", "+00:00"))
-            game_date_et = utc_dt.astimezone(_ET_TZ).strftime("%Y-%m-%d")
-        except ValueError:
-            pass
-    game_start_utc = game_date_iso if "T" in game_date_iso else None
-
-    # === I1: Guardrail PASS 對齊 ===
-    ml_is_pass = final_ml_rec == "PASS"
-    ou_is_pass = final_ou_rec == "PASS"
-    rl_is_pass = final_rl_rec == "PASS"
-    if ml_is_pass:
-        warnings.append("ml_guardrail_pass")
-    if ou_is_pass:
-        warnings.append("ou_guardrail_pass")
-    if rl_is_pass:
-        warnings.append("rl_guardrail_pass")
-
-    # 1) Snapshot auto-lookup
-    snap_odds = None
-    snap_source = None
-    if not args.no_auto_odds:
-        snap = load_closest_snapshot(game_date_et, game_start_utc) if game_date_et and game_start_utc else None
-        if snap:
-            snap_odds = resolve_pinnacle_odds(
-                snap, home_abbrev, away_abbrev,
-                game_index=args.game_index,
-            )
-            snap_source = snap.get("snapshot_time_et")
-            if snap_odds is None:
-                warnings.append(f"team_name_mismatch: {home_abbrev} vs {away_abbrev}")
-        else:
-            warnings.append("no_matching_snapshot")
-
-    # 2) CLI overrides take precedence
-    def _pick(override_dec, snap_value):
-        if override_dec is not None:
-            return decimal_to_american(override_dec), override_dec
-        if snap_value is not None:
-            return decimal_to_american(snap_value), snap_value
-        return None, None
-
-    s_ml = (snap_odds or {}).get("ml") or {}
-    s_ou = (snap_odds or {}).get("ou") or {}
-    s_rl = (snap_odds or {}).get("rl") or {}
-
-    ml_home_ml, ml_home_dec = _pick(args.ml_odds_home_dec, s_ml.get("home_decimal"))
-    ml_away_ml, ml_away_dec = _pick(args.ml_odds_away_dec, s_ml.get("away_decimal"))
-    ou_over_ml, ou_over_dec = _pick(args.ou_odds_over_dec, s_ou.get("over_decimal"))
-    ou_under_ml, ou_under_dec = _pick(args.ou_odds_under_dec, s_ou.get("under_decimal"))
-    ou_line = s_ou.get("line") if s_ou else None
-    if args.ou_line is not None:
-        ou_line = args.ou_line
-    rl_home_ml, rl_home_dec = _pick(args.rl_odds_home_dec, s_rl.get("home_decimal"))
-    rl_away_ml, rl_away_dec = _pick(args.rl_odds_away_dec, s_rl.get("away_decimal"))
-    rl_home_point = s_rl.get("home_point") if s_rl else None
-
-    kelly_params = {
-        "divisor": args.kelly_divisor,
-        "cap_pct": args.kelly_cap,
-        "unit_size_pct": args.unit_size,
-    }
-
-    # 3) No odds at all → null kelly block + warnings
-    have_any = any([ml_home_dec, ml_away_dec, ou_over_dec, ou_under_dec, rl_home_dec, rl_away_dec])
-    if not have_any:
-        warnings.append("no_odds_available")
-        return {
-            "snapshot_source": None,
-            "snapshot_time_et": None,
-            "params": kelly_params,
-            "ml": None, "ou": None, "rl": None,
-            "warnings": warnings,
-        }
-
-    out = {
-        "snapshot_source": snap_source,
-        "snapshot_time_et": snap_source,
-        "params": kelly_params,
-        "ml": None, "ou": None, "rl": None,
-        "warnings": warnings,
-    }
-
-    # ML Kelly
-    model_p_home = None
-    if ml_prediction is not None:
-        pct = ml_prediction.get("home_win_pct")
-        if pct is not None:
-            model_p_home = pct / 100.0
-    if (not ml_is_pass
-            and model_p_home is not None
-            and ml_home_ml is not None and ml_away_ml is not None):
-        ml_res = analyze_moneyline(ml_home_ml, ml_away_ml, model_p_home, kelly_params)
-        kf = ml_res["kelly_fractional"]
-        out["ml"] = {
-            "direction": kf["direction"],
-            "decimal_odds": ml_home_dec if kf["direction"] == "HOME" else ml_away_dec,
-            "raw_kelly_pct": kf["raw_kelly_pct"],
-            "fractional_pct": kf["fractional_pct"],
-            "capped_pct": kf["capped_pct"],
-            "units": kf["units"],
-        }
-
-    # OU Kelly
-    predicted_total = formula_prediction.get("total")
-    if (not ou_is_pass
-            and predicted_total is not None and ou_line is not None
-            and (ou_over_ml or ou_under_ml)):
-        ou_res = analyze_over_under(ou_line, predicted_total, ou_over_ml, ou_under_ml, kelly_params)
-        kf = ou_res["kelly_fractional"]
-        if kf:
-            over_block = kf["over"] and {
-                "decimal_odds": ou_over_dec,
-                "raw_kelly_pct": kf["over"]["raw_kelly_pct"],
-                "fractional_pct": kf["over"]["fractional_pct"],
-                "capped_pct": kf["over"]["capped_pct"],
-                "units": kf["over"]["units"],
-            }
-            under_block = kf["under"] and {
-                "decimal_odds": ou_under_dec,
-                "raw_kelly_pct": kf["under"]["raw_kelly_pct"],
-                "fractional_pct": kf["under"]["fractional_pct"],
-                "capped_pct": kf["under"]["capped_pct"],
-                "units": kf["under"]["units"],
-            }
-            out["ou"] = {
-                "direction": ou_res["direction"],
-                "line": ou_line,
-                "over": over_block,
-                "under": under_block,
-            }
-
-    # RL Kelly
-    predicted_margin = formula_prediction.get("margin")
-    if predicted_margin is None:
-        hs = formula_prediction.get("home_score")
-        as_ = formula_prediction.get("away_score")
-        if hs is not None and as_ is not None:
-            predicted_margin = hs - as_
-    if (not rl_is_pass
-            and predicted_margin is not None and model_p_home is not None
-            and ml_home_ml is not None and ml_away_ml is not None
-            and (rl_home_ml or rl_away_ml)):
-        rl_res = analyze_run_line(
-            predicted_margin, model_p_home,
-            home_ml=ml_home_ml, away_ml=ml_away_ml,
-            home_rl_odds_ml=rl_home_ml, away_rl_odds_ml=rl_away_ml,
-            home_point=rl_home_point,
-            kelly_params=kelly_params,
-        )
-        kf = rl_res["kelly_fractional"]
-        if kf:
-            out["rl"] = {
-                "favorite_side": (kf.get("favorite_cover") or {}).get("side"),
-                "favorite": kf.get("favorite_cover"),
-                "underdog": kf.get("underdog_cover"),
-            }
-
-    return out
 
 
 def main():
@@ -925,29 +947,6 @@ def main():
     parser.add_argument("--wind-direction", help="Wind direction")
     parser.add_argument("--umpire", help="Home plate umpire name")
     parser.add_argument("--umpire-ou-rate", type=float, help="Umpire career Over pct")
-    # Kelly sizing parameters
-    parser.add_argument("--kelly-divisor", type=int, default=4,
-                        help="Kelly fraction divisor (default 4 = quarter-Kelly)")
-    parser.add_argument("--kelly-cap", type=float, default=3.0,
-                        help="Hard cap per bet, %% of bankroll (default 3.0)")
-    parser.add_argument("--unit-size", type=float, default=1.0,
-                        help="1 unit = this %% of bankroll (default 1.0)")
-    parser.add_argument("--no-auto-odds", action="store_true",
-                        help="Skip snapshot auto-lookup; use only CLI odds overrides")
-    parser.add_argument("--ml-odds-home-dec", type=float, default=None,
-                        help="Override: decimal odds for home ML")
-    parser.add_argument("--ml-odds-away-dec", type=float, default=None,
-                        help="Override: decimal odds for away ML")
-    parser.add_argument("--ou-odds-over-dec", type=float, default=None,
-                        help="Override: decimal odds for Over")
-    parser.add_argument("--ou-odds-under-dec", type=float, default=None,
-                        help="Override: decimal odds for Under")
-    parser.add_argument("--rl-odds-home-dec", type=float, default=None,
-                        help="Override: decimal odds for home RL")
-    parser.add_argument("--rl-odds-away-dec", type=float, default=None,
-                        help="Override: decimal odds for away RL")
-    parser.add_argument("--game-index", type=int, default=None,
-                        help="Doubleheader game number (1 or 2)")
     # Plan B 2026-04-22 edge-case 跳過旗（測試 / 非正式流程用）
     parser.add_argument("--skip-yoy-check", action="store_true",
                         help="Bypass B7 YoY prior year file existence check (Plan B)")
@@ -974,12 +973,6 @@ def main():
     with open(args.game_data, "r") as f:
         data = json.load(f)
 
-    # 建構特徵向量
-    features = [data.get(col, 0) for col in FEATURE_COLS]
-
-    # ML 預測
-    ml_pred = predict_with_ml(features)
-
     # 公式預測
     formula_pred = predict_with_formula(data)
 
@@ -1003,25 +996,8 @@ def main():
         }
         formula_30_pred = predict_with_formula(data_30)
 
-    # 交叉驗證
-    cross_validation = "NO_ML_MODEL"
-    if ml_pred:
-        if min_season_games < 30:
-            cross_validation = "INSUFFICIENT_SAMPLE"
-        else:
-            ml_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-            xval_formula = formula_30_pred if formula_30_pred else formula_pred
-            formula_lean = "HOME" if xval_formula["log5_pct"] > 50 else "AWAY"
-            pct_diff = abs(ml_pred["home_win_pct"] - xval_formula["log5_pct"])
-            cross_validation = "CONSISTENT" if ml_lean == formula_lean else "DIVERGENT"
-
     # 最終推薦
-    # 勝率：有 ML 時用 ML（XGBoost 勝率預測可靠）
-    # 比分：一律用 formula（ML 的 total_model 訓練資料有結構性缺陷，比分不可靠）
-    if ml_pred:
-        final_pct = ml_pred["home_win_pct"]
-    else:
-        final_pct = formula_pred["log5_pct"]
+    final_pct = formula_pred["log5_pct"]
     final_home = formula_pred["home_score"]
     final_away = formula_pred["away_score"]
 
@@ -1030,26 +1006,22 @@ def main():
     adj_away = args.adjusted_away if args.adjusted_away is not None else final_away
     adj_total = round(adj_home + adj_away, 1)
 
-    # 決定最終方向：adjusted 比分優先於 XGBoost
+    # 決定最終方向：adjusted 比分優先於 formula 勝率
     has_adjusted = args.adjusted_home is not None or args.adjusted_away is not None
     if has_adjusted and (adj_home > adj_away) != (final_pct > 50):
-        # adjusted 比分方向與 XGBoost 相反 → 使用 Log5 勝率
         adjusted_winner = "HOME" if adj_home > adj_away else "AWAY"
-        adjusted_pct = formula_pred["log5_pct"] if adjusted_winner == "HOME" else round(100 - formula_pred["log5_pct"], 1)
         display_home_pct = round(formula_pred["log5_pct"], 1)
     else:
         adjusted_winner = "HOME" if final_pct > 50 else "AWAY"
         display_home_pct = round(final_pct, 1)
 
     result = {
-        "ml_prediction": ml_pred,
         "formula_prediction": formula_pred,
-        "cross_validation": cross_validation,
         "signal_table": signal_table,
         "final": {
             "recommended_winner": adjusted_winner,
             "home_win_pct": display_home_pct,
-            "confidence": "HIGH" if cross_validation == "CONSISTENT" else ("MEDIUM" if cross_validation == "NO_ML_MODEL" else "LOW"),
+            "confidence": "MEDIUM",
             "predicted_home_score": adj_home,
             "predicted_away_score": adj_away,
             "predicted_total": adj_total,
@@ -1131,31 +1103,11 @@ def main():
         force_ml_pass = False  # 強制 ml_rec = PASS 旗標
         cap_reasons = []
 
-        # α 實作：D1 方向分歧 → 強制 PASS（不依賴 cross_validation 字串）
-        # cross_validation 欄位仍寫入 prediction.json（觀察用）
-        if should_force_ml_pass(ml_pred, formula_pred):
-            ml_stars_cap = 0
-            force_ml_pass = True
-            cap_reasons.append("ml/formula 方向分歧 強制 PASS（α 實作）")
-
-        # Y2（Plan B §4.4）：xgb_home_lean vs predicted_winner 矛盾（signal 翻轉 xgb）→ 強制 PASS
-        # cumulative #8 連 2 天 3 次觀察後升級 force PASS
-        y2_triggered = False
-        if check_xgb_divergent(ml_pred, result["final"]["recommended_winner"]):
-            ml_stars_cap = 0
-            force_ml_pass = True
-            y2_triggered = True
-            xgb_home_lean = "HOME" if ml_pred["home_win_pct"] > 50 else "AWAY"
-            pw = result["final"]["recommended_winner"]
-            cap_reasons.append(
-                f"xgb_home_lean={xgb_home_lean} vs predicted_winner={pw} 方向矛盾 強制 PASS（Y2）"
-            )
-
-        # 規則 4：XGBoost 勝率 50-55% → 上限 2
+        # 規則 4：formula 勝率 50-55% → 上限 2
         rec_side_pct = final_pct if result["final"]["recommended_winner"] == "HOME" else (100 - final_pct)
         if 50 <= rec_side_pct < 55:
             ml_stars_cap = min(ml_stars_cap, 2)
-            cap_reasons.append(f"XGBoost 勝率 {rec_side_pct:.1f}%（50-55%）上限 2")
+            cap_reasons.append(f"formula 勝率 {rec_side_pct:.1f}%（50-55%）上限 2")
 
         # F2: 規則 5：方向矛盾（ml_rec 與 predicted_winner 不一致）→ 上限 2
         direction_override = False
@@ -1168,7 +1120,7 @@ def main():
             if (predicted_winner == "HOME" and rec_is_away) or (predicted_winner == "AWAY" and rec_is_home):
                 direction_override = True
                 ml_stars_cap = min(ml_stars_cap, 2)
-                cap_reasons.append(f"ml_rec={args.ml_rec} 與 XGBoost predicted_winner={predicted_winner}({home_abbr if predicted_winner == 'HOME' else away_abbr}) 方向矛盾，上限 2")
+                cap_reasons.append(f"ml_rec={args.ml_rec} 與 formula predicted_winner={predicted_winner}({home_abbr if predicted_winner == 'HOME' else away_abbr}) 方向矛盾，上限 2")
 
         # Y-new-2（Plan B §4.4）：近身戰（|adj 比分差| < 0.5）上限 1 星（cumulative #3）
         ml_stars_cap, y_new_2_reason = apply_close_game_cap(adj_home, adj_away, ml_stars_cap)
@@ -1187,7 +1139,7 @@ def main():
             print(f"⚠️ ml_stars 從 {final_ml_stars} 降為 {ml_stars_cap}（原因：{'; '.join(cap_reasons)}）", file=sys.stderr)
             final_ml_stars = ml_stars_cap
 
-        # 套用 ml_rec 強制 PASS（ml/formula 方向分歧 — α 實作）
+        # 套用 ml_rec 強制 PASS
         final_ml_rec = args.ml_rec
         if force_ml_pass and final_ml_rec and final_ml_rec != "PASS":
             print(f"⚠️ ml_rec 從 {final_ml_rec} 改為 PASS（原因：{'; '.join(cap_reasons)}）", file=sys.stderr)
@@ -1201,10 +1153,6 @@ def main():
         if direction_override and "direction-override" not in user_tags:
             user_tags.append("direction-override")
         all_tags = list(dict.fromkeys(user_tags + trend_tags))  # 去重保序
-
-        # Y2 audit tag（Plan B §4.4）
-        if y2_triggered and "xgb-predicted-divergent" not in all_tags:
-            all_tags.append("xgb-predicted-divergent")
 
         # Y-new-1 audit tag（Plan B §4.4）：主場 2 星（cumulative #1，觀察期先 tag 不 cap）
         if should_add_home_2star_tag(
@@ -1236,7 +1184,7 @@ def main():
             final_ou_rec = "PASS"
             final_ou_stars = 0
 
-        # OU-3: 非 PASS 但 stars 未指定 → PASS（防止 upload 套 default 3 星）
+        # OU-3: 非 PASS 但 stars 未指定 → PASS
         if final_ou_rec != "PASS" and final_ou_stars is None:
             print(f"⚠️ O/U 從 {final_ou_rec} 改為 PASS（未指定 --ou-stars）", file=sys.stderr)
             final_ou_rec = "PASS"
@@ -1252,28 +1200,7 @@ def main():
             predicted_winner=result["final"]["recommended_winner"],
             home_team=home_team,
             away_team=away_team,
-            kelly_rl_available=False,  # Kelly 尚未計算，稍後回填
         )
-
-        # === Kelly Sizing 計算（I1: 對齊 guardrail；I4: tighten except） ===
-        kelly_block = None
-        try:
-            kelly_block = compute_kelly_block(
-                args, data, ml_pred, formula_pred,
-                final_ml_rec=final_ml_rec,
-                final_ou_rec=final_ou_rec,
-                final_rl_rec=final_rl_rec,
-            )
-        except (KeyError, IOError, json.JSONDecodeError, TypeError, AttributeError) as e:
-            print(f"⚠️ Kelly computation failed: {e}", file=sys.stderr)
-            kelly_block = None
-        # ValueError (doubleheader missing --game-index / bad decimal odds) 故意不吞
-
-        # 回填 rl_override.kelly_available（Q3：sticker 狀態用於後續分桶分析）
-        if rl_override["active"]:
-            rl_override["kelly_available"] = bool(
-                kelly_block is not None and kelly_block.get("rl") is not None
-            )
 
         record = {
             "date": record_date,
@@ -1289,7 +1216,6 @@ def main():
             "game_pk": meta.get("game_pk"),
             "predicted_winner": result["final"]["recommended_winner"],
             "predicted_home_pct": result["final"]["home_win_pct"],
-            "xgb_raw_home_pct": ml_pred["home_win_pct"] if ml_pred else None,
             "predicted_home_score": adj_home,
             "predicted_away_score": adj_away,
             "predicted_total": adj_total,
@@ -1309,7 +1235,6 @@ def main():
             "ml_stars": final_ml_stars,
             "original_ml_stars": original_ml_stars,
             "confidence": result["final"]["confidence"],
-            "cross_validation": result["cross_validation"],
             "tags": all_tags,
             "park_factor": data.get("park_factor"),
             "temperature_f": args.temperature,
@@ -1321,7 +1246,6 @@ def main():
             "actual_home_score": None,
             "actual_away_score": None,
             "actual_total": None,
-            "kelly": kelly_block,
             "verified": False,
         }
         # 寫入 per-game prediction.json（放在 --game-data 所在資料夾）
@@ -1335,6 +1259,16 @@ def main():
         with open(prediction_path, "w", encoding="utf-8") as f:
             json.dump(record, f, ensure_ascii=False, indent=2)
         print(f"Saved to {prediction_path}", file=sys.stderr)
+
+        # 額外輸出 prediction_summary.md（同目錄）
+        summary_path = Path(prediction_path).parent / "prediction_summary.md"
+        try:
+            summary_md = format_prediction_summary_md(record, signal_table, cap_reasons)
+            with open(summary_path, "w", encoding="utf-8") as f:
+                f.write(summary_md)
+            print(f"Saved summary to {summary_path}", file=sys.stderr)
+        except ValueError as e:
+            print(f"Skipped summary (data incomplete): {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":

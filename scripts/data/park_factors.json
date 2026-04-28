@@ -1,0 +1,48 @@
+{
+  "_meta": {
+    "baseline_period": "2023-2025 (3-year weighted)",
+    "source": "Baseball Savant",
+    "format_note": "runs_pf 100 = 聯盟平均；hr_pf 100 = 聯盟平均",
+    "updated": "2026-04-26"
+  },
+  "park_factors": {
+    "Coors Field":                       { "runs_pf": 131, "hr_pf": 111 },
+    "Sutter Health Park":                { "runs_pf": 109, "hr_pf": 106 },
+    "Target Field":                      { "runs_pf": 106, "hr_pf":  98 },
+    "Kauffman Stadium":                  { "runs_pf": 106, "hr_pf":  91 },
+    "Comerica Park":                     { "runs_pf": 106, "hr_pf": 105 },
+    "loanDepot park":                    { "runs_pf": 106, "hr_pf":  94 },
+    "Fenway Park":                       { "runs_pf": 104, "hr_pf":  85 },
+    "Citizens Bank Park":                { "runs_pf": 104, "hr_pf": 116 },
+    "Great American Ball Park":          { "runs_pf": 104, "hr_pf": 129 },
+    "PNC Park":                          { "runs_pf": 102, "hr_pf":  83 },
+    "Chase Field":                       { "runs_pf": 101, "hr_pf":  82 },
+    "Angel Stadium":                     { "runs_pf": 101, "hr_pf": 105 },
+    "Progressive Field":                 { "runs_pf": 101, "hr_pf":  91 },
+    "Nationals Park":                    { "runs_pf": 100, "hr_pf":  97 },
+    "George M. Steinbrenner Field":      { "runs_pf": 100, "hr_pf": 109 },
+    "Rogers Centre":                     { "runs_pf":  99, "hr_pf": 104 },
+    "Truist Park":                       { "runs_pf":  98, "hr_pf":  95 },
+    "Busch Stadium":                     { "runs_pf":  98, "hr_pf":  87 },
+    "Daikin Park":                       { "runs_pf":  98, "hr_pf": 102 },
+    "UNIQLO Field at Dodger Stadium":    { "runs_pf":  98, "hr_pf": 121 },
+    "American Family Field":             { "runs_pf":  97, "hr_pf": 111 },
+    "Rate Field":                        { "runs_pf":  97, "hr_pf":  99 },
+    "Citi Field":                        { "runs_pf":  96, "hr_pf": 107 },
+    "Oriole Park at Camden Yards":       { "runs_pf":  96, "hr_pf": 107 },
+    "Yankee Stadium":                    { "runs_pf":  96, "hr_pf": 112 },
+    "Globe Life Field":                  { "runs_pf":  96, "hr_pf": 106 },
+    "Petco Park":                        { "runs_pf":  95, "hr_pf": 107 },
+    "Wrigley Field":                     { "runs_pf":  92, "hr_pf":  92 },
+    "Oracle Park":                       { "runs_pf":  91, "hr_pf":  83 },
+    "T-Mobile Park":                     { "runs_pf":  82, "hr_pf":  82 }
+  },
+  "_aliases": {
+    "Tropicana Field": "George M. Steinbrenner Field",
+    "Oakland Coliseum": "Sutter Health Park",
+    "Minute Maid Park": "Daikin Park",
+    "Dodger Stadium": "UNIQLO Field at Dodger Stadium",
+    "Guaranteed Rate Field": "Rate Field",
+    "Camden Yards": "Oriole Park at Camden Yards"
+  }
+}

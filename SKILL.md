@@ -1,42 +1,35 @@
 ---
 name: mlb-game-analyzer
-description: Use when the user asks about MLB game predictions, matchup analysis, betting lines, score predictions, pitcher duels, or "who will win" questions for any specific MLB game — including queries like "analyze today's Yankees game" or "Dodgers vs Padres"
+description: Use when the user asks about MLB game predictions, matchup analysis, score predictions, pitcher duels, or "who will win" questions for any specific MLB game — including queries like "analyze today's Yankees game" or "Dodgers vs Padres"
 ---
 
 # MLB Game Analyzer — 單場對決分析與比分預測
 
 ## Overview
 
-系統化的 MLB 單場對決分析流程 skill。資料透過 `scripts/` 下的 Python 腳本取自 MLB Stats API，經過投打、牛棚、環境、盤口四層修正後，輸出勝率與比分預測。
+系統化的 MLB 單場對決分析流程 skill。資料透過 `scripts/` 下的 Python 腳本取自 MLB Stats API，經過投打、牛棚、環境三層修正後，輸出勝率與比分預測。
 
 ---
 
 ## When to Use
 
-- 使用者詢問特定 MLB 比賽的勝負預測或分析
-- 使用者提供對戰組合（如「洋基打道奇」）想知道誰會贏
-- 使用者需要盤口推薦（ML / O/U / Run Line）
-- 使用者詢問先發投手對決分析
-- 使用者想了解特定比賽的進階數據分析
+特定 MLB 比賽的勝負預測 / 對戰組合分析 / 推薦方向（ML / O/U / Run Line）/ 先發投手對決 / 進階數據解讀。
 
-**不適用：**
-- 整季預測或球隊排名預測（非單場分析）
-- 球員個人表現比較（無特定比賽）
-- 賽後回顧（使用 `mlb-post-game-review`）
-- 歷史對戰統計查詢（無即時比賽）
+**不適用**：整季預測 / 球員個人比較 / 賽後回顧（轉 `mlb-post-game-review`）/ 歷史統計查詢。
 
 ---
 
 ## Quick Reference
 
-| Phase | 關鍵活動 | 閘門條件 | 輸出 |
-|-------|---------|---------|------|
-| 1. 資料收集 | `fetch_game_data.py` | 比賽存在且為例行賽 | `game_data.json` |
-| 2. 投打驗證 | roster + pitcher + lineup + merge | Step 1 roster 閘門 + Step 2 role_change 檢查 | `merged.json` |
-| 3. 綜合分析 | 投打對決 + 牛棚 + 條件修正 | BvP PA≥15 + 牛棚雙向閘門 + BABIP 回歸 | `phase3_summary.md` |
-| 4. 預測輸出 | `predict.py` + 紀律閘門 D1-D5 | 同場無對立 + 星級護欄 + 一致性檢查 | `prediction.json` + 報告 |
+| Phase | 主要產出 |
+|-------|---------|
+| 1. 資料收集 | `game_data.json` + `game_data_summary.md`（`fetch_game_data.py`，例行賽） |
+| 2. 投打驗證 | `merged.json` + `merged_summary.md`（roster + pitcher + lineup + merge；Step 1 roster + Step 2 role_change 閘門） |
+|  | 各腳本同時產出 `*_summary.md`（含 🚨 Trigger section：Flag 13 / Flag 3 自動偵測） |
+| 3. 綜合分析 | `phase3_summary.md`（投打 / 牛棚 / 條件修正；BvP PA≥15、牛棚雙向、BABIP 回歸閘門） |
+| 4. 預測輸出 | `prediction.json` + `prediction_summary.md`（`predict.py`；紀律 D1-D5 自動執行） |
 
-> 詳細執行命令、參數、逐項 checklist：`reference/workflow.md`
+> 命令、參數、checklist：`reference/workflow.md`
 
 ---
 
@@ -46,69 +39,34 @@ description: Use when the user asks about MLB game predictions, matchup analysis
 NO PREDICTION OUTPUT WITHOUT ALL PHASE GATES PASSED IN SEQUENCE
 ```
 
-Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就不能進入下一個。
-
-**違反規則的字面意義就是違反規則的精神。**
+Phase 1 → Phase 2 → Phase 3 → Phase 4，閘門未通過不得進下一階段。
 
 ---
 
 ## 初始化
 
-**每次對話開始時執行一次**：Python 指令偵測、`$GAME_DIR` 設定、`scripts/**/*.py` Glob 偵測。
+對話開始執行一次：偵測 Python 指令、設定 `$GAME_DIR`、Glob `scripts/**/*.py`。腳本偵測成功進 **🐍 腳本模式**（核心數據禁 WebSearch，傷兵快訊例外）；偵測失敗詢問使用者，禁止改走 WebSearch。
 
-- 腳本偵測成功 → 切換 **🐍 腳本模式**（WebSearch 僅限傷兵快訊一類例外；傷兵優先用 API 40 人 + IL 名單）
-- 腳本偵測失敗 → **禁止自動改用 WebSearch**，先詢問使用者腳本路徑
-
-> 完整初始化步驟（含 bash 指令、模式切換規範）：`reference/workflow.md`「初始化」章節
+> 細節：`reference/workflow.md`「初始化」章節
 
 ---
 
-## Phase 2：投打驗證與資料擴充
+## Phase 重點
 
-- **Step 1（🔒 阻塞）**：先發必須在 active roster + IL 已記錄，未通過不得進 Step 2
-- **Step 2 閘門**：`role_change` 處理；`|ERA−xERA| ≥ 1.5` 或 `IP<30 且 ERA 比 prior year 低 ≥1.0` → 必須補跑 `pitcher_stats.py --year {YYYY-1}` 做 YoY Statcast 對比
+- **Phase 2**：Step 1 roster（🔒 阻塞）→ Step 2 投手 / 打線 + role_change + ERA-xERA 落差閘門
+- **Phase 3**：投打對決 → 牛棚 → 條件修正 → 近期狀態，寫入 `phase3_summary.md`
+  ⛔ summary 不得含星級或盤口推薦（single source of truth = Phase 4 `prediction.json`）
+- **Phase 4**：`predict.py --save`；紀律 D1-D5 由 guardrail 自動執行；賽後回填轉 `mlb-post-game-review`
+  ⚠️ `--game-data` 必須指向 `analysis-data/<date>/<AWAY>@<HOME>/merged.json`，不得自建替代目錄
 
-→ 詳細：`reference/workflow.md#phase-2投打驗證與資料擴充`
-
----
-
-## Phase 3：綜合分析
-
-依序執行投打對決 → 牛棚 → 條件修正 → 近期狀態，寫入 `phase3_summary.md`。
-
-⛔ **MUST NOT**：`phase3_summary.md` 不得含 ML / O/U / Run Line 星級，不得含「初步盤口推薦」— 盤口推薦的 single source of truth 是 Phase 4 `prediction.json`。
-
-→ 詳細（含 BvP/牛棚/BABIP 閘門）：`reference/workflow.md#phase-3綜合分析`
+→ 詳細執行步驟、閘門檢查、CLI 參數：`reference/workflow.md`；紀律完整條文：`reference/prediction.md`
 
 ---
 
-## Phase 4：預測輸出
+## Common Pitfalls
 
-- **執行**：`predict.py --save`（自動寫 `prediction.json` 到 `$GAME_DIR`）
-- **紀律 D1-D5**：D1 模型覆蓋（α 實作：ml_lean vs formula_lean）/ D2 信號修正 / D3 同場互斥 / D5 比分一致性 — 由 `predict.py` guardrail 自動執行，完整條文見 `reference/prediction.md`「分析紀律」
-- **賽後彙總 / 回填**：轉交 `mlb-post-game-review`
-
-> ⚠️ 寫 `prediction.json` 前確認 `--game-data` 指向 `analysis-data/<date>/<AWAY>@<HOME>/merged.json`；不對就停下來重新定位，不得自建替代目錄。
-
-→ 詳細（`--save` 參數表、輸出前驗證清單、輸出格式）：`reference/workflow.md#phase-4預測輸出`
-
----
-
-## Common Pitfalls & Edge Cases
-
-最高優先 3 項技術漏洞（與 flags-checklist 不重疊；完整清單見下方連結）：
-
-1. **Hot/Cold 判定未查 BABIP**
-   近 7 天 BABIP 極端值（≤ .260 或 ≥ .370）預期回歸 ~.300，未檢查 = Hot/Cold 判定無效。
-
-2. **ERA vs xERA 落差 ≥ 1.5 僅寫成「風險提示」**
-   可驗證的現象不得掛成條件性風險。必須補跑 `pitcher_stats.py --year {YYYY-1}` + YoY Statcast 對比。
-
-3. **Phase 3 summary 寫入「初步盤口推薦」或星級**
-   盤口推薦 single source = Phase 4 `prediction.json`。Summary 只放基本面，避免 stale。
-
-→ 完整紀律 flag（13 條）：`reference/flags-checklist.md`
-→ Edge Cases + 修正係數：`reference/pitfalls.md`
+紀律違規 13 條 + 觸發處理：見 `reference/flags-checklist.md`。
+邊界條件（Coors 4 月、Doubleheader、TJ 復出等）：見 `reference/matchup-factors.md` 與 `prediction.md`。
 
 ---
 
@@ -118,6 +76,7 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4，每個 Phase 的閘門未通過就
 - 承認不確定性：MLB 單場隨機性約 40-45%
 - 明確標注數據來源
 - 修正係數必須基於可搜尋到的研究或數據
+- 使用者質疑結果時：回顧量化信號、獨立驗證後才決定是否修正；不直接妥協
 
 ---
 
