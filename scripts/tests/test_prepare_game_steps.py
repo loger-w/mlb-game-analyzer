@@ -114,6 +114,79 @@ def test_step_a_no_gametype_field_passes(monkeypatch, tmp_path):
     assert result["home_id"] == 100
 
 
+def test_step_a_wrong_teams_exits_3(monkeypatch, tmp_path):
+    """step_a: 拿到的隊伍 ID 與 --home/--away 不符 → sys.exit(3)。"""
+    from prepare_game import step_a
+
+    # CLE=114 (home), TB=139 (away) are correct; we pass NYY/BOS to trigger exit 3
+    game_data_path = tmp_path / "game_data.json"
+    game_data_path.write_text(json.dumps({
+        "home": {"team": "Cleveland Guardians", "team_id": 114, "probable_pitcher": "Bibee", "probable_pitcher_id": 676440},
+        "away": {"team": "Tampa Bay Rays", "team_id": 139, "probable_pitcher": "Martínez", "probable_pitcher_id": 607259},
+    }), encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.subprocess.run", make_fake_run())
+    with pytest.raises(SystemExit) as exc:
+        step_a(date="2026-04-28", team_abbr="TB", output_dir=tmp_path,
+               home_abbr="NYY", away_abbr="BOS")  # wrong teams
+    assert exc.value.code == 3
+
+
+def test_step_a_correct_teams_no_exit3(monkeypatch, tmp_path):
+    """step_a: 拿到的隊伍 ID 與 --home/--away 相符 → 不 exit 3。"""
+    from prepare_game import step_a
+
+    game_data_path = tmp_path / "game_data.json"
+    game_data_path.write_text(json.dumps({
+        "home": {"team": "Cleveland Guardians", "team_id": 114, "probable_pitcher": "Bibee", "probable_pitcher_id": 676440},
+        "away": {"team": "Tampa Bay Rays", "team_id": 139, "probable_pitcher": "Martínez", "probable_pitcher_id": 607259},
+    }), encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.subprocess.run", make_fake_run())
+    result = step_a(date="2026-04-28", team_abbr="TB", output_dir=tmp_path,
+                    home_abbr="CLE", away_abbr="TB")  # correct teams
+    assert result["home_team_id"] == 114
+
+
+def test_step_a_doubleheader_no_suffix_exits_4(monkeypatch, tmp_path):
+    """step_a: 當日有 2 場且未帶 --game-suffix → sys.exit(4)。"""
+    from prepare_game import step_a
+
+    game_data_path = tmp_path / "game_data.json"
+    game_data_path.write_text(json.dumps({
+        "_games_on_date_for_team": 2,
+        "game": {
+            "gamePk": 12345,
+            "home": {"team_id": 114, "probable_pitcher": "Bibee", "probable_pitcher_id": 676440},
+            "away": {"team_id": 139, "probable_pitcher": "Martínez", "probable_pitcher_id": 607259},
+        },
+    }), encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.subprocess.run", make_fake_run())
+    with pytest.raises(SystemExit) as exc:
+        step_a(date="2026-04-28", team_abbr="TB", output_dir=tmp_path, game_suffix=None)
+    assert exc.value.code == 4
+
+
+def test_step_a_doubleheader_with_suffix_passes(monkeypatch, tmp_path):
+    """step_a: 當日有 2 場但帶了 --game-suffix → 不 exit 4。"""
+    from prepare_game import step_a
+
+    game_data_path = tmp_path / "game_data.json"
+    game_data_path.write_text(json.dumps({
+        "_games_on_date_for_team": 2,
+        "game": {
+            "gamePk": 12345,
+            "home": {"team_id": 114, "probable_pitcher": "Bibee", "probable_pitcher_id": 676440},
+            "away": {"team_id": 139, "probable_pitcher": "Martínez", "probable_pitcher_id": 607259},
+        },
+    }), encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.subprocess.run", make_fake_run())
+    result = step_a(date="2026-04-28", team_abbr="TB", output_dir=tmp_path, game_suffix="G1")
+    assert result["home_id"] == 676440
+
+
 # ---------------------------------------------------------------------------
 # 11b: Step B
 # ---------------------------------------------------------------------------

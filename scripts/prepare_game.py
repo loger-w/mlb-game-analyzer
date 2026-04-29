@@ -90,11 +90,18 @@ def run_step(label: str, cmd: list[str]) -> str:
 # Step A: fetch_game_data
 # ---------------------------------------------------------------------------
 
-def step_a(*, date: str, team_abbr: str, output_dir: Path) -> dict:
+def step_a(*, date: str, team_abbr: str, output_dir: Path,
+           home_abbr: str | None = None, away_abbr: str | None = None,
+           game_suffix: str | None = None) -> dict:
     """Step A: 跑 fetch_game_data.py，讀回 JSON，提取 IDs。
 
     Returns:
         {home_id, away_id, home_name, away_name, home_team_id, away_team_id}
+
+    Exit codes enforced here:
+        2 = gameType ≠ "R"
+        3 = 雙隊未對戰（fetched teams don't match --home/--away）
+        4 = Doubleheader 未指定 --game-suffix
     """
     out_path = output_dir / "game_data.json"
     run_step("A", [
@@ -119,6 +126,38 @@ def step_a(*, date: str, team_abbr: str, output_dir: Path) -> dict:
 
     home = game_section.get("home", {})
     away = game_section.get("away", {})
+
+    # exit 4: Doubleheader 未指定 --game-suffix
+    total_games = game_data.get("_games_on_date_for_team", 1)
+    if total_games >= 2 and game_suffix is None:
+        gamePk = game_section.get("gamePk", "?")
+        print(
+            f"[A] ⛔ exit 4: 當日雙重賽（{total_games} 場），請加 --game-suffix G1 或 G2（gamePk={gamePk}）",
+            file=sys.stderr,
+        )
+        sys.exit(4)
+
+    # exit 3: 雙隊未對戰
+    if home_abbr is not None and away_abbr is not None:
+        # Import lazily to avoid circular import at module level
+        if str(SCRIPT_DIR) not in sys.path:
+            sys.path.insert(0, str(SCRIPT_DIR))
+        from _team_resolver import resolve_team_id
+        try:
+            expected_home = resolve_team_id(home_abbr)
+            expected_away = resolve_team_id(away_abbr)
+            actual_home = home.get("team_id")
+            actual_away = away.get("team_id")
+            if actual_home != expected_home or actual_away != expected_away:
+                print(
+                    f"[A] ⛔ exit 3: 雙隊未對戰 — 期待 {away_abbr}@{home_abbr}"
+                    f"（IDs {expected_away}@{expected_home}），"
+                    f"實際 fetch 到 ID {actual_away}@{actual_home}",
+                    file=sys.stderr,
+                )
+                sys.exit(3)
+        except ValueError:
+            pass  # unknown abbr — 讓後續流程處理
 
     return {
         "home_id": home.get("probable_pitcher_id"),
@@ -410,7 +449,10 @@ def main(argv: list[str] | None = None) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Step A — sequential; must complete first
-    ids = step_a(date=args.date, team_abbr=args.away, output_dir=output_dir)
+    ids = step_a(
+        date=args.date, team_abbr=args.away, output_dir=output_dir,
+        home_abbr=args.home, away_abbr=args.away, game_suffix=args.game_suffix,
+    )
 
     # Steps B/C/D — can run concurrently but each pair is internally parallel
     # Sequential between steps per spec

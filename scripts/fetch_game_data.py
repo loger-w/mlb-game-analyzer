@@ -496,6 +496,15 @@ def main():
         print(json.dumps({"error": f"No game found for team {args.team} on {game_date}"}, indent=2, ensure_ascii=False))
         sys.exit(1)
 
+    # 計算該隊當日賽事總數（供 prepare_game.py 偵測 doubleheader 用）
+    games_on_date_for_team = 0
+    for date_entry in schedule.get("dates", []):
+        for g in date_entry.get("games", []):
+            h_id = g["teams"]["home"]["team"]["id"]
+            a_id = g["teams"]["away"]["team"]["id"]
+            if team_id in (h_id, a_id):
+                games_on_date_for_team += 1
+
     game_info = extract_game_info(game)
 
     # 2. 取雙方多窗口戰績
@@ -523,6 +532,7 @@ def main():
 
     result = {
         "game": game_info,
+        "_games_on_date_for_team": games_on_date_for_team,
         "home_recent": home_recent,
         "away_recent": away_recent,
         "home_recent_30": home_recent_30,
