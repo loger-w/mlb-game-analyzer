@@ -181,6 +181,53 @@ def step_b(*, home: str, away: str, season: int,
     print(f"[B] roster (home+away) ✓", file=sys.stderr)
 
 
+# ---------------------------------------------------------------------------
+# Step C: pitcher_stats × 2 parallel
+# ---------------------------------------------------------------------------
+
+def step_c(*, home_id: int | None, away_id: int | None,
+           home_name: str | None, away_name: str | None,
+           season: int, output_dir: Path) -> None:
+    """Step C: 雙隊 pitcher_stats 平行跑（用 --mlbam-id 略過 name lookup）。"""
+    sides = [
+        ("home", home_id, home_name or "Home Pitcher", output_dir / "home_pitcher.json"),
+        ("away", away_id, away_name or "Away Pitcher", output_dir / "away_pitcher.json"),
+    ]
+
+    def _run_side(side_tuple):
+        side, mlbam_id, name, out_path = side_tuple
+        cmd = [
+            PYTHON,
+            str(SCRIPT_DIR / "pitcher_stats.py"),
+            "--name", name,
+            "--year", str(season),
+            "-o", str(out_path),
+        ]
+        if mlbam_id:
+            cmd += ["--mlbam-id", str(mlbam_id)]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+        except FileNotFoundError as e:
+            return side, -1, "", str(e)
+        return side, result.returncode, result.stdout, result.stderr
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        futures = {executor.submit(_run_side, s): s for s in sides}
+        results = {}
+        for future in concurrent.futures.as_completed(futures):
+            side, code, stdout, stderr = future.result()
+            results[side] = (code, stdout, stderr)
+
+    for side, (code, stdout, stderr) in results.items():
+        if code != 0:
+            print(f"[C] ⛔ {side} pitcher_stats exit {code}", file=sys.stderr)
+            if stderr:
+                print(stderr, file=sys.stderr)
+            sys.exit(code)
+
+    print(f"[C] pitcher_stats (home+away) ✓", file=sys.stderr)
+
+
 
 # ---------------------------------------------------------------------------
 # main

@@ -718,14 +718,19 @@ def main():
     parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--no-md", action="store_true", help="Skip MD summary output (only write JSON)")
     parser.add_argument("--test", action="store_true", help="Run test mode")
+    parser.add_argument("--mlbam-id", type=int, default=None,
+                        help="直接指定 MLBAM ID，跳過 name lookup")
     args = parser.parse_args()
 
     if args.test:
         print(json.dumps({"test": "OK", "message": "pitcher_stats test mode"}, indent=2))
         return
 
-    # 1. 查詢 MLBAM ID
-    pitcher_id = lookup_pitcher_id(args.name)
+    # 1. 查詢 MLBAM ID（若 --mlbam-id 已提供則跳過 name lookup）
+    if args.mlbam_id:
+        pitcher_id = args.mlbam_id
+    else:
+        pitcher_id = lookup_pitcher_id(args.name)
     if not pitcher_id:
         print(json.dumps({"error": f"Could not find MLBAM ID for {args.name}"}, indent=2, ensure_ascii=False))
         sys.exit(1)
