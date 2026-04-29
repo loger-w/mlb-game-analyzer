@@ -23,12 +23,8 @@ Exit codes（spec §3.1）：
 """
 
 import argparse
-import concurrent.futures
-import json
-import os
 import subprocess
 import sys
-from datetime import datetime
 from pathlib import Path
 
 
@@ -70,8 +66,11 @@ def skeleton_filename(suffix: str | None) -> str:
     return f"phase3_skeleton-{suffix}.md" if suffix else "phase3_skeleton.md"
 
 
-def run_step(label: str, cmd: list[str], output_dir: Path) -> str:
-    """跑單一子步驟。失敗 → propagate exit code + stderr。回傳 stdout。"""
+def run_step(label: str, cmd: list[str]) -> str:
+    """跑單一子步驟。失敗 → propagate exit code + stderr。回傳 stdout。
+
+    Caller responsible for building absolute paths into cmd（例：[..., "-o", str(output_dir / "x.json")]）。
+    """
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
     except FileNotFoundError as e:

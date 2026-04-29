@@ -84,7 +84,7 @@ def test_run_step_subprocess_failure_exits_with_propagated_code(monkeypatch, tmp
     def fake_run(*a, **k):
         return FakeResult()
 
-    monkeypatch.setattr("subprocess.run", fake_run)
+    monkeypatch.setattr("prepare_game.subprocess.run", fake_run)
     with pytest.raises(SystemExit) as exc:
-        run_step("B", ["python", "scripts/roster_checker.py"], tmp_path)
+        run_step("B", ["python", "scripts/roster_checker.py"])
     assert exc.value.code == 5
