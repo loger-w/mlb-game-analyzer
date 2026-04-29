@@ -344,6 +344,49 @@ def step_g(*, output_dir: Path, skeleton_path: Path) -> None:
     skeleton_path.write_text(md, encoding="utf-8")
 
 
+# ---------------------------------------------------------------------------
+# Risk Notes (spec §3.4)
+# ---------------------------------------------------------------------------
+
+def _print_risk_notes(output_dir: Path) -> None:
+    """從 merged.json 偵測 Flag 3/13，印到 stderr（spec §3.4）。"""
+    merged_path = output_dir / "merged.json"
+    if not merged_path.exists():
+        return
+    merged = json.loads(merged_path.read_text(encoding="utf-8"))
+
+    risk_lines = []
+    for side, label in [("home", "主隊"), ("away", "客隊")]:
+        # Flag 13: |ERA - xERA| ≥ 1.5
+        p = merged.get(f"{side}_pitcher", {}) or {}
+        delta = p.get("era_xera_delta")
+        if delta is not None:
+            try:
+                if float(delta) >= 1.5:
+                    risk_lines.append(
+                        f"  ⚠️  Flag 13 ({label}投手): |ERA-xERA| = {delta:.2f} ≥ 1.5"
+                    )
+            except (ValueError, TypeError):
+                pass
+
+        # Flag 3: last7 BABIP ≤ .260 or ≥ .370
+        lu = merged.get(f"{side}_lineup", {}) or {}
+        recent_babip = lu.get("recent_babip")
+        if recent_babip is not None:
+            try:
+                rb = float(recent_babip)
+                if rb <= 0.260 or rb >= 0.370:
+                    risk_lines.append(
+                        f"  ⚠️  Flag 3  ({label}打線): last7 BABIP = {rb:.3f}（極端值）"
+                    )
+            except (ValueError, TypeError):
+                pass
+
+    if risk_lines:
+        print("\n[Risk Notes]", file=sys.stderr)
+        for line in risk_lines:
+            print(line, file=sys.stderr)
+
 
 # ---------------------------------------------------------------------------
 # main
@@ -357,8 +400,50 @@ def main(argv: list[str] | None = None) -> int:
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Steps A-G 後續實作
-    raise NotImplementedError("Steps A-G integrating...")
+    # Step A — sequential; must complete first
+    ids = step_a(date=args.date, team_abbr=args.away, output_dir=output_dir)
+
+    # Steps B/C/D — can run concurrently but each pair is internally parallel
+    # Sequential between steps per spec
+    step_b(
+        home=args.home, away=args.away,
+        season=args.season,
+        home_pitcher=ids["home_name"] or "",
+        away_pitcher=ids["away_name"] or "",
+        output_dir=output_dir,
+    )
+
+    step_c(
+        home_id=ids["home_id"],
+        away_id=ids["away_id"],
+        home_name=ids["home_name"],
+        away_name=ids["away_name"],
+        season=args.season,
+        output_dir=output_dir,
+    )
+
+    step_d(
+        home=args.home, away=args.away,
+        home_id=ids["home_id"],
+        away_id=ids["away_id"],
+        season=args.season,
+        output_dir=output_dir,
+    )
+
+    # Step E — sequential; waits for A+C+D
+    step_e(output_dir=output_dir)
+
+    # Steps F + G — sequential; wait for E
+    dossier_path = output_dir / dossier_filename(args.game_suffix)
+    skeleton_path = output_dir / skeleton_filename(args.game_suffix)
+    step_f(output_dir=output_dir, dossier_path=dossier_path)
+    step_g(output_dir=output_dir, skeleton_path=skeleton_path)
+
+    # Risk Notes to stderr (spec §3.4)
+    _print_risk_notes(output_dir)
+
+    print(f"\n[Done] output_dir: {output_dir}", file=sys.stderr)
+    return 0
 
 
 if __name__ == "__main__":
