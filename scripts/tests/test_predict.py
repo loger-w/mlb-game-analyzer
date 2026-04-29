@@ -580,7 +580,18 @@ def _minimal_merged_json(
 
 
 def _setup_game_dir(tmp_path, date="2026-04-23", matchup="NYY@BOS", **merged_overrides):
-    """建 analysis-data/<date>/<matchup>/merged.json，回傳 game_dir + merged_path。"""
+    """建 analysis-data/<date>/<matchup>/merged.json，回傳 game_dir + merged_path。
+
+    aliases: home_pitcher_era/xera/ip → home_era/xera/ip（供 Flag 13 觸發測試用）。
+    """
+    # Translate home_pitcher_* aliases to _minimal_merged_json param names
+    for alias, canonical in [
+        ("home_pitcher_era", "home_era"),
+        ("home_pitcher_xera", "home_xera"),
+        ("home_pitcher_ip", "home_ip"),
+    ]:
+        if alias in merged_overrides:
+            merged_overrides[canonical] = merged_overrides.pop(alias)
     game_dir = tmp_path / "analysis-data" / date / matchup
     game_dir.mkdir(parents=True)
     merged_path = game_dir / "merged.json"
@@ -589,7 +600,8 @@ def _setup_game_dir(tmp_path, date="2026-04-23", matchup="NYY@BOS", **merged_ove
 
 
 def test_yoy_check_triggered_missing_file_exits(tmp_path):
-    """B7 觸發（home era-xera≥1.5）+ 缺 prior year file → sys.exit with hint。"""
+    """spec 2026-04-29：B7 YoY guard 已移除，era-xera≥1.5 觸發時缺 prior year file 不阻擋
+    （現在改由 phase3_summary.md 缺失而非 B7 阻擋）。"""
     game_dir, merged_path = _setup_game_dir(
         tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
     )
@@ -598,9 +610,10 @@ def test_yoy_check_triggered_missing_file_exits(tmp_path):
          "--game-data", str(merged_path), "--save"],
         capture_output=True, text=True, encoding="utf-8",
     )
+    # B7 guard 已移除；現在阻擋的是缺 phase3_summary.md（不是 B7）
     assert result.returncode != 0
-    assert "B7" in result.stderr or "YoY" in result.stderr
-    assert "pitcher_stats.py" in result.stderr
+    assert "B7 YoY" not in result.stderr
+    assert "phase3_summary" in result.stderr
 
 
 def test_yoy_check_triggered_with_file_proceeds_past_yoy(tmp_path):
@@ -617,22 +630,6 @@ def test_yoy_check_triggered_with_file_proceeds_past_yoy(tmp_path):
     )
     # 要麼 returncode == 0 或 stderr 不含 B7 錯誤
     assert "B7 YoY" not in result.stderr, f"should pass B7 check; stderr: {result.stderr}"
-
-
-def test_yoy_skip_flag_bypasses(tmp_path):
-    """--skip-yoy-check 即便觸發 + 缺檔也不阻擋。"""
-    game_dir, merged_path = _setup_game_dir(
-        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
-    )
-    # 寫一個 phase3_summary.md 讓 phase3 check 通過
-    (game_dir / "phase3_summary.md").write_text("# test summary\n")
-    result = subprocess.run(
-        [sys.executable, _predict_py_path(),
-         "--game-data", str(merged_path), "--save", "--skip-yoy-check"],
-        capture_output=True, text=True, encoding="utf-8",
-    )
-    # 應跑到 predict.py 後半段（可能成功或因其他原因失敗，但不應是 B7）
-    assert "B7 YoY" not in result.stderr
 
 
 def test_yoy_no_trigger_no_check(tmp_path):
@@ -657,38 +654,6 @@ def test_phase3_missing_file_exits(tmp_path):
     )
     assert result.returncode != 0
     assert "phase3_summary" in result.stderr
-
-
-def test_phase3_yoy_trigger_missing_section_exits(tmp_path):
-    """B7 觸發 + phase3_summary.md 存在但缺 '## YoY 對比結論' → exit。"""
-    game_dir, merged_path = _setup_game_dir(
-        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
-    )
-    (game_dir / "home_pitcher_2025.json").write_text(json.dumps({"season": {"era": 4.0}}))
-    (game_dir / "phase3_summary.md").write_text(
-        "# basic summary\n\n## 投打對決\n無 YoY section\n", encoding="utf-8"
-    )
-    result = subprocess.run(
-        [sys.executable, _predict_py_path(),
-         "--game-data", str(merged_path), "--save"],
-        capture_output=True, text=True, encoding="utf-8",
-    )
-    assert result.returncode != 0
-    assert "phase3_summary" in result.stderr
-    assert "YoY 對比結論" in result.stderr
-
-
-def test_phase3_babip_trigger_missing_section_exits(tmp_path):
-    """B10 觸發（BABIP≤.260）+ 缺 '## BABIP 回歸判定' → exit。"""
-    game_dir, merged_path = _setup_game_dir(tmp_path, home_babip=0.250)
-    (game_dir / "phase3_summary.md").write_text("# basic summary\n")
-    result = subprocess.run(
-        [sys.executable, _predict_py_path(),
-         "--game-data", str(merged_path), "--save"],
-        capture_output=True, text=True, encoding="utf-8",
-    )
-    assert result.returncode != 0
-    assert "BABIP 回歸判定" in result.stderr
 
 
 def test_phase3_skip_flag_bypasses(tmp_path):
@@ -1097,6 +1062,61 @@ def test_format_trend_tags_block_partial_fold():
     assert "`divergent`" not in result
 
 
+def test_ou_rec_over_without_stars_exits(tmp_path):
+    """--ou-rec OVER 但缺 --ou-stars → exit 6 + 錯誤訊息"""
+    import subprocess
+    import sys as _sys
+    merged = tmp_path / "merged.json"
+    merged.write_text('{"_meta": {}}', encoding="utf-8")
+    result = subprocess.run(
+        [_sys.executable, _predict_py_path(),
+         "--game-data", str(merged), "--save",
+         "--ou-rec", "OVER",
+         "--ou-line", "9.5",
+         "--ml-rec", "PASS", "--ml-stars", "0",
+         "--skip-phase3-check"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode == 6
+    assert "--ou-stars" in result.stderr
+    assert "OVER/UNDER" in result.stderr or "OVER" in result.stderr
+
+
+def test_ou_rec_under_without_stars_exits(tmp_path):
+    """--ou-rec UNDER 但缺 --ou-stars → exit 6"""
+    import subprocess
+    import sys as _sys
+    merged = tmp_path / "merged.json"
+    merged.write_text('{"_meta": {}}', encoding="utf-8")
+    result = subprocess.run(
+        [_sys.executable, _predict_py_path(),
+         "--game-data", str(merged), "--save",
+         "--ou-rec", "UNDER",
+         "--ou-line", "9.5",
+         "--ml-rec", "PASS", "--ml-stars", "0",
+         "--skip-phase3-check"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode == 6
+
+
+def test_ou_rec_pass_without_stars_ok(tmp_path):
+    """--ou-rec PASS 不需要 --ou-stars（既有行為）"""
+    import subprocess
+    import sys as _sys
+    game_dir, merged_path = _setup_game_dir(tmp_path)
+    result = subprocess.run(
+        [_sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save",
+         "--ou-rec", "PASS",
+         "--ou-line", "9.5",
+         "--ml-rec", "PASS", "--ml-stars", "0",
+         "--skip-phase3-check"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode == 0
+
+
 def test_format_trend_tags_block_empty_tags_returns_none():
     from predict import format_trend_tags_block
     assert format_trend_tags_block([], set()) is None
@@ -1214,3 +1234,42 @@ def test_format_prediction_summary_md_raises_on_missing_predicted_winner():
     del bad["predicted_winner"]
     with _pytest.raises(ValueError):
         format_prediction_summary_md(bad, {"signals": [], "total_run_adjustment": 0}, [])
+
+
+def test_yoy_trigger_no_prior_year_no_longer_blocks(tmp_path):
+    """spec 2026-04-29：移除 Step C-prior 後，Flag 13 觸發但缺 prior year file 不應阻擋"""
+    import subprocess
+    import sys as _sys
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path,
+        home_pitcher_era=1.15, home_pitcher_xera=3.96, home_pitcher_ip=31.3,
+    )
+    (game_dir / "phase3_summary.md").write_text("# summary\n", encoding="utf-8")
+    result = subprocess.run(
+        [_sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save",
+         "--ou-rec", "PASS", "--ml-rec", "PASS", "--ml-stars", "0"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode == 0, f"應不阻擋；stderr={result.stderr}"
+
+
+def test_h2_grep_removed_phase3_summary_no_yoy_section_passes(tmp_path):
+    """spec 2026-04-29：移除 H2 grep 後，phase3_summary.md 缺 ## YoY 對比結論 不應阻擋"""
+    import subprocess
+    import sys as _sys
+    game_dir, merged_path = _setup_game_dir(
+        tmp_path,
+        home_pitcher_era=1.15, home_pitcher_xera=3.96, home_pitcher_ip=31.3,
+    )
+    (game_dir / "phase3_summary.md").write_text(
+        "# summary\n\n## 風險提示\n- AWAY 投手 Flag 13 …\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        [_sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save",
+         "--ou-rec", "PASS", "--ml-rec", "PASS", "--ml-stars", "0"],
+        capture_output=True, text=True, encoding="utf-8",
+    )
+    assert result.returncode == 0, f"應不阻擋；stderr={result.stderr}"
