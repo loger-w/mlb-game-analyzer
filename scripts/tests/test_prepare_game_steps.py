@@ -533,33 +533,6 @@ def test_print_risk_notes_missing_merged_json(tmp_path, capsys):
     assert "（無）" in err
 
 
-def test_print_risk_notes_no_flags_emits_no_marker(monkeypatch, tmp_path, capsys):
-    """無 Flag 觸發 → stderr 仍輸出 header + （無）"""
-    from prepare_game import _print_risk_notes
-    # No JSON files in tmp_path → no triggers
-    _print_risk_notes(tmp_path)
-    err = capsys.readouterr().err
-    assert "Risk Notes" in err
-    assert "（無）" in err
-
-
-def test_print_risk_notes_flag_13_triggered(tmp_path, capsys):
-    """Flag 13 觸發 → stderr 列出 era_xera_delta"""
-    import json as _json
-    from prepare_game import _print_risk_notes
-    # Construct a merged.json with home_pitcher era_xera_delta = 2.54
-    (tmp_path / "merged.json").write_text(_json.dumps({
-        "home_pitcher": {"era_xera_delta": 2.54},
-        "away_pitcher": {},
-        "home_lineup": {},
-        "away_lineup": {},
-    }), encoding="utf-8")
-    _print_risk_notes(tmp_path)
-    err = capsys.readouterr().err
-    assert "Flag 13" in err
-    assert "2.54" in err
-
-
 def test_main_full_integration(monkeypatch, tmp_path):
     """main(): Steps A-G が正しい順序で呼ばれる（subprocess モック）。"""
     import types

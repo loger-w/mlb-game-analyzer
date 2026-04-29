@@ -324,7 +324,6 @@ def _load_bundle(output_dir: Path) -> dict:
 
 def step_f(*, output_dir: Path, dossier_path: Path) -> None:
     """Step F: 渲染 dossier.md。"""
-    sys.path.insert(0, str(SCRIPT_DIR))
     from dossier_renderer import render_dossier
     print(f"[F] dossier.md       → {dossier_path}", file=sys.stderr)
     bundle = _load_bundle(output_dir)
@@ -334,7 +333,6 @@ def step_f(*, output_dir: Path, dossier_path: Path) -> None:
 
 def step_g(*, output_dir: Path, skeleton_path: Path) -> None:
     """Step G: 渲染 phase3_skeleton.md。"""
-    sys.path.insert(0, str(SCRIPT_DIR))
     from phase3_skeleton_renderer import render_skeleton
     from predict import predict_with_formula
     print(f"[G] phase3_skeleton  → {skeleton_path}", file=sys.stderr)
@@ -401,6 +399,9 @@ def _print_risk_notes(output_dir: Path) -> None:
 # ---------------------------------------------------------------------------
 
 def main(argv: list[str] | None = None) -> int:
+    # Ensure SCRIPT_DIR is importable for renderers + predict (called inside step_f/step_g)
+    if str(SCRIPT_DIR) not in sys.path:
+        sys.path.insert(0, str(SCRIPT_DIR))
     args = parse_args(argv)
     output_dir = compute_output_dir(
         date=args.date, away=args.away, home=args.home,
