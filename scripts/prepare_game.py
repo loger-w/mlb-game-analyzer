@@ -278,6 +278,27 @@ def step_d(*, home: str, away: str,
     print(f"[D] lineup (home+away) ✓", file=sys.stderr)
 
 
+# ---------------------------------------------------------------------------
+# Step E: merge_game_data
+# ---------------------------------------------------------------------------
+
+def step_e(*, output_dir: Path) -> None:
+    """Step E: merge_game_data.py → merged.json（sequential）。"""
+    out_path = output_dir / "merged.json"
+    cmd = [
+        PYTHON,
+        str(SCRIPT_DIR / "merge_game_data.py"),
+        "--game", str(output_dir / "game_data.json"),
+        "--home-pitcher", str(output_dir / "home_pitcher.json"),
+        "--away-pitcher", str(output_dir / "away_pitcher.json"),
+        "--home-lineup", str(output_dir / "home_lineup.json"),
+        "--away-lineup", str(output_dir / "away_lineup.json"),
+        "-o", str(out_path),
+    ]
+    run_step("E", cmd)
+    print(f"[E] merged.json      ✓", file=sys.stderr)
+
+
 
 # ---------------------------------------------------------------------------
 # main
