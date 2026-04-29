@@ -1,12 +1,12 @@
 """Tests for odds.lib.movement."""
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "lib"))
 
 from odds_math import decimal_to_implied
-from snapshot_loader import GameRecord, Snapshot, collect_game_timeline, load_snapshots_for_et_date
+from snapshot_loader import GameRecord, Snapshot, TW, collect_game_timeline, load_snapshots_for_et_date
 from movement import (
     FieldMovement,
     GameMovementReport,
@@ -53,44 +53,41 @@ def test_max_tier():
 
 
 # ── compute_game_movement (real fixtures) ─────────────────────────────────────
+# Fixture commence_utc 在 ET 4/27 → game_date_tw = 2026-04-28
 
 def test_tbr_cle_is_major_with_total_cross():
     """TBR@CLE: CLE ML 54.1→62.5 (+8.4pp) = major; Total 8.5→9.5 跨 9。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-27")
+    timelines = collect_game_timeline(snapshots, "2026-04-28")
     timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
 
-    # 把 now 設成遠在 commence 之前（不薄盤）
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)   # 22h 前
     report = compute_game_movement(timeline, now_utc)
 
     assert report.tier == "major"
     assert report.tier_downgraded is False
-    # ML home 應有 +8.4pp 左右
     ml_home = next(f for f in report.fields if f.field == "ml_home")
     assert ml_home.delta_pp > 8.0
-    # Total point cross
     assert any("跨越 key 9" in c for c in report.key_number_crosses)
 
 
 def test_stl_pit_is_watch():
     """STL@PIT: PIT ML 56.2→57.5 (+1.3pp) = watch；最大 |delta_pp| 落 watch 帶。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-27")
+    timelines = collect_game_timeline(snapshots, "2026-04-28")
     timeline = [t for k, t in timelines.items() if k[0] == "St. Louis Cardinals"][0]
 
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
 
     assert report.tier == "watch"
-    # 不該觸發 key number cross
     assert report.key_number_crosses == []
 
 
 def test_bos_tor_is_quiet():
     """BOS@TOR: 幾乎沒位移 → quiet。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-27")
+    timelines = collect_game_timeline(snapshots, "2026-04-28")
     timeline = [t for k, t in timelines.items() if k[0] == "Boston Red Sox"][0]
 
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
@@ -104,7 +101,6 @@ def test_thin_market_downgrades_tier():
 
     薄盤判斷基於 latest snapshot vs commence（市場流動性），不是 now_utc。
     """
-    # commence ET 17:00 = UTC 21:00；latest snapshot ET 14:00 = UTC 18:00；3h gap → thin
     rec_anchor = _make_record(
         commence_utc_iso="2026-05-01T21:00:00Z",
         snap_time="08:00",
@@ -113,17 +109,16 @@ def test_thin_market_downgrades_tier():
     )
     rec_latest = _make_record(
         commence_utc_iso="2026-05-01T21:00:00Z",
-        snap_time="14:00",   # 3h pre-commence
-        ml_home_odds=1.50, ml_home_imp=66.7,   # +12.6pp → major
+        snap_time="14:00",
+        ml_home_odds=1.50, ml_home_imp=66.7,
         ml_away_odds=2.80, ml_away_imp=35.7,
     )
     timeline = [rec_anchor, rec_latest]
-    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)   # now 不影響 thin
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
 
     assert report.is_thin_market is True
     assert report.tier_downgraded is True
-    # 原本 major → 降到 significant
     assert report.tier == "significant"
 
 
@@ -136,7 +131,7 @@ def test_thin_market_quiet_stays_quiet():
     )
     rec_latest = _make_record(
         commence_utc_iso="2026-05-01T21:00:00Z",
-        snap_time="14:00",   # 3h pre-commence
+        snap_time="14:00",
         ml_home_imp=52.5, ml_away_imp=51.2,
     )
     timeline = [rec_anchor, rec_latest]
@@ -144,28 +139,23 @@ def test_thin_market_quiet_stays_quiet():
     report = compute_game_movement(timeline, now_utc)
 
     assert report.is_thin_market is True
-    # quiet 沒得降，仍 quiet，但 tier_downgraded=False（因為沒實際降）
     assert report.tier == "quiet"
     assert report.tier_downgraded is False
 
 
 def test_thin_market_false_for_historical_data():
-    """latest snapshot 取於 commence 之前但 now_utc 已過開球 → 不應視為薄盤。
-
-    此測試覆蓋：使用者在賽後分析過往日期，hours_to_game 為負，但 snap-to-commence 仍正、且寬。
-    """
+    """latest snapshot 取於 commence 之前但 now_utc 已過開球 → 不應視為薄盤。"""
     rec_anchor = _make_record(
         commence_utc_iso="2026-04-20T22:00:00Z",
-        snap_time="00:00",   # 18h pre-commence
+        snap_time="00:00",
         ml_home_imp=52.4, ml_away_imp=51.3,
     )
     rec_latest = _make_record(
         commence_utc_iso="2026-04-20T22:00:00Z",
-        snap_time="12:00",   # 6h pre-commence — 不薄盤
+        snap_time="12:00",
         ml_home_imp=52.5, ml_away_imp=51.2,
     )
     timeline = [rec_anchor, rec_latest]
-    # now_utc 設成幾天後（賽後），hours_to_game 會很負
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
     assert report.is_thin_market is False
@@ -173,13 +163,9 @@ def test_thin_market_false_for_historical_data():
 
 
 def test_just_appeared_anchor_no_crash():
-    """timeline 只 1 筆 → window_delta=0 / anchor_age=0、不 crash。
-
-    snapshots[1] = 04-27 00:00 ET（第一個含 04-27 場次的 snapshot）；
-    snapshots[0] 現在是 04-26 20:00 ET（loader 改為按 UTC 排序返回全部）。
-    """
+    """timeline 只 1 筆 → window_delta=0 / anchor_age=0、不 crash。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline([snapshots[1]], "2026-04-27")
+    timelines = collect_game_timeline([snapshots[1]], "2026-04-28")
     timeline = list(timelines.values())[0]
     assert len(timeline) == 1
 
@@ -194,7 +180,6 @@ def test_just_appeared_anchor_no_crash():
 
 def test_total_juice_shift_only():
     """同 point、僅 juice 變化 → 應落入相應 tier。"""
-    # 構造兩 record：anchor over implied 50.0 / latest over implied 54.0 → +4pp = significant
     rec_anchor = _make_record(over_imp=50.0, under_imp=50.0, snap_time="00:00")
     rec_latest = _make_record(over_imp=54.0, under_imp=46.0, snap_time="04:00")
     timeline = [rec_anchor, rec_latest]
@@ -243,11 +228,9 @@ def test_juice_skipped_when_point_changes():
     timeline = [rec_anchor, rec_latest]
     now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
-    # 應該完全沒有 total_juice_over / total_juice_under field
     field_names = {f.field for f in report.fields}
     assert "total_juice_over" not in field_names
     assert "total_juice_under" not in field_names
-    # tier 不該因 juice 機械效應升到 major
     assert report.tier in ("watch", "quiet")
 
 
@@ -264,15 +247,26 @@ def test_rl_no_flip_same_side():
 def test_direction_label_format():
     """ML home implied +Xpp → label 應含縮寫 + 方向箭頭 + +pp。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-27")
+    timelines = collect_game_timeline(snapshots, "2026-04-28")
     timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
 
     ml_home = next(f for f in report.fields if f.field == "ml_home")
-    # CLE 是 home，移動方向往 home → 標籤應含 "CLE" 與 "+8" 前段
     assert "CLE" in ml_home.direction_label
     assert "+" in ml_home.direction_label
+
+
+def test_report_carries_commence_tw():
+    """GameMovementReport 應持有 commence_tw（取代舊 commence_et），格式 'YYYY-MM-DD HH:MM TW'。"""
+    snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
+    timelines = collect_game_timeline(snapshots, "2026-04-28")
+    timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
+    now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+    assert report.commence_tw.endswith(" TW")
+    # ET 4/27 18:11 (= UTC 22:11) → TW 4/28 06:11
+    assert "2026-04-28 06:11 TW" == report.commence_tw
 
 
 # ── 輔助：構造單筆 GameRecord ────────────────────────────────────────────────
@@ -291,6 +285,10 @@ def _make_record(
     rl_away_odds: float = 1.95, rl_away_imp: float = 51.3,
 ) -> GameRecord:
     snap_time_dt = datetime.strptime(f"2026-05-01 {snap_time}", "%Y-%m-%d %H:%M")
+    # naive ET → naive TW = +12h（UTC-4 → UTC+8）
+    snap_tw_dt = snap_time_dt + timedelta(hours=12)
+    commence_dt = datetime.fromisoformat(commence_utc_iso.replace("Z", "+00:00"))
+    commence_tw = commence_dt.astimezone(TW)
     pinnacle = {
         "title": "Pinnacle",
         "ml": {
@@ -310,9 +308,13 @@ def _make_record(
         game_key=(away, home, commence_utc_iso),
         away=away,
         home=home,
-        commence_utc=datetime.fromisoformat(commence_utc_iso.replace("Z", "+00:00")),
+        commence_utc=commence_dt,
         commence_et_label=f"2026-05-01 13:05 ET",
         pinnacle=pinnacle,
         snapshot_time_et=snap_time_dt,
         snapshot_time_et_label=snap_time,
+        commence_tw_label=commence_tw.strftime("%Y-%m-%d %H:%M TW"),
+        snapshot_time_tw=snap_tw_dt,
+        snapshot_time_tw_label=snap_tw_dt.strftime("%m-%d %H:%M"),
+        game_date_tw=commence_tw.strftime("%Y-%m-%d"),
     )

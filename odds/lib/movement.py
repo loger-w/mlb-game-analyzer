@@ -54,7 +54,7 @@ class GameMovementReport:
     game_key: GameKey
     away: str
     home: str
-    commence_et: str
+    commence_tw: str
     hours_to_game: float
     is_thin_market: bool
     snapshot_count: int
@@ -256,7 +256,7 @@ def compute_game_movement(
         game_key=latest.game_key,
         away=away,
         home=home,
-        commence_et=latest.commence_et_label,
+        commence_tw=latest.commence_tw_label,
         hours_to_game=round(hours_to_game, 1),
         is_thin_market=is_thin,
         snapshot_count=len(timeline),
