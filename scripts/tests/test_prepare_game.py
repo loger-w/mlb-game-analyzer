@@ -88,3 +88,14 @@ def test_run_step_subprocess_failure_exits_with_propagated_code(monkeypatch, tmp
     with pytest.raises(SystemExit) as exc:
         run_step("B", ["python", "scripts/roster_checker.py"])
     assert exc.value.code == 5
+
+
+def test_tw_to_et_converts_minus_one_day():
+    """spec 2026-04-29 §2: et_date = tw_date − 1 day."""
+    from prepare_game import _tw_to_et
+    assert _tw_to_et("2026-04-30") == "2026-04-29"
+    assert _tw_to_et("2026-05-01") == "2026-04-30"
+    # 跨月
+    assert _tw_to_et("2026-05-01") == "2026-04-30"
+    # 跨年
+    assert _tw_to_et("2027-01-01") == "2026-12-31"

@@ -623,12 +623,16 @@ def test_main_full_integration(monkeypatch, tmp_path):
     monkeypatch.setitem(sys.modules, "predict", fake_pred)
 
     step_order = []
+    date_args = {}
     call_count = {"n": 0}
 
     def fake_run(cmd, **k):
         call_count["n"] += 1
         script = next((a for a in cmd if ".py" in str(a)), "")
         step_order.append(str(script))
+        for i, arg in enumerate(cmd):
+            if str(arg) == "--date" and i + 1 < len(cmd):
+                date_args[Path(str(script)).name] = str(cmd[i + 1])
 
         # Write expected output files based on which script is called
         for i, a in enumerate(cmd):
@@ -676,3 +680,9 @@ def test_main_full_integration(monkeypatch, tmp_path):
     merge_idx = next(i for i, s in enumerate(step_order) if "merge" in s)
     fetch_idx = next(i for i, s in enumerate(step_order) if "fetch_game_data" in s)
     assert merge_idx > fetch_idx
+
+    # spec 2026-04-29: fetch_game_data.py 應收到 ET = TW - 1
+    # main 帶 --date 2026-04-28（TW），fetch_game_data 應收 2026-04-27
+    assert date_args.get("fetch_game_data.py") == "2026-04-27", (
+        f"fetch_game_data.py 應收 ET 2026-04-27（TW 4/28 - 1），實際 {date_args.get('fetch_game_data.py')}"
+    )

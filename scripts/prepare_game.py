@@ -34,9 +34,20 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PYTHON = sys.executable
 
 
+def _tw_to_et(tw_date: str) -> str:
+    """TW date → ET date for MLB schedule API（spec 2026-04-29 §2）。
+
+    規則：et_date = tw_date − 1 day（MLB 球季 EDT vs TW 永遠差 12 小時）。
+    """
+    from datetime import datetime, timedelta
+    d = datetime.strptime(tw_date, "%Y-%m-%d").date()
+    return (d - timedelta(days=1)).strftime("%Y-%m-%d")
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Phase 1+2 一鍵整合（spec 2026-04-28）")
-    parser.add_argument("--date", required=True, help="YYYY-MM-DD")
+    parser.add_argument("--date", required=True,
+                        help="YYYY-MM-DD（TW 開打日；內部換算 ET = TW − 1 day 給 MLB API）")
     parser.add_argument("--away", required=True, help="客隊縮寫，如 TB")
     parser.add_argument("--home", required=True, help="主隊縮寫，如 CLE")
     parser.add_argument("--output-dir", default=None,
@@ -449,8 +460,9 @@ def main(argv: list[str] | None = None) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Step A — sequential; must complete first
+    # spec 2026-04-29: --date 是 TW 語意；step_a 內呼 fetch_game_data.py 給 MLB API 要 ET
     ids = step_a(
-        date=args.date, team_abbr=args.away, output_dir=output_dir,
+        date=_tw_to_et(args.date), team_abbr=args.away, output_dir=output_dir,
         home_abbr=args.home, away_abbr=args.away, game_suffix=args.game_suffix,
     )
 
