@@ -1189,11 +1189,6 @@ def main():
             "wind_direction": args.wind_direction,
             "umpire_name": args.umpire,
             "umpire_ou_rate": args.umpire_ou_rate,
-            "actual_winner": None,
-            "actual_home_score": None,
-            "actual_away_score": None,
-            "actual_total": None,
-            "verified": False,
         }
         # 寫入 per-game prediction.json（放在 --game-data 所在資料夾）
         if args.output:
