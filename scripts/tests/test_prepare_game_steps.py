@@ -502,7 +502,7 @@ def test_print_risk_notes_flag3_detected(tmp_path, capsys):
 
 
 def test_print_risk_notes_no_flags_silent(tmp_path, capsys):
-    """_print_risk_notes: 正常値 → Risk Notes 出力なし。"""
+    """_print_risk_notes: 正常値 → Flag なし、header + （無）を出力。"""
     from prepare_game import _print_risk_notes
 
     merged = {
@@ -517,15 +517,47 @@ def test_print_risk_notes_no_flags_silent(tmp_path, capsys):
     err = capsys.readouterr().err
     assert "Flag 13" not in err
     assert "Flag 3" not in err
+    # spec §3.4: header と（無）は必ず出力
+    assert "Risk Notes" in err
+    assert "（無）" in err
 
 
 def test_print_risk_notes_missing_merged_json(tmp_path, capsys):
-    """_print_risk_notes: merged.json 欠如 → 何も出力しない。"""
+    """_print_risk_notes: merged.json 欠如 → header + （無）を出力（spec §3.4）。"""
     from prepare_game import _print_risk_notes
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
-    assert err == ""
+    # spec §3.4: header は常に出力し、Flag がなければ（無）
+    assert "Risk Notes" in err
+    assert "（無）" in err
+
+
+def test_print_risk_notes_no_flags_emits_no_marker(monkeypatch, tmp_path, capsys):
+    """無 Flag 觸發 → stderr 仍輸出 header + （無）"""
+    from prepare_game import _print_risk_notes
+    # No JSON files in tmp_path → no triggers
+    _print_risk_notes(tmp_path)
+    err = capsys.readouterr().err
+    assert "Risk Notes" in err
+    assert "（無）" in err
+
+
+def test_print_risk_notes_flag_13_triggered(tmp_path, capsys):
+    """Flag 13 觸發 → stderr 列出 era_xera_delta"""
+    import json as _json
+    from prepare_game import _print_risk_notes
+    # Construct a merged.json with home_pitcher era_xera_delta = 2.54
+    (tmp_path / "merged.json").write_text(_json.dumps({
+        "home_pitcher": {"era_xera_delta": 2.54},
+        "away_pitcher": {},
+        "home_lineup": {},
+        "away_lineup": {},
+    }), encoding="utf-8")
+    _print_risk_notes(tmp_path)
+    err = capsys.readouterr().err
+    assert "Flag 13" in err
+    assert "2.54" in err
 
 
 def test_main_full_integration(monkeypatch, tmp_path):

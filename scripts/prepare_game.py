@@ -349,9 +349,16 @@ def step_g(*, output_dir: Path, skeleton_path: Path) -> None:
 # ---------------------------------------------------------------------------
 
 def _print_risk_notes(output_dir: Path) -> None:
-    """從 merged.json 偵測 Flag 3/13，印到 stderr（spec §3.4）。"""
+    """從 merged.json 偵測 Flag 3/13，印到 stderr（spec §3.4）。
+
+    spec §3.4 規定：無論是否有 Flag 觸發，header 都必須輸出；
+    若無任何 Flag，則輸出「（無）」。
+    """
+    print("⚠️  Risk Notes (AI 在 phase3_skeleton 風險提示段處理):", file=sys.stderr)
+
     merged_path = output_dir / "merged.json"
     if not merged_path.exists():
+        print("  （無）", file=sys.stderr)
         return
     merged = json.loads(merged_path.read_text(encoding="utf-8"))
 
@@ -383,9 +390,10 @@ def _print_risk_notes(output_dir: Path) -> None:
                 pass
 
     if risk_lines:
-        print("\n[Risk Notes]", file=sys.stderr)
         for line in risk_lines:
             print(line, file=sys.stderr)
+    else:
+        print("  （無）", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
