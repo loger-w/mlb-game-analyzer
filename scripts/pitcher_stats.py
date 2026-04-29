@@ -473,8 +473,9 @@ def detect_triggers(data: dict) -> list[dict]:
                     else "ERA 顯著高於 xERA（壓制力被掩蓋，預示反彈）"
                 ),
                 "action": (
-                    "必須補跑 `pitcher_stats.py --name \"...\" --year <YYYY-1>` 進行 YoY Statcast 對比；"
-                    "TaskCreate B7 樣板（見 workflow.md §Phase 2 Step 2）"
+                    "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_skeleton.md「## 風險提示」段判讀"
+                    "（運氣 / 結構性退化 / 樣本噪音），不自動補跑 YoY、不自動下修預測。"
+                    "詳見 reference/flags-checklist.md §13"
                 ),
             })
 
