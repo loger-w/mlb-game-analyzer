@@ -101,11 +101,13 @@ Odds 模組於 2026-04-29 commit `eb1fd58` 把 `--date` 與報告全面切到 TW
         try:
             utc_dt = datetime.fromisoformat(game_time_iso.replace("Z", "+00:00"))
             tw_label = utc_dt.astimezone(_TW_TZ).strftime("%Y-%m-%d %H:%M TW")
+            et_label = utc_dt.astimezone(_ET_TZ).strftime("%m-%d %H:%M")
+            time_label = f"{tw_label}（ET {et_label}）"
         except ValueError:
-            tw_label = "未知"
+            time_label = "未知"
     else:
-        tw_label = "未知"
-    lines.append(f"**開打時間**: {tw_label}")
+        time_label = "未知"
+    lines.append(f"**開打時間**: {time_label}")
     lines.append("")
     ```
 
@@ -135,23 +137,24 @@ Odds 模組於 2026-04-29 commit `eb1fd58` 把 `--date` 與報告全面切到 TW
 | 段落 | 改前 | 改後 |
 |------|------|------|
 | H1 標題 date | `(2026-04-29)` ET | `(2026-04-30)` TW |
-| 開打時間 meta | （無） | `**開打時間**: 2026-04-30 01:11 TW`（純 TW，無 ET 副欄） |
+| 開打時間 meta | （無） | `**開打時間**: 2026-04-30 01:11 TW（ET 04-29 13:11）`（TW 為主、ET 副欄） |
 
 **完整範例（前 5 行）：**
 
 ```markdown
 # Prediction Summary — TB @ CLE (2026-04-30)
 
-**開打時間**: 2026-04-30 01:11 TW
+**開打時間**: 2026-04-30 01:11 TW（ET 04-29 13:11）
 
 ## TL;DR
 ```
 
 **設計決定：**
-- 純 TW 不掛 ET 副欄（user 確認；保持簡潔）
+- TW 為主、ET 為副（user 2026-04-29 確認）；兩個時區並列方便交叉對照 MLB 美方資料
+- ET 副欄用 `MM-DD HH:MM` 格式（壓縮形式；與 odds reports `_最新更新：... TW(ET ...)_` 一致），標 MM-DD 而非單獨時間，避免跨日歧義
 - meta 行緊接 H1，與 TL;DR 之間隔空行（與 odds reports cover line 風格一致）
 - `record["game_time"]` 缺失：fallback `**開打時間**: 未知`（顯示但明示降級）
-- 不存新欄位（`game_time_tw` 等）—— 即時從 UTC ISO 算
+- 不存新欄位（`game_time_tw` 等）—— 即時從 UTC ISO 算 TW + ET 兩個時間
 
 ---
 
@@ -174,7 +177,7 @@ Odds 模組於 2026-04-29 commit `eb1fd58` 把 `--date` 與報告全面切到 TW
 - `test_extract_game_date_tw_path_based`：path 含 `analysis-data/2026-04-30/...` → 回 `"2026-04-30"`
 - `test_extract_game_date_tw_fallback_early_day_game`：UTC ISO `2026-04-29T15:00:00Z`（ET 4/29 11:00 = TW 4/29 23:00），預期 fallback 回 `"2026-04-30"`（ET_date + 1，**非** astimezone(TW)）
 - `test_extract_game_date_tw_fallback_night_game`：UTC ISO `2026-04-30T01:11:00Z`（ET 4/29 21:11 = TW 4/30 09:11），預期 fallback 回 `"2026-04-30"`
-- `test_prediction_summary_tw_open_time`：record 含 `game_time = "2026-04-30T01:11:00Z"`，預期 summary md 含 `**開打時間**: 2026-04-30 09:11 TW`
+- `test_prediction_summary_tw_open_time`：record 含 `game_time = "2026-04-30T01:11:00Z"`（UTC），預期 summary md 含 `**開打時間**: 2026-04-30 09:11 TW（ET 04-29 21:11）`
 - `test_prediction_summary_missing_game_time_fallback`：record 缺 `game_time` → 預期 summary md 含 `**開打時間**: 未知`
 
 ### 測試命令
