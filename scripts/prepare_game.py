@@ -23,6 +23,8 @@ Exit codes（spec §3.1）：
 """
 
 import argparse
+import concurrent.futures
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -84,8 +86,54 @@ def run_step(label: str, cmd: list[str]) -> str:
     return result.stdout
 
 
-# ---- Step A 後續實作於 Task 11（先把 CLI / helpers 上 commit） ----
+# ---------------------------------------------------------------------------
+# Step A: fetch_game_data
+# ---------------------------------------------------------------------------
 
+def step_a(*, date: str, team_abbr: str, output_dir: Path) -> dict:
+    """Step A: 跑 fetch_game_data.py，讀回 JSON，提取 IDs。
+
+    Returns:
+        {home_id, away_id, home_name, away_name, home_team_id, away_team_id}
+    """
+    out_path = output_dir / "game_data.json"
+    run_step("A", [
+        PYTHON,
+        str(SCRIPT_DIR / "fetch_game_data.py"),
+        "--date", date,
+        "--team", team_abbr,
+        "-o", str(out_path),
+    ])
+    print(f"[A] game_data        ✓", file=sys.stderr)
+
+    game_data = json.loads(out_path.read_text(encoding="utf-8"))
+
+    # Support both real structure (game.home.*) and test stub (home.*)
+    game_section = game_data.get("game", game_data)
+
+    # Validate gameType (only reject if explicitly non-R)
+    game_type = game_section.get("gameType") or game_data.get("_meta", {}).get("gameType")
+    if game_type is not None and game_type != "R":
+        print(f"[A] ⛔ gameType={game_type!r}（非例行賽，exit 2）", file=sys.stderr)
+        sys.exit(2)
+
+    home = game_section.get("home", {})
+    away = game_section.get("away", {})
+
+    return {
+        "home_id": home.get("probable_pitcher_id"),
+        "away_id": away.get("probable_pitcher_id"),
+        "home_name": home.get("probable_pitcher"),
+        "away_name": away.get("probable_pitcher"),
+        "home_team_id": home.get("team_id"),
+        "away_team_id": away.get("team_id"),
+    }
+
+
+
+# ---------------------------------------------------------------------------
+# main
+# ---------------------------------------------------------------------------
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
@@ -95,8 +143,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # 後續實作於 Task 11
-    raise NotImplementedError("Steps A-G 實作於 Task 11")
+    # Steps A-G 後續實作
+    raise NotImplementedError("Steps A-G integrating...")
 
 
 if __name__ == "__main__":
