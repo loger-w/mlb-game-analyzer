@@ -1,0 +1,84 @@
+{
+  "snapshot_time_utc": "2026-04-27T04:00:03.000000+00:00",
+  "snapshot_time_et": "2026-04-27 00:00 ET",
+  "credits_remaining": "299",
+  "credits_used": "201",
+  "game_count": 3,
+  "games": [
+    {
+      "game": "Tampa Bay Rays @ Cleveland Guardians",
+      "away_team": "Tampa Bay Rays",
+      "home_team": "Cleveland Guardians",
+      "commence_utc": "2026-04-27T22:11:00Z",
+      "commence_et": "2026-04-27 18:11 ET",
+      "game_date_et": "2026-04-27",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Cleveland Guardians": { "odds": 1.85, "implied_pct": 54.1 },
+            "Tampa Bay Rays":      { "odds": 2.10, "implied_pct": 47.6 }
+          },
+          "ou": {
+            "Over":  { "odds": 1.91, "point": 8.5, "implied_pct": 52.4 },
+            "Under": { "odds": 1.95, "point": 8.5, "implied_pct": 51.3 }
+          },
+          "rl": {
+            "Cleveland Guardians": { "odds": 2.55, "point": -1.5, "implied_pct": 39.2 },
+            "Tampa Bay Rays":      { "odds": 1.58, "point":  1.5, "implied_pct": 63.3 }
+          }
+        }
+      }
+    },
+    {
+      "game": "St. Louis Cardinals @ Pittsburgh Pirates",
+      "away_team": "St. Louis Cardinals",
+      "home_team": "Pittsburgh Pirates",
+      "commence_utc": "2026-04-27T22:41:00Z",
+      "commence_et": "2026-04-27 18:41 ET",
+      "game_date_et": "2026-04-27",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Pittsburgh Pirates":  { "odds": 1.78, "implied_pct": 56.2 },
+            "St. Louis Cardinals": { "odds": 2.18, "implied_pct": 45.9 }
+          },
+          "ou": {
+            "Over":  { "odds": 2.01, "point": 8.5, "implied_pct": 49.8 },
+            "Under": { "odds": 1.87, "point": 8.5, "implied_pct": 53.5 }
+          },
+          "rl": {
+            "Pittsburgh Pirates":  { "odds": 2.57, "point": -1.5, "implied_pct": 38.9 },
+            "St. Louis Cardinals": { "odds": 1.56, "point":  1.5, "implied_pct": 64.1 }
+          }
+        }
+      }
+    },
+    {
+      "game": "Boston Red Sox @ Toronto Blue Jays",
+      "away_team": "Boston Red Sox",
+      "home_team": "Toronto Blue Jays",
+      "commence_utc": "2026-04-27T23:08:00Z",
+      "commence_et": "2026-04-27 19:08 ET",
+      "game_date_et": "2026-04-27",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Boston Red Sox":     { "odds": 2.24, "implied_pct": 44.6 },
+            "Toronto Blue Jays":  { "odds": 1.73, "implied_pct": 57.8 }
+          },
+          "ou": {
+            "Over":  { "odds": 1.95, "point": 7.0, "implied_pct": 51.3 },
+            "Under": { "odds": 1.92, "point": 7.0, "implied_pct": 52.1 }
+          },
+          "rl": {
+            "Boston Red Sox":    { "odds": 1.62, "point":  1.5, "implied_pct": 61.7 },
+            "Toronto Blue Jays": { "odds": 2.45, "point": -1.5, "implied_pct": 40.8 }
+          }
+        }
+      }
+    }
+  ]
+}
