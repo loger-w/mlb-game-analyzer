@@ -228,6 +228,56 @@ def step_c(*, home_id: int | None, away_id: int | None,
     print(f"[C] pitcher_stats (home+away) ✓", file=sys.stderr)
 
 
+# ---------------------------------------------------------------------------
+# Step D: lineup_analyzer × 2 parallel (vs opposing pitcher)
+# ---------------------------------------------------------------------------
+
+def step_d(*, home: str, away: str,
+           home_id: int | None, away_id: int | None,
+           season: int, output_dir: Path) -> None:
+    """Step D: 雙隊 lineup_analyzer 平行跑。
+    home 打線 vs away 投手（opposing_id = away_id）
+    away 打線 vs home 投手（opposing_id = home_id）
+    """
+    sides = [
+        ("home", home, away_id, output_dir / "home_lineup.json"),
+        ("away", away, home_id, output_dir / "away_lineup.json"),
+    ]
+
+    def _run_side(side_tuple):
+        side, team, opposing_id, out_path = side_tuple
+        cmd = [
+            PYTHON,
+            str(SCRIPT_DIR / "lineup_analyzer.py"),
+            "--team", team,
+            "--year", str(season),
+            "-o", str(out_path),
+        ]
+        if opposing_id:
+            cmd += ["--opposing-pitcher-id", str(opposing_id)]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+        except FileNotFoundError as e:
+            return side, -1, "", str(e)
+        return side, result.returncode, result.stdout, result.stderr
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        futures = {executor.submit(_run_side, s): s for s in sides}
+        results = {}
+        for future in concurrent.futures.as_completed(futures):
+            side, code, stdout, stderr = future.result()
+            results[side] = (code, stdout, stderr)
+
+    for side, (code, stdout, stderr) in results.items():
+        if code != 0:
+            print(f"[D] ⛔ {side} lineup_analyzer exit {code}", file=sys.stderr)
+            if stderr:
+                print(stderr, file=sys.stderr)
+            sys.exit(code)
+
+    print(f"[D] lineup (home+away) ✓", file=sys.stderr)
+
+
 
 # ---------------------------------------------------------------------------
 # main
