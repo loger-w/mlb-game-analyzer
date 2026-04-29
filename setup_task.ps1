@@ -7,7 +7,7 @@
 #   powershell -ExecutionPolicy Bypass -File setup_task.ps1
 
 $pythonPath     = (Get-Command python).Source
-$fetchScript    = "$PSScriptRoot\scripts\fetch_odds.py"
+$fetchScript    = "$PSScriptRoot\odds\fetch_odds.py"
 $analyzeScript  = "$PSScriptRoot\odds\analyze_smart_money.py"
 $taskName       = "MLB_OddsAnalysis_DailyTW"
 $oldTaskName    = "MLB_FetchOdds_Every4Hours"
