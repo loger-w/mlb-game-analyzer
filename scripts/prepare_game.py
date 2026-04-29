@@ -299,6 +299,51 @@ def step_e(*, output_dir: Path) -> None:
     print(f"[E] merged.json      ✓", file=sys.stderr)
 
 
+# ---------------------------------------------------------------------------
+# Step F + G helpers
+# ---------------------------------------------------------------------------
+
+def _load_bundle(output_dir: Path) -> dict:
+    """Read all JSON outputs from output_dir into a bundle dict."""
+    bundle = {}
+    for key, fname in [
+        ("game_data", "game_data.json"),
+        ("home_roster", "home_roster.json"),
+        ("away_roster", "away_roster.json"),
+        ("home_pitcher", "home_pitcher.json"),
+        ("away_pitcher", "away_pitcher.json"),
+        ("home_lineup", "home_lineup.json"),
+        ("away_lineup", "away_lineup.json"),
+        ("merged", "merged.json"),
+    ]:
+        path = output_dir / fname
+        if path.exists():
+            bundle[key] = json.loads(path.read_text(encoding="utf-8"))
+    return bundle
+
+
+def step_f(*, output_dir: Path, dossier_path: Path) -> None:
+    """Step F: 渲染 dossier.md。"""
+    sys.path.insert(0, str(SCRIPT_DIR))
+    from dossier_renderer import render_dossier
+    print(f"[F] dossier.md       → {dossier_path}", file=sys.stderr)
+    bundle = _load_bundle(output_dir)
+    md = render_dossier(bundle, game_dir=str(output_dir))
+    dossier_path.write_text(md, encoding="utf-8")
+
+
+def step_g(*, output_dir: Path, skeleton_path: Path) -> None:
+    """Step G: 渲染 phase3_skeleton.md。"""
+    sys.path.insert(0, str(SCRIPT_DIR))
+    from phase3_skeleton_renderer import render_skeleton
+    from predict import predict_with_formula
+    print(f"[G] phase3_skeleton  → {skeleton_path}", file=sys.stderr)
+    bundle = _load_bundle(output_dir)
+    formula_pred = predict_with_formula(bundle.get("merged", {}))
+    md = render_skeleton(bundle, formula_pred)
+    skeleton_path.write_text(md, encoding="utf-8")
+
+
 
 # ---------------------------------------------------------------------------
 # main
