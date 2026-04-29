@@ -521,10 +521,17 @@ ID 來自 schedule API 的 `hydrate=probablePitcher` response（`teams.{home,awa
 
 ### Token 量化
 
-實測 2026-04-28 TB@CLE：
-- 舊流程 Phase 1+2 AI 端 Read 字數
-- 新流程 Phase 1+2 AI 端 Read 字數
-- **目標：減少 ≥ 60%**（原 spec 50%，此版瘦身更深）
+實測 2026-04-28 TB@CLE（2026-04-29 Task 13 E2E 量化）：
+
+| 流程 | 內容 | 行數 |
+|---|---|---|
+| **舊流程**（8 份 summary） | game_data_summary (31) + home_roster_summary (70) + away_roster_summary (75) + home_pitcher_summary (96) + away_pitcher_summary (106) + home_lineup_summary (95) + away_lineup_summary (105) + merged_summary (55) | **633 行** |
+| **新流程**（dossier + skeleton） | dossier.md (92) + phase3_skeleton.md (57) | **149 行** |
+| **減少** | 633 → 149 | **76.5%** ✓（目標 ≥ 60%） |
+
+- `phase3_skeleton.md` 含 7 個 H2 ✓
+- `dossier.md` 行數 92 ≤ 250 ✓
+- `phase3_skeleton.md` 行數 57 ≤ 60 ✓
 
 ---
 

@@ -4,8 +4,8 @@
 - 日期 (ET): 2026-04-28
 - 開賽 (UTC ISO): 2026-04-28T22:10:00Z
 - 球場: Progressive Field
-- 狀態: Preview
-- 先發: Nick Martinez (TB) vs Tanner Bibee (CLE)
+- 狀態: Final
+- 先發: Nick Martinez (TB, 607259) vs Tanner Bibee (CLE, 676440)
 
 ## 戰績摘要
 

@@ -581,8 +581,8 @@ def test_render_dossier_with_actual_tb_cle_bundle():
     assert "## 系列脈絡" in output
 
     assert "## 投手對決" in output
-    assert "4.45" in output   # home ERA
-    assert "2.10" in output   # away ERA
+    assert "4.08" in output   # home ERA (Tanner Bibee 2026 season)
+    assert "1.70" in output   # away ERA (Nick Martinez 2026 season)
     assert "Flag 13" in output  # away pitcher flag
 
     assert "## 打線" in output
@@ -590,8 +590,8 @@ def test_render_dossier_with_actual_tb_cle_bundle():
     assert "José Ramírez" in output
 
     assert "## 牛棚 / Park" in output
-    assert "4.57" in output   # home bullpen ERA
-    assert "5.18" in output   # away bullpen ERA
+    assert "4.40" in output   # home bullpen ERA
+    assert "5.09" in output   # away bullpen ERA
 
     assert "## ⚠️ 風險提示摘要" in output
 
