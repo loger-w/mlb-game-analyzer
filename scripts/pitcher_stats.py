@@ -86,8 +86,6 @@ def lookup_pitcher_id(name: str) -> int | None:
       2. Empty / not-found → fuzzy fallback（解 P3：Nick Martinez vs Nick Martínez）
       3. fuzzy 結果按 mlb_played_last 排序取最新；過濾掉 < current_year - 1 的舊球員
     """
-    import sys
-    from datetime import datetime
     parts = name.strip().split()
     if len(parts) < 2:
         return None
@@ -96,7 +94,8 @@ def lookup_pitcher_id(name: str) -> int | None:
     playerid_lookup, _, _, _ = _import_pybaseball()
 
     def _resolve(df):
-        """從 DataFrame 取 mlb_played_last 最大者的 key_mlbam，套年份過濾"""
+        """從 DataFrame 取 mlb_played_last 最大者的 key_mlbam，套年份過濾。
+        回傳 (int, row) 元組，或 None（過濾後無結果）。"""
         if df.empty:
             return None
         if "mlb_played_last" in df.columns and len(df) > 1:
@@ -107,7 +106,7 @@ def lookup_pitcher_id(name: str) -> int | None:
         # 拒絕 last_year < current_year - 1 的歷史球員（避免 fuzzy 命中退役同名球員）
         if last_year is not None and not pd.isna(last_year) and last_year < current_year - 1:
             return None
-        return int(row["key_mlbam"])
+        return int(row["key_mlbam"]), row
 
     # Round 1: strict
     try:
@@ -119,7 +118,7 @@ def lookup_pitcher_id(name: str) -> int | None:
     if strict_result is not None and not strict_result.empty:
         resolved = _resolve(strict_result)
         if resolved is not None:
-            return resolved
+            return resolved[0]  # only return ID; no warning needed for strict success
 
     # Round 2: fuzzy fallback
     try:
@@ -135,14 +134,11 @@ def lookup_pitcher_id(name: str) -> int | None:
     if resolved is None:
         return None
 
-    # 取出 matched name 給 stderr warning
-    row = (fuzzy_result.sort_values("mlb_played_last", ascending=False, na_position="last")
-           if "mlb_played_last" in fuzzy_result.columns and len(fuzzy_result) > 1
-           else fuzzy_result).iloc[0]
-    matched_name = f"{row.get('name_first', '?')} {row.get('name_last', '?')}"
-    print(f"⚠️  name \"{name}\" matched fuzzy → \"{matched_name}\" (mlbam={resolved})",
+    matched_id, matched_row = resolved
+    matched_name = f"{matched_row.get('name_first', '?')} {matched_row.get('name_last', '?')}"
+    print(f"⚠️ name \"{name}\" matched fuzzy → \"{matched_name}\" (mlbam={matched_id})",
           file=sys.stderr)
-    return resolved
+    return matched_id
 
 
 def fetch_player_info(mlbam_id: int) -> dict:

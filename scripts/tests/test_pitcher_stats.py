@@ -102,3 +102,28 @@ def test_lookup_single_word_name_returns_none(monkeypatch):
     """單字名（無姓） → return None（既有行為保留）"""
     import pitcher_stats
     assert pitcher_stats.lookup_pitcher_id("Cher") is None
+
+
+def test_lookup_strict_year_filtered_falls_to_fuzzy(monkeypatch):
+    """strict match 找到但年份過舊（被 _resolve year filter 過濾） → 落入 fuzzy round 並回傳 fuzzy 結果"""
+    import pitcher_stats
+    # Round 1 strict 命中但 mlb_played_last=2010 → 過濾後視為失敗
+    strict = pd.DataFrame([{
+        "key_mlbam": 999,
+        "name_first": "Old",
+        "name_last": "Match",
+        "mlb_played_last": 2010,
+    }])
+    # Round 2 fuzzy 命中現役球員
+    fuzzy = pd.DataFrame([{
+        "key_mlbam": 607259,
+        "name_first": "Nick",
+        "name_last": "Martínez",
+        "mlb_played_last": 2026,
+    }])
+    stub, calls = _make_lookup_stub(strict, fuzzy)
+    monkeypatch.setattr(pitcher_stats, "_import_pybaseball",
+                        lambda: (stub, None, None, None))
+    result = pitcher_stats.lookup_pitcher_id("Nick Martinez")
+    assert result == 607259
+    assert calls["n"] == 2  # 兩次都呼叫（strict 被年份濾掉，繼續 fuzzy）
