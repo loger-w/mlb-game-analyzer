@@ -2,15 +2,14 @@
 
 設計原則（spec §4）：
 - 純函式：輸入 dict bundle，輸出 markdown str
-- 無 side effect、無 I/O（除 render_dossier 之外）
+- 無 side effect、無 I/O：所有 render 函式（含 render_dossier）只回傳字串；檔案寫入由 prepare_game.py 的 step_f 負責
+- game_dir 參數僅用於將檔案路徑作為 cross-reference 嵌入 markdown 內容
 - 子函式逐節獨立可測
 
 Bundle keys:
   game_data, home_roster, away_roster, home_pitcher, away_pitcher,
   home_lineup, away_lineup, merged
 """
-from __future__ import annotations
-
 
 PA_FLOOR = 30  # spec §4.2 Top 5 候選池下限
 
@@ -40,7 +39,7 @@ def select_top5_vs_pitcher(lineup: dict | None, il_names: set[str]) -> list[dict
 
 def find_last7_top1_outside_pa_top5(
     lineup: dict | None,
-    pa_top5_names: list[str],
+    pa_top5_names: set[str],
     il_names: set[str],
 ) -> dict | None:
     """找出 last7 OPS top1 球員，若不在 PA top 5 內則回傳；否則 None。
@@ -61,7 +60,9 @@ def find_last7_top1_outside_pa_top5(
 
 
 def render_dossier(bundle: dict, *, game_dir: str = "") -> str:
-    """主入口：渲染整份 dossier.md。
+    """主入口：渲染整份 dossier.md，回傳 markdown 字串（不寫檔；caller 寫檔）。
+
+    game_dir: 用於 markdown 內 File 索引段的路徑文字（不開檔）。
 
     後續子節 render 函式由 Task 8b 起逐節補。
     """

@@ -74,7 +74,7 @@ def test_select_top5_last7_top1_outside_pa_top5():
             {"name": "Schneemann", "pa": 35, "last7_ops": 1.164},  # 不在 PA top5（被 E 擠掉）但 last7 OPS top1
         ]
     }
-    pa_top5 = ["A", "B", "C", "D", "E"]
+    pa_top5 = {"A", "B", "C", "D", "E"}
     annotation = find_last7_top1_outside_pa_top5(lineup, pa_top5, set())
     assert annotation is not None
     assert annotation["name"] == "Schneemann"
@@ -90,5 +90,5 @@ def test_select_top5_last7_top1_already_in_pa_top5_returns_none():
             {"name": "B", "pa": 90,  "last7_ops": 0.500},
         ]
     }
-    pa_top5 = ["A", "B"]
+    pa_top5 = {"A", "B"}
     assert find_last7_top1_outside_pa_top5(lineup, pa_top5, set()) is None
