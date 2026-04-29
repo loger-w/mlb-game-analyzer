@@ -9,6 +9,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pandas as pd
 import requests
 
 
@@ -78,23 +79,70 @@ def get_tier(season_stats: dict) -> str:
 
 
 def lookup_pitcher_id(name: str) -> int | None:
-    """用 pybaseball 查詢球員 MLBAM ID"""
+    """用 pybaseball 查詢球員 MLBAM ID。
+
+    Strategy:
+      1. Strict match
+      2. Empty / not-found → fuzzy fallback（解 P3：Nick Martinez vs Nick Martínez）
+      3. fuzzy 結果按 mlb_played_last 排序取最新；過濾掉 < current_year - 1 的舊球員
+    """
+    import sys
+    from datetime import datetime
     parts = name.strip().split()
     if len(parts) < 2:
         return None
     last = parts[-1]
     first = parts[0]
     playerid_lookup, _, _, _ = _import_pybaseball()
+
+    def _resolve(df):
+        """從 DataFrame 取 mlb_played_last 最大者的 key_mlbam，套年份過濾"""
+        if df.empty:
+            return None
+        if "mlb_played_last" in df.columns and len(df) > 1:
+            df = df.sort_values("mlb_played_last", ascending=False, na_position="last")
+        row = df.iloc[0]
+        last_year = row.get("mlb_played_last") if "mlb_played_last" in df.columns else None
+        current_year = datetime.now().year
+        # 拒絕 last_year < current_year - 1 的歷史球員（避免 fuzzy 命中退役同名球員）
+        if last_year is not None and not pd.isna(last_year) and last_year < current_year - 1:
+            return None
+        return int(row["key_mlbam"])
+
+    # Round 1: strict
     try:
         with _redirect_pybaseball_stdout():
-            result = playerid_lookup(last, first)
-        if result.empty:
-            return None
-        if "mlb_played_last" in result.columns and len(result) > 1:
-            result = result.sort_values("mlb_played_last", ascending=False, na_position="last")
-        return int(result.iloc[0]["key_mlbam"])
+            strict_result = playerid_lookup(last, first)
+    except Exception:
+        strict_result = None
+
+    if strict_result is not None and not strict_result.empty:
+        resolved = _resolve(strict_result)
+        if resolved is not None:
+            return resolved
+
+    # Round 2: fuzzy fallback
+    try:
+        with _redirect_pybaseball_stdout():
+            fuzzy_result = playerid_lookup(last, first, fuzzy=True)
     except Exception:
         return None
+
+    if fuzzy_result is None or fuzzy_result.empty:
+        return None
+
+    resolved = _resolve(fuzzy_result)
+    if resolved is None:
+        return None
+
+    # 取出 matched name 給 stderr warning
+    row = (fuzzy_result.sort_values("mlb_played_last", ascending=False, na_position="last")
+           if "mlb_played_last" in fuzzy_result.columns and len(fuzzy_result) > 1
+           else fuzzy_result).iloc[0]
+    matched_name = f"{row.get('name_first', '?')} {row.get('name_last', '?')}"
+    print(f"⚠️  name \"{name}\" matched fuzzy → \"{matched_name}\" (mlbam={resolved})",
+          file=sys.stderr)
+    return resolved
 
 
 def fetch_player_info(mlbam_id: int) -> dict:
