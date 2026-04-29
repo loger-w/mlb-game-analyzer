@@ -22,29 +22,6 @@
 | 去年數據 | 本季樣本有限時回歸參考 |
 | 投影系統 | ZiPS/Steamer 交叉驗證 |
 
-### YoY Statcast 驗證
-
-⛔ **觸發條件（任一即觸發，由 `workflow.md` Phase 2 Step 2 閘門強制執行）**：
-- 本季 `|ERA − xERA| ≥ 1.5 run`
-- 本季 `IP < 30` 且 ERA 比 `prior_year.era` 低 ≥ 1.0 run
-
-**方法**：補跑 `pitcher_stats.py --year {YYYY-1}` 取得 prior year 完整 statcast，對比下列五項（當季 JSON 的 `prior_year` 區塊只有 rate stats，**無 statcast 深度**，必須獨立 fetch）：
-
-| 指標 | 結構性變化判定 |
-|------|---------------|
-| `statcast.avg_velo` / `max_velo` | ±0.5 mph 以上 = 實質變化（升 = 可能 new-version，降 = 年齡退化）|
-| `statcast.pitch_types`（使用率）| 主球種替換或 ±5% 以上 = 配球策略轉換 |
-| `statcast.whiff_pct` / `csw_pct` | 揮空率變化 → swing-miss 能力 |
-| `statcast.hard_hit_pct` / `barrel_pct` / `ev95percent` | 接觸品質（三項一致變化才可信）|
-| `expected.xera` / `xwoba` / `xba` | 去除運氣後的真實水平 |
-
-**判定規則**：
-- 所有 skill 指標持平 → ERA 偏離是**運氣/樣本**，按 xERA 估算預期得分
-- 三項以上一致改善 → **new-version**，下修對手得分預期
-- 一致退化（velo 降 + 接觸品質變差）→ ERA 低是假象，真實水平已退步
-
-**Platoon 樣本陷阱**：本季 vs_L / vs_R BF < 30 的 slash line 不可獨立引用；必須與 prior year 大樣本對照，否則註明「小樣本雜訊」。
-
 ### 投手實力分級
 
 | 等級 | 定義 | 參考標準 |
@@ -69,11 +46,11 @@
 
 同時查詢：Platoon splits、BvP 歷史對決（≥ 15 PA 才有參考價值）、球種對決。
 
-### BABIP 回歸檢查（必須執行）
+### BABIP 回歸風險標註
 
-- 近 7 天 BABIP ≤ .260 → 可能是運氣差，不扣 Cold run value，標註「回歸預期上升」
-- 近 7 天 BABIP ≥ .370 → 可能是運氣好，不加 Hot run value，標註「回歸預期下降」
-- 聯盟平均 BABIP ≈ .300，需 ~800 AB 才穩定
+- 近 7 天 BABIP ≤ .260 或 ≥ .370 → 由 `prepare_game.py` 自動偵測，於 dossier 與 phase3_skeleton 的「## 風險提示」段標 ⚠️
+- AI 在敘事中判讀「可能回歸 / 可能持續」，**不自動 ±run value**
+- 聯盟平均 BABIP ≈ .300，需 ~800 AB 才穩定 — 7 天樣本噪音極大，自動修正等同賭運氣
 
 ---
 
@@ -177,5 +154,3 @@
 
 > ⛔ Coors Field 4 月：物理上空氣密度比夏季高 ~8-10%，4 月 PF ≈ 112，5 月後恢復 131。
 
-### 影響分析的賽制規則
-- 全面 DH、Pitch Clock（15/18 秒）、三打者最低規則、防守布陣限制

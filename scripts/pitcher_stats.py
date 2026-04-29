@@ -9,6 +9,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pandas as pd
 import requests
 
 
@@ -78,23 +79,66 @@ def get_tier(season_stats: dict) -> str:
 
 
 def lookup_pitcher_id(name: str) -> int | None:
-    """用 pybaseball 查詢球員 MLBAM ID"""
+    """用 pybaseball 查詢球員 MLBAM ID。
+
+    Strategy:
+      1. Strict match
+      2. Empty / not-found → fuzzy fallback（解 P3：Nick Martinez vs Nick Martínez）
+      3. fuzzy 結果按 mlb_played_last 排序取最新；過濾掉 < current_year - 1 的舊球員
+    """
     parts = name.strip().split()
     if len(parts) < 2:
         return None
     last = parts[-1]
     first = parts[0]
     playerid_lookup, _, _, _ = _import_pybaseball()
+
+    def _resolve(df):
+        """從 DataFrame 取 mlb_played_last 最大者的 key_mlbam，套年份過濾。
+        回傳 (int, row) 元組，或 None（過濾後無結果）。"""
+        if df.empty:
+            return None
+        if "mlb_played_last" in df.columns and len(df) > 1:
+            df = df.sort_values("mlb_played_last", ascending=False, na_position="last")
+        row = df.iloc[0]
+        last_year = row.get("mlb_played_last") if "mlb_played_last" in df.columns else None
+        current_year = datetime.now().year
+        # 拒絕 last_year < current_year - 1 的歷史球員（避免 fuzzy 命中退役同名球員）
+        if last_year is not None and not pd.isna(last_year) and last_year < current_year - 1:
+            return None
+        return int(row["key_mlbam"]), row
+
+    # Round 1: strict
     try:
         with _redirect_pybaseball_stdout():
-            result = playerid_lookup(last, first)
-        if result.empty:
-            return None
-        if "mlb_played_last" in result.columns and len(result) > 1:
-            result = result.sort_values("mlb_played_last", ascending=False, na_position="last")
-        return int(result.iloc[0]["key_mlbam"])
+            strict_result = playerid_lookup(last, first)
+    except Exception:
+        strict_result = None
+
+    if strict_result is not None and not strict_result.empty:
+        resolved = _resolve(strict_result)
+        if resolved is not None:
+            return resolved[0]  # only return ID; no warning needed for strict success
+
+    # Round 2: fuzzy fallback
+    try:
+        with _redirect_pybaseball_stdout():
+            fuzzy_result = playerid_lookup(last, first, fuzzy=True)
     except Exception:
         return None
+
+    if fuzzy_result is None or fuzzy_result.empty:
+        return None
+
+    resolved = _resolve(fuzzy_result)
+    if resolved is None:
+        return None
+
+    matched_id, matched_row = resolved
+    matched_name = f"{matched_row.get('name_first', '?')} {matched_row.get('name_last', '?')}"
+    print(f"⚠️ name \"{name}\" matched fuzzy → \"{matched_name}\" (mlbam={matched_id})",
+          file=sys.stderr)
+    return matched_id
 
 
 def fetch_player_info(mlbam_id: int) -> dict:
@@ -379,11 +423,6 @@ def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
         return {"error": str(e)}
 
 
-def fetch_prior_year_stats(mlbam_id: int, year: int) -> dict:
-    """C4: 取得去年數據作為開季小樣本回歸基準"""
-    return fetch_mlb_api_stats(mlbam_id, year - 1)
-
-
 def detect_triggers(data: dict) -> list[dict]:
     """偵測投手層級 Flag。回傳觸發列表。
 
@@ -429,8 +468,9 @@ def detect_triggers(data: dict) -> list[dict]:
                     else "ERA 顯著高於 xERA（壓制力被掩蓋，預示反彈）"
                 ),
                 "action": (
-                    "必須補跑 `pitcher_stats.py --name \"...\" --year <YYYY-1>` 進行 YoY Statcast 對比；"
-                    "TaskCreate B7 樣板（見 workflow.md §Phase 2 Step 2）"
+                    "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_skeleton.md「## 風險提示」段判讀"
+                    "（運氣 / 結構性退化 / 樣本噪音），不自動補跑 YoY、不自動下修預測。"
+                    "詳見 reference/flags-checklist.md §13"
                 ),
             })
 
@@ -454,7 +494,9 @@ def detect_triggers(data: dict) -> list[dict]:
             },
             "interpretation": "本季 ERA 大幅優於去年但樣本不足 → 預示回歸",
             "action": (
-                "補跑 prior year + 對比 Statcast 5 項（avg_velo / pitch_types / whiff_pct / hard_hit_pct / xera）"
+                "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_skeleton.md「## 風險提示」段判讀"
+                "（小樣本 / 回歸風險），不自動補跑 YoY、不自動下修預測。"
+                "詳見 reference/flags-checklist.md §13"
             ),
         })
     return triggers
@@ -489,7 +531,6 @@ def format_md(data: dict, command: str | None = None) -> str:
     statcast = data.get("statcast") or {}
     platoon = data.get("platoon_splits") or {}
     game_log = data.get("game_log") or []
-    prior = data.get("prior_year") or {}
 
     # 過濾 error 字典
     if isinstance(season, dict) and "error" in season:
@@ -501,8 +542,6 @@ def format_md(data: dict, command: str | None = None) -> str:
         expected = {}
     if isinstance(statcast, dict) and "error" in statcast:
         statcast = {}
-    if isinstance(prior, dict) and "error" in prior:
-        prior = {}
 
     pitch_types = statcast.get("pitch_types") or {}
 
@@ -632,26 +671,6 @@ def format_md(data: dict, command: str | None = None) -> str:
                 )
             lines.append("")
 
-    # Prior year
-    if prior:
-        lines += [
-            "## Prior Year",
-            "",
-            "| 指標 | 數值 |",
-            "|------|------|",
-            f"| Games / GS | {_md_fmt(prior.get('games'), 0)} / {_md_fmt(prior.get('gs'), 0)} |",
-            f"| IP | {_md_fmt(prior.get('ip'))} |",
-            f"| ERA | {_md_fmt(prior.get('era'))} |",
-            f"| WHIP | {_md_fmt(prior.get('whip'))} |",
-            f"| FIP | {_md_fmt(prior.get('fip'))} |",
-            f"| xFIP | {_md_fmt(prior.get('xfip'))} |",
-            f"| K% | {_md_fmt(prior.get('k_pct'), 1)} |",
-            f"| BB% | {_md_fmt(prior.get('bb_pct'), 1)} |",
-            f"| HR/9 | {_md_fmt(prior.get('hr_per_9'))} |",
-            f"| GB% | {_md_fmt(prior.get('gb_pct'), 1)} |",
-            "",
-        ]
-
     # Source
     lines += [
         "---",
@@ -674,14 +693,19 @@ def main():
     parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--no-md", action="store_true", help="Skip MD summary output (only write JSON)")
     parser.add_argument("--test", action="store_true", help="Run test mode")
+    parser.add_argument("--mlbam-id", type=int, default=None,
+                        help="直接指定 MLBAM ID，跳過 name lookup")
     args = parser.parse_args()
 
     if args.test:
         print(json.dumps({"test": "OK", "message": "pitcher_stats test mode"}, indent=2))
         return
 
-    # 1. 查詢 MLBAM ID
-    pitcher_id = lookup_pitcher_id(args.name)
+    # 1. 查詢 MLBAM ID（若 --mlbam-id 已提供則跳過 name lookup）
+    if args.mlbam_id:
+        pitcher_id = args.mlbam_id
+    else:
+        pitcher_id = lookup_pitcher_id(args.name)
     if not pitcher_id:
         print(json.dumps({"error": f"Could not find MLBAM ID for {args.name}"}, indent=2, ensure_ascii=False))
         sys.exit(1)
@@ -721,9 +745,6 @@ def main():
         statcast["whiff_pct"] = whiff_csw.get("whiff_pct")
         statcast["csw_pct"] = whiff_csw.get("csw_pct")
 
-    # 11. C4: 去年數據
-    prior_year = fetch_prior_year_stats(pitcher_id, args.year)
-
     output = {
         "name": args.name,
         "mlbam_id": pitcher_id,
@@ -737,7 +758,6 @@ def main():
         "statcast": statcast,
         "game_log": game_log,
         "platoon_splits": platoon_splits,
-        "prior_year": prior_year,
     }
 
     json_output = json.dumps(output, indent=2, ensure_ascii=False)

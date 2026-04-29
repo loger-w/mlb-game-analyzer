@@ -166,7 +166,7 @@ def format_summary_md(result: dict) -> str:
         f"- 開賽 (UTC ISO): {game.get('date', '—')}",
         f"- 球場: {game.get('venue', '—')}",
         f"- 狀態: {game.get('status', '—')}",
-        f"- 先發: {away.get('probable_pitcher', 'TBD')} ({away_abbr}) vs {home.get('probable_pitcher', 'TBD')} ({home_abbr})",
+        f"- 先發: {away.get('probable_pitcher', 'TBD')} ({away_abbr}, {away.get('probable_pitcher_id') or '—'}) vs {home.get('probable_pitcher', 'TBD')} ({home_abbr}, {home.get('probable_pitcher_id') or '—'})",
         "",
     ]
 
@@ -284,7 +284,14 @@ def find_game(schedule_data: dict, team_id: int) -> dict | None:
 
 
 def extract_game_info(game: dict) -> dict:
-    """從 game object 提取比賽資訊"""
+    """從 game object 提取比賽資訊。
+
+    Returns dict with home / away sub-dicts. Each side has:
+        - team (str): team name
+        - team_id (int): MLBAM team ID
+        - probable_pitcher (str): pitcher full name; "TBD" when unannounced
+        - probable_pitcher_id (int | None): MLBAM ID; None when probablePitcher not yet announced
+    """
     home = game["teams"]["home"]
     away = game["teams"]["away"]
     return {
@@ -296,11 +303,13 @@ def extract_game_info(game: dict) -> dict:
             "team": home["team"]["name"],
             "team_id": home["team"]["id"],
             "probable_pitcher": home.get("probablePitcher", {}).get("fullName", "TBD"),
+            "probable_pitcher_id": home.get("probablePitcher", {}).get("id"),
         },
         "away": {
             "team": away["team"]["name"],
             "team_id": away["team"]["id"],
             "probable_pitcher": away.get("probablePitcher", {}).get("fullName", "TBD"),
+            "probable_pitcher_id": away.get("probablePitcher", {}).get("id"),
         },
     }
 
@@ -487,6 +496,15 @@ def main():
         print(json.dumps({"error": f"No game found for team {args.team} on {game_date}"}, indent=2, ensure_ascii=False))
         sys.exit(1)
 
+    # 計算該隊當日賽事總數（供 prepare_game.py 偵測 doubleheader 用）
+    games_on_date_for_team = 0
+    for date_entry in schedule.get("dates", []):
+        for g in date_entry.get("games", []):
+            h_id = g["teams"]["home"]["team"]["id"]
+            a_id = g["teams"]["away"]["team"]["id"]
+            if team_id in (h_id, a_id):
+                games_on_date_for_team += 1
+
     game_info = extract_game_info(game)
 
     # 2. 取雙方多窗口戰績
@@ -514,6 +532,7 @@ def main():
 
     result = {
         "game": game_info,
+        "_games_on_date_for_team": games_on_date_for_team,
         "home_recent": home_recent,
         "away_recent": away_recent,
         "home_recent_30": home_recent_30,

@@ -116,18 +116,6 @@ P(win by 2+) = P(win) × P(margin ≥ 2 | win)
 
 ---
 
-## 比賽敘事觸發條件
-
-| 劇本 | 觸發條件 | 敘事方向 |
-|------|---------|---------|
-| 投手戰 | 雙方先發 🟠+ 且 FIP < 3.20 | 5 局前 1-0 或 2-1，牛棚決勝 |
-| 打線互爆 | 雙方 xwOBA ≥ .340 + PF ≥ 105 | 先發撐不過 5 局先崩 |
-| 單方碾壓 | 投手差 ≥ 2 級 + 打線差 ≥ 1 級 | 中段拉開，可能 cover -1.5 |
-| 牛棚崩盤 | 一方牛棚核心 2+ IL + 前日 5+ IP 消耗 | 6 局後大量失分 |
-| 硬幣翻轉 | ML 差 < 5% + 投手同級 | 均勢，單場隨機性 ~45% |
-
----
-
 ## 分析紀律
 
 ### D1：模型輸出紀律
@@ -199,50 +187,6 @@ O/U 推薦方向必須與 D2 修正後總分一致：
 
 ## 預測紀錄存放位置
 
-- **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`
-  單筆 JSON、pretty-printed。由 `predict.py --save` 產生。**屬於 mlb-game-analyzer skill**。
-- **Per-date summary（快取）**：`analysis-data/{YYYY-MM-DD}/predictions.jsonl`
-  當日所有場次 JSONL，由 `mlb-post-game-review` skill 重建。
-- **賽後回填**：`actual_*` / `verified=true` 由 `mlb-post-game-review` skill 回填。
-
-## 預測紀錄格式（prediction.json / predictions.jsonl）
-
-```json
-{
-  "date": "YYYY-MM-DD",
-  "game": "AWAY vs HOME",
-  "home_team": "XXX",
-  "away_team": "XXX",
-  "home_sp": "Name",
-  "away_sp": "Name",
-  "home_sp_starts": 0,
-  "away_sp_starts": 0,
-  "predicted_winner": "HOME/AWAY",
-  "predicted_home_pct": 0.0,
-  "predicted_home_score": 0.0,
-  "predicted_away_score": 0.0,
-  "predicted_total": 0.0,
-  "adjusted_total": 0.0,
-  "signal_adjustments": {},
-  "ou_line": 0.0,
-  "ou_rec": "OVER/UNDER/PASS",
-  "run_line_rec": "PASS",
-  "ml_rec": "XXX",
-  "ml_stars": 0,
-  "confidence": "HIGH/MEDIUM/LOW",
-  "tags": [],
-  "umpire_name": null,
-  "umpire_ou_rate": null,
-  "park_factor": 100,
-  "temperature_f": null,
-  "wind_mph": null,
-  "wind_direction": null,
-  "actual_winner": null,
-  "actual_home_score": null,
-  "actual_away_score": null,
-  "actual_total": null,
-  "verified": false
-}
-```
-
-賽後回填 `actual_*` 並設 `verified: true`。
+- **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`，由 `predict.py --save` 產生。
+- **Per-date summary**：`analysis-data/{YYYY-MM-DD}/predictions.jsonl`，由 `mlb-post-game-review` skill 重建。
+- **賽後回填** `actual_*` / `verified=true` 由 `mlb-post-game-review` skill 處理。

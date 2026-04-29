@@ -8,7 +8,7 @@
 ## 🚨 Triggers
 
 ### Flag 3 觸發 — BABIP 回歸（極端低）
-- 數值：**0.241**（觸發閾值 ≤ 0.260）
+- 數值：**0.237**（觸發閾值 ≤ 0.260）
 - 解讀：近 7 天 BABIP 偏低，預示反彈（運氣差於常態）。
 - 處理：Phase 3.4 Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）
 
@@ -18,87 +18,88 @@
 
 | 指標 | 數值 |
 |------|------|
-| avg OPS | 0.711 |
+| avg OPS | 0.707 |
 | avg xwOBA | 0.304 |
-| avg BABIP | 0.288 |
-| avg K% | 17.8 |
-| avg BB% | 7.8 |
-| last7 BABIP | 0.241 |
+| avg BABIP | 0.283 |
+| avg K% | 18.3 |
+| avg BB% | 8.9 |
+| last7 BABIP | 0.237 |
 | over_under_lean | +0 |
-| chain OBP top3 | 0.368 |
-| chain SLG mid | 0.299 |
+| chain OBP top3 | 0.365 |
+| chain SLG mid | 0.296 |
 
 ## Core Lineup (sorted by PA)
 
 | # | Name | Pos | PA | AVG | OBP | SLG | OPS | xwOBA | xBA | BABIP | K% | BB% |
 |---|------|-----|----|-----|-----|-----|-----|-------|-----|-------|----|----|
-| 1 | Junior Caminero | 3B | 126 | 0.259 | 0.333 | 0.500 | 0.833 | 0.363 | 0.277 | 0.247 | 15.9 | 10.3 |
-| 2 | Yandy Díaz | 1B | 125 | 0.327 | 0.424 | 0.486 | 0.910 | 0.378 | 0.304 | 0.352 | 12.0 | 10.4 |
-| 3 | Jonathan Aranda | 1B | 124 | 0.228 | 0.347 | 0.475 | 0.822 | 0.360 | 0.232 | 0.235 | 23.4 | 15.3 |
-| 4 | Chandler Simpson | LF | 120 | 0.309 | 0.342 | 0.345 | 0.687 | 0.279 | 0.274 | 0.337 | 8.3 | 5.0 |
-| 5 | Cedric Mullins | CF | 97 | 0.138 | 0.200 | 0.253 | 0.453 | 0.217 | 0.154 | 0.152 | 20.6 | 5.2 |
-| 6 | Ben Williamson | 2B | 86 | 0.247 | 0.318 | 0.338 | 0.656 | 0.280 | 0.238 | 0.328 | 22.1 | 9.3 |
-| 7 | Nick Fortes | C | 77 | 0.292 | 0.338 | 0.403 | 0.741 | 0.317 | 0.290 | 0.328 | 13.0 | 2.6 |
-| 8 | Taylor Walls | SS | 65 | 0.200 | 0.279 | 0.236 | 0.515 | 0.232 | 0.184 | 0.297 | 27.7 | 7.7 |
-| 9 | Jonny DeLuca | RF | 63 | 0.283 | 0.317 | 0.467 | 0.784 | 0.310 | 0.269 | 0.319 | 17.5 | 4.8 |
+| 1 | Yandy Díaz | 1B | 129 | 0.324 | 0.419 | 0.477 | 0.896 | 0.378 | 0.304 | 0.352 | 12.4 | 10.1 |
+| 2 | Jonathan Aranda | 1B | 128 | 0.229 | 0.344 | 0.467 | 0.811 | 0.360 | 0.232 | 0.239 | 23.4 | 14.8 |
+| 3 | Junior Caminero | 3B | 127 | 0.257 | 0.331 | 0.496 | 0.827 | 0.363 | 0.277 | 0.244 | 15.7 | 10.2 |
+| 4 | Chandler Simpson | LF | 125 | 0.307 | 0.344 | 0.351 | 0.695 | 0.279 | 0.274 | 0.333 | 8.0 | 5.6 |
+| 5 | Cedric Mullins | CF | 101 | 0.132 | 0.192 | 0.242 | 0.434 | 0.217 | 0.154 | 0.147 | 21.8 | 5.0 |
+| 6 | Ben Williamson | 2B | 89 | 0.250 | 0.318 | 0.338 | 0.656 | 0.280 | 0.238 | 0.328 | 21.3 | 9.0 |
+| 7 | Nick Fortes | C | 81 | 0.276 | 0.321 | 0.382 | 0.703 | 0.317 | 0.290 | 0.308 | 12.3 | 2.5 |
+| 8 | Taylor Walls | SS | 69 | 0.196 | 0.308 | 0.232 | 0.540 | 0.232 | 0.184 | 0.289 | 26.1 | 11.6 |
+| 9 | Jake Fraley | RF | 63 | 0.250 | 0.333 | 0.464 | 0.797 | 0.314 | 0.220 | 0.308 | 23.8 | 11.1 |
 
 ## Statcast (Hard Contact)
 
 | # | Name | EV95% | Barrel% |
 |---|------|-------|---------|
-| 1 | Junior Caminero | 45.2 | 10.8 |
-| 2 | Yandy Díaz | 43.5 | 6.5 |
-| 3 | Jonathan Aranda | 42.7 | 12.0 |
+| 1 | Yandy Díaz | 43.5 | 6.5 |
+| 2 | Jonathan Aranda | 42.7 | 12.0 |
+| 3 | Junior Caminero | 45.2 | 10.8 |
 | 4 | Chandler Simpson | 13.5 | 0.0 |
 | 5 | Cedric Mullins | 31.9 | 2.9 |
 | 6 | Ben Williamson | 32.2 | 0.0 |
 | 7 | Nick Fortes | 45.2 | 1.6 |
 | 8 | Taylor Walls | 19.5 | 0.0 |
-| 9 | Jonny DeLuca | 32.7 | 6.1 |
+| 9 | Jake Fraley | 25.6 | 10.3 |
 
 ## Last 7 Days
 
 | # | Name | PA | AVG | OBP | SLG | OPS | BABIP |
 |---|------|----|-----|-----|-----|-----|-------|
-| 1 | Junior Caminero | 29 | .286 | .310 | .607 | .917 | .227 |
-| 2 | Yandy Díaz | 29 | .292 | .414 | .417 | .831 | .300 |
-| 3 | Jonathan Aranda | 29 | .261 | .414 | .783 | 1.197 | .167 |
-| 4 | Chandler Simpson | 30 | .231 | .300 | .231 | .531 | .250 |
-| 5 | Cedric Mullins | 22 | .100 | .182 | .150 | .332 | .125 |
-| 6 | Ben Williamson | 25 | .261 | .320 | .391 | .711 | .353 |
-| 7 | Nick Fortes | 22 | .211 | .318 | .263 | .581 | .250 |
-| 8 | Taylor Walls | 24 | .100 | .217 | .150 | .367 | .167 |
-| 9 | Jonny DeLuca | 21 | .250 | .286 | .350 | .636 | .333 |
+| 1 | Yandy Díaz | 29 | .320 | .414 | .440 | .854 | .350 |
+| 2 | Jonathan Aranda | 29 | .240 | .345 | .720 | 1.065 | .154 |
+| 3 | Junior Caminero | 26 | .280 | .308 | .640 | .948 | .211 |
+| 4 | Chandler Simpson | 30 | .200 | .300 | .240 | .540 | .217 |
+| 5 | Cedric Mullins | 22 | .050 | .136 | .050 | .186 | .067 |
+| 6 | Ben Williamson | 24 | .273 | .333 | .409 | .742 | .353 |
+| 7 | Nick Fortes | 22 | .143 | .182 | .190 | .372 | .167 |
+| 8 | Taylor Walls | 25 | .111 | .333 | .167 | .500 | .200 |
+| 9 | Jake Fraley | 21 | .333 | .429 | .667 | 1.096 | .417 |
 
 ## Platoon Splits
 
 | # | Name | vs LHP (PA / OPS) | vs RHP (PA / OPS) |
 |---|------|-------------------|-------------------|
-| 1 | Junior Caminero | 33 / .824 | 93 / .830 |
-| 2 | Yandy Díaz | 28 / .873 | 97 / .921 |
-| 3 | Jonathan Aranda | 35 / .691 | 89 / .863 |
-| 4 | Chandler Simpson | 37 / .602 | 83 / .725 |
-| 5 | Cedric Mullins | 22 / .453 | 75 / .451 |
-| 6 | Ben Williamson | 34 / .741 | 52 / .594 |
-| 7 | Nick Fortes | 36 / .485 | 41 / .968 |
-| 8 | Taylor Walls | 24 / .453 | 41 / .545 |
-| 9 | Jonny DeLuca | 27 / 1.050 | 36 / .592 |
+| 1 | Yandy Díaz | 28 / .873 | 101 / .903 |
+| 2 | Jonathan Aranda | 35 / .691 | 93 / .846 |
+| 3 | Junior Caminero | 33 / .824 | 94 / .821 |
+| 4 | Chandler Simpson | 38 / .584 | 87 / .743 |
+| 5 | Cedric Mullins | 23 / .431 | 78 / .433 |
+| 6 | Ben Williamson | 34 / .741 | 55 / .598 |
+| 7 | Nick Fortes | 37 / .472 | 44 / .898 |
+| 8 | Taylor Walls | 25 / .485 | 44 / .565 |
+| 9 | Jake Fraley | 8 / .875 | 55 / .785 |
 
 ## BvP (vs opposing starter)
 
 | # | Name | PA | AVG | OBP | SLG | H | HR | SO | BB | sample≥15? |
 |---|------|----|-----|-----|-----|----|----|----|----|------------|
-| 1 | Junior Caminero | 6 | .333 | .333 | .833 | 2 | 1 | 1 | 0 | ❌（PA<15） |
-| 2 | Yandy Díaz | 7 | .286 | .286 | .857 | 2 | 1 | 1 | 0 | ❌（PA<15） |
-| 3 | Jonathan Aranda | 3 | .333 | .333 | 1.333 | 1 | 1 | 1 | 0 | ❌（PA<15） |
+| 1 | Yandy Díaz | 13 | .308 | .308 | .615 | 4 | 1 | 2 | 0 | ❌（PA<15） |
+| 2 | Jonathan Aranda | 3 | .333 | .333 | 1.333 | 1 | 1 | 1 | 0 | ❌（PA<15） |
+| 3 | Junior Caminero | 6 | .333 | .333 | .833 | 2 | 1 | 1 | 0 | ❌（PA<15） |
 | 4 | Chandler Simpson | 7 | .000 | .000 | .000 | 0 | 0 | 0 | 0 | ❌（PA<15） |
-| 5 | Cedric Mullins | 6 | .000 | .167 | .000 | 0 | 0 | 2 | 1 | ❌（PA<15） |
+| 5 | Cedric Mullins | 11 | .000 | .091 | .000 | 0 | 0 | 5 | 1 | ❌（PA<15） |
 | 6 | Ben Williamson | 2 | .000 | .000 | .000 | 0 | 0 | 1 | 0 | ❌（PA<15） |
-| 8 | Taylor Walls | 2 | .500 | .500 | .500 | 1 | 0 | 0 | 0 | ❌（PA<15） |
+| 8 | Taylor Walls | 4 | .333 | .500 | .333 | 1 | 0 | 0 | 1 | ❌（PA<15） |
+| 9 | Jake Fraley | 5 | .200 | .200 | .400 | 1 | 0 | 1 | 0 | ❌（PA<15） |
 
 ---
 
 ## Source
 - Generated by: `lineup_analyzer.py --team TB --year 2026 --opposing-pitcher-id 676440`
-- Generated at: `2026-04-28T12:18:35+00:00`
+- Generated at: `2026-04-29T04:59:28+00:00`
 - JSON sibling: see same directory `<basename>.json`
