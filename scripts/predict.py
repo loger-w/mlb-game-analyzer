@@ -179,7 +179,7 @@ def warn_unknown_signal_keys(signals: dict | None) -> None:
 
 
 def pythagorean_runs(rs: float, ra: float, g: float = 10) -> float:
-    """Pythagenport 動態指數公式（與 reference/teams-and-api.md 一致）
+    """Pythagenport 動態指數公式（Smyth & Patriot, 2003）
 
     exponent = 1.50 × log10[(RS + RA) / G] + 0.45
     Pythagenport RMSE = 3.991 勝（優於固定指數 1.83 的 4.126）

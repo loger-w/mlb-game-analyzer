@@ -783,13 +783,15 @@ def _render_risk_summary(bundle: dict) -> list[str]:
 
 def _render_file_index(bundle: dict, game_dir: str) -> list[str]:
     """## File 索引 section."""
-    if game_dir and not game_dir.endswith("/"):
-        game_dir = game_dir + "/"
+    # Use POSIX forward slashes regardless of OS path separators
+    posix_dir = Path(game_dir).as_posix() if game_dir else ""
+    if posix_dir and not posix_dir.endswith("/"):
+        posix_dir = posix_dir + "/"
 
     lines = [
         "## File 索引",
-        f"- merged.json (Phase 4 機讀): `{game_dir}merged.json`",
-        f"- phase3 寫作: `{game_dir}phase3_skeleton.md`",
+        f"- merged.json (Phase 4 機讀): `{posix_dir}merged.json`",
+        f"- phase3 寫作: `{posix_dir}phase3_skeleton.md`",
         f"- 個別 detail summary（drill-down / debug）: 同目錄下 `<basename>_summary.md`",
         "",
     ]
