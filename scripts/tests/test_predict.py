@@ -457,96 +457,16 @@ def test_ynew1_home_none_stars_no_tag():
 
 
 # ============================================================================
-# Plan B 2026-04-22 — B7 YoY / B10 BABIP trigger helpers
-# ============================================================================
-
-def test_pitcher_yoy_triggered_by_era_xera_gap():
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 3.50, "xera": 1.88, "ip": 45.0, "prior_year": {"era": 4.00}}) is True
-
-
-def test_pitcher_yoy_triggered_by_small_ip_era_drop():
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 2.50, "xera": 2.40, "ip": 25.0, "prior_year": {"era": 3.80}}) is True
-
-
-def test_pitcher_yoy_not_triggered_normal():
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 3.80, "xera": 3.50, "ip": 45.0, "prior_year": {"era": 3.90}}) is False
-
-
-def test_pitcher_yoy_boundary_1_5_triggers():
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 5.00, "xera": 3.50, "ip": 45.0, "prior_year": {"era": 4.00}}) is True
-
-
-def test_pitcher_yoy_boundary_just_under_not_triggered():
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 5.00, "xera": 3.51, "ip": 45.0, "prior_year": {"era": 4.00}}) is False
-
-
-def test_pitcher_yoy_none_tolerant():
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy(None) is False
-    assert pitcher_triggers_yoy({}) is False
-    assert pitcher_triggers_yoy({"era": None}) is False
-
-
-def test_pitcher_yoy_no_prior_year_era_gap_still_triggers():
-    """era-xera gap ≥ 1.5 路徑獨立於 prior_year。"""
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 5.00, "xera": 3.40, "ip": 45.0, "prior_year": {"era": None}}) is True
-
-
-def test_pitcher_yoy_no_prior_year_small_ip_not_triggered():
-    """小 IP 但無 prior year 比較對象 → 不觸發 IP 路徑（era gap 獨立路徑若不符也 False）。"""
-    from predict import pitcher_triggers_yoy
-    assert pitcher_triggers_yoy({"era": 2.50, "xera": 2.40, "ip": 25.0, "prior_year": {"era": None}}) is False
-
-
-def test_lineup_babip_low_extreme_triggers():
-    from predict import lineup_triggers_babip
-    assert lineup_triggers_babip({"recent_babip": 0.250}) is True
-
-
-def test_lineup_babip_high_extreme_triggers():
-    from predict import lineup_triggers_babip
-    assert lineup_triggers_babip({"recent_babip": 0.380}) is True
-
-
-def test_lineup_babip_normal_no_trigger():
-    from predict import lineup_triggers_babip
-    assert lineup_triggers_babip({"recent_babip": 0.300}) is False
-
-
-def test_lineup_babip_boundary_260_triggers():
-    from predict import lineup_triggers_babip
-    assert lineup_triggers_babip({"recent_babip": 0.260}) is True
-
-
-def test_lineup_babip_boundary_370_triggers():
-    from predict import lineup_triggers_babip
-    assert lineup_triggers_babip({"recent_babip": 0.370}) is True
-
-
-def test_lineup_babip_none_no_trigger():
-    from predict import lineup_triggers_babip
-    assert lineup_triggers_babip({"recent_babip": None}) is False
-    assert lineup_triggers_babip({}) is False
-    assert lineup_triggers_babip(None) is False
-
-
-# ============================================================================
 # Plan B 2026-04-22 Tasks 5.2 / 5.3 — B7 YoY file check + phase3_summary grep
 # ============================================================================
 
 def _minimal_merged_json(
-    home_era=3.8, home_xera=3.5, home_ip=50.0, home_prior_era=3.9,
-    away_era=3.8, away_xera=3.5, away_ip=50.0, away_prior_era=3.9,
+    home_era=3.8, home_xera=3.5, home_ip=50.0,
+    away_era=3.8, away_xera=3.5, away_ip=50.0,
     home_babip=0.300, away_babip=0.300,
 ):
     """產最小合法 merged.json content（dict）。
-    預設不觸發任何 B7/B10，測試時覆蓋 fields 來觸發。
+    預設不觸發任何 Flag 13/3，測試時覆蓋 fields 來觸發。
     """
     return {
         "_meta": {
@@ -563,12 +483,10 @@ def _minimal_merged_json(
         "home_pitcher": {
             "era": home_era, "xera": home_xera, "ip": home_ip,
             "era_xera_delta": abs(home_era - home_xera) if (home_era and home_xera) else None,
-            "prior_year": {"era": home_prior_era},
         },
         "away_pitcher": {
             "era": away_era, "xera": away_xera, "ip": away_ip,
             "era_xera_delta": abs(away_era - away_xera) if (away_era and away_xera) else None,
-            "prior_year": {"era": away_prior_era},
         },
         "home_lineup": {"recent_babip": home_babip},
         "away_lineup": {"recent_babip": away_babip},
@@ -603,7 +521,7 @@ def test_yoy_check_triggered_missing_file_exits(tmp_path):
     """spec 2026-04-29：B7 YoY guard 已移除，era-xera≥1.5 觸發時缺 prior year file 不阻擋
     （現在改由 phase3_summary.md 缺失而非 B7 阻擋）。"""
     game_dir, merged_path = _setup_game_dir(
-        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
+        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0
     )
     result = subprocess.run(
         [sys.executable, _predict_py_path(),

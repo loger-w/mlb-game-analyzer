@@ -66,12 +66,10 @@ def extract_lineup_features(lineup_data: dict, prefix: str) -> dict:
 
 def extract_pitcher_nested(
     pitcher_data: dict | None,
-    prior_pitcher_data: dict | None,
     prefix: str,
 ) -> dict:
-    """Plan B §4.6：產 nested `{prefix}_pitcher` dict，包含 era/xera/ip + prior_year.era。
+    """產 nested `{prefix}_pitcher` dict，包含 era/xera/ip/era_xera_delta。
 
-    給 predict.py 的 pitcher_triggers_yoy 讀（B7 YoY 觸發判斷）。
     與現有 `extract_pitcher_features` 共存（不動 flat keys，確保 review_stats 等 backward-compat）。
     """
     season = pitcher_data.get("season", {}) if pitcher_data else {}
@@ -80,9 +78,6 @@ def extract_pitcher_nested(
     expected = pitcher_data.get("expected", {}) if pitcher_data else {}
     if isinstance(expected, dict) and "error" in expected:
         expected = {}
-    prior_season = (prior_pitcher_data or {}).get("season", {}) if prior_pitcher_data else {}
-    if isinstance(prior_season, dict) and "error" in prior_season:
-        prior_season = {}
 
     era = season.get("era")
     # xera 來源優先序：season.xera (legacy/test) → expected.xera (pitcher_stats 實際輸出位置)
@@ -98,16 +93,12 @@ def extract_pitcher_nested(
             "xera": xera,
             "ip": ip,
             "era_xera_delta": delta,
-            "prior_year": {"era": prior_season.get("era")},
         }
     }
 
 
 def extract_lineup_nested(lineup_data: dict | None, prefix: str) -> dict:
-    """Plan B §4.6：產 nested `{prefix}_lineup` dict，包含 recent_babip。
-
-    給 predict.py 的 lineup_triggers_babip 讀（B10 BABIP 回歸觸發判斷）。
-    """
+    """產 nested `{prefix}_lineup` dict，包含 recent_babip（Flag 3 偵測用）。"""
     recent = lineup_data.get("last7_babip") if lineup_data else None
     return {
         f"{prefix}_lineup": {
@@ -261,8 +252,7 @@ def format_md(merged: dict, command: str | None = None) -> str:
         delta = p.get("era_xera_delta")
         if delta is not None and delta >= 1.5:
             trigger_lines.append(
-                f"- **{label} 投手 Flag 13**：|ERA - xERA| = {delta:.2f}（≥ 1.5）；"
-                f"prior_year ERA = {_md_fmt(p.get('prior_year', {}).get('era'))}"
+                f"- **{label} 投手 Flag 13**：|ERA - xERA| = {delta:.2f}（≥ 1.5）"
             )
         l = merged.get(f"{side}_lineup", {}) or {}
         recent_babip = l.get("recent_babip")
@@ -290,7 +280,6 @@ def format_md(merged: dict, command: str | None = None) -> str:
         f"| WHIP | {_md_fmt(merged.get('home_starter_whip'))} | {_md_fmt(merged.get('away_starter_whip'))} |",
         f"| ERA / xERA | {_md_fmt((merged.get('home_pitcher') or {}).get('era'))} / {_md_fmt((merged.get('home_pitcher') or {}).get('xera'))} | {_md_fmt((merged.get('away_pitcher') or {}).get('era'))} / {_md_fmt((merged.get('away_pitcher') or {}).get('xera'))} |",
         f"| era_xera_delta | {_md_fmt((merged.get('home_pitcher') or {}).get('era_xera_delta'), 3)} | {_md_fmt((merged.get('away_pitcher') or {}).get('era_xera_delta'), 3)} |",
-        f"| prior_year ERA | {_md_fmt(((merged.get('home_pitcher') or {}).get('prior_year') or {}).get('era'))} | {_md_fmt(((merged.get('away_pitcher') or {}).get('prior_year') or {}).get('era'))} |",
         "",
     ]
 
@@ -347,10 +336,6 @@ def main():
     parser.add_argument("--away-pitcher", help="pitcher_stats.py output for away starter")
     parser.add_argument("--home-lineup", help="lineup_analyzer.py output for home team")
     parser.add_argument("--away-lineup", help="lineup_analyzer.py output for away team")
-    parser.add_argument("--home-pitcher-prior", default=None,
-                        help="Optional prior-year pitcher_stats.py output for home starter (B7 YoY)")
-    parser.add_argument("--away-pitcher-prior", default=None,
-                        help="Optional prior-year pitcher_stats.py output for away starter (B7 YoY)")
     parser.add_argument("--home-bullpen-era", type=float, default=None,
                         help="Override home bullpen ERA (auto-fetched if omitted)")
     parser.add_argument("--away-bullpen-era", type=float, default=None,
@@ -374,8 +359,6 @@ def main():
     game_data = load_json(args.game)
     home_pitcher_data = load_json(args.home_pitcher)
     away_pitcher_data = load_json(args.away_pitcher)
-    home_pitcher_prior_data = load_json(args.home_pitcher_prior) if args.home_pitcher_prior else None
-    away_pitcher_prior_data = load_json(args.away_pitcher_prior) if args.away_pitcher_prior else None
 
     # 從 game_data 取得 team_id 和 venue
     game_info = game_data.get("game", {})
@@ -417,9 +400,9 @@ def main():
     merged.update(extract_pitcher_features(away_pitcher_data, "away"))
     merged.update(extract_lineup_features(home_lineup_data, "home"))
     merged.update(extract_lineup_features(away_lineup_data, "away"))
-    # Plan B §4.6: nested dict 供 B7 YoY / B10 BABIP 觸發判斷；flat keys 保留 backward-compat
-    merged.update(extract_pitcher_nested(home_pitcher_data, home_pitcher_prior_data, "home"))
-    merged.update(extract_pitcher_nested(away_pitcher_data, away_pitcher_prior_data, "away"))
+    # nested dict 供 Flag 13 (ERA-xERA gap) 偵測；flat keys 保留 backward-compat
+    merged.update(extract_pitcher_nested(home_pitcher_data, "home"))
+    merged.update(extract_pitcher_nested(away_pitcher_data, "away"))
     merged.update(extract_lineup_nested(home_lineup_data, "home"))
     merged.update(extract_lineup_nested(away_lineup_data, "away"))
     merged["home_bullpen_era"] = home_bp_era

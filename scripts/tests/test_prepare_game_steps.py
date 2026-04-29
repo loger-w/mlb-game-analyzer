@@ -269,7 +269,6 @@ def test_pitcher_stats_main_accepts_mlbam_id_arg_skipping_lookup(monkeypatch, tm
     monkeypatch.setattr(pitcher_stats, "fetch_game_log", lambda pid, yr, limit=3: [])
     monkeypatch.setattr(pitcher_stats, "fetch_platoon_splits", lambda pid, yr: {})
     monkeypatch.setattr(pitcher_stats, "fetch_whiff_csw", lambda pid, yr: {"error": "no data"})
-    monkeypatch.setattr(pitcher_stats, "fetch_prior_year_stats", lambda pid, yr: {})
 
     out_file = tmp_path / "pitcher_out.json"
 

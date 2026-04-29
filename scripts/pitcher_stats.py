@@ -423,11 +423,6 @@ def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
         return {"error": str(e)}
 
 
-def fetch_prior_year_stats(mlbam_id: int, year: int) -> dict:
-    """C4: 取得去年數據作為開季小樣本回歸基準"""
-    return fetch_mlb_api_stats(mlbam_id, year - 1)
-
-
 def detect_triggers(data: dict) -> list[dict]:
     """偵測投手層級 Flag。回傳觸發列表。
 
@@ -499,7 +494,9 @@ def detect_triggers(data: dict) -> list[dict]:
             },
             "interpretation": "本季 ERA 大幅優於去年但樣本不足 → 預示回歸",
             "action": (
-                "補跑 prior year + 對比 Statcast 5 項（avg_velo / pitch_types / whiff_pct / hard_hit_pct / xera）"
+                "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_skeleton.md「## 風險提示」段判讀"
+                "（小樣本 / 回歸風險），不自動補跑 YoY、不自動下修預測。"
+                "詳見 reference/flags-checklist.md §13"
             ),
         })
     return triggers
@@ -534,7 +531,6 @@ def format_md(data: dict, command: str | None = None) -> str:
     statcast = data.get("statcast") or {}
     platoon = data.get("platoon_splits") or {}
     game_log = data.get("game_log") or []
-    prior = data.get("prior_year") or {}
 
     # 過濾 error 字典
     if isinstance(season, dict) and "error" in season:
@@ -546,8 +542,6 @@ def format_md(data: dict, command: str | None = None) -> str:
         expected = {}
     if isinstance(statcast, dict) and "error" in statcast:
         statcast = {}
-    if isinstance(prior, dict) and "error" in prior:
-        prior = {}
 
     pitch_types = statcast.get("pitch_types") or {}
 
@@ -677,26 +671,6 @@ def format_md(data: dict, command: str | None = None) -> str:
                 )
             lines.append("")
 
-    # Prior year
-    if prior:
-        lines += [
-            "## Prior Year",
-            "",
-            "| 指標 | 數值 |",
-            "|------|------|",
-            f"| Games / GS | {_md_fmt(prior.get('games'), 0)} / {_md_fmt(prior.get('gs'), 0)} |",
-            f"| IP | {_md_fmt(prior.get('ip'))} |",
-            f"| ERA | {_md_fmt(prior.get('era'))} |",
-            f"| WHIP | {_md_fmt(prior.get('whip'))} |",
-            f"| FIP | {_md_fmt(prior.get('fip'))} |",
-            f"| xFIP | {_md_fmt(prior.get('xfip'))} |",
-            f"| K% | {_md_fmt(prior.get('k_pct'), 1)} |",
-            f"| BB% | {_md_fmt(prior.get('bb_pct'), 1)} |",
-            f"| HR/9 | {_md_fmt(prior.get('hr_per_9'))} |",
-            f"| GB% | {_md_fmt(prior.get('gb_pct'), 1)} |",
-            "",
-        ]
-
     # Source
     lines += [
         "---",
@@ -771,9 +745,6 @@ def main():
         statcast["whiff_pct"] = whiff_csw.get("whiff_pct")
         statcast["csw_pct"] = whiff_csw.get("csw_pct")
 
-    # 11. C4: 去年數據
-    prior_year = fetch_prior_year_stats(pitcher_id, args.year)
-
     output = {
         "name": args.name,
         "mlbam_id": pitcher_id,
@@ -787,7 +758,6 @@ def main():
         "statcast": statcast,
         "game_log": game_log,
         "platoon_splits": platoon_splits,
-        "prior_year": prior_year,
     }
 
     json_output = json.dumps(output, indent=2, ensure_ascii=False)

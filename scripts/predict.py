@@ -115,43 +115,6 @@ def should_add_home_2star_tag(
     )
 
 
-def pitcher_triggers_yoy(pitcher: dict | None) -> bool:
-    """B7 YoY 補跑觸發條件（Plan B §4.3）。
-
-    True 當：
-      - |ERA − xERA| ≥ 1.5（本季數據內部 divergence）
-      - OR IP < 30 且 ERA 比 prior_year.era 低 ≥ 1.0（小樣本劇烈 yoy 改善 → 需驗證）
-
-    None-tolerant：無 pitcher data 或關鍵欄缺失 → False（不誤觸發）。
-    """
-    if not pitcher:
-        return False
-    era = pitcher.get("era")
-    xera = pitcher.get("xera")
-    ip = pitcher.get("ip")
-    prior_era = (pitcher.get("prior_year") or {}).get("era")
-    if era is not None and xera is not None and abs(era - xera) >= 1.5:
-        return True
-    if (ip is not None and ip < 30
-            and era is not None and prior_era is not None
-            and era < prior_era - 1.0):
-        return True
-    return False
-
-
-def lineup_triggers_babip(lineup: dict | None) -> bool:
-    """B10 BABIP 回歸觸發條件（Plan B §4.5）。
-
-    True 當 recent_babip ≤ .260 or ≥ .370（聯盟平均 ~.300，此範圍回歸確定性高）。
-    """
-    if not lineup:
-        return False
-    rb = lineup.get("recent_babip")
-    if rb is None:
-        return False
-    return rb <= 0.260 or rb >= 0.370
-
-
 def validate_ml_rec(ml_rec: str | None, team_abbrevs: set[str]) -> None:
     """W2（Plan B 2026-04-22 §4.2）：`--ml-rec` 必須是 team abbr / PASS / None。
 

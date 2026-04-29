@@ -119,13 +119,6 @@ def test_pitcher_md_includes_platoon_when_present():
     assert "vs RHB" in md
 
 
-def test_pitcher_md_includes_prior_year():
-    from pitcher_stats import format_md
-    md = format_md(_pitcher_lugo_data())
-    assert "## Prior Year" in md
-    assert "4.15" in md  # prior ERA
-
-
 def test_pitcher_md_handles_error_in_season():
     """season 有 error 不該 crash，MD 仍可生成。"""
     from pitcher_stats import format_md
@@ -318,8 +311,8 @@ def _merged_data():
         "home_batting_xwoba": 0.319, "away_batting_xwoba": 0.322,
         "home_batting_ops": 0.686, "away_batting_ops": 0.720,
         "home_batting_k_pct": 23.4, "away_batting_k_pct": 25.7,
-        "home_pitcher": {"era": 1.15, "xera": 3.96, "ip": 31.33, "era_xera_delta": 2.81, "prior_year": {"era": 4.15}},
-        "away_pitcher": {"era": 4.08, "xera": 2.75, "ip": 28.67, "era_xera_delta": 1.33, "prior_year": {"era": 3.96}},
+        "home_pitcher": {"era": 1.15, "xera": 3.96, "ip": 31.33, "era_xera_delta": 2.81},
+        "away_pitcher": {"era": 4.08, "xera": 2.75, "ip": 28.67, "era_xera_delta": 1.33},
         "home_lineup": {"recent_babip": 0.326},
         "away_lineup": {"recent_babip": 0.291},
         "home_bullpen_era": 4.50, "away_bullpen_era": 4.20,
