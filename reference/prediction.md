@@ -187,6 +187,4 @@ O/U 推薦方向必須與 D2 修正後總分一致：
 
 ## 預測紀錄存放位置
 
-- **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`，由 `predict.py --save` 產生。
-- **Per-date summary**：`analysis-data/{YYYY-MM-DD}/predictions.jsonl`，由 `mlb-post-game-review` skill 重建。
-- **賽後回填** `actual_*` / `verified=true` 由 `mlb-post-game-review` skill 處理。
+- **Per-game（真相來源）**：`analysis-data/{YYYY-MM-DD}/{AWAY}@{HOME}/prediction.json`，由 `predict.py --save` 產生。`{YYYY-MM-DD}` 為 TW 開打日（spec 2026-04-29）。
