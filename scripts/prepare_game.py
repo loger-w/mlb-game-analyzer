@@ -130,6 +130,57 @@ def step_a(*, date: str, team_abbr: str, output_dir: Path) -> dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# Step B: roster_checker × 2 parallel
+# ---------------------------------------------------------------------------
+
+def step_b(*, home: str, away: str, season: int,
+           home_pitcher: str, away_pitcher: str, output_dir: Path) -> None:
+    """Step B: 雙隊 roster_checker 平行跑。"""
+    sides = [
+        ("home", home, home_pitcher, output_dir / "home_roster.json"),
+        ("away", away, away_pitcher, output_dir / "away_roster.json"),
+    ]
+
+    def _run_side(side_tuple):
+        side, team, pitcher, out_path = side_tuple
+        cmd = [
+            PYTHON,
+            str(SCRIPT_DIR / "roster_checker.py"),
+            "--team", team,
+            "--season", str(season),
+            "--expected-starter", pitcher,
+            "-o", str(out_path),
+        ]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+        except FileNotFoundError as e:
+            return side, -1, "", str(e)
+        return side, result.returncode, result.stdout, result.stderr
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        futures = {executor.submit(_run_side, s): s for s in sides}
+        results = {}
+        for future in concurrent.futures.as_completed(futures):
+            side, code, stdout, stderr = future.result()
+            results[side] = (code, stdout, stderr)
+
+    for side, (code, stdout, stderr) in results.items():
+        if code != 0:
+            combined = (stdout or "") + (stderr or "")
+            if "STARTER_NOT_ACTIVE" in combined:
+                print(f"[B] ⛔ {side} STARTER_NOT_ACTIVE（exit 5）", file=sys.stderr)
+                if stderr:
+                    print(stderr, file=sys.stderr)
+                sys.exit(5)
+            print(f"[B] ⛔ {side} exit {code}", file=sys.stderr)
+            if stderr:
+                print(stderr, file=sys.stderr)
+            sys.exit(code)
+
+    print(f"[B] roster (home+away) ✓", file=sys.stderr)
+
+
 
 # ---------------------------------------------------------------------------
 # main
