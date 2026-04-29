@@ -11,14 +11,17 @@
 
 
 def _age_emoji(age: int | None) -> str:
-    """spec matchup-factors §球員年齡退化 投手版"""
+    """投手年齡退化 emoji；委派給 pitcher_stats.AGE_ASSESSMENT_PITCHER（單一真相來源）"""
     if age is None:
         return ""
-    if age <= 24: return "📈"
-    if age <= 29: return "⚡"
-    if age <= 33: return "📉"
-    if age <= 36: return "📉📉"
-    return "📉📉📉"
+    try:
+        from pitcher_stats import AGE_ASSESSMENT_PITCHER
+    except ImportError:
+        return ""
+    for (lo, hi), label in AGE_ASSESSMENT_PITCHER.items():
+        if lo <= age <= hi:
+            return label
+    return ""
 
 
 def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
@@ -124,8 +127,8 @@ def _render_conditional_section(bundle: dict) -> list[str]:
 
 
 def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]:
-    home_base = formula_pred.get("home_expected_runs", "?")
-    away_base = formula_pred.get("away_expected_runs", "?")
+    home_base = formula_pred.get("home_score", "?")
+    away_base = formula_pred.get("away_score", "?")
     total_base = (
         (home_base + away_base)
         if isinstance(home_base, (int, float)) and isinstance(away_base, (int, float))

@@ -19,7 +19,7 @@ def _minimal_bundle():
 
 
 def _minimal_formula_pred():
-    return {"home_expected_runs": 4.5, "away_expected_runs": 4.2}
+    return {"home_score": 4.5, "away_score": 4.2}
 
 
 def test_skeleton_contains_7_required_h2():
@@ -92,3 +92,23 @@ def test_skeleton_line_count_within_60():
     from phase3_skeleton_renderer import render_skeleton
     output = render_skeleton(_minimal_bundle(), _minimal_formula_pred())
     assert len(output.split("\n")) <= 60
+
+
+def test_skeleton_uses_real_predict_with_formula_keys(tmp_path):
+    """Regression：render_skeleton 對 predict.predict_with_formula 真實 return shape 仍能填入 base"""
+    from phase3_skeleton_renderer import render_skeleton
+    from predict import predict_with_formula
+    # 構造最小 merged.json shape（predict_with_formula 需要 home_recent_rs/ra 等）
+    merged = {
+        "home_recent_rs": 4.5, "home_recent_ra": 4.5,
+        "away_recent_rs": 4.2, "away_recent_ra": 4.2,
+        "home_recent_30_rs": 4.5, "home_recent_30_ra": 4.5,
+        "away_recent_30_rs": 4.2, "away_recent_30_ra": 4.2,
+        "park_factor": 100,
+    }
+    formula_pred = predict_with_formula(merged)
+    output = render_skeleton(_minimal_bundle(), formula_pred)
+    # base 欄不應是 "?" — 應該是 predict_with_formula 算出來的數值
+    expected_section = output.split("## 修正後預期得分", 1)[1].split("##", 1)[0]
+    assert "?" not in expected_section.replace("<!-- AI 補 -->", ""), \
+        f"base column should be filled from formula_pred, got:\n{expected_section}"
