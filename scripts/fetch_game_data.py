@@ -284,7 +284,14 @@ def find_game(schedule_data: dict, team_id: int) -> dict | None:
 
 
 def extract_game_info(game: dict) -> dict:
-    """從 game object 提取比賽資訊"""
+    """從 game object 提取比賽資訊。
+
+    Returns dict with home / away sub-dicts. Each side has:
+        - team (str): team name
+        - team_id (int): MLBAM team ID
+        - probable_pitcher (str): pitcher full name; "TBD" when unannounced
+        - probable_pitcher_id (int | None): MLBAM ID; None when probablePitcher not yet announced
+    """
     home = game["teams"]["home"]
     away = game["teams"]["away"]
     return {

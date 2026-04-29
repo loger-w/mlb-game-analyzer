@@ -318,3 +318,29 @@ def test_extract_game_info_missing_probable_pitcher_id_is_none():
     result = extract_game_info(game)
     assert result["home"]["probable_pitcher_id"] is None
     assert result["away"]["probable_pitcher_id"] is None
+
+
+def test_extract_game_info_asymmetric_probable_pitcher_id():
+    """一邊有先發、另一邊沒有：兩側獨立解析（spec P2 不假設兩邊同步）"""
+    from fetch_game_data import extract_game_info
+    game = {
+        "gamePk": 12345,
+        "gameDate": "2026-04-28T22:10:00Z",
+        "status": {"abstractGameState": "Preview"},
+        "venue": {"name": "Progressive Field"},
+        "teams": {
+            "home": {
+                "team": {"name": "Cleveland Guardians", "id": 114},
+                "probablePitcher": {"fullName": "Tanner Bibee", "id": 676440},
+            },
+            "away": {
+                "team": {"name": "Tampa Bay Rays", "id": 139},
+                # 無 probablePitcher（賽程剛公布）
+            },
+        },
+    }
+    result = extract_game_info(game)
+    assert result["home"]["probable_pitcher_id"] == 676440
+    assert result["away"]["probable_pitcher_id"] is None
+    assert result["home"]["probable_pitcher"] == "Tanner Bibee"
+    assert result["away"]["probable_pitcher"] == "TBD"
