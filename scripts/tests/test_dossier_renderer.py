@@ -604,3 +604,39 @@ def test_render_dossier_with_actual_tb_cle_bundle():
 
     # No YoY section
     assert "YoY 對比" not in output
+
+
+def test_render_series_context_handles_none_winner_and_empty_names():
+    """C1 regression: live API may return winner=None or empty team names — must not crash"""
+    from dossier_renderer import _render_series_context
+    bundle = {
+        "merged": {
+            "_meta": {
+                "home_team": "",    # empty home name
+                "away_team": "",    # empty away name
+            }
+        },
+        "game_data": {
+            "series_prev": {
+                "winner": None,     # None winner — not missing
+                "date": "2026-04-27",
+                "home_score": 2,
+                "away_score": 1,
+            },
+            "home_recent": {
+                "streak": 1,
+                "games": [
+                    {"opponent": "", "result": "W", "is_winner": True, "date": "2026-04-27"},
+                ],
+            },
+            "away_recent": {
+                "streak": -1,
+                "games": [
+                    {"opponent": "", "result": "L", "is_winner": False, "date": "2026-04-27"},
+                ],
+            },
+        },
+    }
+    # Must not raise
+    lines = _render_series_context(bundle)
+    assert isinstance(lines, list)

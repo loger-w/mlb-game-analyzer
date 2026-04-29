@@ -381,9 +381,9 @@ def _render_series_context(bundle: dict) -> list[str]:
         prev_date = series_prev.get("date", "?")
         h_score = series_prev.get("home_score", "?")
         a_score = series_prev.get("away_score", "?")
-        winner = series_prev.get("winner", "?")
-        away_short = away_name.split()[-1]  # e.g. 'Rays'
-        home_short = home_name.split()[-1]
+        winner = series_prev.get("winner") or "?"
+        away_short = away_name.split()[-1] if away_name else "?"
+        home_short = home_name.split()[-1] if home_name else "?"
         prev_away = series_prev.get("away", away_name)
         prev_home = series_prev.get("home", home_name)
         lines.append(f"**當前系列賽 ({away_name} @ {home_name})**")
@@ -405,11 +405,11 @@ def _render_series_context(bundle: dict) -> list[str]:
         if streak_val < 0:
             # show last N losses
             loss_games = [g for g in games if not g.get("is_winner")][:abs(streak_val)]
-            opps = ", ".join(f"{g.get('opponent', '?').split()[-1]} ({g.get('date', '?')[-5:]})" for g in loss_games)
+            opps = ", ".join(f"{(g.get('opponent') or '?').split()[-1]} ({g.get('date', '?')[-5:]})" for g in loss_games)
             return f"- {team} {streak_str}: 連敗對手 → {opps}"
         else:
             win_games = [g for g in games if g.get("is_winner")][:streak_val]
-            opps = ", ".join(f"{g.get('opponent', '?').split()[-1]} ({g.get('date', '?')[-5:]})" for g in win_games)
+            opps = ", ".join(f"{(g.get('opponent') or '?').split()[-1]} ({g.get('date', '?')[-5:]})" for g in win_games)
             return f"- {team} {streak_str}: 連勝對手 → {opps}"
 
     lines.append("**Streak 脈絡**")
@@ -505,6 +505,36 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
     return lines
 
 
+def _render_top5_block(
+    label: str,
+    lineup: dict,
+    il_names: set,
+    opposing_sp_name: str,
+    opposing_hand: str,
+) -> list[str]:
+    """渲染單側 Top 5 vs 對方先發 sub-block（含 last7 OPS top1 註腳）"""
+    pa_top5 = select_top5_vs_pitcher(lineup, il_names)
+    pa_top5_names = {p.get("name") for p in pa_top5}
+    lines = [f"**{label} vs {opposing_sp_name}（{opposing_hand}HP）**:"]
+    lines.append(f"| # | Name | season OPS | vs {opposing_hand}HP OPS | last7 OPS | last7 BABIP | EV95% | Barrel% |")
+    lines.append("|---|------|------|------|------|------|------|------|")
+    for i, player in enumerate(pa_top5, start=1):
+        name = player.get("name", "?")
+        s_ops = _ops(player.get("ops"))
+        vs_ops = _lineup_vs_hand_ops(player, opposing_hand)
+        l7_ops = _last7_ops_str(player)
+        l7_babip = _last7_babip_from_player(player)
+        ev95 = _v(player.get("ev95pct"), 1)
+        barrel = _v(player.get("barrel_pct"), 1)
+        lines.append(f"| {i} | {name} | {s_ops} | {vs_ops} | {l7_ops} | {l7_babip} | {ev95} | {barrel} |")
+    extra = find_last7_top1_outside_pa_top5(lineup, pa_top5_names, il_names)
+    if extra:
+        extra_name = extra.get("name", "?")
+        extra_ops = _last7_ops_str(extra)
+        lines.append(f"> last7 OPS top1（不在 PA top5 內）：{extra_name} (last7 OPS {extra_ops})")
+    return lines
+
+
 def _render_lineup_overview(bundle: dict) -> list[str]:
     """## 打線 table + Top 5 sub-block."""
     try:
@@ -588,55 +618,16 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
     away_hand = away_p.get("pitch_hand", "?")
     away_sp_name = away_p.get("name", "AWAY SP")
     home_il = _il_names_from_roster(home_roster)
-    home_top5 = select_top5_vs_pitcher(home_lu, home_il)
-    home_top5_names = {p.get("name") for p in home_top5}
 
-    lines.append(f"**HOME vs {away_sp_name}（{away_hand}HP）**:")
-    lines.append("| # | Name | season OPS | vs RHP OPS | last7 OPS | last7 BABIP | EV95% | Barrel% |")
-    lines.append("|---|------|------|------|------|------|------|------|")
-    for i, player in enumerate(home_top5, start=1):
-        name = player.get("name", "?")
-        s_ops = _ops(player.get("ops"))
-        vs_ops = _lineup_vs_hand_ops(player, away_hand)
-        l7_ops = _last7_ops_str(player)
-        l7_babip = _last7_babip_from_player(player)
-        ev95 = _v(player.get("ev95pct"), 1)
-        barrel = _v(player.get("barrel_pct"), 1)
-        lines.append(f"| {i} | {name} | {s_ops} | {vs_ops} | {l7_ops} | {l7_babip} | {ev95} | {barrel} |")
-
-    # last7 top1 outside pa_top5
-    home_extra = find_last7_top1_outside_pa_top5(home_lu, home_top5_names, home_il)
-    if home_extra:
-        extra_name = home_extra.get("name", "?")
-        extra_ops = _last7_ops_str(home_extra)
-        lines.append(f"> last7 OPS top1（不在 PA top5 內）：{extra_name} (last7 OPS {extra_ops})")
+    lines += _render_top5_block("HOME", home_lu, home_il, away_sp_name, away_hand)
     lines.append("")
 
     # AWAY vs HOME pitcher
     home_hand = home_p.get("pitch_hand", "?")
     home_sp_name = home_p.get("name", "HOME SP")
     away_il = _il_names_from_roster(away_roster)
-    away_top5 = select_top5_vs_pitcher(away_lu, away_il)
-    away_top5_names = {p.get("name") for p in away_top5}
 
-    lines.append(f"**AWAY vs {home_sp_name}（{home_hand}HP）**:")
-    lines.append("| # | Name | season OPS | vs RHP OPS | last7 OPS | last7 BABIP | EV95% | Barrel% |")
-    lines.append("|---|------|------|------|------|------|------|------|")
-    for i, player in enumerate(away_top5, start=1):
-        name = player.get("name", "?")
-        s_ops = _ops(player.get("ops"))
-        vs_ops = _lineup_vs_hand_ops(player, home_hand)
-        l7_ops = _last7_ops_str(player)
-        l7_babip = _last7_babip_from_player(player)
-        ev95 = _v(player.get("ev95pct"), 1)
-        barrel = _v(player.get("barrel_pct"), 1)
-        lines.append(f"| {i} | {name} | {s_ops} | {vs_ops} | {l7_ops} | {l7_babip} | {ev95} | {barrel} |")
-
-    away_extra = find_last7_top1_outside_pa_top5(away_lu, away_top5_names, away_il)
-    if away_extra:
-        extra_name = away_extra.get("name", "?")
-        extra_ops = _last7_ops_str(away_extra)
-        lines.append(f"> last7 OPS top1（不在 PA top5 內）：{extra_name} (last7 OPS {extra_ops})")
+    lines += _render_top5_block("AWAY", away_lu, away_il, home_sp_name, home_hand)
     lines.append("")
 
     return lines
@@ -666,8 +657,6 @@ def _render_bullpen_park(bundle: dict) -> list[str]:
         if not il_pitchers:
             return "—"
         count = len(il_pitchers)
-        if count == 0:
-            return "—"
         # show first 2 names with their status abbreviation
         parts = []
         for p in il_pitchers[:2]:
