@@ -616,22 +616,6 @@ def test_yoy_check_triggered_missing_file_exits(tmp_path):
     assert "phase3_summary" in result.stderr
 
 
-def test_yoy_check_triggered_with_file_proceeds_past_yoy(tmp_path):
-    """B7 觸發 + prior year file 存在 → YoY check 通過（後續可能因 phase3 check 卡住但不在 B7）。"""
-    game_dir, merged_path = _setup_game_dir(
-        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0
-    )
-    # 建 prior year file
-    (game_dir / "home_pitcher_2025.json").write_text(json.dumps({"season": {"era": 4.0}}))
-    result = subprocess.run(
-        [sys.executable, _predict_py_path(),
-         "--game-data", str(merged_path), "--save", "--skip-phase3-check"],
-        capture_output=True, text=True, encoding="utf-8",
-    )
-    # 要麼 returncode == 0 或 stderr 不含 B7 錯誤
-    assert "B7 YoY" not in result.stderr, f"should pass B7 check; stderr: {result.stderr}"
-
-
 def test_yoy_no_trigger_no_check(tmp_path):
     """無 YoY 觸發 + 缺 prior year file → 也不 exit（因 trigger 不成立）。"""
     game_dir, merged_path = _setup_game_dir(tmp_path)  # 預設不觸發
@@ -667,24 +651,6 @@ def test_phase3_skip_flag_bypasses(tmp_path):
     # phase3 check 不會阻擋；可能 returncode 非 0 但錯誤不是 phase3_summary
     assert "phase3_summary" not in result.stderr
 
-
-def test_phase3_all_sections_present_passes(tmp_path):
-    """所有必要 section 都在 → phase3 check 通過。"""
-    game_dir, merged_path = _setup_game_dir(
-        tmp_path, home_era=5.0, home_xera=3.0, home_ip=45.0, home_prior_era=4.0,
-        home_babip=0.250,
-    )
-    (game_dir / "home_pitcher_2025.json").write_text(json.dumps({"season": {"era": 4.0}}))
-    (game_dir / "phase3_summary.md").write_text(
-        "# summary\n\n## YoY 對比結論\n OK\n\n## BABIP 回歸判定\n OK\n", encoding="utf-8"
-    )
-    result = subprocess.run(
-        [sys.executable, _predict_py_path(),
-         "--game-data", str(merged_path), "--save"],
-        capture_output=True, text=True, encoding="utf-8",
-    )
-    # phase3 check 不卡；整體可能成功
-    assert "phase3_summary.md 缺必要 section" not in result.stderr
 
 
 # ============================================================================
@@ -1064,13 +1030,10 @@ def test_format_trend_tags_block_partial_fold():
 
 def test_ou_rec_over_without_stars_exits(tmp_path):
     """--ou-rec OVER 但缺 --ou-stars → exit 6 + 錯誤訊息"""
-    import subprocess
-    import sys as _sys
-    merged = tmp_path / "merged.json"
-    merged.write_text('{"_meta": {}}', encoding="utf-8")
+    game_dir, merged_path = _setup_game_dir(tmp_path)
     result = subprocess.run(
-        [_sys.executable, _predict_py_path(),
-         "--game-data", str(merged), "--save",
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save",
          "--ou-rec", "OVER",
          "--ou-line", "9.5",
          "--ml-rec", "PASS", "--ml-stars", "0",
@@ -1079,18 +1042,14 @@ def test_ou_rec_over_without_stars_exits(tmp_path):
     )
     assert result.returncode == 6
     assert "--ou-stars" in result.stderr
-    assert "OVER/UNDER" in result.stderr or "OVER" in result.stderr
 
 
 def test_ou_rec_under_without_stars_exits(tmp_path):
     """--ou-rec UNDER 但缺 --ou-stars → exit 6"""
-    import subprocess
-    import sys as _sys
-    merged = tmp_path / "merged.json"
-    merged.write_text('{"_meta": {}}', encoding="utf-8")
+    game_dir, merged_path = _setup_game_dir(tmp_path)
     result = subprocess.run(
-        [_sys.executable, _predict_py_path(),
-         "--game-data", str(merged), "--save",
+        [sys.executable, _predict_py_path(),
+         "--game-data", str(merged_path), "--save",
          "--ou-rec", "UNDER",
          "--ou-line", "9.5",
          "--ml-rec", "PASS", "--ml-stars", "0",

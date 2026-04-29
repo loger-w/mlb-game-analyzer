@@ -1149,11 +1149,8 @@ def main():
             final_ou_rec = "PASS"
             final_ou_stars = 0
 
-        # OU-3: 非 PASS 但 stars 未指定 → PASS
-        if final_ou_rec != "PASS" and final_ou_stars is None:
-            print(f"⚠️ O/U 從 {final_ou_rec} 改為 PASS（未指定 --ou-stars）", file=sys.stderr)
-            final_ou_rec = "PASS"
-            final_ou_stars = 0
+        # Invariant: --ou-stars 必填（OVER/UNDER）由 main() 開頭的 P5 validation 保證；PASS 時預設 0
+        assert final_ou_stars is not None, "final_ou_stars unexpectedly None — P5 guard bypassed"
 
         # === 護欄機制：讓分盤（RL-1b 自動推薦 + RL-2 stars required）===
         # 對稱 ML/OU（spec 2026-04-21）：不再讀 confidence，只看 diff + tags + user input
