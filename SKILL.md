@@ -17,7 +17,7 @@ description: Use when the user asks about MLB game predictions, matchup analysis
 
 特定 MLB 比賽的勝負預測 / 對戰組合分析 / 推薦方向（ML / O/U / Run Line）/ 先發投手對決 / 進階數據解讀。
 
-**不適用**：整季預測 / 球員個人比較 / 賽後回顧（轉 `mlb-post-game-review`）/ 歷史統計查詢。
+**不適用**：整季預測 / 球員個人比較 / 賽後回顧 / 歷史統計查詢。
 
 ---
 

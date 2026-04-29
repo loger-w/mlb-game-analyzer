@@ -1150,3 +1150,60 @@ def test_h2_grep_removed_phase3_summary_no_yoy_section_passes(tmp_path):
         capture_output=True, text=True, encoding="utf-8",
     )
     assert result.returncode == 0, f"應不阻擋；stderr={result.stderr}"
+
+
+# ============================================================================
+# TW 時區切換測試（spec 2026-04-29）
+# ============================================================================
+
+def test_extract_game_date_tw_fallback_night_game():
+    """夜場 ET 4/29 21:11 → UTC 2026-04-30T01:11Z → ET_date=4/29 → folder=4/30."""
+    from predict import _extract_game_date_tw
+    args = type("Args", (), {"game_data": None})()
+    meta = {"game_date": "2026-04-30T01:11:00Z"}
+    assert _extract_game_date_tw(args, meta) == "2026-04-30"
+
+
+def test_extract_game_date_tw_fallback_early_day_game():
+    """早場 ET 4/29 11:00 → UTC 2026-04-29T15:00Z → astimezone(TW) 是 4/29 23:00，
+    但 user 規則 folder = ET_date + 1 = 4/30（不是直接 UTC→TW）。"""
+    from predict import _extract_game_date_tw
+    args = type("Args", (), {"game_data": None})()
+    meta = {"game_date": "2026-04-29T15:00:00Z"}
+    assert _extract_game_date_tw(args, meta) == "2026-04-30"
+
+
+def test_extract_game_date_tw_path_based():
+    """path 含 analysis-data/2026-04-30/... 直接拿 path segment。"""
+    from predict import _extract_game_date_tw
+    args = type("Args", (), {"game_data": "analysis-data/2026-04-30/TB@CLE/merged.json"})()
+    meta = {"game_date": "2026-04-30T01:11:00Z"}
+    assert _extract_game_date_tw(args, meta) == "2026-04-30"
+
+
+def test_prediction_summary_includes_open_time_meta():
+    """summary md 應在 H1 後加開打時間 meta 行（TW 為主、ET 副欄）。
+
+    UTC 2026-04-30T01:11:00Z → TW 2026-04-30 09:11 / ET 04-29 21:11
+    """
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(
+        date="2026-04-30",
+        game_time="2026-04-30T01:11:00Z",
+    )
+    md = format_prediction_summary_md(record, {"signals": [], "total_run_adjustment": 0.0}, [])
+    assert "**開打時間**: 2026-04-30 09:11 TW（ET 04-29 21:11）" in md
+    # meta 行緊接在 H1 之後（H1 + 空行 + meta 行 + 空行 + ## TL;DR）
+    away_abbr_kc = "LAA"  # _make_minimal_record default away = Los Angeles Angels
+    home_abbr_kc = "KC"   # default home = Kansas City Royals
+    assert f"# Prediction Summary — {away_abbr_kc} @ {home_abbr_kc} (2026-04-30)\n\n**開打時間**:" in md
+
+
+def test_prediction_summary_open_time_fallback_when_missing():
+    """record 缺 game_time → 顯示「未知」。"""
+    from predict import format_prediction_summary_md
+    record = _make_minimal_record(date="2026-04-30")
+    # 確認 fixture 沒帶 game_time（_make_minimal_record default 沒這欄）
+    assert "game_time" not in record
+    md = format_prediction_summary_md(record, {"signals": [], "total_run_adjustment": 0.0}, [])
+    assert "**開打時間**: 未知" in md

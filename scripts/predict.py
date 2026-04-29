@@ -738,8 +738,23 @@ def format_prediction_summary_md(
 
     tldr_table, full_rows = format_recommendation_rows(record, cap_reasons)
 
+    # 開打時間 meta（spec 2026-04-29）：TW 為主、ET 副欄
+    game_time_iso = record.get("game_time")
+    if game_time_iso:
+        try:
+            utc_dt = datetime.fromisoformat(game_time_iso.replace("Z", "+00:00"))
+            tw_label = utc_dt.astimezone(_TW_TZ).strftime("%Y-%m-%d %H:%M TW")
+            et_label = utc_dt.astimezone(_ET_TZ).strftime("%m-%d %H:%M")
+            time_label = f"{tw_label}（ET {et_label}）"
+        except ValueError:
+            time_label = "未知"
+    else:
+        time_label = "未知"
+
     lines = [
         f"# Prediction Summary — {away_abbr} @ {home_abbr} ({date})",
+        "",
+        f"**開打時間**: {time_label}",
         "",
         "## TL;DR",
         f"- 預測比分: **{home_abbr} {home_score:.1f} − {away_score:.1f} {away_abbr}**"
@@ -861,26 +876,33 @@ def predict_with_formula(data: dict) -> dict:
 
 # ET timezone（MLB 球季 EDT = UTC-4）
 _ET_TZ = timezone(timedelta(hours=-4))
+_TW_TZ = timezone(timedelta(hours=+8))
 _ANALYSIS_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
 
 
-def _extract_game_date_et(args, meta: dict) -> str | None:
-    """Derive game_date_et from --game-data analysis-data path segment, or UTC→ET fallback."""
-    game_date_et = None
+def _extract_game_date_tw(args, meta: dict) -> str | None:
+    """Derive game_date_tw from --game-data analysis-data path segment, or UTC→ET+1 fallback.
+
+    User 規則（spec 2026-04-29）：folder = US gameday slate 用 TW notation = ET_date + 1。
+    early ET day game（ET 4/29 11:00 = TW 4/29 23:00）也歸 ET_date+1（4/30），
+    所以 fallback 用 `astimezone(ET).date() + 1` 而非直接 `astimezone(TW)`。
+    """
+    game_date_tw = None
     if getattr(args, "game_data", None):
         for part in os.path.normpath(args.game_data).split(os.sep):
             if _ANALYSIS_DATE_RE.match(part):
-                game_date_et = part
+                game_date_tw = part
                 break
-    if not game_date_et:
+    if not game_date_tw:
         game_date_iso = meta.get("game_date") or ""
         if game_date_iso:
             try:
                 utc_dt = datetime.fromisoformat(game_date_iso.replace("Z", "+00:00"))
-                game_date_et = utc_dt.astimezone(_ET_TZ).strftime("%Y-%m-%d")
+                et_date = utc_dt.astimezone(_ET_TZ).date()
+                game_date_tw = (et_date + timedelta(days=1)).strftime("%Y-%m-%d")
             except ValueError:
                 pass
-    return game_date_et
+    return game_date_tw
 
 
 def main():
@@ -1012,7 +1034,7 @@ def main():
         home_team = meta.get("home_team") or "HOME"
         away_team = meta.get("away_team") or "AWAY"
 
-        record_date = _extract_game_date_et(args, meta) or _dt.now().strftime("%Y-%m-%d")
+        record_date = _extract_game_date_tw(args, meta) or _dt.now(_TW_TZ).strftime("%Y-%m-%d")
 
         # phase3_summary.md 必須存在（structural 完整性由 phase3_skeleton.md 預填保證）
         if not args.skip_phase3_check:
@@ -1167,11 +1189,6 @@ def main():
             "wind_direction": args.wind_direction,
             "umpire_name": args.umpire,
             "umpire_ou_rate": args.umpire_ou_rate,
-            "actual_winner": None,
-            "actual_home_score": None,
-            "actual_away_score": None,
-            "actual_total": None,
-            "verified": False,
         }
         # 寫入 per-game prediction.json（放在 --game-data 所在資料夾）
         if args.output:
