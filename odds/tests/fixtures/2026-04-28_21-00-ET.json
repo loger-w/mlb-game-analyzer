@@ -1,0 +1,59 @@
+{
+  "snapshot_time_utc": "2026-04-29T01:00:00.000000+00:00",
+  "snapshot_time_et": "2026-04-28 21:00 ET",
+  "credits_remaining": "275",
+  "credits_used": "225",
+  "game_count": 2,
+  "games": [
+    {
+      "game": "Houston Astros @ Baltimore Orioles",
+      "away_team": "Houston Astros",
+      "home_team": "Baltimore Orioles",
+      "commence_utc": "2026-04-28T22:38:00Z",
+      "commence_et": "2026-04-28 18:38 ET",
+      "game_date_et": "2026-04-28",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Baltimore Orioles": { "odds": 1.05, "implied_pct": 95.2 },
+            "Houston Astros":    { "odds": 12.36, "implied_pct": 8.1 }
+          },
+          "ou": {
+            "Over":  { "odds": 1.91, "point": 8.5, "implied_pct": 52.4 },
+            "Under": { "odds": 1.95, "point": 8.5, "implied_pct": 51.3 }
+          },
+          "rl": {
+            "Baltimore Orioles": { "odds": 2.55, "point": -1.5, "implied_pct": 39.2 },
+            "Houston Astros":    { "odds": 1.58, "point":  1.5, "implied_pct": 63.3 }
+          }
+        }
+      }
+    },
+    {
+      "game": "Tampa Bay Rays @ Cleveland Guardians",
+      "away_team": "Tampa Bay Rays",
+      "home_team": "Cleveland Guardians",
+      "commence_utc": "2026-04-29T17:11:00Z",
+      "commence_et": "2026-04-29 13:11 ET",
+      "game_date_et": "2026-04-29",
+      "bookmakers": {
+        "pinnacle": {
+          "title": "Pinnacle",
+          "ml": {
+            "Cleveland Guardians": { "odds": 2.07, "implied_pct": 48.3 },
+            "Tampa Bay Rays":      { "odds": 1.85, "implied_pct": 54.1 }
+          },
+          "ou": {
+            "Over":  { "odds": 1.91, "point": 6.5, "implied_pct": 52.4 },
+            "Under": { "odds": 1.95, "point": 6.5, "implied_pct": 51.3 }
+          },
+          "rl": {
+            "Cleveland Guardians": { "odds": 2.55, "point": -1.5, "implied_pct": 39.2 },
+            "Tampa Bay Rays":      { "odds": 1.58, "point":  1.5, "implied_pct": 63.3 }
+          }
+        }
+      }
+    }
+  ]
+}
