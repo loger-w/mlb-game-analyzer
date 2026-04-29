@@ -32,12 +32,14 @@ def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
         "## 投手對決",
         "",
         f"### {home_p.get('name', '?')} (HOME, {home_info.get('pitch_hand', '?')}HP, {home_age or '?'} {_age_emoji(home_age)})",
-        "- **Tier 覆寫**：<!-- AI 補：覆寫理由 / 或沿用腳本 tier -->",
-        "- 判斷 + 威脅：<!-- AI 補 -->",
+        "- **Tier 覆寫**：<!-- AI 補：覆寫 + 理由 / 或「沿用腳本」 -->",
+        "- 真實水平判斷：<!-- AI 補：基於 ERA/xERA/FIP/Statcast/年齡綜合 -->",
+        "- 對手打線威脅：<!-- AI 補 -->",
         "",
         f"### {away_p.get('name', '?')} (AWAY, {away_info.get('pitch_hand', '?')}HP, {away_age or '?'} {_age_emoji(away_age)})",
         "- **Tier 覆寫**：<!-- AI 補 -->",
-        "- 判斷 + 威脅：<!-- AI 補 -->",
+        "- 真實水平判斷：<!-- AI 補 -->",
+        "- 對手打線威脅：<!-- AI 補 -->",
         "",
     ]
 
@@ -145,9 +147,12 @@ def _render_overall_section() -> list[str]:
     return [
         "## 整體判斷",
         "",
-        "- **方向**：<!-- AI 補 -->　**總分**：<!-- AI 補 -->　**信心**：<!-- AI 補 LOW/MED/HIGH -->",
+        "- **方向（基本面）**：<!-- AI 補 -->",
+        "- **總分（基本面）**：<!-- AI 補 -->",
+        "- **信心**：<!-- AI 補 LOW/MEDIUM/HIGH -->",
         "- **風險**：<!-- AI 補 1-4 點 -->",
-        "- ⛔ MUST NOT contain：星級、明確盤口推薦",
+        "",
+        "⛔ MUST NOT contain：星級、明確盤口推薦",
     ]
 
 
