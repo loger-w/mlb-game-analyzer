@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Smart Money Tracker — 從 odds_snapshots 讀多份快照，輸出 per-TW-game-date Markdown 報告。
+"""Smart Money Tracker — 從 odds_snapshots 讀多份快照，輸出 per-ET-date Markdown 報告。
 
-由 Windows Task Scheduler 在 TW 12 / 15 / 18 / 21 觸發，跑於 fetch_odds.py 之後。
-報告以台灣時區 (TW, UTC+8) 為主：檔名 = TW 開球日，所有顯示時間皆為 TW。
+由 Windows Task Scheduler 在 TW 10 / 00 / 03 / 06 / 09 觸發（= ET 22 prev / 12 / 15 / 18 / 21），
+跑於 fetch_odds.py 之後。報告以 ET 為主時區（與 MLB 賽程、Pinnacle 市場節奏一致）；
+TW 僅作為 OS 排程器的實作細節，不出現在程式碼或報告內容。
 
 CLI:
-  python odds/analyze_smart_money.py                     # 預設今日 TW
-  python odds/analyze_smart_money.py --date 2026-04-30   # TW 開球日；ET 4/29 開打 = TW 4/30
+  python odds/analyze_smart_money.py                     # 預設今日 ET
+  python odds/analyze_smart_money.py --date 2026-04-29   # ET 開球日
   python odds/analyze_smart_money.py --snapshot-dir /custom/path
   python odds/analyze_smart_money.py --reports-dir  /custom/out
 """
@@ -39,8 +40,9 @@ BASE_DIR             = Path(__file__).resolve().parent.parent   # mlb-game-analy
 DEFAULT_SNAPSHOT_DIR = Path(__file__).resolve().parent / "odds_snapshots"
 DEFAULT_REPORTS_DIR  = Path(__file__).resolve().parent / "reports"
 
-# MLB 球季固定 EDT = UTC-4（與 fetch_odds.py 對齊）
+# MLB 球季固定 EDT = UTC-4
 ET = timezone(timedelta(hours=-4))
+# TW 僅用於 rendered_at 副欄顯示（給 TW 使用者方便對時），不參與任何邏輯
 TW = timezone(timedelta(hours=+8))
 
 
@@ -50,8 +52,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Smart Money Tracker")
     p.add_argument(
         "--date",
-        help=("TW game date (YYYY-MM-DD); 預設 = 現在 TW 的日期。"
-              "注意：此為 TW 開球日；ET 4/29 開打的場次應使用 --date 2026-04-30。"),
+        help="ET game date (YYYY-MM-DD); 預設 = 現在 ET 的日期。",
     )
     p.add_argument("--snapshot-dir", default=str(DEFAULT_SNAPSHOT_DIR),
                    help=f"snapshot JSON 目錄;預設 {DEFAULT_SNAPSHOT_DIR}")
@@ -60,14 +61,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return p.parse_args(argv)
 
 
-def _now_tw() -> datetime:
-    return datetime.now(timezone.utc).astimezone(TW)
+def _now_et() -> datetime:
+    return datetime.now(timezone.utc).astimezone(ET)
 
 
 def _format_rendered_at(now_utc: datetime) -> str:
+    """ET 為主、TW 副欄附在後面（給 TW 使用者對時用）。"""
     et = now_utc.astimezone(ET)
     tw = now_utc.astimezone(TW)
-    return f"{tw.strftime('%Y-%m-%d %H:%M TW')}(ET {et.strftime('%H:%M')})"
+    return f"{et.strftime('%Y-%m-%d %H:%M ET')}(TW {tw.strftime('%m-%d %H:%M')})"
 
 
 def _summarize_to_stdout(reports: list[GameMovementReport], out_path: Path) -> None:
@@ -81,8 +83,8 @@ def _summarize_to_stdout(reports: list[GameMovementReport], out_path: Path) -> N
     )
 
 
-def _discover_tw_dates(snapshots: list) -> list[str]:
-    """掃描所有 snapshot 的 commence_utc，回傳出現過的 TW 日期列表（升冪排序）。"""
+def _discover_et_dates(snapshots: list) -> list[str]:
+    """掃描所有 snapshot 的 commence_utc，回傳出現過的 ET 日期列表（升冪排序）。"""
     dates: set[str] = set()
     for snap in snapshots:
         for g in snap.games:
@@ -91,7 +93,7 @@ def _discover_tw_dates(snapshots: list) -> list[str]:
                 continue
             try:
                 utc = datetime.fromisoformat(s.replace("Z", "+00:00"))
-                dates.add(utc.astimezone(TW).strftime("%Y-%m-%d"))
+                dates.add(utc.astimezone(ET).strftime("%Y-%m-%d"))
             except ValueError:
                 continue
     return sorted(dates)
@@ -109,35 +111,34 @@ def main(argv: list[str] | None = None) -> int:
 
     # 1. 載入全部 snapshots（loader 不依日期過濾）
     snapshots = load_snapshots_for_et_date("", snapshot_dir)
-    snapshot_times_tw = [s.snapshot_time_tw.strftime("%m-%d %H:%M") for s in snapshots]
+    snapshot_times_et = [s.snapshot_time_et.strftime("%m-%d %H:%M") for s in snapshots]
 
     if not snapshots:
-        tw_date = args.date or _now_tw().strftime("%Y-%m-%d")
-        out_path = reports_dir / f"{tw_date}.md"
+        et_date = args.date or _now_et().strftime("%Y-%m-%d")
+        out_path = reports_dir / f"{et_date}.md"
         md = render(
-            tw_date=tw_date,
+            et_date=et_date,
             snapshot_count=0,
-            snapshot_times_tw=[],
+            snapshot_times_et=[],
             reports=[],
             rendered_at=rendered_at,
         )
         out_path.write_text(md, encoding="utf-8")
-        print(f"INFO {tw_date} 無 snapshot;寫入空白 md → {out_path}")
+        print(f"INFO {et_date} 無 snapshot;寫入空白 md → {out_path}")
         return 0
 
-    # 2. 決定要產生哪些 TW 日期的報告
-    #    --date 指定 → 只產生那一天；否則自動掃描所有 snapshot 內出現的 TW 日期
-    tw_dates = [args.date] if args.date else _discover_tw_dates(snapshots)
+    # 2. 決定要產生哪些 ET 日期的報告
+    #    --date 指定 → 只產生那一天；否則自動掃描所有 snapshot 內出現的 ET 日期
+    et_dates = [args.date] if args.date else _discover_et_dates(snapshots)
 
     tier_rank = {"major": 0, "significant": 1, "watch": 2, "quiet": 3}
 
-    for tw_date in tw_dates:
-        out_path = reports_dir / f"{tw_date}.md"
-        et_prev = (datetime.strptime(tw_date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
-        print(f"INFO 分析 TW 日期 {tw_date}（含 ET {et_prev} 開打的場次）")
+    for et_date in et_dates:
+        out_path = reports_dir / f"{et_date}.md"
+        print(f"INFO 分析 ET 日期 {et_date}")
 
-        # 3. 組 timeline（只取該 TW 日的場次）
-        timelines = collect_game_timeline(snapshots, tw_date)
+        # 3. 組 timeline（只取該 ET 日的場次）
+        timelines = collect_game_timeline(snapshots, et_date)
 
         # 4. 計算 movements
         reports: list[GameMovementReport] = []
@@ -151,13 +152,13 @@ def main(argv: list[str] | None = None) -> int:
                 )
 
         # 5. tier 排序：major → significant → watch → quiet;同 tier 內按開球時間升冪
-        reports.sort(key=lambda r: (tier_rank.get(r.tier, 9), r.commence_tw))
+        reports.sort(key=lambda r: (tier_rank.get(r.tier, 9), r.commence_et))
 
         # 6. 渲染並寫檔
         md = render(
-            tw_date=tw_date,
+            et_date=et_date,
             snapshot_count=len(snapshots),
-            snapshot_times_tw=snapshot_times_tw,
+            snapshot_times_et=snapshot_times_et,
             reports=reports,
             rendered_at=rendered_at,
         )

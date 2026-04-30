@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "lib"))
 
 from odds_math import decimal_to_implied
-from snapshot_loader import GameRecord, Snapshot, TW, collect_game_timeline, load_snapshots_for_et_date
+from snapshot_loader import GameRecord, Snapshot, ET, collect_game_timeline, load_snapshots_for_et_date
 from movement import (
     FieldMovement,
     GameMovementReport,
@@ -53,12 +53,15 @@ def test_max_tier():
 
 
 # ── compute_game_movement (real fixtures) ─────────────────────────────────────
-# Fixture commence_utc 在 ET 4/27 → game_date_tw = 2026-04-28
+# Fixture commence_utc 在 ET 4/27 → game_date_et = 2026-04-27
 
 def test_tbr_cle_is_major_with_total_cross():
-    """TBR@CLE: CLE ML 54.1→62.5 (+8.4pp) = major; Total 8.5→9.5 跨 9。"""
+    """TBR@CLE: no-vig CLE ML 53.2→61.0 (+7.8pp) = major; Total 8.5→9.5 跨 9。
+
+    註：raw delta 為 +8.4pp（54.1→62.5），no-vig 化後縮為 +7.8pp 但仍 ≥5 落 major。
+    """
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-28")
+    timelines = collect_game_timeline(snapshots, "2026-04-27")
     timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
 
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)   # 22h 前
@@ -67,14 +70,15 @@ def test_tbr_cle_is_major_with_total_cross():
     assert report.tier == "major"
     assert report.tier_downgraded is False
     ml_home = next(f for f in report.fields if f.field == "ml_home")
-    assert ml_home.delta_pp > 8.0
+    assert ml_home.delta_pp >= 5.0          # tier=major 門檻
+    assert ml_home.latest_value_raw > ml_home.anchor_value_raw   # raw 仍可比對
     assert any("跨越 key 9" in c for c in report.key_number_crosses)
 
 
 def test_stl_pit_is_watch():
     """STL@PIT: PIT ML 56.2→57.5 (+1.3pp) = watch；最大 |delta_pp| 落 watch 帶。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-28")
+    timelines = collect_game_timeline(snapshots, "2026-04-27")
     timeline = [t for k, t in timelines.items() if k[0] == "St. Louis Cardinals"][0]
 
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
@@ -87,7 +91,7 @@ def test_stl_pit_is_watch():
 def test_bos_tor_is_quiet():
     """BOS@TOR: 幾乎沒位移 → quiet。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-28")
+    timelines = collect_game_timeline(snapshots, "2026-04-27")
     timeline = [t for k, t in timelines.items() if k[0] == "Boston Red Sox"][0]
 
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
@@ -165,7 +169,7 @@ def test_thin_market_false_for_historical_data():
 def test_just_appeared_anchor_no_crash():
     """timeline 只 1 筆 → window_delta=0 / anchor_age=0、不 crash。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline([snapshots[1]], "2026-04-28")
+    timelines = collect_game_timeline([snapshots[1]], "2026-04-27")
     timeline = list(timelines.values())[0]
     assert len(timeline) == 1
 
@@ -211,6 +215,46 @@ def test_total_point_no_key_cross():
     assert report.key_number_crosses == []
 
 
+def test_total_point_lands_on_key():
+    """anchor 7.5 → latest 7.0 (降落到 key 7) → 應發出『降落 key 7』訊號。
+
+    Sharp 含義：書商選擇停在 key 上承擔 push，與「穿過 key」不同但同樣是接盤訊號。
+    """
+    rec_anchor = _make_record(total_point=7.5, snap_time="00:00")
+    rec_latest = _make_record(total_point=7.0, snap_time="04:00")
+    timeline = [rec_anchor, rec_latest]
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+    assert any("降落 key 7" in c for c in report.key_number_crosses)
+    # land 不應同時被當成 cross
+    assert not any("跨越" in c and "key 7" in c for c in report.key_number_crosses)
+
+
+def test_total_point_leaves_key_no_signal():
+    """anchor 7.0 → latest 7.5 (離開 key 7) → 不應發出任何 key 7 訊號。
+
+    避免拆 signal 設計時的 over-trigger：書商離開 key magnet 的方向解讀不一致，保守處理。
+    """
+    rec_anchor = _make_record(total_point=7.0, snap_time="00:00")
+    rec_latest = _make_record(total_point=7.5, snap_time="04:00")
+    timeline = [rec_anchor, rec_latest]
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+    assert not any("key 7" in c for c in report.key_number_crosses)
+
+
+def test_total_point_crosses_key_emits_cross_signal():
+    """anchor 7.5 → latest 6.5 (嚴格穿過 key 7) → 應發出『跨越 key 7』訊號（既有行為保留）。"""
+    rec_anchor = _make_record(total_point=7.5, snap_time="00:00")
+    rec_latest = _make_record(total_point=6.5, snap_time="04:00")
+    timeline = [rec_anchor, rec_latest]
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+    assert any("跨越 key 7" in c for c in report.key_number_crosses)
+    # 嚴格穿過不應同時觸發 land 訊號
+    assert not any("降落" in c for c in report.key_number_crosses)
+
+
 def test_rl_price_flip_detected():
     """RL home_odds 從 < 2.0 跳到 > 2.0 → flag rl_price_flip。"""
     rec_anchor = _make_record(rl_home_odds=1.95, rl_away_odds=1.91, snap_time="00:00")
@@ -247,7 +291,7 @@ def test_rl_no_flip_same_side():
 def test_direction_label_format():
     """ML home implied +Xpp → label 應含縮寫 + 方向箭頭 + +pp。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-28")
+    timelines = collect_game_timeline(snapshots, "2026-04-27")
     timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
@@ -257,16 +301,65 @@ def test_direction_label_format():
     assert "+" in ml_home.direction_label
 
 
-def test_report_carries_commence_tw():
-    """GameMovementReport 應持有 commence_tw（取代舊 commence_et），格式 'YYYY-MM-DD HH:MM TW'。"""
+def test_report_carries_commence_et():
+    """GameMovementReport 應持有 commence_et，格式 'YYYY-MM-DD HH:MM ET'。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
-    timelines = collect_game_timeline(snapshots, "2026-04-28")
+    timelines = collect_game_timeline(snapshots, "2026-04-27")
     timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
     now_utc = datetime(2026, 4, 27, 0, 0, tzinfo=timezone.utc)
     report = compute_game_movement(timeline, now_utc)
-    assert report.commence_tw.endswith(" TW")
-    # ET 4/27 18:11 (= UTC 22:11) → TW 4/28 06:11
-    assert "2026-04-28 06:11 TW" == report.commence_tw
+    assert report.commence_et.endswith(" ET")
+    # ET 4/27 18:11 (= UTC 22:11)
+    assert "2026-04-27 18:11 ET" == report.commence_et
+
+
+# ── No-vig 專屬 cases ─────────────────────────────────────────────────────────
+
+def test_no_vig_filters_out_juice_thickening():
+    """雙邊 raw 各 +1pp（純 vig 加厚）→ no-vig delta ≈ 0，tier = quiet。
+
+    驗證 no-vig 化能濾掉「莊家整體調 juice」這種無方向訊號的雜訊。
+    """
+    rec_anchor = _make_record(
+        snap_time="00:00",
+        ml_home_imp=51.0, ml_away_imp=51.0,    # raw sum 102
+    )
+    rec_latest = _make_record(
+        snap_time="04:00",
+        ml_home_imp=52.0, ml_away_imp=52.0,    # raw sum 104，雙邊各 +1pp
+    )
+    timeline = [rec_anchor, rec_latest]
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+
+    ml_home = next(f for f in report.fields if f.field == "ml_home")
+    # no-vig anchor = 50/50；no-vig latest = 50/50 → delta ≈ 0
+    assert abs(ml_home.delta_pp) < 0.5
+    assert report.tier == "quiet"
+
+
+def test_no_vig_preserves_asymmetric_move():
+    """home raw +3pp、away raw 不動 → no-vig home 仍應推升至少 watch。
+
+    驗證 no-vig 化保留真正的單邊位移訊號（非純 juice 變化）。
+    """
+    rec_anchor = _make_record(
+        snap_time="00:00",
+        ml_home_imp=50.0, ml_away_imp=50.0,    # 對稱起點
+    )
+    rec_latest = _make_record(
+        snap_time="04:00",
+        ml_home_imp=53.0, ml_away_imp=50.0,    # home +3pp、away 不動
+    )
+    timeline = [rec_anchor, rec_latest]
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+
+    ml_home = next(f for f in report.fields if f.field == "ml_home")
+    # no-vig anchor = 50/50；no-vig latest = 53/103 ≈ 51.5 → delta ≈ +1.5pp
+    assert ml_home.delta_pp >= 1.0
+    assert ml_home.latest_value_raw == 53.0    # raw 仍保留
+    assert report.tier in ("watch", "significant", "major")
 
 
 # ── 輔助：構造單筆 GameRecord ────────────────────────────────────────────────
@@ -285,10 +378,8 @@ def _make_record(
     rl_away_odds: float = 1.95, rl_away_imp: float = 51.3,
 ) -> GameRecord:
     snap_time_dt = datetime.strptime(f"2026-05-01 {snap_time}", "%Y-%m-%d %H:%M")
-    # naive ET → naive TW = +12h（UTC-4 → UTC+8）
-    snap_tw_dt = snap_time_dt + timedelta(hours=12)
     commence_dt = datetime.fromisoformat(commence_utc_iso.replace("Z", "+00:00"))
-    commence_tw = commence_dt.astimezone(TW)
+    commence_et = commence_dt.astimezone(ET)
     pinnacle = {
         "title": "Pinnacle",
         "ml": {
@@ -309,12 +400,9 @@ def _make_record(
         away=away,
         home=home,
         commence_utc=commence_dt,
-        commence_et_label=f"2026-05-01 13:05 ET",
+        commence_et_label=commence_et.strftime("%Y-%m-%d %H:%M ET"),
         pinnacle=pinnacle,
         snapshot_time_et=snap_time_dt,
-        snapshot_time_et_label=snap_time,
-        commence_tw_label=commence_tw.strftime("%Y-%m-%d %H:%M TW"),
-        snapshot_time_tw=snap_tw_dt,
-        snapshot_time_tw_label=snap_tw_dt.strftime("%m-%d %H:%M"),
-        game_date_tw=commence_tw.strftime("%Y-%m-%d"),
+        snapshot_time_et_label=snap_time_dt.strftime("%m-%d %H:%M"),
+        game_date_et=commence_et.strftime("%Y-%m-%d"),
     )

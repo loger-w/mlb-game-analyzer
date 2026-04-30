@@ -1,12 +1,27 @@
 #!/usr/bin/env python3
 """MLB Odds Fetcher — Pinnacle only
-每 4 小時由 Windows Task Scheduler 自動執行，抓取 Pinnacle MLB 賠率快照。
 
-Credit 消耗：3 credits / 次（h2h + totals + spreads，eu region）
-每日 6 次 = 18 credits，月均 ~396 credits（在 500 免費額度內）
+由 Windows Task Scheduler 每天 5 次觸發，抓 Pinnacle MLB 賠率快照。
+Cron 設計用 ET 思考（對齊 MLB 賽程與 Pinnacle 市場節奏），TW 換算僅為排程器的
+實作細節：
 
-只儲存 Pinnacle 賠率（Sharp book，隱含勝率最準確）。
-比賽開打後 Pinnacle 會暫停盤口，因此快照自然只含未開始的比賽。
+    ET 22 (prev day) — opener / 早期市場 anchor
+    ET 12             — 早場 / 日場前 1-2h
+    ET 15             — 早晚場前 1-3h
+    ET 18             — 主流晚場前 1h（Pinnacle 限額峰值）
+    ET 21             — 西岸前 1h
+
+對應 Windows Task Scheduler（TW = ET + 12h）：
+    TW 10 / 00 / 03 / 06 / 09
+
+Credit 消耗：3 credits / 次（h2h + totals + spreads，eu region），5 次/天 = 15/天，
+月均 450 credits，在 500 免費額度內，剩 50 buffer。
+
+只儲存 Pinnacle 賠率（Sharp book，隱含勝率最準確）。比賽開打後 Pinnacle 會暫停
+盤口，loader 端再以 snapshot_time_utc >= commence_utc 過濾賽中污染。
+
+每個 outcome（ml/ou/rl 各邊）落盤時除 raw `implied_pct` 外，亦寫入 vig 剝除後
+的 `no_vig_pct`（雙邊合計 = 100），供下游 movement / report 使用。
 """
 
 import json
@@ -15,6 +30,11 @@ import sys
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone, timedelta
+
+# 讓 lib/ 子模組可被 import（與 analyze_smart_money.py 對齊）
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib"))
+
+from odds_math import no_vig_two_way
 
 # 美東時間（4月-10月為 EDT = UTC-4，11月-3月為 EST = UTC-5）
 # MLB 球季期間固定用 EDT，此處統一設為 UTC-4
@@ -111,9 +131,39 @@ def parse_game(game: dict) -> dict:
                         "implied_pct": implied_prob(o["price"]),
                     }
 
+        _attach_no_vig(bk_data, parsed["home_team"], parsed["away_team"])
         parsed["bookmakers"][bk["key"]] = bk_data
 
     return parsed
+
+
+def _attach_no_vig(bk_data: dict, home: str, away: str) -> None:
+    """對 ml / ou / rl 三個雙邊市場各自計算 no-vig fair %，並寫回 outcome dict。
+
+    任一邊缺 implied_pct 或 ≤ 0 → 該市場不寫 no_vig_pct（呼叫端可自行 fallback 重算）。
+    """
+    # ML：home / away
+    ml = bk_data.get("ml", {})
+    _pair_no_vig(ml.get(home), ml.get(away))
+
+    # Total juice：Over / Under（point 不動，僅 juice 雙邊）
+    ou = bk_data.get("ou", {})
+    _pair_no_vig(ou.get("Over"), ou.get("Under"))
+
+    # RL：home / away
+    rl = bk_data.get("rl", {})
+    _pair_no_vig(rl.get(home), rl.get(away))
+
+
+def _pair_no_vig(side_a: dict | None, side_b: dict | None) -> None:
+    """讀兩個 outcome dict 的 implied_pct，計 no-vig 後 in-place 寫回。"""
+    if not side_a or not side_b:
+        return
+    fair_a, fair_b = no_vig_two_way(side_a.get("implied_pct"), side_b.get("implied_pct"))
+    if fair_a is None or fair_b is None:
+        return
+    side_a["no_vig_pct"] = fair_a
+    side_b["no_vig_pct"] = fair_b
 
 
 def write_log(msg: str):

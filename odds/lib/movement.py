@@ -13,6 +13,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from snapshot_loader import GameKey, GameRecord
+from odds_math import no_vig_two_way
 
 
 # ── 常數 ──────────────────────────────────────────────────────────────────────
@@ -43,10 +44,12 @@ TEAM_ABBREV = {
 @dataclass
 class FieldMovement:
     field: str                    # ml_home / ml_away / total_point / total_juice_over / total_juice_under / rl_home / rl_away
-    anchor_value: float           # 隱含勝率 pp，或 total_point 的 runs
-    latest_value: float
-    delta_pp: float               # 對 total_point 為 runs，其餘為 pp
-    direction_label: str          # 例 "→ CLE +8.4pp" / "Total 8.5 → 9.5"
+    anchor_value: float           # no-vig 隱含勝率 pp，或 total_point 的 runs
+    latest_value: float           # 同上
+    delta_pp: float               # no-vig 差(pp);total_point 為 runs
+    direction_label: str          # 例 "→ CLE +5.2pp(no-vig)" / "Total 8.5 → 9.5"
+    anchor_value_raw: float = 0.0   # raw（含 vig）implied，供 renderer 對照顯示
+    latest_value_raw: float = 0.0   # 同上
 
 
 @dataclass
@@ -54,7 +57,7 @@ class GameMovementReport:
     game_key: GameKey
     away: str
     home: str
-    commence_tw: str
+    commence_et: str
     hours_to_game: float
     is_thin_market: bool
     snapshot_count: int
@@ -108,6 +111,23 @@ def _get_implied(odds_dict: dict) -> float:
     return round(100.0 / d, 1)
 
 
+def _get_no_vig(self_dict: dict, paired_dict: dict) -> float:
+    """讀本側 no_vig_pct；無則用本側+對邊 raw implied 即時 normalize。
+
+    回 0.0 表示無法解出（兩邊都缺）。
+    """
+    nv = self_dict.get("no_vig_pct")
+    if nv is not None:
+        try:
+            return float(nv)
+        except (TypeError, ValueError):
+            pass
+    raw_self = _get_implied(self_dict)
+    raw_other = _get_implied(paired_dict)
+    fair_self, _ = no_vig_two_way(raw_self, raw_other)
+    return fair_self if fair_self is not None else 0.0
+
+
 # ── 主計算 ────────────────────────────────────────────────────────────────────
 
 def compute_game_movement(
@@ -124,12 +144,18 @@ def compute_game_movement(
 
     fields: list[FieldMovement] = []
 
-    # ── ML：home / away 隱含勝率 ──
+    # ── ML：home / away no-vig 隱含勝率（raw 同步保留供 renderer）──
     anc_ml = anchor.pinnacle.get("ml", {}) or {}
     lat_ml = latest.pinnacle.get("ml", {}) or {}
-    for side, team in (("home", home), ("away", away)):
-        anc = _get_implied(anc_ml.get(team, {}))
-        lat = _get_implied(lat_ml.get(team, {}))
+    for side, team, other in (("home", home, away), ("away", away, home)):
+        anc_self = anc_ml.get(team, {}) or {}
+        lat_self = lat_ml.get(team, {}) or {}
+        anc_other = anc_ml.get(other, {}) or {}
+        lat_other = lat_ml.get(other, {}) or {}
+        anc = _get_no_vig(anc_self, anc_other)
+        lat = _get_no_vig(lat_self, lat_other)
+        anc_raw = _get_implied(anc_self)
+        lat_raw = _get_implied(lat_self)
         delta = round(lat - anc, 1)
         fields.append(FieldMovement(
             field=f"ml_{side}",
@@ -137,6 +163,8 @@ def compute_game_movement(
             latest_value=lat,
             delta_pp=delta,
             direction_label=_implied_direction_label(team, anc, lat, delta),
+            anchor_value_raw=anc_raw,
+            latest_value_raw=lat_raw,
         ))
 
     # ── Total：point + juice ──（兩端皆有有效 Over/point 才發出）
@@ -157,15 +185,22 @@ def compute_game_movement(
             delta_pp=round(lat_point - anc_point, 2),   # 注意：runs，不是 pp
             direction_label=_total_point_label(anc_point, lat_point),
         ))
-        # Juice 比較只在 point 相同（且兩端皆有 Over/Under）時有意義
+        # Juice 比較只在 point 相同（且兩端皆有 Over/Under）時有意義；以 no-vig 為主
         if (
             anc_point == lat_point
             and anc_ou.get("Over") and anc_ou.get("Under")
             and lat_ou.get("Over") and lat_ou.get("Under")
         ):
-            for side in ("Over", "Under"):
-                anc = _get_implied(anc_ou.get(side, {}))
-                lat = _get_implied(lat_ou.get(side, {}))
+            pairs = (("Over", "Under"), ("Under", "Over"))
+            for side, other in pairs:
+                anc_self = anc_ou.get(side, {})
+                lat_self = lat_ou.get(side, {})
+                anc_other = anc_ou.get(other, {})
+                lat_other = lat_ou.get(other, {})
+                anc = _get_no_vig(anc_self, anc_other)
+                lat = _get_no_vig(lat_self, lat_other)
+                anc_raw = _get_implied(anc_self)
+                lat_raw = _get_implied(lat_self)
                 delta = round(lat - anc, 1)
                 fields.append(FieldMovement(
                     field=f"total_juice_{side.lower()}",
@@ -173,20 +208,26 @@ def compute_game_movement(
                     latest_value=lat,
                     delta_pp=delta,
                     direction_label=f"{side} {anc:.1f}% → {lat:.1f}% ({delta:+.1f}pp)",
+                    anchor_value_raw=anc_raw,
+                    latest_value_raw=lat_raw,
                 ))
     else:
         anc_point = lat_point = None   # 用於下游 tier / cross 判斷
 
-    # ── RL：home / away 隱含勝率 ──（兩端皆有同隊 RL 才發出）
+    # ── RL：home / away no-vig 隱含勝率 ──（兩端皆有同隊 RL 才發出）
     anc_rl = anchor.pinnacle.get("rl", {}) or {}
     lat_rl = latest.pinnacle.get("rl", {}) or {}
-    for side, team in (("home", home), ("away", away)):
+    for side, team, other in (("home", home, away), ("away", away, home)):
         anc_team = anc_rl.get(team) or {}
         lat_team = lat_rl.get(team) or {}
         if not anc_team or not lat_team:
             continue
-        anc = _get_implied(anc_team)
-        lat = _get_implied(lat_team)
+        anc_other = anc_rl.get(other) or {}
+        lat_other = lat_rl.get(other) or {}
+        anc = _get_no_vig(anc_team, anc_other)
+        lat = _get_no_vig(lat_team, lat_other)
+        anc_raw = _get_implied(anc_team)
+        lat_raw = _get_implied(lat_team)
         delta = round(lat - anc, 1)
         fields.append(FieldMovement(
             field=f"rl_{side}",
@@ -194,6 +235,8 @@ def compute_game_movement(
             latest_value=lat,
             delta_pp=delta,
             direction_label=_implied_direction_label(team, anc, lat, delta, prefix="RL"),
+            anchor_value_raw=anc_raw,
+            latest_value_raw=lat_raw,
         ))
 
     # ── Tier：以 6 個 pp-fields 的 max |delta| 為主 ──
@@ -209,12 +252,20 @@ def compute_game_movement(
             tier = _max_tier(tier, "significant")
         elif point_shift >= 0.5:
             tier = _max_tier(tier, "watch")
-        # ── Key number 跨越（Total）──
+        # ── Key number 跨越 / 降落（Total）──
+        # 拆兩個獨立 signal：
+        #   crossed = 嚴格穿過 (lo < k < hi)，例 7.5 → 6.5
+        #   landed  = 降落到 key (anc != k 且 lat == k)，例 7.5 → 7.0
+        # 「離開 key」(7.0 → 7.5) 不發訊號 — sharp 含義方向不一致，保守處理。
         for k in KEY_NUMBERS_TOTAL:
             lo, hi = min(anc_point, lat_point), max(anc_point, lat_point)
-            if lo < k <= hi and lo != hi:
-                arrow = f"{anc_point} → {lat_point}"
+            crossed = lo < k < hi
+            landed = anc_point != k and lat_point == k
+            arrow = f"{anc_point} → {lat_point}"
+            if crossed:
                 crosses.append(f"Total {arrow} 跨越 key {k}")
+            elif landed:
+                crosses.append(f"Total {arrow} 降落 key {k}")
 
     # ── RL price flip（odds 跨 2.0）──
     for side, team in (("home", home), ("away", away)):
@@ -256,7 +307,7 @@ def compute_game_movement(
         game_key=latest.game_key,
         away=away,
         home=home,
-        commence_tw=latest.commence_tw_label,
+        commence_et=latest.commence_et_label,
         hours_to_game=round(hours_to_game, 1),
         is_thin_market=is_thin,
         snapshot_count=len(timeline),
