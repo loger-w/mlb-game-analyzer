@@ -27,7 +27,7 @@ if sys.platform == "win32":
 # ── 路徑 ─────────────────────────────────────────────────────────────────────
 BASE_DIR     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_FILE     = os.path.join(BASE_DIR, "API_KEY.env")
-SNAPSHOT_DIR = os.path.join(BASE_DIR, "odds_snapshots")
+SNAPSHOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "odds_snapshots")
 LOG_FILE     = os.path.join(BASE_DIR, "odds_fetch.log")
 
 os.makedirs(SNAPSHOT_DIR, exist_ok=True)

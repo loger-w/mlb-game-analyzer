@@ -1,4 +1,4 @@
-"""載入 odds_snapshots/*.json 並組成 per-TW-date timeline。
+"""載入 odds/odds_snapshots/*.json 並組成 per-TW-date timeline。
 
 設計重點：
 - game_key 含 commence_utc（ISO 字串）→ doubleheader-safe

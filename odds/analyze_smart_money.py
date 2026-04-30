@@ -36,7 +36,7 @@ if sys.platform == "win32":
 # ── 路徑 ─────────────────────────────────────────────────────────────────────
 
 BASE_DIR             = Path(__file__).resolve().parent.parent   # mlb-game-analyzer/
-DEFAULT_SNAPSHOT_DIR = BASE_DIR / "odds_snapshots"
+DEFAULT_SNAPSHOT_DIR = Path(__file__).resolve().parent / "odds_snapshots"
 DEFAULT_REPORTS_DIR  = Path(__file__).resolve().parent / "reports"
 
 # MLB 球季固定 EDT = UTC-4（與 fetch_odds.py 對齊）
@@ -81,27 +81,39 @@ def _summarize_to_stdout(reports: list[GameMovementReport], out_path: Path) -> N
     )
 
 
+def _discover_tw_dates(snapshots: list) -> list[str]:
+    """掃描所有 snapshot 的 commence_utc，回傳出現過的 TW 日期列表（升冪排序）。"""
+    dates: set[str] = set()
+    for snap in snapshots:
+        for g in snap.games:
+            s = g.get("commence_utc")
+            if not s:
+                continue
+            try:
+                utc = datetime.fromisoformat(s.replace("Z", "+00:00"))
+                dates.add(utc.astimezone(TW).strftime("%Y-%m-%d"))
+            except ValueError:
+                continue
+    return sorted(dates)
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
 
     now_utc = datetime.now(timezone.utc)
-    tw_date = args.date or _now_tw().strftime("%Y-%m-%d")
     snapshot_dir = Path(args.snapshot_dir)
     reports_dir = Path(args.reports_dir)
     reports_dir.mkdir(parents=True, exist_ok=True)
-    out_path = reports_dir / f"{tw_date}.md"
 
     rendered_at = _format_rendered_at(now_utc)
 
-    # TW 開球日 = ET 開球前一日；於 STDOUT 提示語意
-    et_prev = (datetime.strptime(tw_date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
-    print(f"INFO 分析 TW 日期 {tw_date}（含 ET {et_prev} 開打的場次）")
-
-    # 1. 載入 snapshots（loader 不再依日期過濾，全目錄載入）
-    snapshots = load_snapshots_for_et_date(tw_date, snapshot_dir)
+    # 1. 載入全部 snapshots（loader 不依日期過濾）
+    snapshots = load_snapshots_for_et_date("", snapshot_dir)
     snapshot_times_tw = [s.snapshot_time_tw.strftime("%m-%d %H:%M") for s in snapshots]
 
     if not snapshots:
+        tw_date = args.date or _now_tw().strftime("%Y-%m-%d")
+        out_path = reports_dir / f"{tw_date}.md"
         md = render(
             tw_date=tw_date,
             snapshot_count=0,
@@ -113,35 +125,45 @@ def main(argv: list[str] | None = None) -> int:
         print(f"INFO {tw_date} 無 snapshot;寫入空白 md → {out_path}")
         return 0
 
-    # 2. 組 timeline
-    timelines = collect_game_timeline(snapshots, tw_date)
+    # 2. 決定要產生哪些 TW 日期的報告
+    #    --date 指定 → 只產生那一天；否則自動掃描所有 snapshot 內出現的 TW 日期
+    tw_dates = [args.date] if args.date else _discover_tw_dates(snapshots)
 
-    # 3. 計算 movements
-    reports: list[GameMovementReport] = []
-    for timeline in timelines.values():
-        try:
-            reports.append(compute_game_movement(timeline, now_utc))
-        except Exception as e:
-            print(
-                f"[analyze_smart_money] WARN 計算失敗 game={timeline[0].away}@{timeline[0].home}: {e}",
-                file=sys.stderr,
-            )
-
-    # 4. tier 排序：major → significant → watch → quiet;同 tier 內按開球時間升冪
     tier_rank = {"major": 0, "significant": 1, "watch": 2, "quiet": 3}
-    reports.sort(key=lambda r: (tier_rank.get(r.tier, 9), r.commence_tw))
 
-    # 5. 渲染並寫檔
-    md = render(
-        tw_date=tw_date,
-        snapshot_count=len(snapshots),
-        snapshot_times_tw=snapshot_times_tw,
-        reports=reports,
-        rendered_at=rendered_at,
-    )
-    out_path.write_text(md, encoding="utf-8")
+    for tw_date in tw_dates:
+        out_path = reports_dir / f"{tw_date}.md"
+        et_prev = (datetime.strptime(tw_date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+        print(f"INFO 分析 TW 日期 {tw_date}（含 ET {et_prev} 開打的場次）")
 
-    _summarize_to_stdout(reports, out_path)
+        # 3. 組 timeline（只取該 TW 日的場次）
+        timelines = collect_game_timeline(snapshots, tw_date)
+
+        # 4. 計算 movements
+        reports: list[GameMovementReport] = []
+        for timeline in timelines.values():
+            try:
+                reports.append(compute_game_movement(timeline, now_utc))
+            except Exception as e:
+                print(
+                    f"[analyze_smart_money] WARN 計算失敗 game={timeline[0].away}@{timeline[0].home}: {e}",
+                    file=sys.stderr,
+                )
+
+        # 5. tier 排序：major → significant → watch → quiet;同 tier 內按開球時間升冪
+        reports.sort(key=lambda r: (tier_rank.get(r.tier, 9), r.commence_tw))
+
+        # 6. 渲染並寫檔
+        md = render(
+            tw_date=tw_date,
+            snapshot_count=len(snapshots),
+            snapshot_times_tw=snapshot_times_tw,
+            reports=reports,
+            rendered_at=rendered_at,
+        )
+        out_path.write_text(md, encoding="utf-8")
+        _summarize_to_stdout(reports, out_path)
+
     return 0
 
 
