@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-30",
+  "game_time": "2026-04-29T19:10:00Z",
+  "game": "Miami Marlins vs Los Angeles Dodgers",
+  "home_team": "Los Angeles Dodgers",
+  "away_team": "Miami Marlins",
+  "home_sp": "Tyler Glasnow",
+  "away_sp": "Sandy Alcantara",
+  "home_sp_starts": 5,
+  "away_sp_starts": 6,
+  "venue": "UNIQLO Field at Dodger Stadium",
+  "game_pk": 823958,
+  "predicted_winner": "HOME",
+  "predicted_home_pct": 56.3,
+  "predicted_home_score": 4.55,
+  "predicted_away_score": 1.95,
+  "predicted_total": 6.5,
+  "formula_home_score": 4.8,
+  "formula_away_score": 2.2,
+  "pre_signal_total": 7.0,
+  "adjusted_total": 6.5,
+  "signal_adjustments": {
+    "both_aces_strong_plus": -1.0,
+    "lad_bullpen_core_il": 0.3,
+    "mia_bullpen_core_il": 0.3
+  },
+  "ou_line": 8.5,
+  "ou_rec": "UNDER",
+  "ou_stars": 4,
+  "run_line_rec": "LAD",
+  "run_line": null,
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "big-diff",
+    "diff": 2.6,
+    "stars": 2,
+    "tags": [],
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 0,
+  "confidence": "MEDIUM",
+  "tags": [
+    "ace-duel",
+    "weak-vs-elite",
+    "dodger-stadium"
+  ],
+  "park_factor": 98.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null
+}

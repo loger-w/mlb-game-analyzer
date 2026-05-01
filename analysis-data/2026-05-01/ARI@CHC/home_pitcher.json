@@ -1,0 +1,104 @@
+{
+  "name": "Colin Rea",
+  "mlbam_id": 607067,
+  "age": 35,
+  "birth_date": "1990-07-01",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟢 Back-end Starter",
+  "season": {
+    "era": 4.61,
+    "whip": 1.28,
+    "k_pct": 20.5,
+    "bb_pct": 7.7,
+    "k_bb_pct": 12.8,
+    "fip": 3.76,
+    "xfip": 3.52,
+    "hr_per_9": 0.99,
+    "gb_pct": 56.1,
+    "ip": 27.333333333333332,
+    "games": 6,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 4.27,
+    "xwoba": 0.326,
+    "xba": 0.255
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 96.0,
+    "hard_hit_pct": 27.7,
+    "pitch_types": {
+      "FF": 38.8,
+      "FS": 17.1,
+      "SL": 12.7,
+      "SI": 10.3,
+      "FC": 8.0
+    },
+    "barrel_pct": 7.2,
+    "ev95percent": 47.0,
+    "whiff_pct": 8.9,
+    "csw_pct": 25.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Los Angeles Angels",
+      "ip": 3.0,
+      "era": 6.0,
+      "k": 4,
+      "bb": 0,
+      "h": 4,
+      "er": 2,
+      "pitches": 42,
+      "strikes": 27
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Cleveland Guardians",
+      "ip": 3.3333333333333335,
+      "era": 4.26,
+      "k": 4,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 57,
+      "strikes": 37
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Tampa Bay Rays",
+      "ip": 5.0,
+      "era": 3.18,
+      "k": 2,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 79,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".288",
+      "obp": ".342",
+      "slg": ".424",
+      "k": 15,
+      "bb": 6,
+      "bf": 74,
+      "k_pct": 20.3,
+      "bb_pct": 8.1
+    },
+    "vs_right": {
+      "avg": ".179",
+      "obp": ".256",
+      "slg": ".256",
+      "k": 9,
+      "bb": 3,
+      "bf": 43,
+      "k_pct": 20.9,
+      "bb_pct": 7.0
+    }
+  }
+}
