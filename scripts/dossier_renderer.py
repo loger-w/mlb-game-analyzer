@@ -18,17 +18,9 @@ from pathlib import Path
 
 from fetch_game_data import format_game_times
 
-PA_FLOOR = 30  # Top 5 候選池下限（PA ≥ 30）
+from park_factors_lib import get_park_factor
 
-# ---------------------------------------------------------------------------
-# Park factor data (for park notes in bullpen/park section)
-# ---------------------------------------------------------------------------
-_PF_DATA_PATH = Path(__file__).parent / "data" / "park_factors.json"
-try:
-    with open(_PF_DATA_PATH, encoding="utf-8") as _f:
-        _PARK_FACTORS: dict = json.load(_f).get("park_factors", {})
-except Exception:
-    _PARK_FACTORS = {}
+PA_FLOOR = 30  # Top 5 候選池下限（PA ≥ 30）
 
 
 # ---------------------------------------------------------------------------
@@ -40,6 +32,21 @@ def _il_names_from_roster(roster: dict | None) -> set[str]:
     if not roster:
         return set()
     return {p.get("name") for p in roster.get("injured_list", []) if p.get("name")}
+
+
+def il_pitcher_count(roster: dict | None) -> int:
+    """從 roster_checker.py 輸出計算 IL 上的投手人數（含先發 / 長傷 60-day）。
+
+    注意：API 不直接給 reliever role，所以這個 count 是「投手 IL 全體」，
+    不是「核心牛棚 IL」。matchup-factors.md §牛棚傷兵累計效應 的「核心 IL」
+    估計交由 summary.md 的 AI placeholder 補完。
+    """
+    if not roster:
+        return 0
+    return sum(
+        1 for p in roster.get("injured_list", []) or []
+        if (p.get("position") or "").lower() in ("pitcher", "p")
+    )
 
 
 def select_top5_vs_pitcher(lineup: dict | None, il_names: set[str]) -> list[dict]:
@@ -479,8 +486,12 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
             flag = t.get("flag", "?")
             val = t.get("value")
             name = t.get("name", "")
-            if val is not None:
-                parts.append(f"era_xera_delta={val:.2f}（Flag {flag}）")
+            if name == "ERA-xERA gap" and val is not None:
+                parts.append(f"era_xera_delta={val:+.2f}（Flag {flag}）")
+            elif name == "Small-sample regression risk" and val is not None:
+                parts.append(f"prior_year_regression={val:+.2f}（Flag {flag}, IP<30）")
+            elif val is not None:
+                parts.append(f"{name}={val}（Flag {flag}）")
             else:
                 parts.append(f"{name}（Flag {flag}）")
         return " / ".join(parts)
@@ -682,8 +693,8 @@ def _render_bullpen_park(bundle: dict) -> list[str]:
     park_factor = merged.get("park_factor")
     pf_str = _v(park_factor, 0) if park_factor is not None else "—"
 
-    # Park note: look up hr_pf
-    pf_data = _PARK_FACTORS.get(venue) or {}
+    # Park note: 透過 park_factors_lib 解 alias（Tropicana → Steinbrenner 等）
+    pf_data = get_park_factor(venue)
     hr_pf = pf_data.get("hr_pf")
     if hr_pf is not None and venue:
         delta_pct = hr_pf - 100
@@ -701,8 +712,8 @@ def _render_bullpen_park(bundle: dict) -> list[str]:
         "| | HOME | AWAY |",
         "|---|------|------|",
         f"| Bullpen ERA | {h_bullpen_era} | {a_bullpen_era} |",
-        f"| 投手 IL 數 | {h_il_count} | {a_il_count} |",
-        f"| 核心 IL | {h_core_il} | {a_core_il} |",
+        f"| 投手 IL 數（含先發/長傷） | {h_il_count} | {a_il_count} |",
+        f"| IL 名單（前 2） | {h_core_il} | {a_core_il} |",
         f"| Park Factor (runs) | {pf_str} | — |",
         f"| Park 備註 | {park_note} | — |",
         "",
@@ -777,7 +788,7 @@ def _render_risk_summary(bundle: dict) -> list[str]:
             f"— 可能回歸或可能持續？AI 判斷，**不自動 ±run value**"
         )
 
-    lines = ["## ⚠️ 風險提示摘要（AI 在 phase3_summary 風險提示段處理）"]
+    lines = ["## ⚠️ 風險提示摘要（AI 在 summary 風險提示段處理）"]
     if items:
         lines.extend(items)
     else:
@@ -787,8 +798,13 @@ def _render_risk_summary(bundle: dict) -> list[str]:
     return lines
 
 
-def _render_file_index(bundle: dict, game_dir: str) -> list[str]:
-    """## File 索引 section."""
+def _render_file_index(
+    bundle: dict, game_dir: str, summary_filename: str = "summary.md"
+) -> list[str]:
+    """## File 索引 section.
+
+    summary_filename: DH 場次帶 suffix（如 "summary-G1.md"），由 render_dossier 傳入。
+    """
     # Use POSIX forward slashes regardless of OS path separators
     posix_dir = Path(game_dir).as_posix() if game_dir else ""
     if posix_dir and not posix_dir.endswith("/"):
@@ -797,7 +813,7 @@ def _render_file_index(bundle: dict, game_dir: str) -> list[str]:
     lines = [
         "## File 索引",
         f"- merged.json (機讀資料): `{posix_dir}merged.json`",
-        f"- 分析寫作: `{posix_dir}phase3_summary.md`",
+        f"- 分析寫作: `{posix_dir}{summary_filename}`",
         f"- 個別 detail summary（drill-down / debug）: 同目錄下 `<basename>_summary.md`",
         "",
     ]
@@ -808,10 +824,13 @@ def _render_file_index(bundle: dict, game_dir: str) -> list[str]:
 # Main entry point
 # ---------------------------------------------------------------------------
 
-def render_dossier(bundle: dict, *, game_dir: str = "") -> str:
+def render_dossier(
+    bundle: dict, *, game_dir: str = "", summary_filename: str = "summary.md"
+) -> str:
     """主入口：渲染整份 dossier.md，回傳 markdown 字串（不寫檔；caller 寫檔）。
 
     game_dir: 用於 markdown 內 File 索引段的路徑文字（不開檔）。
+    summary_filename: DH 場次帶 suffix（如 "summary-G1.md"），不指定時用 default。
     """
     sections: list[str] = []
     sections += _render_header(bundle)
@@ -822,6 +841,6 @@ def render_dossier(bundle: dict, *, game_dir: str = "") -> str:
     sections += _render_lineup_overview(bundle)
     sections += _render_bullpen_park(bundle)
     sections += _render_risk_summary(bundle)
-    sections += _render_file_index(bundle, game_dir)
+    sections += _render_file_index(bundle, game_dir, summary_filename=summary_filename)
 
     return "\n".join(sections)

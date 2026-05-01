@@ -468,7 +468,7 @@ def detect_triggers(data: dict) -> list[dict]:
                     else "ERA 顯著高於 xERA（壓制力被掩蓋，預示反彈）"
                 ),
                 "action": (
-                    "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_summary.md「## 風險提示」段判讀"
+                    "腳本層自動標 ⚠️ 風險提示；AI 於 summary.md「## 風險提示」段判讀"
                     "（運氣 / 結構性退化 / 樣本噪音），不自動補跑 YoY、不自動下修預測。"
                     "詳見 reference/flags-checklist.md §8"
                 ),
@@ -494,7 +494,7 @@ def detect_triggers(data: dict) -> list[dict]:
             },
             "interpretation": "本季 ERA 大幅優於去年但樣本不足 → 預示回歸",
             "action": (
-                "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_summary.md「## 風險提示」段判讀"
+                "腳本層自動標 ⚠️ 風險提示；AI 於 summary.md「## 風險提示」段判讀"
                 "（小樣本 / 回歸風險），不自動補跑 YoY、不自動下修預測。"
                 "詳見 reference/flags-checklist.md §8"
             ),

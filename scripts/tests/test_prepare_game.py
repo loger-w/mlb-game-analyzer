@@ -62,13 +62,13 @@ def test_compute_output_dir_explicit_override():
 def test_dossier_filename_no_suffix():
     from prepare_game import dossier_filename, summary_filename
     assert dossier_filename(None) == "dossier.md"
-    assert summary_filename(None) == "phase3_summary.md"
+    assert summary_filename(None) == "summary.md"
 
 
 def test_dossier_filename_with_suffix():
     from prepare_game import dossier_filename, summary_filename
     assert dossier_filename("G1") == "dossier-G1.md"
-    assert summary_filename("G2") == "phase3_summary-G2.md"
+    assert summary_filename("G2") == "summary-G2.md"
 
 
 def test_run_step_subprocess_failure_exits_with_propagated_code(monkeypatch, tmp_path):

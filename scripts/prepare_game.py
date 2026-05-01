@@ -8,10 +8,11 @@ Step 順序：
   D) lineup_analyzer × 2（用 Step A 的 mlbam_id，雙隊平行）
   E) merge_game_data → merged.json
   F) dossier_renderer → dossier.md
-  G) phase3_summary_renderer → phase3_summary.md（含 AI 填空 placeholder）
+  G) summary_renderer → summary.md（含 AI 填空 placeholder）
 
 Exit codes：
   0 = success
+  1 = 子腳本找不到 / FileNotFoundError
   2 = gameType ≠ "R"
   3 = 雙隊未對戰
   4 = doubleheader 未指定 --game-suffix
@@ -63,7 +64,7 @@ def dossier_filename(suffix: str | None) -> str:
 
 
 def summary_filename(suffix: str | None) -> str:
-    return f"phase3_summary-{suffix}.md" if suffix else "phase3_summary.md"
+    return f"summary-{suffix}.md" if suffix else "summary.md"
 
 
 def run_step(label: str, cmd: list[str]) -> str:
@@ -359,17 +360,21 @@ def _load_bundle(output_dir: Path) -> dict:
     return bundle
 
 
-def step_f(*, output_dir: Path, dossier_path: Path) -> None:
-    """Step F: 渲染 dossier.md。"""
+def step_f(*, output_dir: Path, dossier_path: Path, game_suffix: str | None = None) -> None:
+    """Step F: 渲染 dossier.md（File 索引段帶 DH suffix-aware summary 檔名）。"""
     from dossier_renderer import render_dossier
     print(f"[F] dossier.md       → {dossier_path}", file=sys.stderr)
     bundle = _load_bundle(output_dir)
-    md = render_dossier(bundle, game_dir=str(output_dir))
+    md = render_dossier(
+        bundle,
+        game_dir=str(output_dir),
+        summary_filename=summary_filename(game_suffix),
+    )
     dossier_path.write_text(md, encoding="utf-8")
 
 
 def step_g(*, output_dir: Path, summary_path: Path, force: bool = False) -> None:
-    """Step G: 渲染 phase3_summary.md template（含 AI 填空 placeholder）。
+    """Step G: 渲染 summary.md template（含 AI 填空 placeholder）。
 
     防呆：若 summary 檔已存在且不含 `<!-- AI 補` placeholder，視為「分析師已寫完」，
     保留不覆蓋；用 --force 強制重產（會覆蓋分析師的內容）。
@@ -384,9 +389,9 @@ def step_g(*, output_dir: Path, summary_path: Path, force: bool = False) -> None
             )
             return
 
-    from phase3_summary_renderer import render_summary
+    from summary_renderer import render_summary
     from scoring_formula import predict_with_formula
-    print(f"[G] phase3_summary  → {summary_path}", file=sys.stderr)
+    print(f"[G] summary  → {summary_path}", file=sys.stderr)
     bundle = _load_bundle(output_dir)
     formula_pred = predict_with_formula(bundle.get("merged", {}))
     md = render_summary(bundle, formula_pred)
@@ -402,7 +407,7 @@ def _print_risk_notes(output_dir: Path) -> None:
 
     無論是否有 Flag 觸發，header 都必須輸出；無 Flag 時輸出「（無）」。
     """
-    print("⚠️  Risk Notes (AI 在 phase3_summary 風險提示段處理):", file=sys.stderr)
+    print("⚠️  Risk Notes (AI 在 summary 風險提示段處理):", file=sys.stderr)
 
     merged_path = output_dir / "merged.json"
     if not merged_path.exists():
@@ -412,14 +417,15 @@ def _print_risk_notes(output_dir: Path) -> None:
 
     risk_lines = []
     for side, label in [("home", "主隊"), ("away", "客隊")]:
-        # Flag 8: |ERA - xERA| ≥ 1.5
+        # Flag 8: |ERA - xERA| ≥ 1.5（signed delta；abs() 比閾值）
         p = merged.get(f"{side}_pitcher", {}) or {}
         delta = p.get("era_xera_delta")
         if delta is not None:
             try:
-                if float(delta) >= 1.5:
+                d = float(delta)
+                if abs(d) >= 1.5:
                     risk_lines.append(
-                        f"  ⚠️  Flag 8 ({label}投手): |ERA-xERA| = {delta:.2f} ≥ 1.5"
+                        f"  ⚠️  Flag 8 ({label}投手): ERA-xERA = {d:+.2f}（|Δ| ≥ 1.5）"
                     )
             except (ValueError, TypeError):
                 pass
@@ -499,7 +505,7 @@ def main(argv: list[str] | None = None) -> int:
     # Steps F + G — sequential; wait for E
     dossier_path = output_dir / dossier_filename(args.game_suffix)
     summary_path = output_dir / summary_filename(args.game_suffix)
-    step_f(output_dir=output_dir, dossier_path=dossier_path)
+    step_f(output_dir=output_dir, dossier_path=dossier_path, game_suffix=args.game_suffix)
     step_g(output_dir=output_dir, summary_path=summary_path, force=args.force)
 
     # Risk Notes to stderr

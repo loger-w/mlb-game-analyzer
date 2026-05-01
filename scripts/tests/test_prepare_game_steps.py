@@ -499,7 +499,7 @@ def test_step_f_writes_dossier_md(monkeypatch, tmp_path):
     # Mock dossier_renderer.render_dossier
     import types
     fake_module = types.ModuleType("dossier_renderer")
-    fake_module.render_dossier = lambda bundle, game_dir="": "# Dossier\nContent here"
+    fake_module.render_dossier = lambda bundle, game_dir="", summary_filename="summary.md": "# Dossier\nContent here"
     monkeypatch.setitem(sys.modules, "dossier_renderer", fake_module)
 
     dossier_path = tmp_path / "dossier.md"
@@ -518,15 +518,15 @@ def test_step_g_writes_summary_md(monkeypatch, tmp_path):
     monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
 
     import types
-    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer = types.ModuleType("summary_renderer")
     fake_renderer.render_summary = lambda bundle, formula_pred: "# Summary <!-- AI 補 -->"
-    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
+    monkeypatch.setitem(sys.modules, "summary_renderer", fake_renderer)
 
     fake_pred = types.ModuleType("scoring_formula")
     fake_pred.predict_with_formula = lambda merged: {"home_score": 4, "away_score": 3}
     monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
 
-    summary_path = tmp_path / "phase3_summary.md"
+    summary_path = tmp_path / "summary.md"
     step_g(output_dir=tmp_path, summary_path=summary_path)
 
     assert summary_path.exists()
@@ -538,15 +538,15 @@ def test_step_g_skips_overwrite_when_no_placeholder(monkeypatch, tmp_path):
     from prepare_game import step_g
 
     (tmp_path / "merged.json").write_text('{}', encoding="utf-8")
-    summary_path = tmp_path / "phase3_summary.md"
+    summary_path = tmp_path / "summary.md"
     edited_content = "# Already analyzed\nSome real conclusions written by analyst."
     summary_path.write_text(edited_content, encoding="utf-8")
 
     monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
     import types
-    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer = types.ModuleType("summary_renderer")
     fake_renderer.render_summary = lambda bundle, formula_pred: "# OVERWRITTEN <!-- AI 補 -->"
-    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
+    monkeypatch.setitem(sys.modules, "summary_renderer", fake_renderer)
     fake_pred = types.ModuleType("scoring_formula")
     fake_pred.predict_with_formula = lambda merged: {}
     monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
@@ -560,14 +560,14 @@ def test_step_g_force_overwrites_edited(monkeypatch, tmp_path):
     from prepare_game import step_g
 
     (tmp_path / "merged.json").write_text('{}', encoding="utf-8")
-    summary_path = tmp_path / "phase3_summary.md"
+    summary_path = tmp_path / "summary.md"
     summary_path.write_text("# Edited content (no placeholder)", encoding="utf-8")
 
     monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
     import types
-    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer = types.ModuleType("summary_renderer")
     fake_renderer.render_summary = lambda bundle, formula_pred: "# FRESH <!-- AI 補 -->"
-    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
+    monkeypatch.setitem(sys.modules, "summary_renderer", fake_renderer)
     fake_pred = types.ModuleType("scoring_formula")
     fake_pred.predict_with_formula = lambda merged: {}
     monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
@@ -654,12 +654,12 @@ def test_main_full_integration(monkeypatch, tmp_path):
 
     # Set up fake dossier/skeleton modules
     fake_dossier = types.ModuleType("dossier_renderer")
-    fake_dossier.render_dossier = lambda bundle, game_dir="": "# Dossier"
+    fake_dossier.render_dossier = lambda bundle, game_dir="", summary_filename="summary.md": "# Dossier"
     monkeypatch.setitem(sys.modules, "dossier_renderer", fake_dossier)
 
-    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer = types.ModuleType("summary_renderer")
     fake_renderer.render_summary = lambda bundle, formula_pred: "# Summary <!-- AI 補 -->"
-    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
+    monkeypatch.setitem(sys.modules, "summary_renderer", fake_renderer)
 
     fake_pred = types.ModuleType("scoring_formula")
     fake_pred.predict_with_formula = lambda merged: {}

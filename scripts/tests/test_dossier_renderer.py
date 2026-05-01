@@ -466,7 +466,7 @@ def test_render_file_index():
     text = "\n".join(lines)
     assert "## File 索引" in text
     assert "merged.json" in text
-    assert "phase3_summary.md" in text
+    assert "summary.md" in text
     assert "analysis-data/2026-04-28/TB@CLE/" in text
 
 

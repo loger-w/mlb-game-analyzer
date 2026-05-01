@@ -1,4 +1,7 @@
-"""phase3_summary.md template renderer：產生 7 個 H2 + 預填數值表 + AI 填空 placeholder。
+"""summary.md template renderer：產生 7 個 H2 + 預填數值表 + AI 填空 placeholder。
+
+注意：與 dossier 同目錄的 `<basename>_summary.md`（drill-down 用）是不同的檔，
+那些由各 source 腳本的 `format_md()` 產出。本模組只負責 pipeline 最終輸出 `summary.md`。
 
 設計：
 - 7 個 H2 永遠存在（即使 Flag 未觸發）
@@ -8,39 +11,31 @@
 - ## 修正後預期得分 段：base 列從 formula_pred 預填
 - 其餘為 AI 填空 (`<!-- AI 補：... -->`)
 - AI 填完所有 placeholder 即為最終輸出（不需另存檔）
+
+Schema 對齊：直接讀 pitcher_stats / lineup_analyzer / roster_checker / merge_game_data
+真實 top-level 欄位，避免 schema drift。
 """
 
 
-def _age_emoji(age: int | None) -> str:
-    """投手年齡退化 emoji；委派給 pitcher_stats.AGE_ASSESSMENT_PITCHER（單一真相來源）"""
-    if age is None:
-        return ""
-    try:
-        from pitcher_stats import AGE_ASSESSMENT_PITCHER
-    except ImportError:
-        return ""
-    for (lo, hi), label in AGE_ASSESSMENT_PITCHER.items():
-        if lo <= age <= hi:
-            return label
-    return ""
-
-
 def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
-    home_p = bundle.get("home_pitcher", {})
-    away_p = bundle.get("away_pitcher", {})
-    home_info = home_p.get("info", {})
-    away_info = away_p.get("info", {})
-    home_age = home_info.get("age")
-    away_age = away_info.get("age")
+    home_p = bundle.get("home_pitcher") or {}
+    away_p = bundle.get("away_pitcher") or {}
+    # pitcher_stats 真實 schema：top-level pitch_hand / age / age_assessment
+    home_age = home_p.get("age")
+    away_age = away_p.get("age")
+    home_hand = home_p.get("pitch_hand", "?")
+    away_hand = away_p.get("pitch_hand", "?")
+    home_age_tag = home_p.get("age_assessment", "")
+    away_age_tag = away_p.get("age_assessment", "")
     return [
         "## 投手對決",
         "",
-        f"### {home_p.get('name', '?')} (HOME, {home_info.get('pitch_hand', '?')}HP, {home_age or '?'} {_age_emoji(home_age)})",
+        f"### {home_p.get('name', '?')} (HOME, {home_hand}HP, {home_age or '?'} {home_age_tag})".rstrip(),
         "- **Tier 覆寫**：<!-- AI 補：覆寫 + 理由 / 或「沿用腳本」 -->",
         "- 真實水平判斷：<!-- AI 補：基於 ERA/xERA/FIP/Statcast/年齡綜合 -->",
         "- 對手打線威脅：<!-- AI 補 -->",
         "",
-        f"### {away_p.get('name', '?')} (AWAY, {away_info.get('pitch_hand', '?')}HP, {away_age or '?'} {_age_emoji(away_age)})",
+        f"### {away_p.get('name', '?')} (AWAY, {away_hand}HP, {away_age or '?'} {away_age_tag})".rstrip(),
         "- **Tier 覆寫**：<!-- AI 補 -->",
         "- 真實水平判斷：<!-- AI 補 -->",
         "- 對手打線威脅：<!-- AI 補 -->",
@@ -49,29 +44,36 @@ def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
 
 
 def _render_lineup_section(bundle: dict) -> list[str]:
-    home_l = bundle.get("home_lineup", {})
-    away_l = bundle.get("away_lineup", {})
+    home_l = bundle.get("home_lineup") or {}
+    away_l = bundle.get("away_lineup") or {}
+    # lineup_analyzer 真實 schema：top-level tier / recent_heat（已含 emoji）
     return [
         "## 打線評級",
         "",
-        f"### HOME — {home_l.get('tier_emoji', '?')} / {home_l.get('heat_emoji', '?')}",
+        f"### HOME — {home_l.get('tier', '?')} / {home_l.get('recent_heat', '?')}",
         "- **Tier 覆寫**：<!-- AI 補 -->",
         "",
-        f"### AWAY — {away_l.get('tier_emoji', '?')} / {away_l.get('heat_emoji', '?')}",
+        f"### AWAY — {away_l.get('tier', '?')} / {away_l.get('recent_heat', '?')}",
         "- **Tier 覆寫**：<!-- AI 補 -->",
         "",
     ]
 
 
 def _render_bullpen_section(bundle: dict) -> list[str]:
-    m = bundle.get("merged", {})
+    from dossier_renderer import il_pitcher_count
+    m = bundle.get("merged") or {}
+    home_il = il_pitcher_count(bundle.get("home_roster"))
+    away_il = il_pitcher_count(bundle.get("away_roster"))
     return [
         "## 牛棚",
         "",
         "| | HOME | AWAY |",
         "|---|---|---|",
-        f"| ERA / IL 數 / 核心 IL 估計 | {m.get('home_bullpen_era', '?')} / {m.get('home_bullpen_il_count', '?')} / <!-- AI --> | "
-        f"{m.get('away_bullpen_era', '?')} / {m.get('away_bullpen_il_count', '?')} / <!-- AI --> |",
+        f"| ERA / 投手 IL / 核心 IL 估計 | {m.get('home_bullpen_era', '?')} / {home_il} / <!-- AI --> | "
+        f"{m.get('away_bullpen_era', '?')} / {away_il} / <!-- AI --> |",
+        "",
+        "> 「投手 IL」含先發 / 60-day 長傷；「核心 IL」（Closer + Setup + High-leverage）由 AI 從 dossier 名單估計，"
+        "對應 `matchup-factors.md` §牛棚傷兵累計效應 的 1 / 2 / 3+ 名分級。",
         "",
         "### 牛棚影響判讀",
         "- HOME 牛棚：<!-- AI 補：可用性 / 近 3 天消耗 / 對對手末段威脅 -->",
@@ -94,10 +96,18 @@ def _detect_risk_notes(bundle: dict) -> list[str]:
     for side in ("home", "away"):
         triggers = detect_pitcher_triggers(bundle.get(f"{side}_pitcher", {}))
         for t in triggers:
-            if t.get("flag") == 8:
-                gap = t.get("value", "?")
-                notes.append(f"- ⚠️ {side.upper()} 投手 Flag 8 (era_xera_delta={gap}):")
-                notes.append("  - <!-- AI 補：是運氣還結構性？是否影響本場判斷？不自動下修預測 -->")
+            if t.get("flag") != 8:
+                continue
+            val = t.get("value")
+            name = t.get("name", "")
+            if name == "ERA-xERA gap" and val is not None:
+                detail = f"era_xera_delta={val:+.2f}"
+            elif name == "Small-sample regression risk" and val is not None:
+                detail = f"prior_year_regression={val:+.2f}, IP<30"
+            else:
+                detail = f"{name}={val}" if val is not None else name
+            notes.append(f"- ⚠️ {side.upper()} 投手 Flag 8 ({detail}):")
+            notes.append("  - <!-- AI 補：是運氣還結構性？是否影響本場判斷？不自動下修預測 -->")
     for side in ("home", "away"):
         triggers = detect_lineup_triggers(bundle.get(f"{side}_lineup", {}))
         for t in triggers:
@@ -138,6 +148,9 @@ def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]
     return [
         "## 修正後預期得分",
         "",
+        "> 「+ 信號」欄僅納入規範允許的條件修正：Park Factor、牛棚累計效應（核心 IL ≥ 2 名）、主力打者傷兵。",
+        "> ⛔ BABIP 極端值 / ERA-xERA gap **不入此欄**（規範禁止 auto ±run value，見 reference/flags-checklist.md §3, §8）。",
+        "",
         "| | base (formula) | + 信號 | adjusted |",
         "|---|---|---|---|",
         f"| HOME | {home_base} | <!-- AI 補 --> | <!-- AI 補 --> |",
@@ -161,7 +174,7 @@ def _render_overall_section() -> list[str]:
 
 
 def render_summary(bundle: dict, formula_pred: dict) -> str:
-    """主入口：渲染 phase3_summary.md template，回傳 markdown 字串（不寫檔；caller 寫檔）。"""
+    """主入口：渲染 summary.md template，回傳 markdown 字串（不寫檔；caller 寫檔）。"""
     lines: list[str] = []
     lines += _render_pitcher_matchup_section(bundle)
     lines += _render_lineup_section(bundle)

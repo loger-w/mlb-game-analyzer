@@ -13,13 +13,9 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 
-MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
+from park_factors_lib import PARK_ALIASES, PARK_FACTORS, runs_pf
 
-# Park Factor 資料（2023-2025 3 年加權，Baseball Savant；HR PF 暫不啟用）
-_PF_DATA_PATH = Path(__file__).parent / "data" / "park_factors.json"
-_PF_DATA = json.loads(_PF_DATA_PATH.read_text(encoding="utf-8"))
-PARK_FACTORS = _PF_DATA["park_factors"]
-PARK_ALIASES = _PF_DATA["_aliases"]
+MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
 
 
 def load_json(path: str) -> dict:
@@ -84,8 +80,10 @@ def extract_pitcher_nested(
     xera = season.get("xera") if season.get("xera") is not None else expected.get("xera")
     ip = season.get("ip")
     delta = None
+    # 統一用 signed (era - xera)：負 = ERA<<xERA（運氣 / 樣本噪音）
+    # 正 = ERA>>xERA（壓制力被掩蓋）。下游 abs() 比 1.5 才是 Flag 8 cond 1。
     if era is not None and xera is not None:
-        delta = round(abs(era - xera), 3)
+        delta = round(era - xera, 3)
 
     return {
         f"{prefix}_pitcher": {
@@ -173,18 +171,8 @@ def fetch_bullpen_era(team_id: int, year: int) -> float:
 
 
 def resolve_park_factor(venue_name: str | None) -> float:
-    """以 venue_name 解析 runs PF（HR PF 暫不啟用）。
-
-    舊球場名透過 _aliases 表解析到 canonical 新名（如 Tropicana → Steinbrenner）。
-    未知 venue 回傳 100.0（聯盟平均，安全 fallback）。
-    """
-    if not venue_name:
-        return 100.0
-    canonical = PARK_ALIASES.get(venue_name, venue_name)
-    entry = PARK_FACTORS.get(canonical)
-    if entry:
-        return float(entry["runs_pf"])
-    return 100.0
+    """以 venue_name 解析 runs PF（thin wrapper；委派給 park_factors_lib.runs_pf）。"""
+    return runs_pf(venue_name)
 
 
 def extract_meta(game_data: dict, home_pitcher: dict, away_pitcher: dict) -> dict:
@@ -251,9 +239,9 @@ def format_md(merged: dict, command: str | None = None) -> str:
     for side, label in [("home", home_team), ("away", away_team)]:
         p = merged.get(f"{side}_pitcher", {}) or {}
         delta = p.get("era_xera_delta")
-        if delta is not None and delta >= 1.5:
+        if delta is not None and abs(delta) >= 1.5:
             trigger_lines.append(
-                f"- **{label} 投手 Flag 8**：|ERA - xERA| = {delta:.2f}（≥ 1.5）"
+                f"- **{label} 投手 Flag 8**：ERA - xERA = {delta:+.2f}（|Δ| ≥ 1.5）"
             )
         l = merged.get(f"{side}_lineup", {}) or {}
         recent_babip = l.get("recent_babip")

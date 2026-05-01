@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """比分公式 — Log5 勝率 + Pythagenport 期望得分。
 
-被 phase3_summary_renderer 用來產出 `## 修正後預期得分` 段的 base 列。
+被 summary_renderer 用來產出 `## 修正後預期得分` 段的 base 列。
 """
 
 import math
