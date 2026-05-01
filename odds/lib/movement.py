@@ -207,7 +207,7 @@ def compute_game_movement(
                     anchor_value=anc,
                     latest_value=lat,
                     delta_pp=delta,
-                    direction_label=f"{side} {anc:.1f}% → {lat:.1f}% ({delta:+.1f}pp)",
+                    direction_label=f"{side} no-vig {anc:.1f}% → {lat:.1f}% ({delta:+.1f}pp)",
                     anchor_value_raw=anc_raw,
                     latest_value_raw=lat_raw,
                 ))
@@ -332,7 +332,7 @@ def _implied_direction_label(team: str, anc: float, lat: float, delta: float, pr
     abbr = _abbr(team)
     arrow = "→"
     sign_str = f"{delta:+.1f}pp"
-    label = f"{arrow} {abbr} {sign_str} ({anc:.1f}% → {lat:.1f}%)"
+    label = f"{arrow} {abbr} {sign_str} (no-vig {anc:.1f}% → {lat:.1f}%)"
     if prefix:
         label = f"{prefix} {label}"
     return label

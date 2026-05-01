@@ -315,6 +315,49 @@ def test_anchor_notes_flags_cross_day_anchor():
     assert "跨 ET 日" in md
 
 
+def test_cover_line_uses_actual_used_snapshots():
+    """cover line 應反映 reports.timeline 的 union（去重），而非 caller 傳入的 globally loaded。
+
+    動機：04-30 報告 caller 傳 8（globally loaded）但 timeline 實際只用 3 份；對讀者誤導。
+    """
+    home, away = "Atlanta Braves", "Detroit Tigers"
+    commence_iso = "2026-05-02T16:16:00Z"
+    pinnacle = _pinnacle(home, away, ml_home_imp=53.5, ml_away_imp=49.0)
+
+    # game A timeline: ["04-28 22:00", "04-29 00:00"]
+    a_anchor = _make_record(away=away, home=home, commence_iso=commence_iso,
+                            pinnacle=pinnacle, snap_et=datetime(2026, 4, 28, 22, 0))
+    a_latest = _make_record(away=away, home=home, commence_iso=commence_iso,
+                            pinnacle=pinnacle, snap_et=datetime(2026, 4, 29, 0, 0))
+
+    # game B timeline: ["04-29 00:00", "04-29 09:00"] — 與 A 共用 04-29 00:00
+    home2, away2 = "New York Yankees", "Boston Red Sox"
+    pinnacle2 = _pinnacle(home2, away2, ml_home_imp=53.5, ml_away_imp=49.0)
+    b_anchor = _make_record(away=away2, home=home2, commence_iso=commence_iso,
+                            pinnacle=pinnacle2, snap_et=datetime(2026, 4, 29, 0, 0))
+    b_latest = _make_record(away=away2, home=home2, commence_iso=commence_iso,
+                            pinnacle=pinnacle2, snap_et=datetime(2026, 4, 29, 9, 0))
+
+    now_utc = datetime(2026, 4, 28, 0, 0, tzinfo=timezone.utc)
+    rep_a = compute_game_movement([a_anchor, a_latest], now_utc)
+    rep_b = compute_game_movement([b_anchor, b_latest], now_utc)
+
+    md = render(
+        et_date="2026-05-02",
+        snapshot_count=99,                        # caller 傳「假」count，render 應忽略
+        snapshot_times_et=["fake-time"],          # 同上
+        reports=[rep_a, rep_b],
+        rendered_at="2026-05-02 00:00 ET",
+    )
+    # union = {04-28 22:00, 04-29 00:00, 04-29 09:00} = 3 unique
+    assert "3 份" in md
+    assert "99 份" not in md
+    assert "fake-time" not in md
+    assert "04-28 22:00" in md
+    assert "04-29 00:00" in md
+    assert "04-29 09:00" in md
+
+
 def test_anchor_notes_no_cross_day_flag_when_same_day():
     """anchor 與 game_date_et 同日 → anchor notes 不應出現「跨 ET 日」字眼。"""
     reports = _build_reports()    # fixtures 04-27，anchor 與 game date 同日

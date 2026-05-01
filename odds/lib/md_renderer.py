@@ -23,6 +23,13 @@ def render(
     snapshot_times_et 元素格式為 "MM-DD HH:MM"（含日期前綴），cover line 內若連續同日
     會壓縮成 "MM-DD HH:MM / HH:MM / ..." 以節省版面。
     """
+    # V5: cover line 應反映 reports.timeline 的 union（per-ET-date 真正使用），
+    # 而非 caller 傳入的 globally loaded count；reports 空時 fallback caller 值。
+    if reports:
+        used = sorted({rec.snapshot_time_et_label for r in reports for rec in r.timeline})
+        snapshot_count = len(used)
+        snapshot_times_et = used
+
     out: list[str] = []
     out.append(f"# Smart Money Tracker — {et_date} (ET)\n")
     out.append(f"_最新更新：{rendered_at}_  ")

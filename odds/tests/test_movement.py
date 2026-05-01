@@ -289,7 +289,7 @@ def test_rl_no_flip_same_side():
 
 
 def test_direction_label_format():
-    """ML home implied +Xpp → label 應含縮寫 + 方向箭頭 + +pp。"""
+    """ML home implied +Xpp → label 應含縮寫 + 方向箭頭 + +pp + no-vig 標記。"""
     snapshots = load_snapshots_for_et_date("2026-04-27", FIXTURES)
     timelines = collect_game_timeline(snapshots, "2026-04-27")
     timeline = [t for k, t in timelines.items() if k[0] == "Tampa Bay Rays"][0]
@@ -299,6 +299,19 @@ def test_direction_label_format():
     ml_home = next(f for f in report.fields if f.field == "ml_home")
     assert "CLE" in ml_home.direction_label
     assert "+" in ml_home.direction_label
+    # F4: 百分比應明示 no-vig basis（避免讀者誤以為是 raw）
+    assert "no-vig" in ml_home.direction_label
+
+
+def test_total_juice_direction_label_marks_no_vig():
+    """Total juice direction_label 應明示 no-vig basis（與 ML / RL label 對稱）。"""
+    rec_anchor = _make_record(over_imp=50.0, under_imp=50.0, snap_time="00:00")
+    rec_latest = _make_record(over_imp=54.0, under_imp=46.0, snap_time="04:00")
+    timeline = [rec_anchor, rec_latest]
+    now_utc = datetime(2026, 5, 1, 0, 0, tzinfo=timezone.utc)
+    report = compute_game_movement(timeline, now_utc)
+    juice_over = next(f for f in report.fields if f.field == "total_juice_over")
+    assert "no-vig" in juice_over.direction_label
 
 
 def test_report_carries_commence_et():

@@ -69,7 +69,7 @@ def _format_rendered_at(now_utc: datetime) -> str:
     """ET 為主、TW 副欄附在後面（給 TW 使用者對時用）。"""
     et = now_utc.astimezone(ET)
     tw = now_utc.astimezone(TW)
-    return f"{et.strftime('%Y-%m-%d %H:%M ET')}(TW {tw.strftime('%m-%d %H:%M')})"
+    return f"{et.strftime('%Y-%m-%d %H:%M ET')} (TW {tw.strftime('%Y-%m-%d %H:%M')})"
 
 
 def _summarize_to_stdout(reports: list[GameMovementReport], out_path: Path) -> None:
