@@ -77,15 +77,15 @@
 | | HOME | AWAY |
 |---|------|------|
 | Bullpen ERA | 3.32 | 4.39 |
-| 投手 IL 數 | 9 | 8 |
-| 核心 IL | 9 (AJ Smith-Shawver (IL60d), Danny Young (IL60d), ...) | 8 (Bailey Horn (IL60d), Beau Brieske (IL60d), ...) |
+| 投手 IL 數（含先發/長傷） | 9 | 8 |
+| IL 名單（前 2） | 9 (AJ Smith-Shawver (IL60d), Danny Young (IL60d), ...) | 8 (Bailey Horn (IL60d), Beau Brieske (IL60d), ...) |
 | Park Factor (runs) | 98 | — |
 | Park 備註 | Truist Park HR -5% | — |
 
-## ⚠️ 風險提示摘要（AI 在 phase3_summary 風險提示段處理）
+## ⚠️ 風險提示摘要（AI 在 summary 風險提示段處理）
 無風險提示
 
 ## File 索引
 - merged.json (機讀資料): `analysis-data/2026-04-30/DET@ATL/merged.json`
-- 分析寫作: `analysis-data/2026-04-30/DET@ATL/phase3_summary.md`
+- 分析寫作: `analysis-data/2026-04-30/DET@ATL/summary.md`
 - 個別 detail summary（drill-down / debug）: 同目錄下 `<basename>_summary.md`
