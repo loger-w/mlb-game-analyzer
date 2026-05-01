@@ -1,8 +1,8 @@
-# Game Data Summary — KC @ OAK (2026-04-30)
+# Game Data Summary — KC @ OAK (2026-04-29)
 
 ## 比賽資訊
-- 日期 (ET): 2026-04-30
-- 開賽 (UTC ISO): 2026-04-30T01:40:00Z
+- 日期 (ET): 2026-04-29
+- 開賽: 2026-04-29 21:40 ET
 - 球場: Sutter Health Park
 - 狀態: Final
 - 先發: Michael Wacha (KC, 608379) vs Luis Severino (OAK, 622663)
@@ -23,7 +23,7 @@
 
 ## 當前系列賽 (KC @ OAK)
 - G1 (04-29): OAK 1-4 KC → KC 勝
-- G2 (04-30): 本場
+- G2 (04-29): 本場
 - 系列累計: **OAK 0-1 KC**
 
 ## Streak 脈絡
