@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MLB Pitcher Stats — Phase 2 投手進階數據（MLB Stats API + Statcast）"""
+"""MLB Pitcher Stats — 投手進階數據（MLB Stats API + Statcast）"""
 
 import argparse
 import contextlib
@@ -426,7 +426,7 @@ def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
 def detect_triggers(data: dict) -> list[dict]:
     """偵測投手層級 Flag。回傳觸發列表。
 
-    Flag 13：
+    Flag 8：
     - |ERA - xERA| ≥ 1.5  → ERA 與 xERA 落差過大
     - IP < 30 且 prior_year_ERA - current_ERA ≥ 1.0 → 開季小樣本超過去年水準
     """
@@ -452,7 +452,7 @@ def detect_triggers(data: dict) -> list[dict]:
         gap = era - xera
         if abs(gap) >= 1.5:
             triggers.append({
-                "flag": 13,
+                "flag": 8,
                 "name": "ERA-xERA gap",
                 "value": round(gap, 3),
                 "threshold": "|gap| ≥ 1.5",
@@ -468,9 +468,9 @@ def detect_triggers(data: dict) -> list[dict]:
                     else "ERA 顯著高於 xERA（壓制力被掩蓋，預示反彈）"
                 ),
                 "action": (
-                    "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_skeleton.md「## 風險提示」段判讀"
+                    "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_summary.md「## 風險提示」段判讀"
                     "（運氣 / 結構性退化 / 樣本噪音），不自動補跑 YoY、不自動下修預測。"
-                    "詳見 reference/flags-checklist.md §13"
+                    "詳見 reference/flags-checklist.md §8"
                 ),
             })
 
@@ -483,7 +483,7 @@ def detect_triggers(data: dict) -> list[dict]:
         and (prior_era - era) >= 1.0
     ):
         triggers.append({
-            "flag": 13,
+            "flag": 8,
             "name": "Small-sample regression risk",
             "value": round(prior_era - era, 3),
             "threshold": "IP<30 且 prior_year_ERA − current_ERA ≥ 1.0",
@@ -494,9 +494,9 @@ def detect_triggers(data: dict) -> list[dict]:
             },
             "interpretation": "本季 ERA 大幅優於去年但樣本不足 → 預示回歸",
             "action": (
-                "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_skeleton.md「## 風險提示」段判讀"
+                "腳本層自動標 ⚠️ 風險提示；AI 於 phase3_summary.md「## 風險提示」段判讀"
                 "（小樣本 / 回歸風險），不自動補跑 YoY、不自動下修預測。"
-                "詳見 reference/flags-checklist.md §13"
+                "詳見 reference/flags-checklist.md §8"
             ),
         })
     return triggers

@@ -1,24 +1,21 @@
 #!/usr/bin/env python3
-"""prepare_game.py：Phase 1+2 一鍵整合腳本（spec 2026-04-28-prepare-game-script）。
+"""prepare_game.py：步驟 1 一鍵整合腳本。
 
-Step 順序（spec §3.2）：
+Step 順序：
   A) fetch_game_data → game_data.json + summary
   B) roster_checker × 2（雙隊平行）
   C) pitcher_stats × 2（用 Step A 的 mlbam_id，雙隊平行）
   D) lineup_analyzer × 2（用 Step A 的 mlbam_id，雙隊平行）
   E) merge_game_data → merged.json
   F) dossier_renderer → dossier.md
-  G) phase3_skeleton_renderer → phase3_skeleton.md
+  G) phase3_summary_renderer → phase3_summary.md（含 AI 填空 placeholder）
 
-不再做 Step C-prior（YoY 補跑）— spec §3.2.
-
-Exit codes（spec §3.1）：
+Exit codes：
   0 = success
   2 = gameType ≠ "R"
   3 = 雙隊未對戰
   4 = doubleheader 未指定 --game-suffix
   5 = 先發不在 active roster
-  6 = （保留給 predict.py --ou-stars 必填錯誤）
   7 = API 失敗
 """
 
@@ -34,20 +31,10 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PYTHON = sys.executable
 
 
-def _tw_to_et(tw_date: str) -> str:
-    """TW date → ET date for MLB schedule API（spec 2026-04-29 §2）。
-
-    規則：et_date = tw_date − 1 day（MLB 球季 EDT vs TW 永遠差 12 小時）。
-    """
-    from datetime import datetime, timedelta
-    d = datetime.strptime(tw_date, "%Y-%m-%d").date()
-    return (d - timedelta(days=1)).strftime("%Y-%m-%d")
-
-
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Phase 1+2 一鍵整合（spec 2026-04-28）")
+    parser = argparse.ArgumentParser(description="步驟 1：MLB 單場資料收集")
     parser.add_argument("--date", required=True,
-                        help="YYYY-MM-DD（TW 開打日；內部換算 ET = TW − 1 day 給 MLB API）")
+                        help="YYYY-MM-DD（ET 開打日，與 MLB Stats API 對齊）")
     parser.add_argument("--away", required=True, help="客隊縮寫，如 TB")
     parser.add_argument("--home", required=True, help="主隊縮寫，如 CLE")
     parser.add_argument("--output-dir", default=None,
@@ -75,8 +62,8 @@ def dossier_filename(suffix: str | None) -> str:
     return f"dossier-{suffix}.md" if suffix else "dossier.md"
 
 
-def skeleton_filename(suffix: str | None) -> str:
-    return f"phase3_skeleton-{suffix}.md" if suffix else "phase3_skeleton.md"
+def summary_filename(suffix: str | None) -> str:
+    return f"phase3_summary-{suffix}.md" if suffix else "phase3_summary.md"
 
 
 def run_step(label: str, cmd: list[str]) -> str:
@@ -381,28 +368,41 @@ def step_f(*, output_dir: Path, dossier_path: Path) -> None:
     dossier_path.write_text(md, encoding="utf-8")
 
 
-def step_g(*, output_dir: Path, skeleton_path: Path) -> None:
-    """Step G: 渲染 phase3_skeleton.md。"""
-    from phase3_skeleton_renderer import render_skeleton
-    from predict import predict_with_formula
-    print(f"[G] phase3_skeleton  → {skeleton_path}", file=sys.stderr)
+def step_g(*, output_dir: Path, summary_path: Path, force: bool = False) -> None:
+    """Step G: 渲染 phase3_summary.md template（含 AI 填空 placeholder）。
+
+    防呆：若 summary 檔已存在且不含 `<!-- AI 補` placeholder，視為「分析師已寫完」，
+    保留不覆蓋；用 --force 強制重產（會覆蓋分析師的內容）。
+    """
+    if summary_path.exists() and not force:
+        existing = summary_path.read_text(encoding="utf-8")
+        if "<!-- AI 補" not in existing:
+            print(
+                f"[G] ⚠️  {summary_path.name} 已被編輯（無 AI placeholder），"
+                f"保留不覆蓋；用 --force 強制重產",
+                file=sys.stderr,
+            )
+            return
+
+    from phase3_summary_renderer import render_summary
+    from scoring_formula import predict_with_formula
+    print(f"[G] phase3_summary  → {summary_path}", file=sys.stderr)
     bundle = _load_bundle(output_dir)
     formula_pred = predict_with_formula(bundle.get("merged", {}))
-    md = render_skeleton(bundle, formula_pred)
-    skeleton_path.write_text(md, encoding="utf-8")
+    md = render_summary(bundle, formula_pred)
+    summary_path.write_text(md, encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
-# Risk Notes (spec §3.4)
+# Risk Notes
 # ---------------------------------------------------------------------------
 
 def _print_risk_notes(output_dir: Path) -> None:
-    """從 merged.json 偵測 Flag 3/13，印到 stderr（spec §3.4）。
+    """從 merged.json 偵測 Flag 3/8，印到 stderr。
 
-    spec §3.4 規定：無論是否有 Flag 觸發，header 都必須輸出；
-    若無任何 Flag，則輸出「（無）」。
+    無論是否有 Flag 觸發，header 都必須輸出；無 Flag 時輸出「（無）」。
     """
-    print("⚠️  Risk Notes (AI 在 phase3_skeleton 風險提示段處理):", file=sys.stderr)
+    print("⚠️  Risk Notes (AI 在 phase3_summary 風險提示段處理):", file=sys.stderr)
 
     merged_path = output_dir / "merged.json"
     if not merged_path.exists():
@@ -412,14 +412,14 @@ def _print_risk_notes(output_dir: Path) -> None:
 
     risk_lines = []
     for side, label in [("home", "主隊"), ("away", "客隊")]:
-        # Flag 13: |ERA - xERA| ≥ 1.5
+        # Flag 8: |ERA - xERA| ≥ 1.5
         p = merged.get(f"{side}_pitcher", {}) or {}
         delta = p.get("era_xera_delta")
         if delta is not None:
             try:
                 if float(delta) >= 1.5:
                     risk_lines.append(
-                        f"  ⚠️  Flag 13 ({label}投手): |ERA-xERA| = {delta:.2f} ≥ 1.5"
+                        f"  ⚠️  Flag 8 ({label}投手): |ERA-xERA| = {delta:.2f} ≥ 1.5"
                     )
             except (ValueError, TypeError):
                 pass
@@ -460,9 +460,9 @@ def main(argv: list[str] | None = None) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Step A — sequential; must complete first
-    # spec 2026-04-29: --date 是 TW 語意；step_a 內呼 fetch_game_data.py 給 MLB API 要 ET
+    # --date 為 ET 開打日，直接傳給 fetch_game_data.py / MLB Stats API
     ids = step_a(
-        date=_tw_to_et(args.date), team_abbr=args.away, output_dir=output_dir,
+        date=args.date, team_abbr=args.away, output_dir=output_dir,
         home_abbr=args.home, away_abbr=args.away, game_suffix=args.game_suffix,
     )
 
@@ -498,11 +498,11 @@ def main(argv: list[str] | None = None) -> int:
 
     # Steps F + G — sequential; wait for E
     dossier_path = output_dir / dossier_filename(args.game_suffix)
-    skeleton_path = output_dir / skeleton_filename(args.game_suffix)
+    summary_path = output_dir / summary_filename(args.game_suffix)
     step_f(output_dir=output_dir, dossier_path=dossier_path)
-    step_g(output_dir=output_dir, skeleton_path=skeleton_path)
+    step_g(output_dir=output_dir, summary_path=summary_path, force=args.force)
 
-    # Risk Notes to stderr (spec §3.4)
+    # Risk Notes to stderr
     _print_risk_notes(output_dir)
 
     print(f"\n[Done] output_dir: {output_dir}", file=sys.stderr)

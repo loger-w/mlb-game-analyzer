@@ -1,4 +1,4 @@
-"""Tests for lineup_analyzer helpers (Plan B 2026-04-22 §4.6 extension)."""
+"""Tests for lineup_analyzer helpers."""
 import sys
 import os
 

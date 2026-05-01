@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MLB Lineup Analyzer — Phase 2 打線分析（MLB Stats API + Statcast）"""
+"""MLB Lineup Analyzer — 打線分析（MLB Stats API + Statcast）"""
 
 import argparse
 import contextlib
@@ -188,7 +188,7 @@ def fetch_il_names(team_id: int, year: int) -> set[str]:
 
 
 def fetch_player_last7(mlbam_id: int) -> dict | None:
-    """D3: 取得打者近 7 場打擊數據"""
+    """取得打者近 7 場打擊數據"""
     try:
         resp = requests.get(
             f"{MLB_API_BASE}/people/{mlbam_id}/stats",
@@ -217,7 +217,7 @@ def fetch_player_last7(mlbam_id: int) -> dict | None:
 
 
 def fetch_player_platoon(mlbam_id: int, year: int) -> dict | None:
-    """D2: 取得打者 Platoon Splits（vs LHP / vs RHP）"""
+    """取得打者 Platoon Splits（vs LHP / vs RHP）"""
     try:
         resp = requests.get(
             f"{MLB_API_BASE}/people/{mlbam_id}/stats",
@@ -251,7 +251,7 @@ def fetch_player_platoon(mlbam_id: int, year: int) -> dict | None:
 
 
 def fetch_bvp(batter_id: int, pitcher_id: int) -> dict | None:
-    """D4: 取得打者 vs 特定投手的生涯對戰紀錄
+    """取得打者 vs 特定投手的生涯對戰紀錄
 
     API 回傳兩組 splits：
     - 第一組：彙總（無 season 欄位），取 PA 最大的一筆 = 生涯合計
@@ -326,32 +326,32 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
     if not batters:
         return {"error": f"No batting stats found for {team} in {year}"}
 
-    # D1: 按 PA 排序取前 9 人（完整打線）
+    # 按 PA 排序取前 9 人（完整打線）
     batters.sort(key=lambda b: b["pa"], reverse=True)
     core_lineup = batters[:9]
 
     # 3. 取 Statcast leaderboard（一次拉全聯盟，記憶體內 merge）
     expected_map, barrels_map = fetch_statcast_batting_leaderboard(year)
 
-    # 4. Merge Statcast + D2 Platoon + D3 Last7 + D4 BvP
+    # 4. Merge Statcast + Platoon + Last7 + BvP
     for batter in core_lineup:
         pid = str(batter["mlbam_id"])
         exp = expected_map.get(pid, {})
         bar = barrels_map.get(pid, {})
-        # D5: 修正命名（ev95pct 取代 hard_hit_pct）
+        # 命名：ev95pct 取代 hard_hit_pct
         batter["xwoba"] = exp.get("xwoba")
         batter["xba"] = exp.get("xba")
         batter["xslg"] = exp.get("xslg")
         batter["ev95pct"] = bar.get("ev95pct")
         batter["barrel_pct"] = bar.get("barrel_pct")
 
-        # D2: Platoon Splits
+        # Platoon Splits
         batter["platoon"] = fetch_player_platoon(batter["mlbam_id"], year)
 
-        # D3: 近 7 場熱度
+        # 近 7 場熱度
         batter["last_7"] = fetch_player_last7(batter["mlbam_id"])
 
-        # D4: BvP（如果有提供對方投手 ID）
+        # BvP（如果有提供對方投手 ID）
         if opposing_pitcher_id:
             batter["bvp"] = fetch_bvp(batter["mlbam_id"], opposing_pitcher_id)
 
@@ -395,7 +395,7 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
     if len(core_lineup) >= 5:
         chain["slg_mid"] = round(sum(b["slg"] for b in core_lineup[3:5]) / 2, 3)
 
-    # D3: 整體近 7 場熱度
+    # 整體近 7 場熱度
     last7_ops_values = []
     for b in core_lineup:
         if b.get("last_7") and b["last_7"].get("ops"):
@@ -424,14 +424,14 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
         "avg_bb_pct": round(avg_bb_pct, 1),
         "over_under_lean": over_under_lean,
         "recent_heat": recent_heat,
-        "last7_babip": compute_last7_babip(core_lineup),  # Plan B §4.6（B10 觸發用）
+        "last7_babip": compute_last7_babip(core_lineup),  # Flag 3 觸發用
         "chain": chain,
         "lineup": core_lineup,
     }
 
 
 def compute_last7_babip(core_lineup: list[dict]) -> float | None:
-    """近 7 天 BABIP 平均（Plan B 2026-04-22 §4.6）。
+    """近 7 天 BABIP 平均。
 
     從 core_lineup 每個打者的 `last_7.babip` 取值；非數值或缺失則忽略。
     空結果回 None（「沒數據」vs「平均 0」的語義差別）。
@@ -470,7 +470,7 @@ def detect_triggers(data: dict) -> list[dict]:
             "value": v,
             "threshold": "≤ 0.260",
             "interpretation": "近 7 天 BABIP 偏低，預示反彈（運氣差於常態）。",
-            "action": "Phase 3.4 Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）",
+            "action": "Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）",
         })
     elif v >= 0.370:
         triggers.append({
@@ -479,7 +479,7 @@ def detect_triggers(data: dict) -> list[dict]:
             "value": v,
             "threshold": "≥ 0.370",
             "interpretation": "近 7 天 BABIP 偏高，預示回歸 ~.300（熱度含運氣成份）。",
-            "action": "Phase 3.4 Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）",
+            "action": "Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）",
         })
     return triggers
 

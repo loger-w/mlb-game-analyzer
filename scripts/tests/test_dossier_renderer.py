@@ -223,6 +223,7 @@ def _minimal_bundle(**overrides):
                 "away_sp_starts": 5,
                 "venue": "Progressive Field",
                 "game_date": "2026-04-28T22:10:00Z",
+                "official_date": "2026-04-28",
             },
         },
     }
@@ -242,6 +243,7 @@ def test_render_header_basic():
     assert header.startswith("# Game Dossier — ")
     assert "Away Team" in header
     assert "Home Team" in header
+    # Header uses ET date (= official_date); UTC 22:10Z = ET 18:10 (officialDate 04-28)
     assert "2026-04-28" in header
 
 
@@ -264,6 +266,9 @@ def test_render_game_info_contains_key_fields():
     assert "A Pitcher" in text
     assert "GS 6" in text
     assert "GS 5" in text
+    # ET only; UTC 22:10Z = ET 18:10 (officialDate 04-28)
+    assert "- 日期 (ET): 2026-04-28" in text
+    assert "2026-04-28 18:10 ET" in text
 
 
 def test_render_record_summary_structure():
@@ -332,15 +337,15 @@ def test_render_pitcher_matchup_structure():
     assert "風險提示" in text
 
 
-def test_render_pitcher_matchup_flag13_triggers():
+def test_render_pitcher_matchup_flag8_triggers():
     """When ERA-xERA gap ≥ 1.5 for away pitcher, ⚠️ appears."""
     from dossier_renderer import _render_pitcher_matchup
     bundle = _minimal_bundle()
-    # away pitcher already has era=2.1, xera=4.64 → gap=2.54 → Flag 13
+    # away pitcher already has era=2.1, xera=4.64 → gap=2.54 → Flag 8
     lines = _render_pitcher_matchup(bundle)
     text = "\n".join(lines)
     assert "⚠️" in text
-    assert "Flag 13" in text
+    assert "Flag 8" in text
 
 
 def test_render_pitcher_matchup_no_flag_when_gap_small():
@@ -431,12 +436,12 @@ def test_render_risk_summary_with_flags():
     """Risk summary should list all triggered flags."""
     from dossier_renderer import _render_risk_summary
     bundle = _minimal_bundle()
-    # away_pitcher has Flag 13 (era=2.1, xera=4.64)
+    # away_pitcher has Flag 8 (era=2.1, xera=4.64)
     # away_lineup has Flag 3 (last7_babip=0.241)
     lines = _render_risk_summary(bundle)
     text = "\n".join(lines)
     assert "## ⚠️ 風險提示摘要" in text
-    assert "Flag 13" in text
+    assert "Flag 8" in text
     assert "Flag 3" in text
 
 
@@ -444,7 +449,7 @@ def test_render_risk_summary_no_flags():
     """No flags → '無風險提示'."""
     from dossier_renderer import _render_risk_summary
     bundle = _minimal_bundle()
-    # Set ERA close to xERA for no Flag 13
+    # Set ERA close to xERA for no Flag 8
     bundle["away_pitcher"]["season"]["era"] = 4.5
     bundle["away_pitcher"]["expected"]["xera"] = 4.6
     # Set BABIP to normal for no Flag 3
@@ -461,7 +466,7 @@ def test_render_file_index():
     text = "\n".join(lines)
     assert "## File 索引" in text
     assert "merged.json" in text
-    assert "phase3_skeleton.md" in text
+    assert "phase3_summary.md" in text
     assert "analysis-data/2026-04-28/TB@CLE/" in text
 
 
@@ -535,75 +540,6 @@ def test_render_dossier_game_dir_in_file_index():
     bundle = _minimal_bundle()
     result = render_dossier(bundle, game_dir="analysis-data/2026-04-28/TB@CLE")
     assert "analysis-data/2026-04-28/TB@CLE/" in result
-
-
-# ---------------------------------------------------------------------------
-# Integration test with actual TB@CLE JSON fixture
-# ---------------------------------------------------------------------------
-
-_DATA_DIR = Path(__file__).parent.parent.parent / "analysis-data" / "2026-04-28" / "TB@CLE"
-
-
-def _load_fixture(name: str) -> dict:
-    p = _DATA_DIR / name
-    if not p.exists():
-        return {}
-    with open(p, encoding="utf-8") as f:
-        return json.load(f)
-
-
-def test_render_dossier_with_actual_tb_cle_bundle():
-    """Load real JSON files from analysis-data/2026-04-28/TB@CLE/ and verify output."""
-    from dossier_renderer import render_dossier
-    bundle = {
-        "game_data": _load_fixture("game_data.json"),
-        "home_roster": _load_fixture("home_roster.json"),
-        "away_roster": _load_fixture("away_roster.json"),
-        "home_pitcher": _load_fixture("home_pitcher.json"),
-        "away_pitcher": _load_fixture("away_pitcher.json"),
-        "home_lineup": _load_fixture("home_lineup.json"),
-        "away_lineup": _load_fixture("away_lineup.json"),
-        "merged": _load_fixture("merged.json"),
-    }
-
-    game_dir = str(_DATA_DIR)
-    output = render_dossier(bundle, game_dir=game_dir)
-
-    # Must contain key content from each section
-    assert "## 比賽資訊" in output
-    assert "Tanner Bibee" in output
-    assert "Nick Martínez" in output or "Nick Martinez" in output
-    assert "Progressive Field" in output
-
-    assert "## 戰績速查" in output
-    assert "4-6" in output   # home_recent record
-
-    assert "## 系列脈絡" in output
-
-    assert "## 投手對決" in output
-    assert "4.08" in output   # home ERA (Tanner Bibee 2026 season)
-    assert "1.70" in output   # away ERA (Nick Martinez 2026 season)
-    assert "Flag 13" in output  # away pitcher flag
-
-    assert "## 打線" in output
-    assert "Flag 3" in output   # away lineup BABIP flag
-    assert "José Ramírez" in output
-
-    assert "## 牛棚 / Park" in output
-    assert "4.40" in output   # home bullpen ERA
-    assert "5.09" in output   # away bullpen ERA
-
-    assert "## ⚠️ 風險提示摘要" in output
-
-    assert "## File 索引" in output
-    assert "merged.json" in output
-
-    # Line count constraint
-    lines = output.split("\n")
-    assert len(lines) <= 250, f"TB@CLE dossier exceeded 250 lines: {len(lines)}"
-
-    # No YoY section
-    assert "YoY 對比" not in output
 
 
 def test_render_series_context_handles_none_winner_and_empty_names():

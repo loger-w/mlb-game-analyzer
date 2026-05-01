@@ -1,4 +1,4 @@
-"""Tests for fetch_game_data summary helpers (Phase 1 context slimming)."""
+"""Tests for fetch_game_data summary helpers."""
 import os
 import sys
 
@@ -189,6 +189,7 @@ def _make_minimal_result(home_games=None, away_games=None, series_prev=None):
         "game": {
             "gamePk": 824122,
             "date": "2026-04-26T23:20:00Z",
+            "officialDate": "2026-04-26",
             "status": "Preview",
             "venue": "Kauffman Stadium",
             "home": {"team": "Kansas City Royals", "team_id": 118, "probable_pitcher": "Seth Lugo"},
@@ -230,8 +231,11 @@ def test_format_summary_md_smoke_full_game():
          "team_score": 2, "opp_score": 4, "is_winner": False},
     ]
     md = format_summary_md(_make_minimal_result(home_games, away_games))
+    # Header uses ET date (= officialDate); UTC 23:20Z = ET 19:20 (officialDate 2026-04-26)
     assert "# Game Data Summary — LAA @ KC (2026-04-26)" in md
     assert "## 比賽資訊" in md
+    assert "- 日期 (ET): 2026-04-26" in md
+    assert "2026-04-26 19:20 ET" in md
     assert "## 戰績摘要" in md
     assert "## 趨勢" in md
     assert "## 當前系列賽" in md

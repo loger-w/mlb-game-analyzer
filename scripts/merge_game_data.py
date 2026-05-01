@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MLB Merge Game Data — 合併 Phase 1/2 腳本輸出為 predict.py 所需的 merged.json"""
+"""MLB Merge Game Data — 合併各腳本輸出為單一 merged.json"""
 
 import argparse
 import json
@@ -70,7 +70,7 @@ def extract_pitcher_nested(
 ) -> dict:
     """產 nested `{prefix}_pitcher` dict，包含 era/xera/ip/era_xera_delta。
 
-    與現有 `extract_pitcher_features` 共存（不動 flat keys，確保 review_stats 等 backward-compat）。
+    與現有 `extract_pitcher_features` 共存（兩者讀同一份 pitcher JSON）。
     """
     season = pitcher_data.get("season", {}) if pitcher_data else {}
     if isinstance(season, dict) and "error" in season:
@@ -80,7 +80,7 @@ def extract_pitcher_nested(
         expected = {}
 
     era = season.get("era")
-    # xera 來源優先序：season.xera (legacy/test) → expected.xera (pitcher_stats 實際輸出位置)
+    # xera 來源優先序：season.xera → expected.xera
     xera = season.get("xera") if season.get("xera") is not None else expected.get("xera")
     ip = season.get("ip")
     delta = None
@@ -204,6 +204,7 @@ def extract_meta(game_data: dict, home_pitcher: dict, away_pitcher: dict) -> dic
             "venue": game.get("venue"),
             "game_pk": game.get("gamePk"),
             "game_date": game.get("date"),
+            "official_date": game.get("officialDate"),
         }
     }
 
@@ -220,7 +221,7 @@ def _md_fmt(v, decimals: int = 2) -> str:
 
 
 def format_md(merged: dict, command: str | None = None) -> str:
-    """渲染 merged.json 一頁總覽 MD（Phase 2 整合）。
+    """渲染 merged.json 一頁總覽 MD。
 
     純函數：只讀 merged dict。包含 _meta / 投手 / 打線 / 牛棚 / Park / 多窗口戰績 / 觸發摘要。
     """
@@ -236,7 +237,7 @@ def format_md(merged: dict, command: str | None = None) -> str:
     game_date = meta.get("game_date", "—")
 
     lines = [
-        f"# Merged Phase 2 — {away_team} @ {home_team}",
+        f"# Merged Game Data — {away_team} @ {home_team}",
         f"**game_pk**: {game_pk} | **date**: {game_date}",
         f"**venue**: {venue} | **park_factor (runs)**: {_md_fmt(merged.get('park_factor'), 1)}",
         f"**先發**: {away_sp} ({away_team}, GS {away_gs}) vs {home_sp} ({home_team}, GS {home_gs})",
@@ -252,7 +253,7 @@ def format_md(merged: dict, command: str | None = None) -> str:
         delta = p.get("era_xera_delta")
         if delta is not None and delta >= 1.5:
             trigger_lines.append(
-                f"- **{label} 投手 Flag 13**：|ERA - xERA| = {delta:.2f}（≥ 1.5）"
+                f"- **{label} 投手 Flag 8**：|ERA - xERA| = {delta:.2f}（≥ 1.5）"
             )
         l = merged.get(f"{side}_lineup", {}) or {}
         recent_babip = l.get("recent_babip")
@@ -266,7 +267,7 @@ def format_md(merged: dict, command: str | None = None) -> str:
             except (ValueError, TypeError):
                 pass
     if trigger_lines:
-        lines += ["## 🚨 Triggers (Phase 2 整合視角)", ""] + trigger_lines + ["", "---", ""]
+        lines += ["## 🚨 Triggers", ""] + trigger_lines + ["", "---", ""]
 
     # 投手對決
     lines += [
@@ -400,7 +401,7 @@ def main():
     merged.update(extract_pitcher_features(away_pitcher_data, "away"))
     merged.update(extract_lineup_features(home_lineup_data, "home"))
     merged.update(extract_lineup_features(away_lineup_data, "away"))
-    # nested dict 供 Flag 13 (ERA-xERA gap) 偵測；flat keys 保留 backward-compat
+    # nested dict 供 Flag 8 (ERA-xERA gap) 偵測；flat keys 給 dossier 渲染直接讀
     merged.update(extract_pitcher_nested(home_pitcher_data, "home"))
     merged.update(extract_pitcher_nested(away_pitcher_data, "away"))
     merged.update(extract_lineup_nested(home_lineup_data, "home"))

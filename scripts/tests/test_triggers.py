@@ -1,4 +1,4 @@
-"""Tests for Flag 13 (pitcher ERA-xERA gap) and Flag 3 (lineup BABIP) trigger detection."""
+"""Tests for Flag 8 (pitcher ERA-xERA gap) and Flag 3 (lineup BABIP) trigger detection."""
 import os
 import sys
 
@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 
 # ---------------------------------------------------------------------------
-# Flag 13 — pitcher_stats.detect_triggers
+# Flag 8 — pitcher_stats.detect_triggers
 # ---------------------------------------------------------------------------
 
 def _pitcher_data(era=None, xera=None, ip=None, prior_era=None):
@@ -18,7 +18,7 @@ def _pitcher_data(era=None, xera=None, ip=None, prior_era=None):
     }
 
 
-def test_flag13_gap_below_threshold_no_trigger():
+def test_flag8_gap_below_threshold_no_trigger():
     """gap = 1.49 (< 1.5) → 不觸發。"""
     from pitcher_stats import detect_triggers
     data = _pitcher_data(era=3.00, xera=1.51, ip=40)
@@ -26,40 +26,40 @@ def test_flag13_gap_below_threshold_no_trigger():
     assert triggers == [] or all(t.get("name") != "ERA-xERA gap" for t in triggers)
 
 
-def test_flag13_gap_at_threshold_triggers():
+def test_flag8_gap_at_threshold_triggers():
     """gap = 1.50 (= 1.5) → 觸發（>= 閾值）。"""
     from pitcher_stats import detect_triggers
     data = _pitcher_data(era=4.00, xera=2.50, ip=40)
     triggers = detect_triggers(data)
-    flag13 = [t for t in triggers if t.get("name") == "ERA-xERA gap"]
-    assert len(flag13) == 1
-    assert flag13[0]["flag"] == 13
+    flag8 = [t for t in triggers if t.get("name") == "ERA-xERA gap"]
+    assert len(flag8) == 1
+    assert flag8[0]["flag"] == 8
 
 
-def test_flag13_gap_above_threshold_triggers():
+def test_flag8_gap_above_threshold_triggers():
     """gap = 2.81 (>> 1.5) → 觸發（Lugo 真實案例）。"""
     from pitcher_stats import detect_triggers
     data = _pitcher_data(era=1.15, xera=3.96, ip=31.3, prior_era=4.15)
     triggers = detect_triggers(data)
-    flag13 = [t for t in triggers if t.get("name") == "ERA-xERA gap"]
-    assert len(flag13) == 1
-    assert abs(flag13[0]["value"] - (-2.81)) < 0.01
+    flag8 = [t for t in triggers if t.get("name") == "ERA-xERA gap"]
+    assert len(flag8) == 1
+    assert abs(flag8[0]["value"] - (-2.81)) < 0.01
     # 解讀應顯示「ERA 顯著低於 xERA」
-    assert "低於" in flag13[0]["interpretation"] or "回升" in flag13[0]["interpretation"]
+    assert "低於" in flag8[0]["interpretation"] or "回升" in flag8[0]["interpretation"]
 
 
-def test_flag13_negative_gap_inverts_interpretation():
+def test_flag8_negative_gap_inverts_interpretation():
     """ERA > xERA（正向 gap）解讀應為「壓制力被掩蓋」。"""
     from pitcher_stats import detect_triggers
     data = _pitcher_data(era=4.50, xera=2.50, ip=40)
     triggers = detect_triggers(data)
-    flag13 = [t for t in triggers if t.get("name") == "ERA-xERA gap"]
-    assert len(flag13) == 1
-    assert flag13[0]["value"] > 0
-    assert "高於" in flag13[0]["interpretation"] or "反彈" in flag13[0]["interpretation"]
+    flag8 = [t for t in triggers if t.get("name") == "ERA-xERA gap"]
+    assert len(flag8) == 1
+    assert flag8[0]["value"] > 0
+    assert "高於" in flag8[0]["interpretation"] or "反彈" in flag8[0]["interpretation"]
 
 
-def test_flag13_small_sample_regression():
+def test_flag8_small_sample_regression():
     """IP < 30 且 prior_year ERA - current ERA >= 1.0 → 觸發 small-sample。"""
     from pitcher_stats import detect_triggers
     # gap 不觸發（避免重複），但 small-sample 條件成立
@@ -69,7 +69,7 @@ def test_flag13_small_sample_regression():
     assert len(small_sample) == 1
 
 
-def test_flag13_small_sample_not_triggered_when_ip_ge_30():
+def test_flag8_small_sample_not_triggered_when_ip_ge_30():
     from pitcher_stats import detect_triggers
     data = _pitcher_data(era=2.00, xera=2.50, ip=35, prior_era=4.50)
     triggers = detect_triggers(data)
@@ -77,7 +77,7 @@ def test_flag13_small_sample_not_triggered_when_ip_ge_30():
     assert len(small_sample) == 0
 
 
-def test_flag13_small_sample_below_delta_no_trigger():
+def test_flag8_small_sample_below_delta_no_trigger():
     from pitcher_stats import detect_triggers
     data = _pitcher_data(era=3.00, xera=2.50, ip=20, prior_era=3.50)  # delta = 0.5
     triggers = detect_triggers(data)
@@ -85,13 +85,13 @@ def test_flag13_small_sample_below_delta_no_trigger():
     assert len(small_sample) == 0
 
 
-def test_flag13_no_data_no_trigger():
+def test_flag8_no_data_no_trigger():
     from pitcher_stats import detect_triggers
     assert detect_triggers({}) == []
     assert detect_triggers({"season": {}, "expected": {}}) == []
 
 
-def test_flag13_error_section_no_trigger():
+def test_flag8_error_section_no_trigger():
     """season/expected 含 error → 視為無資料，不觸發。"""
     from pitcher_stats import detect_triggers
     data = {

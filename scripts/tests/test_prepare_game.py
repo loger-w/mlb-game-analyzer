@@ -60,15 +60,15 @@ def test_compute_output_dir_explicit_override():
 
 
 def test_dossier_filename_no_suffix():
-    from prepare_game import dossier_filename, skeleton_filename
+    from prepare_game import dossier_filename, summary_filename
     assert dossier_filename(None) == "dossier.md"
-    assert skeleton_filename(None) == "phase3_skeleton.md"
+    assert summary_filename(None) == "phase3_summary.md"
 
 
 def test_dossier_filename_with_suffix():
-    from prepare_game import dossier_filename, skeleton_filename
+    from prepare_game import dossier_filename, summary_filename
     assert dossier_filename("G1") == "dossier-G1.md"
-    assert skeleton_filename("G2") == "phase3_skeleton-G2.md"
+    assert summary_filename("G2") == "phase3_summary-G2.md"
 
 
 def test_run_step_subprocess_failure_exits_with_propagated_code(monkeypatch, tmp_path):
@@ -90,12 +90,3 @@ def test_run_step_subprocess_failure_exits_with_propagated_code(monkeypatch, tmp
     assert exc.value.code == 5
 
 
-def test_tw_to_et_converts_minus_one_day():
-    """spec 2026-04-29 §2: et_date = tw_date − 1 day."""
-    from prepare_game import _tw_to_et
-    assert _tw_to_et("2026-04-30") == "2026-04-29"
-    assert _tw_to_et("2026-05-01") == "2026-04-30"
-    # 跨月
-    assert _tw_to_et("2026-05-01") == "2026-04-30"
-    # 跨年
-    assert _tw_to_et("2027-01-01") == "2026-12-31"

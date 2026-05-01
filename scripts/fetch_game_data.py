@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""MLB Game Data Fetcher — Phase 1 API 資料一次撈齊"""
+"""MLB Game Data Fetcher — 一次撈齊單場所需的 API 資料"""
 
 import argparse
 import json
 import sys
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -17,6 +18,28 @@ from _team_resolver import (
 )
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
+
+_ET_TZ = ZoneInfo("America/New_York")
+
+
+def format_game_times(utc_iso: str, official_date: str | None = None) -> dict:
+    """UTC ISO → ET 顯示用日期/時間。
+
+    Args:
+        utc_iso: MLB API gameDate, e.g. "2026-04-30T01:40:00Z"
+        official_date: MLB API officialDate (ET 開打日)；缺值時從 UTC→ET 推導
+
+    Returns:
+        {et_date, et_time}，皆為 str；utc_iso 缺則回空 dict
+    """
+    if not utc_iso:
+        return {}
+    dt_utc = datetime.fromisoformat(utc_iso.replace("Z", "+00:00"))
+    dt_et = dt_utc.astimezone(_ET_TZ)
+    return {
+        "et_date": official_date or dt_et.strftime("%Y-%m-%d"),
+        "et_time": dt_et.strftime("%H:%M"),
+    }
 
 
 def compute_trend_arrows(rs10: float, ra10: float, rs30: float, ra30: float) -> dict:
@@ -155,15 +178,18 @@ def format_summary_md(result: dict) -> str:
 
     home_abbr = team_abbr(home["team_id"], home.get("team", ""))
     away_abbr = team_abbr(away["team_id"], away.get("team", ""))
-    game_date = game.get("date", "")[:10]
+    times = format_game_times(game.get("date", ""), game.get("officialDate"))
+    et_date = times.get("et_date", "—")
+    et_time = times.get("et_time", "—")
+    game_date = et_date
 
-    lines = [f"# Game Data Summary — {away_abbr} @ {home_abbr} ({game_date})", ""]
+    lines = [f"# Game Data Summary — {away_abbr} @ {home_abbr} ({et_date})", ""]
 
     # ========== 比賽資訊（hard） ==========
     lines += [
         "## 比賽資訊",
-        f"- 日期 (ET): {game_date}",
-        f"- 開賽 (UTC ISO): {game.get('date', '—')}",
+        f"- 日期 (ET): {et_date}",
+        f"- 開賽: {et_date} {et_time} ET",
         f"- 球場: {game.get('venue', '—')}",
         f"- 狀態: {game.get('status', '—')}",
         f"- 先發: {away.get('probable_pitcher', 'TBD')} ({away_abbr}, {away.get('probable_pitcher_id') or '—'}) vs {home.get('probable_pitcher', 'TBD')} ({home_abbr}, {home.get('probable_pitcher_id') or '—'})",
@@ -297,6 +323,7 @@ def extract_game_info(game: dict) -> dict:
     return {
         "gamePk": game["gamePk"],
         "date": game["gameDate"],
+        "officialDate": game.get("officialDate"),
         "status": game["status"]["abstractGameState"],
         "venue": game["venue"]["name"],
         "home": {

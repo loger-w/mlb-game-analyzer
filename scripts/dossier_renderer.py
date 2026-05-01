@@ -1,6 +1,6 @@
-"""Dossier renderer：將 Phase 1+2 各 JSON 整合為 ~250 行 markdown，作 AI 主入口。
+"""Dossier renderer：將各 JSON 整合為 ~250 行 markdown，作 AI 主入口。
 
-設計原則（spec §4）：
+設計原則：
 - 純函式：輸入 dict bundle，輸出 markdown str
 - 無 side effect、無 I/O：所有 render 函式（含 render_dossier）只回傳字串；檔案寫入由 prepare_game.py 的 step_f 負責
 - game_dir 參數僅用於將檔案路徑作為 cross-reference 嵌入 markdown 內容
@@ -16,7 +16,9 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-PA_FLOOR = 30  # spec §4.2 Top 5 候選池下限
+from fetch_game_data import format_game_times
+
+PA_FLOOR = 30  # Top 5 候選池下限（PA ≥ 30）
 
 # ---------------------------------------------------------------------------
 # Park factor data (for park notes in bullpen/park section)
@@ -43,7 +45,7 @@ def _il_names_from_roster(roster: dict | None) -> set[str]:
 def select_top5_vs_pitcher(lineup: dict | None, il_names: set[str]) -> list[dict]:
     """從 lineup（lineup_analyzer.py 輸出）選 Top 5 vs 對方先發。
 
-    規則（spec §4.2）：
+    規則：
     - active && PA ≥ 30 && !IL'd
     - 按 PA 降序
     - 最多 5 人，候選池 < 5 就少
@@ -226,7 +228,7 @@ def _last7_ops_str(player: dict) -> str:
 # ---------------------------------------------------------------------------
 
 def _render_header(bundle: dict) -> list[str]:
-    """# Game Dossier — {AWAY} @ {HOME} ({YYYY-MM-DD})"""
+    """# Game Dossier — {AWAY} @ {HOME} ({ET-YYYY-MM-DD})"""
     merged = bundle.get("merged") or {}
     meta = merged.get("_meta") or {}
     game_data = bundle.get("game_data") or {}
@@ -235,7 +237,9 @@ def _render_header(bundle: dict) -> list[str]:
     away = meta.get("away_team") or game.get("away", {}).get("team", "AWAY")
     home = meta.get("home_team") or game.get("home", {}).get("team", "HOME")
     date_raw = meta.get("game_date") or game.get("date", "")
-    date_str = date_raw[:10] if date_raw else "—"
+    official = meta.get("official_date") or game.get("officialDate")
+    times = format_game_times(date_raw, official)
+    date_str = times.get("et_date", "—")
 
     return [f"# Game Dossier — {away} @ {home} ({date_str})", ""]
 
@@ -248,8 +252,10 @@ def _render_game_info(bundle: dict) -> list[str]:
     game = game_data.get("game") or {}
 
     date_raw = meta.get("game_date") or game.get("date", "")
-    date_et = date_raw[:10] if date_raw else "—"
-    date_utc = date_raw if date_raw else "—"
+    official = meta.get("official_date") or game.get("officialDate")
+    times = format_game_times(date_raw, official)
+    et_date = times.get("et_date", "—")
+    et_time = times.get("et_time", "—")
     venue = meta.get("venue") or game.get("venue", "—")
     status = game.get("status", "—")
 
@@ -268,8 +274,8 @@ def _render_game_info(bundle: dict) -> list[str]:
 
     lines = [
         "## 比賽資訊",
-        f"- 日期 (ET): {date_et}",
-        f"- 開賽 (UTC ISO): {date_utc}",
+        f"- 日期 (ET): {et_date}",
+        f"- 開賽: {et_date} {et_time} ET",
         f"- 球場: {venue}",
         f"- 狀態: {status}",
         f"- 先發: {away_sp} (#{away_id}, {away_team}, GS {away_gs}) vs {home_sp} (#{home_id}, {home_team}, GS {home_gs})",
@@ -771,7 +777,7 @@ def _render_risk_summary(bundle: dict) -> list[str]:
             f"— 可能回歸或可能持續？AI 判斷，**不自動 ±run value**"
         )
 
-    lines = ["## ⚠️ 風險提示摘要（AI 在 phase3_skeleton 風險提示段處理）"]
+    lines = ["## ⚠️ 風險提示摘要（AI 在 phase3_summary 風險提示段處理）"]
     if items:
         lines.extend(items)
     else:
@@ -790,8 +796,8 @@ def _render_file_index(bundle: dict, game_dir: str) -> list[str]:
 
     lines = [
         "## File 索引",
-        f"- merged.json (Phase 4 機讀): `{posix_dir}merged.json`",
-        f"- phase3 寫作: `{posix_dir}phase3_skeleton.md`",
+        f"- merged.json (機讀資料): `{posix_dir}merged.json`",
+        f"- 分析寫作: `{posix_dir}phase3_summary.md`",
         f"- 個別 detail summary（drill-down / debug）: 同目錄下 `<basename>_summary.md`",
         "",
     ]

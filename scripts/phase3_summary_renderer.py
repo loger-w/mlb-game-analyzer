@@ -1,12 +1,13 @@
-"""phase3_skeleton.md renderer：產生 7 個 H2 + 預填數值表 + AI 填空 placeholder。
+"""phase3_summary.md template renderer：產生 7 個 H2 + 預填數值表 + AI 填空 placeholder。
 
-設計（spec §5）：
+設計：
 - 7 個 H2 永遠存在（即使 Flag 未觸發）
-- ## 風險提示 段：prepare_game.py 偵測到的 Flag 13/3 預填條目；無則「無風險提示」
+- ## 風險提示 段：prepare_game.py 偵測到的 Flag 8/3 預填條目；無則「無風險提示」
 - 所有 render 函式只回傳字串；檔案寫入由 prepare_game.py 的 step_g 負責
 - ## 條件修正 段：Park PF 修正預填
 - ## 修正後預期得分 段：base 列從 formula_pred 預填
 - 其餘為 AI 填空 (`<!-- AI 補：... -->`)
+- AI 填完所有 placeholder 即為最終輸出（不需另存檔）
 """
 
 
@@ -72,15 +73,15 @@ def _render_bullpen_section(bundle: dict) -> list[str]:
         f"| ERA / IL 數 / 核心 IL 估計 | {m.get('home_bullpen_era', '?')} / {m.get('home_bullpen_il_count', '?')} / <!-- AI --> | "
         f"{m.get('away_bullpen_era', '?')} / {m.get('away_bullpen_il_count', '?')} / <!-- AI --> |",
         "",
-        "### 牛棚雙向修正值",
-        "- HOME 牛棚：對手 +<!-- AI --> run | HOME ML <!-- AI -->%",
-        "- AWAY 牛棚：對手 +<!-- AI --> run | AWAY ML <!-- AI -->%",
+        "### 牛棚影響判讀",
+        "- HOME 牛棚：<!-- AI 補：可用性 / 近 3 天消耗 / 對對手末段威脅 -->",
+        "- AWAY 牛棚：<!-- AI 補：同上 -->",
         "",
     ]
 
 
 def _detect_risk_notes(bundle: dict) -> list[str]:
-    """偵測 Flag 13 / Flag 3，回傳「條目 markdown 行」list（不含 H2 開頭）。"""
+    """偵測 Flag 8 / Flag 3，回傳「條目 markdown 行」list（不含 H2 開頭）。"""
     try:
         from pitcher_stats import detect_triggers as detect_pitcher_triggers
     except ImportError:
@@ -93,9 +94,9 @@ def _detect_risk_notes(bundle: dict) -> list[str]:
     for side in ("home", "away"):
         triggers = detect_pitcher_triggers(bundle.get(f"{side}_pitcher", {}))
         for t in triggers:
-            if t.get("flag") == 13:
+            if t.get("flag") == 8:
                 gap = t.get("value", "?")
-                notes.append(f"- ⚠️ {side.upper()} 投手 Flag 13 (era_xera_delta={gap}):")
+                notes.append(f"- ⚠️ {side.upper()} 投手 Flag 8 (era_xera_delta={gap}):")
                 notes.append("  - <!-- AI 補：是運氣還結構性？是否影響本場判斷？不自動下修預測 -->")
     for side in ("home", "away"):
         triggers = detect_lineup_triggers(bundle.get(f"{side}_lineup", {}))
@@ -155,12 +156,12 @@ def _render_overall_section() -> list[str]:
         "- **信心**：<!-- AI 補 LOW/MEDIUM/HIGH -->",
         "- **風險**：<!-- AI 補 1-4 點 -->",
         "",
-        "⛔ MUST NOT contain：星級、明確盤口推薦",
+        "⛔ MUST NOT contain：星級、盤口推薦（ML / O/U / RL）— 盤口屬 odds/ 模組",
     ]
 
 
-def render_skeleton(bundle: dict, formula_pred: dict) -> str:
-    """主入口：渲染整份 phase3_skeleton.md，回傳 markdown 字串（不寫檔；caller 寫檔）。"""
+def render_summary(bundle: dict, formula_pred: dict) -> str:
+    """主入口：渲染 phase3_summary.md template，回傳 markdown 字串（不寫檔；caller 寫檔）。"""
     lines: list[str] = []
     lines += _render_pitcher_matchup_section(bundle)
     lines += _render_lineup_section(bundle)

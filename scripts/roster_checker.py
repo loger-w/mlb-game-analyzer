@@ -132,9 +132,9 @@ def detect_triggers(data: dict, expected_starter: str | None = None) -> list[dic
                 "on_il": on_il,
                 "interpretation": (
                     f"投手 {expected_starter} {'在 IL 名單中' if on_il else '不在 active 也不在 IL'}，"
-                    "Phase 2 Step 1 阻塞閘門失敗。"
+                    "先發投手不在 active roster。"
                 ),
-                "action": "向使用者回報並暫停 Skill；不得進入 Step 2",
+                "action": "向使用者回報並暫停 Skill。",
             })
     return triggers
 
@@ -206,7 +206,7 @@ def format_md(data: dict, command: str | None = None, expected_starter: str | No
         "",
     ]
     if il:
-        # Highlight: 投手 IL（牛棚核心需要 Phase 3 雙向修正）
+        # Highlight: 投手 IL（影響本場分析）
         pitcher_il = [p for p in il if "Pitcher" in (p.get("position") or "")]
         position_il = [p for p in il if "Pitcher" not in (p.get("position") or "")]
 

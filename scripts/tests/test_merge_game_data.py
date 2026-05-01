@@ -1,4 +1,4 @@
-"""Tests for merge_game_data Plan B 2026-04-22 §4.6 extension."""
+"""Tests for merge_game_data."""
 import sys
 import os
 import json
@@ -64,7 +64,7 @@ def test_nested_lineup_none_data_tolerant():
 
 
 # ============================================================================
-# 2026-04-26 — Park Factor JSON 化 + alias 解析（spec §7.1.2）
+# Park Factor JSON 化 + alias 解析
 # ============================================================================
 
 def test_resolve_park_factor_canonical_name():

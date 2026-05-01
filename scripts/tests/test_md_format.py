@@ -53,7 +53,7 @@ def _pitcher_lugo_data():
 
 
 def _pitcher_detmers_data():
-    """Detmers：ERA 4.08 / xERA 2.75 / gap +1.33（< 1.5，不觸發 Flag 13）。"""
+    """Detmers：ERA 4.08 / xERA 2.75 / gap +1.33（< 1.5，不觸發 Flag 8）。"""
     return {
         "name": "Reid Detmers",
         "mlbam_id": 672282,
@@ -87,12 +87,12 @@ def test_pitcher_md_has_required_sections():
     assert "🟠 Strong Ace" in md
 
 
-def test_pitcher_md_lugo_includes_flag13_trigger():
-    """Lugo MD 必須含 🚨 Triggers + Flag 13。"""
+def test_pitcher_md_lugo_includes_flag8_trigger():
+    """Lugo MD 必須含 🚨 Triggers + Flag 8。"""
     from pitcher_stats import format_md
     md = format_md(_pitcher_lugo_data())
     assert "## 🚨 Triggers" in md
-    assert "Flag 13" in md
+    assert "Flag 8" in md
     assert "ERA-xERA gap" in md
 
 
@@ -330,7 +330,7 @@ def _merged_data():
 def test_merged_md_has_required_sections():
     from merge_game_data import format_md
     md = format_md(_merged_data())
-    assert md.startswith("# Merged Phase 2 — Los Angeles Angels @ Kansas City Royals")
+    assert md.startswith("# Merged Game Data — Los Angeles Angels @ Kansas City Royals")
     assert "## Starting Pitchers" in md
     assert "## Lineups" in md
     assert "## Bullpen / Park" in md
@@ -338,12 +338,12 @@ def test_merged_md_has_required_sections():
     assert "## Source" in md
 
 
-def test_merged_md_includes_flag13_summary_for_lugo():
-    """home_pitcher era_xera_delta=2.81 ≥ 1.5 → Phase 2 整合視角顯示 Flag 13。"""
+def test_merged_md_includes_flag8_summary_for_lugo():
+    """home_pitcher era_xera_delta=2.81 ≥ 1.5 → 風險段顯示 Flag 8。"""
     from merge_game_data import format_md
     md = format_md(_merged_data())
     assert "## 🚨 Triggers" in md
-    assert "Kansas City Royals 投手 Flag 13" in md
+    assert "Kansas City Royals 投手 Flag 8" in md
 
 
 def test_merged_md_no_flag3_in_normal_babip():
@@ -365,5 +365,5 @@ def test_merged_md_handles_missing_meta():
     from merge_game_data import format_md
     data = {"_meta": {}}
     md = format_md(data)
-    assert "# Merged Phase 2" in md
+    assert "# Merged Game Data" in md
     assert "## Source" in md

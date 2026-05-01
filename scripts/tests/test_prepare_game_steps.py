@@ -509,8 +509,8 @@ def test_step_f_writes_dossier_md(monkeypatch, tmp_path):
     assert "Dossier" in dossier_path.read_text(encoding="utf-8")
 
 
-def test_step_g_writes_skeleton_md(monkeypatch, tmp_path):
-    """step_g: render_skeleton() の結果を skeleton_path に書く。"""
+def test_step_g_writes_summary_md(monkeypatch, tmp_path):
+    """step_g: render_summary() の結果を summary_path に書く。"""
     from prepare_game import step_g
 
     (tmp_path / "merged.json").write_text('{}', encoding="utf-8")
@@ -518,27 +518,70 @@ def test_step_g_writes_skeleton_md(monkeypatch, tmp_path):
     monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
 
     import types
-    fake_skel = types.ModuleType("phase3_skeleton_renderer")
-    fake_skel.render_skeleton = lambda bundle, formula_pred: "# Skeleton\nContent"
-    monkeypatch.setitem(sys.modules, "phase3_skeleton_renderer", fake_skel)
+    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer.render_summary = lambda bundle, formula_pred: "# Summary <!-- AI 補 -->"
+    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
 
-    fake_pred = types.ModuleType("predict")
+    fake_pred = types.ModuleType("scoring_formula")
     fake_pred.predict_with_formula = lambda merged: {"home_score": 4, "away_score": 3}
-    monkeypatch.setitem(sys.modules, "predict", fake_pred)
+    monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
 
-    skeleton_path = tmp_path / "phase3_skeleton.md"
-    step_g(output_dir=tmp_path, skeleton_path=skeleton_path)
+    summary_path = tmp_path / "phase3_summary.md"
+    step_g(output_dir=tmp_path, summary_path=summary_path)
 
-    assert skeleton_path.exists()
-    assert "Skeleton" in skeleton_path.read_text(encoding="utf-8")
+    assert summary_path.exists()
+    assert "Summary" in summary_path.read_text(encoding="utf-8")
+
+
+def test_step_g_skips_overwrite_when_no_placeholder(monkeypatch, tmp_path):
+    """step_g 防呆：summary 已存在且無 AI placeholder → 不覆蓋。"""
+    from prepare_game import step_g
+
+    (tmp_path / "merged.json").write_text('{}', encoding="utf-8")
+    summary_path = tmp_path / "phase3_summary.md"
+    edited_content = "# Already analyzed\nSome real conclusions written by analyst."
+    summary_path.write_text(edited_content, encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
+    import types
+    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer.render_summary = lambda bundle, formula_pred: "# OVERWRITTEN <!-- AI 補 -->"
+    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
+    fake_pred = types.ModuleType("scoring_formula")
+    fake_pred.predict_with_formula = lambda merged: {}
+    monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
+
+    step_g(output_dir=tmp_path, summary_path=summary_path, force=False)
+    assert summary_path.read_text(encoding="utf-8") == edited_content
+
+
+def test_step_g_force_overwrites_edited(monkeypatch, tmp_path):
+    """step_g：--force 強制覆蓋已編輯的 summary。"""
+    from prepare_game import step_g
+
+    (tmp_path / "merged.json").write_text('{}', encoding="utf-8")
+    summary_path = tmp_path / "phase3_summary.md"
+    summary_path.write_text("# Edited content (no placeholder)", encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
+    import types
+    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer.render_summary = lambda bundle, formula_pred: "# FRESH <!-- AI 補 -->"
+    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
+    fake_pred = types.ModuleType("scoring_formula")
+    fake_pred.predict_with_formula = lambda merged: {}
+    monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
+
+    step_g(output_dir=tmp_path, summary_path=summary_path, force=True)
+    assert "FRESH" in summary_path.read_text(encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
 # 11g: _print_risk_notes + main()
 # ---------------------------------------------------------------------------
 
-def test_print_risk_notes_flag13_detected(tmp_path, capsys):
-    """_print_risk_notes: era_xera_delta ≥ 1.5 → Flag 13 警告出力。"""
+def test_print_risk_notes_flag8_detected(tmp_path, capsys):
+    """_print_risk_notes: era_xera_delta ≥ 1.5 → Flag 8 警告出力。"""
     from prepare_game import _print_risk_notes
 
     merged = {
@@ -551,7 +594,7 @@ def test_print_risk_notes_flag13_detected(tmp_path, capsys):
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
-    assert "Flag 13" in err
+    assert "Flag 8" in err
     assert "2.00" in err
 
 
@@ -587,20 +630,20 @@ def test_print_risk_notes_no_flags_silent(tmp_path, capsys):
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
-    assert "Flag 13" not in err
+    assert "Flag 8" not in err
     assert "Flag 3" not in err
-    # spec §3.4: header と（無）は必ず出力
+    # 無 Flag 觸發時 header 仍輸出 + （無）
     assert "Risk Notes" in err
     assert "（無）" in err
 
 
 def test_print_risk_notes_missing_merged_json(tmp_path, capsys):
-    """_print_risk_notes: merged.json 欠如 → header + （無）を出力（spec §3.4）。"""
+    """_print_risk_notes: merged.json 欠如 → header + （無）を出力。"""
     from prepare_game import _print_risk_notes
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
-    # spec §3.4: header は常に出力し、Flag がなければ（無）
+    # header 常出，Flag 無觸發時尾巴顯示「（無）」
     assert "Risk Notes" in err
     assert "（無）" in err
 
@@ -614,13 +657,13 @@ def test_main_full_integration(monkeypatch, tmp_path):
     fake_dossier.render_dossier = lambda bundle, game_dir="": "# Dossier"
     monkeypatch.setitem(sys.modules, "dossier_renderer", fake_dossier)
 
-    fake_skel = types.ModuleType("phase3_skeleton_renderer")
-    fake_skel.render_skeleton = lambda bundle, formula_pred: "# Skeleton"
-    monkeypatch.setitem(sys.modules, "phase3_skeleton_renderer", fake_skel)
+    fake_renderer = types.ModuleType("phase3_summary_renderer")
+    fake_renderer.render_summary = lambda bundle, formula_pred: "# Summary <!-- AI 補 -->"
+    monkeypatch.setitem(sys.modules, "phase3_summary_renderer", fake_renderer)
 
-    fake_pred = types.ModuleType("predict")
+    fake_pred = types.ModuleType("scoring_formula")
     fake_pred.predict_with_formula = lambda merged: {}
-    monkeypatch.setitem(sys.modules, "predict", fake_pred)
+    monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
 
     step_order = []
     date_args = {}
@@ -681,8 +724,7 @@ def test_main_full_integration(monkeypatch, tmp_path):
     fetch_idx = next(i for i, s in enumerate(step_order) if "fetch_game_data" in s)
     assert merge_idx > fetch_idx
 
-    # spec 2026-04-29: fetch_game_data.py 應收到 ET = TW - 1
-    # main 帶 --date 2026-04-28（TW），fetch_game_data 應收 2026-04-27
-    assert date_args.get("fetch_game_data.py") == "2026-04-27", (
-        f"fetch_game_data.py 應收 ET 2026-04-27（TW 4/28 - 1），實際 {date_args.get('fetch_game_data.py')}"
+    # --date 直接傳 ET 給 fetch_game_data.py（2026-04-30 移除 TW 轉換層）
+    assert date_args.get("fetch_game_data.py") == "2026-04-28", (
+        f"fetch_game_data.py 應收 ET 2026-04-28（與 main args 同），實際 {date_args.get('fetch_game_data.py')}"
     )
