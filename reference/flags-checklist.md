@@ -14,7 +14,7 @@
 
 ### 3. Hot/Cold 判定未檢查 BABIP
 - 觸發：近 7 天 BABIP `≤ .260` 或 `≥ .370`
-- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 phase3_summary 的「## 風險提示」段。AI 在敘事中判讀「可能回歸 / 可能持續」**不自動 ±run value**。詳見 `matchup-factors.md` §BABIP 回歸風險標註
+- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 summary 的「## 風險提示」段。AI 在敘事中判讀「可能回歸 / 可能持續」**不自動 ±run value**。詳見 `matchup-factors.md` §BABIP 回歸風險標註
 
 ### 4. Agent 子代理跑 WebSearch / WebFetch
 - 觸發：dispatch subagent 帶 WebSearch task
@@ -34,4 +34,4 @@
 
 ### 8. ERA-xERA 落差 / 小樣本回歸風險
 - 觸發：`|ERA − xERA| ≥ 1.5` 或 `IP < 30 且 ERA 比 prior_year 低 ≥ 1.0`
-- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 phase3_summary 的「## 風險提示」段。AI 在敘事中判讀「運氣 / 結構性退化 / 樣本噪音」**不自動補跑 YoY、不自動下修預測**
+- 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 summary 的「## 風險提示」段。AI 在敘事中判讀「運氣 / 結構性退化 / 樣本噪音」**不自動補跑 YoY、不自動下修預測**
