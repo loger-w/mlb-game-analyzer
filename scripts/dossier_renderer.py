@@ -522,6 +522,13 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
     return lines
 
 
+def _source_label(source: str) -> str:
+    """Return emoji-prefixed label for lineup_source field."""
+    if source == "official":
+        return "🟢 official"
+    return "🟡 projected（PA 排序近似 — 打線尚未公布）"
+
+
 def _render_top5_block(
     label: str,
     lineup: dict,
@@ -549,6 +556,32 @@ def _render_top5_block(
         extra_name = extra.get("name", "?")
         extra_ops = _last7_ops_str(extra)
         lines.append(f"> last7 OPS top1（不在 PA top5 內）：{extra_name} (last7 OPS {extra_ops})")
+    return lines
+
+
+def _render_full9_vs_pitcher(
+    label: str,
+    lineup: dict,
+    opposing_sp_name: str,
+    opposing_hand: str,
+) -> list[str]:
+    """渲染 official 打序：9 棒 vs 對方先發 sub-block（按 batting_order 排序）"""
+    all_batters = list((lineup or {}).get("lineup", []) or [])
+    # Sort by batting_order; players without batting_order go to end
+    all_batters.sort(key=lambda p: p.get("batting_order") or 99)
+    lines = [f"### {label} 1–9 棒 vs {opposing_sp_name} ({opposing_hand}HP)"]
+    lines.append(f"| 棒 | Name | Pos | season OPS | vs {opposing_hand}HP OPS | last7 OPS | EV95% | Barrel% |")
+    lines.append("|---|------|------|------|------|------|------|------|")
+    for player in all_batters:
+        order = player.get("batting_order") or "—"
+        name = player.get("name", "?")
+        pos = player.get("position", "—") or "—"
+        s_ops = _ops(player.get("ops"))
+        vs_ops = _lineup_vs_hand_ops(player, opposing_hand)
+        l7_ops = _last7_ops_str(player)
+        ev95 = _v(player.get("ev95pct"), 1)
+        barrel = _v(player.get("barrel_pct"), 1)
+        lines.append(f"| {order} | {name} | {pos} | {s_ops} | {vs_ops} | {l7_ops} | {ev95} | {barrel} |")
     return lines
 
 
@@ -613,8 +646,17 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
     a_lu_risk = _lu_risk_cell(a_lu_triggers)
     lu_risk_row_label = "⚠️ 風險提示" if (h_lu_triggers or a_lu_triggers) else "風險提示"
 
+    # Read lineup_source for each side (default "projected" for backward compat)
+    home_source = home_lu.get("lineup_source", "projected") or "projected"
+    away_source = away_lu.get("lineup_source", "projected") or "projected"
+    h_source_label = _source_label(home_source)
+    a_source_label = _source_label(away_source)
+
     lines = [
         "## 打線",
+        f"- HOME 打線來源：{h_source_label}",
+        f"- AWAY 打線來源：{a_source_label}",
+        "",
         "| | HOME | AWAY |",
         "|---|------|------|",
         f"| Tier (script) | {h_tier} | {a_tier} |",
@@ -627,24 +669,32 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
         "",
     ]
 
-    # Top 5 sub-block
-    lines.append("### Top 5 vs 對方先發手感（PA 排序，PA ≥ 30，IL'd 排除）")
-    lines.append("")
-
     # HOME vs AWAY pitcher
     away_hand = away_p.get("pitch_hand", "?")
     away_sp_name = away_p.get("name", "AWAY SP")
     home_il = _il_names_from_roster(home_roster)
-
-    lines += _render_top5_block("HOME", home_lu, home_il, away_sp_name, away_hand)
-    lines.append("")
 
     # AWAY vs HOME pitcher
     home_hand = home_p.get("pitch_hand", "?")
     home_sp_name = home_p.get("name", "HOME SP")
     away_il = _il_names_from_roster(away_roster)
 
-    lines += _render_top5_block("AWAY", away_lu, away_il, home_sp_name, home_hand)
+    # If either side is projected, emit the shared Top 5 section header once
+    either_projected = (home_source != "official") or (away_source != "official")
+    if either_projected:
+        lines.append("### Top 5 vs 對方先發手感（PA 排序，PA ≥ 30，IL'd 排除）")
+        lines.append("")
+
+    if home_source == "official":
+        lines += _render_full9_vs_pitcher("HOME", home_lu, away_sp_name, away_hand)
+    else:
+        lines += _render_top5_block("HOME", home_lu, home_il, away_sp_name, away_hand)
+    lines.append("")
+
+    if away_source == "official":
+        lines += _render_full9_vs_pitcher("AWAY", away_lu, home_sp_name, home_hand)
+    else:
+        lines += _render_top5_block("AWAY", away_lu, away_il, home_sp_name, home_hand)
     lines.append("")
 
     return lines

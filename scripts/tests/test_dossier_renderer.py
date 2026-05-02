@@ -576,3 +576,105 @@ def test_render_series_context_handles_none_winner_and_empty_names():
     # Must not raise
     lines = _render_series_context(bundle)
     assert isinstance(lines, list)
+
+
+# ---------------------------------------------------------------------------
+# P9 tests: lineup source label + 9 棒 vs 對方先發
+# ---------------------------------------------------------------------------
+
+def _make_lineup(source="projected", batters=None):
+    if batters is None:
+        batters = [
+            {"mlbam_id": 100 + i, "name": f"P{i}", "position": "DH",
+             "pa": 200 - i * 10, "avg": 0.250, "obp": 0.330, "slg": 0.420,
+             "ops": 0.750, "iso": 0.170, "babip": 0.300, "k_pct": 22.0, "bb_pct": 9.0,
+             "xwoba": 0.330, "xba": 0.250, "xslg": 0.420,
+             "ev95pct": 50.0, "barrel_pct": 8.0,
+             "platoon": None, "last_7": None, "bvp": None,
+             "batting_order": (i + 1) if source == "official" else None}
+            for i in range(9)
+        ]
+    return {
+        "team": "NYY", "team_id": 147, "tier": "🟡 Average",
+        "avg_ops": 0.750, "avg_xwoba": 0.330, "avg_babip": 0.300,
+        "avg_k_pct": 22.0, "avg_bb_pct": 9.0, "over_under_lean": 0,
+        "recent_heat": "⚖️ Normal", "last7_babip": 0.300, "chain": {},
+        "lineup_source": source, "lineup_source_detail": None, "lineup": batters,
+    }
+
+
+def test_dossier_lineup_section_official():
+    """home/away 都 official → 標題出現「打線來源：🟢 official」、9 棒 vs 對方先發 table。"""
+    from dossier_renderer import render_dossier
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Yankee Stadium",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": _make_lineup("official"),
+        "away_lineup": _make_lineup("official"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {"park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0},
+    }
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    assert "🟢 official" in md
+    # 9 棒 vs 對方先發應出現
+    assert "9 棒 vs" in md or "1-9 棒 vs" in md or "All 9 vs" in md  # 依實作命名
+
+
+def test_dossier_lineup_section_projected():
+    """home/away 都 projected → 標題「🟡 projected」、Top 5 sub-block 維持。"""
+    from dossier_renderer import render_dossier
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Yankee Stadium",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": _make_lineup("projected"),
+        "away_lineup": _make_lineup("projected"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {"park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0},
+    }
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    assert "🟡 projected" in md
+    # 既有 Top 5 sub-block 標題仍在
+    assert "Top 5" in md or "PA top" in md or "對方先發" in md  # 依現行命名
+
+
+def test_dossier_lineup_section_no_source_field():
+    """缺 lineup_source（舊 merged.json） → 預設 projected，向下相容。"""
+    from dossier_renderer import render_dossier
+    home_l = _make_lineup("projected")
+    home_l.pop("lineup_source")
+    home_l.pop("lineup_source_detail")
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Yankee Stadium",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": home_l,
+        "away_lineup": _make_lineup("projected"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {"park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0},
+    }
+    # 不該 raise KeyError
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    assert "🟡 projected" in md
