@@ -165,6 +165,7 @@ def step_a(*, date: str, team_abbr: str, output_dir: Path,
         "away_name": away.get("probable_pitcher"),
         "home_team_id": home.get("team_id"),
         "away_team_id": away.get("team_id"),
+        "game_pk": game_section.get("gamePk"),
     }
 
 

@@ -187,6 +187,23 @@ def test_step_a_doubleheader_with_suffix_passes(monkeypatch, tmp_path):
     assert result["home_id"] == 676440
 
 
+def test_step_a_returns_game_pk(monkeypatch, tmp_path):
+    """step_a 回傳值應包含 game_pk（從 game_data.json 既有的 gamePk 讀出）。"""
+    from prepare_game import step_a
+
+    game_data_path = tmp_path / "game_data.json"
+    game_data_path.write_text(json.dumps({
+        "_meta": {},
+        "gamePk": 778345,
+        "home": {"team": "CLE", "team_id": 114, "probable_pitcher": "Tanner Bibee", "probable_pitcher_id": 676440},
+        "away": {"team": "TB", "team_id": 139, "probable_pitcher": "Nick Martínez", "probable_pitcher_id": 607259},
+    }), encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.subprocess.run", make_fake_run())
+    result = step_a(date="2026-04-28", team_abbr="TB", output_dir=tmp_path)
+    assert result["game_pk"] == 778345
+
+
 # ---------------------------------------------------------------------------
 # 11b: Step B
 # ---------------------------------------------------------------------------
