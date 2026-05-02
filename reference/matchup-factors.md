@@ -38,6 +38,13 @@
 
 ## 打線分析
 
+**打線來源**（由 `lineup_analyzer.py` 自動偵測）：
+- 🟢 **official**：球隊已公布今日打序（賽前 ~2-4 小時 API 才填），9 人 1-9 棒順序為實際打序
+- 🟡 **projected**：打序未公布，採 active roster（排除 IL）按 PA 降序取前 9 人作近似
+
+**評級邏輯不分 source**：tier / chain / over_under_lean / 觸發條件對兩種來源一致。
+**差異**：official 路徑下 `chain.obp_top3` / `slg_mid` 是真實 1-3 棒 / 4-5 棒；projected 是 PA 排序近似。
+
 對打線核心（1-9 棒）查詢：xwOBA、OPS、OBP、SLG、ISO、K%/BB%、Hard Hit%、Barrel%、BABIP、xBA、xSLG。
 
 **打線評級**：🔴 Elite / 🟠 Strong / 🟡 Average / 🟢 Weak
@@ -153,4 +160,46 @@
 - 臨時主場：Athletics（Sutter Health）/ Rays（Steinbrenner）— 樣本期短
 
 > ⛔ Coors Field 4 月：物理上空氣密度比夏季高 ~8-10%，4 月 PF ≈ 112，5 月後恢復 131。
+
+### 天氣修正
+
+資料源：MLB Stats API `feed/live` 的 `gameData.weather`，由 `merge_game_data.py` 自動撈取。
+**未公布或室內球場 → 不分析**（merged.weather = None 或 indoor=true）。
+
+> ⛔ 天氣**不進 scoring formula**（與 BABIP / ERA-xERA gap 同等級——研究存在但 noisy）。
+> AI 在 summary `## 條件修正` 段以敘事方式判讀，**不自動 ±run value**。
+
+#### 風（wind）
+
+MLB API wind 欄位已含風向解讀（球場 orientation 已換算），形式：
+
+| 文字 | 意義 |
+|------|------|
+| `Out To CF / LF / RF` | 順風出去（利 HR / 飛球） |
+| `In From CF / LF / RF` | 逆風進來（壓 HR / 利投手） |
+| `L To R` / `R To L` | 橫風（影響有限） |
+| `Calm` / `Varies` | 無顯著影響 |
+
+風速門檻（敘事用）：
+
+| 速度 | 影響 |
+|------|------|
+| < 8 mph | 噪音，可忽略 |
+| 8–15 mph | 輕度，順風略利攻 / 逆風略利投 |
+| 15–20 mph | 中度，HR 機率明顯偏移 |
+| > 20 mph | 強，**summary 風險段必提** |
+
+#### 溫度
+
+聯盟基準 ~70°F；偏離越多影響越大（球的飛行距離與空氣密度 / 球皮含水量相關）。
+
+| 溫度 | 影響 |
+|------|------|
+| > 85°F | ⬆️ 球易飛，輕度利攻 |
+| 60–85°F | 中性 |
+| 50–60°F | 輕度利投 |
+| < 50°F | ⬆️ 利投，球員肌肉表現也受影響 |
+
+> Coors / Yankee Stadium / Wrigley 對風更敏感（球場 orientation + 大氣條件交互）。
+> 球員適應性差異大（北方球隊冷天表現相對好）— **AI 判讀時優先看相對強度**，不直接套表。
 
