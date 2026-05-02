@@ -1,0 +1,104 @@
+{
+  "name": "Michael King",
+  "mlbam_id": 650633,
+  "age": 30,
+  "birth_date": "1995-05-25",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "season": {
+    "era": 2.41,
+    "whip": 1.04,
+    "k_pct": 25.4,
+    "bb_pct": 11.2,
+    "k_bb_pct": 14.2,
+    "fip": 3.58,
+    "xfip": 3.58,
+    "hr_per_9": 0.8,
+    "gb_pct": 50.0,
+    "ip": 33.666666666666664,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 3.65,
+    "xwoba": 0.303,
+    "xba": 0.208
+  },
+  "statcast": {
+    "avg_velo": 88.7,
+    "max_velo": 96.2,
+    "hard_hit_pct": 20.6,
+    "pitch_types": {
+      "SI": 27.8,
+      "CH": 27.4,
+      "ST": 19.9,
+      "FF": 19.3,
+      "SL": 5.6
+    },
+    "barrel_pct": 10.0,
+    "ev95percent": 35.0,
+    "whiff_pct": 10.6,
+    "csw_pct": 26.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Detroit Tigers",
+      "ip": 5.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 4,
+      "h": 1,
+      "er": 0,
+      "pitches": 82,
+      "strikes": 46
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Boston Red Sox",
+      "ip": 5.666666666666667,
+      "era": 3.38,
+      "k": 5,
+      "bb": 1,
+      "h": 7,
+      "er": 4,
+      "pitches": 81,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 6.0,
+      "era": 3.24,
+      "k": 4,
+      "bb": 3,
+      "h": 4,
+      "er": 2,
+      "pitches": 95,
+      "strikes": 57
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".132",
+      "obp": ".211",
+      "slg": ".221",
+      "k": 19,
+      "bb": 5,
+      "bf": 77,
+      "k_pct": 24.7,
+      "bb_pct": 6.5
+    },
+    "vs_right": {
+      "avg": ".244",
+      "obp": ".404",
+      "slg": ".422",
+      "k": 15,
+      "bb": 10,
+      "bf": 57,
+      "k_pct": 26.3,
+      "bb_pct": 17.5
+    }
+  }
+}
