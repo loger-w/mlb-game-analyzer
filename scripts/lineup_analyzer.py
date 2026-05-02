@@ -754,6 +754,8 @@ def main():
     parser.add_argument("--year", type=int, default=datetime.now().year)
     parser.add_argument("--opposing-pitcher-id", type=int, default=None,
                         help="Opposing pitcher MLBAM ID for BvP lookup")
+    parser.add_argument("--game-pk", type=int, default=None,
+                        help="MLB Stats API gamePk for fetching official lineup (optional)")
     parser.add_argument("--output", "-o", help="Output file path (default: print to stdout)")
     parser.add_argument("--no-md", action="store_true",
                         help="Skip MD summary output (only write JSON)")
@@ -764,7 +766,7 @@ def main():
         print(json.dumps({"test": "OK", "message": "lineup_analyzer test mode"}, indent=2))
         return
 
-    result = analyze_team(args.team, args.year, args.opposing_pitcher_id)
+    result = analyze_team(args.team, args.year, args.opposing_pitcher_id, game_pk=args.game_pk)
     json_output = json.dumps(result, indent=2, ensure_ascii=False)
 
     if args.output:
@@ -777,6 +779,8 @@ def main():
             md_path = json_path.with_name(json_path.stem + "_summary.md")
             command = f"lineup_analyzer.py --team {args.team} --year {args.year}" + (
                 f" --opposing-pitcher-id {args.opposing_pitcher_id}" if args.opposing_pitcher_id else ""
+            ) + (
+                f" --game-pk {args.game_pk}" if args.game_pk else ""
             )
             try:
                 md_path.write_text(format_md(result, command=command), encoding="utf-8")
