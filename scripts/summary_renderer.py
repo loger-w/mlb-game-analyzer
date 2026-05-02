@@ -132,16 +132,49 @@ def _render_risk_section(bundle: dict) -> list[str]:
     return ["## 風險提示", ""] + notes + [""]
 
 
-def _render_conditional_section(bundle: dict) -> list[str]:
-    pf = bundle.get("merged", {}).get("park_factor", 100)
-    pf_correction = (pf - 100) * 0.05
+def _render_weather_state_line(weather: dict | None) -> list[str]:
+    """Return summary 的天氣狀態列（含可能的 AI placeholder 子行）。
+
+    三狀態：
+    - 有資料：「天氣：{condition}, {temp}°F, wind {wind}」+ AI 影響判讀子行
+    - 室內：「天氣：室內（{condition}，不適用）」（無 AI 子行）
+    - 缺資料：「天氣：未公布（跳過天氣分析）」（無 AI 子行）
+    """
+    if not weather:
+        return ["- 天氣：未公布（跳過天氣分析）"]
+    if weather.get("indoor"):
+        cond = weather.get("condition", "Indoor")
+        return [f"- 天氣：室內（{cond}，不適用）"]
+    parts = []
+    if weather.get("condition"):
+        parts.append(weather["condition"])
+    if weather.get("temp_f") is not None:
+        parts.append(f"{weather['temp_f']}°F")
+    if weather.get("wind_text"):
+        parts.append(f"wind {weather['wind_text']}")
+    if not parts:
+        return ["- 天氣：未公布（跳過天氣分析）"]
     return [
+        f"- 天氣：{', '.join(parts)}",
+        "  - 影響判讀：<!-- AI 補：對得分 / HR 影響判讀 -->",
+    ]
+
+
+def _render_conditional_section(bundle: dict) -> list[str]:
+    merged = bundle.get("merged") or {}
+    pf = merged.get("park_factor", 100)
+    pf_correction = (pf - 100) * 0.05
+    lines = [
         "## 條件修正",
         "",
         f"- Park Factor: {pf} → {pf_correction:+.2f} run",
-        "- 先發 tier / doubleheader / 天氣：<!-- AI 補 -->",
+    ]
+    lines += _render_weather_state_line(merged.get("weather"))
+    lines += [
+        "- 先發 tier / doubleheader：<!-- AI 補 -->",
         "",
     ]
+    return lines
 
 
 def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]:

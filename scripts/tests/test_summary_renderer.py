@@ -244,3 +244,60 @@ def test_summary_lineup_section_marks_source():
     md = render_summary(bundle, formula_pred)
     assert "🟢 official" in md
     assert "🟡 projected" in md
+
+
+def test_summary_conditional_weather_present():
+    """merged.weather 三欄齊 → ## 條件修正 出現「天氣：Sunny, 78°F, ...」+ AI 影響判讀 placeholder。"""
+    from summary_renderer import render_summary
+
+    bundle = {
+        "home_lineup": {"tier": "?", "recent_heat": "?", "lineup_source": "projected"},
+        "away_lineup": {"tier": "?", "recent_heat": "?", "lineup_source": "projected"},
+        "home_pitcher": {"name": "?", "pitch_hand": "R"}, "away_pitcher": {"name": "?", "pitch_hand": "R"},
+        "merged": {
+            "park_factor": 100,
+            "weather": {"condition": "Sunny", "temp_f": 78,
+                        "wind_text": "10 mph, Out To CF", "indoor": False},
+        },
+        "home_roster": None, "away_roster": None,
+    }
+    md = render_summary(bundle, {"home_score": 0, "away_score": 0})
+    assert "天氣：Sunny, 78°F, wind 10 mph, Out To CF" in md
+    assert "AI 補：對得分 / HR 影響判讀" in md or "影響判讀" in md
+
+
+def test_summary_conditional_weather_indoor():
+    """indoor=True → 顯示「天氣：室內（Roof Closed，不適用）」、不出現 AI placeholder。"""
+    from summary_renderer import render_summary
+
+    bundle = {
+        "home_lineup": {"tier": "?", "recent_heat": "?", "lineup_source": "projected"},
+        "away_lineup": {"tier": "?", "recent_heat": "?", "lineup_source": "projected"},
+        "home_pitcher": {"name": "?"}, "away_pitcher": {"name": "?"},
+        "merged": {
+            "park_factor": 100,
+            "weather": {"condition": "Roof Closed", "temp_f": 72,
+                        "wind_text": None, "indoor": True},
+        },
+        "home_roster": None, "away_roster": None,
+    }
+    md = render_summary(bundle, {"home_score": 0, "away_score": 0})
+    assert "天氣：室內" in md
+    assert "Roof Closed" in md
+    assert "對得分 / HR 影響判讀" not in md
+
+
+def test_summary_conditional_weather_absent():
+    """weather=None → 顯示「天氣：未公布（跳過天氣分析）」、不出現 AI placeholder。"""
+    from summary_renderer import render_summary
+
+    bundle = {
+        "home_lineup": {"tier": "?", "recent_heat": "?", "lineup_source": "projected"},
+        "away_lineup": {"tier": "?", "recent_heat": "?", "lineup_source": "projected"},
+        "home_pitcher": {"name": "?"}, "away_pitcher": {"name": "?"},
+        "merged": {"park_factor": 100, "weather": None},
+        "home_roster": None, "away_roster": None,
+    }
+    md = render_summary(bundle, {"home_score": 0, "away_score": 0})
+    assert "天氣：未公布" in md
+    assert "對得分 / HR 影響判讀" not in md
