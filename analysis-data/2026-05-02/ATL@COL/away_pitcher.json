@@ -1,0 +1,103 @@
+{
+  "name": "Chris Sale",
+  "mlbam_id": 519242,
+  "age": 37,
+  "birth_date": "1989-03-30",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "🔴 Elite Ace",
+  "season": {
+    "era": 2.31,
+    "whip": 0.91,
+    "k_pct": 27.7,
+    "bb_pct": 6.6,
+    "k_bb_pct": 21.1,
+    "fip": 3.56,
+    "xfip": 2.96,
+    "hr_per_9": 1.29,
+    "gb_pct": 46.0,
+    "ip": 35.0,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 3.02,
+    "xwoba": 0.277,
+    "xba": 0.2
+  },
+  "statcast": {
+    "avg_velo": 87.0,
+    "max_velo": 99.4,
+    "hard_hit_pct": 18.4,
+    "pitch_types": {
+      "SL": 41.9,
+      "FF": 38.4,
+      "CH": 11.5,
+      "SI": 8.3
+    },
+    "barrel_pct": 8.1,
+    "ev95percent": 30.2,
+    "whiff_pct": 12.4,
+    "csw_pct": 30.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Kansas City Royals",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 3,
+      "h": 3,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Athletics",
+      "ip": 6.0,
+      "era": 0.75,
+      "k": 3,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 79,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Los Angeles Angels",
+      "ip": 4.0,
+      "era": 3.94,
+      "k": 7,
+      "bb": 2,
+      "h": 5,
+      "er": 6,
+      "pitches": 77,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".207",
+      "obp": ".281",
+      "slg": ".276",
+      "k": 9,
+      "bb": 2,
+      "bf": 32,
+      "k_pct": 28.1,
+      "bb_pct": 6.2
+    },
+    "vs_right": {
+      "avg": ".179",
+      "obp": ".257",
+      "slg": ".337",
+      "k": 29,
+      "bb": 7,
+      "bf": 105,
+      "k_pct": 27.6,
+      "bb_pct": 6.7
+    }
+  }
+}
