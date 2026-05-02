@@ -130,3 +130,137 @@ def test_fetch_official_lineup_api_fail(monkeypatch, capsys):
     assert result is None
     captured = capsys.readouterr()
     assert "feed/live fetch failed" in captured.err
+
+
+def test_fetch_official_lineup_http_error(monkeypatch, capsys):
+    """raise_for_status raises HTTPError → 回 None + stderr 警告。"""
+    import requests
+    resp = MagicMock()
+    resp.raise_for_status.side_effect = requests.HTTPError("404 Not Found")
+    monkeypatch.setattr("lineup_analyzer.requests.get", lambda *a, **k: resp)
+
+    from lineup_analyzer import fetch_official_lineup
+    result = fetch_official_lineup(game_pk=778345, team_id=147)
+    assert result is None
+    captured = capsys.readouterr()
+    assert "feed/live fetch failed" in captured.err
+
+
+def test_analyze_team_official_path(monkeypatch):
+    """game_pk + 完整 9 人 → lineup_source=official，9 人含 batting_order=1..9。"""
+    fixture = _load_fixture("feed_live_official_lineup.json")
+    monkeypatch.setattr("lineup_analyzer.requests.get", _mock_requests_get(fixture))
+
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_team_roster",
+        lambda team_id, year: [
+            {"id": pid, "name": f"P{pid}", "position": "DH"}
+            for pid in [592450, 519317, 624413, 519203, 670541, 543305, 596019, 624577, 656555]
+        ],
+    )
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_player_batting",
+        lambda pid, year: {
+            "mlbam_id": pid, "pa": 100, "avg": 0.250, "obp": 0.330, "slg": 0.420,
+            "ops": 0.750, "iso": 0.170, "babip": 0.300, "k_pct": 22.0, "bb_pct": 9.0,
+        },
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
+    monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=778345)
+    assert result["lineup_source"] == "official"
+    assert len(result["lineup"]) == 9
+    assert [b["batting_order"] for b in result["lineup"]] == list(range(1, 10))
+    assert result["lineup_source_detail"]["game_pk"] == 778345
+    assert "fetched_at" in result["lineup_source_detail"]
+
+
+def test_analyze_team_partial_falls_back(monkeypatch, capsys):
+    """5 人 → fallback projected + stderr。"""
+    fixture = _load_fixture("feed_live_partial_lineup.json")
+    monkeypatch.setattr("lineup_analyzer.requests.get", _mock_requests_get(fixture))
+
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_team_roster",
+        lambda team_id, year: [{"id": 1, "name": "X", "position": "C"}],
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_il_names", lambda team_id, year: set())
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_player_batting",
+        lambda pid, year: {
+            "mlbam_id": pid, "pa": 100, "avg": 0.250, "obp": 0.330, "slg": 0.420,
+            "ops": 0.750, "iso": 0.170, "babip": 0.300, "k_pct": 22.0, "bb_pct": 9.0,
+        },
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
+    monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=778345)
+    assert result["lineup_source"] == "projected"
+    assert result["lineup_source_detail"] is None
+    captured = capsys.readouterr()
+    assert "official lineup partial" in captured.err
+
+
+def test_analyze_team_no_game_pk(monkeypatch):
+    """game_pk=None → 直接走 PA proxy，不打 feed/live。"""
+    called = []
+    def _get(*a, **k):
+        called.append(a)
+        raise AssertionError("requests.get should not be called when game_pk=None")
+    monkeypatch.setattr("lineup_analyzer.requests.get", _get)
+
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_team_roster",
+        lambda team_id, year: [{"id": 1, "name": "X", "position": "C"}],
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_il_names", lambda team_id, year: set())
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_player_batting",
+        lambda pid, year: {
+            "mlbam_id": pid, "pa": 100, "avg": 0.250, "obp": 0.330, "slg": 0.420,
+            "ops": 0.750, "iso": 0.170, "babip": 0.300, "k_pct": 22.0, "bb_pct": 9.0,
+        },
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
+    monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=None)
+    assert result["lineup_source"] == "projected"
+    assert not called
+
+
+def test_analyze_team_api_fail_falls_back(monkeypatch, capsys):
+    """feed/live 失敗 → fallback projected。"""
+    def _raise(*a, **k):
+        raise RuntimeError("network down")
+    monkeypatch.setattr("lineup_analyzer.requests.get", _raise)
+
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_team_roster",
+        lambda team_id, year: [{"id": 1, "name": "X", "position": "C"}],
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_il_names", lambda team_id, year: set())
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_player_batting",
+        lambda pid, year: {
+            "mlbam_id": pid, "pa": 100, "avg": 0.250, "obp": 0.330, "slg": 0.420,
+            "ops": 0.750, "iso": 0.170, "babip": 0.300, "k_pct": 22.0, "bb_pct": 9.0,
+        },
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
+    monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=778345)
+    assert result["lineup_source"] == "projected"
+    captured = capsys.readouterr()
+    assert "feed/live fetch failed" in captured.err

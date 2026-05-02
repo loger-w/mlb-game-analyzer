@@ -333,18 +333,16 @@ def fetch_bvp(batter_id: int, pitcher_id: int) -> dict | None:
         return None
 
 
-def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -> dict:
-    """完整的球隊打線分析"""
-    team_id = resolve_team_id(team)
+def build_lineup_from_pa_proxy(team_id: int, year: int) -> list[dict]:
+    """既有 PA-排序 top 9 邏輯抽出。
 
-    # 1. 取 active roster + IL 名單排除
+    Roster → IL filter → fetch_player_batting → 按 PA 降序 → top 9
+    """
     roster = fetch_team_roster(team_id, year)
     if not roster:
-        return {"error": f"No active roster found for {team}"}
-
+        return []
     il_names = fetch_il_names(team_id, year)
 
-    # 2. 批次取 MLB API 打擊數據（排除 IL 球員）
     batters = []
     for player in roster:
         if player["name"] in il_names:
@@ -353,16 +351,80 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
         if stats:
             stats["name"] = player["name"]
             stats["position"] = player["position"]
+            stats["batting_order"] = None  # projected path 無實際打序
             batters.append(stats)
 
-    if not batters:
-        return {"error": f"No batting stats found for {team} in {year}"}
-
-    # 按 PA 排序取前 9 人（完整打線）
     batters.sort(key=lambda b: b["pa"], reverse=True)
-    core_lineup = batters[:9]
+    return batters[:9]
 
-    # 3. 取 Statcast leaderboard（一次拉全聯盟，記憶體內 merge）
+
+def build_lineup_from_official(official_ids: list[int], team_id: int, year: int) -> list[dict]:
+    """用 official 9 個 player_id 直接組打線（不過濾 IL — 上場了就是上場）。
+
+    Position 與 name 從 fetch_team_roster 拿；極少數查不到（剛升上來）就空字串。
+    """
+    roster = fetch_team_roster(team_id, year)
+    pos_map = {p["id"]: p["position"] for p in roster}
+    name_map = {p["id"]: p["name"] for p in roster}
+
+    core_lineup = []
+    for i, pid in enumerate(official_ids, start=1):
+        stats = fetch_player_batting(pid, year)
+        if not stats:
+            # Rookie / 0 PA — 補骨架，下游聚合會忽略 0 值
+            stats = {
+                "mlbam_id": pid, "pa": 0, "avg": 0.0, "obp": 0.0, "slg": 0.0,
+                "ops": 0.0, "iso": 0.0, "babip": 0.0, "k_pct": 0.0, "bb_pct": 0.0,
+            }
+        stats["name"] = name_map.get(pid, f"Player {pid}")
+        stats["position"] = pos_map.get(pid, "")
+        stats["batting_order"] = i
+        core_lineup.append(stats)
+    return core_lineup
+
+
+def _select_lineup_9(team_id: int, year: int, game_pk: int | None):
+    """Try official → fallback PA proxy. 回傳 (core_lineup, source, detail)。"""
+    if game_pk:
+        official_ids = fetch_official_lineup(game_pk, team_id)
+        if official_ids is not None:
+            if len(official_ids) == 9:
+                print("[lineup_analyzer] official lineup fetched (9)", file=sys.stderr)
+                core = build_lineup_from_official(official_ids, team_id, year)
+                detail = {
+                    "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                    "game_pk": game_pk,
+                }
+                return core, "official", detail
+            elif len(official_ids) == 0:
+                print(
+                    "[lineup_analyzer] official lineup not yet posted, fallback to PA proxy",
+                    file=sys.stderr,
+                )
+            else:
+                print(
+                    f"[lineup_analyzer] official lineup partial (N={len(official_ids)}), fallback to PA proxy",
+                    file=sys.stderr,
+                )
+        # official_ids is None：fetch_official_lineup 已自行 stderr 警告
+    return build_lineup_from_pa_proxy(team_id, year), "projected", None
+
+
+def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
+                 game_pk: int | None = None) -> dict:
+    """完整的球隊打線分析。
+
+    若 game_pk 提供且球隊已公布完整 9 人打序，採 official 路徑；
+    否則 fallback 至 PA proxy（active roster 排除 IL，按 PA 降序前 9）。
+    """
+    team_id = resolve_team_id(team)
+
+    core_lineup, lineup_source, lineup_source_detail = _select_lineup_9(team_id, year, game_pk)
+
+    if not core_lineup:
+        return {"error": f"No active roster found for {team}"}
+
+    # 3. Statcast leaderboard（一次拉全聯盟，記憶體內 merge）
     expected_map, barrels_map = fetch_statcast_batting_leaderboard(year)
 
     # 4. Merge Statcast + Platoon + Last7 + BvP
@@ -370,24 +432,17 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
         pid = str(batter["mlbam_id"])
         exp = expected_map.get(pid, {})
         bar = barrels_map.get(pid, {})
-        # 命名：ev95pct 取代 hard_hit_pct
         batter["xwoba"] = exp.get("xwoba")
         batter["xba"] = exp.get("xba")
         batter["xslg"] = exp.get("xslg")
         batter["ev95pct"] = bar.get("ev95pct")
         batter["barrel_pct"] = bar.get("barrel_pct")
-
-        # Platoon Splits
         batter["platoon"] = fetch_player_platoon(batter["mlbam_id"], year)
-
-        # 近 7 場熱度
         batter["last_7"] = fetch_player_last7(batter["mlbam_id"])
-
-        # BvP（如果有提供對方投手 ID）
         if opposing_pitcher_id:
             batter["bvp"] = fetch_bvp(batter["mlbam_id"], opposing_pitcher_id)
 
-    # 5. 整體指標
+    # 5. 整體指標（既有，不變）
     avg_ops = sum(b["ops"] for b in core_lineup) / len(core_lineup)
     avg_babip = sum(b["babip"] for b in core_lineup) / len(core_lineup)
     avg_k_pct = sum(b["k_pct"] for b in core_lineup) / len(core_lineup)
@@ -396,7 +451,7 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
     xwoba_values = [b["xwoba"] for b in core_lineup if b.get("xwoba") is not None]
     avg_xwoba = sum(xwoba_values) / len(xwoba_values) if xwoba_values else None
 
-    # 6. 打線評級（優先用 xwOBA，fallback OPS）
+    # 6. 打線評級（既有）
     tier = "🟢 Weak"
     if avg_xwoba is not None:
         for tier_name, check_fn in TIER_MAP:
@@ -409,7 +464,7 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
                 tier = tier_name
                 break
 
-    # 7. 大小分傾向
+    # 7. 大小分傾向（既有）
     over_under_lean = 0
     if avg_babip <= 0.270:
         over_under_lean += 1
@@ -420,14 +475,14 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
     if avg_xwoba is not None and avg_xwoba >= 0.350:
         over_under_lean += 1
 
-    # 8. 串聯分析
+    # 8. 串聯分析（既有）
     chain = {}
     if len(core_lineup) >= 3:
         chain["obp_top3"] = round(sum(b["obp"] for b in core_lineup[:3]) / 3, 3)
     if len(core_lineup) >= 5:
         chain["slg_mid"] = round(sum(b["slg"] for b in core_lineup[3:5]) / 2, 3)
 
-    # 整體近 7 場熱度
+    # 整體近 7 場熱度（既有）
     last7_ops_values = []
     for b in core_lineup:
         if b.get("last_7") and b["last_7"].get("ops"):
@@ -456,8 +511,10 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None) -
         "avg_bb_pct": round(avg_bb_pct, 1),
         "over_under_lean": over_under_lean,
         "recent_heat": recent_heat,
-        "last7_babip": compute_last7_babip(core_lineup),  # Flag 3 觸發用
+        "last7_babip": compute_last7_babip(core_lineup),
         "chain": chain,
+        "lineup_source": lineup_source,
+        "lineup_source_detail": lineup_source_detail,
         "lineup": core_lineup,
     }
 
