@@ -222,3 +222,25 @@ def test_expected_runs_has_signal_column_caveat():
     assert "BABIP" in expected_section
     assert "ERA-xERA" in expected_section or "era_xera" in expected_section
     assert "不入此欄" in expected_section or "不入欄" in expected_section
+
+
+def test_summary_lineup_section_marks_source():
+    """home=official → summary `## 打線評級` HOME 段含「打線來源：🟢 official」。"""
+    from summary_renderer import render_summary
+
+    bundle = {
+        "home_lineup": {"tier": "🟡 Average", "recent_heat": "⚖️ Normal",
+                        "lineup_source": "official"},
+        "away_lineup": {"tier": "🟡 Average", "recent_heat": "⚖️ Normal",
+                        "lineup_source": "projected"},
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "age": 28},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "age": 30},
+        "merged": {"park_factor": 100,
+                   "home_bullpen_era": 4.0, "away_bullpen_era": 4.0},
+        "home_roster": None, "away_roster": None,
+    }
+    formula_pred = {"home_score": 4.5, "away_score": 4.0}
+
+    md = render_summary(bundle, formula_pred)
+    assert "🟢 official" in md
+    assert "🟡 projected" in md

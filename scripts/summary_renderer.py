@@ -46,14 +46,21 @@ def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
 def _render_lineup_section(bundle: dict) -> list[str]:
     home_l = bundle.get("home_lineup") or {}
     away_l = bundle.get("away_lineup") or {}
-    # lineup_analyzer 真實 schema：top-level tier / recent_heat（已含 emoji）
+    home_source = home_l.get("lineup_source", "projected")
+    away_source = away_l.get("lineup_source", "projected")
+
+    def _label(src):
+        return "🟢 official" if src == "official" else "🟡 projected（PA 排序近似 — 打線尚未公布）"
+
     return [
         "## 打線評級",
         "",
         f"### HOME — {home_l.get('tier', '?')} / {home_l.get('recent_heat', '?')}",
+        f"- 打線來源：{_label(home_source)}",
         "- **Tier 覆寫**：<!-- AI 補 -->",
         "",
         f"### AWAY — {away_l.get('tier', '?')} / {away_l.get('recent_heat', '?')}",
+        f"- 打線來源：{_label(away_source)}",
         "- **Tier 覆寫**：<!-- AI 補 -->",
         "",
     ]
