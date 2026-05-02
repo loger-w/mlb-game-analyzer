@@ -436,6 +436,8 @@ def main():
     merged["home_bullpen_era"] = home_bp_era
     merged["away_bullpen_era"] = away_bp_era
     merged["park_factor"] = park_factor
+    # weather（與 park_factor 同層級的條件修正資料；無資料則 None，AI 在 summary 跳過）
+    merged["weather"] = fetch_weather(game_info.get("gamePk")) if game_info.get("gamePk") else None
     merged.update(extract_meta(game_data, home_pitcher_data, away_pitcher_data))
 
     json_output = json.dumps(merged, indent=2, ensure_ascii=False)

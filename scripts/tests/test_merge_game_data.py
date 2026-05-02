@@ -185,3 +185,102 @@ def test_fetch_weather_api_fail(monkeypatch, capsys):
     assert fetch_weather(game_pk=778345) is None
     captured = capsys.readouterr()
     assert "weather fetch failed" in captured.err
+
+
+# ============================================================================
+# P8: merged.weather 整合到 main 流程
+# ============================================================================
+
+def test_merged_weather_present(monkeypatch, tmp_path):
+    """end-to-end mock：weather API 回完整 → merged['weather'] dict 帶 4 欄。"""
+    fixture = _load_fixture("feed_live_official_lineup.json")
+    monkeypatch.setattr("merge_game_data.requests.get", _mock_requests_get(fixture))
+
+    game_data = {
+        "game": {
+            "gamePk": 778345,
+            "date": "2026-04-30T23:00:00Z",
+            "venue": "Yankee Stadium",
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "X", "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "Y", "probable_pitcher_id": 2},
+        },
+        "home_recent": {}, "away_recent": {},
+        "home_recent_30": {}, "away_recent_30": {},
+        "home_season": {}, "away_season": {},
+        "home_season_games_count": 0, "away_season_games_count": 0,
+    }
+    home_pitcher = {"name": "X", "season": {"era": 4.0}}
+    away_pitcher = {"name": "Y", "season": {"era": 4.0}}
+    home_lineup = {"avg_xwoba": 0.315, "avg_ops": 0.710, "avg_k_pct": 22.0,
+                   "lineup_source": "official", "lineup_source_detail": {"game_pk": 778345}}
+    away_lineup = {"avg_xwoba": 0.315, "avg_ops": 0.710, "avg_k_pct": 22.0,
+                   "lineup_source": "projected", "lineup_source_detail": None}
+
+    g_path = tmp_path / "g.json"; g_path.write_text(json.dumps(game_data), encoding="utf-8")
+    hp = tmp_path / "hp.json"; hp.write_text(json.dumps(home_pitcher), encoding="utf-8")
+    ap = tmp_path / "ap.json"; ap.write_text(json.dumps(away_pitcher), encoding="utf-8")
+    hl = tmp_path / "hl.json"; hl.write_text(json.dumps(home_lineup), encoding="utf-8")
+    al = tmp_path / "al.json"; al.write_text(json.dumps(away_lineup), encoding="utf-8")
+    out = tmp_path / "merged.json"
+
+    import sys as _sys
+    _sys.argv = ["merge_game_data.py", "--game", str(g_path),
+                 "--home-pitcher", str(hp), "--away-pitcher", str(ap),
+                 "--home-lineup", str(hl), "--away-lineup", str(al),
+                 "-o", str(out), "--no-md",
+                 "--park-factor", "100",
+                 "--home-bullpen-era", "4.0", "--away-bullpen-era", "4.0"]
+    from merge_game_data import main
+    main()
+
+    merged = json.loads(out.read_text(encoding="utf-8"))
+    assert merged["weather"] == {
+        "condition": "Sunny",
+        "temp_f": 78,
+        "wind_text": "10 mph, Out To CF",
+        "indoor": False,
+    }
+
+
+def test_merged_weather_absent(monkeypatch, tmp_path):
+    """weather 欄位全空 → merged['weather'] = None。"""
+    fixture = _load_fixture("feed_live_empty_lineup.json")
+    monkeypatch.setattr("merge_game_data.requests.get", _mock_requests_get(fixture))
+
+    game_data = {
+        "game": {
+            "gamePk": 778345,
+            "date": "2026-04-30T23:00:00Z",
+            "venue": "Yankee Stadium",
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "X", "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "Y", "probable_pitcher_id": 2},
+        },
+        "home_recent": {}, "away_recent": {},
+        "home_recent_30": {}, "away_recent_30": {},
+        "home_season": {}, "away_season": {},
+        "home_season_games_count": 0, "away_season_games_count": 0,
+    }
+    home_pitcher = {"name": "X", "season": {"era": 4.0}}
+    away_pitcher = {"name": "Y", "season": {"era": 4.0}}
+    home_lineup = {"avg_xwoba": 0.315, "avg_ops": 0.710, "avg_k_pct": 22.0}
+    away_lineup = {"avg_xwoba": 0.315, "avg_ops": 0.710, "avg_k_pct": 22.0}
+
+    g_path = tmp_path / "g.json"; g_path.write_text(json.dumps(game_data), encoding="utf-8")
+    hp = tmp_path / "hp.json"; hp.write_text(json.dumps(home_pitcher), encoding="utf-8")
+    ap = tmp_path / "ap.json"; ap.write_text(json.dumps(away_pitcher), encoding="utf-8")
+    hl = tmp_path / "hl.json"; hl.write_text(json.dumps(home_lineup), encoding="utf-8")
+    al = tmp_path / "al.json"; al.write_text(json.dumps(away_lineup), encoding="utf-8")
+    out = tmp_path / "merged.json"
+
+    import sys as _sys
+    _sys.argv = ["merge_game_data.py", "--game", str(g_path),
+                 "--home-pitcher", str(hp), "--away-pitcher", str(ap),
+                 "--home-lineup", str(hl), "--away-lineup", str(al),
+                 "-o", str(out), "--no-md",
+                 "--park-factor", "100",
+                 "--home-bullpen-era", "4.0", "--away-bullpen-era", "4.0"]
+    from merge_game_data import main
+    main()
+
+    merged = json.loads(out.read_text(encoding="utf-8"))
+    assert merged["weather"] is None
