@@ -230,6 +230,25 @@ def _last7_ops_str(player: dict) -> str:
     return f"{v:.3f}".lstrip("0") or ".000"
 
 
+def _render_weather_line(weather: dict | None) -> str | None:
+    """Return formatted weather line, or None if absent (caller skips line)."""
+    if not weather:
+        return None
+    if weather.get("indoor"):
+        cond = weather.get("condition", "Indoor")
+        return f"**weather**: 室內（{cond}，不適用天氣分析）"
+    parts = []
+    if weather.get("condition"):
+        parts.append(weather["condition"])
+    if weather.get("temp_f") is not None:
+        parts.append(f"{weather['temp_f']}°F")
+    if weather.get("wind_text"):
+        parts.append(f"wind {weather['wind_text']}")
+    if not parts:
+        return None
+    return f"**weather**: {', '.join(parts)}"
+
+
 # ---------------------------------------------------------------------------
 # Section renderers
 # ---------------------------------------------------------------------------
@@ -286,8 +305,11 @@ def _render_game_info(bundle: dict) -> list[str]:
         f"- 球場: {venue}",
         f"- 狀態: {status}",
         f"- 先發: {away_sp} (#{away_id}, {away_team}, GS {away_gs}) vs {home_sp} (#{home_id}, {home_team}, GS {home_gs})",
-        "",
     ]
+    weather_line = _render_weather_line(merged.get("weather"))
+    if weather_line:
+        lines.append(f"- {weather_line}")
+    lines.append("")
     return lines
 
 

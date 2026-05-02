@@ -706,3 +706,92 @@ def test_dossier_lineup_section_mixed():
     # 兩種 sub-block 都渲染
     assert "1–9 棒" in md  # full-9 for HOME
     assert "Top 5" in md or "PA top" in md or "對方先發手感" in md  # top-5 for AWAY
+
+
+# ---------------------------------------------------------------------------
+# P10 tests: weather row (3 states)
+# ---------------------------------------------------------------------------
+
+def test_dossier_weather_row_present():
+    """merged.weather 三欄齊 → dossier 出現 weather row。"""
+    from dossier_renderer import render_dossier
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Yankee Stadium",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": _make_lineup("projected"),
+        "away_lineup": _make_lineup("projected"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {
+            "park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0,
+            "weather": {"condition": "Sunny", "temp_f": 78,
+                        "wind_text": "10 mph, Out To CF", "indoor": False},
+        },
+    }
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    assert "Sunny" in md and "78°F" in md and "Out To CF" in md
+
+
+def test_dossier_weather_row_indoor():
+    """indoor=True → 顯示「室內（Roof Closed，不適用天氣分析）」。"""
+    from dossier_renderer import render_dossier
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "TOR", "team_id": 141, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Rogers Centre",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": _make_lineup("projected"),
+        "away_lineup": _make_lineup("projected"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {
+            "park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0,
+            "weather": {"condition": "Roof Closed", "temp_f": 72,
+                        "wind_text": None, "indoor": True},
+        },
+    }
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    assert "室內" in md
+    assert "不適用天氣分析" in md
+
+
+def test_dossier_weather_row_absent():
+    """merged.weather=None → 整行省略（dossier 不應有 'weather:' / '室內' / '未公布' 字樣）。"""
+    from dossier_renderer import render_dossier
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Yankee Stadium",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": _make_lineup("projected"),
+        "away_lineup": _make_lineup("projected"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {
+            "park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0,
+            "weather": None,
+        },
+    }
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    # weather 整行不應出現
+    assert "**weather**:" not in md
+    assert "室內" not in md
+    # 不應出現 weather 脈絡的「未公布」佔位符
+    assert "**weather**: 未公布" not in md
