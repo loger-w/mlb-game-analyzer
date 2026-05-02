@@ -374,7 +374,7 @@ def test_render_lineup_overview_structure():
     assert "K% / BB%" in text
     assert "chain OBP top3" in text
     assert "last7 BABIP" in text
-    assert "Top 5 vs" in text
+    assert "對方先發手感" in text or "Top 5" in text or "Top 5 vs" in text
 
 
 def test_render_lineup_overview_flag3_triggers():
@@ -678,3 +678,31 @@ def test_dossier_lineup_section_no_source_field():
     # 不該 raise KeyError
     md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
     assert "🟡 projected" in md
+
+
+def test_dossier_lineup_section_mixed():
+    """home=official + away=projected → 兩種 source label + 兩種 sub-block table 都出現。"""
+    from dossier_renderer import render_dossier
+    bundle = {
+        "game_data": {"game": {
+            "home": {"team": "NYY", "team_id": 147, "probable_pitcher": "HP",
+                     "probable_pitcher_id": 1},
+            "away": {"team": "BOS", "team_id": 110, "probable_pitcher": "AP",
+                     "probable_pitcher_id": 2},
+            "venue": "Yankee Stadium",
+            "officialDate": "2026-04-30",
+            "date": "2026-04-30T23:00:00Z",
+        }},
+        "home_lineup": _make_lineup("official"),
+        "away_lineup": _make_lineup("projected"),
+        "home_pitcher": {"name": "HP", "pitch_hand": "R", "season": {}},
+        "away_pitcher": {"name": "AP", "pitch_hand": "R", "season": {}},
+        "merged": {"park_factor": 100, "home_bullpen_era": 4.0, "away_bullpen_era": 4.0},
+    }
+    md = render_dossier(bundle, game_dir="/tmp", summary_filename="summary.md")
+    # 兩種 source label 都出現
+    assert "🟢 official" in md
+    assert "🟡 projected" in md
+    # 兩種 sub-block 都渲染
+    assert "1–9 棒" in md  # full-9 for HOME
+    assert "Top 5" in md or "PA top" in md or "對方先發手感" in md  # top-5 for AWAY

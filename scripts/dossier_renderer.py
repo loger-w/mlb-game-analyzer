@@ -569,7 +569,7 @@ def _render_full9_vs_pitcher(
     all_batters = list((lineup or {}).get("lineup", []) or [])
     # Sort by batting_order; players without batting_order go to end
     all_batters.sort(key=lambda p: p.get("batting_order") or 99)
-    lines = [f"### {label} 1–9 棒 vs {opposing_sp_name} ({opposing_hand}HP)"]
+    lines = [f"**{label} 1–9 棒 vs {opposing_sp_name}（{opposing_hand}HP）**:"]
     lines.append(f"| 棒 | Name | Pos | season OPS | vs {opposing_hand}HP OPS | last7 OPS | EV95% | Barrel% |")
     lines.append("|---|------|------|------|------|------|------|------|")
     for player in all_batters:
@@ -679,11 +679,9 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
     home_sp_name = home_p.get("name", "HOME SP")
     away_il = _il_names_from_roster(away_roster)
 
-    # If either side is projected, emit the shared Top 5 section header once
-    either_projected = (home_source != "official") or (away_source != "official")
-    if either_projected:
-        lines.append("### Top 5 vs 對方先發手感（PA 排序，PA ≥ 30，IL'd 排除）")
-        lines.append("")
+    # Always emit one shared parent H3 for all sub-blocks (both official and projected)
+    lines.append("### vs 對方先發手感")
+    lines.append("")
 
     if home_source == "official":
         lines += _render_full9_vs_pitcher("HOME", home_lu, away_sp_name, away_hand)
