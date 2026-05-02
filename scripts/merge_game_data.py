@@ -64,7 +64,7 @@ def extract_pitcher_nested(
     pitcher_data: dict | None,
     prefix: str,
 ) -> dict:
-    """產 nested `{prefix}_pitcher` dict，包含 era/xera/ip/era_xera_delta。
+    """產 nested `{prefix}_pitcher` dict，包含 era/xera/ip/era_xera_delta + arsenal_top。
 
     與現有 `extract_pitcher_features` 共存（兩者讀同一份 pitcher JSON）。
     """
@@ -85,12 +85,18 @@ def extract_pitcher_nested(
     if era is not None and xera is not None:
         delta = round(era - xera, 3)
 
+    # Arsenal top-3 (by usage; fetch_pitch_arsenal 已排序，這裡只過濾 error 並截前 3)
+    arsenal_raw = pitcher_data.get("arsenal", []) if pitcher_data else []
+    arsenal_valid = [a for a in arsenal_raw if isinstance(a, dict) and "error" not in a]
+    arsenal_top = arsenal_valid[:3]
+
     return {
         f"{prefix}_pitcher": {
             "era": era,
             "xera": xera,
             "ip": ip,
             "era_xera_delta": delta,
+            "arsenal_top": arsenal_top,
         }
     }
 

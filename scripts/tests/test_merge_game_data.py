@@ -59,6 +59,78 @@ def test_nested_pitcher_none_data_tolerant():
     assert result["home_pitcher"]["era"] is None
 
 
+# ---------------------------------------------------------------------------
+# arsenal_top pass-through (PR-1 commit 4)
+# ---------------------------------------------------------------------------
+
+def test_nested_pitcher_includes_arsenal_top_3_when_arsenal_present():
+    """5 球種 → 取前 3（保留 fetch_pitch_arsenal 已排序的順序）。"""
+    from merge_game_data import extract_pitcher_nested
+    pitcher_data = {
+        "season": {"era": 3.50, "xera": 2.80, "ip": 45.2},
+        "arsenal": [
+            {"pitch_type": "SL", "usage": 32.1, "rv_per_100": -1.8, "xwoba_against": 0.245,
+             "whiff_pct": 38.2, "put_away_pct": 22.1, "hard_hit_pct": 28.3},
+            {"pitch_type": "FF", "usage": 23.7, "rv_per_100": 0.4, "xwoba_against": 0.310,
+             "whiff_pct": 18.2, "put_away_pct": 14.5, "hard_hit_pct": 35.1},
+            {"pitch_type": "SI", "usage": 22.7, "rv_per_100": -0.6, "xwoba_against": 0.290,
+             "whiff_pct": 12.4, "put_away_pct": 8.0, "hard_hit_pct": 31.5},
+            {"pitch_type": "FC", "usage": 11.7, "rv_per_100": 0.1, "xwoba_against": 0.305,
+             "whiff_pct": 15.0, "put_away_pct": 10.0, "hard_hit_pct": 30.0},
+            {"pitch_type": "CH", "usage": 9.7, "rv_per_100": -0.2, "xwoba_against": 0.295,
+             "whiff_pct": 25.0, "put_away_pct": 18.0, "hard_hit_pct": 25.0},
+        ],
+    }
+    result = extract_pitcher_nested(pitcher_data, prefix="home")
+    p = result["home_pitcher"]
+    assert "arsenal_top" in p
+    assert len(p["arsenal_top"]) == 3
+    assert [a["pitch_type"] for a in p["arsenal_top"]] == ["SL", "FF", "SI"]
+    # Full schema preserved
+    assert p["arsenal_top"][0]["rv_per_100"] == -1.8
+    assert p["arsenal_top"][0]["xwoba_against"] == 0.245
+
+
+def test_nested_pitcher_arsenal_top_3_when_only_2_pitches():
+    """少於 3 個球種 → 全部回傳。"""
+    from merge_game_data import extract_pitcher_nested
+    pitcher_data = {
+        "season": {"era": 3.50},
+        "arsenal": [
+            {"pitch_type": "SL", "usage": 60.0},
+            {"pitch_type": "FF", "usage": 40.0},
+        ],
+    }
+    result = extract_pitcher_nested(pitcher_data, prefix="home")
+    assert len(result["home_pitcher"]["arsenal_top"]) == 2
+
+
+def test_nested_pitcher_arsenal_top_skips_error_entries():
+    """arsenal 開頭就是 [{'error': ...}] → arsenal_top = []。"""
+    from merge_game_data import extract_pitcher_nested
+    pitcher_data = {
+        "season": {"era": 3.50},
+        "arsenal": [{"error": "No arsenal data"}],
+    }
+    result = extract_pitcher_nested(pitcher_data, prefix="home")
+    assert result["home_pitcher"]["arsenal_top"] == []
+
+
+def test_nested_pitcher_arsenal_top_missing_arsenal_returns_empty_list():
+    """pitcher_data 沒有 arsenal key → arsenal_top = []，不 crash。"""
+    from merge_game_data import extract_pitcher_nested
+    pitcher_data = {"season": {"era": 3.50}}
+    result = extract_pitcher_nested(pitcher_data, prefix="home")
+    assert result["home_pitcher"]["arsenal_top"] == []
+
+
+def test_nested_pitcher_arsenal_top_none_data_tolerant():
+    """pitcher_data is None → arsenal_top = []。"""
+    from merge_game_data import extract_pitcher_nested
+    result = extract_pitcher_nested(None, prefix="home")
+    assert result["home_pitcher"]["arsenal_top"] == []
+
+
 def test_nested_lineup_from_lineup_analyzer_output():
     from merge_game_data import extract_lineup_nested
     lineup_data = {"last7_babip": 0.320, "avg_babip": 0.290}
