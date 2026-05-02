@@ -432,6 +432,45 @@ def test_step_d_opposing_pitcher_id_arg_present(monkeypatch, tmp_path):
         assert "--opposing-pitcher-id" in cmd
 
 
+def test_step_d_passes_game_pk(monkeypatch, tmp_path):
+    """step_d 接到 game_pk 時，cmd 內必含 --game-pk。"""
+    from prepare_game import step_d
+
+    captured_cmds = []
+
+    def fake_run(*args, **kwargs):
+        captured_cmds.append(args[0])
+        return FakeResult(returncode=0)
+
+    monkeypatch.setattr("prepare_game.subprocess.run", fake_run)
+    step_d(home="CLE", away="TB", home_id=676440, away_id=607259,
+           season=2026, output_dir=tmp_path, game_pk=778345)
+
+    assert len(captured_cmds) == 2
+    for cmd in captured_cmds:
+        assert "--game-pk" in cmd
+        idx = cmd.index("--game-pk")
+        assert cmd[idx + 1] == "778345"
+
+
+def test_step_d_no_game_pk_omits_arg(monkeypatch, tmp_path):
+    """step_d 接到 game_pk=None 時，cmd 內不出現 --game-pk。"""
+    from prepare_game import step_d
+
+    captured_cmds = []
+
+    def fake_run(*args, **kwargs):
+        captured_cmds.append(args[0])
+        return FakeResult(returncode=0)
+
+    monkeypatch.setattr("prepare_game.subprocess.run", fake_run)
+    step_d(home="CLE", away="TB", home_id=676440, away_id=607259,
+           season=2026, output_dir=tmp_path, game_pk=None)
+
+    for cmd in captured_cmds:
+        assert "--game-pk" not in cmd
+
+
 # ---------------------------------------------------------------------------
 # 11e: Step E
 # ---------------------------------------------------------------------------

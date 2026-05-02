@@ -273,7 +273,8 @@ def step_c(*, home_id: int | None, away_id: int | None,
 
 def step_d(*, home: str, away: str,
            home_id: int | None, away_id: int | None,
-           season: int, output_dir: Path) -> None:
+           season: int, output_dir: Path,
+           game_pk: int | None = None) -> None:
     """Step D: 雙隊 lineup_analyzer 平行跑。
     home 打線 vs away 投手（opposing_id = away_id）
     away 打線 vs home 投手（opposing_id = home_id）
@@ -294,6 +295,8 @@ def step_d(*, home: str, away: str,
         ]
         if opposing_id:
             cmd += ["--opposing-pitcher-id", str(opposing_id)]
+        if game_pk:
+            cmd += ["--game-pk", str(game_pk)]
         try:
             result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
         except FileNotFoundError as e:
@@ -498,6 +501,7 @@ def main(argv: list[str] | None = None) -> int:
         away_id=ids["away_id"],
         season=args.season,
         output_dir=output_dir,
+        game_pk=ids.get("game_pk"),
     )
 
     # Step E — sequential; waits for A+C+D
