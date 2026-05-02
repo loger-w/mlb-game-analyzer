@@ -695,6 +695,28 @@ def format_md(data: dict, command: str | None = None) -> str:
             lines.append(f"| {pt} | {_md_fmt(pct, 1)} |")
         lines.append("")
 
+    # Pitch Arsenal (RV/100, xwOBA, whiff%, etc per pitch)
+    arsenal = data.get("arsenal") or []
+    arsenal_valid = [a for a in arsenal if isinstance(a, dict) and "error" not in a]
+    if arsenal_valid:
+        lines += [
+            "## Pitch Arsenal (RV/100)",
+            "",
+            "| 球種 | usage% | RV/100 | xwOBA | whiff% | put-away% | hard-hit% |",
+            "|------|--------|--------|-------|--------|-----------|-----------|",
+        ]
+        for a in arsenal_valid:
+            lines.append(
+                f"| {a.get('pitch_type', '—')} | "
+                f"{_md_fmt(a.get('usage'), 1)} | "
+                f"{_md_fmt(a.get('rv_per_100'), 2)} | "
+                f"{_md_fmt(a.get('xwoba_against'), 3)} | "
+                f"{_md_fmt(a.get('whiff_pct'), 1)} | "
+                f"{_md_fmt(a.get('put_away_pct'), 1)} | "
+                f"{_md_fmt(a.get('hard_hit_pct'), 1)} |"
+            )
+        lines.append("")
+
     # Platoon
     if platoon and "error" not in platoon:
         lines += ["## Platoon Splits", ""]
@@ -808,6 +830,9 @@ def main():
         statcast["whiff_pct"] = whiff_csw.get("whiff_pct")
         statcast["csw_pct"] = whiff_csw.get("csw_pct")
 
+    # 11. Pitch Arsenal (per-pitch RV/100, xwOBA, whiff%, etc)
+    arsenal = fetch_pitch_arsenal(pitcher_id, args.year)
+
     output = {
         "name": args.name,
         "mlbam_id": pitcher_id,
@@ -821,6 +846,7 @@ def main():
         "statcast": statcast,
         "game_log": game_log,
         "platoon_splits": platoon_splits,
+        "arsenal": arsenal,
     }
 
     json_output = json.dumps(output, indent=2, ensure_ascii=False)
