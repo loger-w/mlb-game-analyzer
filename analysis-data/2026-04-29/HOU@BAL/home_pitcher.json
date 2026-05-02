@@ -1,0 +1,104 @@
+{
+  "name": "Shane Baz",
+  "mlbam_id": 669358,
+  "age": 26,
+  "birth_date": "1999-06-17",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "season": {
+    "era": 4.5,
+    "whip": 1.5,
+    "k_pct": 19.3,
+    "bb_pct": 7.3,
+    "k_bb_pct": 12.0,
+    "fip": 3.51,
+    "xfip": 3.55,
+    "hr_per_9": 0.79,
+    "gb_pct": 54.4,
+    "ip": 34.0,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 4.06,
+    "xwoba": 0.32,
+    "xba": 0.268
+  },
+  "statcast": {
+    "avg_velo": 91.1,
+    "max_velo": 99.6,
+    "hard_hit_pct": 20.6,
+    "pitch_types": {
+      "FF": 33.4,
+      "KC": 32.0,
+      "FC": 21.3,
+      "CH": 9.5,
+      "SI": 3.6
+    },
+    "barrel_pct": 6.5,
+    "ev95percent": 37.0,
+    "whiff_pct": 8.8,
+    "csw_pct": 24.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Minnesota Twins",
+      "ip": 5.333333333333333,
+      "era": 6.75,
+      "k": 4,
+      "bb": 0,
+      "h": 7,
+      "er": 4,
+      "pitches": 78,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 5.666666666666667,
+      "era": 4.09,
+      "k": 5,
+      "bb": 3,
+      "h": 4,
+      "er": 1,
+      "pitches": 98,
+      "strikes": 63
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "San Francisco Giants",
+      "ip": 5.0,
+      "era": 4.5,
+      "k": 4,
+      "bb": 2,
+      "h": 9,
+      "er": 3,
+      "pitches": 99,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".361",
+      "obp": ".424",
+      "slg": ".542",
+      "k": 14,
+      "bb": 9,
+      "bf": 85,
+      "k_pct": 16.5,
+      "bb_pct": 10.6
+    },
+    "vs_right": {
+      "avg": ".230",
+      "obp": ".262",
+      "slg": ".426",
+      "k": 15,
+      "bb": 2,
+      "bf": 65,
+      "k_pct": 23.1,
+      "bb_pct": 3.1
+    }
+  }
+}

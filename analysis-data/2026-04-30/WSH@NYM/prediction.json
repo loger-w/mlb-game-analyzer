@@ -1,0 +1,67 @@
+{
+  "date": "2026-04-30",
+  "game_time": "2026-04-29T23:10:00Z",
+  "game": "Washington Nationals vs New York Mets",
+  "home_team": "New York Mets",
+  "away_team": "Washington Nationals",
+  "home_sp": "David Peterson",
+  "away_sp": "Cade Cavalli",
+  "home_sp_starts": 4,
+  "away_sp_starts": 6,
+  "venue": "Citi Field",
+  "game_pk": 823633,
+  "predicted_winner": "AWAY",
+  "predicted_home_pct": 54.8,
+  "predicted_home_score": 2.7,
+  "predicted_away_score": 4.8,
+  "predicted_total": 7.5,
+  "formula_home_score": 2.3,
+  "formula_away_score": 3.8,
+  "pre_signal_total": 6.1,
+  "adjusted_total": 7.5,
+  "signal_adjustments": {
+    "nym_bullpen_2_core_il": 0.5,
+    "home_babip_regression": 0.2,
+    "cavalli_vs_rhb_platoon": -0.3,
+    "away_babip_regression": 0.3,
+    "wood_vs_lhp_advantage": 0.2
+  },
+  "ou_line": 7.0,
+  "ou_rec": "PASS",
+  "ou_stars": 0,
+  "run_line_rec": "WSH",
+  "run_line": null,
+  "run_line_stars": 2,
+  "rl_override": {
+    "active": true,
+    "path": "mid-diff+strong-tag",
+    "diff": 2.1,
+    "stars": 2,
+    "tags": [
+      "away-bullpen-slump"
+    ],
+    "warnings": [],
+    "thresholds": {
+      "diff_min": 1.5,
+      "diff_big": 2.2,
+      "diff_star": 2.0
+    }
+  },
+  "ml_rec": "PASS",
+  "ml_stars": 0,
+  "original_ml_stars": 0,
+  "confidence": "MEDIUM",
+  "tags": [
+    "platoon-edge",
+    "bullpen-double-weak",
+    "early-season-babip",
+    "home-pitching-hot",
+    "away-bullpen-slump"
+  ],
+  "park_factor": 96.0,
+  "temperature_f": null,
+  "wind_mph": null,
+  "wind_direction": null,
+  "umpire_name": null,
+  "umpire_ou_rate": null
+}
