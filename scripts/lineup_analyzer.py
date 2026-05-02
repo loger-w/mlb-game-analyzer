@@ -41,6 +41,38 @@ def _import_pybaseball():
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
 
+
+def fetch_official_lineup(game_pk: int, team_id: int) -> list[int] | None:
+    """從 feed/live 取該隊公布打序的 player_id list（按 1-9 棒順序）。
+
+    回傳：
+      - list[int] 長度 9：官方公布完整打序
+      - list[int] 長度 0~8：部分公布（caller 自行決定 fallback）
+      - None：API 失敗 / team_id 不在 boxscore
+
+    side 自動判斷：比對 boxscore.teams.{home|away}.team.id。
+    """
+    try:
+        resp = requests.get(
+            f"https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live",
+            timeout=10,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        boxscore = data.get("liveData", {}).get("boxscore", {})
+        for side in ("home", "away"):
+            t = boxscore.get("teams", {}).get(side, {})
+            if t.get("team", {}).get("id") == team_id:
+                return list(t.get("battingOrder", []))
+        print(
+            f"[lineup_analyzer] team_id {team_id} not in boxscore (game_pk={game_pk})",
+            file=sys.stderr,
+        )
+        return None
+    except Exception as e:
+        print(f"[lineup_analyzer] feed/live fetch failed: {e}", file=sys.stderr)
+        return None
+
 # xwOBA-based tier thresholds (replacing wRC+)
 TIER_MAP = [
     ("🔴 Elite", lambda xwoba: xwoba >= 0.370),
