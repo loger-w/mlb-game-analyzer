@@ -2,8 +2,23 @@
 import sys
 import os
 import json
+from pathlib import Path
+from unittest.mock import MagicMock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
+FIXTURE_DIR = Path(__file__).parent / "fixtures"
+
+
+def _load_fixture(name: str) -> dict:
+    return json.loads((FIXTURE_DIR / name).read_text(encoding="utf-8"))
+
+
+def _mock_requests_get(fixture: dict):
+    resp = MagicMock()
+    resp.json.return_value = fixture
+    resp.raise_for_status.return_value = None
+    return MagicMock(return_value=resp)
 
 
 def test_nested_pitcher_from_pitcher_stats_output():
@@ -108,3 +123,65 @@ def test_resolve_park_factor_returns_float():
     from merge_game_data import resolve_park_factor
     result = resolve_park_factor("Coors Field")
     assert isinstance(result, float)
+
+
+# ============================================================================
+# P7: fetch_weather
+# ============================================================================
+
+def test_fetch_weather_full(monkeypatch):
+    """三欄齊 → 回傳 dict，indoor=False。"""
+    fixture = _load_fixture("feed_live_official_lineup.json")  # weather=Sunny/78/wind
+    monkeypatch.setattr("merge_game_data.requests.get", _mock_requests_get(fixture))
+
+    from merge_game_data import fetch_weather
+    result = fetch_weather(game_pk=778345)
+    assert result == {
+        "condition": "Sunny",
+        "temp_f": 78,
+        "wind_text": "10 mph, Out To CF",
+        "indoor": False,
+    }
+
+
+def test_fetch_weather_indoor(monkeypatch):
+    """condition='Roof Closed' → indoor=True。"""
+    fixture = _load_fixture("feed_live_indoor.json")
+    monkeypatch.setattr("merge_game_data.requests.get", _mock_requests_get(fixture))
+
+    from merge_game_data import fetch_weather
+    result = fetch_weather(game_pk=778345)
+    assert result["indoor"] is True
+    assert result["condition"] == "Roof Closed"
+    assert result["temp_f"] == 72
+
+
+def test_fetch_weather_empty(monkeypatch):
+    """weather={} → 回傳 None。"""
+    fixture = _load_fixture("feed_live_empty_lineup.json")
+    monkeypatch.setattr("merge_game_data.requests.get", _mock_requests_get(fixture))
+
+    from merge_game_data import fetch_weather
+    assert fetch_weather(game_pk=778345) is None
+
+
+def test_fetch_weather_partial(monkeypatch):
+    """只有 condition、缺 wind/temp → 回傳 dict，缺欄為 None。"""
+    fixture = {"gameData": {"weather": {"condition": "Cloudy", "temp": "", "wind": ""}}}
+    monkeypatch.setattr("merge_game_data.requests.get", _mock_requests_get(fixture))
+
+    from merge_game_data import fetch_weather
+    result = fetch_weather(game_pk=778345)
+    assert result == {"condition": "Cloudy", "temp_f": None, "wind_text": None, "indoor": False}
+
+
+def test_fetch_weather_api_fail(monkeypatch, capsys):
+    """API 失敗 → 回 None + stderr 警告。"""
+    def _raise(*a, **k):
+        raise RuntimeError("network down")
+    monkeypatch.setattr("merge_game_data.requests.get", _raise)
+
+    from merge_game_data import fetch_weather
+    assert fetch_weather(game_pk=778345) is None
+    captured = capsys.readouterr()
+    assert "weather fetch failed" in captured.err

@@ -170,6 +170,45 @@ def fetch_bullpen_era(team_id: int, year: int) -> float:
     return 4.00  # fallback
 
 
+def fetch_weather(game_pk: int) -> dict | None:
+    """從 feed/live 取 gameData.weather。
+
+    回傳：
+      - dict：{condition, temp_f, wind_text, indoor}
+      - None：API 失敗 / weather 欄位不存在或全空
+    """
+    try:
+        resp = requests.get(
+            f"https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live",
+            timeout=10,
+        )
+        resp.raise_for_status()
+        w = resp.json().get("gameData", {}).get("weather", {}) or {}
+        condition = (w.get("condition") or "").strip()
+        temp = (w.get("temp") or "").strip()
+        wind = (w.get("wind") or "").strip()
+
+        if not condition and not temp and not wind:
+            return None
+
+        indoor = condition.lower() in ("roof closed", "dome")
+
+        try:
+            temp_f = int(temp) if temp else None
+        except ValueError:
+            temp_f = None
+
+        return {
+            "condition": condition or None,
+            "temp_f": temp_f,
+            "wind_text": wind or None,
+            "indoor": indoor,
+        }
+    except Exception as e:
+        print(f"[merge_game_data] weather fetch failed: {e}", file=sys.stderr)
+        return None
+
+
 def resolve_park_factor(venue_name: str | None) -> float:
     """以 venue_name 解析 runs PF（thin wrapper；委派給 park_factors_lib.runs_pf）。"""
     return runs_pf(venue_name)
