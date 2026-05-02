@@ -1,0 +1,31 @@
+{
+  "gameData": {
+    "weather": {"condition": "Sunny", "temp": "78", "wind": "10 mph, Out To CF"}
+  },
+  "liveData": {
+    "boxscore": {
+      "teams": {
+        "home": {
+          "team": {"id": 147},
+          "battingOrder": [592450, 519317, 624413, 519203, 670541, 543305, 596019, 624577, 656555],
+          "players": {
+            "ID592450": {"position": {"abbreviation": "DH"}},
+            "ID519317": {"position": {"abbreviation": "RF"}},
+            "ID624413": {"position": {"abbreviation": "1B"}},
+            "ID519203": {"position": {"abbreviation": "LF"}},
+            "ID670541": {"position": {"abbreviation": "C"}},
+            "ID543305": {"position": {"abbreviation": "SS"}},
+            "ID596019": {"position": {"abbreviation": "3B"}},
+            "ID624577": {"position": {"abbreviation": "2B"}},
+            "ID656555": {"position": {"abbreviation": "CF"}}
+          }
+        },
+        "away": {
+          "team": {"id": 110},
+          "battingOrder": [],
+          "players": {}
+        }
+      }
+    }
+  }
+}
