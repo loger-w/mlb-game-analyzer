@@ -23,7 +23,7 @@ description: Use when the user asks for MLB single-game matchup analysis — pit
 
 | 步驟 | 主要產出 | 工具 |
 |------|---------|------|
-| 1. 資料收集 | `merged.json` + `dossier.md` + `summary.md`（含 AI 填空 placeholder） | `prepare_game.py` |
+| 1. 資料收集 | `merged.json` + `dossier.md` + `summary.md`（含 AI 填空 placeholder）<br>**自動偵測**：official lineup（公布後）/ 天氣（公布後） | `prepare_game.py` |
 | 2. 綜合分析 | 在 `summary.md` 補完所有 placeholder | AI 編輯 |
 
 > Doubleheader：產出檔名帶 suffix → `dossier-G1.md` / `summary-G1.md` / `dossier-G2.md` / `summary-G2.md`。
@@ -62,6 +62,16 @@ mkdir -p $GAME_DIR
 
 API > 官網公告 > ESPN/CBS/FanGraphs > 網頁抓取。切勿因第三方資料推翻 API 結果。
 
+### 條件式資料（公布後才有）
+
+| 資料 | 來源 | 缺資料行為 |
+|------|------|-----------|
+| 公布打線（battingOrder） | feed/live | fallback 至 PA proxy（lineup_source = "projected"） |
+| 天氣（condition / temp / wind） | feed/live `gameData.weather` | summary 標「未公布（跳過天氣分析）」 |
+
+**公布時機**：打線通常開賽前 2–4 小時、天氣前 1 小時 ~ 開賽後填齊。
+**重跑取最新**：`prepare_game.py --force` 才會覆蓋已編輯的 summary.md（dossier 永遠重產）。
+
 ---
 
 ## 步驟 1：資料收集
@@ -81,6 +91,8 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 ℹ️ 如需深入查驗某球員 / 投手細節，可主動 Read 同目錄下個別 drill-down 檔：
 `away_pitcher_summary.md` / `home_pitcher_summary.md` / `away_lineup_summary.md` / `home_lineup_summary.md` / `away_roster_summary.md` / `home_roster_summary.md` / `game_data_summary.md` / `merged_summary.md`
 
+ℹ️ **打線來源 / 天氣**：dossier 與 summary 都會標記。official 與 projected 分析架構相同，差異僅在 9 人組成是真實打序還是 PA 近似（見 `matchup-factors.md` §打線分析）。
+
 ---
 
 ## 步驟 2：綜合分析
@@ -93,7 +105,7 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 |------|---------|------|
 | 2.1 投打對決 | 投手 Tier + 打線評級 + Platoon + 球種 | `matchup-factors.md` |
 | 2.2 牛棚 | 品質 + 可用性 + 近 3 天消耗 + 傷兵影響度 | `matchup-factors.md` |
-| 2.3 條件修正 | 傷病/TJ/角色轉換/年齡/球場 | `matchup-factors.md` |
+| 2.3 條件修正 | 傷病/TJ/角色轉換/年齡/球場/**天氣** | `matchup-factors.md` §天氣修正 |
 | 2.4 風險提示 | dossier 已標的 ⚠️（Flag 8 / Flag 3）AI 敘事判讀 | `flags-checklist.md` |
 
 ⛔ BvP 樣本 PA ≥ 15 才可引用（`flags-checklist.md` Flag 2）
