@@ -835,8 +835,9 @@ def main():
 
     # 12. Tier v2 — blended xFIP/K-BB%/velo/age formula (existing v1 `tier` stays
     #     in place for backward-compat). See lib_tier_v2 for formula details.
-    from lib_tier_v2 import compute_tier_v2
+    from lib_tier_v2 import compute_tier_v2, compute_tier_gap
     tier_v2_result = compute_tier_v2(season, statcast, age=age)
+    tier_gap = compute_tier_gap(tier_v2_result, era_only_tier=tier)
 
     output = {
         "name": args.name,
@@ -849,6 +850,7 @@ def main():
         "tier_v2": tier_v2_result["tier_v2"],
         "tier_components": tier_v2_result["components"],
         "tier_confidence": tier_v2_result["confidence"],
+        "tier_gap": tier_gap,
         "season": season,
         "expected": expected,
         "statcast": statcast,

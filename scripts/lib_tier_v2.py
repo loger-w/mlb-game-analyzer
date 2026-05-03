@@ -143,6 +143,47 @@ _WEIGHT_VELO = 15
 _WEIGHT_AGE = 10
 
 
+# Mapping v1 ERA-only tier → numeric anchor for tier_gap comparison.
+# Anchors are bucket midpoints: Elite 90, Strong 75, Solid 55, Back-end 35,
+# Below 15. Diff vs tier_v2 score surfaces "ERA flatters / understates real level".
+ERA_ONLY_SCORE_MAP = {
+    "🔴 Elite Ace": 90,
+    "🟠 Strong Ace": 75,
+    "🟡 Solid Starter": 55,
+    "🟢 Back-end Starter": 35,
+    "⚪ Below Average": 15,
+}
+
+
+def compute_tier_gap(tier_v2_result: dict, era_only_tier: str) -> dict:
+    """Compare tier_v2 numeric score to v1 ERA-only tier anchor.
+
+    Output:
+        expected_score (float | None) — tier_v2 score
+        era_only_score (int | None)   — anchor for v1 tier (None if unknown)
+        gap (float | None)            — expected_score − era_only_score
+
+    Sign convention:
+        gap > 0 → ERA understates real level (e.g. luck inflating ERA upward)
+        gap < 0 → ERA flatters real level (e.g. low BABIP, high LOB%)
+        |gap| ≥ 15 is the threshold the dossier surfaces (handled in PR-3
+        signals_lib.tier_mismatch); we DO NOT auto-trigger Flag 9 here.
+    """
+    expected_score = (tier_v2_result or {}).get("score")
+    era_only_score = ERA_ONLY_SCORE_MAP.get(era_only_tier)
+    if expected_score is None or era_only_score is None:
+        return {
+            "expected_score": expected_score,
+            "era_only_score": era_only_score,
+            "gap": None,
+        }
+    return {
+        "expected_score": expected_score,
+        "era_only_score": era_only_score,
+        "gap": round(expected_score - era_only_score, 1),
+    }
+
+
 def compute_tier_v2(
     season: dict | None,
     statcast: dict | None,

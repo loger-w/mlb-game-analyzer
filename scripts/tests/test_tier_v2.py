@@ -256,3 +256,57 @@ def test_compute_tier_v2_components_in_output():
     assert c["k_bb_pct"] == pytest.approx(0.50)
     assert c["velo_pct"] == pytest.approx(0.50)
     assert c["age_factor"] == pytest.approx(0.96)
+
+
+# ---------------------------------------------------------------------------
+# compute_tier_gap (PR-2 commit 6) — surface tier_v2 score vs ERA-only score
+# ---------------------------------------------------------------------------
+
+def test_compute_tier_gap_positive_when_v2_better_than_era_tier():
+    """tier_v2 score 90 (Elite) vs ERA-only "🟠 Strong Ace" (75) → gap +15.
+    Means: ERA understates real level (e.g. high BABIP / low LOB% inflating ERA)."""
+    from lib_tier_v2 import compute_tier_gap
+    tier_v2_result = {"score": 90.0, "tier_v2": "🔴 Elite Ace"}
+    result = compute_tier_gap(tier_v2_result, era_only_tier="🟠 Strong Ace")
+    assert result["expected_score"] == 90.0
+    assert result["era_only_score"] == 75
+    assert result["gap"] == pytest.approx(15.0)
+
+
+def test_compute_tier_gap_negative_when_era_flatters():
+    """ERA tier 🔴 Elite Ace (90) but xFIP/K-BB blend says 🟡 Solid Starter (55).
+    Gap −35 means ERA flatters (low BABIP / high LOB inflating)."""
+    from lib_tier_v2 import compute_tier_gap
+    tier_v2_result = {"score": 55.0, "tier_v2": "🟡 Solid Starter"}
+    result = compute_tier_gap(tier_v2_result, era_only_tier="🔴 Elite Ace")
+    assert result["era_only_score"] == 90
+    assert result["gap"] == pytest.approx(-35.0)
+
+
+def test_compute_tier_gap_aligned_returns_small_gap():
+    """ERA tier 🟠 Strong Ace (75) and v2 score also 75 → gap 0."""
+    from lib_tier_v2 import compute_tier_gap
+    tier_v2_result = {"score": 75.0, "tier_v2": "🟠 Strong Ace"}
+    result = compute_tier_gap(tier_v2_result, era_only_tier="🟠 Strong Ace")
+    assert result["gap"] == pytest.approx(0.0)
+
+
+def test_compute_tier_gap_none_when_v2_score_unavailable():
+    """tier_v2 score is None (small sample) → gap None, era_only_score still
+    populated (caller can show 'no v2 score' but still know the v1 tier)."""
+    from lib_tier_v2 import compute_tier_gap
+    tier_v2_result = {"score": None, "tier_v2": None}
+    result = compute_tier_gap(tier_v2_result, era_only_tier="🟠 Strong Ace")
+    assert result["expected_score"] is None
+    assert result["era_only_score"] == 75
+    assert result["gap"] is None
+
+
+def test_compute_tier_gap_unknown_era_tier_returns_none_gap():
+    """era_only_tier outside the known map (e.g. 'Unknown') → era_only_score None."""
+    from lib_tier_v2 import compute_tier_gap
+    tier_v2_result = {"score": 75.0, "tier_v2": "🟠 Strong Ace"}
+    result = compute_tier_gap(tier_v2_result, era_only_tier="Unknown")
+    assert result["expected_score"] == 75.0
+    assert result["era_only_score"] is None
+    assert result["gap"] is None
