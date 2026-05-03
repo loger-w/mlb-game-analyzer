@@ -559,6 +559,110 @@ def test_render_dossier_signal_summary_in_required_sections():
     assert "## 🎯 訊號摘要" in output
 
 
+# ---------------------------------------------------------------------------
+# PR-3 commit 14: pitcher matchup table — new 4 rows + <details> collapse
+# ---------------------------------------------------------------------------
+
+def _bundle_with_pr2_pitcher_fields():
+    """Bundle with tier_v2 / tier_gap / arsenal_top fields populated for both
+    sides + lineup tier_vs_hand."""
+    bundle = _minimal_bundle()
+    bundle["home_pitcher"]["tier_v2"] = "🟠 Strong Ace"
+    bundle["home_pitcher"]["tier_gap"] = {
+        "expected_score": 75.0, "era_only_score": 70, "gap": 5.0,
+    }
+    bundle["home_pitcher"]["arsenal"] = [
+        {"pitch_type": "SL", "usage": 32.0, "rv_per_100": -1.8},
+        {"pitch_type": "FF", "usage": 25.0, "rv_per_100": 0.4},
+        {"pitch_type": "SI", "usage": 22.0, "rv_per_100": -0.6},
+    ]
+    bundle["away_pitcher"]["tier_v2"] = "🟡 Solid Starter"
+    bundle["away_pitcher"]["tier_gap"] = {
+        "expected_score": 55.0, "era_only_score": 70, "gap": -15.0,
+    }
+    bundle["away_pitcher"]["arsenal"] = [
+        {"pitch_type": "SI", "usage": 45.0, "rv_per_100": -0.2},
+        {"pitch_type": "CU", "usage": 30.0, "rv_per_100": -1.5},
+        {"pitch_type": "CH", "usage": 22.0, "rv_per_100": 0.3},
+    ]
+    bundle["home_lineup"]["tier_vs_lhp"] = "🟠 Strong"
+    bundle["home_lineup"]["tier_vs_rhp"] = "🟡 Average"
+    bundle["away_lineup"]["tier_vs_lhp"] = "🟡 Average"
+    bundle["away_lineup"]["tier_vs_rhp"] = "🟠 Strong"
+    return bundle
+
+
+def test_pitcher_matchup_renders_tier_v2_row():
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "Tier (xFIP-blend)" in text
+    assert "🟠 Strong Ace" in text
+    assert "🟡 Solid Starter" in text
+
+
+def test_pitcher_matchup_renders_tier_gap_row():
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "Tier gap" in text
+    # gap +5 / gap -15
+    assert "+5" in text or "+5.0" in text
+    assert "-15" in text or "-15.0" in text
+
+
+def test_pitcher_matchup_renders_lineup_tier_vs_hand_row():
+    """Pitcher's HOME column shows AWAY lineup's tier vs HOME pitcher's hand
+    (the threat to the pitcher), and vice versa."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    # HOME pitcher hand R → AWAY lineup tier_vs_rhp = 🟠 Strong
+    # AWAY pitcher hand R → HOME lineup tier_vs_rhp = 🟡 Average
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "對手打線 tier" in text or "對手手別" in text
+
+
+def test_pitcher_matchup_renders_arsenal_top3_row():
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "主球種 RV" in text or "RV/100" in text
+    # HOME's SL -1.8 should appear
+    assert "SL" in text and "-1.8" in text
+
+
+def test_pitcher_matchup_legacy_13_rows_inside_details():
+    """The existing 13-row deep-dive table moves under <details>."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "<details>" in text
+    assert "</details>" in text
+    # Existing rows still appear (substring) — moved, not removed
+    assert "ERA / xERA" in text
+    assert "K-BB% / WHIP" in text
+    assert "vs LHB (slash)" in text
+
+
+def test_pitcher_matchup_section_header_unchanged():
+    """## 投手對決 header preserved."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "## 投手對決" in text
+
+
+def test_pitcher_matchup_handles_missing_pr2_fields_gracefully():
+    """If tier_v2 / tier_gap / arsenal absent (legacy data), new rows show '—'
+    but section still renders without crashing."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _minimal_bundle()  # no tier_v2 / tier_gap / arsenal
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "## 投手對決" in text
+    assert "Tier (xFIP-blend)" in text  # row still present
+    assert "—" in text  # placeholder for missing data
+
+
 def test_render_file_index():
     from dossier_renderer import _render_file_index
     lines = _render_file_index({}, game_dir="analysis-data/2026-04-28/TB@CLE")

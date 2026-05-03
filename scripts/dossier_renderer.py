@@ -523,8 +523,65 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
     # Show ⚠️ in the row label if either side has a trigger
     risk_row_label = "⚠️ 風險提示" if (h_triggers or a_triggers) else "風險提示"
 
+    # PR-3 commit 14: surface PR-2 fields (tier_v2 / tier_gap / lineup tier_vs_hand
+    # / arsenal_top) at the top of the matchup section. Original 13-row deep-dive
+    # table moves under <details> for AI quick-scan ergonomics.
+    h_tier_v2 = home_p.get("tier_v2") or "—"
+    a_tier_v2 = away_p.get("tier_v2") or "—"
+
+    def _gap_str(tier_gap: dict | None) -> str:
+        if not tier_gap or tier_gap.get("gap") is None:
+            return "—"
+        gap = tier_gap["gap"]
+        return f"{gap:+.1f}"
+
+    h_gap_str = _gap_str(home_p.get("tier_gap"))
+    a_gap_str = _gap_str(away_p.get("tier_gap"))
+
+    # Lineup tier vs THIS pitcher's hand → opposing lineup's tier_vs_*
+    home_lineup = bundle.get("home_lineup") or {}
+    away_lineup = bundle.get("away_lineup") or {}
+
+    def _opposing_tier(lineup: dict, pitcher_hand: str) -> str:
+        if pitcher_hand == "L":
+            return lineup.get("tier_vs_lhp") or "—"
+        if pitcher_hand == "R":
+            return lineup.get("tier_vs_rhp") or "—"
+        return "—"
+
+    h_opp_tier = _opposing_tier(away_lineup, h_hand)
+    a_opp_tier = _opposing_tier(home_lineup, a_hand)
+    hand_label_h = f"{h_hand}HP" if h_hand in ("R", "L") else "?"
+    hand_label_a = f"{a_hand}HP" if a_hand in ("R", "L") else "?"
+
+    def _arsenal_top3_str(pitcher: dict) -> str:
+        arsenal = pitcher.get("arsenal") or []
+        valid = [a for a in arsenal if isinstance(a, dict) and "error" not in a][:3]
+        if not valid:
+            return "—"
+        parts = []
+        for a in valid:
+            pt = a.get("pitch_type", "?")
+            rv = a.get("rv_per_100")
+            rv_str = f"{rv:+.1f}" if rv is not None else "—"
+            parts.append(f"{pt} {rv_str}")
+        return " / ".join(parts)
+
+    h_arsenal_str = _arsenal_top3_str(home_p)
+    a_arsenal_str = _arsenal_top3_str(away_p)
+
     lines = [
         "## 投手對決",
+        f"| | HOME ({home_name}) | AWAY ({away_name}) |",
+        "|---|------|------|",
+        f"| Tier (xFIP-blend) | {h_tier_v2} | {a_tier_v2} |",
+        f"| Tier gap (vs ERA-only) | {h_gap_str} | {a_gap_str} |",
+        f"| 對手打線 tier (vs 對手手別) | {h_opp_tier}（vs {hand_label_h}）| {a_opp_tier}（vs {hand_label_a}）|",
+        f"| 主球種 RV/100 (top3) | {h_arsenal_str} | {a_arsenal_str} |",
+        "",
+        "<details>",
+        "<summary>展開：投手原始進階數據（13 行）</summary>",
+        "",
         f"| | HOME ({home_name}) | AWAY ({away_name}) |",
         "|---|------|------|",
         f"| Tier (script) | {h_tier} | {a_tier} |",
@@ -539,6 +596,8 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
         f"| vs RHB (slash) | {_platoon_slash(h_splits, 'R')} | {_platoon_slash(a_splits, 'R')} |",
         f"| 近 3 場 ER/IP | {_recent_er_ip(h_log)} | {_recent_er_ip(a_log)} |",
         f"| {risk_row_label} | {h_risk} | {a_risk} |",
+        "",
+        "</details>",
         "",
     ]
     return lines
