@@ -1,5 +1,44 @@
 # CHANGELOG
 
+## 2026-05-03 — TTO3 penalty signal（signal #9，Plan B）
+
+第 9 個 derived signal，pitcher-side per-game。先發投手第三輪面對打者 OPS
+衰退幅度，覆蓋 PR-3 後 line 48「第二批 signals」第一項。Plan A（MLB API
+statSplits + sitCodes）spike 後證實 MLB API 不曝光 TTO 切面；改走 Plan B 用
+pybaseball Statcast pitch-by-pitch 自行依 (game_pk, batter) 分組聚合。
+
+- **commit 941f119** `docs(spec)`: brainstormed design — signal contract / threshold / surface
+- **commit ac97719** `docs(plan)`: implementation plan（12 tasks → 後改 10）
+- **commit 2d7f0ab** `docs(spec/plan)`: Plan B amendment after spike disproved Plan A
+- **commit f7c84a0** `feat(pitcher)`: `_pa_outcome_aggregates` helper (PA events → OPS/K%/BB%)
+- **commit 7606e11** `refactor(pitcher)`: Task 2 cleanup — type hint + drop dead defense
+- **commit e8f317d** `feat(pitcher)`: `_compute_tto_from_statcast` (Plan B Statcast aggregation)
+- **commit 47601f0** `feat(pitcher)`: `fetch_tto_splits` orchestrator + main 路徑接入
+- **commit e551b70** `feat(signals)`: `signal_tto3_penalty` (#9) + half_life=structural
+- **commit 8afa407** `feat(signals)`: wire tto3_penalty into `compute_all_signals` per-pitcher loop
+- **commit dc17593** `feat(dossier)`: 投手對決 table 加 TTO splits visible row
+- **commit 58aeae5** `docs(reference)`: matchup-factors §Signals §9 + 半衰期表
+
+### 紀律保留
+
+- ✅ 信號**不入 scoring formula**（一致 §3 / §8）
+- ✅ 既有 8 signals 行為零變動（compute_all_signals 只追加一行）
+- ✅ 4 月小樣本 season → 5-year career silent fallback；BF < 30 統一 small_sample no_fire
+- ✅ Dossier TTO row 無條件顯示（mirror vs LHB / vs RHB pattern）
+- ✅ `merge_game_data.py` / `prepare_game.py` / `scoring_formula.py` / Flag 體系全部不動
+
+### Tests
+439 → 469（+30：22 個 pitcher_stats helpers + orchestrator + 11 個 signals + 6 個 dossier，+ Task 2 cleanup tests）。
+
+### Out of scope（下批）
+
+- TTO4+ penalty（樣本太稀）
+- Reliever inheritance penalty
+- 動態調整觸發閾值（按 tier 別）— 留至 backtest 階段
+- 休息天數 / 上一場用球數（line 48 第二批 signals 中的另兩項）
+
+---
+
 ## 2026-05-03 — Path B refactor (`refactor/path-b-signals`)
 
 把腳本貢獻從「資料 plumber 80%」抬到「指標 50%」。AI 從「合成」轉「驗證 / 判讀」。3 PRs / 17 commits / +160 tests（既有 230 全綠 → 390 total）。詳見 `docs/superpowers/specs/`（plan 在 `~/.claude/plans/quizzical-brewing-snowflake.md`）。
@@ -47,5 +86,4 @@
 - **Composite leverage score**（Path C） — 待 PR-3 上線兩週後 backtest 評估
 - **TTO3 penalty / 休息天數 / 上一場用球數** — 第二批 signals
 - **Park HR PF L/R split** — 目前 strong_park 用整體 PF；LR split 需擴充 `data/park_factors.json`
-- **wRC+ / Stuff+** — FanGraphs API non-free，不引入
 - **Backtest framework** — 與 4/23「走嚴格 formula 對比實際結果」紀律配套，但需獨立規劃
