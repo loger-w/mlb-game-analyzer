@@ -1148,3 +1148,106 @@ def test_dossier_weather_row_absent():
     assert "室內" not in md
     # 不應出現 weather 脈絡的「未公布」佔位符
     assert "**weather**: 未公布" not in md
+
+
+
+# ---------------------------------------------------------------------------
+# TTO splits cell renderer + pitcher table integration (signal #9)
+# ---------------------------------------------------------------------------
+
+def test_pitcher_table_includes_tto_row_season():
+    """tto_splits source=season + sufficient sample → cell has TTO1/2/3 OPS + Δ."""
+    from dossier_renderer import _render_tto_splits_cell
+    pitcher = {
+        "tto_splits": {
+            "source": "season",
+            "tto1": {"ops": 0.700, "k_pct": 28.0, "bb_pct": 7.0, "bf": 320},
+            "tto2": {"ops": 0.740, "k_pct": 26.5, "bb_pct": 7.5, "bf": 290},
+            "tto3": {"ops": 0.810, "k_pct": 23.0, "bb_pct": 8.0, "bf": 180},
+        },
+    }
+    cell = _render_tto_splits_cell(pitcher)
+    assert "TTO1" in cell and "TTO3" in cell
+    assert ".700" in cell and ".810" in cell
+    assert "Δ+0.110" in cell
+    assert "180 BF" in cell
+    assert "(career)" not in cell
+
+
+def test_pitcher_table_tto_row_career_suffix():
+    """source=career → cell has (career) suffix."""
+    from dossier_renderer import _render_tto_splits_cell
+    pitcher = {
+        "tto_splits": {
+            "source": "career",
+            "tto1": {"ops": 0.680, "k_pct": 25.0, "bb_pct": 8.0, "bf": 1500},
+            "tto2": {"ops": 0.715, "k_pct": 24.0, "bb_pct": 8.5, "bf": 1300},
+            "tto3": {"ops": 0.755, "k_pct": 22.0, "bb_pct": 9.0, "bf": 800},
+        },
+    }
+    cell = _render_tto_splits_cell(pitcher)
+    assert "(career)" in cell
+    assert "Δ+0.075" in cell
+
+
+def test_pitcher_table_tto_row_small_sample():
+    """tto3.bf=20 → 'n/a (sample <30 BF)'."""
+    from dossier_renderer import _render_tto_splits_cell
+    pitcher = {
+        "tto_splits": {
+            "source": "season",
+            "tto1": {"ops": 0.700, "bf": 50},
+            "tto2": {"ops": 0.740, "bf": 40},
+            "tto3": {"ops": 0.810, "bf": 20},
+        },
+    }
+    assert _render_tto_splits_cell(pitcher) == "n/a (sample <30 BF)"
+
+
+def test_pitcher_table_tto_row_missing_key():
+    """Pitcher missing tto_splits key (back-compat) → 'n/a'."""
+    from dossier_renderer import _render_tto_splits_cell
+    assert _render_tto_splits_cell({}) == "n/a"
+    assert _render_tto_splits_cell(None) == "n/a"
+
+
+def test_pitcher_table_tto_row_error():
+    """tto_splits = {error: ...} → 'n/a'."""
+    from dossier_renderer import _render_tto_splits_cell
+    pitcher = {"tto_splits": {"error": "fetch failed"}}
+    assert _render_tto_splits_cell(pitcher) == "n/a"
+
+
+def test_render_pitcher_matchup_includes_tto_row():
+    """_render_pitcher_matchup output includes a TTO splits row in visible table."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = {
+        "home_pitcher": {
+            "name": "Skubal",
+            "tto_splits": {
+                "source": "season",
+                "tto1": {"ops": 0.650, "bf": 200},
+                "tto2": {"ops": 0.690, "bf": 180},
+                "tto3": {"ops": 0.720, "bf": 100},
+            },
+        },
+        "away_pitcher": {
+            "name": "Cole",
+            "tto_splits": {
+                "source": "season",
+                "tto1": {"ops": 0.700, "bf": 200},
+                "tto2": {"ops": 0.740, "bf": 180},
+                "tto3": {"ops": 0.810, "bf": 100},
+            },
+        },
+        "merged": {},
+    }
+    lines = _render_pitcher_matchup(bundle)
+    md = "\n".join(lines)
+    assert "| TTO splits |" in md
+    assert "TTO1 0.650" in md
+    assert "TTO1 0.700" in md
+    # TTO row sits ABOVE the <details> block (visible, not folded)
+    tto_pos = md.index("| TTO splits |")
+    details_pos = md.index("<details>")
+    assert tto_pos < details_pos

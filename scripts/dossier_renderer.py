@@ -176,6 +176,37 @@ def _platoon_slash(splits: dict | None, hand: str) -> str:
     return f"{avg}/{obp}/{slg}{bf_str}"
 
 
+def _render_tto_splits_cell(pitcher: dict | None) -> str:
+    """渲染 ## 投手對決 table 的「TTO splits」 cell.
+
+    格式：`TTO1 0.700 / TTO2 0.740 / TTO3 0.810 (Δ+0.110, 180 BF)`
+    source=career → 後綴「(career)」
+    缺 key / fetch error → 「n/a」
+    tto3.bf < 30 → 「n/a (sample <30 BF)」
+    """
+    if not pitcher:
+        return "n/a"
+    tto = pitcher.get("tto_splits")
+    if not tto or "error" in tto:
+        return "n/a"
+    tto1 = tto.get("tto1") or {}
+    tto2 = tto.get("tto2") or {}
+    tto3 = tto.get("tto3") or {}
+    bf3 = tto3.get("bf") or 0
+    if bf3 < 30:
+        return "n/a (sample <30 BF)"
+    o1, o2, o3 = tto1.get("ops"), tto2.get("ops"), tto3.get("ops")
+    if o1 is None or o3 is None:
+        return "n/a"
+    delta = o3 - o1
+    suffix = " (career)" if tto.get("source") == "career" else ""
+    o2_str = f"{o2:.3f}" if o2 is not None else "?"
+    return (
+        f"TTO1 {o1:.3f} / TTO2 {o2_str} / TTO3 {o3:.3f} "
+        f"(Δ{delta:+.3f}, {bf3} BF){suffix}"
+    )
+
+
 def _lineup_vs_hand_ops(player: dict, pitch_hand: str) -> str:
     """Return vs_rhp or vs_lhp OPS string from lineup player platoon data."""
     platoon = player.get("platoon") or {}
@@ -589,6 +620,7 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
         f"| Stuff+ / Pitching+ | {h_stuff_str} | {a_stuff_str} |",
         f"| 對手打線 tier (vs 對手手別) | {h_opp_tier}（vs {hand_label_h}）| {a_opp_tier}（vs {hand_label_a}）|",
         f"| 主球種 RV/100 (top3) | {h_arsenal_str} | {a_arsenal_str} |",
+        f"| TTO splits | {_render_tto_splits_cell(home_p)} | {_render_tto_splits_cell(away_p)} |",
         "",
         "<details>",
         "<summary>展開：投手原始進階數據（13 行）</summary>",
