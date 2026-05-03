@@ -291,3 +291,30 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 源頭實作：`scripts/signals_lib.py:_HALF_LIFE_BY_NAME`。
 
+### 量級錨點（Path B：±run magnitude reference）
+
+**Why**：信號 fired 時 AI 在 summary `## 修正後預期得分` 的「+ 信號」欄需要 magnitude 才能判斷影響。下表是 heuristic 區間（**非 hard rule**），AI 挑值時要解釋依據（對手手別 / 牛棚深度 / 樣本量）。
+
+| Signal | 強度 | 典型 ±run 區間 | 影響側 | 備註 |
+|--------|------|---------------|--------|------|
+| `tier_mismatch` | any | **0** | — | Flag 8 紀律：⛔ 不自動 ±run |
+| `heat_vs_babip` | any | **0** | — | Flag 3 紀律：⛔ 不自動 ±run |
+| `strong_park` | any | **0** | — | 已在 formula PF 倍率納入；不重複加 |
+| `platoon_advantage` | medium | +0.1 ~ +0.3 | 受惠打線 | top 5 中 ≥ 4 人 OPS 上修 ≥ 0.050 |
+| `reverse_platoon` | medium | +0.1 ~ +0.3 | 對手打線 | Δ ≥ 0.080；high (Δ ≥ 0.200) 取上界 |
+| `chain_break` | medium | −0.1 ~ −0.3 | 該打線（壓制） | high (≥ 0.300) 取下界 |
+| `pitch_mix_concentration` | single-pitch | +0.1 ~ +0.3 | 對手打線 | 對 platoon-advantaged 對手放大 |
+| `pitch_mix_concentration` | balanced | −0.1 ~ −0.2 | 對手打線（壓制） | 投手難對位，下修對手得分 |
+| `core_il_count` | 1（🟠 中高） | +0.0 ~ +0.2 | 對手得分 | 後段防守變薄 |
+| `core_il_count` | 2（🔴 高） | +0.2 ~ +0.5 | 對手得分 | 牛棚明顯吃緊 |
+| `core_il_count` | 3+（🔴🔴 極高） | +0.4 ~ +0.8 | 對手得分 | 牛棚崩盤級 |
+| `tto3_penalty` | medium | +0.1 ~ +0.3 | 對手打線 | OPS Δ ≥ 0.100 |
+| `tto3_penalty` | high | +0.2 ~ +0.5 | 對手打線 | OPS Δ ≥ 0.150 |
+
+**累積規則**：
+- 同側多 signal 同向 fire → **不直接相加**。AI 要考慮 interaction（例 `tto3_penalty` + `core_il_count` 同向 → 取單側 max 區間 + 0.1，不是區間相加）
+- 單側 ±run 總修正 **cap ±0.8 run / 場**（再大就違反 single-game 隨機性 ≤ 1 run 的雜訊量級）
+- 需 > ±0.8 時必須在 `## 整體判斷 / 風險` 段明說理由
+
+**Calibration 路徑**：summary `## 整體判斷 / 方向信心` 改用機率 % 寫法，累積 100+ 場後可算 Brier / calibration plot，驗證量級錨點是否需校準。
+
