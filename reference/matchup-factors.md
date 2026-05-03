@@ -203,3 +203,66 @@ MLB API wind 欄位已含風向解讀（球場 orientation 已換算），形式
 > Coors / Yankee Stadium / Wrigley 對風更敏感（球場 orientation + 大氣條件交互）。
 > 球員適應性差異大（北方球隊冷天表現相對好）— **AI 判讀時優先看相對強度**，不直接套表。
 
+---
+
+## Signals（輔助信號）
+
+PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier 頂部 `## 🎯 訊號摘要` 與 summary `## 風險提示 § 額外信號` 雙處 surface。**信號不入 scoring formula**，AI 在 summary 判讀。
+
+### 信號規範
+
+每個 signal 共用 contract：
+```python
+{name, fired, value, severity, label, details, confidence}
+```
+- `fired` True 才會在 dossier / summary 出現
+- `severity` ∈ {low, medium, high}（dossier emoji 對應 ℹ️ / 🟠 / 🔴）
+- `confidence` ∈ {data, heuristic, small_sample}
+
+### 8 個 signals 觸發條件 + AI 判讀指引
+
+#### 1. tier_mismatch（投手）
+- 觸發：`|tier_v2.score − ERA-only_score| ≥ 15`（|gap| ≥ 20 → high）
+- gap > 0 「ERA 低估真實水平」；gap < 0 「ERA 高估真實水平」
+- AI 判讀：運氣偏差 vs 結構性突破。**不自動下修預測**（與 Flag 8 紀律一致）
+
+#### 2. heat_vs_babip（打線）
+- 觸發：🔥 Hot + last7 BABIP ≥ 0.350 → lucky-hot；🥶 Cold + ≤ 0.270 → unlucky-cold
+- AI 判讀：熱度是否含運氣 / 冷期是否將反彈。**不自動 ±run value**（與 Flag 3 紀律一致）
+
+#### 3. platoon_advantage（打線 vs 對手手別）
+- 觸發：top 5 中 ≥ 4 人 vs-this-hand OPS 比 season OPS 高 ≥ 0.050
+- AI 判讀：本場打線對該手別優勢明顯，是否影響 chain 連續性
+
+#### 4. strong_park（球場）
+- 觸發：Park Factor ≥ 110（打者友善）或 ≤ 90（投手友善）。≥ 115 / ≤ 85 → high
+- AI 判讀：與既有 §Park Factor 條件修正一致對待，不重複加 ±run value
+
+#### 5. reverse_platoon（投手）
+- 觸發：vs LHB / vs RHB OPS 與 handedness 預期反向 |Δ| ≥ 0.080，兩側 BF ≥ 30
+- 範例：sweeper-heavy RHP 對 RHB OPS 比對 LHB 還高
+- AI 判讀：本場對手核心打者手別組成是否放大此風險
+
+#### 6. chain_break（打線）
+- 觸發：1-9 棒按 caller 順序，最大相鄰 OPS 落差 ≥ 0.150
+- 範例：Alonso .367 / O'Neill .286 對 LHP，#4-5 chain breaks
+- AI 判讀：對得分串聯性的影響，是否壓制總分上限
+
+#### 7. pitch_mix_concentration（投手）
+- 觸發：max usage % ≥ 45%（single-pitch dependent）或 < 25%（balanced 4+ pitches）
+- AI 判讀：single-pitch 投手對 platoon-advantaged 打線抗性弱；balanced 投手難對位
+
+#### 8. core_il_count（牛棚）
+- 觸發：本隊 IL 上 core_role ∈ {Closer, Setup, High-leverage RP, Co-Closer} 計數 ≥ 1
+- 階梯：1 = 🟠 中高、2 = 🔴 高、3+ = 🔴🔴 極高
+- AI 判讀：對應 §牛棚傷兵累計效應 1/2/3+ 名分級
+
+### Signals 與紀律 Flag 的關係
+
+| 層級 | 處理 | 自動 ±run value? |
+|-----|------|---------------|
+| Flag 3/8 | 紀律硬規則，summary `## 風險提示` 主段渲染 | ⛔ 不自動 |
+| Signals | 輔助觀察，dossier `## 🎯 訊號摘要` + summary `### 額外信號` | ⛔ 不自動 |
+
+**重疊處理**：tier_mismatch 與 Flag 8 同源、heat_vs_babip 與 Flag 3 同源 → 自動從 summary `### 額外信號` 排除避免雙列。dossier `## 🎯 訊號摘要` 兩者都列（不同層級的 surface）。
+

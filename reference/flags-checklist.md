@@ -35,3 +35,28 @@
 ### 8. ERA-xERA 落差 / 小樣本回歸風險
 - 觸發：`|ERA − xERA| ≥ 1.5` 或 `IP < 30 且 ERA 比 prior_year 低 ≥ 1.0`
 - 處理：腳本（`prepare_game.py`）自動標 ⚠️ 風險提示在 dossier 與 summary 的「## 風險提示」段。AI 在敘事中判讀「運氣 / 結構性退化 / 樣本噪音」**不自動補跑 YoY、不自動下修預測**
+
+---
+
+## Signals（輔助信號 — 非紀律 Flag）
+
+PR-3（2026-05-03）後新增 `signals_lib`，由 `dossier_renderer` 在 dossier 頂部渲染 `## 🎯 訊號摘要`，並由 `summary_renderer` 在 `## 風險提示` 段尾追加 `### 額外信號`。
+
+**信號與 Flag 的層級差異**：
+- **Flag**：硬性紀律。觸發後限制腳本/AI 動作（不自動下修、不自動 ±run value、回報停步等）
+- **Signals**：輔助觀察。AI 在 summary 判讀，**不入 scoring formula、不自動 ±run value**
+
+**8 個 signals**（詳細觸發條件與 AI 判讀指引見 `matchup-factors.md` §Signals）：
+
+| Signal | 觸發 | 對應紀律 |
+|--------|------|---------|
+| tier_mismatch | tier_v2 vs ERA-only gap |≥ 15| 與 Flag 8 同源；不重複進額外信號區 |
+| heat_vs_babip | Hot+BABIP≥.350 / Cold+BABIP≤.270 | 與 Flag 3 同源；不重複進額外信號區 |
+| platoon_advantage | top 5 中 ≥ 4 人對某手別 OPS 上升 ≥ 0.050 | 純輔助 |
+| strong_park | PF ≥ 110 或 ≤ 90 | 純輔助；條件修正一致對待 |
+| reverse_platoon | 投手 vs LHB/RHB OPS 反向 \|Δ\| ≥ 0.080 | 純輔助 |
+| chain_break | 1-9 棒相鄰 OPS 落差 ≥ 0.150 | 純輔助 |
+| pitch_mix_concentration | 主球種使用率 ≥ 45% 或 < 25% | 純輔助 |
+| core_il_count | Closer / Setup / High-leverage / Co-Closer IL 計數 | 與 §牛棚傷兵累計效應 對應 |
+
+**邊界**：signals 不違反任何既有 Flag 紀律。`prepare_game._print_risk_notes` stderr 維持只列 Flag 3/8。
