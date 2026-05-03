@@ -286,6 +286,23 @@ def test_reverse_platoon_too_small_sample_does_not_fire():
     assert s["fired"] is False
 
 
+def test_reverse_platoon_falls_back_to_obp_plus_slg_when_ops_missing():
+    """5/02 BAL@NYY validation bug: MLB API statSplits returns avg/obp/slg
+    but NOT ops. Signal must fall back to obp+slg or it never fires.
+
+    Bradish actual: vs LHB .253/.353/.460 (ops≈.813); vs RHB .396/.473/.583
+    (ops≈1.056). Δ ≈ +0.243 → reverse platoon should fire on RHP."""
+    from signals_lib import signal_reverse_platoon
+    splits = {
+        "vs_left": {"obp": ".353", "slg": ".460", "bf": 102},   # NO 'ops' key
+        "vs_right": {"obp": ".473", "slg": ".583", "bf": 55},   # NO 'ops' key
+    }
+    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    assert s["fired"] is True, "must fall back to obp+slg when ops missing"
+    assert s["value"] == pytest.approx(0.243, abs=0.005)
+    assert s["severity"] == "high"  # Δ ≥ 0.200
+
+
 # ---------------------------------------------------------------------------
 # signal_chain_break — largest adjacent OPS drop in batting order
 # ---------------------------------------------------------------------------
@@ -392,6 +409,18 @@ def test_core_il_count_fires_at_1():
     assert s["fired"] is True
     assert s["value"] == 1
     assert s["severity"] == "medium"
+
+
+def test_core_il_count_label_does_not_prefix_side():
+    """5/02 BAL@NYY validation bug: dossier prepends side from signal.side
+    (already in signal dict). Label must NOT also start with side or we get
+    'AWAY AWAY 牛棚 core IL ×1' double-prefix."""
+    from signals_lib import signal_core_il_count
+    for count in (1, 2, 3):
+        s = signal_core_il_count(count=count, side="AWAY")
+        assert not s["label"].startswith("HOME") and not s["label"].startswith("AWAY"), (
+            f"label must not start with side; got: {s['label']!r}"
+        )
 
 
 def test_core_il_count_fires_high_at_2():

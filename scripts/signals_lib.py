@@ -232,8 +232,20 @@ def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
         except (TypeError, ValueError):
             return None
 
-    lhb_ops = _f(left.get("ops"))
-    rhb_ops = _f(right.get("ops"))
+    def _ops_from_side(side: dict) -> float | None:
+        """Prefer side.ops; fallback to obp+slg if MLB API stat doesn't ship ops
+        (true for /people/{pid}/stats?stats=statSplits — only avg/obp/slg/k/bb)."""
+        ops = _f(side.get("ops"))
+        if ops is not None:
+            return ops
+        obp = _f(side.get("obp"))
+        slg = _f(side.get("slg"))
+        if obp is None or slg is None:
+            return None
+        return obp + slg
+
+    lhb_ops = _ops_from_side(left)
+    rhb_ops = _ops_from_side(right)
     lhb_bf = left.get("bf") or 0
     rhb_bf = right.get("bf") or 0
 
@@ -376,21 +388,24 @@ def signal_core_il_count(count: int | None, side: str) -> dict:
         return _make(name, False, confidence="small_sample")
     if count <= 0:
         return _make(name, False, value=count)
+    # NOTE: do NOT prefix side into label. Dossier rendering already prepends
+    # `side ` from the signal's `side` field; double prefix produced "AWAY AWAY 牛棚..."
+    # in 5/02 BAL@NYY validation run.
     if count == 1:
         return _make(
             name, True, value=count, severity="medium",
-            label=f"{side} 牛棚 core IL ×1：🟠 中高（後段防守變薄）",
+            label="牛棚 core IL ×1：🟠 中高（後段防守變薄）",
             details={"side": side, "count": count},
         )
     if count == 2:
         return _make(
             name, True, value=count, severity="high",
-            label=f"{side} 牛棚 core IL ×2：🔴 高（牛棚明顯吃緊）",
+            label="牛棚 core IL ×2：🔴 高（牛棚明顯吃緊）",
             details={"side": side, "count": count},
         )
     return _make(
         name, True, value=count, severity="high",
-        label=f"{side} 牛棚 core IL ×{count}：🔴🔴 極高（牛棚崩盤級）",
+        label=f"牛棚 core IL ×{count}：🔴🔴 極高（牛棚崩盤級）",
         details={"side": side, "count": count},
     )
 
