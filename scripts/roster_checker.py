@@ -34,43 +34,50 @@ def fetch_roster(team_id: int, season: int, roster_type: str = "active") -> dict
 
 
 def parse_roster(roster_data: dict) -> dict:
-    """解析 roster API 回傳，分類為投手、野手、傷兵"""
-    pitchers = []
+    """解析 roster API 回傳，分類為投手、野手、傷兵。
+
+    Output schema:
+        pitchers: list[str]              — 投手名 (sorted by name; backward-compat)
+        pitcher_ids: list[int]           — 與 pitchers 平行排列的 player_id
+        position_players: list[str]
+        injured_list: list[dict]         — {name, status, position, player_id}
+    """
+    pitcher_pairs: list[tuple[str, int | None]] = []
     position_players = []
     injured_list = []
 
     for entry in roster_data.get("roster", []):
         person = entry.get("person", {})
         name = person.get("fullName", "Unknown")
+        pid = person.get("id")
         position = entry.get("position", {}).get("name", "Unknown")
         status_code = entry.get("status", {}).get("code", "A")
         status_desc = entry.get("status", {}).get("description", "Active")
 
-        player_info = {
-            "name": name,
-            "position": position,
-            "status": status_desc,
-            "player_id": person.get("id"),
-        }
-
-        # 傷兵判定
+        # 傷兵判定（含 player_id 給下游 role tagging join 用）
         if status_code in ("D7", "D10", "D15", "D60"):
             injured_list.append({
                 "name": name,
                 "status": status_desc,
                 "position": position,
+                "player_id": pid,
             })
         elif position in PITCHER_POSITIONS or "Pitcher" in position:
-            pitchers.append(name)
+            pitcher_pairs.append((name, pid))
         else:
             position_players.append(name)
 
+    pitcher_pairs.sort(key=lambda t: t[0])
+    pitcher_names = [p[0] for p in pitcher_pairs]
+    pitcher_ids = [p[1] for p in pitcher_pairs]
+
     return {
-        "pitchers": sorted(pitchers),
+        "pitchers": pitcher_names,
+        "pitcher_ids": pitcher_ids,
         "position_players": sorted(position_players),
         "injured_list": injured_list,
-        "total_active": len(pitchers) + len(position_players),
-        "total_pitchers": len(pitchers),
+        "total_active": len(pitcher_names) + len(position_players),
+        "total_pitchers": len(pitcher_names),
         "total_position": len(position_players),
         "total_il": len(injured_list),
     }
@@ -99,6 +106,7 @@ def fetch_combined_roster(team_id: int, season: int) -> dict:
     return {
         "active_roster": {
             "pitchers": active_parsed["pitchers"],
+            "pitcher_ids": active_parsed["pitcher_ids"],
             "position_players": active_parsed["position_players"],
         },
         "injured_list": fortyman_parsed["injured_list"],
@@ -110,6 +118,114 @@ def fetch_combined_roster(team_id: int, season: int) -> dict:
             "total_il": fortyman_parsed["total_il"],
             "total_40man_not_active": len(not_active_40man),
         },
+    }
+
+
+def fetch_pitcher_season_stats_bulk(player_ids: list[int], season: int) -> dict:
+    """取多位投手的本季 saves/holds/G/GS/IP。回傳 {player_id: stats_dict}。
+
+    Per-pitcher MLB API call（hydrate fragility too high）。失敗的 pid 直接從
+    結果中省略（caller 用 dict.get(pid) → None fallback "Unknown" role）。
+    """
+    result = {}
+    for pid in player_ids:
+        if pid is None:
+            continue
+        try:
+            resp = requests.get(
+                f"{MLB_API_BASE}/people/{pid}/stats",
+                params={"stats": "season", "group": "pitching", "season": season},
+                timeout=10,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            stats_list = data.get("stats", [])
+            if not stats_list or not stats_list[0].get("splits"):
+                continue
+            s = stats_list[0]["splits"][0]["stat"]
+            result[pid] = {
+                "saves": int(s.get("saves", 0)),
+                "holds": int(s.get("holds", 0)),
+                "g": int(s.get("gamesPlayed", 0)),
+                "gs": int(s.get("gamesStarted", 0)),
+                "ip": _parse_ip_string(s.get("inningsPitched", "0")),
+            }
+        except Exception as e:
+            print(f"⚠️ Failed pitcher stats fetch pid={pid}: {e}", file=sys.stderr)
+    return result
+
+
+def _parse_ip_string(ip_str) -> float:
+    """'8.1' (8 ⅓ innings) → 8.333."""
+    try:
+        parts = str(ip_str).split(".")
+        innings = int(parts[0])
+        thirds = int(parts[1]) if len(parts) > 1 else 0
+        return innings + thirds / 3.0
+    except (ValueError, IndexError):
+        return 0.0
+
+
+def enrich_roster_with_roles(
+    roster: dict,
+    stats_by_pid: dict,
+    team_total_games: int | None = None,
+) -> dict:
+    """Decorate parsed roster output with per-pitcher core_role data.
+
+    Pure function — does NOT call MLB API. Caller passes pre-fetched
+    `stats_by_pid` (typically from `fetch_pitcher_season_stats_bulk`).
+
+    Adds:
+        - `active_roster.pitcher_roles`: list[dict] with {name, player_id,
+          core_role, core_role_confidence, core_role_small_sample,
+          core_role_evidence}
+        - For each pitcher in `injured_list` (position contains "Pitcher"):
+          merge in core_role fields. Non-pitcher IL entries untouched.
+
+    Existing fields (`active_roster.pitchers` list[str], untouched IL fields)
+    are preserved verbatim for backward compat.
+
+    After per-pitcher tagging, `detect_committee_closer` runs over the active
+    roster's roles to relabel two-headed save situations as Co-Closer.
+    """
+    from lib_role_tagging import tag_role, detect_committee_closer
+
+    active = roster.get("active_roster", {}) or {}
+    pitcher_names = active.get("pitchers", []) or []
+    pitcher_ids = active.get("pitcher_ids", []) or []
+
+    pitcher_roles = []
+    for name, pid in zip(pitcher_names, pitcher_ids):
+        if pid is not None and pid in stats_by_pid:
+            tagged = tag_role(stats_by_pid[pid], team_total_games=team_total_games)
+        else:
+            tagged = tag_role({}, team_total_games=team_total_games)  # → Unknown
+        pitcher_roles.append({"name": name, "player_id": pid, **tagged})
+
+    detect_committee_closer(pitcher_roles)
+
+    # Decorate IL pitcher entries with role data (pre-injury state)
+    decorated_il = []
+    for il_entry in roster.get("injured_list", []) or []:
+        position = il_entry.get("position") or ""
+        if "Pitcher" not in position:
+            decorated_il.append(il_entry)
+            continue
+        pid = il_entry.get("player_id")
+        if pid is not None and pid in stats_by_pid:
+            tagged = tag_role(stats_by_pid[pid], team_total_games=team_total_games)
+        else:
+            tagged = tag_role({}, team_total_games=team_total_games)
+        decorated_il.append({**il_entry, **tagged})
+
+    return {
+        **roster,
+        "active_roster": {
+            **active,
+            "pitcher_roles": pitcher_roles,
+        },
+        "injured_list": decorated_il,
     }
 
 
@@ -300,6 +416,16 @@ def main():
     # 合併模式（預設）vs 單一模式（向後相容）
     if args.type is None:
         combined = fetch_combined_roster(team_id, args.season)
+        # PR-2 commit 8: per-pitcher core_role tagging.
+        # Active pitchers + IL pitchers get role decoration.
+        active_pids = combined["active_roster"].get("pitcher_ids") or []
+        il_pids = [
+            p.get("player_id") for p in combined["injured_list"] or []
+            if "Pitcher" in (p.get("position") or "") and p.get("player_id")
+        ]
+        all_pids = [pid for pid in (active_pids + il_pids) if pid is not None]
+        stats_by_pid = fetch_pitcher_season_stats_bulk(all_pids, args.season)
+        combined = enrich_roster_with_roles(combined, stats_by_pid)
         result = {
             "team": team_name,
             "team_id": team_id,
