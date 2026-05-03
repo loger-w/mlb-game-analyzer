@@ -133,6 +133,14 @@ def _render_bullpen_section(bundle: dict) -> list[str]:
     ]
 
 
+# AI placeholders for Flag 8 / Flag 3 risk notes — single source of truth so the
+# "不自動..." discipline text isn't repeated inline. Mirrors dossier_renderer
+# `_FLAG8_TAIL` / `_FLAG3_TAIL` (different format: dossier is one-line summary,
+# summary is two-line note + AI placeholder).
+_FLAG8_AI_PLACEHOLDER = "  - <!-- AI 補：是運氣還結構性？是否影響本場判斷？不自動下修預測 -->"
+_FLAG3_AI_PLACEHOLDER = "  - <!-- AI 補：可能回歸或可能持續？是否影響本場判斷？不自動 ±run value -->"
+
+
 def _detect_risk_notes(bundle: dict) -> list[str]:
     """偵測 Flag 8 / Flag 3，回傳「條目 markdown 行」list（不含 H2 開頭）。"""
     from pitcher_stats import detect_triggers as detect_pitcher_triggers
@@ -152,14 +160,14 @@ def _detect_risk_notes(bundle: dict) -> list[str]:
             else:
                 detail = f"{name}={val}" if val is not None else name
             notes.append(f"- ⚠️ {side.upper()} 投手 Flag 8 ({detail}):")
-            notes.append("  - <!-- AI 補：是運氣還結構性？是否影響本場判斷？不自動下修預測 -->")
+            notes.append(_FLAG8_AI_PLACEHOLDER)
     for side in ("home", "away"):
         triggers = detect_lineup_triggers(bundle.get(f"{side}_lineup", {}))
         for t in triggers:
             if t.get("flag") == 3:
                 babip = bundle.get(f"{side}_lineup", {}).get("last7_babip", "?")
                 notes.append(f"- ⚠️ {side.upper()} 打線 Flag 3 (last7 BABIP={babip}):")
-                notes.append("  - <!-- AI 補：可能回歸或可能持續？是否影響本場判斷？不自動 ±run value -->")
+                notes.append(_FLAG3_AI_PLACEHOLDER)
     return notes
 
 
@@ -261,8 +269,8 @@ def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]
     return [
         "## 修正後預期得分",
         "",
-        "> 「+ 信號」欄僅納入規範允許的條件修正：Park Factor、牛棚累計效應（核心 IL ≥ 2 名）、主力打者傷兵。",
-        "> ⛔ BABIP 極端值 / ERA-xERA gap **不入此欄**（規範禁止 auto ±run value，見 reference/flags-checklist.md §3, §8）。",
+        "> 「+ 信號」欄：依 `reference/matchup-factors.md §量級錨點` 區間挑值（單側 cap ±0.8 run / 場）。",
+        "> ⛔ **不入此欄**：BABIP 極端值（Flag 3）/ ERA-xERA gap（Flag 8）/ strong_park（已含於 PF 倍率）。",
         "",
         "| | base (formula) | + 信號 | adjusted |",
         "|---|---|---|---|",
@@ -277,9 +285,9 @@ def _render_overall_section() -> list[str]:
     return [
         "## 整體判斷",
         "",
-        "- **方向（基本面）**：<!-- AI 補 -->",
-        "- **總分（基本面）**：<!-- AI 補 -->",
-        "- **信心**：<!-- AI 補 LOW/MEDIUM/HIGH -->",
+        "- **方向（基本面）**：<!-- AI 補 HOME / AWAY / 持平 -->",
+        "- **總分（基本面）**：<!-- AI 補 數值（formula base ± 信號修正後） -->",
+        "- **方向信心**：<!-- AI 補 50-75% 機率（≤ 50% 寫「持平」；> 75% 需在風險段說明依據） -->",
         "- **風險**：<!-- AI 補 1-4 點 -->",
         "",
         "⛔ MUST NOT contain：星級、盤口推薦（ML / O/U / RL）— 盤口屬 odds/ 模組",

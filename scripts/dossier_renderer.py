@@ -931,6 +931,37 @@ def _render_signal_summary(bundle: dict) -> list[str]:
     return lines
 
 
+# Risk-summary tails — single source of truth for the "AI 判斷 / 不自動..." reminders
+# repeated across pitcher (Flag 8) and lineup (Flag 3) rows. Keeps the policy text
+# in one place so audits can grep one constant.
+_FLAG8_TAIL = "— 運氣或結構性？AI 判斷，**不自動補跑 YoY、不自動下修預測**"
+_FLAG3_TAIL = "— 可能回歸或可能持續？AI 判斷，**不自動 ±run value**"
+
+
+def _flag8_pitcher_lines(team_name: str, triggers: list) -> list[str]:
+    """Format Flag-8 (era_xera_delta) rows for one team's pitcher."""
+    rows = []
+    for t in triggers:
+        val = t.get("value")
+        val_str = f"={val:.2f}" if val is not None else ""
+        rows.append(
+            f"- {team_name} 投手：era_xera_delta{val_str}（Flag {t.get('flag', '?')}）{_FLAG8_TAIL}"
+        )
+    return rows
+
+
+def _flag3_lineup_lines(team_name: str, triggers: list) -> list[str]:
+    """Format Flag-3 (last7 BABIP) rows for one team's lineup."""
+    rows = []
+    for t in triggers:
+        val = t.get("value")
+        val_str = f"={val:.3f}" if val is not None else ""
+        rows.append(
+            f"- {team_name} 打線：last7 BABIP{val_str}（Flag {t.get('flag', '?')}）{_FLAG3_TAIL}"
+        )
+    return rows
+
+
 def _render_risk_summary(bundle: dict) -> list[str]:
     """## ⚠️ 風險提示摘要 section."""
     from pitcher_stats import detect_triggers as detect_pitcher_triggers
@@ -946,48 +977,11 @@ def _render_risk_summary(bundle: dict) -> list[str]:
     home_lu = bundle.get("home_lineup") or {}
     away_lu = bundle.get("away_lineup") or {}
 
-    h_p_triggers = detect_pitcher_triggers(home_p)
-    a_p_triggers = detect_pitcher_triggers(away_p)
-    h_lu_triggers = detect_lineup_triggers({"last7_babip": home_lu.get("last7_babip")})
-    a_lu_triggers = detect_lineup_triggers({"last7_babip": away_lu.get("last7_babip")})
-
     items: list[str] = []
-
-    for t in h_p_triggers:
-        flag = t.get("flag", "?")
-        val = t.get("value")
-        val_str = f"={val:.2f}" if val is not None else ""
-        items.append(
-            f"- {home_name} 投手：era_xera_delta{val_str}（Flag {flag}）"
-            f"— 運氣或結構性？AI 判斷，**不自動補跑 YoY、不自動下修預測**"
-        )
-
-    for t in a_p_triggers:
-        flag = t.get("flag", "?")
-        val = t.get("value")
-        val_str = f"={val:.2f}" if val is not None else ""
-        items.append(
-            f"- {away_name} 投手：era_xera_delta{val_str}（Flag {flag}）"
-            f"— 運氣或結構性？AI 判斷，**不自動補跑 YoY、不自動下修預測**"
-        )
-
-    for t in h_lu_triggers:
-        flag = t.get("flag", "?")
-        val = t.get("value")
-        val_str = f"={val:.3f}" if val is not None else ""
-        items.append(
-            f"- {home_name} 打線：last7 BABIP{val_str}（Flag {flag}）"
-            f"— 可能回歸或可能持續？AI 判斷，**不自動 ±run value**"
-        )
-
-    for t in a_lu_triggers:
-        flag = t.get("flag", "?")
-        val = t.get("value")
-        val_str = f"={val:.3f}" if val is not None else ""
-        items.append(
-            f"- {away_name} 打線：last7 BABIP{val_str}（Flag {flag}）"
-            f"— 可能回歸或可能持續？AI 判斷，**不自動 ±run value**"
-        )
+    items += _flag8_pitcher_lines(home_name, detect_pitcher_triggers(home_p))
+    items += _flag8_pitcher_lines(away_name, detect_pitcher_triggers(away_p))
+    items += _flag3_lineup_lines(home_name, detect_lineup_triggers({"last7_babip": home_lu.get("last7_babip")}))
+    items += _flag3_lineup_lines(away_name, detect_lineup_triggers({"last7_babip": away_lu.get("last7_babip")}))
 
     lines = ["## ⚠️ 風險提示摘要（AI 在 summary 風險提示段處理）"]
     if items:
