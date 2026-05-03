@@ -330,54 +330,106 @@ def test_compute_tier_v2_stuff_dict_with_none_value_is_missing_stuff():
 
 
 # ---------------------------------------------------------------------------
-# compute_tier_gap (PR-2 commit 6) — surface tier_v2 score vs ERA-only score
+# compute_era_only_score — linear interpolation (Bug 4 fix)
 # ---------------------------------------------------------------------------
 
-def test_compute_tier_gap_positive_when_v2_better_than_era_tier():
-    """tier_v2 score 90 (Elite) vs ERA-only "🟠 Strong Ace" (75) → gap +15.
+def test_compute_era_only_score_at_anchors():
+    """Each anchor ERA returns its anchored score exactly (no interpolation)."""
+    from lib_tier_v2 import compute_era_only_score
+    assert compute_era_only_score(2.00) == pytest.approx(95.0)
+    assert compute_era_only_score(2.50) == pytest.approx(90.0)
+    assert compute_era_only_score(3.20) == pytest.approx(75.0)
+    assert compute_era_only_score(4.20) == pytest.approx(55.0)
+    assert compute_era_only_score(5.00) == pytest.approx(35.0)
+    assert compute_era_only_score(6.00) == pytest.approx(15.0)
+
+
+def test_compute_era_only_score_interpolates_between_anchors():
+    """ERA 4.5 falls between 4.20→55 and 5.00→35: linear → 55 - 0.375×20 = 47.5."""
+    from lib_tier_v2 import compute_era_only_score
+    assert compute_era_only_score(4.50) == pytest.approx(47.5)
+
+
+def test_compute_era_only_score_boundary_smooth():
+    """Bug 4 was: 4.99 → 35 (Back-end mid) but 5.00 → 15 (Below mid) — 0.01
+    ERA jumped 20 score points. Linear interpolation must keep diff < 1.0."""
+    from lib_tier_v2 import compute_era_only_score
+    diff = compute_era_only_score(4.99) - compute_era_only_score(5.00)
+    assert abs(diff) < 1.0
+
+
+def test_compute_era_only_score_clamps_at_extremes():
+    """ERA below 2.00 clamps at 95 (don't extrapolate Elite to ridiculous values).
+    ERA above 6.00 clamps at 15 (don't go negative for terrible ERAs)."""
+    from lib_tier_v2 import compute_era_only_score
+    assert compute_era_only_score(1.50) == pytest.approx(95.0)
+    assert compute_era_only_score(0.00) == pytest.approx(95.0)
+    assert compute_era_only_score(7.00) == pytest.approx(15.0)
+    assert compute_era_only_score(15.0) == pytest.approx(15.0)
+
+
+def test_compute_era_only_score_none_returns_none():
+    """ERA None (e.g. small_sample, no IP) → None."""
+    from lib_tier_v2 import compute_era_only_score
+    assert compute_era_only_score(None) is None
+
+
+def test_compute_era_only_score_invalid_string_returns_none():
+    """ERA non-numeric → None (defensive against API drift)."""
+    from lib_tier_v2 import compute_era_only_score
+    assert compute_era_only_score("abc") is None
+
+
+# ---------------------------------------------------------------------------
+# compute_tier_gap (Bug 4) — uses linear-interpolated ERA score, not table lookup
+# ---------------------------------------------------------------------------
+
+def test_compute_tier_gap_positive_when_v2_better_than_era():
+    """tier_v2 score 90 vs ERA 4.50 → era_only_score 47.5 → gap +42.5.
     Means: ERA understates real level (e.g. high BABIP / low LOB% inflating ERA)."""
     from lib_tier_v2 import compute_tier_gap
     tier_v2_result = {"score": 90.0, "tier_v2": "🔴 Elite Ace"}
-    result = compute_tier_gap(tier_v2_result, era_only_tier="🟠 Strong Ace")
+    result = compute_tier_gap(tier_v2_result, era=4.50)
     assert result["expected_score"] == 90.0
-    assert result["era_only_score"] == 75
-    assert result["gap"] == pytest.approx(15.0)
+    assert result["era_only_score"] == pytest.approx(47.5)
+    assert result["gap"] == pytest.approx(42.5)
 
 
 def test_compute_tier_gap_negative_when_era_flatters():
-    """ERA tier 🔴 Elite Ace (90) but xFIP/K-BB blend says 🟡 Solid Starter (55).
-    Gap −35 means ERA flatters (low BABIP / high LOB inflating)."""
+    """ERA 2.40 → era_only_score 91; v2 score 55 → gap −36.
+    Means: ERA flatters (low BABIP / high LOB inflating). t=(2.4-2.0)/(2.5-2.0)=0.8;
+    score = 95 + 0.8*(90-95) = 91."""
     from lib_tier_v2 import compute_tier_gap
     tier_v2_result = {"score": 55.0, "tier_v2": "🟡 Solid Starter"}
-    result = compute_tier_gap(tier_v2_result, era_only_tier="🔴 Elite Ace")
-    assert result["era_only_score"] == 90
-    assert result["gap"] == pytest.approx(-35.0)
+    result = compute_tier_gap(tier_v2_result, era=2.40)
+    assert result["era_only_score"] == pytest.approx(91.0)
+    assert result["gap"] == pytest.approx(-36.0)
 
 
 def test_compute_tier_gap_aligned_returns_small_gap():
-    """ERA tier 🟠 Strong Ace (75) and v2 score also 75 → gap 0."""
+    """ERA 3.20 (anchor → 75) + v2 score 75 → gap 0."""
     from lib_tier_v2 import compute_tier_gap
     tier_v2_result = {"score": 75.0, "tier_v2": "🟠 Strong Ace"}
-    result = compute_tier_gap(tier_v2_result, era_only_tier="🟠 Strong Ace")
+    result = compute_tier_gap(tier_v2_result, era=3.20)
     assert result["gap"] == pytest.approx(0.0)
 
 
 def test_compute_tier_gap_none_when_v2_score_unavailable():
     """tier_v2 score is None (small sample) → gap None, era_only_score still
-    populated (caller can show 'no v2 score' but still know the v1 tier)."""
+    populated (caller can show 'no v2 score' but still know the ERA-derived score)."""
     from lib_tier_v2 import compute_tier_gap
     tier_v2_result = {"score": None, "tier_v2": None}
-    result = compute_tier_gap(tier_v2_result, era_only_tier="🟠 Strong Ace")
+    result = compute_tier_gap(tier_v2_result, era=3.20)
     assert result["expected_score"] is None
-    assert result["era_only_score"] == 75
+    assert result["era_only_score"] == pytest.approx(75.0)
     assert result["gap"] is None
 
 
-def test_compute_tier_gap_unknown_era_tier_returns_none_gap():
-    """era_only_tier outside the known map (e.g. 'Unknown') → era_only_score None."""
+def test_compute_tier_gap_when_era_is_none():
+    """era is None (e.g. pitcher hasn't pitched yet) → era_only_score None, gap None."""
     from lib_tier_v2 import compute_tier_gap
     tier_v2_result = {"score": 75.0, "tier_v2": "🟠 Strong Ace"}
-    result = compute_tier_gap(tier_v2_result, era_only_tier="Unknown")
+    result = compute_tier_gap(tier_v2_result, era=None)
     assert result["expected_score"] == 75.0
     assert result["era_only_score"] is None
     assert result["gap"] is None

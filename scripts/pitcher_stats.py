@@ -903,7 +903,7 @@ def main():
     #     in place for backward-compat). See lib_tier_v2 for formula details.
     from lib_tier_v2 import compute_tier_v2, compute_tier_gap
     tier_v2_result = compute_tier_v2(season, statcast, age=age, stuff=stuff_for_tier)
-    tier_gap = compute_tier_gap(tier_v2_result, era_only_tier=tier)
+    tier_gap = compute_tier_gap(tier_v2_result, era=season.get("era"))
 
     output = {
         "name": args.name,

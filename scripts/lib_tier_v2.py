@@ -144,24 +144,67 @@ _WEIGHT_STUFF = 30
 _WEIGHT_AGE = 15
 
 
-# Mapping v1 ERA-only tier → numeric anchor for tier_gap comparison.
-# Anchors are bucket midpoints: Elite 90, Strong 75, Solid 55, Back-end 35,
-# Below 15. Diff vs tier_v2 score surfaces "ERA flatters / understates real level".
-ERA_ONLY_SCORE_MAP = {
-    "🔴 Elite Ace": 90,
-    "🟠 Strong Ace": 75,
-    "🟡 Solid Starter": 55,
-    "🟢 Back-end Starter": 35,
-    "⚪ Below Average": 15,
-}
+# Linear-interpolation anchors for ERA → 0..100 score (Bug 4 fix).
+# Replaces ERA_ONLY_SCORE_MAP table lookup which caused 4.99 → 35 / 5.00 → 15
+# 20-point jump on 0.01 ERA change. Linear keeps tier_gap math precision-aware.
+#
+# Anchors (ERA, score):
+#   2.00 → 95   (Elite ceiling — clamp below)
+#   2.50 → 90   (Elite mid)
+#   3.20 → 75   (Strong mid)
+#   4.20 → 55   (Solid mid)
+#   5.00 → 35   (Back-end mid)
+#   6.00 → 15   (Below mid — clamp above)
+ERA_SCORE_ANCHORS = (
+    (2.00, 95.0),
+    (2.50, 90.0),
+    (3.20, 75.0),
+    (4.20, 55.0),
+    (5.00, 35.0),
+    (6.00, 15.0),
+)
 
 
-def compute_tier_gap(tier_v2_result: dict, era_only_tier: str) -> dict:
-    """Compare tier_v2 numeric score to v1 ERA-only tier anchor.
+def compute_era_only_score(era) -> float | None:
+    """Map ERA → 0..100 score via linear interpolation between fixed anchors.
+
+    ERA below 2.00 clamps at 95 (no Elite extrapolation).
+    ERA above 6.00 clamps at 15 (no negative scores).
+    None / non-numeric → None.
+    """
+    if era is None:
+        return None
+    try:
+        era_f = float(era)
+    except (TypeError, ValueError):
+        return None
+
+    if era_f <= ERA_SCORE_ANCHORS[0][0]:
+        return ERA_SCORE_ANCHORS[0][1]
+    if era_f >= ERA_SCORE_ANCHORS[-1][0]:
+        return ERA_SCORE_ANCHORS[-1][1]
+
+    for i in range(len(ERA_SCORE_ANCHORS) - 1):
+        e1, s1 = ERA_SCORE_ANCHORS[i]
+        e2, s2 = ERA_SCORE_ANCHORS[i + 1]
+        if e1 <= era_f <= e2:
+            if e1 == e2:
+                return s1
+            t = (era_f - e1) / (e2 - e1)
+            return s1 + t * (s2 - s1)
+    return ERA_SCORE_ANCHORS[-1][1]  # unreachable; bracketed by the two clamps above
+
+
+def compute_tier_gap(tier_v2_result: dict, era) -> dict:
+    """Compare tier_v2 numeric score to ERA-derived linear-interpolated score.
+
+    `era` is the raw ERA value. Replaces Bug 4 table-lookup behavior — linear
+    interpolation preserves 0.01 ERA precision so tier_gap doesn't artificially
+    jump 20 points on bucket boundaries.
 
     Output:
         expected_score (float | None) — tier_v2 score
-        era_only_score (int | None)   — anchor for v1 tier (None if unknown)
+        era_only_score (float | None) — interpolated from ERA (None if era is None/invalid)
         gap (float | None)            — expected_score − era_only_score
 
     Sign convention:
@@ -171,16 +214,16 @@ def compute_tier_gap(tier_v2_result: dict, era_only_tier: str) -> dict:
         signals_lib.tier_mismatch); we DO NOT auto-trigger Flag 9 here.
     """
     expected_score = (tier_v2_result or {}).get("score")
-    era_only_score = ERA_ONLY_SCORE_MAP.get(era_only_tier)
+    era_only_score = compute_era_only_score(era)
     if expected_score is None or era_only_score is None:
         return {
             "expected_score": expected_score,
-            "era_only_score": era_only_score,
+            "era_only_score": round(era_only_score, 1) if era_only_score is not None else None,
             "gap": None,
         }
     return {
         "expected_score": expected_score,
-        "era_only_score": era_only_score,
+        "era_only_score": round(era_only_score, 1),
         "gap": round(expected_score - era_only_score, 1),
     }
 
