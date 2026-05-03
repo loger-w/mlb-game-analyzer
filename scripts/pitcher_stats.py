@@ -522,6 +522,50 @@ def fetch_platoon_splits(mlbam_id: int, year: int) -> dict:
         return {"error": str(e)}
 
 
+def _pa_outcome_aggregates(pa_df) -> dict:
+    """從 PA-level DataFrame slice（一行一 PA，含 events 欄）算 OPS / K% / BB% / BF。
+
+    OBP / SLG / AVG 由 events 計數 + sabermetric 公式合成（PA 級資料不直接給 OPS）。
+    Plan B helper — input 是 statcast_pitcher 經 events.notna() filter 過的 slice。
+    """
+    bf = len(pa_df)
+    if bf == 0:
+        return {"ops": None, "k_pct": 0.0, "bb_pct": 0.0, "bf": 0}
+
+    events = pa_df["events"]
+    h_singles = int((events == "single").sum())
+    h_doubles = int((events == "double").sum())
+    h_triples = int((events == "triple").sum())
+    h_hrs = int((events == "home_run").sum())
+    h = h_singles + h_doubles + h_triples + h_hrs
+
+    bb = int((events == "walk").sum())
+    hbp = int((events == "hit_by_pitch").sum())
+    k = int(events.isin(["strikeout", "strikeout_double_play"]).sum())
+    sf = int(events.isin(["sac_fly", "sac_fly_double_play"]).sum())
+    sh = int(events.isin(["sac_bunt", "sacrifice_bunt_double_play"]).sum())
+
+    ab = bf - bb - hbp - sf - sh
+    if ab <= 0:
+        return {"ops": None,
+                "k_pct": round(k / bf * 100, 1),
+                "bb_pct": round(bb / bf * 100, 1),
+                "bf": bf}
+
+    obp_denom = ab + bb + hbp + sf
+    obp = (h + bb + hbp) / obp_denom if obp_denom > 0 else 0.0
+    tb = h_singles + 2 * h_doubles + 3 * h_triples + 4 * h_hrs
+    slg = tb / ab if ab > 0 else 0.0
+    ops = obp + slg
+
+    return {
+        "ops": round(ops, 3),
+        "k_pct": round(k / bf * 100, 1),
+        "bb_pct": round(bb / bf * 100, 1),
+        "bf": bf,
+    }
+
+
 def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
     """C3: 從 Statcast 原始資料計算 Whiff% 和 CSW%"""
     _, statcast_pitcher, _, _ = _import_pybaseball()

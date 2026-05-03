@@ -127,3 +127,69 @@ def test_lookup_strict_year_filtered_falls_to_fuzzy(monkeypatch):
     result = pitcher_stats.lookup_pitcher_id("Nick Martinez")
     assert result == 607259
     assert calls["n"] == 2  # 兩次都呼叫（strict 被年份濾掉，繼續 fuzzy）
+
+
+# ---------------------------------------------------------------------------
+# TTO splits helpers (Plan B — Statcast pitch-by-pitch aggregation)
+# ---------------------------------------------------------------------------
+import pandas as _pd_mod
+
+
+def _pa_df(events: list[str]):
+    """Build a tiny PA-level DataFrame for tests."""
+    return _pd_mod.DataFrame({"events": events})
+
+
+def test_pa_outcome_aggregates_all_strikeouts():
+    """5 strikeouts → OPS=0、K%=100、BB%=0、BF=5."""
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df(["strikeout"] * 5))
+    assert out["bf"] == 5
+    assert out["k_pct"] == 100.0
+    assert out["bb_pct"] == 0.0
+    assert out["ops"] == 0.0
+
+
+def test_pa_outcome_aggregates_basic_mix():
+    """1 single + 1 walk + 1 K + 1 field_out + 1 home_run.
+
+    AB = 5 - 1(BB) - 0(HBP) - 0(SF) - 0(SH) = 4
+    H = 2 (single + HR), TB = 1 + 4 = 5
+    OBP = (2 + 1) / (4 + 1) = 0.600
+    SLG = 5 / 4 = 1.250
+    OPS = 1.850
+    K% = 1/5 = 20.0, BB% = 1/5 = 20.0
+    """
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df([
+        "single", "walk", "strikeout", "field_out", "home_run",
+    ]))
+    assert out["bf"] == 5
+    assert out["k_pct"] == 20.0
+    assert out["bb_pct"] == 20.0
+    assert abs(out["ops"] - 1.850) < 0.005
+
+
+def test_pa_outcome_aggregates_handles_sf_and_hbp():
+    """SF doesn't count AB; HBP counts in OBP not AB.
+
+    PAs: 2 single + 1 HBP + 1 SF + 1 K + 1 field_out → 6 PAs
+    AB = 6 - 0(BB) - 1(HBP) - 1(SF) - 0(SH) = 4
+    H = 2, TB = 2
+    OBP = (2 + 0 + 1) / (4 + 0 + 1 + 1) = 3/6 = 0.500
+    SLG = 2/4 = 0.500
+    OPS = 1.000
+    """
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df([
+        "single", "single", "hit_by_pitch", "sac_fly", "strikeout", "field_out",
+    ]))
+    assert out["bf"] == 6
+    assert abs(out["ops"] - 1.000) < 0.005
+
+
+def test_pa_outcome_aggregates_empty_returns_zero_bf():
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df([]))
+    assert out["bf"] == 0
+    assert out["ops"] is None
