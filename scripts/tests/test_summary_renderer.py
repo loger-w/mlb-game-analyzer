@@ -62,11 +62,37 @@ def test_skeleton_no_yoy_or_babip_h2():
     assert "## BABIP 回歸判定" not in output
 
 
-def test_skeleton_tier_override_slot_present():
-    """Tier 覆寫 slot 在投手 + 打線段都要有（至少 4 處）。"""
+def test_skeleton_tier_validation_slots_present():
+    """PR-3 commit 15: placeholder 從「Tier 覆寫」改為「Tier 驗證」（投手） +
+    「Matchup tier」（打線）。新設計 AI 驗證 signal 而非從零合成。"""
     from summary_renderer import render_summary
     output = render_summary(_minimal_bundle(), _minimal_formula_pred())
-    assert output.count("**Tier 覆寫**") >= 4
+    # 投手段 2 個 Tier 驗證
+    assert output.count("**Tier 驗證**") == 2
+    # 打線段 2 個 Matchup tier
+    assert output.count("**Matchup tier") == 2
+    # 舊的 Tier 覆寫 字串應已不存在
+    assert "Tier 覆寫" not in output
+
+
+def test_skeleton_pitcher_section_references_signals():
+    """投手段必須引用 dossier ## 🎯 訊號摘要 給 AI 對 reverse_platoon 等信號做驗證。"""
+    from summary_renderer import render_summary
+    output = render_summary(_minimal_bundle(), _minimal_formula_pred())
+    assert "Reverse platoon" in output
+    assert "## 🎯 訊號摘要" in output
+
+
+def test_skeleton_lineup_section_uses_matchup_tier():
+    """打線段 placeholder 引用 tier_vs_lhp / tier_vs_rhp 取代單一 season tier 覆寫。"""
+    from summary_renderer import render_summary
+    bundle = _minimal_bundle()
+    bundle["home_lineup"]["tier_vs_lhp"] = "🟠 Strong"
+    bundle["home_lineup"]["tier_vs_rhp"] = "🟡 Average"
+    bundle["away_pitcher"]["pitch_hand"] = "L"
+    output = render_summary(bundle, _minimal_formula_pred())
+    # HOME 對 AWAY (LHP) → tier_vs_lhp 應出現
+    assert "🟠 Strong" in output
 
 
 def test_skeleton_risk_section_lists_triggers_when_present():
@@ -108,11 +134,13 @@ def test_skeleton_expected_runs_table_uses_formula_pred():
     assert "4.2" in output  # away_expected_runs
 
 
-def test_skeleton_line_count_within_70():
-    """summary.md template line count ≤ 70（含 +信號 caveat note）"""
+def test_skeleton_line_count_within_85():
+    """summary.md template line count ≤ 85（PR-3 commit 15 加了顯式 signal
+    引用 placeholder 後，比舊版 70 行多約 10-15 行；85 ceiling 留些 buffer
+    給 commit 16 加額外信號區）。"""
     from summary_renderer import render_summary
     output = render_summary(_minimal_bundle(), _minimal_formula_pred())
-    assert len(output.split("\n")) <= 70
+    assert len(output.split("\n")) <= 85
 
 
 def test_summary_uses_real_predict_with_formula_keys(tmp_path):
