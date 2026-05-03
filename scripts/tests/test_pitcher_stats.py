@@ -132,12 +132,11 @@ def test_lookup_strict_year_filtered_falls_to_fuzzy(monkeypatch):
 # ---------------------------------------------------------------------------
 # TTO splits helpers (Plan B — Statcast pitch-by-pitch aggregation)
 # ---------------------------------------------------------------------------
-import pandas as _pd_mod
 
 
 def _pa_df(events: list[str]):
     """Build a tiny PA-level DataFrame for tests."""
-    return _pd_mod.DataFrame({"events": events})
+    return pd.DataFrame({"events": events})
 
 
 def test_pa_outcome_aggregates_all_strikeouts():

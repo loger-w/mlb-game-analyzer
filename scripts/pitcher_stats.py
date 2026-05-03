@@ -522,7 +522,7 @@ def fetch_platoon_splits(mlbam_id: int, year: int) -> dict:
         return {"error": str(e)}
 
 
-def _pa_outcome_aggregates(pa_df) -> dict:
+def _pa_outcome_aggregates(pa_df: pd.DataFrame) -> dict:
     """從 PA-level DataFrame slice（一行一 PA，含 events 欄）算 OPS / K% / BB% / BF。
 
     OBP / SLG / AVG 由 events 計數 + sabermetric 公式合成（PA 級資料不直接給 OPS）。
@@ -552,10 +552,11 @@ def _pa_outcome_aggregates(pa_df) -> dict:
                 "bb_pct": round(bb / bf * 100, 1),
                 "bf": bf}
 
+    # ab > 0 guaranteed below; obp_denom = ab + ... ≥ ab ≥ 1, so no division-by-zero defense needed
     obp_denom = ab + bb + hbp + sf
-    obp = (h + bb + hbp) / obp_denom if obp_denom > 0 else 0.0
+    obp = (h + bb + hbp) / obp_denom
     tb = h_singles + 2 * h_doubles + 3 * h_triples + 4 * h_hrs
-    slg = tb / ab if ab > 0 else 0.0
+    slg = tb / ab
     ops = obp + slg
 
     return {

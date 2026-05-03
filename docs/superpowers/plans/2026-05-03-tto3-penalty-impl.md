@@ -102,12 +102,12 @@ Append 到 `scripts/tests/test_pitcher_stats.py` 結尾：
 # ---------------------------------------------------------------------------
 # TTO splits helpers (Plan B — Statcast pitch-by-pitch aggregation)
 # ---------------------------------------------------------------------------
-import pandas as _pd_mod
+# (pandas already imported as `pd` at top of test_pitcher_stats.py — reuse it)
 
 
 def _pa_df(events: list[str]):
     """Build a tiny PA-level DataFrame for tests."""
-    return _pd_mod.DataFrame({"events": events})
+    return pd.DataFrame({"events": events})
 
 
 def test_pa_outcome_aggregates_all_strikeouts():
@@ -181,7 +181,7 @@ python -m pytest tests/test_pitcher_stats.py -k pa_outcome_aggregates -v
 Append 到 `scripts/pitcher_stats.py`，建議放在 `fetch_platoon_splits` 之後（line ~522 之後）：
 
 ```python
-def _pa_outcome_aggregates(pa_df) -> dict:
+def _pa_outcome_aggregates(pa_df: pd.DataFrame) -> dict:
     """從 PA-level DataFrame slice（一行一 PA，含 events 欄）算 OPS / K% / BB% / BF。
 
     OBP / SLG / AVG 由 events 計數 + sabermetric 公式合成（PA 級資料不直接給 OPS）。
@@ -211,10 +211,11 @@ def _pa_outcome_aggregates(pa_df) -> dict:
                 "bb_pct": round(bb / bf * 100, 1),
                 "bf": bf}
 
+    # ab > 0 guaranteed below; obp_denom ≥ ab ≥ 1, no division-by-zero defense needed
     obp_denom = ab + bb + hbp + sf
-    obp = (h + bb + hbp) / obp_denom if obp_denom > 0 else 0.0
+    obp = (h + bb + hbp) / obp_denom
     tb = h_singles + 2 * h_doubles + 3 * h_triples + 4 * h_hrs
-    slg = tb / ab if ab > 0 else 0.0
+    slg = tb / ab
     ops = obp + slg
 
     return {
@@ -258,7 +259,7 @@ Append 到 `scripts/tests/test_pitcher_stats.py`：
 ```python
 def _statcast_df(rows: list[dict]):
     """Build a fake statcast_pitcher DataFrame for tests."""
-    return _pd_mod.DataFrame(rows)
+    return pd.DataFrame(rows)
 
 
 def test_compute_tto_from_statcast_assigns_ordinals(monkeypatch):
@@ -289,7 +290,7 @@ def test_compute_tto_from_statcast_assigns_ordinals(monkeypatch):
 
 def test_compute_tto_from_statcast_empty_df(monkeypatch):
     """statcast_pitcher 回空 DataFrame → error。"""
-    fake_statcast = lambda *args, **kwargs: _pd_mod.DataFrame()
+    fake_statcast = lambda *args, **kwargs: pd.DataFrame()
     monkeypatch.setattr(
         "pitcher_stats._import_pybaseball",
         lambda: (None, fake_statcast, None, None),
