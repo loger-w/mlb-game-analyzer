@@ -1,0 +1,104 @@
+{
+  "name": "Kumar Rocker",
+  "mlbam_id": 677958,
+  "age": 26,
+  "birth_date": "1999-11-22",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "season": {
+    "era": 3.38,
+    "whip": 1.31,
+    "k_pct": 19.1,
+    "bb_pct": 8.7,
+    "k_bb_pct": 10.4,
+    "fip": 3.55,
+    "xfip": 3.65,
+    "hr_per_9": 0.67,
+    "gb_pct": 61.4,
+    "ip": 26.666666666666668,
+    "games": 5,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 4.4,
+    "xwoba": 0.33,
+    "xba": 0.259
+  },
+  "statcast": {
+    "avg_velo": 90.0,
+    "max_velo": 97.5,
+    "hard_hit_pct": 31.0,
+    "pitch_types": {
+      "SI": 39.4,
+      "SL": 37.3,
+      "CH": 9.5,
+      "FF": 9.0,
+      "FC": 4.9
+    },
+    "barrel_pct": 7.3,
+    "ev95percent": 47.6,
+    "whiff_pct": 11.1,
+    "csw_pct": 23.5
+  },
+  "game_log": [
+    {
+      "date": "2026-04-04",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 3,
+      "bb": 1,
+      "h": 6,
+      "er": 2,
+      "pitches": 80,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 4.5,
+      "k": 5,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 83,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "Athletics",
+      "ip": 4.666666666666667,
+      "era": 4.3,
+      "k": 6,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 97,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".264",
+      "obp": ".355",
+      "slg": ".453",
+      "k": 13,
+      "bb": 8,
+      "bf": 62,
+      "k_pct": 21.0,
+      "bb_pct": 12.9
+    },
+    "vs_right": {
+      "avg": ".220",
+      "obp": ".264",
+      "slg": ".260",
+      "k": 9,
+      "bb": 2,
+      "bf": 53,
+      "k_pct": 17.0,
+      "bb_pct": 3.8
+    }
+  }
+}
