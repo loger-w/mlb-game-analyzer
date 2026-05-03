@@ -551,6 +551,34 @@ def test_render_signal_summary_severity_emoji_prefix():
     assert "🟠" in text
 
 
+def test_render_signal_summary_marks_short_half_life_with_hourglass():
+    """Short half_life signals (heat / core_il_count / etc.) get ⏳ badge so
+    analyst knows the reading is short-window (對手會調整). Structural and
+    medium signals don't get the badge. See reference/matchup-factors.md §半衰期."""
+    from dossier_renderer import _render_signal_summary
+    bundle = _bundle_with_fired_signals()
+    text = "\n".join(_render_signal_summary(bundle))
+    # core_il_count is short → ⏳ on that line
+    # Find line containing "core IL" or "×2" and assert ⏳ adjacent
+    core_lines = [ln for ln in text.split("\n") if "core IL" in ln or "×2" in ln]
+    assert core_lines, "core_il_count line missing"
+    assert any("⏳" in ln for ln in core_lines), (
+        f"core_il_count is short half_life — expected ⏳; got: {core_lines}"
+    )
+
+
+def test_render_signal_summary_does_not_mark_structural_with_hourglass():
+    """strong_park is structural (multi-year) — must NOT carry ⏳."""
+    from dossier_renderer import _render_signal_summary
+    bundle = _bundle_with_fired_signals()
+    text = "\n".join(_render_signal_summary(bundle))
+    park_lines = [ln for ln in text.split("\n") if "park" in ln.lower() or "112" in ln]
+    assert park_lines, "strong_park line missing"
+    assert not any("⏳" in ln for ln in park_lines), (
+        f"strong_park is structural — must not carry ⏳; got: {park_lines}"
+    )
+
+
 def test_render_dossier_signal_summary_in_required_sections():
     """## 🎯 訊號摘要 should now be among rendered H2 markers."""
     from dossier_renderer import render_dossier

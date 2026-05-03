@@ -894,7 +894,10 @@ def _render_signal_summary(bundle: dict) -> list[str]:
         emoji = _SEVERITY_EMOJI.get(s.get("severity", "low"), "ℹ️")
         side = s.get("side", "")
         side_prefix = f"{side} " if side and side != "GAME" else ""
-        lines.append(f"- {emoji} {side_prefix}{s.get('label', '')}")
+        # ⏳ marks short half_life signals (heat / IL count): 對手會立即調整 →
+        # AI 在 summary 應對這些信號帶懷疑解讀。see reference/matchup-factors.md §半衰期.
+        stale_badge = " ⏳" if s.get("half_life") == "short" else ""
+        lines.append(f"- {emoji}{stale_badge} {side_prefix}{s.get('label', '')}")
     lines.append("")
     return lines
 

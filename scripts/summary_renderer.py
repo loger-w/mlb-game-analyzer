@@ -199,7 +199,8 @@ def _render_extra_signals(bundle: dict) -> list[str]:
         emoji = _SEVERITY_EMOJI_RISK.get(s.get("severity", "low"), "ℹ️")
         side = s.get("side", "")
         side_prefix = f"{side} " if side and side != "GAME" else ""
-        lines.append(f"- {emoji} {side_prefix}{s.get('label', '')}")
+        stale_badge = " ⏳" if s.get("half_life") == "short" else ""
+        lines.append(f"- {emoji}{stale_badge} {side_prefix}{s.get('label', '')}")
     lines.append("  - <!-- AI 補：本場是否受此信號影響？是否與 Flag 3/8 雙重壓力 → 1-2 句敘事 -->")
     return lines
 

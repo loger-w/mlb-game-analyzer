@@ -27,10 +27,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 def _signal_contract(s: dict):
     """Assert every signal returns the canonical schema."""
-    for k in ("name", "fired", "value", "severity", "label", "details", "confidence"):
+    for k in ("name", "fired", "value", "severity", "label", "details", "confidence", "half_life"):
         assert k in s, f"signal missing key: {k}"
     assert s["severity"] in {"low", "medium", "high"}, f"bad severity: {s['severity']}"
     assert s["confidence"] in {"data", "heuristic", "small_sample"}
+    assert s["half_life"] in {"structural", "medium", "short"}, f"bad half_life: {s['half_life']}"
 
 
 # ---------------------------------------------------------------------------
@@ -552,3 +553,69 @@ def test_compute_all_signals_fired_count_matches_list():
     from signals_lib import compute_all_signals
     result = compute_all_signals(_minimal_bundle())
     assert result["fired_count"] == sum(1 for s in result["signals"] if s["fired"])
+
+
+# ---------------------------------------------------------------------------
+# Signal staleness (half_life classification) — added by Item 4 refactor
+# ---------------------------------------------------------------------------
+#
+# Each signal declares its data half_life class so analyst can discount
+# short-window readings (對手會調整). See reference/matchup-factors.md §半衰期.
+#   structural — multi-year / season-to-date aggregate (e.g. park, tier_mismatch)
+#   medium     — season split, mid-season adjustable (platoon, chain, mix)
+#   short      — last7 / daily window (heat, IL count, reverse_platoon)
+
+def test_signal_strong_park_half_life_structural():
+    """park factor 是多年物理特徵 → structural"""
+    from signals_lib import signal_strong_park
+    assert signal_strong_park(115.0)["half_life"] == "structural"
+    # Even non-fired calls carry the classification for schema consistency
+    assert signal_strong_park(100.0)["half_life"] == "structural"
+
+
+def test_signal_tier_mismatch_half_life_structural():
+    """tier_mismatch 是 season-to-date 累計，反身慢 → structural"""
+    from signals_lib import signal_tier_mismatch
+    assert signal_tier_mismatch({"expected_score": 90, "era_only_score": 70, "gap": 20})["half_life"] == "structural"
+
+
+def test_signal_heat_vs_babip_half_life_short():
+    """heat 是 last7 window，對手會立即調整 → short"""
+    from signals_lib import signal_heat_vs_babip
+    assert signal_heat_vs_babip("🔥 Hot", 0.380)["half_life"] == "short"
+
+
+def test_signal_core_il_count_half_life_short():
+    """IL 名單每天異動 → short"""
+    from signals_lib import signal_core_il_count
+    assert signal_core_il_count(2, "HOME")["half_life"] == "short"
+
+
+def test_signal_chain_break_half_life_medium():
+    """打線 OPS 結構是 season aggregate，但會被傷兵 / 換人改變 → medium"""
+    from signals_lib import signal_chain_break
+    lineup = [{"name": f"P{i}", "ops": 0.500 if i >= 5 else 0.800} for i in range(9)]
+    assert signal_chain_break(lineup)["half_life"] == "medium"
+
+
+def test_signal_platoon_advantage_half_life_medium():
+    """打線 platoon 是 season split → medium"""
+    from signals_lib import signal_platoon_advantage
+    lineup = [{"ops": 0.700, "platoon": {"vs_rhp": {"ops": 0.760}}} for _ in range(5)]
+    assert signal_platoon_advantage(lineup, "R")["half_life"] == "medium"
+
+
+def test_signal_reverse_platoon_half_life_medium():
+    """vs-LHB / vs-RHB 數據是 season split，對手知道後可換打者 → medium"""
+    from signals_lib import signal_reverse_platoon
+    splits = {
+        "vs_left": {"ops": ".700", "bf": 60},
+        "vs_right": {"ops": ".900", "bf": 60},
+    }
+    assert signal_reverse_platoon(splits, "R")["half_life"] == "medium"
+
+
+def test_signal_pitch_mix_concentration_half_life_medium():
+    """投手球種 mix 是 multi-month aggregate，但季中可調 → medium"""
+    from signals_lib import signal_pitch_mix_concentration
+    assert signal_pitch_mix_concentration({"FF": 50.0, "SL": 30.0, "CH": 20.0})["half_life"] == "medium"

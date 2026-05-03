@@ -13,7 +13,15 @@ Signal contract:
         "label": str,                                # one-line summary for dossier
         "details": dict,                             # extra context for AI
         "confidence": "data" | "heuristic" | "small_sample",
+        "half_life": "structural" | "medium" | "short",
     }
+
+`half_life` classifies how quickly the signal goes stale (reflexivity 物理):
+    structural — multi-year / 物理特徵：park, tier_mismatch
+    medium     — season split，季中可調：platoon, mix, chain
+    short      — last7 / 每天異動：heat, IL count
+Renderers prepend ⏳ badge to short half_life signals so analyst discounts
+short-window readings.
 
 Signals do NOT enter the scoring formula (see flags-checklist.md §3 / §8 —
 "不主動 ±run value"). They are surfaced for AI judgment in summary.md.
@@ -32,6 +40,22 @@ def _to_float(v) -> float | None:
         return None
 
 
+# Static half_life classification per signal name.
+# Single source of truth; _make() looks up by name unless explicitly overridden.
+# Reflexivity 物理：對手會根據 signal 調整，short half_life 容易被治療，
+# structural / medium 較穩定。
+_HALF_LIFE_BY_NAME = {
+    "tier_mismatch": "structural",          # season-to-date 累計
+    "heat_vs_babip": "short",               # last7 window
+    "platoon_advantage": "medium",          # season split
+    "strong_park": "structural",            # multi-year 物理特徵
+    "reverse_platoon": "medium",            # season split, 對手換打者就變
+    "chain_break": "medium",                # season OPS 結構
+    "pitch_mix_concentration": "medium",    # multi-month aggregate
+    "core_il_count": "short",               # IL 名單每天異動
+}
+
+
 def _make(
     name: str,
     fired: bool,
@@ -41,7 +65,12 @@ def _make(
     label: str = "",
     details: dict | None = None,
     confidence: str = "data",
+    half_life: str | None = None,
 ) -> dict:
+    """Build canonical signal dict. half_life looked up from _HALF_LIFE_BY_NAME
+    by default; pass explicit override only for tests / synthetic signals."""
+    if half_life is None:
+        half_life = _HALF_LIFE_BY_NAME.get(name, "medium")
     return {
         "name": name,
         "fired": fired,
@@ -50,6 +79,7 @@ def _make(
         "label": label,
         "details": details or {},
         "confidence": confidence,
+        "half_life": half_life,
     }
 
 

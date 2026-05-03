@@ -266,3 +266,17 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 **重疊處理**：tier_mismatch 與 Flag 8 同源、heat_vs_babip 與 Flag 3 同源 → 自動從 summary `### 額外信號` 排除避免雙列。dossier `## 🎯 訊號摘要` 兩者都列（不同層級的 surface）。
 
+### Signals 半衰期（⏳ 標記）
+
+每個 signal 帶 `half_life` 分類，對應「對手反應有多快會把這個 signal 治療掉」：
+
+| 半衰期 | 標記 | 對應 signals | 判讀建議 |
+|-------|------|-------------|---------|
+| structural | （無） | tier_mismatch / strong_park | 多年 / season-to-date 累計，反身慢，**正常引用** |
+| medium | （無） | platoon_advantage / reverse_platoon / chain_break / pitch_mix_concentration | season split / 季中可調，**通常可信但留意對手換人** |
+| short | ⏳ | heat_vs_babip / core_il_count | last7 / 每天異動，**帶懷疑解讀** — 對手可能立即調整 |
+
+⏳ 標記出現在 dossier `## 🎯 訊號摘要` 與 summary `### 額外信號` 的 signal label 前。AI 在 summary 對 ⏳ signal 的引用應該寫類似「last7 BABIP 偏高，但對手投手有 7 天時間調整 mix」這種帶反身性的解讀，而不是當成穩定信號。
+
+源頭實作：`scripts/signals_lib.py:_HALF_LIFE_BY_NAME`。
+
