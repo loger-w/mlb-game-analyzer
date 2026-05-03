@@ -43,6 +43,32 @@ def _make_fake_get(payload_by_pid, fail_pids=None):
     return fake_get
 
 
+def _make_fake_get_seasoned(payload_by_pid_season):
+    """Like _make_fake_get but keyed by (pid, season). Lets tests differentiate
+    current-season vs prior-season responses for the prior-year fallback (Bug 3).
+
+    payload_by_pid_season: dict[(int, int), dict] — value is the JSON payload.
+    Unmapped (pid, season) → returns {"stats": []} (no splits, simulating no data).
+
+    Side: fake_get.calls grows as a list of (pid, season) tuples for assertions
+    like "prior year was NOT queried because current G ≥ 5".
+    """
+    calls: list[tuple[int, int]] = []
+
+    def fake_get(url, params=None, timeout=10):
+        pid = int(url.split("/people/")[1].split("/")[0])
+        season = (params or {}).get("season")
+        calls.append((pid, season))
+        payload = payload_by_pid_season.get((pid, season), {"stats": []})
+        resp = MagicMock()
+        resp.raise_for_status = lambda: None
+        resp.json = lambda: payload
+        return resp
+
+    fake_get.calls = calls
+    return fake_get
+
+
 def test_fetch_pitcher_season_stats_bulk_returns_all_valid_pids(monkeypatch):
     """All valid pids → dict keyed by pid with parsed stats."""
     from roster_checker import fetch_pitcher_season_stats_bulk
@@ -150,3 +176,95 @@ def test_fetch_pitcher_season_stats_bulk_runs_concurrently(monkeypatch):
         f"Expected concurrent fetches (≥2 in-flight); observed max {state['max']}. "
         "Cleanup #6 requires ThreadPoolExecutor to overlap requests."
     )
+
+
+# ---------------------------------------------------------------------------
+# Backlog #3 — prior_year fallback (Bug 3: 5/02 BAL@NYY 漏抓 Bautista)
+# ---------------------------------------------------------------------------
+
+
+def test_fetch_falls_back_to_prior_year_when_current_returns_no_splits(monkeypatch):
+    """Long-IL all-season case (e.g. Bautista 2026): current season returns 0 splits
+    → fall back to prior year stats with from_prior_year=True flag.
+
+    Without this, tag_role gets 0/0/0/0/0 → Unknown → core_il_count drops the player
+    from the count (per merge_game_data.extract_core_bullpen_il_count semantics).
+    """
+    from roster_checker import fetch_pitcher_season_stats_bulk
+
+    payloads = {
+        # current season: empty (long-IL the whole year)
+        (100, 2026): {"stats": []},
+        # prior season: full Closer workload
+        (100, 2025): _stats_payload(saves=30, holds=2, g=60, gs=0, ip="60.0"),
+    }
+    fake_get = _make_fake_get_seasoned(payloads)
+    monkeypatch.setattr("roster_checker.requests.get", fake_get)
+
+    result = fetch_pitcher_season_stats_bulk([100], season=2026)
+    assert 100 in result
+    assert result[100]["saves"] == 30
+    assert result[100]["g"] == 60
+    assert result[100]["from_prior_year"] is True
+    # Both seasons were queried
+    assert (100, 2026) in fake_get.calls
+    assert (100, 2025) in fake_get.calls
+
+
+def test_fetch_falls_back_to_prior_year_when_current_g_below_5(monkeypatch):
+    """Sparse current (G=2 — long-IL since April / call-up) + robust prior → prior wins.
+
+    G < 5 is the gate per backlog spec; covers both long-IL and April small-sample cases."""
+    from roster_checker import fetch_pitcher_season_stats_bulk
+
+    payloads = {
+        (200, 2026): _stats_payload(saves=0, holds=0, g=2, gs=0, ip="2.0"),
+        (200, 2025): _stats_payload(saves=0, holds=20, g=65, gs=0, ip="62.0"),
+    }
+    fake_get = _make_fake_get_seasoned(payloads)
+    monkeypatch.setattr("roster_checker.requests.get", fake_get)
+
+    result = fetch_pitcher_season_stats_bulk([200], season=2026)
+    assert result[200]["holds"] == 20
+    assert result[200]["g"] == 65
+    assert result[200]["from_prior_year"] is True
+
+
+def test_fetch_uses_current_when_g_at_or_above_5(monkeypatch):
+    """Current season G ≥ 5 → return current; prior year is NOT queried (saves API call).
+
+    This is the fast path: a healthy mid-season pitcher should never trigger the
+    prior-year fetch overhead."""
+    from roster_checker import fetch_pitcher_season_stats_bulk
+
+    payloads = {
+        (300, 2026): _stats_payload(saves=10, holds=5, g=40, gs=0, ip="38.0"),
+        # Note: prior year payload exists but should never be fetched
+        (300, 2025): _stats_payload(saves=0, holds=0, g=99, gs=0, ip="99.0"),
+    }
+    fake_get = _make_fake_get_seasoned(payloads)
+    monkeypatch.setattr("roster_checker.requests.get", fake_get)
+
+    result = fetch_pitcher_season_stats_bulk([300], season=2026)
+    assert result[300]["saves"] == 10
+    assert result[300]["g"] == 40
+    assert result[300].get("from_prior_year") is not True
+    assert (300, 2026) in fake_get.calls
+    assert (300, 2025) not in fake_get.calls
+
+
+def test_fetch_no_prior_fallback_when_player_lacks_prior_data(monkeypatch):
+    """Rookie / first-year call-up: current G=2, prior season empty → return sparse
+    current (no from_prior_year flag — there's nothing to fall back to)."""
+    from roster_checker import fetch_pitcher_season_stats_bulk
+
+    payloads = {
+        (400, 2026): _stats_payload(saves=0, holds=1, g=2, gs=0, ip="3.0"),
+        (400, 2025): {"stats": []},  # no prior data (rookie)
+    }
+    fake_get = _make_fake_get_seasoned(payloads)
+    monkeypatch.setattr("roster_checker.requests.get", fake_get)
+
+    result = fetch_pitcher_season_stats_bulk([400], season=2026)
+    assert result[400]["g"] == 2
+    assert result[400].get("from_prior_year") is not True

@@ -124,30 +124,46 @@ def fetch_pitcher_season_stats_bulk(player_ids: list[int], season: int) -> dict:
     Per-pitcher MLB API call（hydrate fragility too high），用
     ThreadPoolExecutor(max_workers=8) 並行（Cleanup #6）。失敗 / 空 splits 的 pid
     直接從結果省略（caller 用 dict.get(pid) → None fallback "Unknown" role）。
+
+    Prior-year fallback (Bug 3, Backlog #3): 若當季 stats 缺失 (no splits) 或 G < 5
+    （長期 IL 或 April small-sample），回頭抓 season-1 stats；prior G ≥ 5 時改用
+    prior 並標 from_prior_year=True，讓 tag_role 把 confidence 後綴為
+    "data, prior_year" 並 disable small_sample（prior 是全季資料）。
     """
-    def _fetch_one(pid: int) -> tuple[int, dict | None]:
+    def _fetch_one_season(pid: int, yr: int) -> dict | None:
         try:
             resp = requests.get(
                 f"{MLB_API_BASE}/people/{pid}/stats",
-                params={"stats": "season", "group": "pitching", "season": season},
+                params={"stats": "season", "group": "pitching", "season": yr},
                 timeout=10,
             )
             resp.raise_for_status()
             data = resp.json()
             stats_list = data.get("stats", [])
             if not stats_list or not stats_list[0].get("splits"):
-                return (pid, None)
+                return None
             s = stats_list[0]["splits"][0]["stat"]
-            return (pid, {
+            return {
                 "saves": int(s.get("saves", 0)),
                 "holds": int(s.get("holds", 0)),
                 "g": int(s.get("gamesPlayed", 0)),
                 "gs": int(s.get("gamesStarted", 0)),
                 "ip": parse_ip(s.get("inningsPitched", "0")),
-            })
+            }
         except Exception as e:
-            print(f"⚠️ Failed pitcher stats fetch pid={pid}: {e}", file=sys.stderr)
-            return (pid, None)
+            print(f"⚠️ Failed pitcher stats fetch pid={pid} season={yr}: {e}", file=sys.stderr)
+            return None
+
+    def _fetch_one(pid: int) -> tuple[int, dict | None]:
+        current = _fetch_one_season(pid, season)
+        if current is not None and current["g"] >= 5:
+            return (pid, current)
+        # Fallback: long-IL all-year (current splits empty) OR sparse current (G < 5)
+        prior = _fetch_one_season(pid, season - 1)
+        if prior is not None and prior["g"] >= 5:
+            prior["from_prior_year"] = True
+            return (pid, prior)
+        return (pid, current)
 
     valid_pids = [pid for pid in player_ids if pid is not None]
     if not valid_pids:

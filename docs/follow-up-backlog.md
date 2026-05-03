@@ -54,7 +54,7 @@ Path B refactor（branch `refactor/path-b-signals`，18 commits）完成後留�
 
 實作備註（2026-05-03）：`fetch_team_wrc_plus(team_id, year)` 走 `_import_wrc_fns` lazy import → `pybaseball.batting_stats(year, qual=1)` + `playerid_reverse_lookup(idfgs, key_type="fangraphs")` 回 mlbam-keyed。Team filter 0 row 印 stderr 警告（abbr mismatch sentinel：TBR vs TB / WSN vs WSH）。`analyze_team` 加 wrc_plus per batter + avg_wrc_plus team-level（None excluded）。dossier 打線表 `xwOBA / OPS` row 之後加 `avg wRC+` row，integer render。tier 仍用 xwOBA（不替換，spec 只 add 不 replace）。Tests +11（6 fetch / 3 integration / 2 dossier；415 → 426）。
 
-## 3. Bug 3：role tagging prior_year fallback（修正 5/02 BAL@NYY 漏抓 Bautista）
+## ✅ 3. Bug 3：role tagging prior_year fallback（DONE 2026-05-03）
 
 ### 動機
 
@@ -65,6 +65,8 @@ Path B refactor（branch `refactor/path-b-signals`，18 commits）完成後留�
 1. **`fetch_pitcher_season_stats_bulk` 加 prior_year 抓取**：當季 G < 5 時 fallback 抓上季 stats。
 2. **`tag_role` 加 `from_prior_year` flag**：confidence 標記 "data, prior_year"。
 3. **Tests**：3-4 個（長傷 case / 新人沒上季資料 case）。
+
+實作備註（2026-05-03）：抽 `_fetch_one_season(pid, yr)` 內部 helper，`_fetch_one(pid)` 先抓當季 → G ≥ 5 直接回（fast path，無 prior fetch overhead）；否則抓 prior，prior G ≥ 5 → 標 `from_prior_year=True`；prior 也空 → 回 sparse current（rookie case）。`tag_role` 用 `_make()` closure 把後綴一次套上：`from_prior_year` 時 confidence = `"<base>, prior_year"`、`small_sample = False`（prior 是全季資料，不再受 April-noise 影響）、evidence 加 `from_prior_year=True` 供 dossier 透明化。Tests +6（4 fetch + 2 tag_role；426 → 432）。
 
 ## 4. Bug 4：ERA_ONLY_SCORE_MAP linear interpolation（修正邊界跳躍）
 

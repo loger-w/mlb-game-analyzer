@@ -298,3 +298,35 @@ def test_parse_roster_il_pitcher_has_player_id():
     il = parsed["injured_list"]
     assert len(il) == 1
     assert il[0]["player_id"] == 671737
+
+
+# ---------------------------------------------------------------------------
+# Backlog #3 — tag_role honors `from_prior_year` flag (Bug 3 fallback support)
+# ---------------------------------------------------------------------------
+
+
+def test_tag_role_from_prior_year_appends_suffix_to_confidence():
+    """When stats has from_prior_year=True (Bug 3 fallback), confidence label
+    becomes "<base>, prior_year" so dossier / signal layers can mark the role
+    inference as based on last-year data, not current."""
+    from lib_role_tagging import tag_role
+    stats = {"saves": 30, "holds": 0, "g": 60, "gs": 0, "ip": 60.0, "from_prior_year": True}
+    result = tag_role(stats, team_total_games=None)
+    assert result["core_role"] == "Closer"
+    assert result["core_role_confidence"] == "data, prior_year"
+    # Evidence carries the flag for full transparency at render time
+    assert result["core_role_evidence"].get("from_prior_year") is True
+
+
+def test_tag_role_from_prior_year_overrides_small_sample():
+    """Prior-year stats represent a full season — small_sample (April-noise warning)
+    must NOT fire even when team_total_games < 30, because the data itself is robust."""
+    from lib_role_tagging import tag_role
+    stats = {"saves": 30, "holds": 0, "g": 60, "gs": 0, "ip": 60.0, "from_prior_year": True}
+    result = tag_role(stats, team_total_games=12)  # April team
+    assert result["core_role"] == "Closer"
+    assert result["core_role_small_sample"] is False
+    # Sanity: without the flag, the same team_total_games would set small_sample True
+    stats_no_flag = {"saves": 30, "holds": 0, "g": 60, "gs": 0, "ip": 60.0}
+    result_no_flag = tag_role(stats_no_flag, team_total_games=12)
+    assert result_no_flag["core_role_small_sample"] is True

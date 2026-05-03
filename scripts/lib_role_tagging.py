@@ -52,27 +52,41 @@ def tag_role(pitcher_stats: dict, team_total_games: int | None = None) -> dict:
     g = pitcher_stats.get("g", 0) or 0
     gs = pitcher_stats.get("gs", 0) or 0
     ip = pitcher_stats.get("ip", 0.0) or 0.0
+    from_prior_year = pitcher_stats.get("from_prior_year") is True
 
     evidence = {"saves": saves, "holds": holds, "g": g, "gs": gs, "ip": round(ip, 1)}
-    small_sample = team_total_games is not None and team_total_games < 30
+    if from_prior_year:
+        evidence["from_prior_year"] = True
+    # Prior-year stats are full-season data — small_sample (April-noise) does not apply.
+    small_sample = (
+        team_total_games is not None
+        and team_total_games < 30
+        and not from_prior_year
+    )
+
+    def _make(role: str, base_confidence: str) -> dict:
+        confidence = (
+            f"{base_confidence}, prior_year" if from_prior_year else base_confidence
+        )
+        return _result(role, confidence, evidence, small_sample)
 
     # Starter / Opener (special starter case with short outings)
     if gs >= 5 and gs >= 0.6 * g:
         if gs > 0 and (ip / gs) < 3.0:
-            return _result("Opener", "heuristic", evidence, small_sample)
-        return _result("Starter", "data", evidence, small_sample)
+            return _make("Opener", "heuristic")
+        return _make("Starter", "data")
 
     if saves >= 8:
-        return _result("Closer", "data", evidence, small_sample)
+        return _make("Closer", "data")
     if holds >= 8:
-        return _result("Setup", "data", evidence, small_sample)
+        return _make("Setup", "data")
     if holds >= 3 or saves >= 2:
-        return _result("High-leverage RP", "heuristic", evidence, small_sample)
+        return _make("High-leverage RP", "heuristic")
     if g >= 5 and (ip / g) >= 2.0:
-        return _result("Long RP", "heuristic", evidence, small_sample)
+        return _make("Long RP", "heuristic")
     if g >= 10:
-        return _result("Middle RP", "heuristic", evidence, small_sample)
-    return _result("Unknown", "insufficient", evidence, small_sample)
+        return _make("Middle RP", "heuristic")
+    return _make("Unknown", "insufficient")
 
 
 def detect_committee_closer(roles: list[dict]) -> list[dict]:
