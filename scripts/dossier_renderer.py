@@ -176,10 +176,10 @@ def _platoon_slash(splits: dict | None, hand: str) -> str:
     return f"{avg}/{obp}/{slg}{bf_str}"
 
 
-def _lineup_vs_hand_ops(player: dict, pitcher_hand: str) -> str:
+def _lineup_vs_hand_ops(player: dict, pitch_hand: str) -> str:
     """Return vs_rhp or vs_lhp OPS string from lineup player platoon data."""
     platoon = player.get("platoon") or {}
-    key = "vs_rhp" if pitcher_hand == "R" else "vs_lhp"
+    key = "vs_rhp" if pitch_hand == "R" else "vs_lhp"
     side = platoon.get(key) or {}
     ops_val = side.get("ops")
     if ops_val is None:
@@ -537,10 +537,10 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
     home_lineup = bundle.get("home_lineup") or {}
     away_lineup = bundle.get("away_lineup") or {}
 
-    def _opposing_tier(lineup: dict, pitcher_hand: str) -> str:
-        if pitcher_hand == "L":
+    def _opposing_tier(lineup: dict, pitch_hand: str) -> str:
+        if pitch_hand == "L":
             return lineup.get("tier_vs_lhp") or "—"
-        if pitcher_hand == "R":
+        if pitch_hand == "R":
             return lineup.get("tier_vs_rhp") or "—"
         return "—"
 

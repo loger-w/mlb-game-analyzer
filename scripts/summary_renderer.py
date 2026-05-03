@@ -78,12 +78,12 @@ _HAND_TO_TIER_KEYS = {
 }
 
 
-def _lineup_block(side: str, l: dict, opposing_pitcher_hand: str) -> list[str]:
+def _lineup_block(side: str, l: dict, opposing_pitch_hand: str) -> list[str]:
     source = l.get("lineup_source", "projected")
     source_label = "🟢 official" if source == "official" else "🟡 projected（PA 排序近似 — 打線尚未公布）"
     season_tier = l.get("tier", "?")
     heat = l.get("recent_heat", "?")
-    tier_key, matchup_label = _HAND_TO_TIER_KEYS.get(opposing_pitcher_hand, (None, "vs ?HP"))
+    tier_key, matchup_label = _HAND_TO_TIER_KEYS.get(opposing_pitch_hand, (None, "vs ?HP"))
     matchup_tier = (l.get(tier_key) or "—") if tier_key else "—"
     return [
         f"### {side} — season tier {season_tier} / heat {heat}",
@@ -105,8 +105,8 @@ def _render_lineup_section(bundle: dict) -> list[str]:
     return [
         "## 打線評級",
         "",
-        *_lineup_block("HOME", home_l, opposing_pitcher_hand=away_p.get("pitch_hand", "?")),
-        *_lineup_block("AWAY", away_l, opposing_pitcher_hand=home_p.get("pitch_hand", "?")),
+        *_lineup_block("HOME", home_l, opposing_pitch_hand=away_p.get("pitch_hand", "?")),
+        *_lineup_block("AWAY", away_l, opposing_pitch_hand=home_p.get("pitch_hand", "?")),
     ]
 
 

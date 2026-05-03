@@ -164,7 +164,7 @@ _PLATOON_UPLIFT_THRESHOLD = 0.050  # OPS uplift considered meaningful
 _PLATOON_FIRE_COUNT = 4  # 4 of top 5 → strong signal
 
 
-def signal_platoon_advantage(core_lineup: list, pitcher_hand: str) -> dict:
+def signal_platoon_advantage(core_lineup: list, pitch_hand: str) -> dict:
     """Count top-5 batters whose vs-this-hand OPS exceeds season OPS by ≥ 0.050.
 
     Fires when ≥ 4 of 5. Useful for matchup tier inference (e.g. NYY 4-5 RHB
@@ -173,7 +173,7 @@ def signal_platoon_advantage(core_lineup: list, pitcher_hand: str) -> dict:
     name = "platoon_advantage"
     if not core_lineup:
         return _make(name, False, confidence="small_sample")
-    key = "vs_lhp" if pitcher_hand == "L" else "vs_rhp"
+    key = "vs_lhp" if pitch_hand == "L" else "vs_rhp"
     top5 = core_lineup[:5]
     uplifted = 0
     for b in top5:
@@ -189,8 +189,8 @@ def signal_platoon_advantage(core_lineup: list, pitcher_hand: str) -> dict:
     if uplifted >= _PLATOON_FIRE_COUNT:
         return _make(
             name, True, value=uplifted, severity="medium",
-            label=f"platoon advantage：top 5 中 {uplifted} 人對 {pitcher_hand}HP OPS 較 season +0.050 以上",
-            details={"uplifted_count": uplifted, "top5_size": len(top5), "pitcher_hand": pitcher_hand},
+            label=f"platoon advantage：top 5 中 {uplifted} 人對 {pitch_hand}HP OPS 較 season +0.050 以上",
+            details={"uplifted_count": uplifted, "top5_size": len(top5), "pitch_hand": pitch_hand},
             confidence="data",
         )
     return _make(name, False, value=uplifted)
@@ -236,7 +236,7 @@ _REVERSE_PLATOON_MIN_BF = 30
 _REVERSE_PLATOON_DATA_BF = 50  # 50+ both sides → confidence "data"
 
 
-def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
+def signal_reverse_platoon(splits: dict | None, pitch_hand: str) -> dict:
     """Detect reverse platoon (e.g. sweeper-heavy RHP performing worse vs RHB).
 
     Normal platoon expectations:
@@ -246,7 +246,7 @@ def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
     Reverse fires when the inequality flips by ≥ 0.080 AND both sides BF ≥ 30.
     """
     name = "reverse_platoon"
-    if not splits or pitcher_hand not in ("L", "R"):
+    if not splits or pitch_hand not in ("L", "R"):
         return _make(name, False, confidence="small_sample")
 
     left = splits.get("vs_left") or {}
@@ -277,7 +277,7 @@ def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
 
     # For RHP: reverse = vs RHB > vs LHB
     # For LHP: reverse = vs LHB > vs RHB
-    if pitcher_hand == "R":
+    if pitch_hand == "R":
         delta = rhb_ops - lhb_ops  # positive = reverse
         better_side, better_ops, worse_side, worse_ops = "RHB", rhb_ops, "LHB", lhb_ops
     else:
@@ -291,12 +291,12 @@ def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
     severity = "high" if delta >= 0.200 else "medium"
     label = (
         f"reverse platoon Δ +{delta:.3f}（vs {better_side} OPS {better_ops:.3f} > "
-        f"vs {worse_side} OPS {worse_ops:.3f}）— {pitcher_hand}HP 對非預期手別反而吃虧"
+        f"vs {worse_side} OPS {worse_ops:.3f}）— {pitch_hand}HP 對非預期手別反而吃虧"
     )
     return _make(
         name, True, value=round(delta, 3), severity=severity, label=label,
         details={
-            "pitcher_hand": pitcher_hand,
+            "pitch_hand": pitch_hand,
             "vs_lhb_ops": lhb_ops, "vs_lhb_bf": lhb_bf,
             "vs_rhb_ops": rhb_ops, "vs_rhb_bf": rhb_bf,
         },

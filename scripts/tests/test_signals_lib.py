@@ -14,7 +14,7 @@ Each signal is a pure function returning the standard signal dict:
 Signals batch 1 (commit 10):
     signal_tier_mismatch(tier_gap)
     signal_heat_vs_babip(heat, last7_babip)
-    signal_platoon_advantage(core_lineup, pitcher_hand)
+    signal_platoon_advantage(core_lineup, pitch_hand)
     signal_strong_park(park_factor)
 """
 import os
@@ -143,7 +143,7 @@ def test_platoon_advantage_fires_when_4_of_5_uplifted():
         _batter(season_ops=0.700, vs_lhp_ops=0.760),  # +0.060
         _batter(season_ops=0.700, vs_lhp_ops=0.700),  # 0
     ]
-    s = signal_platoon_advantage(lineup, pitcher_hand="L")
+    s = signal_platoon_advantage(lineup, pitch_hand="L")
     _signal_contract(s)
     assert s["fired"] is True
     assert s["value"] == 4
@@ -159,7 +159,7 @@ def test_platoon_advantage_does_not_fire_when_uplifts_only_2():
         _batter(season_ops=0.700, vs_lhp_ops=0.700),  # 0
         _batter(season_ops=0.700, vs_lhp_ops=0.700),  # 0
     ]
-    s = signal_platoon_advantage(lineup, pitcher_hand="L")
+    s = signal_platoon_advantage(lineup, pitch_hand="L")
     assert s["fired"] is False
 
 
@@ -167,13 +167,13 @@ def test_platoon_advantage_handles_missing_platoon_data():
     """Batters without platoon entry → not counted as uplift (neither for nor against)."""
     from signals_lib import signal_platoon_advantage
     lineup = [{"ops": 0.700, "platoon": {}} for _ in range(5)]
-    s = signal_platoon_advantage(lineup, pitcher_hand="L")
+    s = signal_platoon_advantage(lineup, pitch_hand="L")
     assert s["fired"] is False
 
 
 def test_platoon_advantage_empty_lineup_does_not_fire():
     from signals_lib import signal_platoon_advantage
-    s = signal_platoon_advantage([], pitcher_hand="L")
+    s = signal_platoon_advantage([], pitch_hand="L")
     assert s["fired"] is False
 
 
@@ -224,7 +224,7 @@ def test_reverse_platoon_rhp_fires_when_rhb_ops_higher():
         "vs_left": {"ops": ".545", "bf": 60},
         "vs_right": {"ops": ".932", "bf": 80},
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    s = signal_reverse_platoon(splits, pitch_hand="R")
     _signal_contract(s)
     assert s["fired"] is True
     assert s["value"] > 0.30  # delta ≈ 0.387
@@ -238,7 +238,7 @@ def test_reverse_platoon_lhp_fires_when_lhb_ops_higher():
         "vs_left": {"ops": ".880", "bf": 50},
         "vs_right": {"ops": ".620", "bf": 100},
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="L")
+    s = signal_reverse_platoon(splits, pitch_hand="L")
     assert s["fired"] is True
 
 
@@ -249,7 +249,7 @@ def test_reverse_platoon_normal_split_does_not_fire():
         "vs_left": {"ops": ".750", "bf": 60},
         "vs_right": {"ops": ".600", "bf": 80},
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    s = signal_reverse_platoon(splits, pitch_hand="R")
     assert s["fired"] is False
 
 
@@ -260,7 +260,7 @@ def test_reverse_platoon_below_threshold_does_not_fire():
         "vs_left": {"ops": ".700", "bf": 60},
         "vs_right": {"ops": ".750", "bf": 80},
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    s = signal_reverse_platoon(splits, pitch_hand="R")
     assert s["fired"] is False
 
 
@@ -271,7 +271,7 @@ def test_reverse_platoon_small_sample_marks_heuristic():
         "vs_left": {"ops": ".545", "bf": 32},
         "vs_right": {"ops": ".900", "bf": 40},
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    s = signal_reverse_platoon(splits, pitch_hand="R")
     assert s["fired"] is True
     assert s["confidence"] == "heuristic"
 
@@ -283,7 +283,7 @@ def test_reverse_platoon_too_small_sample_does_not_fire():
         "vs_left": {"ops": ".545", "bf": 20},
         "vs_right": {"ops": ".900", "bf": 25},
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    s = signal_reverse_platoon(splits, pitch_hand="R")
     assert s["fired"] is False
 
 
@@ -298,7 +298,7 @@ def test_reverse_platoon_falls_back_to_obp_plus_slg_when_ops_missing():
         "vs_left": {"obp": ".353", "slg": ".460", "bf": 102},   # NO 'ops' key
         "vs_right": {"obp": ".473", "slg": ".583", "bf": 55},   # NO 'ops' key
     }
-    s = signal_reverse_platoon(splits, pitcher_hand="R")
+    s = signal_reverse_platoon(splits, pitch_hand="R")
     assert s["fired"] is True, "must fall back to obp+slg when ops missing"
     assert s["value"] == pytest.approx(0.243, abs=0.005)
     assert s["severity"] == "high"  # Δ ≥ 0.200

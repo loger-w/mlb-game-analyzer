@@ -23,7 +23,7 @@ def test_tier_vs_hand_uses_platoon_ops_when_available():
     """All 9 batters have vs_lhp data → use platoon OPS, not season OPS."""
     from lineup_analyzer import compute_tier_vs_hand
     lineup = [_batter(f"P{i}", season_ops=0.700, lhp_ops=0.900) for i in range(9)]
-    result = compute_tier_vs_hand(lineup, pitcher_hand="L")
+    result = compute_tier_vs_hand(lineup, pitch_hand="L")
     assert result["avg_ops"] == 0.900
     assert result["platoon_count"] == 9
     assert result["fallback_count"] == 0
@@ -37,7 +37,7 @@ def test_tier_vs_hand_falls_back_to_season_ops_when_platoon_missing():
         _batter("no-platoon-1", season_ops=0.800),  # no platoon split data
         _batter("no-platoon-2", season_ops=0.750),
     ]
-    result = compute_tier_vs_hand(lineup, pitcher_hand="L")
+    result = compute_tier_vs_hand(lineup, pitch_hand="L")
     assert result["platoon_count"] == 1
     assert result["fallback_count"] == 2
     # avg = (0.900 + 0.800 + 0.750) / 3 = 0.8167
@@ -51,7 +51,7 @@ def test_tier_vs_hand_handles_string_ops_from_api():
         {"ops": 0.700, "platoon": {"vs_rhp": {"ops": ".850", "pa": 80}}},
         {"ops": 0.700, "platoon": {"vs_rhp": {"ops": ".750", "pa": 80}}},
     ]
-    result = compute_tier_vs_hand(lineup, pitcher_hand="R")
+    result = compute_tier_vs_hand(lineup, pitch_hand="R")
     # avg = (0.850 + 0.750) / 2 = 0.800
     assert abs(result["avg_ops"] - 0.800) < 0.002
 

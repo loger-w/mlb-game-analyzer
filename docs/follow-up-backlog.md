@@ -131,9 +131,11 @@ dossier + summary 各跑一次同樣的 signals。建議 `prepare_game` 算一�
 
 實作備註：dossier `_arsenal_top3_str` 簽名改成接 `arsenal_top: list`（pre-filtered），caller 從 `merged.{side}_pitcher.arsenal_top` 拉。fixture `_bundle_with_pr2_pitcher_fields` 補 `merged.{side}_pitcher = {"arsenal_top": [...]}` 對齊 production。
 
-## 9. schema 命名一致 `pitcher_hand` vs `pitch_hand`（MED）
+## ✅ 9. schema 命名一致 `pitcher_hand` vs `pitch_hand`（DONE 2026-05-03）
 
 JSON 欄位是 `pitch_hand`；`signals_lib` / `lineup_analyzer` 函式參數叫 `pitcher_hand`。建議統一 `pitch_hand` 並更新 call sites。
+
+實作備註：跨 6 檔 `pitcher_hand` → `pitch_hand`（全部 occurrences；含 `opposing_pitcher_hand` → `opposing_pitch_hand`）。修改範圍：lineup_analyzer / signals_lib / dossier_renderer / summary_renderer + 2 test 檔。signals 的 `details` dict key 也跟著從 `"pitcher_hand"` → `"pitch_hand"`，整條輸出 schema 統一到 JSON 欄名。
 
 ## ✅ 10. `lib_tier_v2` unreachable 防呆（DONE 2026-05-03）
 

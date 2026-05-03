@@ -121,17 +121,17 @@ def _bucket_ops_tier(avg_ops: float) -> str:
     return "🟢 Weak"
 
 
-def compute_tier_vs_hand(core_lineup: list[dict], pitcher_hand: str) -> dict:
+def compute_tier_vs_hand(core_lineup: list[dict], pitch_hand: str) -> dict:
     """Aggregate lineup OPS vs a specific pitcher hand and bucket via TIER_MAP_OPS.
 
-    For each batter, prefer platoon `vs_lhp.ops` (when pitcher_hand=='L') or
+    For each batter, prefer platoon `vs_lhp.ops` (when pitch_hand=='L') or
     `vs_rhp.ops` (when 'R'). If platoon data is missing or non-numeric, fall back
     to season `ops`. Returns aggregate + tier + transparency counters so callers
     can show "X of 9 had platoon data" in the dossier.
 
     Args:
         core_lineup: list of batter dicts with `ops` and optional `platoon`.
-        pitcher_hand: "L" or "R" (case-sensitive).
+        pitch_hand: "L" or "R" (case-sensitive).
 
     Returns:
         {
@@ -144,7 +144,7 @@ def compute_tier_vs_hand(core_lineup: list[dict], pitcher_hand: str) -> dict:
     if not core_lineup:
         return {"tier": "🟢 Weak", "avg_ops": None, "platoon_count": 0, "fallback_count": 0}
 
-    key = "vs_lhp" if pitcher_hand == "L" else "vs_rhp"
+    key = "vs_lhp" if pitch_hand == "L" else "vs_rhp"
 
     values = []
     platoon_count = 0
@@ -654,8 +654,8 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
                 break
 
     # 6b. vs-pitcher-hand re-aggregation（PR-2 commit 7）
-    vs_lhp = compute_tier_vs_hand(core_lineup, pitcher_hand="L")
-    vs_rhp = compute_tier_vs_hand(core_lineup, pitcher_hand="R")
+    vs_lhp = compute_tier_vs_hand(core_lineup, pitch_hand="L")
+    vs_rhp = compute_tier_vs_hand(core_lineup, pitch_hand="R")
 
     # 7. 大小分傾向（既有）
     over_under_lean = 0
