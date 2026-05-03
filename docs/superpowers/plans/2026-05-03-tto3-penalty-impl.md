@@ -12,23 +12,33 @@
 
 ---
 
-## File Structure
+## ⚠️ Plan B Amendment（2026-05-03）
+
+Task 1（spike）執行後證實 Plan A 路徑（MLB Stats API `statSplits + sitCodes`）不可行：MLB API 不曝光 Times-Through-Order 資料。已切到 **Plan B**：用 `pybaseball.statcast_pitcher` 拉整季逐球資料自行聚合 TTO 桶。
+
+**任務編號**：1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12（Task 5 在 Plan B 修訂時併入 Task 4 — 編號刻意保留 gap，避免 Tasks 6-12 大量 cross-reference 跟著動）。
+
+詳見 spec `docs/superpowers/specs/2026-05-03-tto3-penalty-signal-design.md` §0 Plan B Amendment。
+
+---
+
+## File Structure（Plan B）
 
 **修改**：
-- `scripts/pitcher_stats.py` — 新 `fetch_tto_splits()` + 3 個 helpers（`_fetch_tto_one`、`_classify_tto_bucket`、`_parse_ops_with_fallback`）；main 路徑接入 + JSON 寫入
+- `scripts/pitcher_stats.py` — 新 `fetch_tto_splits()` + 3 個 helpers（`_pa_outcome_aggregates()`、`_compute_tto_from_statcast()`、`_has_sufficient_tto3()`）；main 路徑接入 + JSON 寫入
 - `scripts/signals_lib.py` — 新 `signal_tto3_penalty()`；`_HALF_LIFE_BY_NAME` 加第 9 條；`compute_all_signals` per-pitcher loop 加一行
 - `scripts/dossier_renderer.py` — 新 `_render_tto_splits_cell()` helper；`## 投手對決` table caller 加 row
 - `reference/matchup-factors.md` — §Signals 加 §9 條目；半衰期表 structural 列加 `tto3_penalty`
 - `CHANGELOG.md` — 移除 line 50 過時條目（`wRC+ / Stuff+ — FanGraphs API non-free，不引入`）；最頂端加新版區塊
-- `scripts/tests/test_pitcher_stats.py` — append fetch_tto_splits 系列測試
+- `scripts/tests/test_pitcher_stats.py` — append `_pa_outcome_aggregates` / `_compute_tto_from_statcast` / `fetch_tto_splits` 系列測試
 - `scripts/tests/test_signals_lib.py` — append signal_tto3_penalty 系列測試
 - `scripts/tests/test_dossier_renderer.py` — append TTO row 系列測試
 
 **不動**：`scoring_formula.py`、`merge_game_data.py`、`flags-checklist.md`、其他 signal 邏輯、`prepare_game.py`、`fetch_game_data.py`、`roster_checker.py`
 
-**現有測試 baseline**：439 tests（`git log --oneline | head -1` 應為 `babae1b`）
+**現有測試 baseline**：439 tests
 
-**目標**：439 → ~454 tests（+15）
+**目標**：439 → ~457 tests（+18）
 
 ---
 
@@ -54,240 +64,172 @@ python -m pytest tests/test_signals_lib.py::test_tto3_penalty_fires_ops_medium -
 
 ---
 
-## Task 1: Spike — 驗證 MLB API TTO sitCode 字串
+## Task 1: Spike — 驗證 MLB API TTO sitCode 字串（DONE 2026-05-03）
 
-**Files:** （exploratory，不 commit）
+**Status**: ✅ **COMPLETED**（spike 在 controller session 已執行；下游 implementer **不需要**重跑）
 
-這一步**不**走 TDD，是 5 分鐘人工驗證，目的是把 spec §5.3 提到的「sitCode 三組候選哪一組通」鎖定下來。三組都失敗時 STOP。
+**結果摘要**：
+- 三組候選 sitCode（`ot1,ot2,ot3` / `1,2,3` / `1f,2f,3f`）測試 → 全部 0 splits 回傳
+- `careerStatSplits` endpoint 同樣 0 splits
+- MLB API `/situationCodes` 元資料端點 602 個 codes 無任何 TTO 切面
+- 結論：MLB Stats API **不曝光** Times-Through-Order 切面，**Plan A 路徑死**
 
-- [ ] **Step 1: 跑 spike script 對三組候選輪流測試**
+**Plan B 可行性確認**（同 spike）：
+- `pybaseball.statcast_pitcher('2025-04-01', '2025-04-15', 669373)` → 271 pitches、72 PAs
+- 必要欄位 `at_bat_number / batter / pitcher / events / description / game_pk / inning` 全 PRESENT
+- events 分布合理（field_out 31, strikeout 23, single 11, walk 3, double 2, home_run 1, force_out 1）
 
-```python
-# 直接在 python REPL 或 scripts/_spike_tto.py 執行
-import requests
-
-PID = 669373  # Tarik Skubal (DET, 2025 完整賽季先發)
-YEAR = 2025
-BASE = "https://statsapi.mlb.com/api/v1"
-
-for sitcode in ("ot1,ot2,ot3", "1,2,3", "1f,2f,3f"):
-    r = requests.get(
-        f"{BASE}/people/{PID}/stats",
-        params={
-            "stats": "statSplits",
-            "group": "pitching",
-            "season": YEAR,
-            "sitCodes": sitcode,
-        },
-        timeout=10,
-    )
-    print("=" * 50)
-    print(f"sitCodes={sitcode!r} → status={r.status_code}")
-    if r.status_code == 200:
-        data = r.json()
-        for sg in data.get("stats", []):
-            for split in sg.get("splits", []):
-                desc = split.get("split", {}).get("description")
-                bf = split.get("stat", {}).get("battersFaced")
-                ops = split.get("stat", {}).get("ops")
-                print(f"  {desc!r}  bf={bf}  ops={ops}")
-```
-
-- [ ] **Step 2: 記錄通過的 sitCode 字串 + description 樣式**
-
-把通過組的 console output 貼到 task #1 完成 message。判斷 PASS：
-- HTTP 200
-- 至少 3 個 splits（description 含 "1st" / "2nd" / "3rd" 或同義字）
-- 每個 split 有 `battersFaced` + `ops`（或 `obp` + `slg`）
-
-預期通過順序：`ot1,ot2,ot3` 最可能；若不通試 `1,2,3` 再試 `1f,2f,3f`。
-
-- [ ] **Step 3: 三組都失敗 → STOP**
-
-如果三組全部 status != 200 或回的 splits 不含 1st/2nd/3rd 桶 → 改走 spec §12 提到的 Plan B（pybaseball Statcast career-only）。立刻 escalate 給 user，不要硬猜 sitCode。
-
-- [ ] **Step 4: 把通過的 sitCode 字串寫進 spec 與 plan**
-
-`docs/superpowers/specs/2026-05-03-tto3-penalty-signal-design.md` §5.1 與本 plan Task 4 的程式碼把 `"ot1,ot2,ot3"` 替換為實測通過字串，並 commit：
-
-```bash
-git add docs/superpowers/specs/2026-05-03-tto3-penalty-signal-design.md docs/superpowers/plans/2026-05-03-tto3-penalty-impl.md
-git commit -m "docs(spec): TTO3 — lock sitCodes to <STR> after spike verification"
-```
-
-如果通過字串就是 `ot1,ot2,ot3`（最可能），則 spec / plan 不需修改 → 跳過 Step 4 commit。
+**動作**：
+- spec `docs/superpowers/specs/2026-05-03-tto3-penalty-signal-design.md` 已加 §0 Plan B Amendment + §5.1/§5.3/§5.5 全部就地改寫；commit 已包含
+- 本 plan Tasks 2/3/4 都是 Plan B 內容；Task 5 已併入 Task 4（編號 gap 刻意保留）
+- 下游 Tasks 2-4 不需要再做 spike，直接照 spec §5.1 Plan B 程式碼實作
 
 ---
 
-## Task 2: `_classify_tto_bucket` helper
+## Task 2: `_pa_outcome_aggregates` helper
 
 **Files:**
-- Modify: `scripts/pitcher_stats.py`（在 `fetch_platoon_splits` 之後新增 helper）
+- Modify: `scripts/pitcher_stats.py`（新 helper，append 在 `fetch_platoon_splits` 之後）
 - Test: `scripts/tests/test_pitcher_stats.py`（appended）
 
-純函式：把 split description 對應到 `"tto1"` / `"tto2"` / `"tto3"` / `None`。
+純函式：把一個 PA-level pandas DataFrame slice（一行一 PA，含 `events` 欄）轉成 `{ops, k_pct, bb_pct, bf}` 字典。OBP / SLG 由 events 計數合成（PA 不直接給 OPS）。
 
-- [ ] **Step 1: 寫 5 個 failing tests**
+- [ ] **Step 1: 寫 4 個 failing tests**
 
 Append 到 `scripts/tests/test_pitcher_stats.py` 結尾：
 
 ```python
 # ---------------------------------------------------------------------------
-# TTO splits helpers
+# TTO splits helpers (Plan B — Statcast pitch-by-pitch aggregation)
 # ---------------------------------------------------------------------------
-
-def test_classify_tto_bucket_first_lowercase():
-    from pitcher_stats import _classify_tto_bucket
-    assert _classify_tto_bucket("1st pa in g as p") == "tto1"
+import pandas as _pd_mod
 
 
-def test_classify_tto_bucket_first_word():
-    from pitcher_stats import _classify_tto_bucket
-    assert _classify_tto_bucket("first time facing") == "tto1"
+def _pa_df(events: list[str]):
+    """Build a tiny PA-level DataFrame for tests."""
+    return _pd_mod.DataFrame({"events": events})
 
 
-def test_classify_tto_bucket_second_and_third():
-    from pitcher_stats import _classify_tto_bucket
-    assert _classify_tto_bucket("2nd time through order") == "tto2"
-    assert _classify_tto_bucket("3rd pa in g as p") == "tto3"
-    assert _classify_tto_bucket("second pa") == "tto2"
-    assert _classify_tto_bucket("third pa") == "tto3"
+def test_pa_outcome_aggregates_all_strikeouts():
+    """5 strikeouts → OPS=0、K%=100、BB%=0、BF=5。"""
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df(["strikeout"] * 5))
+    assert out["bf"] == 5
+    assert out["k_pct"] == 100.0
+    assert out["bb_pct"] == 0.0
+    assert out["ops"] == 0.0
 
 
-def test_classify_tto_bucket_unknown_returns_none():
-    from pitcher_stats import _classify_tto_bucket
-    assert _classify_tto_bucket("vs left-handed batters") is None
-    assert _classify_tto_bucket("4th time") is None  # TTO4+ 不收
-    assert _classify_tto_bucket("") is None
+def test_pa_outcome_aggregates_basic_mix():
+    """1 single + 1 walk + 1 K + 1 field_out + 1 home_run → 5 PAs，AB=4。
+
+    Hits: 1 + 1HR = 2H, 1B=1, HR=1, TB = 1 + 4 = 5
+    BB=1, K=1
+    AVG = 2/4 = 0.500
+    OBP = (2 + 1) / (4 + 1) = 0.600   # SF=0
+    SLG = 5 / 4 = 1.250
+    OPS = 1.850
+    K% = 1/5 = 20.0
+    BB% = 1/5 = 20.0
+    """
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df([
+        "single", "walk", "strikeout", "field_out", "home_run",
+    ]))
+    assert out["bf"] == 5
+    assert out["k_pct"] == 20.0
+    assert out["bb_pct"] == 20.0
+    assert abs(out["ops"] - 1.850) < 0.005
 
 
-def test_classify_tto_bucket_handles_uppercase():
-    """description 大小寫混雜應正常解析（caller lower-case 化前的保險）。"""
-    from pitcher_stats import _classify_tto_bucket
-    # caller 已 .lower()，但函式自己也保險：直接傳大寫應走 None
-    # 此 test 確認契約是「caller 負責 lower()」
-    assert _classify_tto_bucket("1ST PA IN G AS P") is None
+def test_pa_outcome_aggregates_handles_sf_and_hbp():
+    """SF / HBP 不計 AB；HBP 計入 OBP 分子。
+
+    PAs: 2 single, 1 hit_by_pitch, 1 sac_fly, 1 strikeout, 1 field_out → 6 PAs
+    AB = 6 - 0(BB) - 1(HBP) - 1(SF) - 0(SH) = 4
+    H = 2, TB = 2
+    OBP = (2 + 0 + 1) / (4 + 0 + 1 + 1) = 3/6 = 0.500
+    SLG = 2/4 = 0.500
+    OPS = 1.000
+    """
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df([
+        "single", "single", "hit_by_pitch", "sac_fly", "strikeout", "field_out",
+    ]))
+    assert out["bf"] == 6
+    assert abs(out["ops"] - 1.000) < 0.005
+
+
+def test_pa_outcome_aggregates_empty_returns_zero_bf():
+    from pitcher_stats import _pa_outcome_aggregates
+    out = _pa_outcome_aggregates(_pa_df([]))
+    assert out["bf"] == 0
+    assert out["ops"] is None
 ```
 
 - [ ] **Step 2: 跑測試確認 fail**
 
 ```bash
 cd scripts
-python -m pytest tests/test_pitcher_stats.py::test_classify_tto_bucket_first_lowercase -v
+python -m pytest tests/test_pitcher_stats.py -k pa_outcome_aggregates -v
 ```
 
-預期：`ImportError` 或 `AttributeError: module 'pitcher_stats' has no attribute '_classify_tto_bucket'`
+預期：4 errors（`AttributeError: module 'pitcher_stats' has no attribute '_pa_outcome_aggregates'`）
 
-- [ ] **Step 3: 實作 `_classify_tto_bucket`**
+- [ ] **Step 3: 實作 `_pa_outcome_aggregates`**
 
-Append 到 `scripts/pitcher_stats.py` `fetch_platoon_splits` function 結束之後（line 522 之後）：
+Append 到 `scripts/pitcher_stats.py`，建議放在 `fetch_platoon_splits` 之後（line ~522 之後）：
 
 ```python
-def _classify_tto_bucket(desc: str) -> str | None:
-    """把 split description 對應到 tto1 / tto2 / tto3。
+def _pa_outcome_aggregates(pa_df) -> dict:
+    """從 PA-level DataFrame slice（一行一 PA，含 events 欄）算 OPS / K% / BB% / BF。
 
-    Caller 必須先 .lower() description；本函式只匹配小寫 1st/first/2nd/second/3rd/third。
+    OBP / SLG / AVG 由 events 計數 + sabermetric 公式合成（PA 級資料不直接給 OPS）。
+    Plan B helper — input 是 statcast_pitcher 經 events.notna() filter 過的 slice。
     """
-    if "1st" in desc or "first" in desc:
-        return "tto1"
-    if "2nd" in desc or "second" in desc:
-        return "tto2"
-    if "3rd" in desc or "third" in desc:
-        return "tto3"
-    return None
-```
+    bf = len(pa_df)
+    if bf == 0:
+        return {"ops": None, "k_pct": 0.0, "bb_pct": 0.0, "bf": 0}
 
-- [ ] **Step 4: 跑測試確認全 pass**
+    events = pa_df["events"]
+    h_singles = int((events == "single").sum())
+    h_doubles = int((events == "double").sum())
+    h_triples = int((events == "triple").sum())
+    h_hrs = int((events == "home_run").sum())
+    h = h_singles + h_doubles + h_triples + h_hrs
 
-```bash
-cd scripts
-python -m pytest tests/test_pitcher_stats.py -k classify_tto_bucket -v
-```
+    bb = int((events == "walk").sum())
+    hbp = int((events == "hit_by_pitch").sum())
+    k = int(events.isin(["strikeout", "strikeout_double_play"]).sum())
+    sf = int(events.isin(["sac_fly", "sac_fly_double_play"]).sum())
+    sh = int(events.isin(["sac_bunt", "sacrifice_bunt_double_play"]).sum())
 
-預期：5 passed
+    ab = bf - bb - hbp - sf - sh
+    if ab <= 0:
+        return {"ops": None,
+                "k_pct": round(k / bf * 100, 1),
+                "bb_pct": round(bb / bf * 100, 1),
+                "bf": bf}
 
-- [ ] **Step 5: Commit**
+    obp_denom = ab + bb + hbp + sf
+    obp = (h + bb + hbp) / obp_denom if obp_denom > 0 else 0.0
+    tb = h_singles + 2 * h_doubles + 3 * h_triples + 4 * h_hrs
+    slg = tb / ab if ab > 0 else 0.0
+    ops = obp + slg
 
-```bash
-git add scripts/pitcher_stats.py scripts/tests/test_pitcher_stats.py
-git commit -m "feat(pitcher): _classify_tto_bucket helper for TTO splits parser"
-```
-
----
-
-## Task 3: `_parse_ops_with_fallback` helper
-
-**Files:**
-- Modify: `scripts/pitcher_stats.py`
-- Test: `scripts/tests/test_pitcher_stats.py`
-
-純函式：MLB API `stat` dict OPS 解析；缺 `ops` 時回 `obp + slg`；都缺回 `None`。
-
-- [ ] **Step 1: 寫 4 個 failing tests**
-
-Append 到 `scripts/tests/test_pitcher_stats.py`：
-
-```python
-def test_parse_ops_with_fallback_uses_ops_when_present():
-    from pitcher_stats import _parse_ops_with_fallback
-    stat = {"ops": "0.745", "obp": "0.350", "slg": "0.420"}
-    assert _parse_ops_with_fallback(stat) == 0.745
-
-
-def test_parse_ops_with_fallback_uses_obp_plus_slg_when_ops_missing():
-    from pitcher_stats import _parse_ops_with_fallback
-    stat = {"obp": "0.350", "slg": "0.420"}
-    result = _parse_ops_with_fallback(stat)
-    assert result is not None
-    assert abs(result - 0.770) < 1e-6
-
-
-def test_parse_ops_with_fallback_returns_none_when_all_missing():
-    from pitcher_stats import _parse_ops_with_fallback
-    assert _parse_ops_with_fallback({}) is None
-    assert _parse_ops_with_fallback({"avg": "0.250"}) is None
-
-
-def test_parse_ops_with_fallback_handles_invalid_strings():
-    from pitcher_stats import _parse_ops_with_fallback
-    assert _parse_ops_with_fallback({"ops": "N/A"}) is None
-    assert _parse_ops_with_fallback({"obp": "N/A", "slg": "0.420"}) is None
-```
-
-- [ ] **Step 2: 跑測試確認 fail**
-
-```bash
-cd scripts
-python -m pytest tests/test_pitcher_stats.py -k parse_ops_with_fallback -v
-```
-
-預期：4 errors（`AttributeError: module 'pitcher_stats' has no attribute '_parse_ops_with_fallback'`）
-
-- [ ] **Step 3: 實作 `_parse_ops_with_fallback`**
-
-Append 到 `scripts/pitcher_stats.py` 緊接 `_classify_tto_bucket` 之後：
-
-```python
-def _parse_ops_with_fallback(stat: dict) -> float | None:
-    """OPS 優先；缺 → OBP+SLG fallback（mirror signal_reverse_platoon 第 257-262 行）。
-
-    對 "N/A" / 非數值字串 graceful return None。
-    """
-    try:
-        return float(stat["ops"])
-    except (KeyError, TypeError, ValueError):
-        pass
-    try:
-        return float(stat["obp"]) + float(stat["slg"])
-    except (KeyError, TypeError, ValueError):
-        return None
+    return {
+        "ops": round(ops, 3),
+        "k_pct": round(k / bf * 100, 1),
+        "bb_pct": round(bb / bf * 100, 1),
+        "bf": bf,
+    }
 ```
 
 - [ ] **Step 4: 跑測試確認 pass**
 
 ```bash
 cd scripts
-python -m pytest tests/test_pitcher_stats.py -k parse_ops_with_fallback -v
+python -m pytest tests/test_pitcher_stats.py -k pa_outcome_aggregates -v
 ```
 
 預期：4 passed
@@ -296,170 +238,151 @@ python -m pytest tests/test_pitcher_stats.py -k parse_ops_with_fallback -v
 
 ```bash
 git add scripts/pitcher_stats.py scripts/tests/test_pitcher_stats.py
-git commit -m "feat(pitcher): _parse_ops_with_fallback helper (ops or obp+slg)"
+git commit -m "feat(pitcher): _pa_outcome_aggregates helper (PA events → OPS/K%/BB%)"
 ```
 
 ---
 
-## Task 4: `_fetch_tto_one` — 單次 statSplits / careerStatSplits HTTP 呼叫
+## Task 3: `_compute_tto_from_statcast` helper
 
 **Files:**
 - Modify: `scripts/pitcher_stats.py`
 - Test: `scripts/tests/test_pitcher_stats.py`
 
-包一次 MLB API 呼叫（season 或 career）+ 解析 → `{"tto1": {...}, "tto2": {...}, "tto3": {...}}` dict 或 `{"error": "..."}`。
+從 `pybaseball.statcast_pitcher` 拉 pitch-by-pitch DataFrame，依 `(game_pk, batter)` 分組 + `at_bat_number` 排序計算每位打者在該場的 PA ordinal，再 PA 級加總成 `tto1` / `tto2` / `tto3` 桶。
 
-> **重要**：本 task 程式碼裡的 `sitCodes="ot1,ot2,ot3"` 字串需與 Task 1 spike 結果一致。若 spike 通過字串不同，把所有出現處（`_fetch_tto_one`、可能還包含未來的 fixture）替換掉。
-
-- [ ] **Step 1: 寫 4 個 failing tests**
+- [ ] **Step 1: 寫 3 個 failing tests**
 
 Append 到 `scripts/tests/test_pitcher_stats.py`：
 
 ```python
-# (Reuse _mock_requests_get pattern from test_lineup_analyzer.py)
-import json as _json_mod
-from unittest.mock import MagicMock as _MM
+def _statcast_df(rows: list[dict]):
+    """Build a fake statcast_pitcher DataFrame for tests."""
+    return _pd_mod.DataFrame(rows)
 
 
-def _make_tto_resp(splits: list[dict]) -> _MM:
-    """Build a MagicMock requests.get function returning {stats:[{splits:...}]}."""
-    payload = {"stats": [{"splits": splits}]}
-    resp = _MM()
-    resp.json.return_value = payload
-    resp.raise_for_status.return_value = None
-    return _MM(return_value=resp)
+def test_compute_tto_from_statcast_assigns_ordinals(monkeypatch):
+    """1 場、3 打者各面對 3 次 = 9 PAs；TTO ordinal 1/2/3 各 3 BF。"""
+    rows = []
+    ab_num = 1
+    for tto_round in range(3):
+        for batter in (101, 102, 103):
+            rows.append({
+                "game_pk": 778001, "at_bat_number": ab_num,
+                "batter": batter, "events": "field_out",
+            })
+            ab_num += 1
+
+    fake_statcast = lambda *args, **kwargs: _statcast_df(rows)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" not in out
+    for bucket in ("tto1", "tto2", "tto3"):
+        assert bucket in out
+        assert out[bucket]["bf"] == 3
 
 
-def test_fetch_tto_one_parses_all_three_buckets(monkeypatch):
-    splits = [
-        {"split": {"description": "1st PA in G as P"},
-         "stat": {"battersFaced": 320, "ops": "0.700", "strikeOuts": 90, "baseOnBalls": 22}},
-        {"split": {"description": "2nd PA in G as P"},
-         "stat": {"battersFaced": 290, "ops": "0.740", "strikeOuts": 78, "baseOnBalls": 22}},
-        {"split": {"description": "3rd PA in G as P"},
-         "stat": {"battersFaced": 180, "ops": "0.810", "strikeOuts": 41, "baseOnBalls": 14}},
-    ]
-    monkeypatch.setattr("pitcher_stats.requests.get", _make_tto_resp(splits))
+def test_compute_tto_from_statcast_empty_df(monkeypatch):
+    """statcast_pitcher 回空 DataFrame → error。"""
+    fake_statcast = lambda *args, **kwargs: _pd_mod.DataFrame()
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
 
-    from pitcher_stats import _fetch_tto_one
-    result = _fetch_tto_one("statSplits", 669373, 2025)
-    assert "error" not in result
-    assert result["tto1"]["ops"] == 0.700
-    assert result["tto1"]["bf"] == 320
-    assert result["tto1"]["k_pct"] == round(90 / 320 * 100, 1)
-    assert result["tto3"]["ops"] == 0.810
-    assert result["tto3"]["bf"] == 180
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" in out
 
 
-def test_fetch_tto_one_uses_obp_slg_when_ops_missing(monkeypatch):
-    splits = [
-        {"split": {"description": "1st PA"},
-         "stat": {"battersFaced": 100, "obp": "0.300", "slg": "0.400", "strikeOuts": 25, "baseOnBalls": 8}},
-        {"split": {"description": "2nd PA"},
-         "stat": {"battersFaced": 90, "obp": "0.310", "slg": "0.420", "strikeOuts": 22, "baseOnBalls": 7}},
-        {"split": {"description": "3rd PA"},
-         "stat": {"battersFaced": 60, "obp": "0.340", "slg": "0.460", "strikeOuts": 13, "baseOnBalls": 5}},
-    ]
-    monkeypatch.setattr("pitcher_stats.requests.get", _make_tto_resp(splits))
+def test_compute_tto_from_statcast_no_pa_events(monkeypatch):
+    """DataFrame 有 pitches 但都沒 events（None）→ error No PA events。"""
+    fake_statcast = lambda *args, **kwargs: _statcast_df([
+        {"game_pk": 778001, "at_bat_number": 1, "batter": 101, "events": None},
+        {"game_pk": 778001, "at_bat_number": 1, "batter": 101, "events": None},
+    ])
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
 
-    from pitcher_stats import _fetch_tto_one
-    result = _fetch_tto_one("statSplits", 669373, 2025)
-    assert abs(result["tto1"]["ops"] - 0.700) < 1e-6
-    assert abs(result["tto3"]["ops"] - 0.800) < 1e-6
-
-
-def test_fetch_tto_one_skips_unknown_buckets(monkeypatch):
-    splits = [
-        {"split": {"description": "1st PA"},
-         "stat": {"battersFaced": 100, "ops": "0.700", "strikeOuts": 25, "baseOnBalls": 8}},
-        {"split": {"description": "vs Left"},  # 應被 _classify_tto_bucket 過濾
-         "stat": {"battersFaced": 50, "ops": "0.650", "strikeOuts": 12, "baseOnBalls": 5}},
-        {"split": {"description": "3rd PA"},
-         "stat": {"battersFaced": 40, "ops": "0.820", "strikeOuts": 9, "baseOnBalls": 3}},
-    ]
-    monkeypatch.setattr("pitcher_stats.requests.get", _make_tto_resp(splits))
-
-    from pitcher_stats import _fetch_tto_one
-    result = _fetch_tto_one("statSplits", 669373, 2025)
-    assert "tto1" in result and "tto3" in result
-    assert "tto2" not in result  # 沒回傳 2nd → 缺
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" in out
 
 
-def test_fetch_tto_one_returns_error_on_exception(monkeypatch):
+def test_compute_tto_from_statcast_pybaseball_raises(monkeypatch):
+    """statcast_pitcher 拋 exception → error 帶訊息。"""
     def _raise(*args, **kwargs):
-        raise RuntimeError("network down")
-    monkeypatch.setattr("pitcher_stats.requests.get", _raise)
+        raise RuntimeError("savant down")
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, _raise, None, None),
+    )
 
-    from pitcher_stats import _fetch_tto_one
-    result = _fetch_tto_one("statSplits", 669373, 2025)
-    assert "error" in result
-    assert "statSplits" in result["error"]
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" in out
+    assert "savant down" in out["error"]
 ```
 
 - [ ] **Step 2: 跑測試確認 fail**
 
 ```bash
 cd scripts
-python -m pytest tests/test_pitcher_stats.py -k fetch_tto_one -v
+python -m pytest tests/test_pitcher_stats.py -k compute_tto_from_statcast -v
 ```
 
-預期：4 errors（`_fetch_tto_one` not defined）
+預期：4 errors（`_compute_tto_from_statcast` 不存在）
 
-- [ ] **Step 3: 實作 `_fetch_tto_one`**
+- [ ] **Step 3: 實作 `_compute_tto_from_statcast`**
 
-Append 到 `scripts/pitcher_stats.py` 緊接 `_parse_ops_with_fallback` 之後：
+Append 到 `scripts/pitcher_stats.py` 緊接 `_pa_outcome_aggregates` 之後：
 
 ```python
-def _fetch_tto_one(stats_kind: str, mlbam_id: int, year: int) -> dict:
-    """單次 MLB API call 取 TTO 三桶。
+def _compute_tto_from_statcast(mlbam_id: int, year_start: int, year_end: int) -> dict:
+    """從 pybaseball Statcast 逐球資料聚合成 TTO1 / TTO2 / TTO3 桶。
 
-    stats_kind: "statSplits"（season 限定）或 "careerStatSplits"。
-    season 路徑帶 ?season=YEAR；career 路徑不帶。
+    對每個 PA（events 非 null 的 row），在 (game_pk, batter) 群組內依
+    at_bat_number 升冪排序，cumcount + 1 即 PA ordinal（1st / 2nd / 3rd PA）。
+    超過 3rd（4th+ PA）忽略，因為樣本太稀。
     """
+    _, statcast_pitcher_fn, _, _ = _import_pybaseball()
     try:
-        params = {
-            "stats": stats_kind,
-            "group": "pitching",
-            "sitCodes": "ot1,ot2,ot3",  # Task 1 spike 後若需替換，全檔搜替
-        }
-        if stats_kind == "statSplits":
-            params["season"] = year
-        resp = requests.get(
-            f"{MLB_API_BASE}/people/{mlbam_id}/stats",
-            params=params,
-            timeout=10,
-        )
-        resp.raise_for_status()
-        data = resp.json()
+        start = f"{year_start}-03-20"
+        end = f"{year_end}-11-05"
+        df = statcast_pitcher_fn(start, end, mlbam_id)
+        if df is None or df.empty:
+            return {"error": "No Statcast data"}
+
+        pa_df = df[df["events"].notna()].copy()
+        if pa_df.empty:
+            return {"error": "No PA events in Statcast data"}
+
+        pa_df = pa_df.sort_values(["game_pk", "at_bat_number"])
+        pa_df["tto_ordinal"] = pa_df.groupby(["game_pk", "batter"]).cumcount() + 1
 
         result: dict = {}
-        for sg in data.get("stats", []):
-            for split in sg.get("splits", []):
-                desc = split.get("split", {}).get("description", "").lower()
-                key = _classify_tto_bucket(desc)
-                if key is None:
-                    continue
-                s = split.get("stat", {})
-                bf = int(s.get("battersFaced", 0))
-                k = int(s.get("strikeOuts", 0))
-                bb = int(s.get("baseOnBalls", 0))
-                ops = _parse_ops_with_fallback(s)
-                result[key] = {
-                    "ops": ops,
-                    "k_pct": round(k / bf * 100, 1) if bf > 0 else 0.0,
-                    "bb_pct": round(bb / bf * 100, 1) if bf > 0 else 0.0,
-                    "bf": bf,
-                }
-        return result if result else {"error": f"No TTO split data ({stats_kind})"}
+        for ordinal in (1, 2, 3):
+            bucket = pa_df[pa_df["tto_ordinal"] == ordinal]
+            if len(bucket) == 0:
+                continue
+            result[f"tto{ordinal}"] = _pa_outcome_aggregates(bucket)
+        return result if result else {"error": "No TTO buckets computed"}
     except Exception as e:
-        return {"error": f"{stats_kind} fetch failed: {e}"}
+        return {"error": f"statcast TTO compute failed: {e}"}
 ```
 
 - [ ] **Step 4: 跑測試確認 pass**
 
 ```bash
 cd scripts
-python -m pytest tests/test_pitcher_stats.py -k fetch_tto_one -v
+python -m pytest tests/test_pitcher_stats.py -k compute_tto_from_statcast -v
 ```
 
 預期：4 passed
@@ -468,138 +391,152 @@ python -m pytest tests/test_pitcher_stats.py -k fetch_tto_one -v
 
 ```bash
 git add scripts/pitcher_stats.py scripts/tests/test_pitcher_stats.py
-git commit -m "feat(pitcher): _fetch_tto_one wraps MLB API statSplits/careerStatSplits"
+git commit -m "feat(pitcher): _compute_tto_from_statcast (Plan B Statcast aggregation)"
 ```
 
 ---
 
-## Task 5: `fetch_tto_splits` — season → career fallback orchestrator
+## Task 4: `fetch_tto_splits` orchestrator + main 路徑接入
 
 **Files:**
-- Modify: `scripts/pitcher_stats.py`
+- Modify: `scripts/pitcher_stats.py`（orchestrator + main 路徑）
 - Test: `scripts/tests/test_pitcher_stats.py`
 
-把 `_fetch_tto_one` 包成 fallback orchestrator：season 優先；TTO3 BF < 30 → career；都不夠 → 回 season（caller 走 small_sample）；都失敗 → `{"error": ...}`。
+包 `_compute_tto_from_statcast` 成 fallback orchestrator：season 優先；TTO3 BF < 30 → 5-year career；都不夠 → 回 season（caller 走 small_sample）；都失敗 → `{"error": ...}`。同步把 fetch 接進 pitcher_stats main 路徑（原計畫 Task 5 + Task 6 合併）。
 
 - [ ] **Step 1: 寫 5 個 failing tests**
 
 Append 到 `scripts/tests/test_pitcher_stats.py`：
 
 ```python
+def _build_full_season_df():
+    """Build a statcast DataFrame with TTO3 ≥ 30 BF."""
+    rows = []
+    ab_num = 1
+    for game in range(10):
+        for tto_round in range(3):
+            for batter in range(101, 105):  # 4 batters per round
+                rows.append({
+                    "game_pk": 778000 + game,
+                    "at_bat_number": ab_num,
+                    "batter": batter,
+                    "events": "single" if tto_round == 2 else "field_out",
+                })
+                ab_num += 1
+    return _statcast_df(rows)
+
+
+def _build_thin_df(tto3_bf: int):
+    """Build a DataFrame with exactly tto3_bf TTO3 PAs."""
+    rows = []
+    ab_num = 1
+    games_needed = max(1, (tto3_bf + 8) // 9)  # 9 batters per game * 1 TTO3 round
+    bf_added = 0
+    for game in range(games_needed):
+        for tto_round in range(3):
+            for batter in range(101, 110):
+                if tto_round == 2 and bf_added >= tto3_bf:
+                    continue
+                rows.append({
+                    "game_pk": 778000 + game,
+                    "at_bat_number": ab_num,
+                    "batter": batter,
+                    "events": "field_out",
+                })
+                ab_num += 1
+                if tto_round == 2:
+                    bf_added += 1
+    return _statcast_df(rows)
+
+
 def test_fetch_tto_splits_season_full(monkeypatch):
-    """Season tto3.bf ≥ 30 → 用 season，不打 career。"""
-    splits = [
-        {"split": {"description": "1st PA"}, "stat": {"battersFaced": 320, "ops": "0.700", "strikeOuts": 90, "baseOnBalls": 22}},
-        {"split": {"description": "2nd PA"}, "stat": {"battersFaced": 290, "ops": "0.740", "strikeOuts": 78, "baseOnBalls": 22}},
-        {"split": {"description": "3rd PA"}, "stat": {"battersFaced": 180, "ops": "0.810", "strikeOuts": 41, "baseOnBalls": 14}},
-    ]
-    call_count = {"n": 0}
+    """Season tto3.bf ≥ 30 → source=season，不打 career。"""
+    calls = {"n": 0}
 
-    def _get(*args, **kwargs):
-        call_count["n"] += 1
-        resp = _MM()
-        resp.json.return_value = {"stats": [{"splits": splits}]}
-        resp.raise_for_status.return_value = None
-        return resp
+    def fake_statcast(*args, **kwargs):
+        calls["n"] += 1
+        return _build_full_season_df()
 
-    monkeypatch.setattr("pitcher_stats.requests.get", _get)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
 
     from pitcher_stats import fetch_tto_splits
-    result = fetch_tto_splits(669373, 2025)
-    assert result["source"] == "season"
-    assert result["tto3"]["bf"] == 180
-    assert call_count["n"] == 1  # career 沒被打
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "season"
+    assert out["tto3"]["bf"] >= 30
+    assert calls["n"] == 1
 
 
 def test_fetch_tto_splits_falls_back_to_career(monkeypatch):
     """Season tto3.bf < 30 → 改 career；career 充足 → source=career."""
-    season_splits = [
-        {"split": {"description": "1st PA"}, "stat": {"battersFaced": 50, "ops": "0.700", "strikeOuts": 12, "baseOnBalls": 4}},
-        {"split": {"description": "2nd PA"}, "stat": {"battersFaced": 40, "ops": "0.740", "strikeOuts": 9, "baseOnBalls": 3}},
-        {"split": {"description": "3rd PA"}, "stat": {"battersFaced": 18, "ops": "0.810", "strikeOuts": 4, "baseOnBalls": 2}},
-    ]
-    career_splits = [
-        {"split": {"description": "1st PA"}, "stat": {"battersFaced": 1500, "ops": "0.680", "strikeOuts": 380, "baseOnBalls": 100}},
-        {"split": {"description": "2nd PA"}, "stat": {"battersFaced": 1300, "ops": "0.715", "strikeOuts": 320, "baseOnBalls": 95}},
-        {"split": {"description": "3rd PA"}, "stat": {"battersFaced": 800, "ops": "0.755", "strikeOuts": 175, "baseOnBalls": 65}},
-    ]
     calls = {"n": 0}
 
-    def _get(*args, **kwargs):
+    def fake_statcast(start_dt, end_dt, mlbam):
         calls["n"] += 1
-        params = kwargs.get("params") or {}
-        chosen = season_splits if params.get("stats") == "statSplits" else career_splits
-        resp = _MM()
-        resp.json.return_value = {"stats": [{"splits": chosen}]}
-        resp.raise_for_status.return_value = None
-        return resp
+        # 第一次呼叫（season）→ thin；第二次（career window）→ full
+        if calls["n"] == 1:
+            return _build_thin_df(15)
+        return _build_full_season_df()
 
-    monkeypatch.setattr("pitcher_stats.requests.get", _get)
-
-    from pitcher_stats import fetch_tto_splits
-    result = fetch_tto_splits(669373, 2025)
-    assert result["source"] == "career"
-    assert result["tto3"]["bf"] == 800
-    assert calls["n"] == 2  # season + career
-
-
-def test_fetch_tto_splits_career_also_thin(monkeypatch):
-    """Season + career 都 thin → 回 season（caller 走 small_sample no_fire）。"""
-    thin = [
-        {"split": {"description": "1st PA"}, "stat": {"battersFaced": 30, "ops": "0.700", "strikeOuts": 8, "baseOnBalls": 2}},
-        {"split": {"description": "2nd PA"}, "stat": {"battersFaced": 25, "ops": "0.740", "strikeOuts": 6, "baseOnBalls": 2}},
-        {"split": {"description": "3rd PA"}, "stat": {"battersFaced": 15, "ops": "0.810", "strikeOuts": 4, "baseOnBalls": 1}},
-    ]
-
-    def _get(*args, **kwargs):
-        resp = _MM()
-        resp.json.return_value = {"stats": [{"splits": thin}]}
-        resp.raise_for_status.return_value = None
-        return resp
-
-    monkeypatch.setattr("pitcher_stats.requests.get", _get)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
 
     from pitcher_stats import fetch_tto_splits
-    result = fetch_tto_splits(669373, 2025)
-    assert result["source"] == "season"
-    assert result["tto3"]["bf"] == 15  # < 30，caller 處理
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "career"
+    assert calls["n"] == 2
+
+
+def test_fetch_tto_splits_both_thin(monkeypatch):
+    """Season + career 都 < 30 BF → 回 season（caller 走 small_sample）。"""
+    fake_statcast = lambda *a, **k: _build_thin_df(15)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "season"
+    assert out["tto3"]["bf"] < 30
 
 
 def test_fetch_tto_splits_season_error_career_ok(monkeypatch):
     """Season 失敗 → career 補上。"""
-    career_splits = [
-        {"split": {"description": "1st PA"}, "stat": {"battersFaced": 1500, "ops": "0.680", "strikeOuts": 380, "baseOnBalls": 100}},
-        {"split": {"description": "2nd PA"}, "stat": {"battersFaced": 1300, "ops": "0.715", "strikeOuts": 320, "baseOnBalls": 95}},
-        {"split": {"description": "3rd PA"}, "stat": {"battersFaced": 800, "ops": "0.755", "strikeOuts": 175, "baseOnBalls": 65}},
-    ]
     calls = {"n": 0}
 
-    def _get(*args, **kwargs):
+    def fake_statcast(start_dt, end_dt, mlbam):
         calls["n"] += 1
-        params = kwargs.get("params") or {}
-        if params.get("stats") == "statSplits":
-            raise RuntimeError("season API 5xx")
-        resp = _MM()
-        resp.json.return_value = {"stats": [{"splits": career_splits}]}
-        resp.raise_for_status.return_value = None
-        return resp
+        if calls["n"] == 1:
+            raise RuntimeError("season pull failed")
+        return _build_full_season_df()
 
-    monkeypatch.setattr("pitcher_stats.requests.get", _get)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
 
     from pitcher_stats import fetch_tto_splits
-    result = fetch_tto_splits(669373, 2025)
-    assert result["source"] == "career"
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "career"
     assert calls["n"] == 2
 
 
 def test_fetch_tto_splits_both_fail_returns_error(monkeypatch):
     def _raise(*args, **kwargs):
-        raise RuntimeError("network down")
-    monkeypatch.setattr("pitcher_stats.requests.get", _raise)
+        raise RuntimeError("savant down")
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, _raise, None, None),
+    )
 
     from pitcher_stats import fetch_tto_splits
-    result = fetch_tto_splits(669373, 2025)
-    assert "error" in result
+    out = fetch_tto_splits(669373, 2025)
+    assert "error" in out
 ```
 
 - [ ] **Step 2: 跑測試確認 fail**
@@ -609,28 +546,29 @@ cd scripts
 python -m pytest tests/test_pitcher_stats.py -k fetch_tto_splits -v
 ```
 
-預期：5 errors（`fetch_tto_splits` not defined）
+預期：5 errors（`fetch_tto_splits` 不存在）
 
-- [ ] **Step 3: 實作 `fetch_tto_splits` + inline `_has_sufficient_tto3`**
+- [ ] **Step 3: 實作 `fetch_tto_splits` + `_has_sufficient_tto3`**
 
-Append 到 `scripts/pitcher_stats.py` 緊接 `_fetch_tto_one` 之後：
+Append 到 `scripts/pitcher_stats.py` 緊接 `_compute_tto_from_statcast` 之後：
 
 ```python
 _TTO_MIN_BF = 30  # tto3 bucket 最小 BF；不足走 career fallback
 
 
-def _has_sufficient_tto3(data: dict, min_bf: int = _TTO_MIN_BF) -> bool:
-    """data 裡 tto3.bf 是否 ≥ min_bf。error / 缺 tto3 → False。"""
+def _has_sufficient_tto3(data: dict) -> bool:
+    """data 裡 tto3.bf 是否 ≥ _TTO_MIN_BF。error / 缺 tto3 → False。"""
     if "error" in data:
         return False
     tto3 = data.get("tto3") or {}
-    return (tto3.get("bf") or 0) >= min_bf
+    return (tto3.get("bf") or 0) >= _TTO_MIN_BF
 
 
 def fetch_tto_splits(mlbam_id: int, year: int) -> dict:
     """C2.5：取得投手 Times-Through-Order Splits（TTO1 / TTO2 / TTO3）。
 
-    Season 優先；TTO3 BF < 30 → silent fallback careerStatSplits。
+    Plan B：用 pybaseball Statcast pitch-by-pitch 自行聚合。
+    Season 優先；TTO3 BF < 30 → silent fallback 5-year career window。
     回傳：
       {
         "source": "season" | "career",
@@ -640,20 +578,19 @@ def fetch_tto_splits(mlbam_id: int, year: int) -> dict:
 
     Caller (signal_tto3_penalty) 看 tto3.bf 自行判斷 small_sample。
     """
-    season_data = _fetch_tto_one("statSplits", mlbam_id, year)
+    season_data = _compute_tto_from_statcast(mlbam_id, year, year)
     if _has_sufficient_tto3(season_data):
         season_data["source"] = "season"
         return season_data
 
-    career_data = _fetch_tto_one("careerStatSplits", mlbam_id, year)
+    career_data = _compute_tto_from_statcast(mlbam_id, year - 4, year)
     if _has_sufficient_tto3(career_data):
         career_data["source"] = "career"
         return career_data
 
-    # season 不足，且 career 也不足或失敗
     if "error" not in season_data:
         season_data["source"] = "season"
-        return season_data  # caller 走 small_sample no_fire
+        return season_data
     if "error" not in career_data:
         career_data["source"] = "career"
         return career_data
@@ -669,41 +606,14 @@ python -m pytest tests/test_pitcher_stats.py -k fetch_tto_splits -v
 
 預期：5 passed
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 5: 把 `fetch_tto_splits` 接進 pitcher_stats main 路徑**
 
-```bash
-git add scripts/pitcher_stats.py scripts/tests/test_pitcher_stats.py
-git commit -m "feat(pitcher): fetch_tto_splits orchestrator with career fallback"
-```
-
----
-
-## Task 6: 把 `fetch_tto_splits` 接進 pitcher_stats main 路徑
-
-**Files:**
-- Modify: `scripts/pitcher_stats.py`（main 路徑 + JSON 寫入）
-
-緊接現有 `platoon_splits = fetch_platoon_splits(...)` 加一行 `tto_splits = fetch_tto_splits(...)`，並在輸出 dict 加 `tto_splits` key。**沒新測試**——現有 main 路徑沒有單元測試（屬於 integration），靠 Task 12 smoke test 驗證。
-
-- [ ] **Step 1: Read current main 路徑 line 887 附近**
-
-```bash
-cd scripts
-python -c "with open('pitcher_stats.py') as f: lines = f.readlines(); [print(i+1, l, end='') for i,l in enumerate(lines[880:930])]"
-```
-
-確認 `platoon_splits = fetch_platoon_splits(pitcher_id, args.year)` 大約在第 887 行；輸出 dict 含 `"platoon_splits": platoon_splits` 大約在第 924 行。
-
-- [ ] **Step 2: 加 fetch 呼叫**
-
-`scripts/pitcher_stats.py` 第 887 行（`platoon_splits = fetch_platoon_splits(...)` 那行）後，append 一行：
+`scripts/pitcher_stats.py` 第 887 行（`platoon_splits = fetch_platoon_splits(pitcher_id, args.year)` 那行）後，append 一行：
 
 ```python
     platoon_splits = fetch_platoon_splits(pitcher_id, args.year)
     tto_splits = fetch_tto_splits(pitcher_id, args.year)
 ```
-
-- [ ] **Step 3: 加進輸出 dict**
 
 `scripts/pitcher_stats.py` 第 924 行（`"platoon_splits": platoon_splits,` 那行）後，append 一行：
 
@@ -712,20 +622,20 @@ python -c "with open('pitcher_stats.py') as f: lines = f.readlines(); [print(i+1
         "tto_splits": tto_splits,
 ```
 
-- [ ] **Step 4: 跑全部既有測試確認沒撞到**
+- [ ] **Step 6: 跑全部既有測試確認沒撞到**
 
 ```bash
 cd scripts
 python -m pytest tests/ -v --tb=short
 ```
 
-預期：所有既有測試（439 + 9 個 Task 2-5 新加 = 448）全 pass。
+預期：所有既有測試（439 + 13 個 Tasks 2-4 新加 = 452）全 pass。
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add scripts/pitcher_stats.py
-git commit -m "feat(pitcher): wire fetch_tto_splits into main pitcher_stats output"
+git add scripts/pitcher_stats.py scripts/tests/test_pitcher_stats.py
+git commit -m "feat(pitcher): fetch_tto_splits orchestrator + main 路徑接入"
 ```
 
 ---
@@ -1340,30 +1250,31 @@ git commit -m "docs(reference): matchup-factors §Signals — 加 §9 tto3_penal
 
 刪除整行（5/3 session 已實作 wRC+ commit `df165ab` + Stuff+ commit `ca7d8a1`）。
 
-- [ ] **Step 2: 抓出 Task 2-10 的 commit short hashes**
+- [ ] **Step 2: 抓出 Tasks 2 / 3 / 4 / 7 / 8 / 9 / 10 的 commit short hashes**
 
 ```bash
 cd C:/Users/Loger/.claude/skills/mlb-game-analyzer
-git log --oneline -12
+git log --oneline -15
 ```
 
-從輸出抓出 9 個 commit short hash（Task 2 到 Task 10 各一），以及 Task 1（如果有 spec/plan 替換 commit）。記錄為一份 mapping，下一步要替換進 CHANGELOG 內文。
+抓出 7 個 commit short hash（每個 Task 一筆 commit；Task 4 含 orchestrator + main wire 是單一 commit）。Task 1 spike 結果已寫進 spec / plan 並 commit；spec 改 Plan B 也已 commit；這兩個 commit 一併列入 CHANGELOG。
 
 - [ ] **Step 3: 在最頂端加新版區塊**
 
 在現有 `## 2026-05-03 — Path B refactor` 區塊之上插入下面內容；把 `<HASHN>` 佔位符替換為 Step 2 抓到的真實 short hash：
 
 ```markdown
-## 2026-05-04 — TTO3 penalty signal（signal #9）
+## 2026-05-04 — TTO3 penalty signal（signal #9，Plan B）
 
 第 9 個 derived signal，pitcher-side per-game。先發投手第三輪面對打者 OPS
-衰退幅度，覆蓋 PR-3 後 line 48「第二批 signals」第一項。
+衰退幅度，覆蓋 PR-3 後 line 48「第二批 signals」第一項。Plan A（MLB API
+statSplits + sitCodes）spike 後證實 MLB API 不曝光 TTO 切面；改走 Plan B 用
+pybaseball Statcast pitch-by-pitch 自行聚合。
 
-- **commit <HASH2>** `feat(pitcher)`: `_classify_tto_bucket` helper
-- **commit <HASH3>** `feat(pitcher)`: `_parse_ops_with_fallback` helper
-- **commit <HASH4>** `feat(pitcher)`: `_fetch_tto_one` MLB API wrapper
-- **commit <HASH5>** `feat(pitcher)`: `fetch_tto_splits` orchestrator with career fallback
-- **commit <HASH6>** `feat(pitcher)`: wire `fetch_tto_splits` into main output
+- **commit <HASH_SPEC>** `docs(spec)`: TTO3 — Plan B amendment after Plan A spike disproved
+- **commit <HASH2>** `feat(pitcher)`: `_pa_outcome_aggregates` helper (PA events → OPS/K%/BB%)
+- **commit <HASH3>** `feat(pitcher)`: `_compute_tto_from_statcast` (Plan B Statcast aggregation)
+- **commit <HASH4>** `feat(pitcher)`: `fetch_tto_splits` orchestrator + main 路徑接入
 - **commit <HASH7>** `feat(signals)`: `signal_tto3_penalty` (#9) + half_life=structural
 - **commit <HASH8>** `feat(signals)`: wire tto3_penalty into compute_all_signals
 - **commit <HASH9>** `feat(dossier)`: 投手對決 table 加 TTO splits visible row
@@ -1373,7 +1284,7 @@ git log --oneline -12
 
 - ✅ 信號**不入 scoring formula**（一致 §3 / §8）
 - ✅ 既有 8 signals 行為零變動（compute_all_signals 只追加一行）
-- ✅ 4 月小樣本 season → career silent fallback，BF < 30 統一 small_sample no_fire
+- ✅ 4 月小樣本 season → 5-year career silent fallback，BF < 30 統一 small_sample no_fire
 - ✅ Dossier TTO row 無條件顯示（mirror vs LHB / vs RHB pattern）
 - ✅ `merge_game_data.py` / `prepare_game.py` / `scoring_formula.py` / Flag 體系全部不動
 
@@ -1384,8 +1295,6 @@ git log --oneline -12
 - 動態調整觸發閾值（按 tier 別）— 留至 backtest 階段
 - 休息天數 / 上一場用球數（CHANGELOG line 48 第二批 signals 中的另兩項）
 ```
-
-> 註：Task 1 spike 通常**不**產出 commit（spec/plan 都已寫死 `ot1,ot2,ot3`）。若 spike 結果需要替換 sitCode 字串並 commit spec/plan，把該 commit 也加進 CHANGELOG（例如 `**commit <HASH1>** `docs(spec)`: lock sitCodes ...`）。
 
 - [ ] **Step 4: Commit（CHANGELOG 是 Task 11 唯一 commit；Task 11 自身的 hash 不寫進 body）**
 
@@ -1458,29 +1367,32 @@ cd scripts
 python -m pytest tests/ -v --tb=short
 ```
 
-預期：~454 tests 全 pass（439 baseline + ~15 新增）。
+預期：~457 tests 全 pass（439 baseline + ~18 新增 Plan B）。
 
 如果都 pass，task 完成。Task 11 CHANGELOG 區塊裡的 `<HASHN>` 佔位符應該已經在 Task 11 Step 2-3 替換成真實 hash（在 Task 11 commit 前完成），不需事後 amend。
 
 ---
 
-## Spec coverage 自我驗證表
+## Spec coverage 自我驗證表（Plan B）
 
 | Spec 段落 | 對應 task | 驗證點 |
 |---|---|---|
 | §2 Goals 1: signal_tto3_penalty 落 signals_lib.py | Task 7 | 單元測試 9 個 |
-| §2 Goals 2: fetch_tto_splits 沿用 statSplits | Task 4-5 | 單元測試 9 個 |
-| §2 Goals 3: 4 月 fallback career, heuristic | Task 5 + Task 7 | `test_fetch_tto_splits_falls_back_to_career` + `test_tto3_penalty_career_source_marks_heuristic` |
+| §2 Goals 2: fetch_tto_splits（Plan B Statcast 路徑） | Task 4 | 5 個 orchestrator 測試 |
+| §2 Goals 3: 4 月 fallback career, heuristic | Task 4 + Task 7 | `test_fetch_tto_splits_falls_back_to_career` + `test_tto3_penalty_career_source_marks_heuristic` |
 | §2 Goals 4: dossier visible row | Task 9 | 單元測試 + integration test |
-| §2 Goals 5: dossier 訊號摘要 + summary 額外信號 | Task 8（compute_all_signals 接入後 cache 自動帶） | smoke test §3 / §5 |
+| §2 Goals 5: dossier 訊號摘要 + summary 額外信號 | Task 8（compute_all_signals 接入後 cache 自動帶） | Task 12 smoke §3 / §5 |
 | §2 Goals 6: matchup-factors §9 + 半衰期表 | Task 10 | docs review |
 | §2 Goals 7: CHANGELOG line 50 清理 | Task 11 | docs review |
 | §3 Non-Goals: 不進 scoring formula | 所有 task | scoring_formula.py 0 異動 |
 | §3 Non-Goals: 不動 merge_game_data | 所有 task | merge_game_data.py 0 異動 |
 | §3 Non-Goals: RP / opener no_fire | Task 7 | `test_tto3_penalty_small_sample_below_30_bf` 涵蓋 |
-| §5.3 sitCode spike | Task 1 | 5 分鐘人工驗證 |
-| §5.4 fallback 矩陣 | Task 5 | 5 個 test 涵蓋 6 條矩陣 row |
+| §5.1 Plan B helper（_pa_outcome_aggregates） | Task 2 | 4 個單元測試 |
+| §5.1 Plan B helper（_compute_tto_from_statcast） | Task 3 | 4 個單元測試 |
+| §5.3 spike outcome | Task 1 | DONE — Plan A dead, Plan B viable |
+| §5.4 fallback 矩陣 | Task 4 | 5 個 test 涵蓋 6 條矩陣 row |
+| §5.5 PA outcome 映射表 | Task 2 | `test_pa_outcome_aggregates_basic_mix` / `_handles_sf_and_hbp` |
 | §6.1 signal contract | Task 7 | `_signal_contract(s)` helper assertion |
 | §7.1 dossier helper（n/a / career suffix / small_sample / 缺 key） | Task 9 | 5 個 test |
-| §9 Tests 列表 | Task 2-9 | 約 24 新測試（spec 估 14，實際多） |
+| §9 Tests 列表 | Tasks 2 / 3 / 4 / 7 / 8 / 9 | ~25 新測試（spec 估 +18，含 dossier integration） |
 
