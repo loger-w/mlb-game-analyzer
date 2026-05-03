@@ -776,3 +776,34 @@ def test_tto3_penalty_handles_error_input():
     s = signal_tto3_penalty({"error": "fetch failed"})
     assert s["fired"] is False
     assert s["confidence"] == "small_sample"
+
+
+
+def test_tto3_penalty_in_compute_all_signals():
+    """compute_all_signals fires tto3_penalty per pitcher with side tagging."""
+    from signals_lib import compute_all_signals
+    bundle = {
+        "home_pitcher": {
+            "tto_splits": _make_tto_splits(ops1=0.700, ops3=0.810),
+        },
+        "away_pitcher": {
+            # Force no-fire: ops Δ +0.040 + K stable → both triggers below threshold
+            "tto_splits": _make_tto_splits(ops1=0.690, ops3=0.730, k1=25.0, k3=24.0),
+        },
+        "home_lineup": {}, "away_lineup": {}, "merged": {},
+    }
+    out = compute_all_signals(bundle)
+    tto = [s for s in out["signals"] if s["name"] == "tto3_penalty"]
+    assert len(tto) == 2
+    sides = {s["side"] for s in tto}
+    assert sides == {"HOME", "AWAY"}
+    home_tto = next(s for s in tto if s["side"] == "HOME")
+    away_tto = next(s for s in tto if s["side"] == "AWAY")
+    assert home_tto["fired"] is True
+    assert away_tto["fired"] is False
+
+
+def test_half_life_registry_includes_tto3():
+    from signals_lib import _HALF_LIFE_BY_NAME
+    assert _HALF_LIFE_BY_NAME["tto3_penalty"] == "structural"
+    assert len(_HALF_LIFE_BY_NAME) == 9

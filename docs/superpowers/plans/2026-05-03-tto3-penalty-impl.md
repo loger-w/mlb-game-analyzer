@@ -899,7 +899,10 @@ def test_tto3_penalty_in_compute_all_signals():
             "tto_splits": _make_tto_splits(ops1=0.700, ops3=0.810),
         },
         "away_pitcher": {
-            "tto_splits": _make_tto_splits(ops1=0.690, ops3=0.730),  # no fire
+            # Force no-fire: ops Δ +0.040 + K stable → both triggers below threshold
+            # (Note: _make_tto_splits defaults k1=28/k3=23 = 5pp drop, which fires K
+            # trigger; override to keep K stable so this is a clean no-fire scenario.)
+            "tto_splits": _make_tto_splits(ops1=0.690, ops3=0.730, k1=25.0, k3=24.0),
         },
         "home_lineup": {}, "away_lineup": {}, "merged": {},
     }

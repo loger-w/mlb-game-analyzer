@@ -539,7 +539,7 @@ def compute_all_signals(bundle: dict | None) -> dict:
 
     signals: list[dict] = []
 
-    # Per-pitcher signals (tier_mismatch, reverse_platoon, pitch_mix_concentration)
+    # Per-pitcher signals (tier_mismatch, reverse_platoon, pitch_mix_concentration, tto3_penalty)
     for side, p in (("HOME", home_p), ("AWAY", away_p)):
         signals.append(_tag(signal_tier_mismatch(p.get("tier_gap")), side))
         signals.append(_tag(
@@ -551,6 +551,7 @@ def compute_all_signals(bundle: dict | None) -> dict:
             signal_pitch_mix_concentration(statcast.get("pitch_types")),
             side,
         ))
+        signals.append(_tag(signal_tto3_penalty(p.get("tto_splits")), side))
 
     # Per-lineup signals (heat_vs_babip, platoon_advantage, chain_break).
     # platoon_advantage uses opposing pitcher's hand so the lineup is matched
