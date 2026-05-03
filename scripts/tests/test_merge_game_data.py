@@ -414,3 +414,119 @@ def test_merged_weather_absent(monkeypatch, tmp_path):
 
     merged = json.loads(out.read_text(encoding="utf-8"))
     assert merged["weather"] is None
+
+
+# ============================================================================
+# Cleanup #12 — _fetch_merge_runtime_inputs concurrent dispatch
+# ============================================================================
+
+
+def test_fetch_merge_runtime_inputs_uses_overrides_skips_fetch(monkeypatch):
+    """When home_bp_override / away_bp_override given, fetch_bullpen_era must NOT be called."""
+    import merge_game_data
+
+    weather_calls = {"n": 0}
+
+    def boom_bullpen(*a, **k):
+        raise AssertionError("fetch_bullpen_era must not be called when override provided")
+
+    def stub_weather(pk):
+        weather_calls["n"] += 1
+        return {"condition": "Sunny"}
+
+    monkeypatch.setattr(merge_game_data, "fetch_bullpen_era", boom_bullpen)
+    monkeypatch.setattr(merge_game_data, "fetch_weather", stub_weather)
+
+    home_bp, away_bp, weather = merge_game_data._fetch_merge_runtime_inputs(
+        home_team_id=147, away_team_id=110, game_year=2026, game_pk=778345,
+        home_bp_override=3.85, away_bp_override=4.42,
+    )
+    assert home_bp == 3.85
+    assert away_bp == 4.42
+    assert weather == {"condition": "Sunny"}
+    assert weather_calls["n"] == 1
+
+
+def test_fetch_merge_runtime_inputs_fetches_when_no_override(monkeypatch):
+    """No override → fetch_bullpen_era called for each side; weather fetched."""
+    import merge_game_data
+
+    bp_seen = []
+
+    def stub_bullpen(team_id, year):
+        bp_seen.append((team_id, year))
+        return 3.50 if team_id == 147 else 4.10
+
+    monkeypatch.setattr(merge_game_data, "fetch_bullpen_era", stub_bullpen)
+    monkeypatch.setattr(merge_game_data, "fetch_weather", lambda pk: {"temp_f": 70})
+
+    home_bp, away_bp, weather = merge_game_data._fetch_merge_runtime_inputs(
+        home_team_id=147, away_team_id=110, game_year=2026, game_pk=778345,
+        home_bp_override=None, away_bp_override=None,
+    )
+    assert home_bp == 3.50
+    assert away_bp == 4.10
+    assert weather == {"temp_f": 70}
+    assert sorted(bp_seen) == [(110, 2026), (147, 2026)]
+
+
+def test_fetch_merge_runtime_inputs_no_team_id_falls_back_to_4(monkeypatch):
+    """team_id=None on either side → that side returns 4.00 fallback without fetch.
+    game_pk=None → weather=None without fetch."""
+    import merge_game_data
+
+    monkeypatch.setattr(merge_game_data, "fetch_bullpen_era", lambda tid, y: 3.0)
+    monkeypatch.setattr(merge_game_data, "fetch_weather", lambda pk: {"temp_f": 1})
+
+    home_bp, away_bp, weather = merge_game_data._fetch_merge_runtime_inputs(
+        home_team_id=None, away_team_id=None, game_year=2026, game_pk=None,
+        home_bp_override=None, away_bp_override=None,
+    )
+    assert home_bp == 4.00
+    assert away_bp == 4.00
+    assert weather is None
+
+
+def test_fetch_merge_runtime_inputs_runs_concurrently(monkeypatch):
+    """Cleanup #12: 3 fetches dispatched in parallel via ThreadPoolExecutor.
+
+    In-flight counter approach: each stub holds for 50ms; sequential keeps max=1,
+    parallel reaches max ≥ 2 with workers≥3 + 3 tasks."""
+    import threading
+    import time
+    import merge_game_data
+
+    state = {"current": 0, "max": 0}
+    lock = threading.Lock()
+
+    def slow_bullpen(team_id, year):
+        with lock:
+            state["current"] += 1
+            if state["current"] > state["max"]:
+                state["max"] = state["current"]
+        time.sleep(0.05)
+        with lock:
+            state["current"] -= 1
+        return 4.00
+
+    def slow_weather(pk):
+        with lock:
+            state["current"] += 1
+            if state["current"] > state["max"]:
+                state["max"] = state["current"]
+        time.sleep(0.05)
+        with lock:
+            state["current"] -= 1
+        return None
+
+    monkeypatch.setattr(merge_game_data, "fetch_bullpen_era", slow_bullpen)
+    monkeypatch.setattr(merge_game_data, "fetch_weather", slow_weather)
+
+    merge_game_data._fetch_merge_runtime_inputs(
+        home_team_id=147, away_team_id=110, game_year=2026, game_pk=778345,
+        home_bp_override=None, away_bp_override=None,
+    )
+    assert state["max"] >= 2, (
+        f"Expected concurrent fetches (≥2 in-flight); observed max {state['max']}. "
+        "Cleanup #12 requires ThreadPoolExecutor to overlap merge runtime fetches."
+    )

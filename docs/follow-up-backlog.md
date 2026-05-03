@@ -149,9 +149,11 @@ lines 75-97 三分支 `if/elif/else` on `opposing_pitcher_hand` → 改 `_HAND_T
 
 實作備註：模組層常數 `_HAND_TO_TIER_KEYS = {"L": ..., "R": ...}`，dict.get 走預設 `(None, "vs ?HP")` cover unknown hand。
 
-## 12. `merge_game_data` 並行 fetch（LOW）
+## ✅ 12. `merge_game_data` 並行 fetch（DONE 2026-05-03）
 
 `fetch_bullpen_era × 2 + fetch_weather × 1` 序列。3 round-trips 可 `ThreadPoolExecutor(max_workers=3)` 並行（保留各自 try/except fallback）。
+
+實作備註：抽 `_fetch_merge_runtime_inputs(home_team_id, away_team_id, game_year, game_pk, home_bp_override, away_bp_override) -> (home_bp, away_bp, weather)` helper，內部 ThreadPoolExecutor(max_workers=3) 同時 dispatch 3 個 task；override 旁路 fetch；team_id=None → 4.00 fallback；game_pk=None → weather=None。`main()` 收掉散落的 if/elif/else + 獨立 fetch_weather 呼叫，統一走 helper。Tests +4（uses_overrides_skips_fetch / fetches_when_no_override / no_team_id_falls_back / runs_concurrently in-flight ≥ 2）。435 → 439。
 
 ## ✅ 13. 同 package `try/except ImportError → lambda` dead code（DONE 2026-05-03）
 

@@ -4,6 +4,7 @@
 import argparse
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -194,6 +195,53 @@ def fetch_bullpen_era(team_id: int, year: int) -> float:
     except Exception:
         pass
     return 4.00  # fallback
+
+
+def _fetch_merge_runtime_inputs(
+    *,
+    home_team_id: int | None,
+    away_team_id: int | None,
+    game_year: int,
+    game_pk: int | None,
+    home_bp_override: float | None = None,
+    away_bp_override: float | None = None,
+) -> tuple[float, float, dict | None]:
+    """Concurrently fetch (home bullpen ERA, away bullpen ERA, weather).
+
+    Cleanup #12: merge_game_data.main 原本 sequential 跑 2× fetch_bullpen_era +
+    1× fetch_weather（critical-path 上 3 個 round-trip）。本 helper 用
+    ThreadPoolExecutor 同時 dispatch，wall-clock 收斂到最慢那一個。
+
+    Override 旁路 fetch（直接用該值）；team_id=None 時 fallback 4.00；
+    game_pk=None 時 weather=None。fetch_bullpen_era 自帶 try/except + 4.00
+    fallback；fetch_weather 自帶 try/except + None fallback；helper 不再加殼。
+    """
+    def _home_bp() -> float:
+        if home_bp_override is not None:
+            return home_bp_override
+        if home_team_id is None:
+            return 4.00
+        era = fetch_bullpen_era(home_team_id, game_year)
+        print(f"Auto-fetched home bullpen ERA: {era}", file=sys.stderr)
+        return era
+
+    def _away_bp() -> float:
+        if away_bp_override is not None:
+            return away_bp_override
+        if away_team_id is None:
+            return 4.00
+        era = fetch_bullpen_era(away_team_id, game_year)
+        print(f"Auto-fetched away bullpen ERA: {era}", file=sys.stderr)
+        return era
+
+    def _weather() -> dict | None:
+        return fetch_weather(game_pk) if game_pk else None
+
+    with ThreadPoolExecutor(max_workers=3) as ex:
+        f_home = ex.submit(_home_bp)
+        f_away = ex.submit(_away_bp)
+        f_weather = ex.submit(_weather)
+        return (f_home.result(), f_away.result(), f_weather.result())
 
 
 def fetch_weather(game_pk: int) -> dict | None:
@@ -426,22 +474,15 @@ def main():
     venue_name = game_info.get("venue")
     game_year = int(game_info.get("date", "2026")[:4]) if game_info.get("date") else 2026
 
-    # E1: 自動抓牛棚 ERA（可手動 override）
-    if args.home_bullpen_era is not None:
-        home_bp_era = args.home_bullpen_era
-    elif home_team_id:
-        home_bp_era = fetch_bullpen_era(home_team_id, game_year)
-        print(f"Auto-fetched home bullpen ERA: {home_bp_era}", file=sys.stderr)
-    else:
-        home_bp_era = 4.00
-
-    if args.away_bullpen_era is not None:
-        away_bp_era = args.away_bullpen_era
-    elif away_team_id:
-        away_bp_era = fetch_bullpen_era(away_team_id, game_year)
-        print(f"Auto-fetched away bullpen ERA: {away_bp_era}", file=sys.stderr)
-    else:
-        away_bp_era = 4.00
+    # E1: 自動抓牛棚 ERA + weather（可手動 override；3 fetch 並行 — Cleanup #12）
+    home_bp_era, away_bp_era, weather = _fetch_merge_runtime_inputs(
+        home_team_id=home_team_id,
+        away_team_id=away_team_id,
+        game_year=game_year,
+        game_pk=game_info.get("gamePk"),
+        home_bp_override=args.home_bullpen_era,
+        away_bp_override=args.away_bullpen_era,
+    )
 
     # E2: 自動 Park Factor（可手動 override）
     if args.park_factor is not None:
@@ -474,7 +515,7 @@ def main():
     merged.update(extract_core_bullpen_il_count(home_roster_data, "home"))
     merged.update(extract_core_bullpen_il_count(away_roster_data, "away"))
     # weather（與 park_factor 同層級的條件修正資料；無資料則 None，AI 在 summary 跳過）
-    merged["weather"] = fetch_weather(game_info.get("gamePk")) if game_info.get("gamePk") else None
+    merged["weather"] = weather
     merged.update(extract_meta(game_data, home_pitcher_data, away_pitcher_data))
 
     json_output = json.dumps(merged, indent=2, ensure_ascii=False)
