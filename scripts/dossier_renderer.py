@@ -791,6 +791,41 @@ def _render_bullpen_park(bundle: dict) -> list[str]:
     return lines
 
 
+_SEVERITY_EMOJI = {"high": "🔴", "medium": "🟠", "low": "ℹ️"}
+
+
+def _render_signal_summary(bundle: dict) -> list[str]:
+    """## 🎯 訊號摘要 — derived signals from signals_lib.
+
+    Renders one bullet per fired signal, severity-emoji prefixed and side-tagged.
+    Empty fires → "無顯著訊號" so AI can quickly verify "nothing flagged this game".
+
+    The section sits ABOVE ## 投手對決 in the dossier flow so AI scans signals
+    first then drills into raw data. Risk-Flag 8/3 stay in their own
+    ## ⚠️ 風險提示摘要 section (different layer, different discipline).
+    """
+    try:
+        from signals_lib import compute_all_signals
+    except ImportError:
+        return ["## 🎯 訊號摘要", "", "（signals_lib 不可用）", ""]
+
+    result = compute_all_signals(bundle)
+    fired = [s for s in result.get("signals", []) if s.get("fired")]
+
+    lines = ["## 🎯 訊號摘要", ""]
+    if not fired:
+        lines += ["無顯著訊號", ""]
+        return lines
+
+    for s in fired:
+        emoji = _SEVERITY_EMOJI.get(s.get("severity", "low"), "ℹ️")
+        side = s.get("side", "")
+        side_prefix = f"{side} " if side and side != "GAME" else ""
+        lines.append(f"- {emoji} {side_prefix}{s.get('label', '')}")
+    lines.append("")
+    return lines
+
+
 def _render_risk_summary(bundle: dict) -> list[str]:
     """## ⚠️ 風險提示摘要 section."""
     try:
@@ -905,6 +940,7 @@ def render_dossier(
     sections: list[str] = []
     sections += _render_header(bundle)
     sections += _render_game_info(bundle)
+    sections += _render_signal_summary(bundle)
     sections += _render_record_summary(bundle)
     sections += _render_series_context(bundle)
     sections += _render_pitcher_matchup(bundle)

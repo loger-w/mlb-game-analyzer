@@ -460,6 +460,105 @@ def test_render_risk_summary_no_flags():
     assert "無風險提示" in text
 
 
+# ---------------------------------------------------------------------------
+# PR-3 commit 13: ## 🎯 訊號摘要 section
+# ---------------------------------------------------------------------------
+
+def _bundle_with_fired_signals():
+    """Bundle wired so signals_lib.compute_all_signals fires multiple signals."""
+    bundle = _minimal_bundle()
+    # tier_mismatch fires on HOME
+    bundle["home_pitcher"]["tier_gap"] = {
+        "expected_score": 80.0, "era_only_score": 60, "gap": 20.0,
+    }
+    # reverse_platoon fires on HOME (RHP, RHB OPS > LHB OPS)
+    bundle["home_pitcher"]["pitch_hand"] = "R"
+    bundle["home_pitcher"]["platoon_splits"] = {
+        "vs_left": {"ops": ".545", "bf": 60},
+        "vs_right": {"ops": ".932", "bf": 80},
+    }
+    # core_il_count fires on HOME with severity high
+    bundle["merged"]["home_core_bullpen_il_count"] = 2
+    bundle["merged"]["away_core_bullpen_il_count"] = 0
+    # strong_park fires (PF 112)
+    bundle["merged"]["park_factor"] = 112
+    return bundle
+
+
+def test_render_signal_summary_section_appears_before_pitcher_matchup():
+    """Signal summary must appear above ## 投手對決 in the rendered dossier."""
+    from dossier_renderer import render_dossier
+    bundle = _bundle_with_fired_signals()
+    output = render_dossier(bundle)
+    sig_idx = output.index("## 🎯 訊號摘要")
+    pitcher_idx = output.index("## 投手對決")
+    assert sig_idx < pitcher_idx
+
+
+def test_render_signal_summary_lists_fired_signals():
+    """Each fired signal renders one line with side + label."""
+    from dossier_renderer import _render_signal_summary
+    bundle = _bundle_with_fired_signals()
+    lines = _render_signal_summary(bundle)
+    text = "\n".join(lines)
+    assert "## 🎯 訊號摘要" in text
+    # tier_mismatch HOME label fragment
+    assert "ERA 低估" in text
+    # reverse_platoon HOME label fragment
+    assert "reverse" in text.lower() or "反向" in text
+    # core_il_count HOME ×2 — verify "core IL ×2" or similar in label
+    assert "×2" in text or "core IL" in text
+    # strong_park GAME — PF 112 label
+    assert "112" in text or "打者友善" in text
+
+
+def test_render_signal_summary_no_fires_shows_default_message():
+    """When zero signals fire, section shows '無顯著訊號'."""
+    from dossier_renderer import _render_signal_summary
+    bundle = _minimal_bundle()
+    # Wipe out anything that might fire
+    bundle["home_pitcher"]["tier_gap"] = None
+    bundle["away_pitcher"]["tier_gap"] = None
+    bundle["home_pitcher"]["platoon_splits"] = {}
+    bundle["away_pitcher"]["platoon_splits"] = {}
+    bundle["home_pitcher"]["statcast"] = {"pitch_types": {"FF": 35.0, "SL": 35.0, "CH": 30.0}}
+    bundle["away_pitcher"]["statcast"] = {"pitch_types": {"FF": 35.0, "SL": 35.0, "CH": 30.0}}
+    bundle["home_lineup"]["recent_heat"] = "⚖️ Normal"
+    bundle["away_lineup"]["recent_heat"] = "⚖️ Normal"
+    bundle["home_lineup"]["last7_babip"] = 0.300
+    bundle["away_lineup"]["last7_babip"] = 0.300
+    bundle["home_lineup"]["lineup"] = []
+    bundle["away_lineup"]["lineup"] = []
+    bundle["merged"]["park_factor"] = 100
+    bundle["merged"]["home_core_bullpen_il_count"] = 0
+    bundle["merged"]["away_core_bullpen_il_count"] = 0
+    lines = _render_signal_summary(bundle)
+    text = "\n".join(lines)
+    assert "## 🎯 訊號摘要" in text
+    assert "無顯著訊號" in text
+
+
+def test_render_signal_summary_severity_emoji_prefix():
+    """Each fired signal line is prefixed with severity emoji (🔴/🟠/ℹ️)."""
+    from dossier_renderer import _render_signal_summary
+    bundle = _bundle_with_fired_signals()
+    lines = _render_signal_summary(bundle)
+    text = "\n".join(lines)
+    # core_il_count ×2 is high severity → 🔴
+    # strong_park PF 112 is medium → 🟠
+    # tier_mismatch gap 20 is high → 🔴
+    assert "🔴" in text
+    assert "🟠" in text
+
+
+def test_render_dossier_signal_summary_in_required_sections():
+    """## 🎯 訊號摘要 should now be among rendered H2 markers."""
+    from dossier_renderer import render_dossier
+    bundle = _bundle_with_fired_signals()
+    output = render_dossier(bundle)
+    assert "## 🎯 訊號摘要" in output
+
+
 def test_render_file_index():
     from dossier_renderer import _render_file_index
     lines = _render_file_index({}, game_dir="analysis-data/2026-04-28/TB@CLE")
