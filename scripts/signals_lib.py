@@ -197,3 +197,199 @@ def signal_strong_park(park_factor: float | None) -> dict:
             details={"park_factor": pf},
         )
     return _make(name, False, value=pf)
+
+
+# ---------------------------------------------------------------------------
+# 5. reverse_platoon — pitcher's vs-LHB / vs-RHB OPS unexpectedly inverted
+# ---------------------------------------------------------------------------
+
+_REVERSE_PLATOON_DELTA = 0.080
+_REVERSE_PLATOON_MIN_BF = 30
+_REVERSE_PLATOON_DATA_BF = 50  # 50+ both sides → confidence "data"
+
+
+def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
+    """Detect reverse platoon (e.g. sweeper-heavy RHP performing worse vs RHB).
+
+    Normal platoon expectations:
+        RHP → vs LHB OPS > vs RHB OPS (LHB has platoon advantage)
+        LHP → vs RHB OPS > vs LHB OPS
+
+    Reverse fires when the inequality flips by ≥ 0.080 AND both sides BF ≥ 30.
+    """
+    name = "reverse_platoon"
+    if not splits or pitcher_hand not in ("L", "R"):
+        return _make(name, False, confidence="small_sample")
+
+    left = splits.get("vs_left") or {}
+    right = splits.get("vs_right") or {}
+
+    def _f(v):
+        if v is None:
+            return None
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
+    lhb_ops = _f(left.get("ops"))
+    rhb_ops = _f(right.get("ops"))
+    lhb_bf = left.get("bf") or 0
+    rhb_bf = right.get("bf") or 0
+
+    if lhb_ops is None or rhb_ops is None:
+        return _make(name, False, confidence="small_sample")
+    if lhb_bf < _REVERSE_PLATOON_MIN_BF or rhb_bf < _REVERSE_PLATOON_MIN_BF:
+        return _make(name, False, confidence="small_sample",
+                     details={"lhb_bf": lhb_bf, "rhb_bf": rhb_bf})
+
+    # For RHP: reverse = vs RHB > vs LHB
+    # For LHP: reverse = vs LHB > vs RHB
+    if pitcher_hand == "R":
+        delta = rhb_ops - lhb_ops  # positive = reverse
+        better_side, better_ops, worse_side, worse_ops = "RHB", rhb_ops, "LHB", lhb_ops
+    else:
+        delta = lhb_ops - rhb_ops
+        better_side, better_ops, worse_side, worse_ops = "LHB", lhb_ops, "RHB", rhb_ops
+
+    if delta < _REVERSE_PLATOON_DELTA:
+        return _make(name, False, value=delta)
+
+    confidence = "data" if (lhb_bf >= _REVERSE_PLATOON_DATA_BF and rhb_bf >= _REVERSE_PLATOON_DATA_BF) else "heuristic"
+    severity = "high" if delta >= 0.200 else "medium"
+    label = (
+        f"reverse platoon Δ +{delta:.3f}（vs {better_side} OPS {better_ops:.3f} > "
+        f"vs {worse_side} OPS {worse_ops:.3f}）— {pitcher_hand}HP 對非預期手別反而吃虧"
+    )
+    return _make(
+        name, True, value=round(delta, 3), severity=severity, label=label,
+        details={
+            "pitcher_hand": pitcher_hand,
+            "vs_lhb_ops": lhb_ops, "vs_lhb_bf": lhb_bf,
+            "vs_rhb_ops": rhb_ops, "vs_rhb_bf": rhb_bf,
+        },
+        confidence=confidence,
+    )
+
+
+# ---------------------------------------------------------------------------
+# 6. chain_break — largest adjacent OPS drop in batting order
+# ---------------------------------------------------------------------------
+
+_CHAIN_BREAK_THRESHOLD = 0.150
+
+
+def signal_chain_break(core_lineup: list | None) -> dict:
+    """Find largest adjacent OPS drop in batting order. Fires when ≥ 0.150.
+
+    Caller's order is respected (does NOT re-sort). For official lineups
+    the order is 1-9 batting order; for projected lineups it's PA-descending.
+    """
+    name = "chain_break"
+    if not core_lineup or len(core_lineup) < 5:
+        return _make(name, False, confidence="small_sample")
+
+    # Pull OPS from each batter in caller-supplied order
+    ops_pairs = []  # (position, ops, name)
+    for i, b in enumerate(core_lineup):
+        ops = b.get("ops")
+        if ops is None:
+            continue
+        try:
+            ops_f = float(ops)
+        except (TypeError, ValueError):
+            continue
+        ops_pairs.append((i + 1, ops_f, b.get("name", "?")))
+
+    if len(ops_pairs) < 5:
+        return _make(name, False, confidence="small_sample")
+
+    # Find max adjacent drop (positive = previous slot was better)
+    max_drop = 0.0
+    drop_pos = None
+    for i in range(len(ops_pairs) - 1):
+        drop = ops_pairs[i][1] - ops_pairs[i + 1][1]
+        if drop > max_drop:
+            max_drop = drop
+            drop_pos = (ops_pairs[i][0], ops_pairs[i + 1][0])
+
+    if max_drop < _CHAIN_BREAK_THRESHOLD or drop_pos is None:
+        return _make(name, False, value=max_drop)
+
+    severity = "high" if max_drop >= 0.300 else "medium"
+    label = (
+        f"chain breaks at #{drop_pos[0]}-{drop_pos[1]}：OPS 落差 {max_drop:.3f}"
+    )
+    return _make(
+        name, True, value=round(max_drop, 3), severity=severity, label=label,
+        details={"drop_position": drop_pos, "ops_drop": round(max_drop, 3)},
+    )
+
+
+# ---------------------------------------------------------------------------
+# 7. pitch_mix_concentration — max usage % (NOT HHI; bimodal-safe)
+# ---------------------------------------------------------------------------
+
+_MIX_SINGLE_PITCH = 45.0   # ≥ 45% of one pitch → "single-pitch dependent"
+_MIX_BALANCED_MAX = 25.0   # max < 25% → "balanced (4+ pitches)"
+
+
+def signal_pitch_mix_concentration(pitch_types: dict | None) -> dict:
+    """Surface single-pitch dependence (max ≥ 45%) or balanced 4+ pitches (max < 25%).
+
+    Avoid HHI — bimodal across pitcher types makes raw HHI confusing. Max
+    pitch usage is interpretable and aligns with how analysts talk.
+    """
+    name = "pitch_mix_concentration"
+    if not pitch_types:
+        return _make(name, False, confidence="small_sample")
+    max_usage = max(pitch_types.values())
+    if max_usage >= _MIX_SINGLE_PITCH:
+        return _make(
+            name, True, value=max_usage, severity="medium",
+            label=f"single-pitch dependent：主球種使用率 {max_usage:.1f}%（≥{_MIX_SINGLE_PITCH}%）",
+            details={"max_usage": max_usage, "pitch_types": pitch_types},
+        )
+    if max_usage < _MIX_BALANCED_MAX:
+        return _make(
+            name, True, value=max_usage, severity="low",
+            label=f"balanced 4+ pitches：最高球種僅 {max_usage:.1f}%（<{_MIX_BALANCED_MAX}%）",
+            details={"max_usage": max_usage, "pitch_types": pitch_types},
+        )
+    return _make(name, False, value=max_usage)
+
+
+# ---------------------------------------------------------------------------
+# 8. core_il_count — wraps merged.{side}_core_bullpen_il_count to 1/2/3+ ladder
+# ---------------------------------------------------------------------------
+
+def signal_core_il_count(count: int | None, side: str) -> dict:
+    """Map count to matchup-factors.md §牛棚傷兵累計效應 ladder.
+
+        0 → no fire
+        1 → 🟠 medium
+        2 → 🔴 high
+        3+ → 🔴🔴 high (extreme)
+    """
+    name = "core_il_count"
+    if count is None:
+        return _make(name, False, confidence="small_sample")
+    if count <= 0:
+        return _make(name, False, value=count)
+    if count == 1:
+        return _make(
+            name, True, value=count, severity="medium",
+            label=f"{side} 牛棚 core IL ×1：🟠 中高（後段防守變薄）",
+            details={"side": side, "count": count},
+        )
+    if count == 2:
+        return _make(
+            name, True, value=count, severity="high",
+            label=f"{side} 牛棚 core IL ×2：🔴 高（牛棚明顯吃緊）",
+            details={"side": side, "count": count},
+        )
+    return _make(
+        name, True, value=count, severity="high",
+        label=f"{side} 牛棚 core IL ×{count}：🔴🔴 極高（牛棚崩盤級）",
+        details={"side": side, "count": count},
+    )
