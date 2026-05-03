@@ -90,6 +90,77 @@ TIER_MAP_OPS = [
 ]
 
 
+def _safe_float(v) -> float | None:
+    """Coerce v → float; return None on failure (handles MLB API string OPS like '.850')."""
+    if v is None:
+        return None
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def _bucket_ops_tier(avg_ops: float) -> str:
+    """Apply TIER_MAP_OPS to a numeric avg_ops; first match wins."""
+    for tier_name, check_fn in TIER_MAP_OPS:
+        if check_fn(avg_ops):
+            return tier_name
+    return "🟢 Weak"
+
+
+def compute_tier_vs_hand(core_lineup: list[dict], pitcher_hand: str) -> dict:
+    """Aggregate lineup OPS vs a specific pitcher hand and bucket via TIER_MAP_OPS.
+
+    For each batter, prefer platoon `vs_lhp.ops` (when pitcher_hand=='L') or
+    `vs_rhp.ops` (when 'R'). If platoon data is missing or non-numeric, fall back
+    to season `ops`. Returns aggregate + tier + transparency counters so callers
+    can show "X of 9 had platoon data" in the dossier.
+
+    Args:
+        core_lineup: list of batter dicts with `ops` and optional `platoon`.
+        pitcher_hand: "L" or "R" (case-sensitive).
+
+    Returns:
+        {
+            "tier": str,            # 🔴/🟠/🟡/🟢 from TIER_MAP_OPS, or 🟢 Weak when empty
+            "avg_ops": float | None # mean of resolved OPS values; None if lineup empty
+            "platoon_count": int    # how many batters had real platoon data
+            "fallback_count": int   # how many fell back to season OPS
+        }
+    """
+    if not core_lineup:
+        return {"tier": "🟢 Weak", "avg_ops": None, "platoon_count": 0, "fallback_count": 0}
+
+    key = "vs_lhp" if pitcher_hand == "L" else "vs_rhp"
+
+    values = []
+    platoon_count = 0
+    fallback_count = 0
+    for b in core_lineup:
+        platoon = b.get("platoon") or {}
+        side = platoon.get(key) or {}
+        v = _safe_float(side.get("ops"))
+        if v is not None:
+            values.append(v)
+            platoon_count += 1
+            continue
+        v = _safe_float(b.get("ops"))
+        if v is not None:
+            values.append(v)
+            fallback_count += 1
+
+    if not values:
+        return {"tier": "🟢 Weak", "avg_ops": None, "platoon_count": 0, "fallback_count": 0}
+
+    avg_ops = sum(values) / len(values)
+    return {
+        "tier": _bucket_ops_tier(avg_ops),
+        "avg_ops": round(avg_ops, 3),
+        "platoon_count": platoon_count,
+        "fallback_count": fallback_count,
+    }
+
+
 def fetch_team_roster(team_id: int, year: int) -> list[dict]:
     """從 MLB Stats API 取得球隊 active roster"""
     resp = requests.get(
@@ -464,6 +535,10 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
                 tier = tier_name
                 break
 
+    # 6b. vs-pitcher-hand re-aggregation（PR-2 commit 7）
+    vs_lhp = compute_tier_vs_hand(core_lineup, pitcher_hand="L")
+    vs_rhp = compute_tier_vs_hand(core_lineup, pitcher_hand="R")
+
     # 7. 大小分傾向（既有）
     over_under_lean = 0
     if avg_babip <= 0.270:
@@ -504,7 +579,11 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
         "team": team,
         "team_id": team_id,
         "tier": tier,
+        "tier_vs_lhp": vs_lhp["tier"],
+        "tier_vs_rhp": vs_rhp["tier"],
         "avg_ops": round(avg_ops, 3),
+        "avg_ops_vs_lhp": vs_lhp["avg_ops"],
+        "avg_ops_vs_rhp": vs_rhp["avg_ops"],
         "avg_xwoba": round(avg_xwoba, 3) if avg_xwoba else None,
         "avg_babip": round(avg_babip, 3),
         "avg_k_pct": round(avg_k_pct, 1),
