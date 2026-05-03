@@ -679,3 +679,100 @@ def test_signals_for_bundle_output_matches_compute_all_signals():
     direct_names = {s["name"] for s in direct["signals"] if s.get("fired")}
     helper_names = {s["name"] for s in via_helper["signals"] if s.get("fired")}
     assert direct_names == helper_names
+
+
+
+# ---------------------------------------------------------------------------
+# signal_tto3_penalty — 3rd-time-through-order OPS uplift signal (#9)
+# ---------------------------------------------------------------------------
+
+def _make_tto_splits(*, ops1=0.700, ops3=0.810, k1=28.0, k3=23.0,
+                     bf3=180, source="season"):
+    """Helper: build canonical tto_splits dict for tests."""
+    return {
+        "source": source,
+        "tto1": {"ops": ops1, "k_pct": k1, "bb_pct": 7.0, "bf": 320},
+        "tto2": {"ops": (ops1 + ops3) / 2, "k_pct": (k1 + k3) / 2, "bb_pct": 7.5, "bf": 290},
+        "tto3": {"ops": ops3, "k_pct": k3, "bb_pct": 8.0, "bf": bf3},
+    }
+
+
+def test_tto3_penalty_fires_ops_medium():
+    """OPS Δ +0.110 → fires medium."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(ops1=0.700, ops3=0.810, k1=28, k3=27))
+    _signal_contract(s)
+    assert s["fired"] is True
+    assert s["severity"] == "medium"
+    assert abs(s["value"] - 0.110) < 1e-6
+    assert "TTO3 penalty" in s["label"]
+    assert s["confidence"] == "data"
+    assert s["half_life"] == "structural"
+
+
+def test_tto3_penalty_fires_ops_high():
+    """OPS Δ +0.155 → fires high."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(ops1=0.700, ops3=0.855, k1=28, k3=27))
+    assert s["fired"] is True
+    assert s["severity"] == "high"
+
+
+def test_tto3_penalty_fires_k_drop_only():
+    """OPS Δ +0.050 (< 0.100 not ops fire) + K% Δ -4pp → fires by K trigger."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(ops1=0.700, ops3=0.750, k1=28, k3=24))
+    assert s["fired"] is True
+    assert s["severity"] == "medium"
+    assert "K%" in s["label"]
+
+
+def test_tto3_penalty_fires_both_ops_and_k():
+    """OPS Δ +0.130 + K% Δ -4pp → fires medium with both segments in label."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(ops1=0.700, ops3=0.830, k1=28, k3=24))
+    assert s["fired"] is True
+    assert s["severity"] == "medium"
+    assert "TTO3 penalty" in s["label"]
+    assert "K%" in s["label"]
+
+
+def test_tto3_penalty_no_fire():
+    """OPS Δ +0.060 + K% Δ -1pp → no fire."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(ops1=0.700, ops3=0.760, k1=28, k3=27))
+    assert s["fired"] is False
+    assert "value" in s
+
+
+def test_tto3_penalty_small_sample_below_30_bf():
+    """tto3.bf = 25 → no fire + confidence=small_sample."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(ops1=0.700, ops3=0.900, bf3=25))
+    assert s["fired"] is False
+    assert s["confidence"] == "small_sample"
+
+
+def test_tto3_penalty_career_source_marks_heuristic():
+    """source=career + fire → confidence=heuristic, label has career suffix."""
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(_make_tto_splits(
+        ops1=0.700, ops3=0.810, k1=28, k3=27, source="career",
+    ))
+    assert s["fired"] is True
+    assert s["confidence"] == "heuristic"
+    assert "career" in s["label"].lower()
+
+
+def test_tto3_penalty_handles_none_input():
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty(None)
+    assert s["fired"] is False
+    assert s["confidence"] == "small_sample"
+
+
+def test_tto3_penalty_handles_error_input():
+    from signals_lib import signal_tto3_penalty
+    s = signal_tto3_penalty({"error": "fetch failed"})
+    assert s["fired"] is False
+    assert s["confidence"] == "small_sample"

@@ -53,6 +53,7 @@ _HALF_LIFE_BY_NAME = {
     "chain_break": "medium",                # season OPS 結構
     "pitch_mix_concentration": "medium",    # multi-month aggregate
     "core_il_count": "short",               # IL 名單每天異動
+    "tto3_penalty": "structural",           # multi-year stuff/arsenal/stamina trait
 }
 
 
@@ -422,6 +423,86 @@ def signal_core_il_count(count: int | None, side: str) -> dict:
         name, True, value=count, severity="high",
         label=f"牛棚 core IL ×{count}：🔴🔴 極高（牛棚崩盤級）",
         details={"side": side, "count": count},
+    )
+
+
+# ---------------------------------------------------------------------------
+# 9. tto3_penalty — pitcher's TTO3 OPS uplift vs TTO1 (3rd-time-through curve)
+# ---------------------------------------------------------------------------
+
+_TTO3_OPS_DELTA_FIRE = 0.100   # ≥ 0.100 → medium fire
+_TTO3_OPS_DELTA_HIGH = 0.150   # ≥ 0.150 → high fire
+_TTO3_K_DROP_FIRE = 3.0        # K% drop ≥ 3 percentage points → medium fire
+_TTO3_MIN_BF = 30              # require ≥ 30 BF in tto3 bucket
+
+
+def signal_tto3_penalty(tto_splits: dict | None) -> dict:
+    """Surface starters whose TTO3 OPS uplift exceeds league-typical curve.
+
+    Fires when (any of):
+      - tto3.ops - tto1.ops ≥ 0.100  → medium (≥ 0.150 → high)
+      - tto3.k_pct - tto1.k_pct ≤ -3.0 (K% drop ≥ 3pp) → medium
+
+    half_life: structural (multi-year stuff/arsenal/stamina trait).
+    Confidence: data (season) or heuristic (career fallback).
+    Small sample: tto3.bf < 30 → no_fire + confidence=small_sample.
+
+    Pre-game data only; AI in summary judges bullpen-load implications.
+    Does NOT auto-trigger run value adjustment.
+    """
+    name = "tto3_penalty"
+    if not tto_splits or "error" in tto_splits:
+        return _make(name, False, confidence="small_sample")
+
+    tto1 = tto_splits.get("tto1") or {}
+    tto3 = tto_splits.get("tto3") or {}
+    bf3 = tto3.get("bf") or 0
+    if bf3 < _TTO3_MIN_BF:
+        return _make(name, False, confidence="small_sample",
+                     details={"tto3_bf": bf3})
+
+    ops1 = _to_float(tto1.get("ops"))
+    ops3 = _to_float(tto3.get("ops"))
+    if ops1 is None or ops3 is None:
+        return _make(name, False, confidence="small_sample")
+
+    k1 = _to_float(tto1.get("k_pct"))
+    k3 = _to_float(tto3.get("k_pct"))
+    has_k = k1 is not None and k3 is not None
+
+    ops_delta = ops3 - ops1
+    k_delta = (k3 - k1) if has_k else 0.0
+
+    fired_ops = ops_delta >= _TTO3_OPS_DELTA_FIRE
+    fired_k = has_k and k_delta <= -_TTO3_K_DROP_FIRE
+
+    if not (fired_ops or fired_k):
+        return _make(name, False, value=round(ops_delta, 3),
+                     details={"tto3_bf": bf3,
+                              "source": tto_splits.get("source", "season")})
+
+    severity = "high" if ops_delta >= _TTO3_OPS_DELTA_HIGH else "medium"
+    source = tto_splits.get("source", "season")
+    confidence = "data" if source == "season" else "heuristic"
+
+    label = (
+        f"TTO3 penalty：OPS Δ +{ops_delta:.3f}（TTO1 {ops1:.3f} → TTO3 {ops3:.3f}），"
+        f"第三輪明顯衰退"
+    )
+    if fired_k:
+        label += f"；K% 從 {k1:.1f}% 掉到 {k3:.1f}%（Δ {k_delta:+.1f}pp）"
+    if source == "career":
+        label += "（career fallback）"
+
+    return _make(
+        name, True, value=round(ops_delta, 3), severity=severity, label=label,
+        details={
+            "ops_delta": round(ops_delta, 3),
+            "k_delta": round(k_delta, 1) if has_k else None,
+            "tto1_ops": ops1, "tto3_ops": ops3,
+            "tto3_bf": bf3, "source": source,
+        },
+        confidence=confidence,
     )
 
 
