@@ -795,6 +795,8 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
 
 def _render_bullpen_park(bundle: dict) -> list[str]:
     """## 牛棚 / Park table."""
+    from lib_role_tagging import CORE_BULLPEN_ROLES
+
     merged = bundle.get("merged") or {}
     meta = merged.get("_meta") or {}
     home_roster = bundle.get("home_roster") or {}
@@ -803,33 +805,34 @@ def _render_bullpen_park(bundle: dict) -> list[str]:
     h_bullpen_era = _v(merged.get("home_bullpen_era"))
     a_bullpen_era = _v(merged.get("away_bullpen_era"))
 
-    # IL counts from roster
+    # Core bullpen IL count from merged (canonical — populated by extract_core_bullpen_il_count
+    # in merge_game_data). Cleanup #5: avoids re-deriving via roster.position substring.
+    h_il_count = int(merged.get("home_core_bullpen_il_count") or 0)
+    a_il_count = int(merged.get("away_core_bullpen_il_count") or 0)
+
+    # IL names list — filter by core_role ∈ CORE_BULLPEN_ROLES so list aligns with count.
     h_il_list = home_roster.get("injured_list") or []
     a_il_list = away_roster.get("injured_list") or []
-    h_il_pitchers = [p for p in h_il_list if p.get("position", "").lower() in ("pitcher", "p")]
-    a_il_pitchers = [p for p in a_il_list if p.get("position", "").lower() in ("pitcher", "p")]
+    h_core_il_pitchers = [p for p in h_il_list if p.get("core_role") in CORE_BULLPEN_ROLES]
+    a_core_il_pitchers = [p for p in a_il_list if p.get("core_role") in CORE_BULLPEN_ROLES]
 
-    h_il_count = len(h_il_pitchers)
-    a_il_count = len(a_il_pitchers)
-
-    # Core IL — list pitcher names with position tag "HL setup" style (role unknown → use status)
-    def _core_il_str(il_pitchers: list) -> str:
-        if not il_pitchers:
+    def _core_il_str(il_pitchers: list, count: int) -> str:
+        if count == 0:
             return "—"
-        count = len(il_pitchers)
-        # show first 2 names with their status abbreviation
         parts = []
         for p in il_pitchers[:2]:
             name = p.get("name", "?")
             status = p.get("status", "")
-            # abbreviate status: 'Injured 15-Day' → 'IL15'
             s_short = status.replace("Injured ", "IL").replace("-Day", "d")
             parts.append(f"{name} ({s_short})")
+        if not parts:
+            # count > 0 but no matching names in roster (data lag) → show count only
+            return f"{count}"
         suffix = ", ..." if count > 2 else ""
         return f"{count} ({', '.join(parts)}{suffix})"
 
-    h_core_il = _core_il_str(h_il_pitchers)
-    a_core_il = _core_il_str(a_il_pitchers)
+    h_core_il = _core_il_str(h_core_il_pitchers, h_il_count)
+    a_core_il = _core_il_str(a_core_il_pitchers, a_il_count)
 
     # Park factor
     venue = meta.get("venue", "")
@@ -855,8 +858,8 @@ def _render_bullpen_park(bundle: dict) -> list[str]:
         "| | HOME | AWAY |",
         "|---|------|------|",
         f"| Bullpen ERA | {h_bullpen_era} | {a_bullpen_era} |",
-        f"| 投手 IL 數（含先發/長傷） | {h_il_count} | {a_il_count} |",
-        f"| IL 名單（前 2） | {h_core_il} | {a_core_il} |",
+        f"| Core 牛棚 IL（Closer/Setup/HL RP） | {h_il_count} | {a_il_count} |",
+        f"| Core IL 名單（前 2） | {h_core_il} | {a_core_il} |",
         f"| Park Factor (runs) | {pf_str} | — |",
         f"| Park 備註 | {park_note} | — |",
         "",

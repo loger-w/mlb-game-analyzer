@@ -404,32 +404,91 @@ def test_render_bullpen_park_structure():
     text = "\n".join(lines)
     assert "## 牛棚 / Park" in text
     assert "Bullpen ERA" in text
-    assert "投手 IL 數" in text
+    # Cleanup #5: label uses core bullpen IL semantics (matches merged.{side}_core_bullpen_il_count)
+    assert "Core 牛棚 IL" in text
     assert "Park Factor" in text
     assert "4.57" in text
     assert "5.18" in text
 
 
 def test_render_bullpen_park_il_count():
-    """IL pitcher count should appear correctly."""
+    """Core bullpen IL count should appear with names list."""
     from dossier_renderer import _render_bullpen_park
     bundle = _minimal_bundle()
+    bundle["merged"]["home_core_bullpen_il_count"] = 2
+    bundle["merged"]["away_core_bullpen_il_count"] = 1
     bundle["home_roster"] = {
         "injured_list": [
-            {"name": "P1", "status": "Injured 15-Day", "position": "Pitcher"},
-            {"name": "P2", "status": "Injured 60-Day", "position": "Pitcher"},
+            {"name": "P1", "status": "Injured 15-Day", "position": "Pitcher", "core_role": "Closer"},
+            {"name": "P2", "status": "Injured 60-Day", "position": "Pitcher", "core_role": "Setup"},
         ]
     }
     bundle["away_roster"] = {
         "injured_list": [
-            {"name": "P3", "status": "Injured 15-Day", "position": "Pitcher"},
+            {"name": "P3", "status": "Injured 15-Day", "position": "Pitcher", "core_role": "High-leverage RP"},
         ]
     }
     lines = _render_bullpen_park(bundle)
     text = "\n".join(lines)
-    # HOME has 2 pitchers on IL, AWAY has 1
-    assert "| 2 |" in text or "2 (" in text
-    assert "| 1 |" in text or "1 (" in text
+    # Counts (HOME=2, AWAY=1) come from merged
+    assert "| 2 | 1 |" in text
+    # Names render in IL 名單 row
+    assert "P1" in text
+    assert "P2" in text
+    assert "P3" in text
+
+
+def test_render_bullpen_park_count_from_merged_not_substring():
+    """Cleanup #5: count must come from merged.{side}_core_bullpen_il_count, never re-derived
+    from roster.position substring. Roster IL without core_role must NOT inflate the count."""
+    from dossier_renderer import _render_bullpen_park
+    bundle = _minimal_bundle()
+    # Merged is the canonical source: HOME=3, AWAY=0
+    bundle["merged"]["home_core_bullpen_il_count"] = 3
+    bundle["merged"]["away_core_bullpen_il_count"] = 0
+    # Roster contradicts: HOME has 1 pitcher entry, AWAY has 1 pitcher entry (no core_role).
+    # Old substring filter on position="Pitcher" would yield HOME=1, AWAY=1.
+    # New code must yield HOME=3, AWAY=0 — strictly from merged.
+    bundle["home_roster"] = {
+        "injured_list": [
+            {"name": "OnlyOne", "position": "Pitcher", "status": "Injured 15-Day"},
+        ]
+    }
+    bundle["away_roster"] = {
+        "injured_list": [
+            {"name": "SPName", "position": "Pitcher", "status": "Injured 60-Day"},
+        ]
+    }
+    lines = _render_bullpen_park(bundle)
+    text = "\n".join(lines)
+    # Count row: "| Core 牛棚 IL... | 3 | 0 |"
+    assert "| 3 | 0 |" in text
+    # Old substring would have shown "| 1 | 1 |" — must NOT appear
+    assert "| 1 | 1 |" not in text
+
+
+def test_render_bullpen_park_names_filter_by_core_role():
+    """Cleanup #5: IL names list shows only core_role ∈ CORE_BULLPEN_ROLES
+    (Closer / Setup / High-leverage RP / Co-Closer). SP IL or Long Relief must be hidden."""
+    from dossier_renderer import _render_bullpen_park
+    bundle = _minimal_bundle()
+    bundle["merged"]["home_core_bullpen_il_count"] = 1
+    bundle["merged"]["away_core_bullpen_il_count"] = 0
+    bundle["home_roster"] = {
+        "injured_list": [
+            {"name": "AceSP", "status": "Injured 60-Day", "position": "Pitcher",
+             "core_role": "Starter"},
+            {"name": "CloserGuy", "status": "Injured 15-Day", "position": "Pitcher",
+             "core_role": "Closer"},
+            {"name": "LongRelief", "status": "Injured 15-Day", "position": "Pitcher",
+             "core_role": "Long Relief"},
+        ]
+    }
+    lines = _render_bullpen_park(bundle)
+    text = "\n".join(lines)
+    assert "CloserGuy" in text       # core (Closer)
+    assert "AceSP" not in text       # Starter is not core
+    assert "LongRelief" not in text  # Long Relief is not core
 
 
 def test_render_risk_summary_with_flags():
