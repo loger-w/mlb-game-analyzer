@@ -19,12 +19,75 @@ description: Use when the user asks for MLB single-game matchup analysis — pit
 
 ---
 
+## 場景路由 (Routing)
+
+> **每次請求都要先做這一段**。不該重跑已完成的基本面，不該越權用 odds 補基本面，不該越權用基本面跑盤口。
+
+### Step 0：解析 intent
+
+| Keywords | Intent |
+|---|---|
+| 分析 / 預測 / 看一下 / 先發 / 打線 / 牛棚 + 隊名 | `fundamentals_only` |
+| 盤口 / ML / RL / O-U / O/U / 下哪邊 / 贏面 / value / line | `odds_only` |
+| 兩種都有 | `both` |
+| 都沒明確 | `ambiguous` → 預設 `fundamentals_only` |
+
+### Step 1：確定 GAME_DIR
+
+- date 沒給 → ET 今日
+- doubleheader 多場 → 強制問 G1/G2
+
+### Step 2：平行 state probe（無腳本呼叫）
+
+```
+basic_state :=
+  none     ← analysis-data/{date}/{matchup}/summary.md 不存在
+  partial  ← summary.md 存在但內含 "<!-- AI 補"
+  complete ← summary.md 存在且無 placeholder
+
+odds_state :=
+  no_report       ← odds/reports/{date}.md 不存在
+  report_no_match ← report 存在但無此 matchup 段
+  has_match       ← report 含此 matchup
+```
+
+順手讀 `game_data.json.gameState`（preview / live / final），用於後續 idempotence 判斷。
+
+### Step 3：Routing 矩陣
+
+| intent | basic_state | odds_state | 動作 |
+|--------|-------------|------------|------|
+| `fundamentals_only` | none | — | 跑步驟 1 + 步驟 2 |
+| `fundamentals_only` | partial | — | **跳過 prepare_game**，直接補 summary.md 剩餘 placeholder |
+| `fundamentals_only` | complete | — | Read summary.md 直接呈現，標 mtime；不主動 refresh |
+| `odds_only` | * | no_report | 停步：「`odds/reports/{date}.md` 不存在」+ 建議等下個 snapshot |
+| `odds_only` | * | report_no_match | 停步：「report 中無 {matchup}」+ 列該日含哪些場次 |
+| `odds_only` | none / partial | has_match | **步驟 3：純讀 odds report**（不主動跑 fundamentals） |
+| `odds_only` | complete | has_match | 步驟 3 + **被動引用既有 summary 當 fair-value 錨**（仍不重跑） |
+| `both` | * | * | fundamentals_only 路徑 → odds_only 路徑 → 尾段 paired analysis |
+| `ambiguous` | * | * | 預設 `fundamentals_only`；footer 提示「想看盤口可額外要求」 |
+
+### Step 4：Idempotence 標註
+
+- 重用既有 summary 時必須輸出明說「summary.md 已於 {mtime} 完成，重用」
+- gameState = `live` → 告知並降級（live data ≠ pre-game data）
+- gameState = `final` → 視 user intent 決定是否做事後分析
+
+### Force / refresh override
+
+關鍵字 → `prepare_game.py --force`（覆蓋既有 summary）：
+- "refresh"、"重跑"、"force"、"最新打線"、"再跑一次"
+
+---
+
 ## Quick Reference
 
-| 步驟 | 主要產出 | 工具 |
-|------|---------|------|
-| 1. 資料收集 | `merged.json` + `dossier.md` + `summary.md`（含 AI 填空 placeholder）<br>**自動偵測**：official lineup（公布後）/ 天氣（公布後） | `prepare_game.py` |
-| 2. 綜合分析 | 在 `summary.md` 補完所有 placeholder | AI 編輯 |
+| 步驟 | 主要產出 | 工具 | 觸發路徑 |
+|------|---------|------|---------|
+| 0. 場景路由 | intent + state 判斷 | 無（純 state probe） | 每次必跑 |
+| 1. 資料收集 | `merged.json` + `dossier.md` + `summary.md`（含 AI 填空 placeholder）<br>**自動偵測**：official lineup（公布後）/ 天氣（公布後） | `prepare_game.py` | `fundamentals_only` / `both` 且 `basic_state ≠ complete` |
+| 2. 綜合分析 | 在 `summary.md` 補完所有 placeholder | AI 編輯 | 同上 |
+| 3. 盤口分析 | odds report 解讀（可選 paired with summary） | Read `odds/reports/{date}.md` | `odds_only` / `both` 且 `odds_state = has_match` |
 
 > Doubleheader：產出檔名帶 suffix → `dossier-G1.md` / `summary-G1.md` / `dossier-G2.md` / `summary-G2.md`。
 
@@ -88,8 +151,11 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 2. Read `$GAME_DIR/summary.md` 與 `reference/matchup-factors.md`
 3. 進入步驟 2：在 summary.md 上補完所有 `<!-- AI 補 -->` placeholder（直接在這個檔上改，不需另存）
 
-ℹ️ 如需深入查驗某球員 / 投手細節，可主動 Read 同目錄下個別 drill-down 檔：
-`away_pitcher_summary.md` / `home_pitcher_summary.md` / `away_lineup_summary.md` / `home_lineup_summary.md` / `away_roster_summary.md` / `home_roster_summary.md` / `game_data_summary.md` / `merged_summary.md`
+ℹ️ **drill-down 只在以下情境 Read**（dossier 已涵蓋核心欄位，預設不必看）：
+- 要查 GB% / xBA / csw% / EV95% / 完整 pitch mix / Pitch Arsenal RV/100 → `<side>_pitcher_summary.md`
+- 要看 9 人完整 table / Last 7 per-player / Platoon per-player / BvP table → `<side>_lineup_summary.md`
+- 要驗 IL list 細節（status / position） → `<side>_roster_summary.md`
+- 其他 (`game_data_summary.md` / `merged_summary.md`) 為 debug 用，正常分析不需 Read
 
 ℹ️ **打線來源 / 天氣**：dossier 與 summary 都會標記。official 與 projected 分析架構相同，差異僅在 9 人組成是真實打序還是 PA 近似（見 `matchup-factors.md` §打線分析）。
 
@@ -117,6 +183,49 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 **MUST contain**：投手 Tier 判斷、打線評級、牛棚影響判讀、風險提示判讀、條件修正、修正後預期得分、整體判斷（方向 / 總分 / 信心 / 風險 1-4 點）。
 
 ℹ️ 重跑 `prepare_game.py` 預設不會覆蓋已編輯的 summary.md（偵測 placeholder 是否還在）；要強制重產用 `--force`。
+
+---
+
+## 步驟 3：盤口分析
+
+> **觸發**：intent ∈ {`odds_only`, `both`} 且 `odds_state = has_match`。
+> 假設 `odds/reports/{date}.md` 由 odds 模組 cron 產出（Pinnacle / The Odds API）。
+
+### 3.1 找出本場條目
+
+`odds/reports/{date}.md` 結構：tier 分組（🔥 Major ≥ 5pp / 🟡 Significant ≥ 3pp / 🔵 Watch ≥ 1pp / ⚪ Quiet < 1pp）→ Anchor Notes → 解讀說明。
+
+從文件 grep 場名（`{Away} @ {Home}`），讀取：
+- `direction_label`（→ TEAM ±Xpp，no-vig latest vs anchor 差）
+- 時間軸 table（snapshots × ML / RL / Over / Under）
+- Flags（位移 + 薄盤 + key number 跨越）
+
+### 3.2 解讀架構
+
+| 維度 | 判讀 |
+|------|------|
+| Tier | 🔥/🟡 = strong move 必看；🔵 watch；⚪ noise（不必引用） |
+| 方向 | direction_label 顯示 market 偏向；對照 anchor 看 sharp 還是穩定 |
+| 薄盤 | latest 距開球 < 4h → 訊號可能被晚場閉盤動作污染，可信度降一檔 |
+| Key number | Total 跨 7 / 9 / 11 標 ⚠️ — 1.0 run 跨 key 比 0.5 跨非 key 重要 |
+| 雙邊 vs 單邊 | no-vig pp-delta 區分莊家整體 vig 調整（雙邊同向）vs 真 sharp money（單邊位移） |
+
+> 解讀說明的完整定義在 `odds/reports/{date}.md` 文末「## 解讀說明 (給 AI)」段。
+
+### 3.3 Paired analysis（only if `basic_state = complete`）
+
+- 比對 summary.md 的 direction（基本面）vs odds report 的 direction（market）
+- 同向 + market move 強 → confluence（雙重支持）
+- 反向 → fundamental disagreement，AI 必須解釋 gap
+- 計算 fundamental fair vs market price gap（如果 summary 有 adjusted runs，可粗算 implied ML 對照）
+
+### 3.4 完工條件 / 紀律
+
+✅ MUST contain：tier 引用、direction、薄盤 flag（若有）、paired lean（若 basic complete）
+⛔ MUST NOT contain：
+- 自行補資料 / 無中生有 fair odds
+- 「下哪邊」明確指令（給 lean + 信心，user 自行決策）
+- Path A 風格的數字硬推（「市場 +EV 6.4%」之類無錨估計）
 
 ---
 
