@@ -833,6 +833,11 @@ def main():
     # 11. Pitch Arsenal (per-pitch RV/100, xwOBA, whiff%, etc)
     arsenal = fetch_pitch_arsenal(pitcher_id, args.year)
 
+    # 12. Tier v2 — blended xFIP/K-BB%/velo/age formula (existing v1 `tier` stays
+    #     in place for backward-compat). See lib_tier_v2 for formula details.
+    from lib_tier_v2 import compute_tier_v2
+    tier_v2_result = compute_tier_v2(season, statcast, age=age)
+
     output = {
         "name": args.name,
         "mlbam_id": pitcher_id,
@@ -841,6 +846,9 @@ def main():
         "pitch_hand": info.get("pitch_hand"),
         "age_assessment": age_assessment,
         "tier": tier,
+        "tier_v2": tier_v2_result["tier_v2"],
+        "tier_components": tier_v2_result["components"],
+        "tier_confidence": tier_v2_result["confidence"],
         "season": season,
         "expected": expected,
         "statcast": statcast,
