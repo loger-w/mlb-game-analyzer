@@ -184,10 +184,10 @@ def _render_extra_signals(bundle: dict) -> list[str]:
     to inline these inside ## 風險提示.
     """
     try:
-        from signals_lib import compute_all_signals
+        from signals_lib import signals_for_bundle
     except ImportError:
         return []
-    result = compute_all_signals(bundle)
+    result = signals_for_bundle(bundle)
     fired = [
         s for s in result.get("signals", [])
         if s.get("fired") and s.get("name") not in _RISK_SECTION_EXCLUDED_SIGNALS

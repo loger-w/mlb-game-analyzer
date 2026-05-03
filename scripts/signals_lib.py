@@ -498,3 +498,23 @@ def compute_all_signals(bundle: dict | None) -> dict:
 
     fired_count = sum(1 for s in signals if s["fired"])
     return {"signals": signals, "fired_count": fired_count}
+
+
+def signals_for_bundle(bundle: dict) -> dict:
+    """Return cached `bundle["signals"]` if present, else compute_all_signals and cache.
+
+    Cleanup #7: dossier (`_render_signal_summary`) and summary (`_render_extra_signals`)
+    both fan out the same signal computation over the same bundle. Computing once
+    and stashing under `bundle["signals"]` cuts the duplicate work.
+
+    The cache lives on the caller's bundle dict — prepare_game already shares one
+    bundle across step_f / step_g, so the second renderer hits the cache. Callers
+    that hand-build bundles (tests, stand-alone CLIs) can skip pre-population and
+    let this helper do it lazily.
+    """
+    cached = bundle.get("signals")
+    if cached is not None:
+        return cached
+    result = compute_all_signals(bundle)
+    bundle["signals"] = result
+    return result

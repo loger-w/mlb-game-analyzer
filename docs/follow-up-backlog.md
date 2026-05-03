@@ -119,9 +119,11 @@ Bradish ERA 5.03 → score 15（Below）；ERA 4.99 → 35（Back-end）。0.04 
 
 實作備註（2026-05-03）：抽 inner `_fetch_one(pid) -> (pid, stats_or_None)` + `executor.map`；None pid 在進 pool 前先 filter；新增 5 tests（4 behavior + 1 in-flight counter 證明 max ≥ 2，RED 階段 sequential 卡 max=1）。410 → 415。
 
-## 7. `compute_all_signals` 重複計算（MED）
+## ✅ 7. `compute_all_signals` 重複計算（DONE 2026-05-03）
 
 dossier + summary 各跑一次同樣的 signals。建議 `prepare_game` 算一次往下傳 `bundle["signals"]`。
+
+實作備註（2026-05-03）：用 self-caching helper `signals_lib.signals_for_bundle(bundle)` —— 第一個 caller miss → compute + 寫回 `bundle["signals"]`，第二個 caller hit cache。`dossier_renderer._render_signal_summary` + `summary_renderer._render_extra_signals` 改呼叫 helper。`prepare_game.main` 已經把 bundle dict 共享給 step_f / step_g，cache 自動跨兩個 renderer 生效，不必動 `_load_bundle` 或 step_*。Tests +3（cache hit / cache miss-then-store / shape match `compute_all_signals`）。432 → 435。
 
 ## 8. `_arsenal_top3_str` 重新過濾（MED）
 

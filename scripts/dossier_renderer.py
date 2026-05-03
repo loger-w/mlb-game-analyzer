@@ -885,11 +885,11 @@ def _render_signal_summary(bundle: dict) -> list[str]:
     ## ⚠️ 風險提示摘要 section (different layer, different discipline).
     """
     try:
-        from signals_lib import compute_all_signals
+        from signals_lib import signals_for_bundle
     except ImportError:
         return ["## 🎯 訊號摘要", "", "（signals_lib 不可用）", ""]
 
-    result = compute_all_signals(bundle)
+    result = signals_for_bundle(bundle)
     fired = [s for s in result.get("signals", []) if s.get("fired")]
 
     lines = ["## 🎯 訊號摘要", ""]

@@ -619,3 +619,63 @@ def test_signal_pitch_mix_concentration_half_life_medium():
     """投手球種 mix 是 multi-month aggregate，但季中可調 → medium"""
     from signals_lib import signal_pitch_mix_concentration
     assert signal_pitch_mix_concentration({"FF": 50.0, "SL": 30.0, "CH": 20.0})["half_life"] == "medium"
+
+
+# ---------------------------------------------------------------------------
+# Cleanup #7 — signals_for_bundle: bundle-level cache for compute_all_signals
+# ---------------------------------------------------------------------------
+
+
+def test_signals_for_bundle_returns_cached_when_present():
+    """When bundle["signals"] is already populated, helper returns the cached dict
+    verbatim and does NOT recompute. Verified via a sentinel that compute_all_signals
+    would never produce."""
+    from signals_lib import signals_for_bundle
+
+    sentinel = {"sentinel_cached": True, "signals": [], "fired_count": 0}
+    bundle = _minimal_bundle()
+    bundle["signals"] = sentinel
+
+    result = signals_for_bundle(bundle)
+    assert result is sentinel  # exact same object — cache, not recompute
+
+
+def test_signals_for_bundle_computes_and_stores_when_missing():
+    """When bundle has no "signals" key, helper computes via compute_all_signals,
+    writes the result back into bundle["signals"], and a subsequent call hits cache."""
+    from signals_lib import signals_for_bundle
+
+    bundle = _minimal_bundle()
+    assert "signals" not in bundle
+
+    first = signals_for_bundle(bundle)
+    # Compute happened and result was stored
+    assert "signals" in bundle
+    assert bundle["signals"] is first
+    # Shape matches compute_all_signals output
+    assert "signals" in first
+    assert "fired_count" in first
+    assert isinstance(first["signals"], list)
+
+    # Second call returns the same object (cache hit, no recompute)
+    second = signals_for_bundle(bundle)
+    assert second is first
+
+
+def test_signals_for_bundle_output_matches_compute_all_signals():
+    """Regression guard: signals_for_bundle (cold cache) returns the exact same
+    dict shape as compute_all_signals — no transformations or omissions."""
+    from signals_lib import signals_for_bundle, compute_all_signals
+
+    bundle1 = _minimal_bundle()
+    bundle2 = _minimal_bundle()  # separate dict; ensures no cache cross-talk
+
+    direct = compute_all_signals(bundle1)
+    via_helper = signals_for_bundle(bundle2)
+
+    assert sorted(direct.keys()) == sorted(via_helper.keys())
+    assert direct["fired_count"] == via_helper["fired_count"]
+    # Same set of fired signal names
+    direct_names = {s["name"] for s in direct["signals"] if s.get("fired")}
+    helper_names = {s["name"] for s in via_helper["signals"] if s.get("fired")}
+    assert direct_names == helper_names
