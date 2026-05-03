@@ -420,3 +420,106 @@ def test_core_il_count_handles_none():
     s = signal_core_il_count(count=None, side="HOME")
     assert s["fired"] is False
     assert s["confidence"] == "small_sample"
+
+
+# ---------------------------------------------------------------------------
+# compute_all_signals — aggregator over bundle (PR-3 commit 12)
+# ---------------------------------------------------------------------------
+
+def _minimal_bundle():
+    """Compact bundle that exercises every signal path."""
+    return {
+        "home_pitcher": {
+            "pitch_hand": "R",
+            "tier_gap": {"expected_score": 80.0, "era_only_score": 60, "gap": 20.0},
+            "platoon_splits": {
+                "vs_left": {"ops": ".545", "bf": 60},
+                "vs_right": {"ops": ".932", "bf": 80},
+            },
+            "statcast": {"pitch_types": {"SL": 50.0, "FF": 30.0, "CH": 20.0}},
+        },
+        "away_pitcher": {
+            "pitch_hand": "L",
+            "tier_gap": {"expected_score": 55.0, "era_only_score": 75, "gap": -20.0},
+            "platoon_splits": {
+                "vs_left": {"ops": ".700", "bf": 50},
+                "vs_right": {"ops": ".750", "bf": 100},
+            },
+            "statcast": {"pitch_types": {"FF": 40.0, "SL": 30.0, "CH": 30.0}},
+        },
+        "home_lineup": {
+            "recent_heat": "🔥 Hot",
+            "last7_babip": 0.380,
+            "lineup": [
+                {"name": "P1", "ops": 0.900, "platoon": {"vs_lhp": {"ops": ".950"}}},
+                {"name": "P2", "ops": 0.850, "platoon": {"vs_lhp": {"ops": ".920"}}},
+                {"name": "P3", "ops": 0.800, "platoon": {"vs_lhp": {"ops": ".870"}}},
+                {"name": "P4", "ops": 0.500, "platoon": {"vs_lhp": {"ops": ".600"}}},
+                {"name": "P5", "ops": 0.700, "platoon": {"vs_lhp": {"ops": ".780"}}},
+                {"name": "P6", "ops": 0.650},
+                {"name": "P7", "ops": 0.620},
+                {"name": "P8", "ops": 0.580},
+                {"name": "P9", "ops": 0.560},
+            ],
+        },
+        "away_lineup": {
+            "recent_heat": "⚖️ Normal",
+            "last7_babip": 0.300,
+            "lineup": [{"name": f"AP{i}", "ops": 0.700} for i in range(9)],
+        },
+        "merged": {
+            "park_factor": 112,
+            "home_core_bullpen_il_count": 2,
+            "away_core_bullpen_il_count": 0,
+        },
+    }
+
+
+def test_compute_all_signals_returns_dict_with_signals_list_and_count():
+    from signals_lib import compute_all_signals
+    result = compute_all_signals(_minimal_bundle())
+    assert "signals" in result
+    assert "fired_count" in result
+    assert isinstance(result["signals"], list)
+    assert isinstance(result["fired_count"], int)
+
+
+def test_compute_all_signals_attaches_side_to_each_signal():
+    """Every signal dict has 'side' key set to HOME / AWAY / GAME."""
+    from signals_lib import compute_all_signals
+    result = compute_all_signals(_minimal_bundle())
+    for s in result["signals"]:
+        assert "side" in s
+        assert s["side"] in ("HOME", "AWAY", "GAME")
+
+
+def test_compute_all_signals_fires_expected_signals_for_minimal_bundle():
+    """The minimal bundle is constructed to fire 6 signals."""
+    from signals_lib import compute_all_signals
+    result = compute_all_signals(_minimal_bundle())
+    fired = [s for s in result["signals"] if s["fired"]]
+    fired_names = {(s["name"], s["side"]) for s in fired}
+
+    # Expected fires:
+    assert ("tier_mismatch", "HOME") in fired_names           # gap +20
+    assert ("tier_mismatch", "AWAY") in fired_names           # gap -20
+    assert ("reverse_platoon", "HOME") in fired_names         # RHP RHB > LHB
+    assert ("pitch_mix_concentration", "HOME") in fired_names # SL 50%
+    assert ("heat_vs_babip", "HOME") in fired_names           # lucky-hot
+    assert ("strong_park", "GAME") in fired_names             # PF 112
+    assert ("core_il_count", "HOME") in fired_names           # 2 core IL
+
+
+def test_compute_all_signals_handles_empty_bundle_gracefully():
+    """Empty bundle → all signals return fired=False, no crash."""
+    from signals_lib import compute_all_signals
+    result = compute_all_signals({})
+    assert result["fired_count"] == 0
+    assert all(s["fired"] is False for s in result["signals"])
+
+
+def test_compute_all_signals_fired_count_matches_list():
+    """fired_count == len([s for s in signals if s.fired])."""
+    from signals_lib import compute_all_signals
+    result = compute_all_signals(_minimal_bundle())
+    assert result["fired_count"] == sum(1 for s in result["signals"] if s["fired"])

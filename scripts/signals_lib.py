@@ -393,3 +393,78 @@ def signal_core_il_count(count: int | None, side: str) -> dict:
         label=f"{side} 牛棚 core IL ×{count}：🔴🔴 極高（牛棚崩盤級）",
         details={"side": side, "count": count},
     )
+
+
+# ---------------------------------------------------------------------------
+# compute_all_signals — top-level aggregator
+# ---------------------------------------------------------------------------
+
+def _tag(signal_dict: dict, side: str) -> dict:
+    """Attach a side annotation to a signal dict (HOME / AWAY / GAME)."""
+    signal_dict["side"] = side
+    return signal_dict
+
+
+def compute_all_signals(bundle: dict | None) -> dict:
+    """Run every signal over the bundle and return aggregated results.
+
+    Args:
+        bundle: Output of prepare_game._load_bundle (keys: home_pitcher,
+            away_pitcher, home_lineup, away_lineup, merged, ...). Missing
+            or partial bundle returns the schema with all signals fired=False.
+
+    Returns:
+        {
+            "signals": list[dict],   # every computed signal (with side annotation)
+            "fired_count": int,      # count where fired=True
+        }
+    """
+    bundle = bundle or {}
+    home_p = bundle.get("home_pitcher") or {}
+    away_p = bundle.get("away_pitcher") or {}
+    home_l = bundle.get("home_lineup") or {}
+    away_l = bundle.get("away_lineup") or {}
+    merged = bundle.get("merged") or {}
+
+    signals: list[dict] = []
+
+    # Per-pitcher signals (tier_mismatch, reverse_platoon, pitch_mix_concentration)
+    for side, p in (("HOME", home_p), ("AWAY", away_p)):
+        signals.append(_tag(signal_tier_mismatch(p.get("tier_gap")), side))
+        signals.append(_tag(
+            signal_reverse_platoon(p.get("platoon_splits"), p.get("pitch_hand")),
+            side,
+        ))
+        statcast = p.get("statcast") or {}
+        signals.append(_tag(
+            signal_pitch_mix_concentration(statcast.get("pitch_types")),
+            side,
+        ))
+
+    # Per-lineup signals (heat_vs_babip, platoon_advantage, chain_break).
+    # platoon_advantage uses opposing pitcher's hand so the lineup is matched
+    # against today's opponent rather than aggregate platoon splits.
+    for side, l, opp_p in (
+        ("HOME", home_l, away_p),
+        ("AWAY", away_l, home_p),
+    ):
+        signals.append(_tag(
+            signal_heat_vs_babip(l.get("recent_heat"), l.get("last7_babip")),
+            side,
+        ))
+        signals.append(_tag(
+            signal_platoon_advantage(l.get("lineup") or [], opp_p.get("pitch_hand", "R")),
+            side,
+        ))
+        signals.append(_tag(signal_chain_break(l.get("lineup") or []), side))
+
+    # Per-side bullpen IL count
+    for side in ("HOME", "AWAY"):
+        count = merged.get(f"{side.lower()}_core_bullpen_il_count")
+        signals.append(_tag(signal_core_il_count(count, side), side))
+
+    # Game-level (single instance)
+    signals.append(_tag(signal_strong_park(merged.get("park_factor")), "GAME"))
+
+    fired_count = sum(1 for s in signals if s["fired"])
+    return {"signals": signals, "fired_count": fired_count}
