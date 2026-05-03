@@ -325,6 +325,69 @@ def fetch_statcast_barrels(mlbam_id: int, year: int) -> dict:
         return {"error": str(e)}
 
 
+def _import_arsenal_fn():
+    """Lazy import for `statcast_pitcher_arsenal_stats`. Kept separate from
+    `_import_pybaseball()` so existing 4-tuple monkeypatch sites stay unaffected."""
+    try:
+        from pybaseball import statcast_pitcher_arsenal_stats
+        return statcast_pitcher_arsenal_stats
+    except ImportError as e:
+        raise RuntimeError(
+            "pybaseball not installed or cannot import. Run: pip install pybaseball"
+        ) from e
+
+
+def _safe_round(value, decimals: int):
+    """`round(float(v), n)` if v is not None; else None. Centralizes the
+    `value is not None ? round(...) : None` boilerplate."""
+    if value is None:
+        return None
+    try:
+        return round(float(value), decimals)
+    except (TypeError, ValueError):
+        return None
+
+
+def fetch_pitch_arsenal(mlbam_id: int, year: int) -> list[dict]:
+    """從 Statcast pitcher arsenal leaderboard 取此投手所有球種的 RV/whiff/xwOBA。
+
+    使用 pybaseball.statcast_pitcher_arsenal_stats(year, minPA=25)，與既有
+    leaderboard 模式一致。回傳 list[dict]，每個 dict 對應一個球種，按 usage
+    降序排序。錯誤情況回 [{"error": str}]，方便下游 `format_md` 直接 skip section。
+
+    Schema per dict: pitch_type, pitch_name, usage, rv_per_100, xwoba_against,
+    whiff_pct, put_away_pct, hard_hit_pct.
+    """
+    try:
+        fn = _import_arsenal_fn()
+    except RuntimeError as e:
+        return [{"error": str(e)}]
+    try:
+        with _redirect_pybaseball_stdout():
+            df = fn(year, minPA=25)
+        if df.empty:
+            return [{"error": "No arsenal data"}]
+        rows = df[df["player_id"].astype(str) == str(mlbam_id)]
+        if rows.empty:
+            return [{"error": f"Player {mlbam_id} not found in arsenal data"}]
+        result = []
+        for _, r in rows.iterrows():
+            result.append({
+                "pitch_type": r.get("pitch_type"),
+                "pitch_name": r.get("pitch_name"),
+                "usage": _safe_round(r.get("pitch_usage"), 1),
+                "rv_per_100": _safe_round(r.get("run_value_per_100"), 2),
+                "xwoba_against": _safe_round(r.get("est_woba"), 3),
+                "whiff_pct": _safe_round(r.get("whiff_percent"), 1),
+                "put_away_pct": _safe_round(r.get("put_away"), 1),
+                "hard_hit_pct": _safe_round(r.get("hard_hit_percent"), 1),
+            })
+        result.sort(key=lambda x: x["usage"] if x["usage"] is not None else -1, reverse=True)
+        return result
+    except Exception as e:
+        return [{"error": str(e)}]
+
+
 def fetch_game_log(mlbam_id: int, year: int, limit: int = 3) -> list[dict]:
     """C1: 取得近 N 場 Game Log（含用球數）"""
     try:
@@ -632,6 +695,28 @@ def format_md(data: dict, command: str | None = None) -> str:
             lines.append(f"| {pt} | {_md_fmt(pct, 1)} |")
         lines.append("")
 
+    # Pitch Arsenal (RV/100, xwOBA, whiff%, etc per pitch)
+    arsenal = data.get("arsenal") or []
+    arsenal_valid = [a for a in arsenal if isinstance(a, dict) and "error" not in a]
+    if arsenal_valid:
+        lines += [
+            "## Pitch Arsenal (RV/100)",
+            "",
+            "| 球種 | usage% | RV/100 | xwOBA | whiff% | put-away% | hard-hit% |",
+            "|------|--------|--------|-------|--------|-----------|-----------|",
+        ]
+        for a in arsenal_valid:
+            lines.append(
+                f"| {a.get('pitch_type', '—')} | "
+                f"{_md_fmt(a.get('usage'), 1)} | "
+                f"{_md_fmt(a.get('rv_per_100'), 2)} | "
+                f"{_md_fmt(a.get('xwoba_against'), 3)} | "
+                f"{_md_fmt(a.get('whiff_pct'), 1)} | "
+                f"{_md_fmt(a.get('put_away_pct'), 1)} | "
+                f"{_md_fmt(a.get('hard_hit_pct'), 1)} |"
+            )
+        lines.append("")
+
     # Platoon
     if platoon and "error" not in platoon:
         lines += ["## Platoon Splits", ""]
@@ -745,6 +830,15 @@ def main():
         statcast["whiff_pct"] = whiff_csw.get("whiff_pct")
         statcast["csw_pct"] = whiff_csw.get("csw_pct")
 
+    # 11. Pitch Arsenal (per-pitch RV/100, xwOBA, whiff%, etc)
+    arsenal = fetch_pitch_arsenal(pitcher_id, args.year)
+
+    # 12. Tier v2 — blended xFIP/K-BB%/velo/age formula (existing v1 `tier` stays
+    #     in place for backward-compat). See lib_tier_v2 for formula details.
+    from lib_tier_v2 import compute_tier_v2, compute_tier_gap
+    tier_v2_result = compute_tier_v2(season, statcast, age=age)
+    tier_gap = compute_tier_gap(tier_v2_result, era_only_tier=tier)
+
     output = {
         "name": args.name,
         "mlbam_id": pitcher_id,
@@ -753,11 +847,16 @@ def main():
         "pitch_hand": info.get("pitch_hand"),
         "age_assessment": age_assessment,
         "tier": tier,
+        "tier_v2": tier_v2_result["tier_v2"],
+        "tier_components": tier_v2_result["components"],
+        "tier_confidence": tier_v2_result["confidence"],
+        "tier_gap": tier_gap,
         "season": season,
         "expected": expected,
         "statcast": statcast,
         "game_log": game_log,
         "platoon_splits": platoon_splits,
+        "arsenal": arsenal,
     }
 
     json_output = json.dumps(output, indent=2, ensure_ascii=False)

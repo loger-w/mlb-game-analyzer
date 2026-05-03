@@ -119,6 +119,83 @@ def test_pitcher_md_includes_platoon_when_present():
     assert "vs RHB" in md
 
 
+# ---------------------------------------------------------------------------
+# pitcher_stats.format_md — Pitch Arsenal (PR-1 commit 3)
+# ---------------------------------------------------------------------------
+
+def _pitcher_with_arsenal():
+    """Lugo fixture + arsenal list (3 pitches, sorted by usage)."""
+    data = _pitcher_lugo_data()
+    data["arsenal"] = [
+        {"pitch_type": "SL", "pitch_name": "Slider",
+         "usage": 32.1, "rv_per_100": -1.8, "xwoba_against": 0.245,
+         "whiff_pct": 38.2, "put_away_pct": 22.1, "hard_hit_pct": 28.3},
+        {"pitch_type": "FF", "pitch_name": "4-Seam Fastball",
+         "usage": 23.7, "rv_per_100": 0.4, "xwoba_against": 0.310,
+         "whiff_pct": 18.2, "put_away_pct": 14.5, "hard_hit_pct": 35.1},
+        {"pitch_type": "SI", "pitch_name": "Sinker",
+         "usage": 22.7, "rv_per_100": -0.6, "xwoba_against": 0.290,
+         "whiff_pct": 12.4, "put_away_pct": 8.0, "hard_hit_pct": 31.5},
+    ]
+    return data
+
+
+def test_pitcher_md_includes_arsenal_section_when_present():
+    from pitcher_stats import format_md
+    md = format_md(_pitcher_with_arsenal())
+    assert "## Pitch Arsenal (RV/100)" in md
+    # Headline columns must show
+    assert "RV/100" in md
+    assert "xwOBA" in md
+    assert "put-away%" in md
+    # Top pitch (SL) values must render
+    assert "SL" in md
+    assert "32.1" in md  # usage
+    assert "-1.80" in md  # rv_per_100
+    assert "0.245" in md  # xwoba_against
+    assert "38.2" in md  # whiff_pct
+
+
+def test_pitcher_md_omits_arsenal_section_when_absent():
+    """data has no 'arsenal' key → section absent (backward-compat with old JSON)."""
+    from pitcher_stats import format_md
+    data = _pitcher_lugo_data()
+    assert "arsenal" not in data
+    md = format_md(data)
+    assert "## Pitch Arsenal" not in md
+
+
+def test_pitcher_md_omits_arsenal_section_when_error_only():
+    """arsenal == [{'error': ...}] → section absent (no half-empty table)."""
+    from pitcher_stats import format_md
+    data = _pitcher_lugo_data()
+    data["arsenal"] = [{"error": "No arsenal data"}]
+    md = format_md(data)
+    assert "## Pitch Arsenal" not in md
+
+
+def test_pitcher_md_omits_arsenal_section_when_empty_list():
+    from pitcher_stats import format_md
+    data = _pitcher_lugo_data()
+    data["arsenal"] = []
+    md = format_md(data)
+    assert "## Pitch Arsenal" not in md
+
+
+def test_pitcher_md_arsenal_renders_pitches_in_supplied_order():
+    """format_md is pure — does not re-sort. Order respects caller (fetch_pitch_arsenal
+    already sorts by usage descending). Scope the index lookup to the arsenal
+    section so we don't collide with the existing `## Pitch Mix` table."""
+    from pitcher_stats import format_md
+    md = format_md(_pitcher_with_arsenal())
+    assert "## Pitch Arsenal" in md
+    arsenal_section = md.split("## Pitch Arsenal", 1)[1]
+    sl_idx = arsenal_section.index("| SL |")
+    ff_idx = arsenal_section.index("| FF |")
+    si_idx = arsenal_section.index("| SI |")
+    assert sl_idx < ff_idx < si_idx
+
+
 def test_pitcher_md_handles_error_in_season():
     """season 有 error 不該 crash，MD 仍可生成。"""
     from pitcher_stats import format_md

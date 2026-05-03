@@ -62,11 +62,116 @@ def test_skeleton_no_yoy_or_babip_h2():
     assert "## BABIP 回歸判定" not in output
 
 
-def test_skeleton_tier_override_slot_present():
-    """Tier 覆寫 slot 在投手 + 打線段都要有（至少 4 處）。"""
+def test_skeleton_tier_validation_slots_present():
+    """PR-3 commit 15: placeholder 從「Tier 覆寫」改為「Tier 驗證」（投手） +
+    「Matchup tier」（打線）。新設計 AI 驗證 signal 而非從零合成。"""
     from summary_renderer import render_summary
     output = render_summary(_minimal_bundle(), _minimal_formula_pred())
-    assert output.count("**Tier 覆寫**") >= 4
+    # 投手段 2 個 Tier 驗證
+    assert output.count("**Tier 驗證**") == 2
+    # 打線段 2 個 Matchup tier
+    assert output.count("**Matchup tier") == 2
+    # 舊的 Tier 覆寫 字串應已不存在
+    assert "Tier 覆寫" not in output
+
+
+def test_skeleton_pitcher_section_references_signals():
+    """投手段必須引用 dossier ## 🎯 訊號摘要 給 AI 對 reverse_platoon 等信號做驗證。"""
+    from summary_renderer import render_summary
+    output = render_summary(_minimal_bundle(), _minimal_formula_pred())
+    assert "Reverse platoon" in output
+    assert "## 🎯 訊號摘要" in output
+
+
+def test_skeleton_lineup_section_uses_matchup_tier():
+    """打線段 placeholder 引用 tier_vs_lhp / tier_vs_rhp 取代單一 season tier 覆寫。"""
+    from summary_renderer import render_summary
+    bundle = _minimal_bundle()
+    bundle["home_lineup"]["tier_vs_lhp"] = "🟠 Strong"
+    bundle["home_lineup"]["tier_vs_rhp"] = "🟡 Average"
+    bundle["away_pitcher"]["pitch_hand"] = "L"
+    output = render_summary(bundle, _minimal_formula_pred())
+    # HOME 對 AWAY (LHP) → tier_vs_lhp 應出現
+    assert "🟠 Strong" in output
+
+
+# ---------------------------------------------------------------------------
+# PR-3 commit 16: 風險提示 段尾追加 ### 額外信號
+# ---------------------------------------------------------------------------
+
+def _bundle_with_extra_signals():
+    """Bundle that fires non-flag signals (core_il_count, strong_park) without
+    triggering Flag 8 (era~xera) or Flag 3 (babip in normal range)."""
+    bundle = _minimal_bundle()
+    # No Flag 8 / Flag 3
+    bundle["home_pitcher"]["season"] = {"era": 4.20, "ip": 50.0}
+    bundle["home_pitcher"]["expected"] = {"xera": 4.30}
+    bundle["away_pitcher"]["season"] = {"era": 4.20, "ip": 50.0}
+    bundle["away_pitcher"]["expected"] = {"xera": 4.30}
+    # Fire non-flag signals: strong_park + core_il_count
+    bundle["merged"]["park_factor"] = 112  # strong_park
+    bundle["merged"]["home_core_bullpen_il_count"] = 2  # core_il_count high
+    return bundle
+
+
+def test_risk_section_appends_extra_signals_section_when_non_flag_fires():
+    from summary_renderer import render_summary
+    output = render_summary(_bundle_with_extra_signals(), _minimal_formula_pred())
+    assert "### 額外信號" in output
+    # core_il_count for HOME ×2
+    assert "×2" in output or "core IL" in output
+    # strong_park PF 112
+    assert "112" in output or "打者友善" in output
+
+
+def test_risk_section_no_extra_signals_when_none_fire():
+    """Bundle with no fired signals → no ### 額外信號 sub-header."""
+    from summary_renderer import render_summary
+    bundle = _minimal_bundle()
+    bundle["home_pitcher"]["season"] = {"era": 4.20, "ip": 50.0}
+    bundle["home_pitcher"]["expected"] = {"xera": 4.30}
+    bundle["away_pitcher"]["season"] = {"era": 4.20, "ip": 50.0}
+    bundle["away_pitcher"]["expected"] = {"xera": 4.30}
+    bundle["merged"]["park_factor"] = 100
+    output = render_summary(bundle, _minimal_formula_pred())
+    assert "### 額外信號" not in output
+
+
+def test_risk_section_excludes_tier_mismatch_and_heat_vs_babip_from_extra():
+    """tier_mismatch + heat_vs_babip 與 Flag 8/3 重疊 → 不進額外信號區避免雙列。"""
+    from summary_renderer import render_summary
+    bundle = _minimal_bundle()
+    # Trigger tier_mismatch (gap = +25)
+    bundle["home_pitcher"]["tier_gap"] = {
+        "expected_score": 90.0, "era_only_score": 65, "gap": 25.0,
+    }
+    # Trigger heat_vs_babip (lucky-hot)
+    bundle["home_lineup"]["recent_heat"] = "🔥 Hot"
+    bundle["home_lineup"]["last7_babip"] = 0.380
+    # Bundle has Flag 8 (era≠xera big gap) too
+    bundle["home_pitcher"]["season"] = {"era": 1.50, "ip": 60.0}
+    bundle["home_pitcher"]["expected"] = {"xera": 4.20}
+    bundle["away_pitcher"]["season"] = {"era": 4.20, "ip": 50.0}
+    bundle["away_pitcher"]["expected"] = {"xera": 4.30}
+    output = render_summary(bundle, _minimal_formula_pred())
+    # If 額外信號 section appears, neither tier_mismatch nor heat_vs_babip 字串
+    # should be in it (Flag 8 / Flag 3 already cover them in main notes).
+    if "### 額外信號" in output:
+        extra = output.split("### 額外信號")[1]
+        assert "ERA 低估" not in extra and "ERA 高估" not in extra
+        assert "lucky-hot" not in extra and "unlucky-cold" not in extra
+
+
+def test_risk_section_keeps_flag_handling_intact():
+    """Adding 額外信號 不破壞 Flag 8 / Flag 3 的既有渲染。"""
+    from summary_renderer import render_summary
+    bundle = _minimal_bundle()
+    bundle["home_pitcher"]["season"] = {"era": 1.50, "ip": 50.0}
+    bundle["home_pitcher"]["expected"] = {"xera": 4.20}
+    bundle["away_lineup"]["last7_babip"] = 0.241
+    output = render_summary(bundle, _minimal_formula_pred())
+    assert "Flag 8" in output
+    assert "Flag 3" in output
 
 
 def test_skeleton_risk_section_lists_triggers_when_present():
@@ -108,11 +213,13 @@ def test_skeleton_expected_runs_table_uses_formula_pred():
     assert "4.2" in output  # away_expected_runs
 
 
-def test_skeleton_line_count_within_70():
-    """summary.md template line count ≤ 70（含 +信號 caveat note）"""
+def test_skeleton_line_count_within_85():
+    """summary.md template line count ≤ 85（PR-3 commit 15 加了顯式 signal
+    引用 placeholder 後，比舊版 70 行多約 10-15 行；85 ceiling 留些 buffer
+    給 commit 16 加額外信號區）。"""
     from summary_renderer import render_summary
     output = render_summary(_minimal_bundle(), _minimal_formula_pred())
-    assert len(output.split("\n")) <= 70
+    assert len(output.split("\n")) <= 85
 
 
 def test_summary_uses_real_predict_with_formula_keys(tmp_path):

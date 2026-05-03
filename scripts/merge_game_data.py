@@ -64,7 +64,7 @@ def extract_pitcher_nested(
     pitcher_data: dict | None,
     prefix: str,
 ) -> dict:
-    """產 nested `{prefix}_pitcher` dict，包含 era/xera/ip/era_xera_delta。
+    """產 nested `{prefix}_pitcher` dict，包含 era/xera/ip/era_xera_delta + arsenal_top。
 
     與現有 `extract_pitcher_features` 共存（兩者讀同一份 pitcher JSON）。
     """
@@ -85,12 +85,18 @@ def extract_pitcher_nested(
     if era is not None and xera is not None:
         delta = round(era - xera, 3)
 
+    # Arsenal top-3 (by usage; fetch_pitch_arsenal 已排序，這裡只過濾 error 並截前 3)
+    arsenal_raw = pitcher_data.get("arsenal", []) if pitcher_data else []
+    arsenal_valid = [a for a in arsenal_raw if isinstance(a, dict) and "error" not in a]
+    arsenal_top = arsenal_valid[:3]
+
     return {
         f"{prefix}_pitcher": {
             "era": era,
             "xera": xera,
             "ip": ip,
             "era_xera_delta": delta,
+            "arsenal_top": arsenal_top,
         }
     }
 
@@ -103,6 +109,31 @@ def extract_lineup_nested(lineup_data: dict | None, prefix: str) -> dict:
             "recent_babip": recent,
         }
     }
+
+
+# Core bullpen roles flagged for IL impact (matchup-factors.md §牛棚傷兵累計效應)
+_CORE_BULLPEN_ROLES = frozenset({"Closer", "Setup", "High-leverage RP", "Co-Closer"})
+
+
+def extract_core_bullpen_il_count(roster_data: dict | None, prefix: str) -> dict:
+    """從 roster 的 injured_list 數出 core bullpen 角色（Closer / Setup /
+    High-leverage RP / Co-Closer）的人數。
+
+    對應 matchup-factors.md §牛棚傷兵累計效應 的 1/2/3+ 分級。AI 在 dossier /
+    summary 解讀，腳本只負責計數。
+
+    Roster 缺檔 / 沒 IL → 0（不是 None — 0 是合法計數值，None 會誤導下游）。
+    Pitcher 在 IL 但無 core_role 欄位（roster_checker 在 PR-2 commit 8 之前的
+    舊輸出）→ 不計入；新版輸出每個 pitcher IL 都會有 core_role。
+    """
+    if not roster_data:
+        return {f"{prefix}_core_bullpen_il_count": 0}
+    il = roster_data.get("injured_list") or []
+    count = sum(
+        1 for entry in il
+        if (entry.get("core_role") in _CORE_BULLPEN_ROLES)
+    )
+    return {f"{prefix}_core_bullpen_il_count": count}
 
 
 def extract_game_features(game_data: dict) -> dict:
@@ -364,6 +395,11 @@ def main():
     parser.add_argument("--away-pitcher", help="pitcher_stats.py output for away starter")
     parser.add_argument("--home-lineup", help="lineup_analyzer.py output for home team")
     parser.add_argument("--away-lineup", help="lineup_analyzer.py output for away team")
+    parser.add_argument("--home-roster", default=None,
+                        help="roster_checker.py output for home team (optional, "
+                             "powers core_bullpen_il_count). Skip → count = 0.")
+    parser.add_argument("--away-roster", default=None,
+                        help="roster_checker.py output for away team (optional, see --home-roster)")
     parser.add_argument("--home-bullpen-era", type=float, default=None,
                         help="Override home bullpen ERA (auto-fetched if omitted)")
     parser.add_argument("--away-bullpen-era", type=float, default=None,
@@ -436,6 +472,12 @@ def main():
     merged["home_bullpen_era"] = home_bp_era
     merged["away_bullpen_era"] = away_bp_era
     merged["park_factor"] = park_factor
+    # Core bullpen IL count from roster (optional; counts pitchers with
+    # core_role ∈ {Closer, Setup, High-leverage RP, Co-Closer} on IL).
+    home_roster_data = load_json(args.home_roster) if args.home_roster else None
+    away_roster_data = load_json(args.away_roster) if args.away_roster else None
+    merged.update(extract_core_bullpen_il_count(home_roster_data, "home"))
+    merged.update(extract_core_bullpen_il_count(away_roster_data, "away"))
     # weather（與 park_factor 同層級的條件修正資料；無資料則 None，AI 在 summary 跳過）
     merged["weather"] = fetch_weather(game_info.get("gamePk")) if game_info.get("gamePk") else None
     merged.update(extract_meta(game_data, home_pitcher_data, away_pitcher_data))

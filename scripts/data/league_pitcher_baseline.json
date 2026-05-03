@@ -1,0 +1,36 @@
+{
+  "year": 2025,
+  "qualifier_min_ip": 50,
+  "metrics": {
+    "xfip": {
+      "direction": "lower_is_better",
+      "p10": 3.45,
+      "p25": 3.78,
+      "p50": 4.12,
+      "p75": 4.55,
+      "p90": 4.95
+    },
+    "k_bb_pct": {
+      "direction": "higher_is_better",
+      "p10": 18.5,
+      "p25": 14.2,
+      "p50": 10.0,
+      "p75": 6.5,
+      "p90": 3.0
+    },
+    "avg_velo": {
+      "direction": "higher_is_better",
+      "p10": 96.2,
+      "p25": 94.5,
+      "p50": 93.1,
+      "p75": 91.7,
+      "p90": 90.3
+    }
+  },
+  "metadata": {
+    "source": "pybaseball.pitching_stats(2025, qual=50) — FanGraphs leaderboard",
+    "generated_at": "2026-02-15T00:00:00Z",
+    "refresh_command": "python scripts/refresh_baselines.py --year 2025 --output scripts/data/league_pitcher_baseline.json",
+    "notes": "Convention: p10 = top decile (best). For lower_is_better metrics (xfip), p10 has the smallest value. For higher_is_better metrics (k_bb_pct, avg_velo), p10 has the largest value. Refresh annually each February before season opens."
+  }
+}

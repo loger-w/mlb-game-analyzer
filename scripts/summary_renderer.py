@@ -17,52 +17,97 @@ Schema 對齊：直接讀 pitcher_stats / lineup_analyzer / roster_checker / mer
 """
 
 
+def _components_summary(components: dict | None) -> str:
+    """Format tier_components as 'xFIP p75, K-BB% p60, velo p40'."""
+    if not components:
+        return "—"
+    parts = []
+    for label, key in (("xFIP", "xfip_pct"), ("K-BB%", "k_bb_pct"), ("velo", "velo_pct")):
+        v = components.get(key)
+        if v is None:
+            continue
+        parts.append(f"{label} p{int(v * 100)}")
+    return ", ".join(parts) if parts else "—"
+
+
+def _gap_str(tier_gap: dict | None) -> str:
+    if not tier_gap or tier_gap.get("gap") is None:
+        return "—"
+    return f"{tier_gap['gap']:+.1f}"
+
+
+def _pitcher_block(side: str, p: dict) -> list[str]:
+    hand = p.get("pitch_hand", "?")
+    age = p.get("age", "?")
+    age_tag = p.get("age_assessment", "")
+    tier_v2 = p.get("tier_v2") or "—"
+    components = p.get("tier_components") or {}
+    comp_str = _components_summary(components)
+    gap = _gap_str(p.get("tier_gap"))
+
+    return [
+        f"### {p.get('name', '?')} ({side}, {hand}HP, {age} {age_tag})".rstrip(),
+        f"- **Tier 驗證**：腳本 tier_v2 = {tier_v2}（{comp_str}），gap vs ERA-only = {gap}",
+        "  - <!-- AI 補：是否同意 score-derived tier？若 |gap| ≥ 15 → 簡述運氣 vs 結構性，不自動下修預測 -->",
+        "- **Reverse platoon 信號**：見 dossier `## 🎯 訊號摘要`（若 fired）",
+        "  - <!-- AI 補：若 fired，本場對手核心打者手別組成是否放大此風險？ -->",
+        "- **對手打線威脅**：<!-- AI 補：基於 dossier 投手對決表 + 上述兩信號 -->",
+        "",
+    ]
+
+
 def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
+    """## 投手對決 — placeholder 從「合成」改「驗證 signal X」（PR-3 commit 15）。
+
+    AI 不再從零合成 tier 判斷，改為驗證腳本給出的 tier_v2 + tier_gap +
+    reverse_platoon 信號。降低 prompt 漂移風險，縮短 AI 推理鏈。
+    """
     home_p = bundle.get("home_pitcher") or {}
     away_p = bundle.get("away_pitcher") or {}
-    # pitcher_stats 真實 schema：top-level pitch_hand / age / age_assessment
-    home_age = home_p.get("age")
-    away_age = away_p.get("age")
-    home_hand = home_p.get("pitch_hand", "?")
-    away_hand = away_p.get("pitch_hand", "?")
-    home_age_tag = home_p.get("age_assessment", "")
-    away_age_tag = away_p.get("age_assessment", "")
     return [
         "## 投手對決",
         "",
-        f"### {home_p.get('name', '?')} (HOME, {home_hand}HP, {home_age or '?'} {home_age_tag})".rstrip(),
-        "- **Tier 覆寫**：<!-- AI 補：覆寫 + 理由 / 或「沿用腳本」 -->",
-        "- 真實水平判斷：<!-- AI 補：基於 ERA/xERA/FIP/Statcast/年齡綜合 -->",
-        "- 對手打線威脅：<!-- AI 補 -->",
-        "",
-        f"### {away_p.get('name', '?')} (AWAY, {away_hand}HP, {away_age or '?'} {away_age_tag})".rstrip(),
-        "- **Tier 覆寫**：<!-- AI 補 -->",
-        "- 真實水平判斷：<!-- AI 補 -->",
-        "- 對手打線威脅：<!-- AI 補 -->",
+        *_pitcher_block("HOME", home_p),
+        *_pitcher_block("AWAY", away_p),
+    ]
+
+
+def _lineup_block(side: str, l: dict, opposing_pitcher_hand: str) -> list[str]:
+    source = l.get("lineup_source", "projected")
+    source_label = "🟢 official" if source == "official" else "🟡 projected（PA 排序近似 — 打線尚未公布）"
+    season_tier = l.get("tier", "?")
+    heat = l.get("recent_heat", "?")
+    if opposing_pitcher_hand == "L":
+        matchup_tier = l.get("tier_vs_lhp") or "—"
+        matchup_label = "vs LHP"
+    elif opposing_pitcher_hand == "R":
+        matchup_tier = l.get("tier_vs_rhp") or "—"
+        matchup_label = "vs RHP"
+    else:
+        matchup_tier = "—"
+        matchup_label = "vs ?HP"
+    return [
+        f"### {side} — season tier {season_tier} / heat {heat}",
+        f"- 打線來源：{source_label}",
+        f"- **Matchup tier ({matchup_label})**：{matchup_tier}",
+        "  - <!-- AI 補：matchup tier 與 season tier 落差 → 本場對打線評估方向（同意/上修/下修） -->",
+        "- **chain_break / heat_vs_babip 信號**：見 dossier `## 🎯 訊號摘要`",
+        "  - <!-- AI 補：若 fired，影響本場攻擊 chain 哪一段 → 簡述 -->",
         "",
     ]
 
 
 def _render_lineup_section(bundle: dict) -> list[str]:
+    """## 打線評級 — placeholder 從「合成」改「驗證 matchup tier + signals」。"""
     home_l = bundle.get("home_lineup") or {}
     away_l = bundle.get("away_lineup") or {}
-    home_source = home_l.get("lineup_source", "projected")
-    away_source = away_l.get("lineup_source", "projected")
-
-    def _label(src):
-        return "🟢 official" if src == "official" else "🟡 projected（PA 排序近似 — 打線尚未公布）"
-
+    home_p = bundle.get("home_pitcher") or {}
+    away_p = bundle.get("away_pitcher") or {}
     return [
         "## 打線評級",
         "",
-        f"### HOME — {home_l.get('tier', '?')} / {home_l.get('recent_heat', '?')}",
-        f"- 打線來源：{_label(home_source)}",
-        "- **Tier 覆寫**：<!-- AI 補 -->",
-        "",
-        f"### AWAY — {away_l.get('tier', '?')} / {away_l.get('recent_heat', '?')}",
-        f"- 打線來源：{_label(away_source)}",
-        "- **Tier 覆寫**：<!-- AI 補 -->",
-        "",
+        *_lineup_block("HOME", home_l, opposing_pitcher_hand=away_p.get("pitch_hand", "?")),
+        *_lineup_block("AWAY", away_l, opposing_pitcher_hand=home_p.get("pitch_hand", "?")),
     ]
 
 
@@ -125,11 +170,48 @@ def _detect_risk_notes(bundle: dict) -> list[str]:
     return notes
 
 
+_SEVERITY_EMOJI_RISK = {"high": "🔴", "medium": "🟠", "low": "ℹ️"}
+
+# Signals that are functionally redundant with Flag 8 / Flag 3 — exclude from
+# 額外信號 to avoid double-listing (AI already handles them in the main notes).
+_RISK_SECTION_EXCLUDED_SIGNALS = frozenset({"tier_mismatch", "heat_vs_babip"})
+
+
+def _render_extra_signals(bundle: dict) -> list[str]:
+    """### 額外信號 — non-flag fired signals (PR-3 commit 16).
+
+    Returns empty list when no qualifying signals fire. Caller decides whether
+    to inline these inside ## 風險提示.
+    """
+    try:
+        from signals_lib import compute_all_signals
+    except ImportError:
+        return []
+    result = compute_all_signals(bundle)
+    fired = [
+        s for s in result.get("signals", [])
+        if s.get("fired") and s.get("name") not in _RISK_SECTION_EXCLUDED_SIGNALS
+    ]
+    if not fired:
+        return []
+    lines = ["", "### 額外信號"]
+    for s in fired:
+        emoji = _SEVERITY_EMOJI_RISK.get(s.get("severity", "low"), "ℹ️")
+        side = s.get("side", "")
+        side_prefix = f"{side} " if side and side != "GAME" else ""
+        lines.append(f"- {emoji} {side_prefix}{s.get('label', '')}")
+    lines.append("  - <!-- AI 補：本場是否受此信號影響？是否與 Flag 3/8 雙重壓力 → 1-2 句敘事 -->")
+    return lines
+
+
 def _render_risk_section(bundle: dict) -> list[str]:
     notes = _detect_risk_notes(bundle)
-    if not notes:
+    extra_signals = _render_extra_signals(bundle)
+    if not notes and not extra_signals:
         return ["## 風險提示", "", "無風險提示", ""]
-    return ["## 風險提示", ""] + notes + [""]
+    if not notes:
+        return ["## 風險提示", "", "Flag 3/8 無觸發；額外信號如下："] + extra_signals + [""]
+    return ["## 風險提示", ""] + notes + extra_signals + [""]
 
 
 def _render_weather_state_line(weather: dict | None) -> list[str]:
