@@ -287,10 +287,10 @@ def test_reverse_platoon_too_small_sample_does_not_fire():
 
 
 def test_reverse_platoon_falls_back_to_obp_plus_slg_when_ops_missing():
-    """5/02 BAL@NYY validation bug: MLB API statSplits returns avg/obp/slg
-    but NOT ops. Signal must fall back to obp+slg or it never fires.
+    """MLB API statSplits returns avg/obp/slg but NOT ops. Signal must fall
+    back to obp+slg or it never fires for live data.
 
-    Bradish actual: vs LHB .253/.353/.460 (ops≈.813); vs RHB .396/.473/.583
+    Example: vs LHB .253/.353/.460 (ops≈.813); vs RHB .396/.473/.583
     (ops≈1.056). Δ ≈ +0.243 → reverse platoon should fire on RHP."""
     from signals_lib import signal_reverse_platoon
     splits = {
@@ -412,8 +412,8 @@ def test_core_il_count_fires_at_1():
 
 
 def test_core_il_count_label_does_not_prefix_side():
-    """5/02 BAL@NYY validation bug: dossier prepends side from signal.side
-    (already in signal dict). Label must NOT also start with side or we get
+    """Dossier renderer prepends side from signal["side"] (already on the
+    dict). Label must NOT also start with side or output reads
     'AWAY AWAY 牛棚 core IL ×1' double-prefix."""
     from signals_lib import signal_core_il_count
     for count in (1, 2, 3):

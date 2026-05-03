@@ -22,6 +22,16 @@ Signals do NOT enter the scoring formula (see flags-checklist.md §3 / §8 —
 from __future__ import annotations
 
 
+def _to_float(v) -> float | None:
+    """Coerce v to float; return None on None / non-numeric strings."""
+    if v is None:
+        return None
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
 def _make(
     name: str,
     fired: bool,
@@ -92,9 +102,8 @@ def signal_heat_vs_babip(heat: str | None, last7_babip: float | None) -> dict:
     name = "heat_vs_babip"
     if heat is None or last7_babip is None:
         return _make(name, False, confidence="small_sample")
-    try:
-        babip = float(last7_babip)
-    except (TypeError, ValueError):
+    babip = _to_float(last7_babip)
+    if babip is None:
         return _make(name, False, confidence="small_sample")
 
     is_hot = heat and ("Hot" in heat or "🔥" in heat)
@@ -138,20 +147,12 @@ def signal_platoon_advantage(core_lineup: list, pitcher_hand: str) -> dict:
     top5 = core_lineup[:5]
     uplifted = 0
     for b in top5:
-        season = b.get("ops")
-        if season is None:
-            continue
-        try:
-            season_f = float(season)
-        except (TypeError, ValueError):
+        season_f = _to_float(b.get("ops"))
+        if season_f is None:
             continue
         platoon = (b.get("platoon") or {}).get(key) or {}
-        vs_ops = platoon.get("ops")
-        if vs_ops is None:
-            continue
-        try:
-            vs_f = float(vs_ops)
-        except (TypeError, ValueError):
+        vs_f = _to_float(platoon.get("ops"))
+        if vs_f is None:
             continue
         if vs_f - season_f >= _PLATOON_UPLIFT_THRESHOLD:
             uplifted += 1
@@ -176,11 +177,8 @@ _PF_LOW = 90
 def signal_strong_park(park_factor: float | None) -> dict:
     """Surface extreme park factors. Neutral parks (90 < PF < 110) don't fire."""
     name = "strong_park"
-    if park_factor is None:
-        return _make(name, False, confidence="small_sample")
-    try:
-        pf = float(park_factor)
-    except (TypeError, ValueError):
+    pf = _to_float(park_factor)
+    if pf is None:
         return _make(name, False, confidence="small_sample")
     if pf >= _PF_HIGH:
         severity = "high" if pf >= 115 else "medium"
@@ -224,22 +222,14 @@ def signal_reverse_platoon(splits: dict | None, pitcher_hand: str) -> dict:
     left = splits.get("vs_left") or {}
     right = splits.get("vs_right") or {}
 
-    def _f(v):
-        if v is None:
-            return None
-        try:
-            return float(v)
-        except (TypeError, ValueError):
-            return None
-
     def _ops_from_side(side: dict) -> float | None:
         """Prefer side.ops; fallback to obp+slg if MLB API stat doesn't ship ops
         (true for /people/{pid}/stats?stats=statSplits — only avg/obp/slg/k/bb)."""
-        ops = _f(side.get("ops"))
+        ops = _to_float(side.get("ops"))
         if ops is not None:
             return ops
-        obp = _f(side.get("obp"))
-        slg = _f(side.get("slg"))
+        obp = _to_float(side.get("obp"))
+        slg = _to_float(side.get("slg"))
         if obp is None or slg is None:
             return None
         return obp + slg
@@ -304,12 +294,8 @@ def signal_chain_break(core_lineup: list | None) -> dict:
     # Pull OPS from each batter in caller-supplied order
     ops_pairs = []  # (position, ops, name)
     for i, b in enumerate(core_lineup):
-        ops = b.get("ops")
-        if ops is None:
-            continue
-        try:
-            ops_f = float(ops)
-        except (TypeError, ValueError):
+        ops_f = _to_float(b.get("ops"))
+        if ops_f is None:
             continue
         ops_pairs.append((i + 1, ops_f, b.get("name", "?")))
 
@@ -388,9 +374,8 @@ def signal_core_il_count(count: int | None, side: str) -> dict:
         return _make(name, False, confidence="small_sample")
     if count <= 0:
         return _make(name, False, value=count)
-    # NOTE: do NOT prefix side into label. Dossier rendering already prepends
-    # `side ` from the signal's `side` field; double prefix produced "AWAY AWAY 牛棚..."
-    # in 5/02 BAL@NYY validation run.
+    # Dossier renderer prepends side from signal["side"]; do not duplicate it
+    # in the label or output reads "AWAY AWAY 牛棚 core IL ×1".
     if count == 1:
         return _make(
             name, True, value=count, severity="medium",

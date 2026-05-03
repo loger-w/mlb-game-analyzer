@@ -371,11 +371,17 @@ def _load_bundle(output_dir: Path) -> dict:
     return bundle
 
 
-def step_f(*, output_dir: Path, dossier_path: Path, game_suffix: str | None = None) -> None:
-    """Step F: 渲染 dossier.md（File 索引段帶 DH suffix-aware summary 檔名）。"""
+def step_f(*, output_dir: Path, dossier_path: Path,
+           game_suffix: str | None = None, bundle: dict | None = None) -> None:
+    """Step F: 渲染 dossier.md（File 索引段帶 DH suffix-aware summary 檔名）。
+
+    `bundle` 可由 caller 預載入（避免 step_f + step_g 重複讀 8 個 JSON）；
+    省略時自行從 output_dir 讀。
+    """
     from dossier_renderer import render_dossier
     print(f"[F] dossier.md       → {dossier_path}", file=sys.stderr)
-    bundle = _load_bundle(output_dir)
+    if bundle is None:
+        bundle = _load_bundle(output_dir)
     md = render_dossier(
         bundle,
         game_dir=str(output_dir),
@@ -384,11 +390,14 @@ def step_f(*, output_dir: Path, dossier_path: Path, game_suffix: str | None = No
     dossier_path.write_text(md, encoding="utf-8")
 
 
-def step_g(*, output_dir: Path, summary_path: Path, force: bool = False) -> None:
+def step_g(*, output_dir: Path, summary_path: Path, force: bool = False,
+           bundle: dict | None = None) -> None:
     """Step G: 渲染 summary.md template（含 AI 填空 placeholder）。
 
     防呆：若 summary 檔已存在且不含 `<!-- AI 補` placeholder，視為「分析師已寫完」，
     保留不覆蓋；用 --force 強制重產（會覆蓋分析師的內容）。
+
+    `bundle` 同 step_f：可由 caller 共享預載 dict 避免重複 IO。
     """
     if summary_path.exists() and not force:
         existing = summary_path.read_text(encoding="utf-8")
@@ -403,7 +412,8 @@ def step_g(*, output_dir: Path, summary_path: Path, force: bool = False) -> None
     from summary_renderer import render_summary
     from scoring_formula import predict_with_formula
     print(f"[G] summary  → {summary_path}", file=sys.stderr)
-    bundle = _load_bundle(output_dir)
+    if bundle is None:
+        bundle = _load_bundle(output_dir)
     formula_pred = predict_with_formula(bundle.get("merged", {}))
     md = render_summary(bundle, formula_pred)
     summary_path.write_text(md, encoding="utf-8")
@@ -514,11 +524,15 @@ def main(argv: list[str] | None = None) -> int:
     # Step E — sequential; waits for A+C+D
     step_e(output_dir=output_dir)
 
-    # Steps F + G — sequential; wait for E
+    # Steps F + G — sequential; wait for E.
+    # Load bundle ONCE; both renderers share the same dict.
+    bundle = _load_bundle(output_dir)
     dossier_path = output_dir / dossier_filename(args.game_suffix)
     summary_path = output_dir / summary_filename(args.game_suffix)
-    step_f(output_dir=output_dir, dossier_path=dossier_path, game_suffix=args.game_suffix)
-    step_g(output_dir=output_dir, summary_path=summary_path, force=args.force)
+    step_f(output_dir=output_dir, dossier_path=dossier_path,
+           game_suffix=args.game_suffix, bundle=bundle)
+    step_g(output_dir=output_dir, summary_path=summary_path,
+           force=args.force, bundle=bundle)
 
     # Risk Notes to stderr
     _print_risk_notes(output_dir)

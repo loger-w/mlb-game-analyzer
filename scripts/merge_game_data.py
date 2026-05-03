@@ -14,6 +14,7 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 from park_factors_lib import PARK_ALIASES, PARK_FACTORS, runs_pf
+from lib_role_tagging import CORE_BULLPEN_ROLES
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
 
@@ -111,27 +112,21 @@ def extract_lineup_nested(lineup_data: dict | None, prefix: str) -> dict:
     }
 
 
-# Core bullpen roles flagged for IL impact (matchup-factors.md §牛棚傷兵累計效應)
-_CORE_BULLPEN_ROLES = frozenset({"Closer", "Setup", "High-leverage RP", "Co-Closer"})
-
-
 def extract_core_bullpen_il_count(roster_data: dict | None, prefix: str) -> dict:
-    """從 roster 的 injured_list 數出 core bullpen 角色（Closer / Setup /
-    High-leverage RP / Co-Closer）的人數。
+    """數出 roster.injured_list 中 core bullpen 角色（CORE_BULLPEN_ROLES）的人數。
 
     對應 matchup-factors.md §牛棚傷兵累計效應 的 1/2/3+ 分級。AI 在 dossier /
     summary 解讀，腳本只負責計數。
 
-    Roster 缺檔 / 沒 IL → 0（不是 None — 0 是合法計數值，None 會誤導下游）。
-    Pitcher 在 IL 但無 core_role 欄位（roster_checker 在 PR-2 commit 8 之前的
-    舊輸出）→ 不計入；新版輸出每個 pitcher IL 都會有 core_role。
+    Roster 缺檔 / 沒 IL → 0（0 是合法計數值，None 會誤導下游）。
+    IL pitcher 無 core_role 欄位 → 不計入。
     """
     if not roster_data:
         return {f"{prefix}_core_bullpen_il_count": 0}
     il = roster_data.get("injured_list") or []
     count = sum(
         1 for entry in il
-        if (entry.get("core_role") in _CORE_BULLPEN_ROLES)
+        if entry.get("core_role") in CORE_BULLPEN_ROLES
     )
     return {f"{prefix}_core_bullpen_il_count": count}
 

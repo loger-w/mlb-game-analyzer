@@ -10,17 +10,13 @@ from pathlib import Path
 import requests
 
 from _team_resolver import resolve_team_id, team_abbr
+from pitcher_stats import parse_ip
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
-
-# 牛棚核心角色關鍵字（用於 IL 影響評估）
-HIGH_LEVERAGE_KEYWORDS = {
-    "Closer", "Setup", "High-leverage",
-}
 
 PITCHER_POSITIONS = {"Pitcher", "Starting Pitcher", "Relief Pitcher", "Closer"}
 
@@ -148,22 +144,11 @@ def fetch_pitcher_season_stats_bulk(player_ids: list[int], season: int) -> dict:
                 "holds": int(s.get("holds", 0)),
                 "g": int(s.get("gamesPlayed", 0)),
                 "gs": int(s.get("gamesStarted", 0)),
-                "ip": _parse_ip_string(s.get("inningsPitched", "0")),
+                "ip": parse_ip(s.get("inningsPitched", "0")),
             }
         except Exception as e:
             print(f"⚠️ Failed pitcher stats fetch pid={pid}: {e}", file=sys.stderr)
     return result
-
-
-def _parse_ip_string(ip_str) -> float:
-    """'8.1' (8 ⅓ innings) → 8.333."""
-    try:
-        parts = str(ip_str).split(".")
-        innings = int(parts[0])
-        thirds = int(parts[1]) if len(parts) > 1 else 0
-        return innings + thirds / 3.0
-    except (ValueError, IndexError):
-        return 0.0
 
 
 def enrich_roster_with_roles(
