@@ -600,6 +600,50 @@ def _compute_tto_from_statcast(mlbam_id: int, year_start: int, year_end: int) ->
         return {"error": f"statcast TTO compute failed: {e}"}
 
 
+_TTO_MIN_BF = 30  # tto3 bucket 最小 BF；不足走 career fallback
+
+
+def _has_sufficient_tto3(data: dict) -> bool:
+    """data 裡 tto3.bf 是否 ≥ _TTO_MIN_BF。error / 缺 tto3 → False。"""
+    if "error" in data:
+        return False
+    tto3 = data.get("tto3") or {}
+    return (tto3.get("bf") or 0) >= _TTO_MIN_BF
+
+
+def fetch_tto_splits(mlbam_id: int, year: int) -> dict:
+    """C2.5：取得投手 Times-Through-Order Splits（TTO1 / TTO2 / TTO3）。
+
+    Plan B：用 pybaseball Statcast pitch-by-pitch 自行聚合。
+    Season 優先；TTO3 BF < 30 → silent fallback 5-year career window。
+    回傳：
+      {
+        "source": "season" | "career",
+        "tto1": {...}, "tto2": {...}, "tto3": {...},
+      }
+      或 {"error": "..."} 兩條路徑都失敗時。
+
+    Caller (signal_tto3_penalty) 看 tto3.bf 自行判斷 small_sample。
+    """
+    season_data = _compute_tto_from_statcast(mlbam_id, year, year)
+    if _has_sufficient_tto3(season_data):
+        season_data["source"] = "season"
+        return season_data
+
+    career_data = _compute_tto_from_statcast(mlbam_id, year - 4, year)
+    if _has_sufficient_tto3(career_data):
+        career_data["source"] = "career"
+        return career_data
+
+    if "error" not in season_data:
+        season_data["source"] = "season"
+        return season_data
+    if "error" not in career_data:
+        career_data["source"] = "career"
+        return career_data
+    return {"error": season_data.get("error", "TTO splits unavailable")}
+
+
 def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
     """C3: 從 Statcast 原始資料計算 Whiff% 和 CSW%"""
     _, statcast_pitcher, _, _ = _import_pybaseball()
@@ -964,6 +1008,9 @@ def main():
     # 9. C2: Platoon Splits（vs LHB / vs RHB）
     platoon_splits = fetch_platoon_splits(pitcher_id, args.year)
 
+    # 9.5. C2.5: Times-Through-Order Splits（TTO1/2/3，Plan B Statcast 聚合）
+    tto_splits = fetch_tto_splits(pitcher_id, args.year)
+
     # 10. C3: Whiff% / CSW%（從 Statcast 原始資料計算）
     whiff_csw = fetch_whiff_csw(pitcher_id, args.year)
     if "error" not in whiff_csw and "error" not in statcast:
@@ -1000,6 +1047,7 @@ def main():
         "statcast": statcast,
         "game_log": game_log,
         "platoon_splits": platoon_splits,
+        "tto_splits": tto_splits,
         "arsenal": arsenal,
         "stuff": stuff,
     }

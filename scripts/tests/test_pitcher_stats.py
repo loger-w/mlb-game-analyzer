@@ -267,3 +267,133 @@ def test_compute_tto_from_statcast_pybaseball_raises(monkeypatch):
     out = _compute_tto_from_statcast(669373, 2025, 2025)
     assert "error" in out
     assert "savant down" in out["error"]
+
+
+def _build_full_season_df():
+    """Build a statcast DataFrame with TTO3 ≥ 30 BF (10 games × 4 batters × 3 rounds)."""
+    rows = []
+    ab_num = 1
+    for game in range(10):
+        for tto_round in range(3):
+            for batter in range(101, 105):  # 4 batters per round
+                rows.append({
+                    "game_pk": 778000 + game,
+                    "at_bat_number": ab_num,
+                    "batter": batter,
+                    "events": "single" if tto_round == 2 else "field_out",
+                })
+                ab_num += 1
+    return _statcast_df(rows)
+
+
+def _build_thin_df(tto3_bf: int):
+    """Build a DataFrame with exactly tto3_bf TTO3 PAs (and ≥ that many TTO1/TTO2)."""
+    rows = []
+    ab_num = 1
+    games_needed = max(1, (tto3_bf + 8) // 9)
+    bf_added = 0
+    for game in range(games_needed):
+        for tto_round in range(3):
+            for batter in range(101, 110):
+                if tto_round == 2 and bf_added >= tto3_bf:
+                    continue
+                rows.append({
+                    "game_pk": 778000 + game,
+                    "at_bat_number": ab_num,
+                    "batter": batter,
+                    "events": "field_out",
+                })
+                ab_num += 1
+                if tto_round == 2:
+                    bf_added += 1
+    return _statcast_df(rows)
+
+
+def test_fetch_tto_splits_season_full(monkeypatch):
+    """Season tto3.bf ≥ 30 → source=season; career not consulted."""
+    calls = {"n": 0}
+
+    def fake_statcast(*args, **kwargs):
+        calls["n"] += 1
+        return _build_full_season_df()
+
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "season"
+    assert out["tto3"]["bf"] >= 30
+    assert calls["n"] == 1
+
+
+def test_fetch_tto_splits_falls_back_to_career(monkeypatch):
+    """Season tto3.bf < 30 → fetch career; career sufficient → source=career."""
+    calls = {"n": 0}
+
+    def fake_statcast(start_dt, end_dt, mlbam):
+        calls["n"] += 1
+        # First call (season) → thin; second (career window) → full
+        if calls["n"] == 1:
+            return _build_thin_df(15)
+        return _build_full_season_df()
+
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "career"
+    assert calls["n"] == 2
+
+
+def test_fetch_tto_splits_both_thin(monkeypatch):
+    """Season + career both < 30 BF → return season (caller handles small_sample)."""
+    fake_statcast = lambda *a, **k: _build_thin_df(15)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "season"
+    assert out["tto3"]["bf"] < 30
+
+
+def test_fetch_tto_splits_season_error_career_ok(monkeypatch):
+    """Season fails → career covers."""
+    calls = {"n": 0}
+
+    def fake_statcast(start_dt, end_dt, mlbam):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise RuntimeError("season pull failed")
+        return _build_full_season_df()
+
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "career"
+    assert calls["n"] == 2
+
+
+def test_fetch_tto_splits_both_fail_returns_error(monkeypatch):
+    def _raise(*args, **kwargs):
+        raise RuntimeError("savant down")
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, _raise, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert "error" in out
