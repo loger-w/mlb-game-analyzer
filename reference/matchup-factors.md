@@ -257,6 +257,17 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 - 階梯：1 = 🟠 中高、2 = 🔴 高、3+ = 🔴🔴 極高
 - AI 判讀：對應 §牛棚傷兵累計效應 1/2/3+ 名分級
 
+#### 9. tto3_penalty（投手）
+- 觸發：TTO3 OPS - TTO1 OPS ≥ 0.100 → medium，≥ 0.150 → high；OR K% drop ≥ 3pp
+- 樣本：TTO3 BF ≥ 30；season 不足 fallback 5-year career（confidence: heuristic）
+- 資料：pybaseball Statcast pitch-by-pitch，依 (game_pk, batter) cumcount 自行算 TTO ordinal（MLB Stats API 不曝光此切面）
+- 範例：starter TTO1 .700 / TTO3 .810（Δ +0.110）→ 第三輪 OPS 已達聯盟平均打者水準
+- AI 判讀：
+  - TTO3 弱（fire）→ 教練可能提早換投，後段牛棚負擔 ↑
+  - 同時對手 `core_il_count` fire（牛棚薄）→ 後段失分風險 ↑、總分判讀偏多
+  - TTO3 強（不 fire）→ 隱性訊號，AI 可從 dossier `## 投手對決` 表格直接讀「能撐第三輪 → 牛棚消耗少」
+- ⛔ **不自動 ±run value**（與 §3 / §8 紀律一致）
+
 ### Signals 與紀律 Flag 的關係
 
 | 層級 | 處理 | 自動 ±run value? |
@@ -272,7 +283,7 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 | 半衰期 | 標記 | 對應 signals | 判讀建議 |
 |-------|------|-------------|---------|
-| structural | （無） | tier_mismatch / strong_park | 多年 / season-to-date 累計，反身慢，**正常引用** |
+| structural | （無） | tier_mismatch / strong_park / tto3_penalty | 多年 / season-to-date 累計，反身慢，**正常引用** |
 | medium | （無） | platoon_advantage / reverse_platoon / chain_break / pitch_mix_concentration | season split / 季中可調，**通常可信但留意對手換人** |
 | short | ⏳ | heat_vs_babip / core_il_count | last7 / 每天異動，**帶懷疑解讀** — 對手可能立即調整 |
 
