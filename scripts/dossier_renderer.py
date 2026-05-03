@@ -457,12 +457,7 @@ def _render_series_context(bundle: dict) -> list[str]:
 
 def _render_pitcher_matchup(bundle: dict) -> list[str]:
     """## 投手對決 table."""
-    # Import here to avoid circular import in tests
-    try:
-        from pitcher_stats import detect_triggers as detect_pitcher_triggers
-    except ImportError:
-        def detect_pitcher_triggers(data):
-            return []
+    from pitcher_stats import detect_triggers as detect_pitcher_triggers
 
     home_p = bundle.get("home_pitcher") or {}
     away_p = bundle.get("away_pitcher") or {}
@@ -554,13 +549,13 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
     hand_label_h = f"{h_hand}HP" if h_hand in ("R", "L") else "?"
     hand_label_a = f"{a_hand}HP" if a_hand in ("R", "L") else "?"
 
-    def _arsenal_top3_str(pitcher: dict) -> str:
-        arsenal = pitcher.get("arsenal") or []
-        valid = [a for a in arsenal if isinstance(a, dict) and "error" not in a][:3]
-        if not valid:
+    def _arsenal_top3_str(arsenal_top: list) -> str:
+        """Format pre-filtered arsenal_top list (merge_game_data.extract_pitcher_nested
+        already drops error entries and slices top 3, so no re-filter here)."""
+        if not arsenal_top:
             return "—"
         parts = []
-        for a in valid:
+        for a in arsenal_top:
             pt = a.get("pitch_type", "?")
             rv = a.get("rv_per_100")
             rv_str = f"{rv:+.1f}" if rv is not None else "—"
@@ -578,8 +573,10 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
         pp_str = f"{pp:.0f}" if pp is not None else "—"
         return f"{sp_str} / {pp_str}"
 
-    h_arsenal_str = _arsenal_top3_str(home_p)
-    a_arsenal_str = _arsenal_top3_str(away_p)
+    home_merged_p = (merged.get("home_pitcher") or {})
+    away_merged_p = (merged.get("away_pitcher") or {})
+    h_arsenal_str = _arsenal_top3_str(home_merged_p.get("arsenal_top") or [])
+    a_arsenal_str = _arsenal_top3_str(away_merged_p.get("arsenal_top") or [])
     h_stuff_str = _stuff_str(home_p)
     a_stuff_str = _stuff_str(away_p)
 
@@ -682,11 +679,7 @@ def _render_full9_vs_pitcher(
 
 def _render_lineup_overview(bundle: dict) -> list[str]:
     """## 打線 table + Top 5 sub-block."""
-    try:
-        from lineup_analyzer import detect_triggers as detect_lineup_triggers
-    except ImportError:
-        def detect_lineup_triggers(data):
-            return []
+    from lineup_analyzer import detect_triggers as detect_lineup_triggers
 
     home_lu = bundle.get("home_lineup") or {}
     away_lu = bundle.get("away_lineup") or {}
@@ -884,10 +877,7 @@ def _render_signal_summary(bundle: dict) -> list[str]:
     first then drills into raw data. Risk-Flag 8/3 stay in their own
     ## ⚠️ 風險提示摘要 section (different layer, different discipline).
     """
-    try:
-        from signals_lib import signals_for_bundle
-    except ImportError:
-        return ["## 🎯 訊號摘要", "", "（signals_lib 不可用）", ""]
+    from signals_lib import signals_for_bundle
 
     result = signals_for_bundle(bundle)
     fired = [s for s in result.get("signals", []) if s.get("fired")]
@@ -911,17 +901,8 @@ def _render_signal_summary(bundle: dict) -> list[str]:
 
 def _render_risk_summary(bundle: dict) -> list[str]:
     """## ⚠️ 風險提示摘要 section."""
-    try:
-        from pitcher_stats import detect_triggers as detect_pitcher_triggers
-    except ImportError:
-        def detect_pitcher_triggers(data):
-            return []
-
-    try:
-        from lineup_analyzer import detect_triggers as detect_lineup_triggers
-    except ImportError:
-        def detect_lineup_triggers(data):
-            return []
+    from pitcher_stats import detect_triggers as detect_pitcher_triggers
+    from lineup_analyzer import detect_triggers as detect_lineup_triggers
 
     merged = bundle.get("merged") or {}
     meta = merged.get("_meta") or {}

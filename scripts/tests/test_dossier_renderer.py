@@ -697,6 +697,14 @@ def _bundle_with_pr2_pitcher_fields():
         {"pitch_type": "CU", "usage": 30.0, "rv_per_100": -1.5},
         {"pitch_type": "CH", "usage": 22.0, "rv_per_100": 0.3},
     ]
+    # Cleanup #8: dossier reads pre-filtered arsenal_top from merged.{side}_pitcher
+    # (parallels production where merge_game_data.extract_pitcher_nested writes it).
+    bundle["merged"]["home_pitcher"] = {
+        "arsenal_top": list(bundle["home_pitcher"]["arsenal"]),
+    }
+    bundle["merged"]["away_pitcher"] = {
+        "arsenal_top": list(bundle["away_pitcher"]["arsenal"]),
+    }
     bundle["home_lineup"]["tier_vs_lhp"] = "🟠 Strong"
     bundle["home_lineup"]["tier_vs_rhp"] = "🟡 Average"
     bundle["away_lineup"]["tier_vs_lhp"] = "🟡 Average"

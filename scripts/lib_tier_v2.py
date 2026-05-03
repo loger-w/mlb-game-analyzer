@@ -81,7 +81,10 @@ def compute_pct(value, percentile_dict: dict, direction: str) -> float | None:
                     return r_high
                 fraction = (v_high - value) / (v_high - v_low)  # 1 at v_low, 0 at v_high
                 return r_low + fraction * (r_high - r_low)
-        return 0.5  # defensive fallback
+        raise AssertionError(
+            f"unreachable: value {value} in clamped range [{anchors[0][0]}, {anchors[-1][0]}] "
+            f"but no anchor pair matched (lower_is_better, anchors={anchors})"
+        )
 
     if direction == "higher_is_better":
         # anchors[0] = (largest value, 0.90 = best)
@@ -98,7 +101,10 @@ def compute_pct(value, percentile_dict: dict, direction: str) -> float | None:
                     return r_high
                 fraction = (value - v_low) / (v_high - v_low)  # 1 at v_high, 0 at v_low
                 return r_low + fraction * (r_high - r_low)
-        return 0.5
+        raise AssertionError(
+            f"unreachable: value {value} in clamped range [{anchors[-1][0]}, {anchors[0][0]}] "
+            f"but no anchor pair matched (higher_is_better, anchors={anchors})"
+        )
 
     raise ValueError(f"Unknown direction: {direction!r}")
 

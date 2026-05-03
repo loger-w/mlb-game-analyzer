@@ -72,20 +72,19 @@ def _render_pitcher_matchup_section(bundle: dict) -> list[str]:
     ]
 
 
+_HAND_TO_TIER_KEYS = {
+    "L": ("tier_vs_lhp", "vs LHP"),
+    "R": ("tier_vs_rhp", "vs RHP"),
+}
+
+
 def _lineup_block(side: str, l: dict, opposing_pitcher_hand: str) -> list[str]:
     source = l.get("lineup_source", "projected")
     source_label = "🟢 official" if source == "official" else "🟡 projected（PA 排序近似 — 打線尚未公布）"
     season_tier = l.get("tier", "?")
     heat = l.get("recent_heat", "?")
-    if opposing_pitcher_hand == "L":
-        matchup_tier = l.get("tier_vs_lhp") or "—"
-        matchup_label = "vs LHP"
-    elif opposing_pitcher_hand == "R":
-        matchup_tier = l.get("tier_vs_rhp") or "—"
-        matchup_label = "vs RHP"
-    else:
-        matchup_tier = "—"
-        matchup_label = "vs ?HP"
+    tier_key, matchup_label = _HAND_TO_TIER_KEYS.get(opposing_pitcher_hand, (None, "vs ?HP"))
+    matchup_tier = (l.get(tier_key) or "—") if tier_key else "—"
     return [
         f"### {side} — season tier {season_tier} / heat {heat}",
         f"- 打線來源：{source_label}",
@@ -136,14 +135,8 @@ def _render_bullpen_section(bundle: dict) -> list[str]:
 
 def _detect_risk_notes(bundle: dict) -> list[str]:
     """偵測 Flag 8 / Flag 3，回傳「條目 markdown 行」list（不含 H2 開頭）。"""
-    try:
-        from pitcher_stats import detect_triggers as detect_pitcher_triggers
-    except ImportError:
-        detect_pitcher_triggers = lambda x: []
-    try:
-        from lineup_analyzer import detect_triggers as detect_lineup_triggers
-    except ImportError:
-        detect_lineup_triggers = lambda x: []
+    from pitcher_stats import detect_triggers as detect_pitcher_triggers
+    from lineup_analyzer import detect_triggers as detect_lineup_triggers
     notes = []
     for side in ("home", "away"):
         triggers = detect_pitcher_triggers(bundle.get(f"{side}_pitcher", {}))
@@ -183,10 +176,7 @@ def _render_extra_signals(bundle: dict) -> list[str]:
     Returns empty list when no qualifying signals fire. Caller decides whether
     to inline these inside ## 風險提示.
     """
-    try:
-        from signals_lib import signals_for_bundle
-    except ImportError:
-        return []
+    from signals_lib import signals_for_bundle
     result = signals_for_bundle(bundle)
     fired = [
         s for s in result.get("signals", [])

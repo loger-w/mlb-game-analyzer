@@ -125,29 +125,37 @@ dossier + summary 各跑一次同樣的 signals。建議 `prepare_game` 算一�
 
 實作備註（2026-05-03）：用 self-caching helper `signals_lib.signals_for_bundle(bundle)` —— 第一個 caller miss → compute + 寫回 `bundle["signals"]`，第二個 caller hit cache。`dossier_renderer._render_signal_summary` + `summary_renderer._render_extra_signals` 改呼叫 helper。`prepare_game.main` 已經把 bundle dict 共享給 step_f / step_g，cache 自動跨兩個 renderer 生效，不必動 `_load_bundle` 或 step_*。Tests +3（cache hit / cache miss-then-store / shape match `compute_all_signals`）。432 → 435。
 
-## 8. `_arsenal_top3_str` 重新過濾（MED）
+## ✅ 8. `_arsenal_top3_str` 重新過濾（DONE 2026-05-03）
 
 `dossier_renderer.py:557-568` 重新過濾 arsenal，但 `merge_game_data.extract_pitcher_nested:91` 已輸出 `arsenal_top`（pre-filtered top-3）。改讀 pre-filtered 欄位即可。
+
+實作備註：dossier `_arsenal_top3_str` 簽名改成接 `arsenal_top: list`（pre-filtered），caller 從 `merged.{side}_pitcher.arsenal_top` 拉。fixture `_bundle_with_pr2_pitcher_fields` 補 `merged.{side}_pitcher = {"arsenal_top": [...]}` 對齊 production。
 
 ## 9. schema 命名一致 `pitcher_hand` vs `pitch_hand`（MED）
 
 JSON 欄位是 `pitch_hand`；`signals_lib` / `lineup_analyzer` 函式參數叫 `pitcher_hand`。建議統一 `pitch_hand` 並更新 call sites。
 
-## 10. `lib_tier_v2` unreachable 防呆（MED）
+## ✅ 10. `lib_tier_v2` unreachable 防呆（DONE 2026-05-03）
 
 lines 83 / 100：`return 0.5  # defensive fallback` 在 clamp 之後實際走不到。改 `raise AssertionError` 並收緊 invariant 訊息。
 
-## 11. `summary_renderer._lineup_block` lookup table（MED）
+實作備註：兩處 fallback 都改 `raise AssertionError(...)`，訊息含 value / direction / anchors 方便 debug。
+
+## ✅ 11. `summary_renderer._lineup_block` lookup table（DONE 2026-05-03）
 
 lines 75-97 三分支 `if/elif/else` on `opposing_pitcher_hand` → 改 `_HAND_TO_KEYS = {"L": ("tier_vs_lhp", "vs LHP"), "R": ("tier_vs_rhp", "vs RHP")}` lookup，扁平化分支。
+
+實作備註：模組層常數 `_HAND_TO_TIER_KEYS = {"L": ..., "R": ...}`，dict.get 走預設 `(None, "vs ?HP")` cover unknown hand。
 
 ## 12. `merge_game_data` 並行 fetch（LOW）
 
 `fetch_bullpen_era × 2 + fetch_weather × 1` 序列。3 round-trips 可 `ThreadPoolExecutor(max_workers=3)` 並行（保留各自 try/except fallback）。
 
-## 13. `summary_renderer` 同 package `try/except ImportError → lambda` 是 dead code（LOW）
+## ✅ 13. 同 package `try/except ImportError → lambda` dead code（DONE 2026-05-03）
 
 142 / 146 行的 fallback lambda 在 same-package import 不會觸發，是 dead defensive code。`dossier_renderer.py:462-465 / 672-675 / 866-869 / 891-894 / 896-900` 也有重複 5 次的相同模式。建議全部刪 try/except，讓 ImportError 自然向上拋。
+
+實作備註：拆掉 8 處 same-package try/except wrapper（dossier ×5：pitcher_stats / lineup_analyzer / signals_for_bundle / pitcher_stats dup / lineup_analyzer dup；summary ×3：pitcher+lineup pair / signals_for_bundle）。pybaseball 的 RuntimeError fallback 是合理 external-dep 防護，留著。
 
 ---
 
