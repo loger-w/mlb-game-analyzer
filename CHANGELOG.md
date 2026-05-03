@@ -1,5 +1,52 @@
 # CHANGELOG
 
+## 2026-05-04 — Path B 採用 + 場景路由 + 反身性收斂
+
+### 動機
+
+`mlb-game-analyzer` skill 深層 review 結論：
+- **epistemic 防衛已過度**（"不自動 ±run value" 在 codebase 重複 ~18 次）；
+- **decision-support 投資不足**（formula 70 行、AI `+ 信號` 欄無 magnitude 錨點）。
+
+決定採 **Path B**：formula 維持簡單 baseline 當 sanity rail，AI 用「量級錨點 + 機率信心」主導 magnitude judgment（公開 ML 模型贏不過，AI narrative 是差異化 edge）。同時加 **場景路由** 解決「fundamentals vs odds 邊界、idempotence 重跑」痛點。
+
+### 落地（6 commits + 1 chore）
+
+#### 場景路由（SKILL.md）
+- `docs(skill)`: 加 `## 場景路由` Step 0-4（intent / state probe / routing 矩陣 / idempotence / force override）
+- `docs(skill)`: 加 `## 步驟 3：盤口分析`（odds_only / both 路徑；引 `odds/reports/{date}.md`）
+- `docs(skill)`: drill-down hint 從「8 個檔列舉」改成「何時 Read」清單
+
+#### Path B 量級錨點 + 半量化信心
+- `docs(reference)`: `matchup-factors.md §量級錨點` — 9 signals ±run 區間 + 累積規則（cap ±0.8 / 場）+ calibration 路徑
+- `feat(summary)`: `_render_overall_section` 信心改 % 機率（取代 LOW/MED/HIGH）+ 方向 / 總分 placeholder 細化
+- `feat(summary)`: `_render_expected_runs_section` caveat 連 §量級錨點
+
+#### 反身性收斂（避免 ~18 處重複）
+- `docs(reference)`: `flags-checklist.md §Signals` trim 成 4 行 pointer（與 `matchup-factors.md §Signals` 不重複）
+- `refactor(dossier)`: `_FLAG8_TAIL` / `_FLAG3_TAIL` 模組常數 + `_flag8_pitcher_lines` / `_flag3_lineup_lines` helper（Single source of truth）
+- `refactor(summary)`: `_FLAG8_AI_PLACEHOLDER` / `_FLAG3_AI_PLACEHOLDER` 模組常數
+
+#### 簡化 baseline（Path B 對齊）
+- `refactor(formula)`: `scoring_formula.py` 70 行 → 39 行；刪 dead `log5()` / `pythagorean_runs()` / 對應 dict keys（無 caller 依賴）；docstring 改寫對齊 Path B 「formula = sanity rail」
+
+#### Legacy 清除
+- `chore(data)`: 刪 62 個 pre-refactor 殘留檔（phase3_skeleton/summary + prediction.json/summary，跨 20 個 game dirs）
+
+### 紀律保留
+
+- ✅ 既有 9 signals 行為零變動（compute_all_signals 邏輯完全不動）
+- ✅ Flag 3/8 stderr 顯示維持只列 flag（`_print_risk_notes` 不動）
+- ✅ summary 7 個 H2 不變、line count ≤ 85 仍通過
+- ✅ `predict_with_formula` return shape 保留 `home_score / away_score / total`（dossier_renderer 與 summary_renderer 既有 caller 全部 OK）
+- ✅ Path A 的 sanity-check 優點以「formula 當 guardrail」保留：AI adjusted vs formula base 差距 > 1.5 run 時 AI 必須在風險段解釋
+
+### Tests
+
+469 → 471 passing（既有測試零修改全綠；refactor 路徑由 existing tests 覆蓋；無新增測試）。
+
+---
+
 ## 2026-05-03 — TTO3 penalty signal（signal #9，Plan B）
 
 第 9 個 derived signal，pitcher-side per-game。先發投手第三輪面對打者 OPS
