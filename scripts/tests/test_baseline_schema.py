@@ -12,7 +12,7 @@ BASELINE_PATH = os.path.join(
     os.path.dirname(__file__), "..", "data", "league_pitcher_baseline.json"
 )
 
-REQUIRED_METRICS = ("xfip", "k_bb_pct", "avg_velo")
+REQUIRED_METRICS = ("xfip", "k_bb_pct", "avg_velo", "stuff_plus", "pitching_plus")
 PERCENTILE_KEYS = ("p10", "p25", "p50", "p75", "p90")
 DIRECTION_VALUES = {"lower_is_better", "higher_is_better"}
 

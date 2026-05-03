@@ -1,13 +1,14 @@
-"""lib_tier_v2 — blended pitcher tier formula based on xFIP / K-BB% / velo / age.
+"""lib_tier_v2 — blended pitcher tier formula based on xFIP / K-BB% / Stuff+ / age.
 
 Pure functions, no I/O at call time (baseline is loaded once on first use; tests
 inject baseline=... to bypass disk).
 
-Score formula:
-    score = 40 × pct(xfip, lower_is_better)
-          + 35 × pct(k_bb_pct, higher_is_better)
-          + 15 × pct(avg_velo, higher_is_better)
-          + 10 × age_factor
+Score formula (Stuff+ refactor; velo no longer enters formula but stays in
+pitcher.statcast for analyst reference):
+    score = 30 × pct(xfip, lower_is_better)
+          + 25 × pct(k_bb_pct, higher_is_better)
+          + 30 × pct(stuff_plus, higher_is_better)
+          + 15 × age_factor
 
 Tier buckets (must match v1 emoji+label strings exactly so existing substring
 assertions stay green):
@@ -135,12 +136,12 @@ def score_to_tier(score: float | None) -> str:
     return "⚪ Below Average"
 
 
-# Component weights (sum = 100). When velo is missing we drop its 15 and
-# renormalize on the remaining 85.
-_WEIGHT_XFIP = 40
-_WEIGHT_KBB = 35
-_WEIGHT_VELO = 15
-_WEIGHT_AGE = 10
+# Component weights (sum = 100). When stuff_plus is missing we drop its 30 and
+# renormalize on the remaining 70.
+_WEIGHT_XFIP = 30
+_WEIGHT_KBB = 25
+_WEIGHT_STUFF = 30
+_WEIGHT_AGE = 15
 
 
 # Mapping v1 ERA-only tier → numeric anchor for tier_gap comparison.
@@ -188,17 +189,23 @@ def compute_tier_v2(
     season: dict | None,
     statcast: dict | None,
     age: int | None = None,
+    stuff: dict | None = None,
     baseline: dict | None = None,
 ) -> dict:
-    """Blend xFIP / K-BB% / velo / age into a 0..100 tier score.
+    """Blend xFIP / K-BB% / Stuff+ / age into a 0..100 tier score.
+
+    `stuff` is the FanGraphs Stuff+/Pitching+ dict from `pitcher_stats.fetch_stuff_pitching_plus`.
+    Pass None when fetch failed; component drops out and remaining 70 weight
+    renormalizes to 100 (confidence "missing_stuff"). velo is no longer in the
+    formula but `statcast.avg_velo` still flows through to JSON / dossier display.
 
     Returns dict with keys:
         score (float | None) — 0..100, None if can't compute
         tier_v2 (str | None) — bucketed label, None if score is None
-        components (dict)    — {xfip_pct, k_bb_pct, velo_pct, age_factor}
+        components (dict)    — {xfip_pct, k_bb_pct, stuff_pct, age_factor}
         confidence (str)     — one of:
             "data"               — full data, all 4 components present
-            "missing_velo"       — velo unavailable, reweighted to 85 → 100
+            "missing_stuff"      — stuff_plus unavailable, reweighted to 70 → 100
             "small_sample"       — IP < 30, no v2 score (caller falls back to v1)
             "missing_baseline"   — baseline.json missing or empty
             "insufficient_data"  — xfip or k_bb_pct missing (cannot compute)
@@ -215,6 +222,7 @@ def compute_tier_v2(
 
     season = season or {}
     statcast = statcast or {}
+    stuff = stuff or {}
 
     ip = season.get("ip")
     if ip is not None and ip < 30:
@@ -225,17 +233,22 @@ def compute_tier_v2(
 
     xfip = season.get("xfip")
     k_bb_pct = season.get("k_bb_pct")
-    velo = statcast.get("avg_velo")
+    stuff_plus = stuff.get("stuff_plus")
 
     xfip_pct = compute_pct(xfip, metrics["xfip"], "lower_is_better") if xfip is not None else None
     kbb_pct = compute_pct(k_bb_pct, metrics["k_bb_pct"], "higher_is_better") if k_bb_pct is not None else None
-    velo_pct = compute_pct(velo, metrics["avg_velo"], "higher_is_better") if velo is not None else None
+    stuff_metrics = metrics.get("stuff_plus")
+    stuff_pct = (
+        compute_pct(stuff_plus, stuff_metrics, "higher_is_better")
+        if (stuff_plus is not None and stuff_metrics)
+        else None
+    )
     age_factor = compute_age_factor(age)
 
     components = {
         "xfip_pct": round(xfip_pct, 3) if xfip_pct is not None else None,
         "k_bb_pct": round(kbb_pct, 3) if kbb_pct is not None else None,
-        "velo_pct": round(velo_pct, 3) if velo_pct is not None else None,
+        "stuff_pct": round(stuff_pct, 3) if stuff_pct is not None else None,
         "age_factor": age_factor,
     }
 
@@ -245,16 +258,16 @@ def compute_tier_v2(
             "components": components, "confidence": "insufficient_data",
         }
 
-    if velo_pct is None:
-        # Drop velo weight, renormalize 40+35+10 = 85 → 100
+    if stuff_pct is None:
+        # Drop Stuff+ weight, renormalize 30+25+15 = 70 → 100
         raw = xfip_pct * _WEIGHT_XFIP + kbb_pct * _WEIGHT_KBB + age_factor * _WEIGHT_AGE
         score = raw / (_WEIGHT_XFIP + _WEIGHT_KBB + _WEIGHT_AGE) * 100
-        confidence = "missing_velo"
+        confidence = "missing_stuff"
     else:
         score = (
             xfip_pct * _WEIGHT_XFIP
             + kbb_pct * _WEIGHT_KBB
-            + velo_pct * _WEIGHT_VELO
+            + stuff_pct * _WEIGHT_STUFF
             + age_factor * _WEIGHT_AGE
         )
         confidence = "data"

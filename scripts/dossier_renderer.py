@@ -567,8 +567,21 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
             parts.append(f"{pt} {rv_str}")
         return " / ".join(parts)
 
+    def _stuff_str(pitcher: dict) -> str:
+        """Format Stuff+ / Pitching+ row. Returns "—" when both missing."""
+        stuff = pitcher.get("stuff") or {}
+        sp = stuff.get("stuff_plus")
+        pp = stuff.get("pitching_plus")
+        if sp is None and pp is None:
+            return "—"
+        sp_str = f"{sp:.0f}" if sp is not None else "—"
+        pp_str = f"{pp:.0f}" if pp is not None else "—"
+        return f"{sp_str} / {pp_str}"
+
     h_arsenal_str = _arsenal_top3_str(home_p)
     a_arsenal_str = _arsenal_top3_str(away_p)
+    h_stuff_str = _stuff_str(home_p)
+    a_stuff_str = _stuff_str(away_p)
 
     lines = [
         "## 投手對決",
@@ -576,6 +589,7 @@ def _render_pitcher_matchup(bundle: dict) -> list[str]:
         "|---|------|------|",
         f"| Tier (xFIP-blend) | {h_tier_v2} | {a_tier_v2} |",
         f"| Tier gap (vs ERA-only) | {h_gap_str} | {a_gap_str} |",
+        f"| Stuff+ / Pitching+ | {h_stuff_str} | {a_stuff_str} |",
         f"| 對手打線 tier (vs 對手手別) | {h_opp_tier}（vs {hand_label_h}）| {a_opp_tier}（vs {hand_label_a}）|",
         f"| 主球種 RV/100 (top3) | {h_arsenal_str} | {a_arsenal_str} |",
         "",

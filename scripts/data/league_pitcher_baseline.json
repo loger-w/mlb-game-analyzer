@@ -25,12 +25,29 @@
       "p50": 93.1,
       "p75": 91.7,
       "p90": 90.3
+    },
+    "stuff_plus": {
+      "direction": "higher_is_better",
+      "p10": 115.0,
+      "p25": 107.5,
+      "p50": 100.0,
+      "p75": 92.5,
+      "p90": 85.0
+    },
+    "pitching_plus": {
+      "direction": "higher_is_better",
+      "p10": 112.0,
+      "p25": 106.0,
+      "p50": 100.0,
+      "p75": 94.0,
+      "p90": 88.0
     }
   },
   "metadata": {
     "source": "pybaseball.pitching_stats(2025, qual=50) — FanGraphs leaderboard",
     "generated_at": "2026-02-15T00:00:00Z",
     "refresh_command": "python scripts/refresh_baselines.py --year 2025 --output scripts/data/league_pitcher_baseline.json",
-    "notes": "Convention: p10 = top decile (best). For lower_is_better metrics (xfip), p10 has the smallest value. For higher_is_better metrics (k_bb_pct, avg_velo), p10 has the largest value. Refresh annually each February before season opens."
+    "notes": "Convention: p10 = top decile (best). For lower_is_better metrics (xfip), p10 has the smallest value. For higher_is_better metrics (k_bb_pct, avg_velo, stuff_plus, pitching_plus), p10 has the largest value. Stuff+/Pitching+ anchors are placeholder estimates pending refresh_baselines.py rerun for 2025. Refresh annually each February before season opens.",
+    "stuff_plus_placeholder": "True — replace via `python scripts/refresh_baselines.py --year 2025 -o scripts/data/league_pitcher_baseline.json`"
   }
 }

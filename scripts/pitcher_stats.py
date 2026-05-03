@@ -337,6 +337,19 @@ def _import_arsenal_fn():
         ) from e
 
 
+def _import_stuff_fns():
+    """Lazy import for FanGraphs Stuff+ leaderboard pair: (playerid_reverse_lookup,
+    pitching_stats). Returns 2-tuple. Reverse-lookup is the safer MLBAM→IDfg path
+    that bypasses the J.T. / Castillo name-search bugs that name-based lookup hits."""
+    try:
+        from pybaseball import playerid_reverse_lookup, pitching_stats
+        return playerid_reverse_lookup, pitching_stats
+    except ImportError as e:
+        raise RuntimeError(
+            "pybaseball not installed or cannot import. Run: pip install pybaseball"
+        ) from e
+
+
 def _safe_round(value, decimals: int):
     """`round(float(v), n)` if v is not None; else None. Centralizes the
     `value is not None ? round(...) : None` boilerplate."""
@@ -386,6 +399,55 @@ def fetch_pitch_arsenal(mlbam_id: int, year: int) -> list[dict]:
         return result
     except Exception as e:
         return [{"error": str(e)}]
+
+
+def fetch_stuff_pitching_plus(mlbam_id: int, year: int) -> dict:
+    """Fetch FanGraphs Stuff+ / Location+ / Pitching+ for a given pitcher.
+
+    Stuff+ is a composite of velo + spin + movement + release point, normalized
+    to 100 = league average. It's FanGraphs IP, only exposed via
+    `pybaseball.pitching_stats(year, qual=...)` which keys rows by `IDfg`.
+    We resolve MLBAM → IDfg via `playerid_reverse_lookup` to avoid the
+    name-based search bugs (J.T. dotted-initials, Luis Castillo id ambiguity).
+
+    Use `qual=1` so small-sample early-season pitchers are still included
+    (Stuff+ is the small-sample metric this fetch exists to support).
+
+    Returns:
+        Happy:    {"stuff_plus": float, "location_plus": float, "pitching_plus": float, "idfg": int}
+        Failure:  {"error": str}  — caller treats missing keys as None and falls
+                  through to compute_tier_v2's "missing_stuff" path.
+    """
+    try:
+        reverse_lookup, pitching_stats = _import_stuff_fns()
+    except RuntimeError as e:
+        return {"error": str(e)}
+
+    try:
+        rev_df = reverse_lookup([mlbam_id], key_type="mlbam")
+        if rev_df is None or len(rev_df) == 0:
+            return {"error": f"MLBAM {mlbam_id} not found in FanGraphs reverse lookup"}
+        idfg_raw = rev_df.iloc[0].get("key_fangraphs")
+        if idfg_raw is None:
+            return {"error": f"MLBAM {mlbam_id} has no key_fangraphs in lookup row"}
+        idfg = int(idfg_raw)
+
+        with _redirect_pybaseball_stdout():
+            df = pitching_stats(year, qual=1)
+        if df is None or df.empty:
+            return {"error": f"FanGraphs pitching_stats({year}) returned empty"}
+        rows = df[df["IDfg"] == idfg]
+        if rows.empty:
+            return {"error": f"IDfg {idfg} (MLBAM {mlbam_id}) not in FanGraphs pitching_stats — likely 0 IP this season"}
+        r = rows.iloc[0]
+        return {
+            "stuff_plus": _safe_round(r.get("Stuff+"), 1),
+            "location_plus": _safe_round(r.get("Location+"), 1),
+            "pitching_plus": _safe_round(r.get("Pitching+"), 1),
+            "idfg": idfg,
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 
 def fetch_game_log(mlbam_id: int, year: int, limit: int = 3) -> list[dict]:
@@ -833,10 +895,14 @@ def main():
     # 11. Pitch Arsenal (per-pitch RV/100, xwOBA, whiff%, etc)
     arsenal = fetch_pitch_arsenal(pitcher_id, args.year)
 
-    # 12. Tier v2 — blended xFIP/K-BB%/velo/age formula (existing v1 `tier` stays
+    # 12. Stuff+ / Pitching+ (FanGraphs leaderboard via MLBAM→IDfg reverse lookup)
+    stuff = fetch_stuff_pitching_plus(pitcher_id, args.year)
+    stuff_for_tier = stuff if "error" not in stuff else None
+
+    # 13. Tier v2 — blended xFIP/K-BB%/Stuff+/age formula (existing v1 `tier` stays
     #     in place for backward-compat). See lib_tier_v2 for formula details.
     from lib_tier_v2 import compute_tier_v2, compute_tier_gap
-    tier_v2_result = compute_tier_v2(season, statcast, age=age)
+    tier_v2_result = compute_tier_v2(season, statcast, age=age, stuff=stuff_for_tier)
     tier_gap = compute_tier_gap(tier_v2_result, era_only_tier=tier)
 
     output = {
@@ -857,6 +923,7 @@ def main():
         "game_log": game_log,
         "platoon_splits": platoon_splits,
         "arsenal": arsenal,
+        "stuff": stuff,
     }
 
     json_output = json.dumps(output, indent=2, ensure_ascii=False)

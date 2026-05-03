@@ -631,6 +631,36 @@ def test_pitcher_matchup_renders_arsenal_top3_row():
     assert "SL" in text and "-1.8" in text
 
 
+def test_pitcher_matchup_renders_stuff_plus_row():
+    """Stuff+ / Pitching+ row appears in the top 投手對決 table after refactor.
+    velo stays in the <details> block (informational only)."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    bundle["home_pitcher"]["stuff"] = {
+        "stuff_plus": 122.5, "location_plus": 105.3, "pitching_plus": 115.8,
+    }
+    bundle["away_pitcher"]["stuff"] = {
+        "stuff_plus": 95.0, "location_plus": 100.0, "pitching_plus": 96.5,
+    }
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "Stuff+" in text or "Pitching+" in text
+    # HOME 122.5 should appear (formatted as 123 with .0f or 122.5 with .1f)
+    assert "122" in text or "123" in text
+    assert "115" in text or "116" in text  # pitching+ home
+
+
+def test_pitcher_matchup_handles_missing_stuff_gracefully():
+    """If pitcher.stuff missing (legacy data), Stuff+ row still renders with —
+    placeholder rather than crashing."""
+    from dossier_renderer import _render_pitcher_matchup
+    bundle = _bundle_with_pr2_pitcher_fields()
+    # No stuff key on either pitcher
+    text = "\n".join(_render_pitcher_matchup(bundle))
+    assert "Stuff+" in text or "Pitching+" in text
+    # Should render placeholder, not crash
+    assert "—" in text
+
+
 def test_pitcher_matchup_legacy_13_rows_inside_details():
     """The existing 13-row deep-dive table moves under <details>."""
     from dossier_renderer import _render_pitcher_matchup

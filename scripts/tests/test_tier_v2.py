@@ -17,7 +17,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 
 def _baseline():
-    """Test fixture mirroring the structure in data/league_pitcher_baseline.json."""
+    """Test fixture mirroring the structure in data/league_pitcher_baseline.json.
+
+    Includes stuff_plus / pitching_plus so post-Stuff+-refactor tests can resolve
+    pct values; existing avg_velo block kept for legacy info-only display.
+    """
     return {
         "year": 2025,
         "qualifier_min_ip": 50,
@@ -33,6 +37,14 @@ def _baseline():
             "avg_velo": {
                 "direction": "higher_is_better",
                 "p10": 96.2, "p25": 94.5, "p50": 93.1, "p75": 91.7, "p90": 90.3,
+            },
+            "stuff_plus": {
+                "direction": "higher_is_better",
+                "p10": 115.0, "p25": 107.5, "p50": 100.0, "p75": 92.5, "p90": 85.0,
+            },
+            "pitching_plus": {
+                "direction": "higher_is_better",
+                "p10": 112.0, "p25": 106.0, "p50": 100.0, "p75": 94.0, "p90": 88.0,
             },
         },
     }
@@ -161,23 +173,25 @@ def test_score_to_tier_none_returns_unknown():
 # ---------------------------------------------------------------------------
 
 def test_compute_tier_v2_elite_pitcher_returns_high_score():
-    """Skenes-tier: xfip=2.50, k_bb%=25, velo=98, age=22 → all top-5%, score ~95."""
+    """Skenes-tier: xfip=2.50, k_bb%=25, stuff+ 130, age=22 → all top-5%, score ~95."""
     from lib_tier_v2 import compute_tier_v2
     season = {"era": 1.80, "xfip": 2.50, "k_bb_pct": 25.0, "ip": 100.0}
     statcast = {"avg_velo": 98.0}
-    result = compute_tier_v2(season, statcast, age=22, baseline=_baseline())
+    stuff = {"stuff_plus": 130.0, "pitching_plus": 125.0}
+    result = compute_tier_v2(season, statcast, age=22, stuff=stuff, baseline=_baseline())
     assert result["confidence"] == "data"
     assert result["score"] >= 90
     assert result["tier_v2"] == "🔴 Elite Ace"
 
 
 def test_compute_tier_v2_average_pitcher_returns_solid():
-    """Median across the board (xfip 4.12, k_bb 10.0, velo 93.1) + age 28 (0.96).
-    Score = 20 + 17.5 + 7.5 + 9.6 = 54.6 → 🟡 Solid Starter."""
+    """Median across the board (xfip 4.12 / k_bb 10.0 / stuff+ 100) + age 28 (0.96).
+    Score = 0.5×30 + 0.5×25 + 0.5×30 + 0.96×15 = 15 + 12.5 + 15 + 14.4 = 56.9 → 🟡 Solid."""
     from lib_tier_v2 import compute_tier_v2
     season = {"xfip": 4.12, "k_bb_pct": 10.0, "ip": 100.0}
     statcast = {"avg_velo": 93.1}
-    result = compute_tier_v2(season, statcast, age=28, baseline=_baseline())
+    stuff = {"stuff_plus": 100.0, "pitching_plus": 100.0}
+    result = compute_tier_v2(season, statcast, age=28, stuff=stuff, baseline=_baseline())
     assert result["confidence"] == "data"
     assert result["tier_v2"] == "🟡 Solid Starter"
     # score should be in 50..69 bucket
@@ -196,16 +210,18 @@ def test_compute_tier_v2_small_sample_returns_no_score():
     assert result["tier_v2"] is None
 
 
-def test_compute_tier_v2_missing_velo_reweights_to_85():
-    """No avg_velo → drop velo component, normalize to 100. xfip+k_bb median + age 25
-    score = (20 + 17.5 + 10) / 85 * 100 = 55.88 → 🟡 Solid Starter."""
+def test_compute_tier_v2_missing_stuff_reweights_to_70():
+    """No stuff data → drop Stuff+ 30-pt component, renormalize remaining 70 → 100.
+    xfip + k_bb median + age 25 (1.0):
+        raw = 0.5×30 + 0.5×25 + 1.0×15 = 15 + 12.5 + 15 = 42.5
+        renormalized = 42.5 / 70 * 100 ≈ 60.7 → 🟡 Solid Starter."""
     from lib_tier_v2 import compute_tier_v2
     season = {"xfip": 4.12, "k_bb_pct": 10.0, "ip": 100.0}
-    statcast = {}  # no avg_velo
-    result = compute_tier_v2(season, statcast, age=25, baseline=_baseline())
-    assert result["confidence"] == "missing_velo"
+    statcast = {"avg_velo": 93.1}  # velo no longer in formula but still in JSON
+    result = compute_tier_v2(season, statcast, age=25, stuff=None, baseline=_baseline())
+    assert result["confidence"] == "missing_stuff"
     assert result["tier_v2"] == "🟡 Solid Starter"
-    assert result["components"]["velo_pct"] is None
+    assert result["components"]["stuff_pct"] is None
 
 
 def test_compute_tier_v2_missing_baseline_falls_back():
@@ -230,32 +246,87 @@ def test_compute_tier_v2_missing_core_metric_returns_insufficient():
 
 
 def test_compute_tier_v2_old_pitcher_age_drag():
-    """Same metrics, age 36 → age_factor 0.7 → score lower than age 25 case."""
+    """Same metrics, age 36 → age_factor 0.7 → score lower than age 25 case.
+
+    With Stuff+ refactor age weight is 15 (up from 10), so diff = (1.0 - 0.7) * 15 = 4.5."""
     from lib_tier_v2 import compute_tier_v2
     season = {"xfip": 3.78, "k_bb_pct": 14.2, "ip": 100.0}
     statcast = {"avg_velo": 94.5}
-    young = compute_tier_v2(season, statcast, age=25, baseline=_baseline())
-    old = compute_tier_v2(season, statcast, age=36, baseline=_baseline())
+    stuff = {"stuff_plus": 107.5, "pitching_plus": 106.0}
+    young = compute_tier_v2(season, statcast, age=25, stuff=stuff, baseline=_baseline())
+    old = compute_tier_v2(season, statcast, age=36, stuff=stuff, baseline=_baseline())
     assert young["score"] > old["score"]
-    # Diff should be (1.0 - 0.7) * 10 = 3.0 points
-    assert young["score"] - old["score"] == pytest.approx(3.0, rel=0.05)
+    # Diff should be (1.0 - 0.7) * 15 = 4.5 points
+    assert young["score"] - old["score"] == pytest.approx(4.5, rel=0.05)
 
 
 def test_compute_tier_v2_components_in_output():
-    """Output must expose components dict for downstream tier_gap / dossier rendering."""
+    """Output must expose components dict for downstream tier_gap / dossier rendering.
+
+    Stuff+ refactor: components hold xfip / k_bb / stuff / age. velo_pct is gone
+    (velo no longer enters the score formula; raw avg_velo still in pitcher.statcast)."""
     from lib_tier_v2 import compute_tier_v2
     season = {"xfip": 4.12, "k_bb_pct": 10.0, "ip": 100.0}
     statcast = {"avg_velo": 93.1}
-    result = compute_tier_v2(season, statcast, age=28, baseline=_baseline())
+    stuff = {"stuff_plus": 100.0, "pitching_plus": 100.0}
+    result = compute_tier_v2(season, statcast, age=28, stuff=stuff, baseline=_baseline())
     c = result["components"]
     assert "xfip_pct" in c
     assert "k_bb_pct" in c
-    assert "velo_pct" in c
+    assert "stuff_pct" in c
     assert "age_factor" in c
+    assert "velo_pct" not in c, "velo_pct removed from components after Stuff+ refactor"
     assert c["xfip_pct"] == pytest.approx(0.50)
     assert c["k_bb_pct"] == pytest.approx(0.50)
-    assert c["velo_pct"] == pytest.approx(0.50)
+    assert c["stuff_pct"] == pytest.approx(0.50)
     assert c["age_factor"] == pytest.approx(0.96)
+
+
+# ---------------------------------------------------------------------------
+# Stuff+ specific behavior (added by Stuff+ refactor)
+# ---------------------------------------------------------------------------
+
+def test_compute_tier_v2_velo_no_longer_affects_score():
+    """velo varying with all else identical → score unchanged. velo is purely
+    informational after refactor; Stuff+ subsumes the physical-stuff signal."""
+    from lib_tier_v2 import compute_tier_v2
+    season = {"xfip": 4.12, "k_bb_pct": 10.0, "ip": 100.0}
+    stuff = {"stuff_plus": 100.0, "pitching_plus": 100.0}
+    slow = compute_tier_v2(season, {"avg_velo": 88.0}, age=28,
+                           stuff=stuff, baseline=_baseline())
+    fast = compute_tier_v2(season, {"avg_velo": 99.0}, age=28,
+                           stuff=stuff, baseline=_baseline())
+    assert slow["score"] == fast["score"]
+
+
+def test_compute_tier_v2_stuff_weight_is_30():
+    """Stuff+ at p10 (best) vs p90 (worst) with everything else median should
+    swing score by ~0.85 × 30 = 25.5 points (the Stuff+ weight)."""
+    from lib_tier_v2 import compute_tier_v2
+    season = {"xfip": 4.12, "k_bb_pct": 10.0, "ip": 100.0}
+    statcast = {"avg_velo": 93.1}
+    elite_stuff = {"stuff_plus": 115.0, "pitching_plus": 100.0}  # p10
+    poor_stuff = {"stuff_plus": 85.0, "pitching_plus": 100.0}    # p90
+    elite = compute_tier_v2(season, statcast, age=28, stuff=elite_stuff,
+                            baseline=_baseline())
+    poor = compute_tier_v2(season, statcast, age=28, stuff=poor_stuff,
+                           baseline=_baseline())
+    diff = elite["score"] - poor["score"]
+    # (0.90 - 0.10) × 30 = 24
+    assert diff == pytest.approx(24.0, rel=0.05)
+
+
+def test_compute_tier_v2_stuff_dict_with_none_value_is_missing_stuff():
+    """stuff dict present but stuff_plus=None (e.g. fetch returned partial data)
+    → treated as missing_stuff, not insufficient_data."""
+    from lib_tier_v2 import compute_tier_v2
+    season = {"xfip": 4.12, "k_bb_pct": 10.0, "ip": 100.0}
+    statcast = {"avg_velo": 93.1}
+    result = compute_tier_v2(season, statcast, age=25,
+                             stuff={"stuff_plus": None, "pitching_plus": None},
+                             baseline=_baseline())
+    assert result["confidence"] == "missing_stuff"
+    assert result["components"]["stuff_pct"] is None
 
 
 # ---------------------------------------------------------------------------

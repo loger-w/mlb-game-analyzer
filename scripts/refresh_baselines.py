@@ -26,6 +26,10 @@ METRIC_SPEC = (
     ("xfip", "xFIP", "lower_is_better"),
     ("k_bb_pct", "K-BB%", "higher_is_better"),
     ("avg_velo", "FBv", "higher_is_better"),
+    # Stuff+/Pitching+ are FanGraphs composite metrics (velo+spin+movement / +location).
+    # 100 = league average. Drive tier_v2 score (Stuff+ refactor 2026-05-03).
+    ("stuff_plus", "Stuff+", "higher_is_better"),
+    ("pitching_plus", "Pitching+", "higher_is_better"),
 )
 
 
