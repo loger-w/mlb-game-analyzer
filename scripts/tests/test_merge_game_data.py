@@ -131,6 +131,64 @@ def test_nested_pitcher_arsenal_top_none_data_tolerant():
     assert result["home_pitcher"]["arsenal_top"] == []
 
 
+# ---------------------------------------------------------------------------
+# core_bullpen_il_count from roster data (PR-2 commit 9)
+# ---------------------------------------------------------------------------
+
+def test_extract_core_bullpen_il_count_sums_core_roles_only():
+    """Closer + Setup + High-leverage RP + Co-Closer count as core; others don't."""
+    from merge_game_data import extract_core_bullpen_il_count
+    roster = {
+        "injured_list": [
+            {"name": "Felix Bautista", "position": "Pitcher", "core_role": "Closer"},
+            {"name": "Eric Helsley", "position": "Pitcher", "core_role": "Setup"},
+            {"name": "Some Guy", "position": "Pitcher", "core_role": "Long RP"},
+            {"name": "Other Guy", "position": "Pitcher", "core_role": "Middle RP"},
+            {"name": "Position Guy", "position": "Second Base"},  # not pitcher
+        ],
+    }
+    result = extract_core_bullpen_il_count(roster, prefix="home")
+    assert "home_core_bullpen_il_count" in result
+    assert result["home_core_bullpen_il_count"] == 2  # Bautista + Helsley
+
+
+def test_extract_core_bullpen_il_count_includes_co_closer():
+    from merge_game_data import extract_core_bullpen_il_count
+    roster = {
+        "injured_list": [
+            {"name": "A", "position": "Pitcher", "core_role": "Co-Closer"},
+            {"name": "B", "position": "Pitcher", "core_role": "Co-Closer"},
+        ],
+    }
+    result = extract_core_bullpen_il_count(roster, prefix="away")
+    assert result["away_core_bullpen_il_count"] == 2
+
+
+def test_extract_core_bullpen_il_count_zero_when_no_pitcher_il():
+    from merge_game_data import extract_core_bullpen_il_count
+    roster = {"injured_list": []}
+    assert extract_core_bullpen_il_count(roster, prefix="home")["home_core_bullpen_il_count"] == 0
+
+
+def test_extract_core_bullpen_il_count_zero_when_il_pitchers_lack_role():
+    """Pitchers on IL but no core_role tagged (e.g. starter on IL) → not counted."""
+    from merge_game_data import extract_core_bullpen_il_count
+    roster = {
+        "injured_list": [
+            {"name": "Starter Guy", "position": "Pitcher", "core_role": "Starter"},
+            {"name": "Untagged", "position": "Pitcher"},  # missing core_role
+        ],
+    }
+    assert extract_core_bullpen_il_count(roster, prefix="home")["home_core_bullpen_il_count"] == 0
+
+
+def test_extract_core_bullpen_il_count_none_roster_returns_zero():
+    """None roster (e.g. roster JSON not provided) → 0 (not None)."""
+    from merge_game_data import extract_core_bullpen_il_count
+    result = extract_core_bullpen_il_count(None, prefix="home")
+    assert result["home_core_bullpen_il_count"] == 0
+
+
 def test_nested_lineup_from_lineup_analyzer_output():
     from merge_game_data import extract_lineup_nested
     lineup_data = {"last7_babip": 0.320, "avg_babip": 0.290}

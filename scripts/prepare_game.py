@@ -325,7 +325,12 @@ def step_d(*, home: str, away: str,
 # ---------------------------------------------------------------------------
 
 def step_e(*, output_dir: Path) -> None:
-    """Step E: merge_game_data.py → merged.json（sequential）。"""
+    """Step E: merge_game_data.py → merged.json（sequential）。
+
+    Roster JSONs are optional inputs added in PR-2 commit 9 to power
+    core_bullpen_il_count. Step B（roster_checker）已先跑出 home/away_roster.json，
+    這裡只是把路徑傳下去。檔案缺失時 merge_game_data 自然 fallback count=0。
+    """
     out_path = output_dir / "merged.json"
     cmd = [
         PYTHON,
@@ -335,6 +340,8 @@ def step_e(*, output_dir: Path) -> None:
         "--away-pitcher", str(output_dir / "away_pitcher.json"),
         "--home-lineup", str(output_dir / "home_lineup.json"),
         "--away-lineup", str(output_dir / "away_lineup.json"),
+        "--home-roster", str(output_dir / "home_roster.json"),
+        "--away-roster", str(output_dir / "away_roster.json"),
         "-o", str(out_path),
     ]
     run_step("E", cmd)
