@@ -170,11 +170,48 @@ def _detect_risk_notes(bundle: dict) -> list[str]:
     return notes
 
 
+_SEVERITY_EMOJI_RISK = {"high": "🔴", "medium": "🟠", "low": "ℹ️"}
+
+# Signals that are functionally redundant with Flag 8 / Flag 3 — exclude from
+# 額外信號 to avoid double-listing (AI already handles them in the main notes).
+_RISK_SECTION_EXCLUDED_SIGNALS = frozenset({"tier_mismatch", "heat_vs_babip"})
+
+
+def _render_extra_signals(bundle: dict) -> list[str]:
+    """### 額外信號 — non-flag fired signals (PR-3 commit 16).
+
+    Returns empty list when no qualifying signals fire. Caller decides whether
+    to inline these inside ## 風險提示.
+    """
+    try:
+        from signals_lib import compute_all_signals
+    except ImportError:
+        return []
+    result = compute_all_signals(bundle)
+    fired = [
+        s for s in result.get("signals", [])
+        if s.get("fired") and s.get("name") not in _RISK_SECTION_EXCLUDED_SIGNALS
+    ]
+    if not fired:
+        return []
+    lines = ["", "### 額外信號"]
+    for s in fired:
+        emoji = _SEVERITY_EMOJI_RISK.get(s.get("severity", "low"), "ℹ️")
+        side = s.get("side", "")
+        side_prefix = f"{side} " if side and side != "GAME" else ""
+        lines.append(f"- {emoji} {side_prefix}{s.get('label', '')}")
+    lines.append("  - <!-- AI 補：本場是否受此信號影響？是否與 Flag 3/8 雙重壓力 → 1-2 句敘事 -->")
+    return lines
+
+
 def _render_risk_section(bundle: dict) -> list[str]:
     notes = _detect_risk_notes(bundle)
-    if not notes:
+    extra_signals = _render_extra_signals(bundle)
+    if not notes and not extra_signals:
         return ["## 風險提示", "", "無風險提示", ""]
-    return ["## 風險提示", ""] + notes + [""]
+    if not notes:
+        return ["## 風險提示", "", "Flag 3/8 無觸發；額外信號如下："] + extra_signals + [""]
+    return ["## 風險提示", ""] + notes + extra_signals + [""]
 
 
 def _render_weather_state_line(weather: dict | None) -> list[str]:
