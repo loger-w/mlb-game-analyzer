@@ -4,6 +4,7 @@
 import argparse
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -120,13 +121,11 @@ def fetch_combined_roster(team_id: int, season: int) -> dict:
 def fetch_pitcher_season_stats_bulk(player_ids: list[int], season: int) -> dict:
     """取多位投手的本季 saves/holds/G/GS/IP。回傳 {player_id: stats_dict}。
 
-    Per-pitcher MLB API call（hydrate fragility too high）。失敗的 pid 直接從
-    結果中省略（caller 用 dict.get(pid) → None fallback "Unknown" role）。
+    Per-pitcher MLB API call（hydrate fragility too high），用
+    ThreadPoolExecutor(max_workers=8) 並行（Cleanup #6）。失敗 / 空 splits 的 pid
+    直接從結果省略（caller 用 dict.get(pid) → None fallback "Unknown" role）。
     """
-    result = {}
-    for pid in player_ids:
-        if pid is None:
-            continue
+    def _fetch_one(pid: int) -> tuple[int, dict | None]:
         try:
             resp = requests.get(
                 f"{MLB_API_BASE}/people/{pid}/stats",
@@ -137,17 +136,28 @@ def fetch_pitcher_season_stats_bulk(player_ids: list[int], season: int) -> dict:
             data = resp.json()
             stats_list = data.get("stats", [])
             if not stats_list or not stats_list[0].get("splits"):
-                continue
+                return (pid, None)
             s = stats_list[0]["splits"][0]["stat"]
-            result[pid] = {
+            return (pid, {
                 "saves": int(s.get("saves", 0)),
                 "holds": int(s.get("holds", 0)),
                 "g": int(s.get("gamesPlayed", 0)),
                 "gs": int(s.get("gamesStarted", 0)),
                 "ip": parse_ip(s.get("inningsPitched", "0")),
-            }
+            })
         except Exception as e:
             print(f"⚠️ Failed pitcher stats fetch pid={pid}: {e}", file=sys.stderr)
+            return (pid, None)
+
+    valid_pids = [pid for pid in player_ids if pid is not None]
+    if not valid_pids:
+        return {}
+
+    result: dict = {}
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        for pid, stats in executor.map(_fetch_one, valid_pids):
+            if stats is not None:
+                result[pid] = stats
     return result
 
 
