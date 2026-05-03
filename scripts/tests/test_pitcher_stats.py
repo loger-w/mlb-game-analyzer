@@ -192,3 +192,78 @@ def test_pa_outcome_aggregates_empty_returns_zero_bf():
     out = _pa_outcome_aggregates(_pa_df([]))
     assert out["bf"] == 0
     assert out["ops"] is None
+
+
+def _statcast_df(rows: list[dict]):
+    """Build a fake statcast_pitcher DataFrame for tests."""
+    return pd.DataFrame(rows)
+
+
+def test_compute_tto_from_statcast_assigns_ordinals(monkeypatch):
+    """1 game, 3 batters each face pitcher 3 times = 9 PAs; TTO ordinal 1/2/3 each gets 3 BF."""
+    rows = []
+    ab_num = 1
+    for tto_round in range(3):
+        for batter in (101, 102, 103):
+            rows.append({
+                "game_pk": 778001, "at_bat_number": ab_num,
+                "batter": batter, "events": "field_out",
+            })
+            ab_num += 1
+
+    fake_statcast = lambda *args, **kwargs: _statcast_df(rows)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" not in out
+    for bucket in ("tto1", "tto2", "tto3"):
+        assert bucket in out
+        assert out[bucket]["bf"] == 3
+
+
+def test_compute_tto_from_statcast_empty_df(monkeypatch):
+    """statcast_pitcher returns empty DataFrame → error."""
+    fake_statcast = lambda *args, **kwargs: pd.DataFrame()
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" in out
+
+
+def test_compute_tto_from_statcast_no_pa_events(monkeypatch):
+    """DataFrame has pitches but all events=None → error No PA events."""
+    fake_statcast = lambda *args, **kwargs: _statcast_df([
+        {"game_pk": 778001, "at_bat_number": 1, "batter": 101, "events": None},
+        {"game_pk": 778001, "at_bat_number": 1, "batter": 101, "events": None},
+    ])
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" in out
+
+
+def test_compute_tto_from_statcast_pybaseball_raises(monkeypatch):
+    """statcast_pitcher raises → error with traceback msg."""
+    def _raise(*args, **kwargs):
+        raise RuntimeError("savant down")
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, _raise, None, None),
+    )
+
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" in out
+    assert "savant down" in out["error"]

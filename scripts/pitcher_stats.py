@@ -567,6 +567,39 @@ def _pa_outcome_aggregates(pa_df: pd.DataFrame) -> dict:
     }
 
 
+def _compute_tto_from_statcast(mlbam_id: int, year_start: int, year_end: int) -> dict:
+    """從 pybaseball Statcast 逐球資料聚合成 TTO1 / TTO2 / TTO3 桶。
+
+    對每個 PA（events 非 null 的 row），在 (game_pk, batter) 群組內依
+    at_bat_number 升冪排序,cumcount + 1 即 PA ordinal（1st / 2nd / 3rd PA）。
+    超過 3rd（4th+ PA）忽略，因為樣本太稀。
+    """
+    _, statcast_pitcher_fn, _, _ = _import_pybaseball()
+    try:
+        start = f"{year_start}-03-20"
+        end = f"{year_end}-11-05"
+        df = statcast_pitcher_fn(start, end, mlbam_id)
+        if df is None or df.empty:
+            return {"error": "No Statcast data"}
+
+        pa_df = df[df["events"].notna()].copy()
+        if pa_df.empty:
+            return {"error": "No PA events in Statcast data"}
+
+        pa_df = pa_df.sort_values(["game_pk", "at_bat_number"])
+        pa_df["tto_ordinal"] = pa_df.groupby(["game_pk", "batter"]).cumcount() + 1
+
+        result: dict = {}
+        for ordinal in (1, 2, 3):
+            bucket = pa_df[pa_df["tto_ordinal"] == ordinal]
+            if len(bucket) == 0:
+                continue
+            result[f"tto{ordinal}"] = _pa_outcome_aggregates(bucket)
+        return result if result else {"error": "No TTO buckets computed"}
+    except Exception as e:
+        return {"error": f"statcast TTO compute failed: {e}"}
+
+
 def fetch_whiff_csw(mlbam_id: int, year: int) -> dict:
     """C3: 從 Statcast 原始資料計算 Whiff% 和 CSW%"""
     _, statcast_pitcher, _, _ = _import_pybaseball()
