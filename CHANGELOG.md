@@ -84,6 +84,6 @@ pybaseball Statcast pitch-by-pitch 自行依 (game_pk, batter) 分組聚合。
 ### Out of scope（PR-3 後可考慮）
 
 - **Composite leverage score**（Path C） — 待 PR-3 上線兩週後 backtest 評估
-- **TTO3 penalty / 休息天數 / 上一場用球數** — 第二批 signals
+- **休息天數 / 上一場用球數** — 第二批 signals 剩餘項（TTO3 penalty 5/3 已上線）
 - **Park HR PF L/R split** — 目前 strong_park 用整體 PF；LR split 需擴充 `data/park_factors.json`
 - **Backtest framework** — 與 4/23「走嚴格 formula 對比實際結果」紀律配套，但需獨立規劃

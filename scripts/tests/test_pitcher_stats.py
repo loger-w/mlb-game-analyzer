@@ -397,3 +397,50 @@ def test_fetch_tto_splits_both_fail_returns_error(monkeypatch):
     from pitcher_stats import fetch_tto_splits
     out = fetch_tto_splits(669373, 2025)
     assert "error" in out
+
+
+def test_fetch_tto_splits_thin_season_career_error(monkeypatch):
+    """Spec §5.4 row 4: thin season + career raises → fall through to season
+    (caller走 small_sample no_fire). Career path was attempted (calls=2)."""
+    calls = {"n": 0}
+
+    def fake_statcast(*args, **kwargs):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return _build_thin_df(15)
+        raise RuntimeError("career savant down")
+
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import fetch_tto_splits
+    out = fetch_tto_splits(669373, 2025)
+    assert out["source"] == "season"
+    assert out["tto3"]["bf"] < 30
+    assert calls["n"] == 2  # career was attempted
+
+
+def test_compute_tto_from_statcast_drops_4th_plus_pa(monkeypatch):
+    """4th+ PAs (extra innings same batter / extreme cases) silently dropped per docstring.
+
+    1 batter facing pitcher 4 times in 1 game → only TTO1/2/3 buckets (each bf=1),
+    no tto4 key.
+    """
+    rows = [
+        {"game_pk": 778001, "at_bat_number": ab, "batter": 101, "events": "field_out"}
+        for ab in (1, 2, 3, 4)
+    ]
+    fake_statcast = lambda *a, **k: _statcast_df(rows)
+    monkeypatch.setattr(
+        "pitcher_stats._import_pybaseball",
+        lambda: (None, fake_statcast, None, None),
+    )
+
+    from pitcher_stats import _compute_tto_from_statcast
+    out = _compute_tto_from_statcast(669373, 2025, 2025)
+    assert "error" not in out
+    assert set(out.keys()) == {"tto1", "tto2", "tto3"}  # no tto4
+    for bucket in ("tto1", "tto2", "tto3"):
+        assert out[bucket]["bf"] == 1
