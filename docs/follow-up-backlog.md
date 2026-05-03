@@ -91,7 +91,7 @@ Bradish ERA 5.03 → score 15（Below）；ERA 4.99 → 35（Back-end）。0.04 
 
 以下 9 條由本日 4-agent code review 留下，按 severity 排。詳見 `plans/glittery-stargazing-moth.md`。
 
-## 5. dossier `_render_bullpen_park` 重複計算 IL count（HIGH）
+## ✅ 5. dossier `_render_bullpen_park` 重複計算 IL count（DONE 2026-05-03 e11df03）
 
 ### 動機
 `dossier_renderer.py:782-849` 用 substring filter (`"pitcher" / "p"`) 重新算 IL 數，但 `merge_game_data` 已把 `{side}_core_bullpen_il_count` 寫進 bundle。重複計算且分類條件不一致（dossier 用位置字串 vs merge 用 `core_role`）。
@@ -101,7 +101,9 @@ Bradish ERA 5.03 → score 15（Below）；ERA 4.99 → 35（Back-end）。0.04 
 2. 名單列表用 `core_role ∈ CORE_BULLPEN_ROLES` 篩（從 `lib_role_tagging` import）。
 3. Tests：3-4 個（混合 core / non-core IL 場景）。
 
-## 6. `fetch_pitcher_season_stats_bulk` 平行化（HIGH）
+實作備註（2026-05-03）：count + 名單都改讀 merged-canonical / `core_role` 篩；label 同步改 "Core 牛棚 IL（Closer/Setup/HL RP）" / "Core IL 名單（前 2）"；`summary_renderer._render_bullpen_section` 仍用 `il_pitcher_count`（all-pitcher IL 是另一個欄位）— 範圍外不動。Tests +2（408 → 410）。
+
+## ✅ 6. `fetch_pitcher_season_stats_bulk` 平行化（DONE 2026-05-03 0927965）
 
 ### 動機
 `roster_checker.py:124-155` per-pitcher sequential `requests.get`。每隊 ~13 隻投手 × 2 隊 = 26 round-trips on critical path of step_b。
@@ -110,6 +112,8 @@ Bradish ERA 5.03 → score 15（Below）；ERA 4.99 → 35（Back-end）。0.04 
 1. `ThreadPoolExecutor(max_workers=8)` 包 per-pid 迴圈。
 2. 保留現有 `try/except` 個別失敗略過邏輯。
 3. Tests：1-2 個（並行不影響輸出）。
+
+實作備註（2026-05-03）：抽 inner `_fetch_one(pid) -> (pid, stats_or_None)` + `executor.map`；None pid 在進 pool 前先 filter；新增 5 tests（4 behavior + 1 in-flight counter 證明 max ≥ 2，RED 階段 sequential 卡 max=1）。410 → 415。
 
 ## 7. `compute_all_signals` 重複計算（MED）
 
