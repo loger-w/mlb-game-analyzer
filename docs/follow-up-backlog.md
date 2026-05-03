@@ -87,10 +87,65 @@ Bradish ERA 5.03 → score 15（Below）；ERA 4.99 → 35（Back-end）。0.04 
 
 ---
 
+# Cleanup pass findings（2026-05-03 review session）
+
+以下 9 條由本日 4-agent code review 留下，按 severity 排。詳見 `plans/glittery-stargazing-moth.md`。
+
+## 5. dossier `_render_bullpen_park` 重複計算 IL count（HIGH）
+
+### 動機
+`dossier_renderer.py:782-849` 用 substring filter (`"pitcher" / "p"`) 重新算 IL 數，但 `merge_game_data` 已把 `{side}_core_bullpen_il_count` 寫進 bundle。重複計算且分類條件不一致（dossier 用位置字串 vs merge 用 `core_role`）。
+
+### 步驟
+1. `_render_bullpen_park` 讀 `merged.{side}_core_bullpen_il_count` 取代 substring filter。
+2. 名單列表用 `core_role ∈ CORE_BULLPEN_ROLES` 篩（從 `lib_role_tagging` import）。
+3. Tests：3-4 個（混合 core / non-core IL 場景）。
+
+## 6. `fetch_pitcher_season_stats_bulk` 平行化（HIGH）
+
+### 動機
+`roster_checker.py:124-155` per-pitcher sequential `requests.get`。每隊 ~13 隻投手 × 2 隊 = 26 round-trips on critical path of step_b。
+
+### 步驟
+1. `ThreadPoolExecutor(max_workers=8)` 包 per-pid 迴圈。
+2. 保留現有 `try/except` 個別失敗略過邏輯。
+3. Tests：1-2 個（並行不影響輸出）。
+
+## 7. `compute_all_signals` 重複計算（MED）
+
+dossier + summary 各跑一次同樣的 signals。建議 `prepare_game` 算一次往下傳 `bundle["signals"]`。
+
+## 8. `_arsenal_top3_str` 重新過濾（MED）
+
+`dossier_renderer.py:557-568` 重新過濾 arsenal，但 `merge_game_data.extract_pitcher_nested:91` 已輸出 `arsenal_top`（pre-filtered top-3）。改讀 pre-filtered 欄位即可。
+
+## 9. schema 命名一致 `pitcher_hand` vs `pitch_hand`（MED）
+
+JSON 欄位是 `pitch_hand`；`signals_lib` / `lineup_analyzer` 函式參數叫 `pitcher_hand`。建議統一 `pitch_hand` 並更新 call sites。
+
+## 10. `lib_tier_v2` unreachable 防呆（MED）
+
+lines 83 / 100：`return 0.5  # defensive fallback` 在 clamp 之後實際走不到。改 `raise AssertionError` 並收緊 invariant 訊息。
+
+## 11. `summary_renderer._lineup_block` lookup table（MED）
+
+lines 75-97 三分支 `if/elif/else` on `opposing_pitcher_hand` → 改 `_HAND_TO_KEYS = {"L": ("tier_vs_lhp", "vs LHP"), "R": ("tier_vs_rhp", "vs RHP")}` lookup，扁平化分支。
+
+## 12. `merge_game_data` 並行 fetch（LOW）
+
+`fetch_bullpen_era × 2 + fetch_weather × 1` 序列。3 round-trips 可 `ThreadPoolExecutor(max_workers=3)` 並行（保留各自 try/except fallback）。
+
+## 13. `summary_renderer` 同 package `try/except ImportError → lambda` 是 dead code（LOW）
+
+142 / 146 行的 fallback lambda 在 same-package import 不會觸發，是 dead defensive code。`dossier_renderer.py:462-465 / 672-675 / 866-869 / 891-894 / 896-900` 也有重複 5 次的相同模式。建議全部刪 try/except，讓 ImportError 自然向上拋。
+
+---
+
 ## 開頭 prompt 範本（給下一個 session）
 
 ```
 Path B refactor 已完成（branch refactor/path-b-signals，18 commits / 382 tests）。
-看 docs/follow-up-backlog.md 按優先序處理 Stuff+ / wRC+ / Bug 3 / Bug 4。
-從 #1 Stuff+ 開始 — 先做 5 分鐘 pybaseball column 驗證，再決定 fetch 函式設計。
+2026-05-03 cleanup pass commit 1f0d744（去重 + stale bug markers + bundle share）。
+看 docs/follow-up-backlog.md 按優先序處理 Stuff+ / wRC+ / Bug 3 / Bug 4 / Cleanup 5-13。
+從 #1 Stuff+ 開始 — 看 plans/glittery-stargazing-moth.md §Item 2 的設計。
 ```
