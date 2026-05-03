@@ -36,7 +36,7 @@ Path B refactor（branch `refactor/path-b-signals`，18 commits）完成後留�
 
 5. **Tests**：12-15 個（pct 邊界 / fallback / score 計算 / dossier render）。
 
-## 2. wRC+ 接進 lineup_analyzer（中 ROI）
+## ✅ 2. wRC+ 接進 lineup_analyzer（DONE 2026-05-03）
 
 ### 動機
 
@@ -51,6 +51,8 @@ Path B refactor（branch `refactor/path-b-signals`，18 commits）完成後留�
 3. **dossier 打線表新增一列「avg wRC+」**（HOME / AWAY）。
 
 4. **Tests**：6-8 個。
+
+實作備註（2026-05-03）：`fetch_team_wrc_plus(team_id, year)` 走 `_import_wrc_fns` lazy import → `pybaseball.batting_stats(year, qual=1)` + `playerid_reverse_lookup(idfgs, key_type="fangraphs")` 回 mlbam-keyed。Team filter 0 row 印 stderr 警告（abbr mismatch sentinel：TBR vs TB / WSN vs WSH）。`analyze_team` 加 wrc_plus per batter + avg_wrc_plus team-level（None excluded）。dossier 打線表 `xwOBA / OPS` row 之後加 `avg wRC+` row，integer render。tier 仍用 xwOBA（不替換，spec 只 add 不 replace）。Tests +11（6 fetch / 3 integration / 2 dossier；415 → 426）。
 
 ## 3. Bug 3：role tagging prior_year fallback（修正 5/02 BAL@NYY 漏抓 Bautista）
 

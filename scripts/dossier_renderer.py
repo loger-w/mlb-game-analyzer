@@ -705,6 +705,9 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
     a_xwoba = _v(away_lu.get("avg_xwoba"), 3)
     a_ops = _ops(away_lu.get("avg_ops"))
 
+    h_wrc = _v(home_lu.get("avg_wrc_plus"), 0)
+    a_wrc = _v(away_lu.get("avg_wrc_plus"), 0)
+
     h_k = _v(home_lu.get("avg_k_pct"), 1)
     h_bb = _v(home_lu.get("avg_bb_pct"), 1)
     a_k = _v(away_lu.get("avg_k_pct"), 1)
@@ -757,6 +760,7 @@ def _render_lineup_overview(bundle: dict) -> list[str]:
         f"| Tier (script) | {h_tier} | {a_tier} |",
         f"| Heat (script) | {h_heat} | {a_heat} |",
         f"| xwOBA / OPS | {h_xwoba} / {h_ops} | {a_xwoba} / {a_ops} |",
+        f"| avg wRC+ | {h_wrc} | {a_wrc} |",
         f"| K% / BB% | {h_k} / {h_bb} | {a_k} / {a_bb} |",
         f"| chain OBP top3 / SLG mid | {h_obp3} / {h_slg_mid} | {a_obp3} / {a_slg_mid} |",
         f"| last7 BABIP | {h_babip7} | {a_babip7} |",

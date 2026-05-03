@@ -11,7 +11,7 @@ from pathlib import Path
 
 import requests
 
-from _team_resolver import resolve_team_id
+from _team_resolver import resolve_team_id, team_abbr
 
 
 @contextlib.contextmanager
@@ -33,6 +33,19 @@ def _import_pybaseball():
             statcast_batter_exitvelo_barrels,
         )
         return statcast_batter_expected_stats, statcast_batter_exitvelo_barrels
+    except ImportError as e:
+        raise RuntimeError(
+            "pybaseball not installed or cannot import. Run: pip install pybaseball"
+        ) from e
+
+
+def _import_wrc_fns():
+    """Lazy import for FanGraphs wRC+ leaderboard pair: (playerid_reverse_lookup,
+    batting_stats). Returns 2-tuple. Reverse-lookup converts IDfg → MLBAM in batch
+    so caller can match against the MLB API mlbam_id used elsewhere in the codebase."""
+    try:
+        from pybaseball import playerid_reverse_lookup, batting_stats
+        return playerid_reverse_lookup, batting_stats
     except ImportError as e:
         raise RuntimeError(
             "pybaseball not installed or cannot import. Run: pip install pybaseball"
@@ -271,6 +284,104 @@ def fetch_statcast_batting_leaderboard(year: int) -> tuple[dict, dict]:
     return expected_map, barrels_map
 
 
+def fetch_team_wrc_plus(team_id: int, year: int) -> dict[int, float]:
+    """Fetch FanGraphs wRC+ for all qualified batters on a team.
+
+    wRC+ is FanGraphs IP, only via `pybaseball.batting_stats(year, qual=1)` keyed by
+    IDfg. This function filters by the team's MLB abbr (NYY / LAD / etc) and resolves
+    IDfg → MLBAM in batch via `playerid_reverse_lookup` so callers can match against
+    MLB API mlbam_id (the rest of the codebase keys on MLBAM).
+
+    Use `qual=1` so small-sample early-season batters are still included
+    (parallel choice with `fetch_stuff_pitching_plus`).
+
+    Args:
+        team_id: MLB Stats API team id (resolves to abbr via _team_resolver).
+        year: season.
+
+    Returns:
+        {mlbam_id: wrc_plus_float}. Empty dict on any failure (silent fallback for
+        early-season / data-lag cases). Caller should treat missing keys as None.
+
+    Side effects:
+        Prints to stderr when team filter hits zero rows (likely abbr mismatch
+        between MLB and FanGraphs — e.g. "TBR" vs "TB", "WSN" vs "WSH"). Real
+        absence (early season, all 0 PA) and abbr mismatch look identical from
+        the data; the warning surfaces it for analyst review.
+    """
+    try:
+        reverse_lookup, batting_stats = _import_wrc_fns()
+    except RuntimeError:
+        return {}
+
+    abbr = team_abbr(team_id)
+
+    try:
+        with _redirect_pybaseball_stdout():
+            df = batting_stats(year, qual=1)
+        if df is None or df.empty:
+            return {}
+        team_df = df[df["Team"] == abbr]
+        if team_df.empty:
+            print(
+                f"[lineup_analyzer] fetch_team_wrc_plus: no rows for team={abbr} "
+                f"(year={year}); possible team abbr mismatch with FanGraphs "
+                f"(check TBR vs TB, WSN vs WSH, etc.) or all batters below qual=1.",
+                file=sys.stderr,
+            )
+            return {}
+
+        idfgs = []
+        for v in team_df["IDfg"].tolist():
+            try:
+                idfgs.append(int(v))
+            except (TypeError, ValueError):
+                continue
+        if not idfgs:
+            return {}
+
+        rev_df = reverse_lookup(idfgs, key_type="fangraphs")
+        if rev_df is None or len(rev_df) == 0:
+            return {}
+
+        idfg_to_mlbam: dict[int, int] = {}
+        for _, r in rev_df.iterrows():
+            fg = r.get("key_fangraphs")
+            mlbam = r.get("key_mlbam")
+            if fg is None or mlbam is None:
+                continue
+            try:
+                idfg_to_mlbam[int(fg)] = int(mlbam)
+            except (TypeError, ValueError):
+                continue
+
+        result: dict[int, float] = {}
+        for _, r in team_df.iterrows():
+            fg_raw = r.get("IDfg")
+            wrc_raw = r.get("wRC+")
+            if fg_raw is None or wrc_raw is None:
+                continue
+            try:
+                fg = int(fg_raw)
+            except (TypeError, ValueError):
+                continue
+            mlbam = idfg_to_mlbam.get(fg)
+            if mlbam is None:
+                continue
+            try:
+                result[mlbam] = round(float(wrc_raw), 1)
+            except (TypeError, ValueError):
+                continue
+        return result
+    except Exception as e:
+        print(
+            f"[lineup_analyzer] fetch_team_wrc_plus failed (team={abbr}, "
+            f"year={year}): {e}",
+            file=sys.stderr,
+        )
+        return {}
+
+
 def fetch_il_names(team_id: int, year: int) -> set[str]:
     """從 40Man roster 取得 IL 球員姓名集合。
 
@@ -498,6 +609,9 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
     # 3. Statcast leaderboard（一次拉全聯盟，記憶體內 merge）
     expected_map, barrels_map = fetch_statcast_batting_leaderboard(year)
 
+    # 3b. FanGraphs wRC+ (Backlog #2) — team-batched, mlbam-keyed
+    wrc_map = fetch_team_wrc_plus(team_id, year)
+
     # 4. Merge Statcast + Platoon + Last7 + BvP
     for batter in core_lineup:
         pid = str(batter["mlbam_id"])
@@ -508,6 +622,7 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
         batter["xslg"] = exp.get("xslg")
         batter["ev95pct"] = bar.get("ev95pct")
         batter["barrel_pct"] = bar.get("barrel_pct")
+        batter["wrc_plus"] = wrc_map.get(batter["mlbam_id"])
         batter["platoon"] = fetch_player_platoon(batter["mlbam_id"], year)
         batter["last_7"] = fetch_player_last7(batter["mlbam_id"])
         if opposing_pitcher_id:
@@ -521,6 +636,9 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
 
     xwoba_values = [b["xwoba"] for b in core_lineup if b.get("xwoba") is not None]
     avg_xwoba = sum(xwoba_values) / len(xwoba_values) if xwoba_values else None
+
+    wrc_values = [b["wrc_plus"] for b in core_lineup if b.get("wrc_plus") is not None]
+    avg_wrc_plus = round(sum(wrc_values) / len(wrc_values), 1) if wrc_values else None
 
     # 6. 打線評級（既有）
     tier = "🟢 Weak"
@@ -585,6 +703,7 @@ def analyze_team(team: str, year: int, opposing_pitcher_id: int | None = None,
         "avg_ops_vs_lhp": vs_lhp["avg_ops"],
         "avg_ops_vs_rhp": vs_rhp["avg_ops"],
         "avg_xwoba": round(avg_xwoba, 3) if avg_xwoba else None,
+        "avg_wrc_plus": avg_wrc_plus,
         "avg_babip": round(avg_babip, 3),
         "avg_k_pct": round(avg_k_pct, 1),
         "avg_bb_pct": round(avg_bb_pct, 1),

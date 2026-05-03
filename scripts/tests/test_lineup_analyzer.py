@@ -166,6 +166,7 @@ def test_analyze_team_official_path(monkeypatch):
         },
     )
     monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_team_wrc_plus", lambda team_id, year: {})
     monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
     monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
 
@@ -196,6 +197,7 @@ def test_analyze_team_partial_falls_back(monkeypatch, capsys):
         },
     )
     monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_team_wrc_plus", lambda team_id, year: {})
     monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
     monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
 
@@ -228,6 +230,7 @@ def test_analyze_team_no_game_pk(monkeypatch):
         },
     )
     monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_team_wrc_plus", lambda team_id, year: {})
     monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
     monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
 
@@ -256,6 +259,7 @@ def test_analyze_team_api_fail_falls_back(monkeypatch, capsys):
         },
     )
     monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_team_wrc_plus", lambda team_id, year: {})
     monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
     monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
 
@@ -264,3 +268,81 @@ def test_analyze_team_api_fail_falls_back(monkeypatch, capsys):
     assert result["lineup_source"] == "projected"
     captured = capsys.readouterr()
     assert "feed/live fetch failed" in captured.err
+
+
+# ---------------------------------------------------------------------------
+# Backlog #2: wRC+ → lineup_analyzer integration tests
+# ---------------------------------------------------------------------------
+
+_OFFICIAL_PIDS = [592450, 519317, 624413, 519203, 670541, 543305, 596019, 624577, 656555]
+
+
+def _setup_official_path_mocks(monkeypatch, wrc_map):
+    """Common monkeypatch setup for analyze_team-on-official-path integration tests.
+
+    Returns analyze_team is callable; pass wrc_map to control what fetch_team_wrc_plus
+    yields for the wRC+ integration assertions.
+    """
+    fixture = _load_fixture("feed_live_official_lineup.json")
+    monkeypatch.setattr("lineup_analyzer.requests.get", _mock_requests_get(fixture))
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_team_roster",
+        lambda team_id, year: [
+            {"id": pid, "name": f"P{pid}", "position": "DH"} for pid in _OFFICIAL_PIDS
+        ],
+    )
+    monkeypatch.setattr(
+        "lineup_analyzer.fetch_player_batting",
+        lambda pid, year: {
+            "mlbam_id": pid, "pa": 100, "avg": 0.250, "obp": 0.330, "slg": 0.420,
+            "ops": 0.750, "iso": 0.170, "babip": 0.300, "k_pct": 22.0, "bb_pct": 9.0,
+        },
+    )
+    monkeypatch.setattr("lineup_analyzer.fetch_statcast_batting_leaderboard", lambda y: ({}, {}))
+    monkeypatch.setattr("lineup_analyzer.fetch_player_platoon", lambda pid, y: None)
+    monkeypatch.setattr("lineup_analyzer.fetch_player_last7", lambda pid: None)
+    monkeypatch.setattr("lineup_analyzer.fetch_team_wrc_plus", lambda team_id, year: wrc_map)
+
+
+def test_analyze_team_assigns_wrc_plus_per_batter(monkeypatch):
+    """Backlog #2: each batter gets wrc_plus from fetch_team_wrc_plus (mlbam-keyed).
+    Batters not in the map → wrc_plus = None (early-season / not yet qualified)."""
+    wrc_map = {592450: 145.0, 519317: 132.0, 624413: 110.0}
+    _setup_official_path_mocks(monkeypatch, wrc_map)
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=778345)
+
+    by_pid = {b["mlbam_id"]: b for b in result["lineup"]}
+    assert by_pid[592450]["wrc_plus"] == 145.0
+    assert by_pid[519317]["wrc_plus"] == 132.0
+    assert by_pid[624413]["wrc_plus"] == 110.0
+    # Batters not in the wrc_map → wrc_plus is None (graceful absence)
+    assert by_pid[519203]["wrc_plus"] is None
+    assert by_pid[670541]["wrc_plus"] is None
+
+
+def test_analyze_team_computes_avg_wrc_plus(monkeypatch):
+    """Backlog #2: team avg_wrc_plus = mean of per-batter wrc_plus, None excluded."""
+    # 3 of 9 batters have data: 120, 110, 100 → avg = 110.0
+    wrc_map = {592450: 120.0, 519317: 110.0, 624413: 100.0}
+    _setup_official_path_mocks(monkeypatch, wrc_map)
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=778345)
+
+    assert result["avg_wrc_plus"] == 110.0
+
+
+def test_analyze_team_avg_wrc_plus_none_when_no_data(monkeypatch):
+    """Backlog #2: avg_wrc_plus is None when no batters have wrc_plus.
+
+    Common in early season: fetch_team_wrc_plus returns {} (qual=1 still has no
+    qualifiers, or team abbr mismatch). Output must surface None — not crash, not
+    dummy 0 — so dossier renders "—" for the row."""
+    _setup_official_path_mocks(monkeypatch, wrc_map={})
+
+    from lineup_analyzer import analyze_team
+    result = analyze_team("NYY", 2026, opposing_pitcher_id=None, game_pk=778345)
+
+    assert result["avg_wrc_plus"] is None

@@ -397,6 +397,31 @@ def test_render_lineup_overview_top5_rows():
     assert "Player A1" in text
 
 
+def test_render_lineup_overview_includes_wrc_plus_row():
+    """Backlog #2: avg wRC+ row renders in lineup table with HOME/AWAY values."""
+    from dossier_renderer import _render_lineup_overview
+    bundle = _minimal_bundle()
+    bundle["home_lineup"]["avg_wrc_plus"] = 120.0
+    bundle["away_lineup"]["avg_wrc_plus"] = 95.0
+    lines = _render_lineup_overview(bundle)
+    text = "\n".join(lines)
+    assert "avg wRC+" in text
+    # wRC+ rendered as integer (decimals=0): 120.0 → "120", 95.0 → "95"
+    assert "| 120 | 95 |" in text
+
+
+def test_render_lineup_overview_wrc_plus_dash_when_none():
+    """Backlog #2: avg_wrc_plus = None (early season / fetch failure) → row shows '—'."""
+    from dossier_renderer import _render_lineup_overview
+    bundle = _minimal_bundle()
+    bundle["home_lineup"]["avg_wrc_plus"] = None
+    bundle["away_lineup"]["avg_wrc_plus"] = None
+    lines = _render_lineup_overview(bundle)
+    wrc_row = [l for l in lines if "avg wRC+" in l][0]
+    # Both home and away cells are "—"
+    assert "| — | — |" in wrc_row
+
+
 def test_render_bullpen_park_structure():
     from dossier_renderer import _render_bullpen_park
     bundle = _minimal_bundle()
