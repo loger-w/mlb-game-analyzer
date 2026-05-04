@@ -1,6 +1,6 @@
 ---
 name: mlb-game-analyzer
-description: Use when the user asks for MLB single-game matchup analysis — pitcher / lineup / bullpen breakdown, pre-game data dossiers, BABIP / ERA-xERA risk reads.
+description: Use when the user asks for MLB single-game matchup analysis — pitcher / lineup / bullpen breakdown, pre-game data dossiers, BABIP / ERA-xERA risk reads — or interpreting odds-report movement (ML / RL / O-U, no-vig pp delta, key-number flags) for that game.
 ---
 
 # MLB Game Analyzer — 單場對決數據分析
@@ -15,7 +15,7 @@ description: Use when the user asks for MLB single-game matchup analysis — pit
 
 特定 MLB 比賽的數據分析 / 對戰組合解讀 / 先發投手對決 / 進階數據（xwOBA, FIP, Statcast）讀法。
 
-**不適用**：整季預測、球員個人比較、賽後回顧、歷史統計查詢。
+**不適用**：整季預測、球員個人比較、歷史統計查詢、賽後回顧（final state 不分析，見 §場景路由 Step 4）、多場 batch 分析（單場 only）。
 
 ---
 
@@ -36,6 +36,7 @@ description: Use when the user asks for MLB single-game matchup analysis — pit
 
 - date 沒給 → ET 今日
 - doubleheader 多場 → 強制問 G1/G2
+- matchup 多場（連戰 / 系列賽 / 「分析三連戰」）→ reject「目前只能分析單場比賽」，要求 user 指定單一場
 
 ### Step 2：平行 state probe（無腳本呼叫）
 
@@ -71,12 +72,16 @@ odds_state :=
 
 - 重用既有 summary 時必須輸出明說「summary.md 已於 {mtime} 完成，重用」
 - gameState = `live` → 告知並降級（live data ≠ pre-game data）
-- gameState = `final` → 視 user intent 決定是否做事後分析
+- gameState = `final` → 停步：本 skill 不提供賽後分析（user 想看結果可手動讀 boxscore）
 
 ### Force / refresh override
 
 關鍵字 → `prepare_game.py --force`（覆蓋既有 summary）：
 - "refresh"、"重跑"、"force"、"最新打線"、"再跑一次"
+
+關鍵字 → 主動拉新 odds + 自動分析（user 觸發，每次 fetch ~12 credits）：
+- "拉盤口"、"拉新 odds"、"最新 odds"、"refresh odds"、"odds 重抓"
+- 流程：`python odds/fetch_odds.py` → `python odds/analyze_smart_money.py --date {ET-YYYY-MM-DD}` → 接 Step 3 odds_only 路徑主動分析該 matchup（不需 user 再追問）
 
 ---
 
@@ -88,8 +93,6 @@ odds_state :=
 | 1. 資料收集 | `merged.json` + `dossier.md` + `summary.md`（含 AI 填空 placeholder）<br>**自動偵測**：official lineup（公布後）/ 天氣（公布後） | `prepare_game.py` | `fundamentals_only` / `both` 且 `basic_state ≠ complete` |
 | 2. 綜合分析 | 在 `summary.md` 補完所有 placeholder | AI 編輯 | 同上 |
 | 3. 盤口分析 | odds report 解讀（可選 paired with summary） | Read `odds/reports/{date}.md` | `odds_only` / `both` 且 `odds_state = has_match` |
-
-> Doubleheader：產出檔名帶 suffix → `dossier-G1.md` / `summary-G1.md` / `dossier-G2.md` / `summary-G2.md`。
 
 ---
 
@@ -105,21 +108,17 @@ PYTHON=$(python3 --version >/dev/null 2>&1 && echo python3 || echo python)
 
 `--date` 與 folder 一律用 **ET 開打日**（與 MLB Stats API `officialDate` 對齊）。腳本內部不做時區換算。
 
-### 輸出目錄規範
+### 輸出目錄 / 檔名規範
 
 ```bash
 GAME_DIR=analysis-data/{ET-YYYY-MM-DD}/{AWAY}@{HOME}
-# Doubleheader：{AWAY}@{HOME}-G1 / -G2
-mkdir -p $GAME_DIR
+# Doubleheader: -G1 / -G2 後綴
 ```
 
 ### 工具使用規範
 
-- ⛔ 禁止 WebFetch / WebSearch 收集核心數據
-- ✅ 唯一例外：當日傷兵快訊（API 40 人名單 + IL 名單為主，WebSearch 補充）
-- ⛔ 腳本失敗 → 向使用者回報，禁止靜默改走 WebSearch
-- ⛔ 所有腳本輸出必須用 `--output / -o`，禁止 shell redirect `>`
-- ⛔ 隊伍縮寫一律用英文縮寫（KC / LAA / NYY），純數字 team_id 已被各腳本拒絕
+- 核心紀律見 `reference/flags-checklist.md`（資料來源 / 輸出規範 / WebSearch 邊界 — Flag 1 / 4 / 5）
+- 隊伍縮寫一律用英文（KC / LAA / NYY），純數字 team_id 已被各腳本拒絕
 
 ### 資料來源優先順序
 
@@ -133,7 +132,7 @@ API > 官網公告 > ESPN/CBS/FanGraphs > 網頁抓取。切勿因第三方資�
 | 天氣（condition / temp / wind） | feed/live `gameData.weather` | summary 標「未公布（跳過天氣分析）」 |
 
 **公布時機**：打線通常開賽前 2–4 小時、天氣前 1 小時 ~ 開賽後填齊。
-**重跑取最新**：`prepare_game.py --force` 才會覆蓋已編輯的 summary.md（dossier 永遠重產）。
+**重跑取最新**：見 §場景路由 §Force / refresh override。
 
 ---
 
@@ -149,7 +148,7 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 **後續動作**：
 1. Read `$GAME_DIR/dossier.md`
 2. Read `$GAME_DIR/summary.md` 與 `reference/matchup-factors.md`
-3. 進入步驟 2：在 summary.md 上補完所有 `<!-- AI 補 -->` placeholder（直接在這個檔上改，不需另存）
+3. 進入步驟 2：在 summary.md 上補完所有 `<!-- AI 補 -->` placeholder
 
 ℹ️ **drill-down 只在以下情境 Read**（dossier 已涵蓋核心欄位，預設不必看）：
 - 要查 GB% / xBA / csw% / EV95% / 完整 pitch mix / Pitch Arsenal RV/100 → `<side>_pitcher_summary.md`
@@ -180,9 +179,7 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 
 `$GAME_DIR/summary.md` 內所有 `<!-- AI 補 -->` placeholder 都已補完即為最終輸出。
 
-**MUST contain**：投手 Tier 判斷、打線評級、牛棚影響判讀、風險提示判讀、條件修正、修正後預期得分、整體判斷（方向 / 總分 / 信心 / 風險 1-4 點）。
-
-ℹ️ 重跑 `prepare_game.py` 預設不會覆蓋已編輯的 summary.md（偵測 placeholder 是否還在）；要強制重產用 `--force`。
+**MUST contain**：投手 Tier 判斷、打線評級、牛棚影響判讀、風險提示判讀、條件修正、修正後預期得分、整體判斷（方向 / 總分 / 信心 (%) / 風險 1-4 點）。
 
 ---
 
@@ -195,7 +192,7 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 
 `odds/reports/{date}.md` 結構：tier 分組（🔥 Major ≥ 5pp / 🟡 Significant ≥ 3pp / 🔵 Watch ≥ 1pp / ⚪ Quiet < 1pp）→ Anchor Notes → 解讀說明。
 
-從文件 grep 場名（`{Away} @ {Home}`），讀取：
+用 Grep tool 搜 pattern `{Away} @ {Home}` on `odds/reports/{date}.md`，讀取：
 - `direction_label`（→ TEAM ±Xpp，no-vig latest vs anchor 差）
 - 時間軸 table（snapshots × ML / RL / Over / Under）
 - Flags（位移 + 薄盤 + key number 跨越）
@@ -232,7 +229,7 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 ## Common Pitfalls
 
 紀律違規條目：見 `reference/flags-checklist.md`。
-邊界條件（Coors 4 月、Doubleheader、TJ 復出等）：見 `reference/matchup-factors.md`。
+邊界條件（Coors 4 月、TJ 復出等）：見 `reference/matchup-factors.md`。
 
 ---
 
@@ -243,4 +240,4 @@ $PYTHON scripts/prepare_game.py --date {ET-YYYY-MM-DD} --away {AWAY} --home {HOM
 - 明確標注數據來源
 - 修正係數必須基於可搜尋到的研究或數據
 - 使用者質疑結果時：回顧量化信號、獨立驗證後才決定是否修正；不直接妥協
-- Score override 政策：嚴重 small_sample / era_xera gap 觸發時，依 `reference/flags-checklist.md` §8 走嚴格 formula 預測等實際結果比對，不主動 override。使用者明確要求 override 時才走 override 路徑並記錄理由
+- Score override 政策：嚴重 small_sample / era_xera gap 觸發時，依 `reference/flags-checklist.md` §8 讓 formula 當 sanity rail 對比實際結果，不主動 override。使用者明確要求 override 時才走 override 路徑並記錄理由
