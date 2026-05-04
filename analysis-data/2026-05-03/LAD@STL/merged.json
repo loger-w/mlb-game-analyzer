@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 5.4,
+  "home_recent_ra": 4.3,
+  "away_recent_rs": 3.7,
+  "away_recent_ra": 3.2,
+  "home_recent_30_rs": 4.77,
+  "home_recent_30_ra": 4.63,
+  "away_recent_30_rs": 5.17,
+  "away_recent_30_ra": 3.43,
+  "home_season_rs": 5.0,
+  "home_season_ra": 4.91,
+  "away_season_rs": 5.18,
+  "away_season_ra": 3.36,
+  "home_season_games": 33,
+  "away_season_games": 33,
+  "home_starter_fip": 3.62,
+  "home_starter_k_bb": 11.5,
+  "home_starter_whip": 1.53,
+  "away_starter_fip": 3.0,
+  "away_starter_k_bb": 5.0,
+  "away_starter_whip": 0.97,
+  "home_batting_xwoba": 0.335,
+  "home_batting_ops": 0.78,
+  "home_batting_k_pct": 20.6,
+  "away_batting_xwoba": 0.365,
+  "away_batting_ops": 0.832,
+  "away_batting_k_pct": 22.9,
+  "home_pitcher": {
+    "era": 5.28,
+    "xera": 4.08,
+    "ip": 30.666666666666668,
+    "era_xera_delta": 1.2,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 27.3,
+        "rv_per_100": -0.5,
+        "xwoba_against": 0.332,
+        "whiff_pct": 13.2,
+        "put_away_pct": 11.1,
+        "hard_hit_pct": 57.7
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 19.7,
+        "rv_per_100": -1.5,
+        "xwoba_against": 0.325,
+        "whiff_pct": 13.2,
+        "put_away_pct": 15.0,
+        "hard_hit_pct": 56.0
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 19.3,
+        "rv_per_100": -3.1,
+        "xwoba_against": 0.306,
+        "whiff_pct": 27.8,
+        "put_away_pct": 21.6,
+        "hard_hit_pct": 31.6
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 1.5,
+    "xera": 3.75,
+    "ip": 30.0,
+    "era_xera_delta": -2.25,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 52.1,
+        "rv_per_100": 3.1,
+        "xwoba_against": 0.286,
+        "whiff_pct": 12.5,
+        "put_away_pct": 14.3,
+        "hard_hit_pct": 36.2
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 33.4,
+        "rv_per_100": 2.1,
+        "xwoba_against": 0.29,
+        "whiff_pct": 18.5,
+        "put_away_pct": 11.5,
+        "hard_hit_pct": 43.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.332
+  },
+  "away_lineup": {
+    "recent_babip": 0.319
+  },
+  "home_bullpen_era": 5.03,
+  "away_bullpen_era": 3.86,
+  "park_factor": 98.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 69,
+    "wind_text": "14 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "St. Louis Cardinals",
+    "away_team": "Los Angeles Dodgers",
+    "home_sp": "Dustin May",
+    "away_sp": "Justin Wrobleski",
+    "home_sp_starts": 6,
+    "away_sp_starts": 4,
+    "venue": "Busch Stadium",
+    "game_pk": 823065,
+    "game_date": "2026-05-03T18:15:00Z",
+    "official_date": "2026-05-03"
+  }
+}

@@ -1,0 +1,483 @@
+{
+  "team": "STL",
+  "team_id": 138,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🔴 Elite",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.78,
+  "avg_ops_vs_lhp": 0.84,
+  "avg_ops_vs_rhp": 0.751,
+  "avg_xwoba": 0.335,
+  "avg_babip": 0.29,
+  "avg_k_pct": 20.6,
+  "avg_bb_pct": 9.3,
+  "over_under_lean": 0,
+  "recent_heat": "🔥 Hot",
+  "last7_babip": 0.332,
+  "chain": {
+    "obp_top3": 0.384,
+    "slg_mid": 0.42
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-03T16:33:14+00:00",
+    "game_pk": 823065
+  },
+  "lineup": [
+    {
+      "mlbam_id": 802139,
+      "pa": 152,
+      "avg": 0.238,
+      "obp": 0.355,
+      "slg": 0.444,
+      "ops": 0.799,
+      "iso": 0.206,
+      "babip": 0.247,
+      "k_pct": 18.4,
+      "bb_pct": 11.2,
+      "name": "JJ Wetherholt",
+      "position": "2B",
+      "batting_order": 1,
+      "xwoba": 0.355,
+      "xba": 0.223,
+      "xslg": 0.447,
+      "ev95pct": 45.0,
+      "barrel_pct": 10.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".225",
+          "obp": ".340",
+          "slg": ".375",
+          "ops": ".715",
+          "pa": 50
+        },
+        "vs_rhp": {
+          "avg": ".244",
+          "obp": ".363",
+          "slg": ".477",
+          "ops": ".840",
+          "pa": 102
+        }
+      },
+      "last_7": {
+        "avg": ".233",
+        "obp": ".303",
+        "slg": ".633",
+        "ops": ".936",
+        "babip": ".182",
+        "pa": 33
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 671056,
+      "pa": 152,
+      "avg": 0.256,
+      "obp": 0.421,
+      "slg": 0.427,
+      "ops": 0.848,
+      "iso": 0.171,
+      "babip": 0.292,
+      "k_pct": 16.4,
+      "bb_pct": 17.1,
+      "name": "Iván Herrera",
+      "position": "C",
+      "batting_order": 2,
+      "xwoba": 0.386,
+      "xba": 0.269,
+      "xslg": 0.442,
+      "ev95pct": 47.3,
+      "barrel_pct": 8.6,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".219",
+          "obp": ".419",
+          "slg": ".344",
+          "ops": ".763",
+          "pa": 43
+        },
+        "vs_rhp": {
+          "avg": ".271",
+          "obp": ".422",
+          "slg": ".459",
+          "ops": ".881",
+          "pa": 109
+        }
+      },
+      "last_7": {
+        "avg": ".333",
+        "obp": ".500",
+        "slg": ".500",
+        "ops": "1.000",
+        "babip": ".500",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".000",
+        "obp": ".200",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691023,
+      "pa": 138,
+      "avg": 0.315,
+      "obp": 0.377,
+      "slg": 0.605,
+      "ops": 0.982,
+      "iso": 0.29,
+      "babip": 0.392,
+      "k_pct": 29.7,
+      "bb_pct": 8.7,
+      "name": "Jordan Walker",
+      "position": "RF",
+      "batting_order": 3,
+      "xwoba": 0.398,
+      "xba": 0.29,
+      "xslg": 0.567,
+      "ev95pct": 59.5,
+      "barrel_pct": 20.2,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".308",
+          "obp": ".357",
+          "slg": ".731",
+          "ops": "1.088",
+          "pa": 28
+        },
+        "vs_rhp": {
+          "avg": ".316",
+          "obp": ".382",
+          "slg": ".571",
+          "ops": ".953",
+          "pa": 110
+        }
+      },
+      "last_7": {
+        "avg": ".444",
+        "obp": ".484",
+        "slg": ".741",
+        "ops": "1.225",
+        "babip": ".500",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 676475,
+      "pa": 143,
+      "avg": 0.28,
+      "obp": 0.364,
+      "slg": 0.472,
+      "ops": 0.836,
+      "iso": 0.192,
+      "babip": 0.297,
+      "k_pct": 14.0,
+      "bb_pct": 11.9,
+      "name": "Alec Burleson",
+      "position": "1B",
+      "batting_order": 4,
+      "xwoba": 0.397,
+      "xba": 0.281,
+      "xslg": 0.576,
+      "ev95pct": 48.1,
+      "barrel_pct": 13.2,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".211",
+          "obp": ".250",
+          "slg": ".316",
+          "ops": ".566",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".310",
+          "obp": ".408",
+          "slg": ".540",
+          "ops": ".948",
+          "pa": 103
+        }
+      },
+      "last_7": {
+        "avg": ".370",
+        "obp": ".452",
+        "slg": ".704",
+        "ops": "1.156",
+        "babip": ".400",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 1,
+        "avg": "1.000",
+        "obp": "1.000",
+        "slg": "1.000",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691026,
+      "pa": 121,
+      "avg": 0.264,
+      "obp": 0.347,
+      "slg": 0.368,
+      "ops": 0.715,
+      "iso": 0.104,
+      "babip": 0.333,
+      "k_pct": 20.7,
+      "bb_pct": 9.1,
+      "name": "Masyn Winn",
+      "position": "SS",
+      "batting_order": 5,
+      "xwoba": 0.31,
+      "xba": 0.26,
+      "xslg": 0.337,
+      "ev95pct": 26.8,
+      "barrel_pct": 3.7,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".375",
+          "obp": ".444",
+          "slg": ".542",
+          "ops": ".986",
+          "pa": 27
+        },
+        "vs_rhp": {
+          "avg": ".232",
+          "obp": ".319",
+          "slg": ".317",
+          "ops": ".636",
+          "pa": 94
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".300",
+        "slg": ".259",
+        "ops": ".559",
+        "babip": ".286",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 4,
+        "avg": ".500",
+        "obp": ".500",
+        "slg": ".500",
+        "h": 2,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 665877,
+      "pa": 34,
+      "avg": 0.276,
+      "obp": 0.333,
+      "slg": 0.448,
+      "ops": 0.781,
+      "iso": 0.172,
+      "babip": 0.318,
+      "k_pct": 20.6,
+      "bb_pct": 8.8,
+      "name": "José Fermín",
+      "position": "LF",
+      "batting_order": 6,
+      "xwoba": 0.272,
+      "xba": 0.219,
+      "xslg": 0.301,
+      "ev95pct": 47.8,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".333",
+          "obp": ".429",
+          "slg": ".667",
+          "ops": "1.096",
+          "pa": 14
+        },
+        "vs_rhp": {
+          "avg": ".235",
+          "obp": ".263",
+          "slg": ".294",
+          "ops": ".557",
+          "pa": 20
+        }
+      },
+      "last_7": {
+        "avg": ".313",
+        "obp": ".389",
+        "slg": ".625",
+        "ops": "1.014",
+        "babip": ".333",
+        "pa": 18
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 701675,
+      "pa": 100,
+      "avg": 0.237,
+      "obp": 0.27,
+      "slg": 0.43,
+      "ops": 0.7,
+      "iso": 0.193,
+      "babip": 0.258,
+      "k_pct": 24.0,
+      "bb_pct": 4.0,
+      "name": "Nathan Church",
+      "position": "LF",
+      "batting_order": 7,
+      "xwoba": 0.305,
+      "xba": 0.239,
+      "xslg": 0.439,
+      "ev95pct": 36.6,
+      "barrel_pct": 12.7,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".286",
+          "obp": ".313",
+          "slg": ".286",
+          "ops": ".599",
+          "pa": 16
+        },
+        "vs_rhp": {
+          "avg": ".228",
+          "obp": ".262",
+          "slg": ".456",
+          "ops": ".718",
+          "pa": 84
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".200",
+        "slg": ".367",
+        "ops": ".567",
+        "babip": ".227",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 686780,
+      "pa": 76,
+      "avg": 0.261,
+      "obp": 0.307,
+      "slg": 0.435,
+      "ops": 0.742,
+      "iso": 0.174,
+      "babip": 0.306,
+      "k_pct": 23.7,
+      "bb_pct": 3.9,
+      "name": "Pedro Pagés",
+      "position": "C",
+      "batting_order": 8,
+      "xwoba": 0.284,
+      "xba": 0.225,
+      "xslg": 0.376,
+      "ev95pct": 32.1,
+      "barrel_pct": 7.5,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".200",
+          "obp": ".238",
+          "slg": ".250",
+          "ops": ".488",
+          "pa": 21
+        },
+        "vs_rhp": {
+          "avg": ".286",
+          "obp": ".333",
+          "slg": ".510",
+          "ops": ".843",
+          "pa": 55
+        }
+      },
+      "last_7": {
+        "avg": ".333",
+        "obp": ".357",
+        "slg": ".593",
+        "ops": ".950",
+        "babip": ".438",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".750",
+        "obp": ".800",
+        "slg": "1.750",
+        "h": 3,
+        "hr": 1,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 602104,
+      "pa": 66,
+      "avg": 0.164,
+      "obp": 0.288,
+      "slg": 0.327,
+      "ops": 0.615,
+      "iso": 0.163,
+      "babip": 0.167,
+      "k_pct": 18.2,
+      "bb_pct": 9.1,
+      "name": "Ramón Urías",
+      "position": "3B",
+      "batting_order": 9,
+      "xwoba": 0.304,
+      "xba": 0.185,
+      "xslg": 0.359,
+      "ev95pct": 36.4,
+      "barrel_pct": 9.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".286",
+          "obp": ".474",
+          "slg": ".786",
+          "ops": "1.260",
+          "pa": 19
+        },
+        "vs_rhp": {
+          "avg": ".122",
+          "obp": ".213",
+          "slg": ".171",
+          "ops": ".384",
+          "pa": 47
+        }
+      },
+      "last_7": {
+        "avg": ".105",
+        "obp": ".217",
+        "slg": ".105",
+        "ops": ".322",
+        "babip": ".125",
+        "pa": 23
+      },
+      "bvp": null
+    }
+  ]
+}

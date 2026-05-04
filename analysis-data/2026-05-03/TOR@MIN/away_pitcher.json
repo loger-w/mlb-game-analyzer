@@ -1,0 +1,91 @@
+{
+  "name": "Trey Yesavage",
+  "mlbam_id": 702056,
+  "age": 22,
+  "birth_date": "2003-07-28",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 75,
+    "gap": null
+  },
+  "season": {
+    "era": 0.0,
+    "whip": 0.75,
+    "k_pct": 15.0,
+    "bb_pct": 0.0,
+    "k_bb_pct": 15.0,
+    "fip": 1.98,
+    "xfip": 4.41,
+    "hr_per_9": 0.0,
+    "gb_pct": 23.1,
+    "ip": 5.333333333333333,
+    "games": 1,
+    "gs": 1
+  },
+  "expected": {
+    "xera": 1.17,
+    "xwoba": 0.169,
+    "xba": 0.16
+  },
+  "statcast": {
+    "avg_velo": 88.9,
+    "max_velo": 95.7,
+    "hard_hit_pct": 10.0,
+    "pitch_types": {
+      "FF": 52.7,
+      "FS": 39.2,
+      "SL": 8.1
+    },
+    "barrel_pct": 5.9,
+    "ev95percent": 17.6,
+    "whiff_pct": 5.4,
+    "csw_pct": 21.6
+  },
+  "game_log": [
+    {
+      "date": "2026-04-28",
+      "opponent": "Boston Red Sox",
+      "ip": 5.333333333333333,
+      "era": 0.0,
+      "k": 3,
+      "bb": 0,
+      "h": 4,
+      "er": 0,
+      "pitches": 74,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".182",
+      "obp": ".182",
+      "slg": ".182",
+      "k": 1,
+      "bb": 0,
+      "bf": 11,
+      "k_pct": 9.1,
+      "bb_pct": 0.0
+    },
+    "vs_right": {
+      "avg": ".222",
+      "obp": ".222",
+      "slg": ".333",
+      "k": 2,
+      "bb": 0,
+      "bf": 9,
+      "k_pct": 22.2,
+      "bb_pct": 0.0
+    }
+  },
+  "arsenal": [
+    {
+      "error": "Player 702056 not found in arsenal data"
+    }
+  ]
+}

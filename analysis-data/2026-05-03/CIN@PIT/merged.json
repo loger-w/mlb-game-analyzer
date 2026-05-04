@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 5.7,
+  "home_recent_ra": 5.2,
+  "away_recent_rs": 5.7,
+  "away_recent_ra": 7.5,
+  "home_recent_30_rs": 5.53,
+  "home_recent_30_ra": 4.3,
+  "away_recent_30_rs": 4.4,
+  "away_recent_30_ra": 5.07,
+  "home_season_rs": 5.26,
+  "home_season_ra": 4.38,
+  "away_season_rs": 4.27,
+  "away_season_ra": 4.91,
+  "home_season_games": 34,
+  "away_season_games": 33,
+  "home_starter_fip": 3.01,
+  "home_starter_k_bb": 19.6,
+  "home_starter_whip": 1.15,
+  "away_starter_fip": 3.78,
+  "away_starter_k_bb": 19.7,
+  "away_starter_whip": 1.12,
+  "home_batting_xwoba": 0.33,
+  "home_batting_ops": 0.752,
+  "home_batting_k_pct": 25.1,
+  "away_batting_xwoba": 0.354,
+  "away_batting_ops": 0.788,
+  "away_batting_k_pct": 22.4,
+  "home_pitcher": {
+    "era": 3.71,
+    "xera": 2.8,
+    "ip": 34.0,
+    "era_xera_delta": 0.91,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 31.6,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.303,
+        "whiff_pct": 18.3,
+        "put_away_pct": 17.6,
+        "hard_hit_pct": 32.1
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 26.1,
+        "rv_per_100": 1.8,
+        "xwoba_against": 0.177,
+        "whiff_pct": 48.4,
+        "put_away_pct": 38.9,
+        "hard_hit_pct": 40.0
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 20.1,
+        "rv_per_100": -2.1,
+        "xwoba_against": 0.297,
+        "whiff_pct": 37.5,
+        "put_away_pct": 25.7,
+        "hard_hit_pct": 25.0
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 2.65,
+    "xera": 3.37,
+    "ip": 34.0,
+    "era_xera_delta": -0.72,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 55.6,
+        "rv_per_100": 0.4,
+        "xwoba_against": 0.358,
+        "whiff_pct": 22.5,
+        "put_away_pct": 16.7,
+        "hard_hit_pct": 45.8
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 37.2,
+        "rv_per_100": 2.7,
+        "xwoba_against": 0.192,
+        "whiff_pct": 48.6,
+        "put_away_pct": 35.7,
+        "hard_hit_pct": 37.5
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.364
+  },
+  "away_lineup": {
+    "recent_babip": 0.255
+  },
+  "home_bullpen_era": 3.73,
+  "away_bullpen_era": 4.1,
+  "park_factor": 102.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 55,
+    "wind_text": "10 mph, Out To CF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Pittsburgh Pirates",
+    "away_team": "Cincinnati Reds",
+    "home_sp": "Braxton Ashcraft",
+    "away_sp": "Chase Burns",
+    "home_sp_starts": 6,
+    "away_sp_starts": 6,
+    "venue": "PNC Park",
+    "game_pk": 823387,
+    "game_date": "2026-05-03T17:35:00Z",
+    "official_date": "2026-05-03"
+  }
+}

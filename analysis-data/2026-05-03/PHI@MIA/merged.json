@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 3.9,
+  "home_recent_ra": 3.6,
+  "away_recent_rs": 4.2,
+  "away_recent_ra": 4.0,
+  "home_recent_30_rs": 4.47,
+  "home_recent_30_ra": 4.43,
+  "away_recent_30_rs": 3.67,
+  "away_recent_30_ra": 4.77,
+  "home_season_rs": 4.36,
+  "home_season_ra": 4.24,
+  "away_season_rs": 3.65,
+  "away_season_ra": 5.06,
+  "home_season_games": 33,
+  "away_season_games": 34,
+  "home_starter_fip": 4.31,
+  "home_starter_k_bb": 14.8,
+  "home_starter_whip": 1.5,
+  "away_starter_fip": 2.63,
+  "away_starter_k_bb": 22.1,
+  "away_starter_whip": 1.28,
+  "home_batting_xwoba": 0.304,
+  "home_batting_ops": 0.738,
+  "home_batting_k_pct": 22.7,
+  "away_batting_xwoba": 0.303,
+  "away_batting_ops": 0.666,
+  "away_batting_k_pct": 20.1,
+  "home_pitcher": {
+    "era": 6.11,
+    "xera": 3.78,
+    "ip": 28.0,
+    "era_xera_delta": 2.33,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 31.3,
+        "rv_per_100": -0.8,
+        "xwoba_against": 0.32,
+        "whiff_pct": 18.2,
+        "put_away_pct": 12.1,
+        "hard_hit_pct": 40.7
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 26.0,
+        "rv_per_100": 1.1,
+        "xwoba_against": 0.242,
+        "whiff_pct": 30.3,
+        "put_away_pct": 25.0,
+        "hard_hit_pct": 50.0
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 5.5,
+    "xera": 3.25,
+    "ip": 34.333333333333336,
+    "era_xera_delta": 2.25,
+    "arsenal_top": [
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 36.7,
+        "rv_per_100": 1.5,
+        "xwoba_against": 0.2,
+        "whiff_pct": 49.4,
+        "put_away_pct": 32.4,
+        "hard_hit_pct": 21.1
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 25.3,
+        "rv_per_100": -2.2,
+        "xwoba_against": 0.287,
+        "whiff_pct": 22.7,
+        "put_away_pct": 19.0,
+        "hard_hit_pct": 22.2
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 20.9,
+        "rv_per_100": 1.6,
+        "xwoba_against": 0.365,
+        "whiff_pct": 43.1,
+        "put_away_pct": 15.4,
+        "hard_hit_pct": 22.2
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.326
+  },
+  "away_lineup": {
+    "recent_babip": 0.282
+  },
+  "home_bullpen_era": 3.71,
+  "away_bullpen_era": 4.37,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Roof Closed",
+    "temp_f": 72,
+    "wind_text": "0 mph, None",
+    "indoor": true
+  },
+  "_meta": {
+    "home_team": "Miami Marlins",
+    "away_team": "Philadelphia Phillies",
+    "home_sp": "Chris Paddack",
+    "away_sp": "Jesús Luzardo",
+    "home_sp_starts": 5,
+    "away_sp_starts": 6,
+    "venue": "loanDepot park",
+    "game_pk": 823875,
+    "game_date": "2026-05-03T17:40:00Z",
+    "official_date": "2026-05-03"
+  }
+}

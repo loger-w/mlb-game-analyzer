@@ -1,0 +1,415 @@
+{
+  "team": "Houston Astros",
+  "team_id": 117,
+  "active_roster": {
+    "pitchers": [
+      "AJ Blubaugh",
+      "Bennett Sousa",
+      "Bryan Abreu",
+      "Bryan King",
+      "Cody Bolton",
+      "Enyel De Los Santos",
+      "Kai-Wei Teng",
+      "Lance McCullers Jr.",
+      "Mike Burrows",
+      "Peter Lambert",
+      "Ryan Weiss",
+      "Spencer Arrighetti",
+      "Steven Okert"
+    ],
+    "pitcher_ids": [
+      805123,
+      656986,
+      650556,
+      687911,
+      675989,
+      660853,
+      678906,
+      621121,
+      681347,
+      663567,
+      680802,
+      681293,
+      595345
+    ],
+    "position_players": [
+      "Braden Shewmake",
+      "Brice Matthews",
+      "Cam Smith",
+      "Carlos Correa",
+      "Christian Vázquez",
+      "Christian Walker",
+      "Daniel Johnson",
+      "Dustin Harris",
+      "Isaac Paredes",
+      "Jose Altuve",
+      "Shay Whitcomb",
+      "Yainer Diaz",
+      "Yordan Alvarez"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "AJ Blubaugh",
+        "player_id": 805123,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 13,
+          "gs": 0,
+          "ip": 18.3
+        }
+      },
+      {
+        "name": "Bennett Sousa",
+        "player_id": 656986,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 4,
+          "gs": 0,
+          "ip": 2.3
+        }
+      },
+      {
+        "name": "Bryan Abreu",
+        "player_id": 650556,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 11,
+          "gs": 0,
+          "ip": 9.3
+        }
+      },
+      {
+        "name": "Bryan King",
+        "player_id": 687911,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 2,
+          "g": 12,
+          "gs": 0,
+          "ip": 13.7
+        }
+      },
+      {
+        "name": "Cody Bolton",
+        "player_id": 675989,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 0,
+          "g": 4,
+          "gs": 2,
+          "ip": 9.3
+        }
+      },
+      {
+        "name": "Enyel De Los Santos",
+        "player_id": 660853,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 1,
+          "g": 12,
+          "gs": 0,
+          "ip": 13.0
+        }
+      },
+      {
+        "name": "Kai-Wei Teng",
+        "player_id": 678906,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 13,
+          "gs": 1,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Lance McCullers Jr.",
+        "player_id": 621121,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 6,
+          "ip": 31.3
+        }
+      },
+      {
+        "name": "Mike Burrows",
+        "player_id": 681347,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 37.7
+        }
+      },
+      {
+        "name": "Peter Lambert",
+        "player_id": 663567,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 3,
+          "ip": 15.3
+        }
+      },
+      {
+        "name": "Ryan Weiss",
+        "player_id": 680802,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 2,
+          "ip": 21.7
+        }
+      },
+      {
+        "name": "Spencer Arrighetti",
+        "player_id": 681293,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 4,
+          "gs": 4,
+          "ip": 23.0
+        }
+      },
+      {
+        "name": "Steven Okert",
+        "player_id": 595345,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 16,
+          "gs": 0,
+          "ip": 14.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Brandon Walter",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 687888,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Cristian Javier",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 664299,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 3,
+        "gs": 3,
+        "ip": 9.3
+      }
+    },
+    {
+      "name": "Hayden Wesneski",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 669713,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Hunter Brown",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 686613,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 2,
+        "gs": 2,
+        "ip": 10.7
+      }
+    },
+    {
+      "name": "Jake Meyers",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 676694
+    },
+    {
+      "name": "Jeremy Peña",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 665161
+    },
+    {
+      "name": "Joey Loperfido",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 694388
+    },
+    {
+      "name": "Josh Hader",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 623352,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Nate Pearson",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 663878,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Nick Allen",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 669397
+    },
+    {
+      "name": "Ronel Blanco",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 669854,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Tatsuya Imai",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 837227,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 3,
+        "gs": 3,
+        "ip": 8.7
+      }
+    },
+    {
+      "name": "Taylor Trammell",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 666211
+    },
+    {
+      "name": "Zach Dezenzo",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 701305
+    }
+  ],
+  "not_active_40man": [
+    "Colton Gordon",
+    "Jason Alexander",
+    "Jayden Murray",
+    "Miguel Ullola",
+    "Zach Cole"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 14,
+    "total_40man_not_active": 5
+  }
+}

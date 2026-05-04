@@ -1,6 +1,6 @@
 # Lineup Analysis — NYY (team_id 147)
 **Tier**: 🟠 Strong
-**Recent heat**: 🔥 Hot
+**Recent heat**: ⚖️ Normal
 **Lineup size**: 9
 
 ---
@@ -9,75 +9,75 @@
 
 | 指標 | 數值 |
 |------|------|
-| avg OPS | 0.771 |
-| avg xwOBA | 0.349 |
-| avg BABIP | 0.264 |
-| avg K% | 22.8 |
-| avg BB% | 12.7 |
-| last7 BABIP | 0.266 |
+| avg OPS | 0.735 |
+| avg xwOBA | 0.344 |
+| avg BABIP | 0.260 |
+| avg K% | 23.0 |
+| avg BB% | 12.1 |
+| last7 BABIP | 0.271 |
 | over_under_lean | +1 |
-| chain OBP top3 | 0.397 |
-| chain SLG mid | 0.325 |
+| chain OBP top3 | 0.384 |
+| chain SLG mid | 0.406 |
 
 ## Core Lineup (sorted by PA)
 
 | # | Name | Pos | PA | AVG | OBP | SLG | OPS | xwOBA | xBA | BABIP | K% | BB% |
 |---|------|-----|----|-----|-----|-----|-----|-------|-----|-------|----|----|
-| 1 | Aaron Judge | RF | 140 | 0.263 | 0.396 | 0.623 | 1.019 | 0.454 | 0.283 | 0.281 | 27.1 | 16.4 |
-| 2 | Cody Bellinger | LF | 133 | 0.250 | 0.353 | 0.402 | 0.755 | 0.365 | 0.278 | 0.275 | 15.0 | 14.3 |
-| 3 | Ben Rice | 1B | 127 | 0.330 | 0.441 | 0.728 | 1.169 | 0.450 | 0.313 | 0.365 | 24.4 | 16.5 |
-| 4 | Jazz Chisholm Jr. | 2B | 125 | 0.205 | 0.288 | 0.330 | 0.618 | 0.279 | 0.201 | 0.274 | 28.8 | 9.6 |
-| 5 | Trent Grisham | CF | 118 | 0.155 | 0.297 | 0.320 | 0.617 | 0.349 | 0.220 | 0.151 | 17.8 | 16.9 |
-| 6 | José Caballero | SS | 116 | 0.266 | 0.310 | 0.422 | 0.732 | 0.263 | 0.220 | 0.316 | 22.4 | 3.4 |
+| 1 | Trent Grisham | CF | 123 | 0.168 | 0.309 | 0.366 | 0.675 | 0.364 | 0.227 | 0.160 | 17.9 | 17.1 |
+| 2 | Ben Rice | 1B | 132 | 0.330 | 0.447 | 0.717 | 1.164 | 0.453 | 0.316 | 0.369 | 24.2 | 17.4 |
+| 3 | Aaron Judge | RF | 145 | 0.256 | 0.396 | 0.607 | 1.003 | 0.446 | 0.276 | 0.281 | 28.3 | 17.2 |
+| 4 | Cody Bellinger | LF | 137 | 0.276 | 0.372 | 0.483 | 0.855 | 0.365 | 0.278 | 0.290 | 14.6 | 13.9 |
+| 5 | Jazz Chisholm Jr. | 2B | 129 | 0.209 | 0.295 | 0.330 | 0.625 | 0.282 | 0.203 | 0.276 | 27.9 | 10.1 |
+| 6 | Jasson Domínguez | LF | 14 | 0.154 | 0.214 | 0.154 | 0.368 | 0.298 | 0.284 | 0.200 | 21.4 | 0.0 |
 | 7 | Austin Wells | C | 91 | 0.203 | 0.341 | 0.338 | 0.679 | 0.335 | 0.240 | 0.214 | 17.6 | 17.6 |
-| 8 | Ryan McMahon | 3B | 82 | 0.167 | 0.268 | 0.250 | 0.518 | 0.271 | 0.192 | 0.233 | 32.9 | 12.2 |
-| 9 | Amed Rosario | 3B | 67 | 0.267 | 0.313 | 0.517 | 0.830 | 0.378 | 0.271 | 0.267 | 19.4 | 7.5 |
+| 8 | Ryan McMahon | 3B | 86 | 0.171 | 0.267 | 0.263 | 0.530 | 0.287 | 0.206 | 0.239 | 32.6 | 11.6 |
+| 9 | José Caballero | SS | 120 | 0.259 | 0.308 | 0.411 | 0.719 | 0.267 | 0.221 | 0.309 | 22.5 | 4.2 |
 
 ## Statcast (Hard Contact)
 
 | # | Name | EV95% | Barrel% |
 |---|------|-------|---------|
-| 1 | Aaron Judge | 53.9 | 26.3 |
-| 2 | Cody Bellinger | 41.5 | 6.4 |
-| 3 | Ben Rice | 59.5 | 20.3 |
-| 4 | Jazz Chisholm Jr. | 40.8 | 6.6 |
-| 5 | Trent Grisham | 50.6 | 13.0 |
-| 6 | José Caballero | 28.9 | 3.6 |
+| 1 | Trent Grisham | 51.2 | 15.0 |
+| 2 | Ben Rice | 59.2 | 19.7 |
+| 3 | Aaron Judge | 53.9 | 26.3 |
+| 4 | Cody Bellinger | 40.8 | 7.1 |
+| 5 | Jazz Chisholm Jr. | 40.5 | 6.3 |
+| 6 | Jasson Domínguez | 40.0 | 0.0 |
 | 7 | Austin Wells | 45.8 | 5.1 |
-| 8 | Ryan McMahon | 53.3 | 8.9 |
-| 9 | Amed Rosario | 40.8 | 12.2 |
+| 8 | Ryan McMahon | 52.1 | 10.4 |
+| 9 | José Caballero | 29.4 | 3.5 |
 
 ## Last 7 Days
 
 | # | Name | PA | AVG | OBP | SLG | OPS | BABIP |
 |---|------|----|-----|-----|-----|-----|-------|
-| 1 | Aaron Judge | 31 | .348 | .516 | .826 | 1.342 | .357 |
-| 2 | Cody Bellinger | 31 | .185 | .290 | .296 | .586 | .250 |
-| 3 | Ben Rice | 32 | .379 | .406 | .759 | 1.165 | .333 |
-| 4 | Jazz Chisholm Jr. | 30 | .259 | .333 | .481 | .814 | .278 |
-| 5 | Trent Grisham | 31 | .120 | .258 | .280 | .538 | .095 |
-| 6 | José Caballero | 27 | .320 | .370 | .680 | 1.050 | .263 |
+| 1 | Trent Grisham | 31 | .185 | .290 | .481 | .771 | .150 |
+| 2 | Ben Rice | 32 | .370 | .438 | .630 | 1.068 | .348 |
+| 3 | Aaron Judge | 31 | .333 | .484 | .792 | 1.276 | .417 |
+| 4 | Cody Bellinger | 30 | .308 | .400 | .692 | 1.092 | .333 |
+| 5 | Jazz Chisholm Jr. | 29 | .192 | .276 | .308 | .584 | .211 |
+| 6 | Jasson Domínguez | 14 | .154 | .214 | .154 | .368 | .200 |
 | 7 | Austin Wells | 27 | .250 | .333 | .500 | .833 | .222 |
-| 8 | Ryan McMahon | 23 | .217 | .217 | .348 | .565 | .267 |
-| 9 | Amed Rosario | 22 | .278 | .364 | .444 | .808 | .333 |
+| 8 | Ryan McMahon | 23 | .217 | .217 | .261 | .478 | .333 |
+| 9 | José Caballero | 27 | .250 | .333 | .500 | .833 | .222 |
 
 ## Platoon Splits
 
 | # | Name | vs LHP (PA / OPS) | vs RHP (PA / OPS) |
 |---|------|-------------------|-------------------|
-| 1 | Aaron Judge | 44 / 1.182 | 96 / .948 |
-| 2 | Cody Bellinger | 40 / .712 | 93 / .773 |
-| 3 | Ben Rice | 34 / 1.308 | 93 / 1.112 |
-| 4 | Jazz Chisholm Jr. | 38 / .528 | 87 / .658 |
-| 5 | Trent Grisham | 30 / .633 | 88 / .610 |
-| 6 | José Caballero | 39 / .820 | 77 / .682 |
+| 1 | Trent Grisham | 32 / .589 | 91 / .706 |
+| 2 | Ben Rice | 35 / 1.324 | 97 / 1.101 |
+| 3 | Aaron Judge | 45 / 1.150 | 100 / .940 |
+| 4 | Cody Bellinger | 41 / .831 | 96 / .865 |
+| 5 | Jazz Chisholm Jr. | 39 / .513 | 90 / .674 |
+| 6 | Jasson Domínguez | 3 / .666 | 11 / .282 |
 | 7 | Austin Wells | 34 / .439 | 57 / .830 |
-| 8 | Ryan McMahon | 15 / .343 | 67 / .560 |
-| 9 | Amed Rosario | 32 / .781 | 35 / .874 |
+| 8 | Ryan McMahon | 17 / .301 | 69 / .590 |
+| 9 | José Caballero | 41 / .780 | 79 / .681 |
 
 ---
 
 ## Source
 - Generated by: `lineup_analyzer.py --team NYY --year 2026 --opposing-pitcher-id 694346 --game-pk 823555`
-- Generated at: `2026-05-02T17:24:38+00:00`
+- Generated at: `2026-05-03T16:09:11+00:00`
 - JSON sibling: see same directory `<basename>.json`

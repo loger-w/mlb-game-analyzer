@@ -1,0 +1,124 @@
+{
+  "name": "Matthew Boyd",
+  "mlbam_id": 571510,
+  "age": 35,
+  "birth_date": "1991-02-02",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15,
+    "gap": null
+  },
+  "season": {
+    "era": 7.0,
+    "whip": 1.44,
+    "k_pct": 33.3,
+    "bb_pct": 6.4,
+    "k_bb_pct": 26.9,
+    "fip": 1.77,
+    "xfip": 1.98,
+    "hr_per_9": 0.5,
+    "gb_pct": 50.0,
+    "ip": 18.0,
+    "games": 4,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 4.16,
+    "xwoba": 0.322,
+    "xba": 0.258
+  },
+  "statcast": {
+    "avg_velo": 86.6,
+    "max_velo": 95.6,
+    "hard_hit_pct": 32.3,
+    "pitch_types": {
+      "FF": 52.7,
+      "CH": 27.0,
+      "SL": 10.2,
+      "CU": 9.2,
+      "SI": 0.9
+    },
+    "barrel_pct": 10.6,
+    "ev95percent": 51.1,
+    "whiff_pct": 14.2,
+    "csw_pct": 29.3
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Washington Nationals",
+      "ip": 3.6666666666666665,
+      "era": 14.73,
+      "k": 7,
+      "bb": 1,
+      "h": 6,
+      "er": 6,
+      "pitches": 63,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Los Angeles Angels",
+      "ip": 5.666666666666667,
+      "era": 6.75,
+      "k": 10,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 98,
+      "strikes": 64
+    },
+    {
+      "date": "2026-04-22",
+      "opponent": "Philadelphia Phillies",
+      "ip": 4.666666666666667,
+      "era": 5.79,
+      "k": 5,
+      "bb": 0,
+      "h": 5,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".188",
+      "obp": ".188",
+      "slg": ".188",
+      "k": 6,
+      "bb": 0,
+      "bf": 16,
+      "k_pct": 37.5,
+      "bb_pct": 0.0
+    },
+    "vs_right": {
+      "avg": ".316",
+      "obp": ".371",
+      "slg": ".456",
+      "k": 20,
+      "bb": 5,
+      "bf": 62,
+      "k_pct": 32.3,
+      "bb_pct": 8.1
+    }
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 54.8,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.356,
+      "whiff_pct": 28.3,
+      "put_away_pct": 21.3,
+      "hard_hit_pct": 76.0
+    }
+  ]
+}

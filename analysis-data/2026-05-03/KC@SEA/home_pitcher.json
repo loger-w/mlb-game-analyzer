@@ -1,0 +1,144 @@
+{
+  "name": "Luis Castillo",
+  "mlbam_id": 622491,
+  "age": 33,
+  "birth_date": "1992-12-12",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15,
+    "gap": null
+  },
+  "season": {
+    "era": 6.35,
+    "whip": 1.73,
+    "k_pct": 19.4,
+    "bb_pct": 8.2,
+    "k_bb_pct": 11.2,
+    "fip": 4.26,
+    "xfip": 3.81,
+    "hr_per_9": 1.27,
+    "gb_pct": 47.4,
+    "ip": 28.333333333333332,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 5.69,
+    "xwoba": 0.369,
+    "xba": 0.299
+  },
+  "statcast": {
+    "avg_velo": 91.3,
+    "max_velo": 97.6,
+    "hard_hit_pct": 27.5,
+    "pitch_types": {
+      "FF": 40.7,
+      "SL": 27.8,
+      "SI": 19.7,
+      "CH": 11.2,
+      "FC": 0.6
+    },
+    "barrel_pct": 12.6,
+    "ev95percent": 47.4,
+    "whiff_pct": 11.2,
+    "csw_pct": 24.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "New York Yankees",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 7,
+      "bb": 2,
+      "h": 3,
+      "er": 0,
+      "pitches": 95,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Los Angeles Angels",
+      "ip": 3.6666666666666665,
+      "era": 2.79,
+      "k": 4,
+      "bb": 1,
+      "h": 6,
+      "er": 3,
+      "pitches": 84,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Houston Astros",
+      "ip": 3.3333333333333335,
+      "era": 6.92,
+      "k": 3,
+      "bb": 1,
+      "h": 10,
+      "er": 7,
+      "pitches": 91,
+      "strikes": 68
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".246",
+      "obp": ".328",
+      "slg": ".526",
+      "k": 12,
+      "bb": 5,
+      "bf": 65,
+      "k_pct": 18.5,
+      "bb_pct": 7.7
+    },
+    "vs_right": {
+      "avg": ".381",
+      "obp": ".435",
+      "slg": ".476",
+      "k": 14,
+      "bb": 6,
+      "bf": 69,
+      "k_pct": 20.3,
+      "bb_pct": 8.7
+    }
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 40.7,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.384,
+      "whiff_pct": 25.4,
+      "put_away_pct": 14.8,
+      "hard_hit_pct": 51.5
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 29.3,
+      "rv_per_100": -1.7,
+      "xwoba_against": 0.318,
+      "whiff_pct": 32.4,
+      "put_away_pct": 15.5,
+      "hard_hit_pct": 40.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.6,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.411,
+      "whiff_pct": 9.8,
+      "put_away_pct": 10.5,
+      "hard_hit_pct": 48.3
+    }
+  ]
+}

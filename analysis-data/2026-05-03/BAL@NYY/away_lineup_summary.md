@@ -5,91 +5,101 @@
 
 ---
 
+## 🚨 Triggers
+
+### Flag 3 觸發 — BABIP 回歸（極端低）
+- 數值：**0.234**（觸發閾值 ≤ 0.260）
+- 解讀：近 7 天 BABIP 偏低，預示反彈（運氣差於常態）。
+- 處理：Hot/Cold 判定前先做 BABIP 回歸檢查（見 matchup-factors.md §BABIP 回歸檢查）
+
+---
+
 ## Team-Level Aggregates
 
 | 指標 | 數值 |
 |------|------|
-| avg OPS | 0.698 |
-| avg xwOBA | 0.326 |
-| avg BABIP | 0.275 |
-| avg K% | 24.8 |
-| avg BB% | 10.3 |
-| last7 BABIP | 0.279 |
+| avg OPS | 0.719 |
+| avg xwOBA | 0.335 |
+| avg BABIP | 0.295 |
+| avg K% | 22.8 |
+| avg BB% | 11.2 |
+| last7 BABIP | 0.234 |
 | over_under_lean | +0 |
-| chain OBP top3 | 0.340 |
-| chain SLG mid | 0.455 |
+| chain OBP top3 | 0.369 |
+| chain SLG mid | 0.301 |
 
 ## Core Lineup (sorted by PA)
 
 | # | Name | Pos | PA | AVG | OBP | SLG | OPS | xwOBA | xBA | BABIP | K% | BB% |
 |---|------|-----|----|-----|-----|-----|-----|-------|-----|-------|----|----|
-| 1 | Gunnar Henderson | SS | 149 | 0.207 | 0.275 | 0.467 | 0.742 | 0.305 | 0.225 | 0.235 | 30.9 | 8.1 |
-| 2 | Taylor Ward | LF | 148 | 0.294 | 0.426 | 0.429 | 0.855 | 0.381 | 0.288 | 0.358 | 16.2 | 18.2 |
-| 3 | Pete Alonso | 1B | 138 | 0.203 | 0.319 | 0.390 | 0.709 | 0.344 | 0.227 | 0.238 | 23.9 | 13.8 |
-| 4 | Jeremiah Jackson | 2B | 104 | 0.270 | 0.288 | 0.480 | 0.768 | 0.310 | 0.259 | 0.296 | 23.1 | 1.9 |
-| 5 | Samuel Basallo | C | 96 | 0.233 | 0.313 | 0.430 | 0.743 | 0.332 | 0.241 | 0.268 | 26.0 | 10.4 |
-| 6 | Dylan Beavers | RF | 93 | 0.220 | 0.293 | 0.329 | 0.622 | 0.298 | 0.227 | 0.271 | 23.7 | 9.7 |
-| 7 | Coby Mayo | 3B | 88 | 0.165 | 0.239 | 0.316 | 0.555 | 0.288 | 0.213 | 0.200 | 30.7 | 9.1 |
-| 8 | Leody Taveras | CF | 82 | 0.275 | 0.383 | 0.435 | 0.818 | 0.363 | 0.270 | 0.333 | 19.5 | 14.6 |
-| 9 | Blaze Alexander | 3B | 73 | 0.185 | 0.254 | 0.215 | 0.469 | 0.314 | 0.282 | 0.273 | 28.8 | 6.8 |
+| 1 | Taylor Ward | LF | 152 | 0.295 | 0.428 | 0.426 | 0.854 | 0.384 | 0.293 | 0.357 | 15.8 | 18.4 |
+| 2 | Adley Rutschman | C | 72 | 0.313 | 0.361 | 0.582 | 0.943 | 0.305 | 0.241 | 0.321 | 13.9 | 6.9 |
+| 3 | Pete Alonso | 1B | 142 | 0.205 | 0.317 | 0.410 | 0.727 | 0.354 | 0.234 | 0.232 | 23.9 | 13.4 |
+| 4 | Tyler O'Neill | RF | 50 | 0.220 | 0.360 | 0.293 | 0.653 | 0.312 | 0.196 | 0.276 | 22.0 | 14.0 |
+| 5 | Coby Mayo | 3B | 90 | 0.160 | 0.233 | 0.309 | 0.542 | 0.286 | 0.211 | 0.192 | 30.0 | 8.9 |
+| 6 | Leody Taveras | CF | 82 | 0.275 | 0.383 | 0.435 | 0.818 | 0.363 | 0.270 | 0.333 | 19.5 | 14.6 |
+| 7 | Jeremiah Jackson | 2B | 108 | 0.260 | 0.278 | 0.462 | 0.740 | 0.305 | 0.257 | 0.280 | 22.2 | 1.9 |
+| 8 | Weston Wilson | 3B | 19 | 0.267 | 0.421 | 0.333 | 0.754 | 0.408 | 0.269 | 0.400 | 26.3 | 15.8 |
+| 9 | Blaze Alexander | 3B | 77 | 0.174 | 0.240 | 0.203 | 0.443 | 0.299 | 0.267 | 0.267 | 31.2 | 6.5 |
 
 ## Statcast (Hard Contact)
 
 | # | Name | EV95% | Barrel% |
 |---|------|-------|---------|
-| 1 | Gunnar Henderson | 45.6 | 11.1 |
-| 2 | Taylor Ward | 38.5 | 6.3 |
-| 3 | Pete Alonso | 55.3 | 9.4 |
-| 4 | Jeremiah Jackson | 35.1 | 9.1 |
-| 5 | Samuel Basallo | 45.9 | 9.8 |
-| 6 | Dylan Beavers | 38.7 | 6.5 |
-| 7 | Coby Mayo | 39.6 | 7.5 |
-| 8 | Leody Taveras | 37.0 | 5.6 |
-| 9 | Blaze Alexander | 48.9 | 2.2 |
+| 1 | Taylor Ward | 38.4 | 6.1 |
+| 2 | Adley Rutschman | 45.6 | 7.0 |
+| 3 | Pete Alonso | 55.7 | 11.4 |
+| 4 | Tyler O'Neill | 43.3 | 3.3 |
+| 5 | Coby Mayo | 40.0 | 7.3 |
+| 6 | Leody Taveras | 37.0 | 5.6 |
+| 7 | Jeremiah Jackson | 34.6 | 8.6 |
+| 8 | Weston Wilson | 40.0 | 10.0 |
+| 9 | Blaze Alexander | 50.0 | 2.2 |
 
 ## Last 7 Days
 
 | # | Name | PA | AVG | OBP | SLG | OPS | BABIP |
 |---|------|----|-----|-----|-----|-----|-------|
-| 1 | Gunnar Henderson | 30 | .276 | .300 | .552 | .852 | .353 |
-| 2 | Taylor Ward | 29 | .350 | .552 | .350 | .902 | .467 |
-| 3 | Pete Alonso | 28 | .167 | .286 | .458 | .744 | .111 |
-| 4 | Jeremiah Jackson | 22 | .182 | .182 | .364 | .546 | .188 |
-| 5 | Samuel Basallo | 27 | .385 | .407 | .692 | 1.099 | .500 |
-| 6 | Dylan Beavers | 28 | .240 | .296 | .440 | .736 | .278 |
-| 7 | Coby Mayo | 19 | .167 | .158 | .389 | .547 | .200 |
-| 8 | Leody Taveras | 28 | .160 | .250 | .240 | .490 | .190 |
-| 9 | Blaze Alexander | 12 | .182 | .250 | .273 | .523 | .222 |
+| 1 | Taylor Ward | 28 | .211 | .464 | .211 | .675 | .286 |
+| 2 | Adley Rutschman | 29 | .310 | .310 | .621 | .931 | .261 |
+| 3 | Pete Alonso | 27 | .174 | .296 | .609 | .905 | .063 |
+| 4 | Tyler O'Neill | 23 | .294 | .478 | .294 | .772 | .417 |
+| 5 | Coby Mayo | 16 | .067 | .063 | .133 | .196 | .100 |
+| 6 | Leody Taveras | 28 | .160 | .250 | .240 | .490 | .190 |
+| 7 | Jeremiah Jackson | 22 | .182 | .182 | .364 | .546 | .188 |
+| 8 | Weston Wilson | 19 | .267 | .421 | .333 | .754 | .400 |
+| 9 | Blaze Alexander | 16 | .133 | .188 | .200 | .388 | .200 |
 
 ## Platoon Splits
 
 | # | Name | vs LHP (PA / OPS) | vs RHP (PA / OPS) |
 |---|------|-------------------|-------------------|
-| 1 | Gunnar Henderson | 36 / .869 | 113 / .702 |
-| 2 | Taylor Ward | 28 / 1.035 | 120 / .815 |
-| 3 | Pete Alonso | 34 / .367 | 104 / .827 |
-| 4 | Jeremiah Jackson | 26 / .901 | 78 / .725 |
-| 5 | Samuel Basallo | 23 / .748 | 73 / .740 |
-| 6 | Dylan Beavers | 14 / .749 | 79 / .602 |
-| 7 | Coby Mayo | 25 / .845 | 63 / .436 |
-| 8 | Leody Taveras | 23 / .599 | 59 / .890 |
-| 9 | Blaze Alexander | 21 / .349 | 52 / .515 |
+| 1 | Taylor Ward | 31 / 1.049 | 121 / .807 |
+| 2 | Adley Rutschman | 26 / .789 | 46 / 1.032 |
+| 3 | Pete Alonso | 36 / .495 | 106 / .810 |
+| 4 | Tyler O'Neill | 16 / .321 | 34 / .826 |
+| 5 | Coby Mayo | 27 / .779 | 63 / .436 |
+| 6 | Leody Taveras | 23 / .599 | 59 / .890 |
+| 7 | Jeremiah Jackson | 28 / .833 | 80 / .706 |
+| 8 | Weston Wilson | 14 / .690 | 5 / .933 |
+| 9 | Blaze Alexander | 23 / .317 | 54 / .495 |
 
 ## BvP (vs opposing starter)
 
 | # | Name | PA | AVG | OBP | SLG | H | HR | SO | BB | sample≥15? |
 |---|------|----|-----|-----|-----|----|----|----|----|------------|
-| 1 | Gunnar Henderson | 3 | .500 | .667 | .500 | 1 | 0 | 0 | 1 | ❌（PA<15） |
-| 3 | Pete Alonso | 48 | .238 | .333 | .405 | 10 | 2 | 14 | 6 | ✅ |
-| 4 | Jeremiah Jackson | 3 | .000 | .333 | .000 | 0 | 0 | 2 | 1 | ❌（PA<15） |
-| 5 | Samuel Basallo | 3 | .000 | .000 | .000 | 0 | 0 | 1 | 0 | ❌（PA<15） |
-| 7 | Coby Mayo | 6 | .500 | .500 | .667 | 3 | 0 | 2 | 0 | ❌（PA<15） |
-| 8 | Leody Taveras | 2 | .000 | .500 | .000 | 0 | 0 | 1 | 1 | ❌（PA<15） |
+| 2 | Adley Rutschman | 4 | .000 | .250 | .000 | 0 | 0 | 1 | 1 | ❌（PA<15） |
+| 3 | Pete Alonso | 14 | .357 | .357 | .429 | 5 | 0 | 4 | 0 | ❌（PA<15） |
+| 4 | Tyler O'Neill | 5 | .250 | .400 | .250 | 1 | 0 | 1 | 1 | ❌（PA<15） |
+| 5 | Coby Mayo | 6 | .500 | .500 | .667 | 3 | 0 | 2 | 0 | ❌（PA<15） |
+| 6 | Leody Taveras | 2 | .000 | .500 | .000 | 0 | 0 | 1 | 1 | ❌（PA<15） |
+| 7 | Jeremiah Jackson | 3 | .000 | .333 | .000 | 0 | 0 | 2 | 1 | ❌（PA<15） |
+| 8 | Weston Wilson | 5 | .250 | .400 | .250 | 1 | 0 | 0 | 1 | ❌（PA<15） |
 | 9 | Blaze Alexander | 2 | .000 | .000 | .000 | 0 | 0 | 1 | 0 | ❌（PA<15） |
 
 ---
 
 ## Source
 - Generated by: `lineup_analyzer.py --team BAL --year 2026 --opposing-pitcher-id 608331 --game-pk 823555`
-- Generated at: `2026-05-02T17:24:39+00:00`
+- Generated at: `2026-05-03T16:09:11+00:00`
 - JSON sibling: see same directory `<basename>.json`

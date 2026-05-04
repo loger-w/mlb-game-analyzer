@@ -1,52 +1,92 @@
 {
-  "home_recent_rs": 5.0,
-  "home_recent_ra": 2.6,
-  "away_recent_rs": 4.9,
-  "away_recent_ra": 6.1,
-  "home_recent_30_rs": 5.0,
-  "home_recent_30_ra": 3.6,
-  "away_recent_30_rs": 4.53,
-  "away_recent_30_ra": 5.1,
-  "home_season_rs": 5.0,
-  "home_season_ra": 3.38,
-  "away_season_rs": 4.45,
-  "away_season_ra": 4.97,
-  "home_season_games": 32,
-  "away_season_games": 33,
+  "home_recent_rs": 5.5,
+  "home_recent_ra": 3.0,
+  "away_recent_rs": 4.8,
+  "away_recent_ra": 6.4,
+  "home_recent_30_rs": 5.2,
+  "home_recent_30_ra": 3.7,
+  "away_recent_30_rs": 4.6,
+  "away_recent_30_ra": 5.23,
+  "home_season_rs": 5.12,
+  "home_season_ra": 3.39,
+  "away_season_rs": 4.44,
+  "away_season_ra": 5.09,
+  "home_season_games": 33,
+  "away_season_games": 34,
   "home_starter_fip": 2.57,
   "home_starter_k_bb": 14.1,
   "home_starter_whip": 0.8,
   "away_starter_fip": 4.5,
   "away_starter_k_bb": 5.0,
   "away_starter_whip": 1.35,
-  "home_batting_xwoba": 0.349,
-  "home_batting_ops": 0.771,
-  "home_batting_k_pct": 22.8,
-  "away_batting_xwoba": 0.326,
-  "away_batting_ops": 0.698,
-  "away_batting_k_pct": 24.8,
+  "home_batting_xwoba": 0.344,
+  "home_batting_ops": 0.735,
+  "home_batting_k_pct": 23.0,
+  "away_batting_xwoba": 0.335,
+  "away_batting_ops": 0.719,
+  "away_batting_k_pct": 22.8,
   "home_pitcher": {
     "era": 2.09,
     "xera": 2.24,
     "ip": 47.333333333333336,
-    "era_xera_delta": -0.15
+    "era_xera_delta": -0.15,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 21.7,
+        "rv_per_100": 3.9,
+        "xwoba_against": 0.235,
+        "whiff_pct": 12.7,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 36.8
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 20.8,
+        "rv_per_100": 3.5,
+        "xwoba_against": 0.242,
+        "whiff_pct": 21.7,
+        "put_away_pct": 27.3,
+        "hard_hit_pct": 36.0
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 18.5,
+        "rv_per_100": -1.5,
+        "xwoba_against": 0.261,
+        "whiff_pct": 24.0,
+        "put_away_pct": 26.8,
+        "hard_hit_pct": 37.5
+      }
+    ]
   },
   "away_pitcher": {
     "era": null,
     "xera": null,
     "ip": null,
-    "era_xera_delta": null
+    "era_xera_delta": null,
+    "arsenal_top": []
   },
   "home_lineup": {
-    "recent_babip": 0.266
+    "recent_babip": 0.271
   },
   "away_lineup": {
-    "recent_babip": 0.279
+    "recent_babip": 0.234
   },
-  "home_bullpen_era": 3.69,
-  "away_bullpen_era": 3.97,
+  "home_bullpen_era": 3.63,
+  "away_bullpen_era": 4.13,
   "park_factor": 96.0,
-  "weather": null,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 57,
+    "wind_text": "18 mph, Out To RF",
+    "indoor": false
+  },
   "_meta": {
     "home_team": "New York Yankees",
     "away_team": "Baltimore Orioles",

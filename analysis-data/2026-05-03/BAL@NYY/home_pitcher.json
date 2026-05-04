@@ -6,6 +6,19 @@
   "pitch_hand": "L",
   "age_assessment": "📉 初期退化",
   "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.764,
+    "k_bb_pct": 0.744,
+    "velo_pct": 0.05,
+    "age_factor": 0.8
+  },
+  "tier_confidence": "data",
+  "tier_gap": {
+    "expected_score": 65.3,
+    "era_only_score": 75,
+    "gap": -9.7
+  },
   "season": {
     "era": 2.09,
     "whip": 0.8,
@@ -100,5 +113,47 @@
       "k_pct": 20.9,
       "bb_pct": 7.8
     }
-  }
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 21.7,
+      "rv_per_100": 3.9,
+      "xwoba_against": 0.235,
+      "whiff_pct": 12.7,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 36.8
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 20.8,
+      "rv_per_100": 3.5,
+      "xwoba_against": 0.242,
+      "whiff_pct": 21.7,
+      "put_away_pct": 27.3,
+      "hard_hit_pct": 36.0
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 18.5,
+      "rv_per_100": -1.5,
+      "xwoba_against": 0.261,
+      "whiff_pct": 24.0,
+      "put_away_pct": 26.8,
+      "hard_hit_pct": 37.5
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 13.1,
+      "rv_per_100": 3.3,
+      "xwoba_against": 0.282,
+      "whiff_pct": 34.0,
+      "put_away_pct": 21.6,
+      "hard_hit_pct": 25.0
+    }
+  ]
 }

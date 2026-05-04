@@ -15,7 +15,24 @@
       "Nick Raquet",
       "Rico Garcia",
       "Shane Baz",
+      "Trey Gibson",
       "Yennier Cano"
+    ],
+    "pitcher_ids": [
+      552640,
+      689296,
+      687064,
+      700249,
+      605135,
+      608650,
+      664991,
+      669211,
+      680694,
+      675919,
+      670329,
+      669358,
+      694346,
+      666974
     ],
     "position_players": [
       "Adley Rutschman",
@@ -31,63 +48,342 @@
       "Taylor Ward",
       "Tyler O'Neill",
       "Weston Wilson"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Andrew Kittredge",
+        "player_id": 552640,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 3,
+          "gs": 0,
+          "ip": 3.0
+        }
+      },
+      {
+        "name": "Anthony Nunez",
+        "player_id": 689296,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 15,
+          "gs": 0,
+          "ip": 15.3
+        }
+      },
+      {
+        "name": "Brandon Young",
+        "player_id": 687064,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 3,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Cade Povich",
+        "player_id": 700249,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 2,
+          "ip": 16.3
+        }
+      },
+      {
+        "name": "Chris Bassitt",
+        "player_id": 605135,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 6,
+          "ip": 28.0
+        }
+      },
+      {
+        "name": "Dietrich Enns",
+        "player_id": 608650,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 4,
+          "gs": 0,
+          "ip": 5.3
+        }
+      },
+      {
+        "name": "Grant Wolfram",
+        "player_id": 664991,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 13,
+          "gs": 0,
+          "ip": 11.0
+        }
+      },
+      {
+        "name": "Keegan Akin",
+        "player_id": 669211,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 0,
+          "ip": 3.0
+        }
+      },
+      {
+        "name": "Kyle Bradish",
+        "player_id": 680694,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 34.0
+        }
+      },
+      {
+        "name": "Nick Raquet",
+        "player_id": 675919,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 0,
+          "ip": 2.7
+        }
+      },
+      {
+        "name": "Rico Garcia",
+        "player_id": 670329,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 6,
+          "g": 15,
+          "gs": 0,
+          "ip": 13.7
+        }
+      },
+      {
+        "name": "Shane Baz",
+        "player_id": 669358,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 6,
+          "ip": 34.0
+        }
+      },
+      {
+        "name": "Trey Gibson",
+        "player_id": 694346,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 0,
+          "gs": 0,
+          "ip": 0.0
+        }
+      },
+      {
+        "name": "Yennier Cano",
+        "player_id": 666974,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 15,
+          "gs": 0,
+          "ip": 10.7
+        }
+      }
     ]
   },
   "injured_list": [
     {
       "name": "Colin Selby",
       "status": "Injured 60-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 681882,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
     },
     {
       "name": "Dean Kremer",
       "status": "Injured 15-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 665152,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 2,
+        "gs": 2,
+        "ip": 11.0
+      }
     },
     {
       "name": "Félix Bautista",
       "status": "Injured 60-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 642585,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
     },
     {
       "name": "Heston Kjerstad",
       "status": "Injured 10-Day",
-      "position": "Outfielder"
+      "position": "Outfielder",
+      "player_id": 677008
     },
     {
       "name": "Jackson Holliday",
       "status": "Injured 10-Day",
-      "position": "Second Base"
+      "position": "Second Base",
+      "player_id": 702616
     },
     {
       "name": "Jordan Westburg",
       "status": "Injured 60-Day",
-      "position": "Third Base"
+      "position": "Third Base",
+      "player_id": 676059
     },
     {
       "name": "Ryan Helsley",
       "status": "Injured 15-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 664854,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 7,
+        "holds": 0,
+        "g": 12,
+        "gs": 0,
+        "ip": 10.7
+      }
     },
     {
       "name": "Ryan Mountcastle",
       "status": "Injured 60-Day",
-      "position": "First Base"
+      "position": "First Base",
+      "player_id": 663624
     },
     {
       "name": "Trevor Rogers",
       "status": "Injured 15-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 669432,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 6,
+        "ip": 30.3
+      }
     },
     {
       "name": "Yaramil Hiraldo",
       "status": "Injured 60-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 682274,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 3,
+        "gs": 0,
+        "ip": 1.7
+      }
     },
     {
       "name": "Zach Eflin",
       "status": "Injured 60-Day",
-      "position": "Pitcher"
+      "position": "Pitcher",
+      "player_id": 621107,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 1,
+        "gs": 1,
+        "ip": 3.7
+      }
     }
   ],
   "not_active_40man": [
@@ -100,8 +396,8 @@
     "Tyler Wells"
   ],
   "summary": {
-    "total_active": 26,
-    "total_active_pitchers": 13,
+    "total_active": 27,
+    "total_active_pitchers": 14,
     "total_active_position": 13,
     "total_il": 11,
     "total_40man_not_active": 7

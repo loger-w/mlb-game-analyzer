@@ -1,0 +1,139 @@
+{
+  "name": "Tyler Mahle",
+  "mlbam_id": 641816,
+  "age": 31,
+  "birth_date": "1994-09-29",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.777,
+    "k_bb_pct": 0.414,
+    "velo_pct": 0.05,
+    "age_factor": 0.84
+  },
+  "tier_confidence": "data",
+  "tier_gap": {
+    "expected_score": 54.7,
+    "era_only_score": 15,
+    "gap": 39.7
+  },
+  "season": {
+    "era": 5.87,
+    "whip": 1.63,
+    "k_pct": 21.3,
+    "bb_pct": 12.5,
+    "k_bb_pct": 8.8,
+    "fip": 5.42,
+    "xfip": 3.72,
+    "hr_per_9": 1.76,
+    "gb_pct": 64.9,
+    "ip": 30.666666666666668,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 5.33,
+    "xwoba": 0.359,
+    "xba": 0.271
+  },
+  "statcast": {
+    "avg_velo": 89.2,
+    "max_velo": 95.4,
+    "hard_hit_pct": 24.7,
+    "pitch_types": {
+      "FF": 47.8,
+      "FS": 26.6,
+      "FC": 15.4,
+      "SL": 7.0,
+      "SI": 3.2
+    },
+    "barrel_pct": 12.2,
+    "ev95percent": 36.7,
+    "whiff_pct": 8.0,
+    "csw_pct": 27.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "New York Yankees",
+      "ip": 4.0,
+      "era": 4.5,
+      "k": 5,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 80,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "New York Mets",
+      "ip": 5.0,
+      "era": 7.0,
+      "k": 4,
+      "bb": 2,
+      "h": 8,
+      "er": 5,
+      "pitches": 91,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Philadelphia Phillies",
+      "ip": 5.666666666666667,
+      "era": 4.3,
+      "k": 6,
+      "bb": 4,
+      "h": 3,
+      "er": 0,
+      "pitches": 94,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".213",
+      "obp": ".290",
+      "slg": ".328",
+      "k": 17,
+      "bb": 7,
+      "bf": 70,
+      "k_pct": 24.3,
+      "bb_pct": 10.0
+    },
+    "vs_right": {
+      "avg": ".357",
+      "obp": ".455",
+      "slg": ".643",
+      "k": 12,
+      "bb": 10,
+      "bf": 66,
+      "k_pct": 18.2,
+      "bb_pct": 15.2
+    }
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 47.8,
+      "rv_per_100": -2.1,
+      "xwoba_against": 0.437,
+      "whiff_pct": 19.2,
+      "put_away_pct": 27.3,
+      "hard_hit_pct": 46.4
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 26.6,
+      "rv_per_100": -0.1,
+      "xwoba_against": 0.267,
+      "whiff_pct": 25.8,
+      "put_away_pct": 19.4,
+      "hard_hit_pct": 32.4
+    }
+  ]
+}

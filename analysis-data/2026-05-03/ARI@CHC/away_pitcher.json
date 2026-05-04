@@ -1,0 +1,117 @@
+{
+  "name": "Merrill Kelly",
+  "mlbam_id": 518876,
+  "age": 37,
+  "birth_date": "1988-10-14",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15,
+    "gap": null
+  },
+  "season": {
+    "era": 9.2,
+    "whip": 2.25,
+    "k_pct": 12.2,
+    "bb_pct": 16.2,
+    "k_bb_pct": -4.0,
+    "fip": 8.76,
+    "xfip": 5.83,
+    "hr_per_9": 3.07,
+    "gb_pct": 46.9,
+    "ip": 14.666666666666666,
+    "games": 3,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 14.87,
+    "xwoba": 0.526,
+    "xba": 0.39
+  },
+  "statcast": {
+    "avg_velo": 89.1,
+    "max_velo": 94.3,
+    "hard_hit_pct": 33.3,
+    "pitch_types": {
+      "CH": 28.9,
+      "FF": 28.6,
+      "FC": 15.7,
+      "CU": 12.5,
+      "SI": 9.0
+    },
+    "barrel_pct": 22.6,
+    "ev95percent": 45.3,
+    "whiff_pct": 10.1,
+    "csw_pct": 24.1
+  },
+  "game_log": [
+    {
+      "date": "2026-04-14",
+      "opponent": "Baltimore Orioles",
+      "ip": 5.333333333333333,
+      "era": 3.38,
+      "k": 3,
+      "bb": 4,
+      "h": 5,
+      "er": 2,
+      "pitches": 86,
+      "strikes": 46
+    },
+    {
+      "date": "2026-04-21",
+      "opponent": "Chicago White Sox",
+      "ip": 4.333333333333333,
+      "era": 9.31,
+      "k": 5,
+      "bb": 3,
+      "h": 10,
+      "er": 8,
+      "pitches": 101,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-28",
+      "opponent": "Milwaukee Brewers",
+      "ip": 5.0,
+      "era": 9.2,
+      "k": 1,
+      "bb": 5,
+      "h": 6,
+      "er": 5,
+      "pitches": 104,
+      "strikes": 58
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".350",
+      "obp": ".447",
+      "slg": ".750",
+      "k": 5,
+      "bb": 7,
+      "bf": 47,
+      "k_pct": 10.6,
+      "bb_pct": 14.9
+    },
+    "vs_right": {
+      "avg": ".350",
+      "obp": ".462",
+      "slg": ".550",
+      "k": 4,
+      "bb": 5,
+      "bf": 27,
+      "k_pct": 14.8,
+      "bb_pct": 18.5
+    }
+  },
+  "arsenal": [
+    {
+      "error": "Player 518876 not found in arsenal data"
+    }
+  ]
+}

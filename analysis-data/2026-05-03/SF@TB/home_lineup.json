@@ -1,0 +1,473 @@
+{
+  "team": "TB",
+  "team_id": 139,
+  "tier": "🟢 Weak",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟢 Weak",
+  "avg_ops": 0.672,
+  "avg_ops_vs_lhp": 0.637,
+  "avg_ops_vs_rhp": 0.672,
+  "avg_xwoba": 0.286,
+  "avg_babip": 0.287,
+  "avg_k_pct": 19.6,
+  "avg_bb_pct": 8.3,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.283,
+  "chain": {
+    "obp_top3": 0.337,
+    "slg_mid": 0.391
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-03T16:31:35+00:00",
+    "game_pk": 822987
+  },
+  "lineup": [
+    {
+      "mlbam_id": 802415,
+      "pa": 137,
+      "avg": 0.312,
+      "obp": 0.343,
+      "slg": 0.352,
+      "ops": 0.695,
+      "iso": 0.04,
+      "babip": 0.339,
+      "k_pct": 8.8,
+      "bb_pct": 5.1,
+      "name": "Chandler Simpson",
+      "position": "LF",
+      "batting_order": 1,
+      "xwoba": 0.275,
+      "xba": 0.27,
+      "xslg": 0.306,
+      "ev95pct": 12.8,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".263",
+          "obp": ".268",
+          "slg": ".316",
+          "ops": ".584",
+          "pa": 42
+        },
+        "vs_rhp": {
+          "avg": ".333",
+          "obp": ".376",
+          "slg": ".368",
+          "ops": ".744",
+          "pa": 95
+        }
+      },
+      "last_7": {
+        "avg": ".308",
+        "obp": ".345",
+        "slg": ".346",
+        "ops": ".691",
+        "babip": ".364",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 691406,
+      "pa": 138,
+      "avg": 0.26,
+      "obp": 0.333,
+      "slg": 0.504,
+      "ops": 0.837,
+      "iso": 0.244,
+      "babip": 0.256,
+      "k_pct": 18.1,
+      "bb_pct": 10.1,
+      "name": "Junior Caminero",
+      "position": "3B",
+      "batting_order": 2,
+      "xwoba": 0.358,
+      "xba": 0.268,
+      "xslg": 0.488,
+      "ev95pct": 43.9,
+      "barrel_pct": 11.1,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".417",
+          "slg": ".500",
+          "ops": ".917",
+          "pa": 36
+        },
+        "vs_rhp": {
+          "avg": ".263",
+          "obp": ".304",
+          "slg": ".505",
+          "ops": ".809",
+          "pa": 102
+        }
+      },
+      "last_7": {
+        "avg": ".217",
+        "obp": ".250",
+        "slg": ".348",
+        "ops": ".598",
+        "babip": ".267",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".000",
+        "obp": ".400",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 2,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 666018,
+      "pa": 137,
+      "avg": 0.228,
+      "obp": 0.336,
+      "slg": 0.447,
+      "ops": 0.783,
+      "iso": 0.219,
+      "babip": 0.253,
+      "k_pct": 25.5,
+      "bb_pct": 13.9,
+      "name": "Jonathan Aranda",
+      "position": "1B",
+      "batting_order": 3,
+      "xwoba": 0.345,
+      "xba": 0.23,
+      "xslg": 0.441,
+      "ev95pct": 41.5,
+      "barrel_pct": 11.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".185",
+          "obp": ".351",
+          "slg": ".296",
+          "ops": ".647",
+          "pa": 37
+        },
+        "vs_rhp": {
+          "avg": ".241",
+          "obp": ".330",
+          "slg": ".494",
+          "ops": ".824",
+          "pa": 100
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".200",
+        "slg": ".320",
+        "ops": ".520",
+        "babip": ".267",
+        "pa": 25
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".400",
+        "obp": ".400",
+        "slg": ".400",
+        "h": 2,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 668723,
+      "pa": 40,
+      "avg": 0.297,
+      "obp": 0.35,
+      "slg": 0.351,
+      "ops": 0.701,
+      "iso": 0.054,
+      "babip": 0.367,
+      "k_pct": 17.5,
+      "bb_pct": 7.5,
+      "name": "Ryan Vilade",
+      "position": "RF",
+      "batting_order": 4,
+      "xwoba": 0.268,
+      "xba": 0.235,
+      "xslg": 0.302,
+      "ev95pct": 26.7,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".333",
+          "obp": ".379",
+          "slg": ".407",
+          "ops": ".786",
+          "pa": 29
+        },
+        "vs_rhp": {
+          "avg": ".200",
+          "obp": ".273",
+          "slg": ".200",
+          "ops": ".473",
+          "pa": 11
+        }
+      },
+      "last_7": {
+        "avg": ".375",
+        "obp": ".412",
+        "slg": ".438",
+        "ops": ".850",
+        "babip": ".400",
+        "pa": 17
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 641584,
+      "pa": 72,
+      "avg": 0.246,
+      "obp": 0.319,
+      "slg": 0.431,
+      "ops": 0.75,
+      "iso": 0.185,
+      "babip": 0.311,
+      "k_pct": 25.0,
+      "bb_pct": 9.7,
+      "name": "Jake Fraley",
+      "position": "RF",
+      "batting_order": 5,
+      "xwoba": 0.291,
+      "xba": 0.207,
+      "xslg": 0.369,
+      "ev95pct": 23.4,
+      "barrel_pct": 8.5,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".300",
+          "obp": ".300",
+          "slg": ".400",
+          "ops": ".700",
+          "pa": 10
+        },
+        "vs_rhp": {
+          "avg": ".236",
+          "obp": ".323",
+          "slg": ".436",
+          "ops": ".759",
+          "pa": 62
+        }
+      },
+      "last_7": {
+        "avg": ".278",
+        "obp": ".350",
+        "slg": ".556",
+        "ops": ".906",
+        "babip": ".364",
+        "pa": 20
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 810938,
+      "pa": 92,
+      "avg": 0.241,
+      "obp": 0.308,
+      "slg": 0.325,
+      "ops": 0.633,
+      "iso": 0.084,
+      "babip": 0.317,
+      "k_pct": 21.7,
+      "bb_pct": 8.7,
+      "name": "Ben Williamson",
+      "position": "2B",
+      "batting_order": 6,
+      "xwoba": 0.281,
+      "xba": 0.243,
+      "xslg": 0.312,
+      "ev95pct": 32.8,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".265",
+          "obp": ".286",
+          "slg": ".412",
+          "ops": ".698",
+          "pa": 36
+        },
+        "vs_rhp": {
+          "avg": ".224",
+          "obp": ".321",
+          "slg": ".265",
+          "ops": ".586",
+          "pa": 56
+        }
+      },
+      "last_7": {
+        "avg": ".238",
+        "obp": ".273",
+        "slg": ".381",
+        "ops": ".654",
+        "babip": ".313",
+        "pa": 22
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 656775,
+      "pa": 109,
+      "avg": 0.133,
+      "obp": 0.196,
+      "slg": 0.235,
+      "ops": 0.431,
+      "iso": 0.102,
+      "babip": 0.147,
+      "k_pct": 20.2,
+      "bb_pct": 5.5,
+      "name": "Cedric Mullins",
+      "position": "CF",
+      "batting_order": 7,
+      "xwoba": 0.221,
+      "xba": 0.158,
+      "xslg": 0.271,
+      "ev95pct": 31.6,
+      "barrel_pct": 2.6,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".150",
+          "obp": ".261",
+          "slg": ".150",
+          "ops": ".411",
+          "pa": 24
+        },
+        "vs_rhp": {
+          "avg": ".128",
+          "obp": ".179",
+          "slg": ".256",
+          "ops": ".435",
+          "pa": 85
+        }
+      },
+      "last_7": {
+        "avg": ".048",
+        "obp": ".167",
+        "slg": ".048",
+        "ops": ".215",
+        "babip": ".059",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 663743,
+      "pa": 86,
+      "avg": 0.259,
+      "obp": 0.302,
+      "slg": 0.358,
+      "ops": 0.66,
+      "iso": 0.099,
+      "babip": 0.29,
+      "k_pct": 12.8,
+      "bb_pct": 2.3,
+      "name": "Nick Fortes",
+      "position": "C",
+      "batting_order": 8,
+      "xwoba": 0.295,
+      "xba": 0.268,
+      "xslg": 0.35,
+      "ev95pct": 41.4,
+      "barrel_pct": 1.4,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".184",
+          "obp": ".225",
+          "slg": ".211",
+          "ops": ".436",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".326",
+          "obp": ".370",
+          "slg": ".488",
+          "ops": ".858",
+          "pa": 46
+        }
+      },
+      "last_7": {
+        "avg": ".158",
+        "obp": ".158",
+        "slg": ".211",
+        "ops": ".369",
+        "babip": ".176",
+        "pa": 19
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 670764,
+      "pa": 78,
+      "avg": 0.203,
+      "obp": 0.311,
+      "slg": 0.25,
+      "ops": 0.561,
+      "iso": 0.047,
+      "babip": 0.302,
+      "k_pct": 26.9,
+      "bb_pct": 11.5,
+      "name": "Taylor Walls",
+      "position": "SS",
+      "batting_order": 9,
+      "xwoba": 0.241,
+      "xba": 0.171,
+      "xslg": 0.216,
+      "ev95pct": 17.0,
+      "barrel_pct": 0.0,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".190",
+          "obp": ".320",
+          "slg": ".238",
+          "ops": ".558",
+          "pa": 28
+        },
+        "vs_rhp": {
+          "avg": ".209",
+          "obp": ".306",
+          "slg": ".256",
+          "ops": ".562",
+          "pa": 50
+        }
+      },
+      "last_7": {
+        "avg": ".188",
+        "obp": ".409",
+        "slg": ".313",
+        "ops": ".722",
+        "babip": ".333",
+        "pa": 23
+      },
+      "bvp": {
+        "pa": 4,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

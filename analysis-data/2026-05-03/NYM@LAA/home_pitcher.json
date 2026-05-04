@@ -1,0 +1,148 @@
+{
+  "name": "Jack Kochanowicz",
+  "mlbam_id": 686799,
+  "age": 25,
+  "birth_date": "2000-12-22",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.366,
+    "k_bb_pct": 0.147,
+    "velo_pct": 0.446,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "data",
+  "tier_gap": {
+    "expected_score": 36.5,
+    "era_only_score": 75,
+    "gap": -38.5
+  },
+  "season": {
+    "era": 3.09,
+    "whip": 1.2,
+    "k_pct": 16.3,
+    "bb_pct": 12.2,
+    "k_bb_pct": 4.1,
+    "fip": 3.64,
+    "xfip": 4.35,
+    "hr_per_9": 0.26,
+    "gb_pct": 63.7,
+    "ip": 35.0,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 4.64,
+    "xwoba": 0.338,
+    "xba": 0.262
+  },
+  "statcast": {
+    "avg_velo": 92.8,
+    "max_velo": 98.7,
+    "hard_hit_pct": 26.4,
+    "pitch_types": {
+      "SI": 37.4,
+      "CH": 25.7,
+      "FF": 20.3,
+      "SL": 16.6
+    },
+    "barrel_pct": 6.7,
+    "ev95percent": 40.4,
+    "whiff_pct": 10.6,
+    "csw_pct": 27.3
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Houston Astros",
+      "ip": 4.0,
+      "era": 11.25,
+      "k": 3,
+      "bb": 5,
+      "h": 4,
+      "er": 5,
+      "pitches": 94,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Seattle Mariners",
+      "ip": 5.666666666666667,
+      "era": 4.66,
+      "k": 7,
+      "bb": 2,
+      "h": 4,
+      "er": 0,
+      "pitches": 86,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Cincinnati Reds",
+      "ip": 7.0,
+      "era": 3.24,
+      "k": 2,
+      "bb": 4,
+      "h": 2,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".209",
+      "obp": ".312",
+      "slg": ".254",
+      "k": 12,
+      "bb": 9,
+      "bf": 77,
+      "k_pct": 15.6,
+      "bb_pct": 11.7
+    },
+    "vs_right": {
+      "avg": ".167",
+      "obp": ".271",
+      "slg": ".233",
+      "k": 12,
+      "bb": 9,
+      "bf": 70,
+      "k_pct": 17.1,
+      "bb_pct": 12.9
+    }
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 38.0,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.359,
+      "whiff_pct": 13.7,
+      "put_away_pct": 10.0,
+      "hard_hit_pct": 48.0
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 25.1,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.282,
+      "whiff_pct": 32.9,
+      "put_away_pct": 20.5,
+      "hard_hit_pct": 26.1
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 20.5,
+      "rv_per_100": 1.2,
+      "xwoba_against": 0.329,
+      "whiff_pct": 18.0,
+      "put_away_pct": 18.4,
+      "hard_hit_pct": 38.1
+    }
+  ]
+}
