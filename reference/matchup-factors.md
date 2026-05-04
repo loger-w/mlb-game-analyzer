@@ -56,7 +56,7 @@
 ### BABIP 回歸風險標註
 
 - 近 7 天 BABIP ≤ .260 或 ≥ .370 → 由 `prepare_game.py` 自動偵測，於 dossier 與 summary 的「## 風險提示」段標 ⚠️
-- AI 在敘事中判讀「可能回歸 / 可能持續」，**不自動 ±run value**
+- AI 在敘事中判讀「可能回歸 / 可能持續」（±run value 紀律見 §量級錨點 ⛔ 表）
 - 聯盟平均 BABIP ≈ .300，需 ~800 AB 才穩定 — 7 天樣本噪音極大，自動修正等同賭運氣
 
 ---
@@ -167,7 +167,7 @@
 **未公布或室內球場 → 不分析**（merged.weather = None 或 indoor=true）。
 
 > ⛔ 天氣**不進 scoring formula**（與 BABIP / ERA-xERA gap 同等級——研究存在但 noisy）。
-> AI 在 summary `## 條件修正` 段以敘事方式判讀，**不自動 ±run value**。
+> AI 在 summary `## 條件修正` 段以敘事方式判讀（±run 紀律見 §量級錨點 ⛔ 表）。
 
 #### 風（wind）
 
@@ -228,7 +228,7 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 #### 2. heat_vs_babip（打線）
 - 觸發：🔥 Hot + last7 BABIP ≥ 0.350 → lucky-hot；🥶 Cold + ≤ 0.270 → unlucky-cold
-- AI 判讀：熱度是否含運氣 / 冷期是否將反彈。**不自動 ±run value**（與 Flag 3 紀律一致）
+- AI 判讀：熱度是否含運氣 / 冷期是否將反彈（±run 紀律見 §量級錨點 ⛔ 表）
 
 #### 3. platoon_advantage（打線 vs 對手手別）
 - 觸發：top 5 中 ≥ 4 人 vs-this-hand OPS 比 season OPS 高 ≥ 0.050
@@ -254,7 +254,6 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 #### 8. core_il_count（牛棚）
 - 觸發：本隊 IL 上 core_role ∈ {Closer, Setup, High-leverage RP, Co-Closer} 計數 ≥ 1
-- 階梯：1 = 🟠 中高、2 = 🔴 高、3+ = 🔴🔴 極高
 - AI 判讀：對應 §牛棚傷兵累計效應 1/2/3+ 名分級
 
 #### 9. tto3_penalty（投手）
@@ -266,7 +265,7 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
   - TTO3 弱（fire）→ 教練可能提早換投，後段牛棚負擔 ↑
   - 同時對手 `core_il_count` fire（牛棚薄）→ 後段失分風險 ↑、總分判讀偏多
   - TTO3 強（不 fire）→ 隱性訊號，AI 可從 dossier `## 投手對決` 表格直接讀「能撐第三輪 → 牛棚消耗少」
-- ⛔ **不自動 ±run value**（與 §3 / §8 紀律一致）
+  - ±run 紀律：TTO3 fire 走 §量級錨點 Table B（中度 +0.1 ~ +0.3 / 強度 +0.2 ~ +0.5）
 
 ### Signals 與紀律 Flag 的關係
 
@@ -293,28 +292,34 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 ### 量級錨點（Path B：±run magnitude reference）
 
-**Why**：信號 fired 時 AI 在 summary `## 修正後預期得分` 的「+ 信號」欄需要 magnitude 才能判斷影響。下表是 heuristic 區間（**非 hard rule**），AI 挑值時要解釋依據（對手手別 / 牛棚深度 / 樣本量）。
+**Why**：信號 fired 時 AI 在 summary `## 修正後預期得分` 的「+ 信號」欄需要 magnitude 才能判斷影響。
+
+#### Table A — ⛔ 不入錨點（hard rule，AI 不可自動 ±run）
+
+| Signal | 為什麼 |
+|--------|--------|
+| `tier_mismatch` | Flag 8 紀律：投手 ERA-xERA gap 為 AI 敘事判讀 |
+| `heat_vs_babip` | Flag 3 紀律：BABIP 偏移為 AI 敘事判讀 |
+| `strong_park` | 已在 formula PF 倍率納入；不重複加 |
+
+> 上述 3 個信號 fire 時：在 summary `## 修正後預期得分` 的「+ 信號」欄寫「0（敘事）」，敘事內容放 `## 風險提示` / `## 條件修正` 段。
+
+#### Table B — ✅ AI 量級判斷（heuristic，cap ±0.8 / 場）
 
 | Signal | 強度 | 典型 ±run 區間 | 影響側 | 備註 |
 |--------|------|---------------|--------|------|
-| `tier_mismatch` | any | **0** | — | Flag 8 紀律：⛔ 不自動 ±run |
-| `heat_vs_babip` | any | **0** | — | Flag 3 紀律：⛔ 不自動 ±run |
-| `strong_park` | any | **0** | — | 已在 formula PF 倍率納入；不重複加 |
 | `platoon_advantage` | medium | +0.1 ~ +0.3 | 受惠打線 | top 5 中 ≥ 4 人 OPS 上修 ≥ 0.050 |
 | `reverse_platoon` | medium | +0.1 ~ +0.3 | 對手打線 | Δ ≥ 0.080；high (Δ ≥ 0.200) 取上界 |
 | `chain_break` | medium | −0.1 ~ −0.3 | 該打線（壓制） | high (≥ 0.300) 取下界 |
 | `pitch_mix_concentration` | single-pitch | +0.1 ~ +0.3 | 對手打線 | 對 platoon-advantaged 對手放大 |
 | `pitch_mix_concentration` | balanced | −0.1 ~ −0.2 | 對手打線（壓制） | 投手難對位，下修對手得分 |
-| `core_il_count` | 1（🟠 中高） | +0.0 ~ +0.2 | 對手得分 | 後段防守變薄 |
-| `core_il_count` | 2（🔴 高） | +0.2 ~ +0.5 | 對手得分 | 牛棚明顯吃緊 |
-| `core_il_count` | 3+（🔴🔴 極高） | +0.4 ~ +0.8 | 對手得分 | 牛棚崩盤級 |
-| `tto3_penalty` | medium | +0.1 ~ +0.3 | 對手打線 | OPS Δ ≥ 0.100 |
-| `tto3_penalty` | high | +0.2 ~ +0.5 | 對手打線 | OPS Δ ≥ 0.150 |
+| `core_il_count` | 1 / 2 / 3+ | +0.0~0.2 / +0.2~0.5 / +0.4~0.8 | 對手得分 | 牛棚變薄 → 吃緊 → 崩盤級 |
+| `tto3_penalty` | medium / high | +0.1~0.3 / +0.2~0.5 | 對手打線 | OPS Δ ≥ 0.100 / ≥ 0.150 |
+
+> Table B 是 heuristic；AI 挑值時要解釋依據（對手手別 / 牛棚深度 / 樣本量）。
 
 **累積規則**：
 - 同側多 signal 同向 fire → **不直接相加**。AI 要考慮 interaction（例 `tto3_penalty` + `core_il_count` 同向 → 取單側 max 區間 + 0.1，不是區間相加）
 - 單側 ±run 總修正 **cap ±0.8 run / 場**（再大就違反 single-game 隨機性 ≤ 1 run 的雜訊量級）
 - 需 > ±0.8 時必須在 `## 整體判斷 / 風險` 段明說理由
-
-**Calibration 路徑**：summary `## 整體判斷 / 方向信心` 改用機率 % 寫法，累積 100+ 場後可算 Brier / calibration plot，驗證量級錨點是否需校準。
 

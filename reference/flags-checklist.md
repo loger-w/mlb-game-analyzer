@@ -25,8 +25,7 @@
 - 處理：所有腳本必須用 `--output` / `-o`。詳見 `SKILL.md` §初始化「工具使用規範」
 
 ### 6. WebSearch 失敗繼續分析
-- 觸發：WebSearch error 但仍輸出推薦
-- 處理：回報錯誤等使用者指示，禁止「差不多就好」
+- Flag 1 特例：WebSearch error 時禁止「差不多就好」，回報並等使用者指示
 
 ### 7. 中文對話用英文輸出
 - 觸發：使用者中文 → 報告卻是英文
@@ -44,5 +43,3 @@
 
 **邊界紀律**（與 Flag 區隔，避免重複勞動）：
 - Signals **不入 scoring formula**；AI 用 `matchup-factors.md §量級錨點` 在 summary `+ 信號` 欄做 ±run 判讀
-- `prepare_game._print_risk_notes` stderr 只列 Flag 3/8（信號不污染 CI log）
-- `tier_mismatch` 與 Flag 8 同源、`heat_vs_babip` 與 Flag 3 同源 → 不重複進 summary `### 額外信號`
