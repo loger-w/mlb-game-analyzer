@@ -1,0 +1,173 @@
+{
+  "name": "Cam Schlittler",
+  "mlbam_id": 693645,
+  "age": 25,
+  "birth_date": "2001-02-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 95.0,
+    "gap": 1.1
+  },
+  "season": {
+    "era": 1.51,
+    "whip": 0.74,
+    "k_pct": 31.4,
+    "bb_pct": 3.8,
+    "k_bb_pct": 27.6,
+    "fip": 1.49,
+    "xfip": 2.33,
+    "hr_per_9": 0.22,
+    "gb_pct": 51.3,
+    "ip": 41.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 2.38,
+    "xwoba": 0.247,
+    "xba": 0.206
+  },
+  "statcast": {
+    "avg_velo": 95.1,
+    "max_velo": 100.1,
+    "hard_hit_pct": 22.4,
+    "pitch_types": {
+      "FF": 42.3,
+      "FC": 25.3,
+      "SI": 20.3,
+      "CU": 9.0,
+      "SL": 3.0
+    },
+    "barrel_pct": 6.9,
+    "ev95percent": 38.6,
+    "whiff_pct": 14.7,
+    "csw_pct": 27.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "San Francisco Giants",
+      "ip": 5.333333333333333,
+      "era": 0.0,
+      "k": 8,
+      "bb": 0,
+      "h": 1,
+      "er": 0,
+      "pitches": 68,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Seattle Mariners",
+      "ip": 6.333333333333333,
+      "era": 0.0,
+      "k": 7,
+      "bb": 0,
+      "h": 2,
+      "er": 0,
+      "pitches": 79,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Athletics",
+      "ip": 5.0,
+      "era": 1.62,
+      "k": 7,
+      "bb": 0,
+      "h": 5,
+      "er": 3,
+      "pitches": 84,
+      "strikes": 58
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".207",
+      "obp": ".233",
+      "slg": ".287",
+      "k": 28,
+      "bb": 3,
+      "bf": 90,
+      "k_pct": 31.1,
+      "bb_pct": 3.3
+    },
+    "vs_right": {
+      "avg": ".113",
+      "obp": ".154",
+      "slg": ".177",
+      "k": 21,
+      "bb": 3,
+      "bf": 66,
+      "k_pct": 31.8,
+      "bb_pct": 4.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.475,
+      "k_pct": 31.9,
+      "bb_pct": 1.4,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.398,
+      "k_pct": 29.9,
+      "bb_pct": 4.5,
+      "bf": 67
+    },
+    "tto3": {
+      "ops": 0.452,
+      "k_pct": 20.0,
+      "bb_pct": 10.0,
+      "bf": 30
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 43.4,
+      "rv_per_100": 2.7,
+      "xwoba_against": 0.235,
+      "whiff_pct": 37.5,
+      "put_away_pct": 26.1,
+      "hard_hit_pct": 52.9
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 25.0,
+      "rv_per_100": 3.4,
+      "xwoba_against": 0.194,
+      "whiff_pct": 28.7,
+      "put_away_pct": 20.5,
+      "hard_hit_pct": 25.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 20.8,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.287,
+      "whiff_pct": 15.5,
+      "put_away_pct": 21.6,
+      "hard_hit_pct": 35.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
