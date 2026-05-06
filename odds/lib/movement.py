@@ -211,8 +211,6 @@ def compute_game_movement(
                     anchor_value_raw=anc_raw,
                     latest_value_raw=lat_raw,
                 ))
-    else:
-        anc_point = lat_point = None   # 用於下游 tier / cross 判斷
 
     # ── RL：home / away no-vig 隱含勝率 ──（兩端皆有同隊 RL 才發出）
     anc_rl = anchor.pinnacle.get("rl", {}) or {}
