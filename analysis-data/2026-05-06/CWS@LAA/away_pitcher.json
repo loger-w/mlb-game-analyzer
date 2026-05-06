@@ -1,0 +1,148 @@
+{
+  "name": "Noah Schultz",
+  "mlbam_id": 702273,
+  "age": 22,
+  "birth_date": "2003-08-05",
+  "pitch_hand": "L",
+  "age_assessment": "📈 成長期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 89.4,
+    "gap": null
+  },
+  "season": {
+    "era": 2.53,
+    "whip": 1.03,
+    "k_pct": 23.5,
+    "bb_pct": 14.1,
+    "k_bb_pct": 9.4,
+    "fip": 3.52,
+    "xfip": 4.44,
+    "hr_per_9": 0.42,
+    "gb_pct": 41.9,
+    "ip": 21.333333333333332,
+    "games": 4,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 3.38,
+    "xwoba": 0.293,
+    "xba": 0.206
+  },
+  "statcast": {
+    "avg_velo": 91.1,
+    "max_velo": 98.4,
+    "hard_hit_pct": 21.7,
+    "pitch_types": {
+      "FF": 30.7,
+      "ST": 23.2,
+      "SI": 22.0,
+      "FC": 17.0,
+      "CH": 7.1
+    },
+    "barrel_pct": 3.8,
+    "ev95percent": 30.2,
+    "whiff_pct": 8.9,
+    "csw_pct": 29.2
+  },
+  "game_log": [
+    {
+      "date": "2026-04-14",
+      "opponent": "Tampa Bay Rays",
+      "ip": 4.333333333333333,
+      "era": 6.23,
+      "k": 4,
+      "bb": 4,
+      "h": 3,
+      "er": 3,
+      "pitches": 82,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-19",
+      "opponent": "Athletics",
+      "ip": 5.0,
+      "era": 3.86,
+      "k": 6,
+      "bb": 1,
+      "h": 1,
+      "er": 1,
+      "pitches": 82,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-25",
+      "opponent": "Washington Nationals",
+      "ip": 6.0,
+      "era": 3.52,
+      "k": 8,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 85,
+      "strikes": 49
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".000",
+      "obp": ".200",
+      "slg": ".000",
+      "k": 6,
+      "bb": 3,
+      "bf": 15,
+      "k_pct": 40.0,
+      "bb_pct": 20.0
+    },
+    "vs_right": {
+      "avg": ".167",
+      "obp": ".275",
+      "slg": ".300",
+      "k": 14,
+      "bb": 9,
+      "bf": 70,
+      "k_pct": 20.0,
+      "bb_pct": 12.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.636,
+      "k_pct": 19.4,
+      "bb_pct": 19.4,
+      "bf": 36
+    },
+    "tto2": {
+      "ops": 0.378,
+      "k_pct": 30.6,
+      "bb_pct": 11.1,
+      "bf": 36
+    },
+    "tto3": {
+      "ops": 0.564,
+      "k_pct": 15.4,
+      "bb_pct": 7.7,
+      "bf": 13
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 30.7,
+      "rv_per_100": 4.4,
+      "xwoba_against": 0.243,
+      "whiff_pct": 29.2,
+      "put_away_pct": 22.9,
+      "hard_hit_pct": 35.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

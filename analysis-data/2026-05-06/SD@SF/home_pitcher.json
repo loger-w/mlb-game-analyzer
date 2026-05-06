@@ -1,0 +1,163 @@
+{
+  "name": "Adrian Houser",
+  "mlbam_id": 605288,
+  "age": 33,
+  "birth_date": "1993-02-02",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.436,
+    "k_bb_pct": 0.151,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 40.4,
+    "era_only_score": 15.0,
+    "gap": 25.4
+  },
+  "season": {
+    "era": 7.12,
+    "whip": 1.71,
+    "k_pct": 11.2,
+    "bb_pct": 7.0,
+    "k_bb_pct": 4.2,
+    "fip": 5.61,
+    "xfip": 4.23,
+    "hr_per_9": 1.78,
+    "gb_pct": 62.2,
+    "ip": 30.333333333333332,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 5.96,
+    "xwoba": 0.377,
+    "xba": 0.304
+  },
+  "statcast": {
+    "avg_velo": 90.8,
+    "max_velo": 97.5,
+    "hard_hit_pct": 32.7,
+    "pitch_types": {
+      "SI": 43.6,
+      "CH": 20.7,
+      "SL": 14.6,
+      "FF": 11.5,
+      "CU": 9.6
+    },
+    "barrel_pct": 10.3,
+    "ev95percent": 47.4,
+    "whiff_pct": 8.4,
+    "csw_pct": 22.6
+  },
+  "game_log": [
+    {
+      "date": "2026-04-01",
+      "opponent": "San Diego Padres",
+      "ip": 5.333333333333333,
+      "era": 1.69,
+      "k": 4,
+      "bb": 1,
+      "h": 6,
+      "er": 1,
+      "pitches": 86,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Philadelphia Phillies",
+      "ip": 6.0,
+      "era": 3.97,
+      "k": 3,
+      "bb": 2,
+      "h": 9,
+      "er": 4,
+      "pitches": 89,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Baltimore Orioles",
+      "ip": 4.666666666666667,
+      "era": 5.06,
+      "k": 3,
+      "bb": 2,
+      "h": 5,
+      "er": 4,
+      "pitches": 88,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".395",
+      "obp": ".453",
+      "slg": ".737",
+      "k": 10,
+      "bb": 8,
+      "bf": 87,
+      "k_pct": 11.5,
+      "bb_pct": 9.2
+    },
+    "vs_right": {
+      "avg": ".222",
+      "obp": ".250",
+      "slg": ".352",
+      "k": 6,
+      "bb": 2,
+      "bf": 56,
+      "k_pct": 10.7,
+      "bb_pct": 3.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 1.073,
+      "k_pct": 19.0,
+      "bb_pct": 7.9,
+      "bf": 63
+    },
+    "tto2": {
+      "ops": 0.67,
+      "k_pct": 14.3,
+      "bb_pct": 7.9,
+      "bf": 63
+    },
+    "tto3": {
+      "ops": 0.976,
+      "k_pct": 0.0,
+      "bb_pct": 5.1,
+      "bf": 39
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 41.5,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.413,
+      "whiff_pct": 6.7,
+      "put_away_pct": 8.1,
+      "hard_hit_pct": 51.7
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 13.5,
+      "rv_per_100": -6.2,
+      "xwoba_against": 0.453,
+      "whiff_pct": 16.2,
+      "put_away_pct": 12.0,
+      "hard_hit_pct": 40.9
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
