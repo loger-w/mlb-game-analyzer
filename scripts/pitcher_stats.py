@@ -112,7 +112,8 @@ def lookup_pitcher_id(name: str) -> int | None:
     try:
         with _redirect_pybaseball_stdout():
             strict_result = playerid_lookup(last, first)
-    except Exception:
+    except Exception as e:
+        print(f"[pitcher_stats] pitcher id strict lookup failed (name={name!r}): {e}", file=sys.stderr)
         strict_result = None
 
     if strict_result is not None and not strict_result.empty:
@@ -124,7 +125,8 @@ def lookup_pitcher_id(name: str) -> int | None:
     try:
         with _redirect_pybaseball_stdout():
             fuzzy_result = playerid_lookup(last, first, fuzzy=True)
-    except Exception:
+    except Exception as e:
+        print(f"[pitcher_stats] pitcher id fuzzy lookup failed (name={name!r}): {e}", file=sys.stderr)
         return None
 
     if fuzzy_result is None or fuzzy_result.empty:
@@ -350,15 +352,7 @@ def _import_stuff_fns():
         ) from e
 
 
-def _safe_round(value, decimals: int):
-    """`round(float(v), n)` if v is not None; else None. Centralizes the
-    `value is not None ? round(...) : None` boilerplate."""
-    if value is None:
-        return None
-    try:
-        return round(float(value), decimals)
-    except (TypeError, ValueError):
-        return None
+from _utils import safe_round as _safe_round   # noqa: E402  alias to keep callsites stable
 
 
 def fetch_pitch_arsenal(mlbam_id: int, year: int) -> list[dict]:
@@ -749,15 +743,7 @@ def detect_triggers(data: dict) -> list[dict]:
     return triggers
 
 
-def _md_fmt(v, decimals: int = 2) -> str:
-    """格式化數值；None → '—'。"""
-    if v is None:
-        return "—"
-    if isinstance(v, (int, float)):
-        if decimals == 0:
-            return f"{v:.0f}"
-        return f"{v:.{decimals}f}"
-    return str(v)
+from _utils import md_fmt as _md_fmt   # noqa: E402  alias to keep callsites stable
 
 
 def format_md(data: dict, command: str | None = None) -> str:

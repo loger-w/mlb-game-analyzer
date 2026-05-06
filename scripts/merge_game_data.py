@@ -310,15 +310,7 @@ def extract_meta(game_data: dict, home_pitcher: dict, away_pitcher: dict) -> dic
     }
 
 
-def _md_fmt(v, decimals: int = 2) -> str:
-    """格式化數值；None → '—'。"""
-    if v is None:
-        return "—"
-    if isinstance(v, (int, float)):
-        if decimals == 0:
-            return f"{v:.0f}"
-        return f"{v:.{decimals}f}"
-    return str(v)
+from _utils import md_fmt as _md_fmt   # noqa: E402  alias to keep callsites stable
 
 
 def format_md(merged: dict, command: str | None = None) -> str:

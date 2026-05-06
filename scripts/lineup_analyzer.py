@@ -103,14 +103,7 @@ TIER_MAP_OPS = [
 ]
 
 
-def _safe_float(v) -> float | None:
-    """Coerce v → float; return None on failure (handles MLB API string OPS like '.850')."""
-    if v is None:
-        return None
-    try:
-        return float(v)
-    except (TypeError, ValueError):
-        return None
+from _utils import safe_float as _safe_float   # noqa: E402  alias to keep callsites stable
 
 
 def _bucket_ops_tier(avg_ops: float) -> str:
@@ -242,7 +235,8 @@ def fetch_player_batting(mlbam_id: int, year: int) -> dict | None:
             "k_pct": k_pct,
             "bb_pct": bb_pct,
         }
-    except Exception:
+    except Exception as e:
+        print(f"[lineup_analyzer] season batting fetch failed (mlbam_id={mlbam_id}): {e}", file=sys.stderr)
         return None
 
 
@@ -265,8 +259,8 @@ def fetch_statcast_batting_leaderboard(year: int) -> tuple[dict, dict]:
                     "xba": round(float(row.get("est_ba", 0)), 3) if row.get("est_ba") is not None else None,
                     "xslg": round(float(row.get("est_slg", 0)), 3) if row.get("est_slg") is not None else None,
                 }
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[lineup_analyzer] statcast expected-stats leaderboard failed (year={year}): {e}", file=sys.stderr)
 
     try:
         with _redirect_pybaseball_stdout():
@@ -278,8 +272,8 @@ def fetch_statcast_batting_leaderboard(year: int) -> tuple[dict, dict]:
                     "ev95pct": round(float(row.get("ev95percent", 0)), 1) if row.get("ev95percent") is not None else None,
                     "barrel_pct": round(float(row.get("brl_percent", 0)), 1) if row.get("brl_percent") is not None else None,
                 }
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[lineup_analyzer] statcast exit-velo/barrels leaderboard failed (year={year}): {e}", file=sys.stderr)
 
     return expected_map, barrels_map
 
@@ -426,7 +420,8 @@ def fetch_player_last7(mlbam_id: int) -> dict | None:
                     "pa": pa,
                 }
         return None
-    except Exception:
+    except Exception as e:
+        print(f"[lineup_analyzer] last7 batting fetch failed (mlbam_id={mlbam_id}): {e}", file=sys.stderr)
         return None
 
 
@@ -460,7 +455,8 @@ def fetch_player_platoon(mlbam_id: int, year: int) -> dict | None:
                     "pa": pa,
                 }
         return result if result else None
-    except Exception:
+    except Exception as e:
+        print(f"[lineup_analyzer] platoon split fetch failed (mlbam_id={mlbam_id}): {e}", file=sys.stderr)
         return None
 
 
@@ -511,7 +507,8 @@ def fetch_bvp(batter_id: int, pitcher_id: int) -> dict | None:
             "bb": int(s.get("baseOnBalls", 0)),
             "sample_sufficient": pa >= 15,
         }
-    except Exception:
+    except Exception as e:
+        print(f"[lineup_analyzer] bvp fetch failed (batter={batter_id}, pitcher={pitcher_id}): {e}", file=sys.stderr)
         return None
 
 
@@ -771,15 +768,12 @@ def detect_triggers(data: dict) -> list[dict]:
     return triggers
 
 
+from _utils import md_fmt as _md_fmt_base   # noqa: E402  shared formatter (default 2)
+
+
 def _md_fmt(v, decimals: int = 3) -> str:
-    """格式化數值；None → '—'。"""
-    if v is None:
-        return "—"
-    if isinstance(v, (int, float)):
-        if decimals == 0:
-            return f"{v:.0f}"
-        return f"{v:.{decimals}f}"
-    return str(v)
+    """打擊欄位預設 3 位小數（slash-line 慣例）；其餘代理至 _utils.md_fmt。"""
+    return _md_fmt_base(v, decimals)
 
 
 def format_md(data: dict, command: str | None = None) -> str:

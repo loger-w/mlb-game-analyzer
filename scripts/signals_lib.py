@@ -30,14 +30,7 @@ Signals do NOT enter the scoring formula (see flags-checklist.md §3 / §8 —
 from __future__ import annotations
 
 
-def _to_float(v) -> float | None:
-    """Coerce v to float; return None on None / non-numeric strings."""
-    if v is None:
-        return None
-    try:
-        return float(v)
-    except (TypeError, ValueError):
-        return None
+from _utils import safe_float as _to_float   # alias to keep callsites stable
 
 
 # Static half_life classification per signal name.
