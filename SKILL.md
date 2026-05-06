@@ -25,7 +25,24 @@ description: Use when the user asks for MLB single-game matchup analysis — pit
 
 ## 場景路由 (Routing)
 
-### Step 0：解析 intent
+### Step 0a：建立 ET_NOW（**必跑、1 次 tool call、不可省略**）
+
+⚠️ **不得信賴 system 注入的 `currentDate`**（可能 stale / 算錯時區 / 跨日 boundary 漂移）。所有時序判斷與相對日期解析以下指令輸出為單一事實來源：
+
+```bash
+$PYTHON -c "from datetime import datetime; from zoneinfo import ZoneInfo; n=datetime.now(ZoneInfo('America/New_York')); print(n.strftime('%Y-%m-%d %H:%M %Z'))"
+```
+
+把輸出記為 `ET_NOW`（精度到分）。
+
+**用途**：
+- 解析「今天 / 今晚 / 明天 / 昨天」等相對日期 → 用 `ET_NOW.date()`
+- 當 user 給絕對日期（例「5/6」）且 system context 顯示不同日期時，**以 ET_NOW 為準**，不要自行推論「user 說的是過去 / 未來」
+- 推導 `gameState`（見 Step 2）
+
+**矛盾偵測**：若 user 給的日期比 `ET_NOW.date()` 早 ≥ 1 天 → 多半是賽後查詢（Step 4 處理）；晚 ≤ 7 天 → preview；其他要回頭問 user 確認（避免 typo）。
+
+### Step 0b：解析 intent
 
 | Keywords | Intent |
 |---|---|
@@ -36,7 +53,8 @@ description: Use when the user asks for MLB single-game matchup analysis — pit
 
 ### Step 1：確定 GAME_DIR
 
-- date 沒給 → ET 今日
+- date 沒給 → 用 `ET_NOW.date()`（**不要用 system `currentDate`**）
+- 相對日期（今天 / 今晚 / 明天 / 昨天）→ 用 `ET_NOW.date()` ± 偏移
 - doubleheader 多場 → 強制問 G1/G2
 - matchup 多場（連戰 / 系列賽 / 「分析三連戰」）→ reject「目前只能分析單場比賽」，要求 user 指定單一場
 
@@ -54,7 +72,15 @@ odds_state :=
   has_match       ← report 含此 matchup
 ```
 
-順手讀 `game_data.json.gameState`（preview / live / final），用於後續 idempotence 判斷。
+**gameState 推導**（兩條路擇一，**不得跳過**）：
+- `basic_state ≠ none` → 讀 `game_data.json.gameState`（authoritative：preview / live / final）
+- `basic_state = none` → 比對 `ET_NOW`（Step 0a）vs **比賽開球時間**：
+  - 開球時間來源優先序：odds report 段標題「開球 YYYY-MM-DD HH:MM ET」 > MLB Stats API
+  - `ET_NOW < 開球` → `preview`
+  - `開球 ≤ ET_NOW < 開球 + 4h` → `live`
+  - `ET_NOW ≥ 開球 + 4h` → 推測 `final`（仍可跑 prepare_game 驗證；該腳本會回傳真實 gameState）
+
+⚠️ **禁止**：在沒有 ET_NOW 與開球時間比對下，僅依 user 給的「日期 vs system currentDate」來推論 gameState。這是常見故障模式（user 說「5/6」+ stale currentDate 顯示「5/7」→ 錯誤推論為 final）。
 
 ### Step 3：Routing 矩陣
 
@@ -72,9 +98,13 @@ odds_state :=
 
 ### Step 4：Idempotence 標註
 
+> 前置要求：`gameState` 必須來自 Step 2 的兩條路徑之一（讀 game_data.json 或 ET_NOW vs 開球時間比對）。**不得從 system currentDate 推論。**
+
 - 重用既有 summary 時必須輸出明說「summary.md 已於 {mtime} 完成，重用」
 - gameState = `live` → 告知並降級（live data ≠ pre-game data）
 - gameState = `final` → 停步：本 skill 不提供賽後分析（user 想看結果可手動讀 boxscore）
+
+**故障模式自檢**：若你想宣告 `gameState = final`，先回頭確認 ET_NOW 已建立（Step 0a 的 tool call 跑過）。若 user 給的日期與 system 注入的 currentDate 不一致 → 信 ET_NOW、不信 currentDate。
 
 ### Force / refresh override
 
@@ -91,7 +121,7 @@ odds_state :=
 
 | 階段 | 主要產出 | 工具 / Workflow |
 |------|---------|-----------------|
-| 0. 場景路由 | intent + state 判斷 | 無（純 state probe） |
+| 0. 場景路由 | ET_NOW + intent + state 判斷 | 1 次 Python tool call (ET_NOW) + state probe |
 | 1+2. 基本面 | `merged.json` + `dossier.md` + `summary.md`（AI 補完） | `prepare_game.py` + `reference/workflow-fundamentals.md` |
 | 3. 盤口 | odds report 解讀（可選 paired with summary） | `reference/workflow-odds.md` |
 
