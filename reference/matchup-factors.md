@@ -1,6 +1,6 @@
 # 對決修正因子
 
-## 先發投手進階數據
+## 🟡 先發投手進階數據
 
 ### 核心指標（必查）
 
@@ -36,7 +36,7 @@
 
 ---
 
-## 打線分析
+## 🟡 打線分析
 
 **打線來源**（由 `lineup_analyzer.py` 自動偵測）：
 - 🟢 **official**：球隊已公布今日打序（賽前 ~2-4 小時 API 才填），9 人 1-9 棒順序為實際打序
@@ -57,11 +57,10 @@
 
 - 近 7 天 BABIP ≤ .260 或 ≥ .370 → 由 `prepare_game.py` 自動偵測，於 dossier 與 summary 的「## 風險提示」段標 ⚠️
 - AI 在敘事中判讀「可能回歸 / 可能持續」（±run value 紀律見 §量級錨點 ⛔ 表）
-- 聯盟平均 BABIP ≈ .300，需 ~800 AB 才穩定 — 7 天樣本噪音極大，自動修正等同賭運氣
 
 ---
 
-## 牛棚分析
+## 🟡 牛棚分析
 
 整體品質（ERA、FIP、K-BB%）、關鍵角色可用性、近 3 天用球消耗。
 
@@ -75,8 +74,6 @@
 | 2 名核心 | 🔴 高 | 牛棚明顯吃緊，AI 在風險段需明確判讀對總得分與勝率方向的影響 |
 | 3+ 名核心 | 🔴🔴 極高 | 牛棚崩盤等級，本場不確定性顯著放大 |
 
-> 牛棚傷兵在 summary 的「整體判斷 / 風險」段需明確指出對得分與方向的判讀（不限格式）。
-
 ### 牛棚替補品質反向檢查
 
 - 替補 ERA < 被替換者 → 不扣分或微調
@@ -85,7 +82,7 @@
 
 ---
 
-## 傷兵影響過濾
+## ⚪ 傷兵影響過濾
 
 | 球員角色 | 影響度 | 處理 |
 |---------|--------|------|
@@ -103,7 +100,7 @@
 
 ---
 
-## 傷病與手術復出
+## ⚪ 傷病與手術復出
 
 ### Tommy John Surgery 復出分級
 
@@ -133,16 +130,14 @@
 
 ---
 
-## 球員年齡退化
+## 🟡 球員年齡退化
 
 **打者**：20-26 📈 / 27-29 ⚡ / 30-32 📉 / 33-35 📉📉 / 36+ 📉📉📉
 **投手**：20-24 📈 / 25-29 ⚡ / 30-33 📉（球速年降 0.3-0.5 mph）/ 34-36 📉📉 / 37+ 📉📉📉
 
-> 若 30+ 歲但 Statcast 維持/提升 → 降低退化修正。本季數據已反映退化 → 不額外修正。
-
 ---
 
-## 球場 & 天氣
+## 🟡 球場 & 天氣
 
 ### Park Factor
 資料源：`scripts/data/park_factors.json`（2023-2025 3 年加權，Baseball Savant）
@@ -154,20 +149,12 @@
 - PNC Park：Runs 102 / HR 83 — 利二三壘打，HR 嚴重壓制
 - UNIQLO Field at Dodger Stadium：Runs 98 / HR 121 — 抑制總得分但加成 HR
 
-**近期重大改造**（影響 PF 解讀）：
-- Camden Yards 2025 季前左外野牆移近、降低 → 預期由投手友善（96）逐步轉為打者友善（3 年加權尚未反映完整效應）
-- Progressive Field 2024 移除外野貨櫃 → 風洞效應，LHB HR +16%
-- 臨時主場：Athletics（Sutter Health）/ Rays（Steinbrenner）— 樣本期短
-
 > ⛔ Coors Field 4 月：物理上空氣密度比夏季高 ~8-10%，4 月 PF ≈ 112，5 月後恢復 131。
 
 ### 天氣修正
 
 資料源：MLB Stats API `feed/live` 的 `gameData.weather`，由 `merge_game_data.py` 自動撈取。
 **未公布或室內球場 → 不分析**（merged.weather = None 或 indoor=true）。
-
-> ⛔ 天氣**不進 scoring formula**（與 BABIP / ERA-xERA gap 同等級——研究存在但 noisy）。
-> AI 在 summary `## 條件修正` 段以敘事方式判讀（±run 紀律見 §量級錨點 ⛔ 表）。
 
 #### 風（wind）
 
@@ -200,14 +187,11 @@ MLB API wind 欄位已含風向解讀（球場 orientation 已換算），形式
 | 50–60°F | 輕度利投 |
 | < 50°F | ⬆️ 利投，球員肌肉表現也受影響 |
 
-> Coors / Yankee Stadium / Wrigley 對風更敏感（球場 orientation + 大氣條件交互）。
-> 球員適應性差異大（北方球隊冷天表現相對好）— **AI 判讀時優先看相對強度**，不直接套表。
-
 ---
 
-## Signals（輔助信號）
+## 🔴 Signals（輔助信號）
 
-PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier 頂部 `## 🎯 訊號摘要` 與 summary `## 風險提示 § 額外信號` 雙處 surface。**信號不入 scoring formula**，AI 在 summary 判讀。
+Dossier 頂部 `## 🎯 訊號摘要` 與 summary `## 風險提示 § 額外信號` 雙處 surface。**信號不入 scoring formula**，AI 在 summary 判讀。
 
 ### 信號規範
 
@@ -219,7 +203,7 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 - `severity` ∈ {low, medium, high}（dossier emoji 對應 ℹ️ / 🟠 / 🔴）
 - `confidence` ∈ {data, heuristic, small_sample}
 
-### 8 個 signals 觸發條件 + AI 判讀指引
+### 觸發條件 + AI 判讀指引
 
 #### 1. tier_mismatch（投手）
 - 觸發：`|tier_v2.score − ERA-only_score| ≥ 15`（|gap| ≥ 20 → high）
@@ -267,15 +251,6 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
   - TTO3 強（不 fire）→ 隱性訊號，AI 可從 dossier `## 投手對決` 表格直接讀「能撐第三輪 → 牛棚消耗少」
   - ±run 紀律：TTO3 fire 走 §量級錨點 Table B（中度 +0.1 ~ +0.3 / 強度 +0.2 ~ +0.5）
 
-### Signals 與紀律 Flag 的關係
-
-| 層級 | 處理 | 自動 ±run value? |
-|-----|------|---------------|
-| Flag 3/8 | 紀律硬規則，summary `## 風險提示` 主段渲染 | ⛔ 不自動 |
-| Signals | 輔助觀察，dossier `## 🎯 訊號摘要` + summary `### 額外信號` | ⛔ 不自動 |
-
-**重疊處理**：tier_mismatch 與 Flag 8 同源、heat_vs_babip 與 Flag 3 同源 → 自動從 summary `### 額外信號` 排除避免雙列。dossier `## 🎯 訊號摘要` 兩者都列（不同層級的 surface）。
-
 ### Signals 半衰期（⏳ 標記）
 
 每個 signal 帶 `half_life` 分類，對應「對手反應有多快會把這個 signal 治療掉」：
@@ -288,11 +263,7 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 
 ⏳ 標記出現在 dossier `## 🎯 訊號摘要` 與 summary `### 額外信號` 的 signal label 前。AI 在 summary 對 ⏳ signal 的引用應該寫類似「last7 BABIP 偏高，但對手投手有 7 天時間調整 mix」這種帶反身性的解讀，而不是當成穩定信號。
 
-源頭實作：`scripts/signals_lib.py:_HALF_LIFE_BY_NAME`。
-
-### 量級錨點（Path B：±run magnitude reference）
-
-**Why**：信號 fired 時 AI 在 summary `## 修正後預期得分` 的「+ 信號」欄需要 magnitude 才能判斷影響。
+### 量級錨點（±run magnitude reference）
 
 #### Table A — ⛔ 不入錨點（hard rule，AI 不可自動 ±run）
 
@@ -300,9 +271,9 @@ PR-3（2026-05-03）後新增 `signals_lib`，8 個 derived signals，dossier �
 |--------|--------|
 | `tier_mismatch` | Flag 8 紀律：投手 ERA-xERA gap 為 AI 敘事判讀 |
 | `heat_vs_babip` | Flag 3 紀律：BABIP 偏移為 AI 敘事判讀 |
-| `strong_park` | 已在 formula PF 倍率納入；不重複加 |
+| `strong_park` | formula PF 倍率已涵蓋 |
 
-> 上述 3 個信號 fire 時：在 summary `## 修正後預期得分` 的「+ 信號」欄寫「0（敘事）」，敘事內容放 `## 風險提示` / `## 條件修正` 段。
+> Table A fire → summary 「+ 信號」欄寫 0（敘事），內容放 `## 風險提示` / `## 條件修正`。
 
 #### Table B — ✅ AI 量級判斷（heuristic，cap ±0.8 / 場）
 
