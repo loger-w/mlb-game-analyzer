@@ -50,8 +50,8 @@ def render(
 
     tier_headers = {
         "major":       "## 🔥 Major (≥5pp)\n",
-        "significant": "## 🟡 Significant (3-5pp)\n",
-        "watch":       "## 🔵 Watch (1-3pp)\n",
+        "significant": "## 🟡 Significant (≥3pp)\n",
+        "watch":       "## 🔵 Watch (≥1pp)\n",
         "quiet":       "## ⚪ Quiet\n",
     }
     for tier_key in ("major", "significant", "watch", "quiet"):
