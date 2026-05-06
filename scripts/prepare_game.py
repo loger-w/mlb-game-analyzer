@@ -423,46 +423,46 @@ def step_g(*, output_dir: Path, summary_path: Path, force: bool = False,
 # Risk Notes
 # ---------------------------------------------------------------------------
 
-def _print_risk_notes(output_dir: Path) -> None:
-    """從 merged.json 偵測 Flag 3/8，印到 stderr。
+def _maybe_load_json(path: Path) -> dict | None:
+    """讀 JSON；不存在或解析失敗都回 None（fallback 已 log 到 stderr）。"""
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"[risk_notes] 讀取 {path.name} 失敗：{e}", file=sys.stderr)
+        return None
 
-    無論是否有 Flag 觸發，header 都必須輸出；無 Flag 時輸出「（無）」。
+
+def _print_risk_notes(output_dir: Path) -> None:
+    """從 {home,away}_pitcher.json + {home,away}_lineup.json 偵測 Flag 3/8，印到 stderr。
+
+    呼叫 pitcher_stats.detect_triggers / lineup_analyzer.detect_triggers，
+    與 dossier_renderer / summary_renderer 共用同一份偵測邏輯，避免門檻漂移。
     """
+    from pitcher_stats import detect_triggers as detect_pitcher_triggers
+    from lineup_analyzer import detect_triggers as detect_lineup_triggers
+
     print("⚠️  Risk Notes (AI 在 summary 風險提示段處理):", file=sys.stderr)
 
-    merged_path = output_dir / "merged.json"
-    if not merged_path.exists():
-        print("  （無）", file=sys.stderr)
-        return
-    merged = json.loads(merged_path.read_text(encoding="utf-8"))
-
-    risk_lines = []
+    risk_lines: list[str] = []
     for side, label in [("home", "主隊"), ("away", "客隊")]:
-        # Flag 8: |ERA - xERA| ≥ 1.5（signed delta；abs() 比閾值）
-        p = merged.get(f"{side}_pitcher", {}) or {}
-        delta = p.get("era_xera_delta")
-        if delta is not None:
-            try:
-                d = float(delta)
-                if abs(d) >= 1.5:
-                    risk_lines.append(
-                        f"  ⚠️  Flag 8 ({label}投手): ERA-xERA = {d:+.2f}（|Δ| ≥ 1.5）"
-                    )
-            except (ValueError, TypeError):
-                pass
-
-        # Flag 3: last7 BABIP ≤ .260 or ≥ .370
-        lu = merged.get(f"{side}_lineup", {}) or {}
-        recent_babip = lu.get("recent_babip")
-        if recent_babip is not None:
-            try:
-                rb = float(recent_babip)
-                if rb <= 0.260 or rb >= 0.370:
-                    risk_lines.append(
-                        f"  ⚠️  Flag 3  ({label}打線): last7 BABIP = {rb:.3f}（極端值）"
-                    )
-            except (ValueError, TypeError):
-                pass
+        pdata = _maybe_load_json(output_dir / f"{side}_pitcher.json")
+        if pdata:
+            for t in detect_pitcher_triggers(pdata):
+                risk_lines.append(
+                    f"  ⚠️  Flag {t['flag']} ({label}投手 {t['name']}): "
+                    f"{t.get('value')}（{t.get('threshold', '')}）"
+                )
+        ldata = _maybe_load_json(output_dir / f"{side}_lineup.json")
+        if ldata:
+            for t in detect_lineup_triggers(ldata):
+                val = t.get("value")
+                val_str = f"{val:.3f}" if isinstance(val, (int, float)) else str(val)
+                risk_lines.append(
+                    f"  ⚠️  Flag {t['flag']} ({label}打線 {t['name']}): "
+                    f"{val_str}（{t.get('threshold', '')}）"
+                )
 
     if risk_lines:
         for line in risk_lines:

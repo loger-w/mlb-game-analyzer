@@ -637,34 +637,32 @@ def test_step_g_force_overwrites_edited(monkeypatch, tmp_path):
 # ---------------------------------------------------------------------------
 
 def test_print_risk_notes_flag8_detected(tmp_path, capsys):
-    """_print_risk_notes: era_xera_delta ≥ 1.5 → Flag 8 警告出力。"""
+    """_print_risk_notes: ERA-xERA gap ≥ 1.5 → Flag 8 警告出力。
+
+    Refactor 後改吃 {side}_pitcher.json 巢狀結構並呼叫 detect_triggers，
+    與 dossier_renderer / summary_renderer 共用同一份偵測邏輯。
+    """
     from prepare_game import _print_risk_notes
 
-    merged = {
-        "home_pitcher": {"era_xera_delta": 2.0},
-        "away_pitcher": {},
-        "home_lineup": {},
-        "away_lineup": {},
+    home_pitcher = {
+        "season": {"era": 4.00, "xera": 2.00, "ip": 60.0},
+        "expected": {"xera": 2.00},
+        "prior_year": {"era": 4.50},
     }
-    (tmp_path / "merged.json").write_text(json.dumps(merged), encoding="utf-8")
+    (tmp_path / "home_pitcher.json").write_text(json.dumps(home_pitcher), encoding="utf-8")
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
     assert "Flag 8" in err
-    assert "2.00" in err
+    assert "ERA-xERA gap" in err
 
 
 def test_print_risk_notes_flag3_detected(tmp_path, capsys):
-    """_print_risk_notes: recent_babip ≥ 0.370 → Flag 3 警告出力。"""
+    """_print_risk_notes: last7_babip ≥ 0.370 → Flag 3 警告出力。"""
     from prepare_game import _print_risk_notes
 
-    merged = {
-        "home_pitcher": {},
-        "away_pitcher": {},
-        "home_lineup": {"recent_babip": 0.390},
-        "away_lineup": {},
-    }
-    (tmp_path / "merged.json").write_text(json.dumps(merged), encoding="utf-8")
+    home_lineup = {"last7_babip": 0.390}
+    (tmp_path / "home_lineup.json").write_text(json.dumps(home_lineup), encoding="utf-8")
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
@@ -672,17 +670,38 @@ def test_print_risk_notes_flag3_detected(tmp_path, capsys):
     assert "0.390" in err
 
 
+def test_print_risk_notes_flag8_small_sample_regression(tmp_path, capsys):
+    """_print_risk_notes: IP<30 + prior_year_ERA − current_ERA ≥ 1.0 → Flag 8 第二條件。
+
+    refactor 前手刻版漏這條件；refactor 後 detect_triggers 自動帶上。
+    """
+    from prepare_game import _print_risk_notes
+
+    away_pitcher = {
+        "season": {"era": 2.50, "xera": 2.40, "ip": 20.0},
+        "expected": {"xera": 2.40},
+        "prior_year": {"era": 4.00},
+    }
+    (tmp_path / "away_pitcher.json").write_text(json.dumps(away_pitcher), encoding="utf-8")
+
+    _print_risk_notes(tmp_path)
+    err = capsys.readouterr().err
+    assert "Flag 8" in err
+    assert "Small-sample regression risk" in err
+
+
 def test_print_risk_notes_no_flags_silent(tmp_path, capsys):
     """_print_risk_notes: 正常値 → Flag なし、header + （無）を出力。"""
     from prepare_game import _print_risk_notes
 
-    merged = {
-        "home_pitcher": {"era_xera_delta": 0.5},
-        "away_pitcher": {"era_xera_delta": 0.3},
-        "home_lineup": {"recent_babip": 0.310},
-        "away_lineup": {"recent_babip": 0.290},
+    home_pitcher = {
+        "season": {"era": 3.50, "xera": 3.30, "ip": 80.0},
+        "expected": {"xera": 3.30},
+        "prior_year": {"era": 3.40},
     }
-    (tmp_path / "merged.json").write_text(json.dumps(merged), encoding="utf-8")
+    home_lineup = {"last7_babip": 0.310}
+    (tmp_path / "home_pitcher.json").write_text(json.dumps(home_pitcher), encoding="utf-8")
+    (tmp_path / "home_lineup.json").write_text(json.dumps(home_lineup), encoding="utf-8")
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
@@ -693,13 +712,13 @@ def test_print_risk_notes_no_flags_silent(tmp_path, capsys):
     assert "（無）" in err
 
 
-def test_print_risk_notes_missing_merged_json(tmp_path, capsys):
-    """_print_risk_notes: merged.json 欠如 → header + （無）を出力。"""
+def test_print_risk_notes_missing_input_files(tmp_path, capsys):
+    """_print_risk_notes: 沒有 {side}_pitcher.json / {side}_lineup.json → header + （無）。"""
     from prepare_game import _print_risk_notes
 
     _print_risk_notes(tmp_path)
     err = capsys.readouterr().err
-    # header 常出，Flag 無觸發時尾巴顯示「（無）」
+    # header 常出，無檔案時尾巴顯示「（無）」
     assert "Risk Notes" in err
     assert "（無）" in err
 
