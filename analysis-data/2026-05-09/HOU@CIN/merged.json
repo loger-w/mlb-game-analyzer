@@ -1,0 +1,103 @@
+{
+  "home_recent_rs": 3.1,
+  "home_recent_ra": 7.7,
+  "away_recent_rs": 4.1,
+  "away_recent_ra": 4.3,
+  "home_recent_30_rs": 4.33,
+  "home_recent_30_ra": 5.53,
+  "away_recent_30_rs": 4.17,
+  "away_recent_30_ra": 5.57,
+  "home_season_rs": 4.0,
+  "home_season_ra": 5.03,
+  "away_season_rs": 4.88,
+  "away_season_ra": 5.55,
+  "home_season_games": 39,
+  "away_season_games": 40,
+  "home_starter_fip": 3.39,
+  "home_starter_k_bb": 20.5,
+  "home_starter_whip": 1.02,
+  "away_starter_fip": 3.32,
+  "away_starter_k_bb": 10.9,
+  "away_starter_whip": 1.3,
+  "home_batting_xwoba": 0.345,
+  "home_batting_ops": 0.74,
+  "home_batting_k_pct": 22.5,
+  "away_batting_xwoba": 0.323,
+  "away_batting_ops": 0.816,
+  "away_batting_k_pct": 20.1,
+  "home_pitcher": {
+    "era": 2.2,
+    "xera": 2.99,
+    "ip": 41.0,
+    "era_xera_delta": -0.79,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 54.9,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.341,
+        "whiff_pct": 23.2,
+        "put_away_pct": 16.1,
+        "hard_hit_pct": 44.6
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 38.6,
+        "rv_per_100": 2.7,
+        "xwoba_against": 0.193,
+        "whiff_pct": 50.0,
+        "put_away_pct": 36.9,
+        "hard_hit_pct": 36.8
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 1.96,
+    "xera": 5.75,
+    "ip": 23.0,
+    "era_xera_delta": -3.79,
+    "arsenal_top": [
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 30.6,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.217,
+        "whiff_pct": 55.6,
+        "put_away_pct": 47.4,
+        "hard_hit_pct": 9.1
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.279
+  },
+  "away_lineup": {
+    "recent_babip": 0.322
+  },
+  "home_bullpen_era": 4.64,
+  "away_bullpen_era": 6.21,
+  "park_factor": 104.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 75,
+    "wind_text": "9 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Cincinnati Reds",
+    "away_team": "Houston Astros",
+    "home_sp": "Chase Burns",
+    "away_sp": "Spencer Arrighetti",
+    "home_sp_starts": 7,
+    "away_sp_starts": 4,
+    "venue": "Great American Ball Park",
+    "game_pk": 824523,
+    "game_date": "2026-05-09T20:10:00Z",
+    "official_date": "2026-05-09"
+  }
+}

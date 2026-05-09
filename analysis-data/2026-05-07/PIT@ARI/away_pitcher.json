@@ -1,0 +1,173 @@
+{
+  "name": "Mitch Keller",
+  "mlbam_id": 656605,
+  "age": 30,
+  "birth_date": "1996-04-04",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.551,
+    "k_bb_pct": 0.595,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 63.8,
+    "era_only_score": 82.5,
+    "gap": -18.7
+  },
+  "season": {
+    "era": 2.85,
+    "whip": 1.05,
+    "k_pct": 19.0,
+    "bb_pct": 7.4,
+    "k_bb_pct": 11.6,
+    "fip": 2.78,
+    "xfip": 4.05,
+    "hr_per_9": 0.22,
+    "gb_pct": 43.2,
+    "ip": 41.0,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 3.75,
+    "xwoba": 0.308,
+    "xba": 0.27
+  },
+  "statcast": {
+    "avg_velo": 89.2,
+    "max_velo": 95.9,
+    "hard_hit_pct": 23.3,
+    "pitch_types": {
+      "FF": 34.7,
+      "SI": 20.2,
+      "ST": 19.6,
+      "CH": 10.0,
+      "CU": 7.6
+    },
+    "barrel_pct": 2.5,
+    "ev95percent": 39.5,
+    "whiff_pct": 9.3,
+    "csw_pct": 25.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "New York Mets",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 3,
+      "bb": 0,
+      "h": 3,
+      "er": 0,
+      "pitches": 77,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Baltimore Orioles",
+      "ip": 6.0,
+      "era": 1.5,
+      "k": 4,
+      "bb": 4,
+      "h": 6,
+      "er": 2,
+      "pitches": 88,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "San Diego Padres",
+      "ip": 6.0,
+      "era": 1.0,
+      "k": 4,
+      "bb": 1,
+      "h": 3,
+      "er": 0,
+      "pitches": 75,
+      "strikes": 49
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".276",
+      "obp": ".333",
+      "slg": ".391",
+      "k": 14,
+      "bb": 7,
+      "bf": 96,
+      "k_pct": 14.6,
+      "bb_pct": 7.3
+    },
+    "vs_right": {
+      "avg": ".113",
+      "obp": ".179",
+      "slg": ".113",
+      "k": 17,
+      "bb": 5,
+      "bf": 67,
+      "k_pct": 25.4,
+      "bb_pct": 7.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.454,
+      "k_pct": 20.8,
+      "bb_pct": 11.1,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.528,
+      "k_pct": 23.2,
+      "bb_pct": 5.8,
+      "bf": 69
+    },
+    "tto3": {
+      "ops": 0.741,
+      "k_pct": 13.5,
+      "bb_pct": 2.7,
+      "bf": 37
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 34.9,
+      "rv_per_100": 4.3,
+      "xwoba_against": 0.332,
+      "whiff_pct": 20.5,
+      "put_away_pct": 13.2,
+      "hard_hit_pct": 43.2
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 20.3,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.246,
+      "whiff_pct": 24.1,
+      "put_away_pct": 18.0,
+      "hard_hit_pct": 25.9
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 18.7,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.382,
+      "whiff_pct": 18.4,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 50.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

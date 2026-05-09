@@ -1,0 +1,163 @@
+{
+  "name": "Shota Imanaga",
+  "mlbam_id": 684007,
+  "age": 32,
+  "birth_date": "1993-09-01",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.8
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 91.8,
+    "era_only_score": 91.0,
+    "gap": 0.8
+  },
+  "season": {
+    "era": 2.4,
+    "whip": 0.85,
+    "k_pct": 27.0,
+    "bb_pct": 6.3,
+    "k_bb_pct": 20.7,
+    "fip": 2.69,
+    "xfip": 3.32,
+    "hr_per_9": 0.65,
+    "gb_pct": 38.3,
+    "ip": 41.333333333333336,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 2.82,
+    "xwoba": 0.269,
+    "xba": 0.214
+  },
+  "statcast": {
+    "avg_velo": 86.9,
+    "max_velo": 93.8,
+    "hard_hit_pct": 27.7,
+    "pitch_types": {
+      "FF": 41.3,
+      "FS": 34.0,
+      "ST": 15.8,
+      "SI": 6.5,
+      "CU": 2.3
+    },
+    "barrel_pct": 8.5,
+    "ev95percent": 41.5,
+    "whiff_pct": 15.1,
+    "csw_pct": 28.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Washington Nationals",
+      "ip": 5.0,
+      "era": 7.2,
+      "k": 7,
+      "bb": 2,
+      "h": 6,
+      "er": 4,
+      "pitches": 82,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Cleveland Guardians",
+      "ip": 5.0,
+      "era": 4.5,
+      "k": 4,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 92,
+      "strikes": 62
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 6.0,
+      "era": 2.81,
+      "k": 9,
+      "bb": 1,
+      "h": 0,
+      "er": 0,
+      "pitches": 100,
+      "strikes": 68
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".196",
+      "obp": ".275",
+      "slg": ".326",
+      "k": 20,
+      "bb": 5,
+      "bf": 51,
+      "k_pct": 39.2,
+      "bb_pct": 9.8
+    },
+    "vs_right": {
+      "avg": ".157",
+      "obp": ".194",
+      "slg": ".294",
+      "k": 23,
+      "bb": 5,
+      "bf": 108,
+      "k_pct": 21.3,
+      "bb_pct": 4.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.594,
+      "k_pct": 27.4,
+      "bb_pct": 8.2,
+      "bf": 73
+    },
+    "tto2": {
+      "ops": 0.395,
+      "k_pct": 34.7,
+      "bb_pct": 1.4,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.867,
+      "k_pct": 8.1,
+      "bb_pct": 13.5,
+      "bf": 37
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 42.0,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.361,
+      "whiff_pct": 16.1,
+      "put_away_pct": 16.9,
+      "hard_hit_pct": 61.9
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 34.6,
+      "rv_per_100": 2.7,
+      "xwoba_against": 0.199,
+      "whiff_pct": 43.9,
+      "put_away_pct": 26.2,
+      "hard_hit_pct": 25.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

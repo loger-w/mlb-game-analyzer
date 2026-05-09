@@ -1,0 +1,173 @@
+{
+  "name": "Luis Castillo",
+  "mlbam_id": 622491,
+  "age": 33,
+  "birth_date": "1992-12-12",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.632,
+    "k_bb_pct": 0.577,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 64.0,
+    "era_only_score": 15.0,
+    "gap": 49.0
+  },
+  "season": {
+    "era": 6.29,
+    "whip": 1.66,
+    "k_pct": 19.4,
+    "bb_pct": 8.1,
+    "k_bb_pct": 11.3,
+    "fip": 3.94,
+    "xfip": 3.94,
+    "hr_per_9": 1.05,
+    "gb_pct": 42.0,
+    "ip": 34.333333333333336,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 5.86,
+    "xwoba": 0.374,
+    "xba": 0.304
+  },
+  "statcast": {
+    "avg_velo": 91.6,
+    "max_velo": 98.1,
+    "hard_hit_pct": 28.4,
+    "pitch_types": {
+      "FF": 44.1,
+      "SL": 25.5,
+      "SI": 18.9,
+      "CH": 11.0,
+      "FC": 0.5
+    },
+    "barrel_pct": 12.4,
+    "ev95percent": 49.6,
+    "whiff_pct": 11.0,
+    "csw_pct": 23.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "New York Yankees",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 7,
+      "bb": 2,
+      "h": 3,
+      "er": 0,
+      "pitches": 95,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Los Angeles Angels",
+      "ip": 3.6666666666666665,
+      "era": 2.79,
+      "k": 4,
+      "bb": 1,
+      "h": 6,
+      "er": 3,
+      "pitches": 84,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Houston Astros",
+      "ip": 3.3333333333333335,
+      "era": 6.92,
+      "k": 3,
+      "bb": 1,
+      "h": 10,
+      "er": 7,
+      "pitches": 91,
+      "strikes": 68
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".254",
+      "obp": ".333",
+      "slg": ".493",
+      "k": 16,
+      "bb": 7,
+      "bf": 82,
+      "k_pct": 19.5,
+      "bb_pct": 8.5
+    },
+    "vs_right": {
+      "avg": ".366",
+      "obp": ".423",
+      "slg": ".451",
+      "k": 15,
+      "bb": 6,
+      "bf": 78,
+      "k_pct": 19.2,
+      "bb_pct": 7.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.761,
+      "k_pct": 25.3,
+      "bb_pct": 7.6,
+      "bf": 79
+    },
+    "tto2": {
+      "ops": 0.962,
+      "k_pct": 14.7,
+      "bb_pct": 7.4,
+      "bf": 68
+    },
+    "tto3": {
+      "ops": 0.629,
+      "k_pct": 17.1,
+      "bb_pct": 8.6,
+      "bf": 35
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 44.5,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.379,
+      "whiff_pct": 25.8,
+      "put_away_pct": 15.9,
+      "hard_hit_pct": 51.2
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 26.5,
+      "rv_per_100": -1.4,
+      "xwoba_against": 0.323,
+      "whiff_pct": 31.1,
+      "put_away_pct": 16.4,
+      "hard_hit_pct": 45.8
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 18.8,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.441,
+      "whiff_pct": 9.0,
+      "put_away_pct": 9.5,
+      "hard_hit_pct": 53.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

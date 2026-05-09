@@ -1,0 +1,293 @@
+{
+  "team": "Pittsburgh Pirates",
+  "team_id": 134,
+  "active_roster": {
+    "pitchers": [
+      "Braxton Ashcraft",
+      "Bubba Chandler",
+      "Cam Sanders",
+      "Carmen Mlodzinski",
+      "Dennis Santana",
+      "Evan Sisk",
+      "Gregory Soto",
+      "Isaac Mattson",
+      "Justin Lawrence",
+      "Mason Montgomery",
+      "Mitch Keller",
+      "Paul Skenes",
+      "Yohan Ramírez"
+    ],
+    "pitcher_ids": [
+      677952,
+      696149,
+      676742,
+      669387,
+      642701,
+      681895,
+      642397,
+      676755,
+      664875,
+      682254,
+      656605,
+      694973,
+      670990
+    ],
+    "position_players": [
+      "Billy Cook",
+      "Brandon Lowe",
+      "Bryan Reynolds",
+      "Henry Davis",
+      "Jake Mangum",
+      "Jared Triolo",
+      "Joey Bart",
+      "Konnor Griffin",
+      "Marcell Ozuna",
+      "Nick Gonzales",
+      "Oneil Cruz",
+      "Ryan O'Hearn",
+      "Spencer Horwitz"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Braxton Ashcraft",
+        "player_id": 677952,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 41.7
+        }
+      },
+      {
+        "name": "Bubba Chandler",
+        "player_id": 696149,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 34.0
+        }
+      },
+      {
+        "name": "Cam Sanders",
+        "player_id": 676742,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 0,
+          "ip": 6.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Carmen Mlodzinski",
+        "player_id": 669387,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 6,
+          "ip": 34.0
+        }
+      },
+      {
+        "name": "Dennis Santana",
+        "player_id": 642701,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 3,
+          "g": 17,
+          "gs": 0,
+          "ip": 16.7
+        }
+      },
+      {
+        "name": "Evan Sisk",
+        "player_id": 681895,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 10,
+          "gs": 0,
+          "ip": 13.0
+        }
+      },
+      {
+        "name": "Gregory Soto",
+        "player_id": 642397,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 6,
+          "g": 19,
+          "gs": 0,
+          "ip": 19.0
+        }
+      },
+      {
+        "name": "Isaac Mattson",
+        "player_id": 676755,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 7,
+          "g": 18,
+          "gs": 0,
+          "ip": 17.0
+        }
+      },
+      {
+        "name": "Justin Lawrence",
+        "player_id": 664875,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 15,
+          "gs": 0,
+          "ip": 15.0
+        }
+      },
+      {
+        "name": "Mason Montgomery",
+        "player_id": 682254,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 15,
+          "gs": 2,
+          "ip": 14.0
+        }
+      },
+      {
+        "name": "Mitch Keller",
+        "player_id": 656605,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 47.0
+        }
+      },
+      {
+        "name": "Paul Skenes",
+        "player_id": 694973,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 42.0
+        }
+      },
+      {
+        "name": "Yohan Ramírez",
+        "player_id": 670990,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 1,
+          "g": 16,
+          "gs": 0,
+          "ip": 22.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Chris Devenski",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 606965,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 2,
+        "g": 13,
+        "gs": 1,
+        "ip": 16.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Jared Jones",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 683003,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Antwone Kelly",
+    "Brandan Bidois",
+    "Endy Rodríguez",
+    "Esmerlyn Valdez",
+    "Hunter Barco",
+    "Jack Brannigan",
+    "Jhostynxon Garcia",
+    "José Urquidy",
+    "Nick Yorke",
+    "Rafael Flores Jr.",
+    "Thomas Harrington",
+    "Tyler Callihan",
+    "Wilber Dotel"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 2,
+    "total_40man_not_active": 13
+  }
+}

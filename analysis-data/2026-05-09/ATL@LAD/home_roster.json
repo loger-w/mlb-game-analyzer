@@ -1,0 +1,436 @@
+{
+  "team": "Los Angeles Dodgers",
+  "team_id": 119,
+  "active_roster": {
+    "pitchers": [
+      "Alex Vesia",
+      "Blake Treinen",
+      "Brock Stewart",
+      "Edgardo Henriquez",
+      "Emmet Sheehan",
+      "Jack Dreyer",
+      "Justin Wrobleski",
+      "Kyle Hurt",
+      "Paul Gervase",
+      "Roki Sasaki",
+      "Tanner Scott",
+      "Will Klein",
+      "Yoshinobu Yamamoto"
+    ],
+    "pitcher_ids": [
+      681911,
+      595014,
+      592779,
+      683618,
+      686218,
+      676263,
+      680736,
+      669165,
+      801434,
+      808963,
+      656945,
+      694361,
+      808967
+    ],
+    "position_players": [
+      "Alex Call",
+      "Alex Freeland",
+      "Andy Pages",
+      "Dalton Rushing",
+      "Freddie Freeman",
+      "Hyeseong Kim",
+      "Kyle Tucker",
+      "Max Muncy",
+      "Miguel Rojas",
+      "Santiago Espinal",
+      "Shohei Ohtani",
+      "Teoscar Hernández",
+      "Will Smith"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Alex Vesia",
+        "player_id": 681911,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 3,
+          "g": 16,
+          "gs": 0,
+          "ip": 13.0
+        }
+      },
+      {
+        "name": "Blake Treinen",
+        "player_id": 595014,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 14,
+          "gs": 0,
+          "ip": 11.0
+        }
+      },
+      {
+        "name": "Brock Stewart",
+        "player_id": 592779,
+        "core_role": "Setup",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 16,
+          "g": 43,
+          "gs": 0,
+          "ip": 37.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Edgardo Henriquez",
+        "player_id": 683618,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 12,
+          "gs": 0,
+          "ip": 12.3
+        }
+      },
+      {
+        "name": "Emmet Sheehan",
+        "player_id": 686218,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 35.7
+        }
+      },
+      {
+        "name": "Jack Dreyer",
+        "player_id": 676263,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 16,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Justin Wrobleski",
+        "player_id": 680736,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 5,
+          "ip": 36.0
+        }
+      },
+      {
+        "name": "Kyle Hurt",
+        "player_id": 669165,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 10,
+          "gs": 0,
+          "ip": 10.0
+        }
+      },
+      {
+        "name": "Paul Gervase",
+        "player_id": 801434,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 0,
+          "ip": 8.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Roki Sasaki",
+        "player_id": 808963,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 6,
+          "ip": 28.7
+        }
+      },
+      {
+        "name": "Tanner Scott",
+        "player_id": 656945,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 4,
+          "g": 18,
+          "gs": 0,
+          "ip": 16.3
+        }
+      },
+      {
+        "name": "Will Klein",
+        "player_id": 694361,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 4,
+          "g": 11,
+          "gs": 0,
+          "ip": 15.7
+        }
+      },
+      {
+        "name": "Yoshinobu Yamamoto",
+        "player_id": 808967,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 43.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Ben Casparius",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 676508,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 5,
+        "gs": 0,
+        "ip": 4.7
+      }
+    },
+    {
+      "name": "Blake Snell",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 605483,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 11,
+        "gs": 11,
+        "ip": 61.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Bobby Miller",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 676272,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Brusdar Graterol",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 660813,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Edwin Díaz",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 621242,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 4,
+        "holds": 0,
+        "g": 7,
+        "gs": 0,
+        "ip": 6.0
+      }
+    },
+    {
+      "name": "Enrique Hernández",
+      "status": "Injured 60-Day",
+      "position": "First Base",
+      "player_id": 571771
+    },
+    {
+      "name": "Evan Phillips",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 623465,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 2,
+        "g": 7,
+        "gs": 0,
+        "ip": 5.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Gavin Stone",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 694813,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Jake Cousins",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 664776,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Landon Knack",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 689017,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 0,
+        "g": 10,
+        "gs": 7,
+        "ip": 42.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Mookie Betts",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 605141
+    },
+    {
+      "name": "Tommy Edman",
+      "status": "Injured 10-Day",
+      "position": "Second Base",
+      "player_id": 669242
+    },
+    {
+      "name": "Tyler Glasnow",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 607192,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 7,
+        "ip": 39.7
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Chayce McDermott",
+    "Jake Eder",
+    "Michael Siani",
+    "River Ryan",
+    "Ronan Kopp",
+    "Ryan Ward",
+    "Tyler Fitzgerald"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 13,
+    "total_40man_not_active": 7
+  }
+}

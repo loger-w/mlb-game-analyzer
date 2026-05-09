@@ -1,0 +1,160 @@
+{
+  "name": "Simeon Woods Richardson",
+  "mlbam_id": 680573,
+  "age": 25,
+  "birth_date": "2000-09-27",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "⚪ Below Average",
+  "tier_components": {
+    "xfip_pct": 0.05,
+    "k_bb_pct": 0.05,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 25.4,
+    "era_only_score": 15.0,
+    "gap": 10.4
+  },
+  "season": {
+    "era": 6.49,
+    "whip": 1.76,
+    "k_pct": 10.6,
+    "bb_pct": 8.7,
+    "k_bb_pct": 1.9,
+    "fip": 6.33,
+    "xfip": 5.13,
+    "hr_per_9": 2.08,
+    "gb_pct": 41.5,
+    "ip": 34.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 5.2,
+    "xwoba": 0.356,
+    "xba": 0.275
+  },
+  "statcast": {
+    "error": "Error tokenizing data. C error: Expected 1 fields in line 12, saw 2\n"
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Kansas City Royals",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 2,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 83,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Tampa Bay Rays",
+      "ip": 6.666666666666667,
+      "era": 2.31,
+      "k": 4,
+      "bb": 2,
+      "h": 5,
+      "er": 1,
+      "pitches": 88,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Toronto Blue Jays",
+      "ip": 4.0,
+      "era": 4.6,
+      "k": 2,
+      "bb": 1,
+      "h": 6,
+      "er": 5,
+      "pitches": 68,
+      "strikes": 47
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".306",
+      "obp": ".375",
+      "slg": ".486",
+      "k": 12,
+      "bb": 7,
+      "bf": 80,
+      "k_pct": 15.0,
+      "bb_pct": 8.8
+    },
+    "vs_right": {
+      "avg": ".342",
+      "obp": ".400",
+      "slg": ".616",
+      "k": 5,
+      "bb": 7,
+      "bf": 81,
+      "k_pct": 6.2,
+      "bb_pct": 8.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.706,
+      "k_pct": 15.3,
+      "bb_pct": 6.9,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 1.14,
+      "k_pct": 5.6,
+      "bb_pct": 8.3,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.953,
+      "k_pct": 11.9,
+      "bb_pct": 9.5,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 40.5,
+      "rv_per_100": 0.3,
+      "xwoba_against": 0.292,
+      "whiff_pct": 15.7,
+      "put_away_pct": 14.9,
+      "hard_hit_pct": 41.4
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 29.1,
+      "rv_per_100": -5.9,
+      "xwoba_against": 0.399,
+      "whiff_pct": 18.7,
+      "put_away_pct": 8.7,
+      "hard_hit_pct": 38.2
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 26.0,
+      "rv_per_100": -3.0,
+      "xwoba_against": 0.41,
+      "whiff_pct": 15.2,
+      "put_away_pct": 11.1,
+      "hard_hit_pct": 51.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

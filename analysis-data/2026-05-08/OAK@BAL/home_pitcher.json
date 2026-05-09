@@ -1,0 +1,172 @@
+{
+  "name": "Kyle Bradish",
+  "mlbam_id": 680694,
+  "age": 29,
+  "birth_date": "1996-09-12",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.728,
+    "k_bb_pct": 0.421,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 66.0,
+    "era_only_score": 34.4,
+    "gap": 31.6
+  },
+  "season": {
+    "era": 5.03,
+    "whip": 1.82,
+    "k_pct": 22.3,
+    "bb_pct": 13.4,
+    "k_bb_pct": 8.9,
+    "fip": 4.81,
+    "xfip": 3.81,
+    "hr_per_9": 1.32,
+    "gb_pct": 60.0,
+    "ip": 34.0,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 5.11,
+    "xwoba": 0.353,
+    "xba": 0.255
+  },
+  "statcast": {
+    "avg_velo": 89.8,
+    "max_velo": 98.9,
+    "hard_hit_pct": 26.4,
+    "pitch_types": {
+      "SL": 32.2,
+      "SI": 29.4,
+      "CU": 20.1,
+      "FF": 18.4
+    },
+    "barrel_pct": 12.9,
+    "ev95percent": 40.6,
+    "whiff_pct": 10.5,
+    "csw_pct": 26.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Minnesota Twins",
+      "ip": 4.666666666666667,
+      "era": 3.86,
+      "k": 4,
+      "bb": 3,
+      "h": 2,
+      "er": 2,
+      "pitches": 83,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 4.0,
+      "era": 6.23,
+      "k": 6,
+      "bb": 3,
+      "h": 6,
+      "er": 4,
+      "pitches": 81,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Chicago White Sox",
+      "ip": 5.0,
+      "era": 5.27,
+      "k": 7,
+      "bb": 3,
+      "h": 6,
+      "er": 2,
+      "pitches": 96,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".253",
+      "obp": ".353",
+      "slg": ".460",
+      "k": 25,
+      "bb": 14,
+      "bf": 102,
+      "k_pct": 24.5,
+      "bb_pct": 13.7
+    },
+    "vs_right": {
+      "avg": ".396",
+      "obp": ".473",
+      "slg": ".583",
+      "k": 10,
+      "bb": 7,
+      "bf": 55,
+      "k_pct": 18.2,
+      "bb_pct": 12.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.867,
+      "k_pct": 22.2,
+      "bb_pct": 12.5,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.794,
+      "k_pct": 22.2,
+      "bb_pct": 12.5,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.873,
+      "k_pct": 16.7,
+      "bb_pct": 13.9,
+      "bf": 36
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 32.6,
+      "rv_per_100": -1.4,
+      "xwoba_against": 0.291,
+      "whiff_pct": 30.5,
+      "put_away_pct": 23.1,
+      "hard_hit_pct": 34.5
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 30.1,
+      "rv_per_100": -1.1,
+      "xwoba_against": 0.37,
+      "whiff_pct": 11.4,
+      "put_away_pct": 19.7,
+      "hard_hit_pct": 41.2
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 17.1,
+      "rv_per_100": -2.8,
+      "xwoba_against": 0.526,
+      "whiff_pct": 12.2,
+      "put_away_pct": 22.2,
+      "hard_hit_pct": 38.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

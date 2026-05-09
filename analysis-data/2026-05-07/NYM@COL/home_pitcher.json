@@ -1,0 +1,148 @@
+{
+  "name": "Jose Quintana",
+  "mlbam_id": 500779,
+  "age": 37,
+  "birth_date": "1989-01-24",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 57.6,
+    "gap": null
+  },
+  "season": {
+    "era": 4.07,
+    "whip": 1.36,
+    "k_pct": 11.4,
+    "bb_pct": 10.5,
+    "k_bb_pct": 0.9,
+    "fip": 6.14,
+    "xfip": 5.39,
+    "hr_per_9": 1.85,
+    "gb_pct": 39.0,
+    "ip": 24.333333333333332,
+    "games": 5,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 5.3,
+    "xwoba": 0.359,
+    "xba": 0.284
+  },
+  "statcast": {
+    "avg_velo": 86.0,
+    "max_velo": 92.3,
+    "hard_hit_pct": 23.6,
+    "pitch_types": {
+      "FF": 31.7,
+      "CH": 19.9,
+      "SI": 18.9,
+      "CU": 16.2,
+      "SV": 13.3
+    },
+    "barrel_pct": 9.9,
+    "ev95percent": 33.3,
+    "whiff_pct": 9.4,
+    "csw_pct": 22.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Miami Marlins",
+      "ip": 4.333333333333333,
+      "era": 4.15,
+      "k": 2,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 78,
+      "strikes": 42
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "Houston Astros",
+      "ip": 3.6666666666666665,
+      "era": 5.63,
+      "k": 1,
+      "bb": 4,
+      "h": 3,
+      "er": 3,
+      "pitches": 75,
+      "strikes": 41
+    },
+    {
+      "date": "2026-04-20",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 6.23,
+      "k": 1,
+      "bb": 1,
+      "h": 8,
+      "er": 4,
+      "pitches": 90,
+      "strikes": 52
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".238",
+      "obp": ".360",
+      "slg": ".667",
+      "k": 5,
+      "bb": 3,
+      "bf": 25,
+      "k_pct": 20.0,
+      "bb_pct": 12.0
+    },
+    "vs_right": {
+      "avg": ".250",
+      "obp": ".316",
+      "slg": ".397",
+      "k": 7,
+      "bb": 8,
+      "bf": 80,
+      "k_pct": 8.8,
+      "bb_pct": 10.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.698,
+      "k_pct": 19.8,
+      "bb_pct": 8.5,
+      "bf": 1120
+    },
+    "tto2": {
+      "ops": 0.701,
+      "k_pct": 16.8,
+      "bb_pct": 8.8,
+      "bf": 1035
+    },
+    "tto3": {
+      "ops": 0.721,
+      "k_pct": 17.2,
+      "bb_pct": 7.1,
+      "bf": 507
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.7,
+      "rv_per_100": 1.9,
+      "xwoba_against": 0.309,
+      "whiff_pct": 24.3,
+      "put_away_pct": 15.8,
+      "hard_hit_pct": 36.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

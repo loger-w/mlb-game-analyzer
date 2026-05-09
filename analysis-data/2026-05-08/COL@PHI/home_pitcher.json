@@ -1,0 +1,182 @@
+{
+  "name": "Jesús Luzardo",
+  "mlbam_id": 666200,
+  "age": 28,
+  "birth_date": "1997-09-30",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.96
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 95.2,
+    "era_only_score": 33.2,
+    "gap": 62.0
+  },
+  "season": {
+    "era": 5.09,
+    "whip": 1.28,
+    "k_pct": 29.7,
+    "bb_pct": 5.2,
+    "k_bb_pct": 24.5,
+    "fip": 2.53,
+    "xfip": 2.02,
+    "hr_per_9": 0.89,
+    "gb_pct": 64.2,
+    "ip": 40.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 3.17,
+    "xwoba": 0.284,
+    "xba": 0.238
+  },
+  "statcast": {
+    "avg_velo": 90.7,
+    "max_velo": 99.2,
+    "hard_hit_pct": 20.0,
+    "pitch_types": {
+      "ST": 36.1,
+      "FF": 25.0,
+      "CH": 21.2,
+      "SI": 17.8
+    },
+    "barrel_pct": 5.5,
+    "ev95percent": 29.1,
+    "whiff_pct": 14.2,
+    "csw_pct": 32.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Texas Rangers",
+      "ip": 6.0,
+      "era": 9.0,
+      "k": 7,
+      "bb": 1,
+      "h": 6,
+      "er": 6,
+      "pitches": 99,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Colorado Rockies",
+      "ip": 6.666666666666667,
+      "era": 4.97,
+      "k": 11,
+      "bb": 0,
+      "h": 5,
+      "er": 1,
+      "pitches": 99,
+      "strikes": 72
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 4.666666666666667,
+      "era": 6.23,
+      "k": 8,
+      "bb": 3,
+      "h": 5,
+      "er": 5,
+      "pitches": 86,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".250",
+      "obp": ".270",
+      "slg": ".361",
+      "k": 9,
+      "bb": 1,
+      "bf": 37,
+      "k_pct": 24.3,
+      "bb_pct": 2.7
+    },
+    "vs_right": {
+      "avg": ".272",
+      "obp": ".326",
+      "slg": ".400",
+      "k": 42,
+      "bb": 8,
+      "bf": 135,
+      "k_pct": 31.1,
+      "bb_pct": 5.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.438,
+      "k_pct": 29.7,
+      "bb_pct": 2.7,
+      "bf": 74
+    },
+    "tto2": {
+      "ops": 0.744,
+      "k_pct": 31.9,
+      "bb_pct": 11.1,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 1.066,
+      "k_pct": 24.0,
+      "bb_pct": 2.0,
+      "bf": 50
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 36.3,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.212,
+      "whiff_pct": 49.5,
+      "put_away_pct": 33.7,
+      "hard_hit_pct": 16.7
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 26.3,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.301,
+      "whiff_pct": 19.8,
+      "put_away_pct": 18.5,
+      "hard_hit_pct": 29.4
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 22.2,
+      "rv_per_100": 1.5,
+      "xwoba_against": 0.309,
+      "whiff_pct": 43.9,
+      "put_away_pct": 22.4,
+      "hard_hit_pct": 19.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 15.2,
+      "rv_per_100": 0.8,
+      "xwoba_against": 0.35,
+      "whiff_pct": 9.8,
+      "put_away_pct": 0.0,
+      "hard_hit_pct": 45.2
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

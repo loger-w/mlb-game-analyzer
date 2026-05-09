@@ -1,0 +1,157 @@
+{
+  "name": "Ben Brown",
+  "mlbam_id": 676962,
+  "age": 26,
+  "birth_date": "1999-09-09",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 94.0,
+    "gap": null
+  },
+  "season": {
+    "era": 2.1,
+    "whip": 1.01,
+    "k_pct": 23.8,
+    "bb_pct": 7.9,
+    "k_bb_pct": 15.9,
+    "fip": 2.67,
+    "xfip": 3.38,
+    "hr_per_9": 0.35,
+    "gb_pct": 52.9,
+    "ip": 25.666666666666668,
+    "games": 12,
+    "gs": 0
+  },
+  "expected": {
+    "xera": 2.79,
+    "xwoba": 0.267,
+    "xba": 0.215
+  },
+  "statcast": {
+    "avg_velo": 92.9,
+    "max_velo": 98.6,
+    "hard_hit_pct": 22.7,
+    "pitch_types": {
+      "FF": 36.4,
+      "KC": 35.5,
+      "SI": 23.3,
+      "CH": 4.8
+    },
+    "barrel_pct": 4.3,
+    "ev95percent": 34.8,
+    "whiff_pct": 10.1,
+    "csw_pct": 28.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Washington Nationals",
+      "ip": 3.3333333333333335,
+      "era": 5.4,
+      "k": 3,
+      "bb": 1,
+      "h": 3,
+      "er": 2,
+      "pitches": 49,
+      "strikes": 29
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "Los Angeles Angels",
+      "ip": 3.3333333333333335,
+      "era": 2.7,
+      "k": 5,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 50,
+      "strikes": 39
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Cleveland Guardians",
+      "ip": 2.0,
+      "era": 4.15,
+      "k": 0,
+      "bb": 2,
+      "h": 2,
+      "er": 2,
+      "pitches": 42,
+      "strikes": 22
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".175",
+      "obp": ".261",
+      "slg": ".200",
+      "k": 14,
+      "bb": 5,
+      "bf": 46,
+      "k_pct": 30.4,
+      "bb_pct": 10.9
+    },
+    "vs_right": {
+      "avg": ".216",
+      "obp": ".255",
+      "slg": ".294",
+      "k": 10,
+      "bb": 3,
+      "bf": 55,
+      "k_pct": 18.2,
+      "bb_pct": 5.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.671,
+      "k_pct": 28.3,
+      "bb_pct": 8.5,
+      "bf": 590
+    },
+    "tto2": {
+      "ops": 0.72,
+      "k_pct": 23.1,
+      "bb_pct": 6.1,
+      "bf": 312
+    },
+    "tto3": {
+      "ops": 0.965,
+      "k_pct": 24.1,
+      "bb_pct": 4.6,
+      "bf": 87
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 36.9,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.287,
+      "whiff_pct": 18.8,
+      "put_away_pct": 16.2,
+      "hard_hit_pct": 35.0
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 34.7,
+      "rv_per_100": 2.7,
+      "xwoba_against": 0.278,
+      "whiff_pct": 40.0,
+      "put_away_pct": 25.5,
+      "hard_hit_pct": 40.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

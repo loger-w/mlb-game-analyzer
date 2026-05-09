@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 5.0,
+  "home_recent_ra": 4.3,
+  "away_recent_rs": 4.8,
+  "away_recent_ra": 6.0,
+  "home_recent_30_rs": 5.13,
+  "home_recent_30_ra": 5.63,
+  "away_recent_30_rs": 4.73,
+  "away_recent_30_ra": 5.2,
+  "home_season_rs": 5.35,
+  "home_season_ra": 5.68,
+  "away_season_rs": 4.81,
+  "away_season_ra": 5.08,
+  "home_season_games": 37,
+  "away_season_games": 37,
+  "home_starter_fip": 3.65,
+  "home_starter_k_bb": 15.6,
+  "home_starter_whip": 1.3,
+  "away_starter_fip": 6.33,
+  "away_starter_k_bb": 1.9,
+  "away_starter_whip": 1.76,
+  "home_batting_xwoba": 0.323,
+  "home_batting_ops": 0.722,
+  "home_batting_k_pct": 22.0,
+  "away_batting_xwoba": 0.319,
+  "away_batting_ops": 0.748,
+  "away_batting_k_pct": 22.7,
+  "home_pitcher": {
+    "era": 4.93,
+    "xera": 4.8,
+    "ip": 34.666666666666664,
+    "era_xera_delta": 0.13,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 28.8,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.332,
+        "whiff_pct": 25.0,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 54.2
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 22.2,
+        "rv_per_100": -0.5,
+        "xwoba_against": 0.414,
+        "whiff_pct": 10.2,
+        "put_away_pct": 14.3,
+        "hard_hit_pct": 52.0
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 21.9,
+        "rv_per_100": 2.4,
+        "xwoba_against": 0.245,
+        "whiff_pct": 44.3,
+        "put_away_pct": 19.6,
+        "hard_hit_pct": 28.6
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 6.49,
+    "xera": 5.2,
+    "ip": 34.666666666666664,
+    "era_xera_delta": 1.29,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 40.5,
+        "rv_per_100": 0.3,
+        "xwoba_against": 0.292,
+        "whiff_pct": 15.7,
+        "put_away_pct": 14.9,
+        "hard_hit_pct": 41.4
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 29.1,
+        "rv_per_100": -5.9,
+        "xwoba_against": 0.399,
+        "whiff_pct": 18.7,
+        "put_away_pct": 8.7,
+        "hard_hit_pct": 38.2
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 26.0,
+        "rv_per_100": -3.0,
+        "xwoba_against": 0.41,
+        "whiff_pct": 15.2,
+        "put_away_pct": 11.1,
+        "hard_hit_pct": 51.6
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.326
+  },
+  "away_lineup": {
+    "recent_babip": 0.298
+  },
+  "home_bullpen_era": 4.67,
+  "away_bullpen_era": 5.83,
+  "park_factor": 100.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 59,
+    "wind_text": "3 mph, In From CF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Washington Nationals",
+    "away_team": "Minnesota Twins",
+    "home_sp": "Jake Irvin",
+    "away_sp": "Simeon Woods Richardson",
+    "home_sp_starts": 7,
+    "away_sp_starts": 7,
+    "venue": "Nationals Park",
+    "game_pk": 822741,
+    "game_date": "2026-05-07T17:05:00Z",
+    "official_date": "2026-05-07"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "name": "Randy Vásquez",
+  "mlbam_id": 681190,
+  "age": 27,
+  "birth_date": "1998-11-03",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.841,
+    "k_bb_pct": 0.753,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 84.4,
+    "era_only_score": 75.0,
+    "gap": 9.4
+  },
+  "season": {
+    "era": 3.2,
+    "whip": 1.17,
+    "k_pct": 22.4,
+    "bb_pct": 8.1,
+    "k_bb_pct": 14.3,
+    "fip": 3.58,
+    "xfip": 3.58,
+    "hr_per_9": 0.92,
+    "gb_pct": 48.1,
+    "ip": 39.333333333333336,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.54,
+    "xwoba": 0.335,
+    "xba": 0.25
+  },
+  "statcast": {
+    "avg_velo": 90.8,
+    "max_velo": 97.8,
+    "hard_hit_pct": 29.1,
+    "pitch_types": {
+      "FF": 30.3,
+      "FC": 26.6,
+      "CU": 14.2,
+      "SI": 13.4,
+      "CH": 9.2
+    },
+    "barrel_pct": 12.7,
+    "ev95percent": 40.9,
+    "whiff_pct": 11.4,
+    "csw_pct": 26.3
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Detroit Tigers",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 8,
+      "bb": 3,
+      "h": 2,
+      "er": 0,
+      "pitches": 91,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Boston Red Sox",
+      "ip": 6.0,
+      "era": 0.75,
+      "k": 3,
+      "bb": 1,
+      "h": 6,
+      "er": 1,
+      "pitches": 83,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "Colorado Rockies",
+      "ip": 5.666666666666667,
+      "era": 1.02,
+      "k": 8,
+      "bb": 0,
+      "h": 7,
+      "er": 1,
+      "pitches": 92,
+      "strikes": 63
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".229",
+      "obp": ".283",
+      "slg": ".349",
+      "k": 23,
+      "bb": 7,
+      "bf": 93,
+      "k_pct": 24.7,
+      "bb_pct": 7.5
+    },
+    "vs_right": {
+      "avg": ".233",
+      "obp": ".324",
+      "slg": ".433",
+      "k": 13,
+      "bb": 6,
+      "bf": 68,
+      "k_pct": 19.1,
+      "bb_pct": 8.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.702,
+      "k_pct": 25.0,
+      "bb_pct": 5.6,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.791,
+      "k_pct": 19.4,
+      "bb_pct": 9.7,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.607,
+      "k_pct": 21.6,
+      "bb_pct": 5.4,
+      "bf": 37
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.0,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.306,
+      "whiff_pct": 21.2,
+      "put_away_pct": 18.5,
+      "hard_hit_pct": 42.5
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 26.7,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.336,
+      "whiff_pct": 23.5,
+      "put_away_pct": 15.8,
+      "hard_hit_pct": 34.8
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 12.1,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.483,
+      "whiff_pct": 13.9,
+      "put_away_pct": 26.7,
+      "hard_hit_pct": 50.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

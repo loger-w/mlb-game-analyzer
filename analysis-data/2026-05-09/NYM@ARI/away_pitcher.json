@@ -1,0 +1,163 @@
+{
+  "name": "Clay Holmes",
+  "mlbam_id": 605280,
+  "age": 33,
+  "birth_date": "1993-03-27",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.773,
+    "k_bb_pct": 0.512,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 67.7,
+    "era_only_score": 95.0,
+    "gap": -27.3
+  },
+  "season": {
+    "era": 1.69,
+    "whip": 0.98,
+    "k_pct": 18.5,
+    "bb_pct": 8.3,
+    "k_bb_pct": 10.2,
+    "fip": 3.55,
+    "xfip": 3.73,
+    "hr_per_9": 0.63,
+    "gb_pct": 61.7,
+    "ip": 42.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 3.8,
+    "xwoba": 0.309,
+    "xba": 0.252
+  },
+  "statcast": {
+    "avg_velo": 89.3,
+    "max_velo": 96.8,
+    "hard_hit_pct": 29.6,
+    "pitch_types": {
+      "SI": 49.7,
+      "ST": 17.0,
+      "CH": 15.4,
+      "CU": 9.5,
+      "FC": 8.3
+    },
+    "barrel_pct": 4.1,
+    "ev95percent": 43.4,
+    "whiff_pct": 10.0,
+    "csw_pct": 26.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "St. Louis Cardinals",
+      "ip": 5.666666666666667,
+      "era": 3.18,
+      "k": 5,
+      "bb": 3,
+      "h": 4,
+      "er": 2,
+      "pitches": 90,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "San Francisco Giants",
+      "ip": 7.0,
+      "era": 1.42,
+      "k": 4,
+      "bb": 2,
+      "h": 3,
+      "er": 0,
+      "pitches": 90,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Athletics",
+      "ip": 5.333333333333333,
+      "era": 1.5,
+      "k": 3,
+      "bb": 3,
+      "h": 5,
+      "er": 1,
+      "pitches": 81,
+      "strikes": 48
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".190",
+      "obp": ".258",
+      "slg": ".321",
+      "k": 15,
+      "bb": 8,
+      "bf": 93,
+      "k_pct": 16.1,
+      "bb_pct": 8.6
+    },
+    "vs_right": {
+      "avg": ".176",
+      "obp": ".253",
+      "slg": ".221",
+      "k": 16,
+      "bb": 6,
+      "bf": 75,
+      "k_pct": 21.3,
+      "bb_pct": 8.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.566,
+      "k_pct": 19.0,
+      "bb_pct": 9.5,
+      "bf": 63
+    },
+    "tto2": {
+      "ops": 0.486,
+      "k_pct": 22.2,
+      "bb_pct": 7.9,
+      "bf": 63
+    },
+    "tto3": {
+      "ops": 0.548,
+      "k_pct": 11.9,
+      "bb_pct": 7.1,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 49.7,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.353,
+      "whiff_pct": 11.3,
+      "put_away_pct": 8.5,
+      "hard_hit_pct": 41.2
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 15.4,
+      "rv_per_100": 2.1,
+      "xwoba_against": 0.236,
+      "whiff_pct": 33.3,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 60.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

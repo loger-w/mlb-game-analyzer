@@ -1,0 +1,373 @@
+{
+  "team": "Washington Nationals",
+  "team_id": 120,
+  "active_roster": {
+    "pitchers": [
+      "Brad Lord",
+      "Cade Cavalli",
+      "Foster Griffin",
+      "Gus Varland",
+      "Jake Irvin",
+      "Miles Mikolas",
+      "Mitchell Parker",
+      "Orlando Ribalta",
+      "PJ Poulin",
+      "Paxton Schultz",
+      "Richard Lovelady",
+      "Zack Littell",
+      "Zak Kent"
+    ],
+    "pitcher_ids": [
+      695418,
+      676917,
+      656492,
+      681402,
+      663623,
+      571945,
+      680730,
+      687377,
+      676571,
+      687606,
+      663992,
+      641793,
+      687849
+    ],
+    "position_players": [
+      "Brady House",
+      "CJ Abrams",
+      "Curtis Mead",
+      "Daylen Lile",
+      "Drew Millas",
+      "Jacob Young",
+      "James Wood",
+      "Joey Wiemer",
+      "Jorbit Vivas",
+      "José Tena",
+      "Keibert Ruiz",
+      "Luis García Jr.",
+      "Nasim Nuñez"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Brad Lord",
+        "player_id": 695418,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 11,
+          "gs": 0,
+          "ip": 23.7
+        }
+      },
+      {
+        "name": "Cade Cavalli",
+        "player_id": 676917,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 34.7
+        }
+      },
+      {
+        "name": "Foster Griffin",
+        "player_id": 656492,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 39.7
+        }
+      },
+      {
+        "name": "Gus Varland",
+        "player_id": 681402,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 4,
+          "g": 14,
+          "gs": 0,
+          "ip": 13.3
+        }
+      },
+      {
+        "name": "Jake Irvin",
+        "player_id": 663623,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 34.7
+        }
+      },
+      {
+        "name": "Miles Mikolas",
+        "player_id": 571945,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 5,
+          "ip": 32.7
+        }
+      },
+      {
+        "name": "Mitchell Parker",
+        "player_id": 680730,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 7,
+          "gs": 0,
+          "ip": 16.0
+        }
+      },
+      {
+        "name": "Orlando Ribalta",
+        "player_id": 687377,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 22,
+          "gs": 0,
+          "ip": 24.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "PJ Poulin",
+        "player_id": 676571,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 17,
+          "gs": 5,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Paxton Schultz",
+        "player_id": 687606,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 0,
+          "g": 9,
+          "gs": 0,
+          "ip": 13.0
+        }
+      },
+      {
+        "name": "Richard Lovelady",
+        "player_id": 663992,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 13,
+          "gs": 0,
+          "ip": 14.3
+        }
+      },
+      {
+        "name": "Zack Littell",
+        "player_id": 641793,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 5,
+          "ip": 32.3
+        }
+      },
+      {
+        "name": "Zak Kent",
+        "player_id": 687849,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 12,
+          "gs": 0,
+          "ip": 17.7,
+          "from_prior_year": true
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Clayton Beeter",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 690925,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 2,
+        "g": 10,
+        "gs": 0,
+        "ip": 10.3
+      }
+    },
+    {
+      "name": "Cole Henry",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 669371,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 0,
+        "ip": 7.0
+      }
+    },
+    {
+      "name": "DJ Herz",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 687792,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Josiah Gray",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 680686,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Ken Waldichuk",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 686610,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 5,
+        "gs": 0,
+        "ip": 9.3
+      }
+    },
+    {
+      "name": "Max Kranick",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 668820,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 5,
+        "g": 24,
+        "gs": 0,
+        "ip": 37.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Trevor Williams",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 592866,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 17,
+        "gs": 17,
+        "ip": 82.7,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Abimelec Ortiz",
+    "Andre Granillo",
+    "Andrew Alvarez",
+    "Andrés Chaparro",
+    "Christian Franklin",
+    "Dylan Crews",
+    "Harry Ford",
+    "Julian Fernández",
+    "Luis Perales",
+    "Riley Cornelio",
+    "Robert Hassell III"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 7,
+    "total_40man_not_active": 11
+  }
+}

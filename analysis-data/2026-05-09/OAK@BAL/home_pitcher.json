@@ -1,0 +1,173 @@
+{
+  "name": "Shane Baz",
+  "mlbam_id": 669358,
+  "age": 26,
+  "birth_date": "1999-06-17",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.596,
+    "k_bb_pct": 0.479,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 64.0,
+    "era_only_score": 35.2,
+    "gap": 28.8
+  },
+  "season": {
+    "era": 4.99,
+    "whip": 1.54,
+    "k_pct": 18.8,
+    "bb_pct": 9.1,
+    "k_bb_pct": 9.7,
+    "fip": 3.96,
+    "xfip": 3.99,
+    "hr_per_9": 0.91,
+    "gb_pct": 48.8,
+    "ip": 39.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.7,
+    "xwoba": 0.34,
+    "xba": 0.274
+  },
+  "statcast": {
+    "avg_velo": 91.0,
+    "max_velo": 99.6,
+    "hard_hit_pct": 21.4,
+    "pitch_types": {
+      "FF": 32.9,
+      "KC": 32.9,
+      "FC": 20.6,
+      "CH": 8.9,
+      "SI": 4.6
+    },
+    "barrel_pct": 8.8,
+    "ev95percent": 38.4,
+    "whiff_pct": 8.7,
+    "csw_pct": 24.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Minnesota Twins",
+      "ip": 5.333333333333333,
+      "era": 6.75,
+      "k": 4,
+      "bb": 0,
+      "h": 7,
+      "er": 4,
+      "pitches": 78,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 5.666666666666667,
+      "era": 4.09,
+      "k": 5,
+      "bb": 3,
+      "h": 4,
+      "er": 1,
+      "pitches": 98,
+      "strikes": 63
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "San Francisco Giants",
+      "ip": 5.0,
+      "era": 4.5,
+      "k": 4,
+      "bb": 2,
+      "h": 9,
+      "er": 3,
+      "pitches": 99,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".341",
+      "obp": ".417",
+      "slg": ".518",
+      "k": 17,
+      "bb": 13,
+      "bf": 103,
+      "k_pct": 16.5,
+      "bb_pct": 12.6
+    },
+    "vs_right": {
+      "avg": ".235",
+      "obp": ".274",
+      "slg": ".456",
+      "k": 16,
+      "bb": 3,
+      "bf": 73,
+      "k_pct": 21.9,
+      "bb_pct": 4.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.662,
+      "k_pct": 25.0,
+      "bb_pct": 6.9,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.834,
+      "k_pct": 18.1,
+      "bb_pct": 1.4,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.899,
+      "k_pct": 14.6,
+      "bb_pct": 16.7,
+      "bf": 48
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 33.0,
+      "rv_per_100": -1.7,
+      "xwoba_against": 0.322,
+      "whiff_pct": 28.4,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 46.7
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 32.9,
+      "rv_per_100": -2.4,
+      "xwoba_against": 0.382,
+      "whiff_pct": 22.2,
+      "put_away_pct": 18.0,
+      "hard_hit_pct": 35.3
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 20.7,
+      "rv_per_100": 3.7,
+      "xwoba_against": 0.272,
+      "whiff_pct": 22.7,
+      "put_away_pct": 27.6,
+      "hard_hit_pct": 29.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

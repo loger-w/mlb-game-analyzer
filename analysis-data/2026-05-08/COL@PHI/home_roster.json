@@ -1,0 +1,307 @@
+{
+  "team": "Philadelphia Phillies",
+  "team_id": 143,
+  "active_roster": {
+    "pitchers": [
+      "Aaron Nola",
+      "Andrew Painter",
+      "Brad Keller",
+      "Chase Shugart",
+      "Cristopher Sánchez",
+      "Jesús Luzardo",
+      "Jhoan Duran",
+      "Jonathan Bowlan",
+      "José Alvarado",
+      "Orion Kerkering",
+      "Tanner Banks",
+      "Tim Mayza",
+      "Zack Wheeler"
+    ],
+    "pitcher_ids": [
+      605400,
+      691725,
+      641745,
+      663767,
+      650911,
+      666200,
+      661395,
+      680742,
+      621237,
+      689147,
+      621383,
+      641835,
+      554430
+    ],
+    "position_players": [
+      "Adolis García",
+      "Alec Bohm",
+      "Brandon Marsh",
+      "Bryce Harper",
+      "Bryson Stott",
+      "Edmundo Sosa",
+      "Felix Reyes",
+      "Garrett Stubbs",
+      "J.T. Realmuto",
+      "Justin Crawford",
+      "Kyle Schwarber",
+      "Rafael Marchán",
+      "Trea Turner"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Aaron Nola",
+        "player_id": 605400,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 37.3
+        }
+      },
+      {
+        "name": "Andrew Painter",
+        "player_id": 691725,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 6,
+          "ip": 32.7
+        }
+      },
+      {
+        "name": "Brad Keller",
+        "player_id": 641745,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 4,
+          "g": 16,
+          "gs": 0,
+          "ip": 15.7
+        }
+      },
+      {
+        "name": "Chase Shugart",
+        "player_id": 663767,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 0,
+          "ip": 12.7
+        }
+      },
+      {
+        "name": "Cristopher Sánchez",
+        "player_id": 650911,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 48.3
+        }
+      },
+      {
+        "name": "Jesús Luzardo",
+        "player_id": 666200,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 40.7
+        }
+      },
+      {
+        "name": "Jhoan Duran",
+        "player_id": 661395,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 5,
+          "holds": 0,
+          "g": 8,
+          "gs": 0,
+          "ip": 7.7
+        }
+      },
+      {
+        "name": "Jonathan Bowlan",
+        "player_id": 680742,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 0,
+          "ip": 9.7
+        }
+      },
+      {
+        "name": "José Alvarado",
+        "player_id": 621237,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 17,
+          "gs": 0,
+          "ip": 12.3
+        }
+      },
+      {
+        "name": "Orion Kerkering",
+        "player_id": 689147,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 14,
+          "gs": 0,
+          "ip": 13.0
+        }
+      },
+      {
+        "name": "Tanner Banks",
+        "player_id": 621383,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 15,
+          "gs": 0,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Tim Mayza",
+        "player_id": 641835,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 16,
+          "gs": 1,
+          "ip": 18.7
+        }
+      },
+      {
+        "name": "Zack Wheeler",
+        "player_id": 554430,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 24,
+          "gs": 24,
+          "ip": 149.7,
+          "from_prior_year": true
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Kyle Backhus",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 679775,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 10,
+        "gs": 1,
+        "ip": 9.7
+      }
+    },
+    {
+      "name": "Max Lazar",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 676661,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 1,
+        "g": 36,
+        "gs": 0,
+        "ip": 41.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Zach Pop",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 647315,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 1,
+        "ip": 7.3
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Alan Rangel",
+    "Alex McFarlane",
+    "Christian Cairo",
+    "Gabriel Rincones Jr.",
+    "Grant Holman",
+    "Jean Cabrera",
+    "Moisés Chace",
+    "Nolan Hoffman",
+    "Otto Kemp",
+    "Seth Johnson",
+    "Steward Berroa"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 3,
+    "total_40man_not_active": 11
+  }
+}

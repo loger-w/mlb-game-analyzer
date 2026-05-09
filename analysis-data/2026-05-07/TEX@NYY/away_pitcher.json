@@ -1,0 +1,163 @@
+{
+  "name": "MacKenzie Gore",
+  "mlbam_id": 669022,
+  "age": 27,
+  "birth_date": "1999-02-24",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.879,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 93.5,
+    "era_only_score": 43.2,
+    "gap": 50.2
+  },
+  "season": {
+    "era": 4.67,
+    "whip": 1.36,
+    "k_pct": 29.8,
+    "bb_pct": 11.9,
+    "k_bb_pct": 17.9,
+    "fip": 3.94,
+    "xfip": 3.26,
+    "hr_per_9": 1.3,
+    "gb_pct": 44.8,
+    "ip": 34.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.28,
+    "xwoba": 0.327,
+    "xba": 0.235
+  },
+  "statcast": {
+    "avg_velo": 90.4,
+    "max_velo": 97.9,
+    "hard_hit_pct": 23.3,
+    "pitch_types": {
+      "FF": 44.2,
+      "CU": 20.6,
+      "CH": 13.2,
+      "SL": 8.1,
+      "FC": 7.3
+    },
+    "barrel_pct": 12.6,
+    "ev95percent": 42.5,
+    "whiff_pct": 10.8,
+    "csw_pct": 26.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Philadelphia Phillies",
+      "ip": 5.333333333333333,
+      "era": 3.38,
+      "k": 7,
+      "bb": 3,
+      "h": 2,
+      "er": 2,
+      "pitches": 90,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Cincinnati Reds",
+      "ip": 6.0,
+      "era": 3.97,
+      "k": 9,
+      "bb": 0,
+      "h": 6,
+      "er": 3,
+      "pitches": 88,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Seattle Mariners",
+      "ip": 5.0,
+      "era": 2.76,
+      "k": 9,
+      "bb": 2,
+      "h": 1,
+      "er": 0,
+      "pitches": 82,
+      "strikes": 49
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".200",
+      "obp": ".314",
+      "slg": ".300",
+      "k": 11,
+      "bb": 5,
+      "bf": 35,
+      "k_pct": 31.4,
+      "bb_pct": 14.3
+    },
+    "vs_right": {
+      "avg": ".230",
+      "obp": ".322",
+      "slg": ".390",
+      "k": 34,
+      "bb": 13,
+      "bf": 116,
+      "k_pct": 29.3,
+      "bb_pct": 11.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.726,
+      "k_pct": 26.4,
+      "bb_pct": 9.2,
+      "bf": 1211
+    },
+    "tto2": {
+      "ops": 0.72,
+      "k_pct": 25.3,
+      "bb_pct": 10.3,
+      "bf": 1064
+    },
+    "tto3": {
+      "ops": 0.799,
+      "k_pct": 24.0,
+      "bb_pct": 9.7,
+      "bf": 513
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 44.3,
+      "rv_per_100": 0.5,
+      "xwoba_against": 0.331,
+      "whiff_pct": 24.7,
+      "put_away_pct": 23.5,
+      "hard_hit_pct": 40.5
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 20.7,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.324,
+      "whiff_pct": 32.2,
+      "put_away_pct": 21.9,
+      "hard_hit_pct": 57.9
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

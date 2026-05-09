@@ -1,0 +1,92 @@
+{
+  "home_recent_rs": 5.8,
+  "home_recent_ra": 3.4,
+  "away_recent_rs": 2.6,
+  "away_recent_ra": 4.1,
+  "home_recent_30_rs": 5.6,
+  "home_recent_30_ra": 3.93,
+  "away_recent_30_rs": 3.5,
+  "away_recent_30_ra": 3.63,
+  "home_season_rs": 5.41,
+  "home_season_ra": 3.41,
+  "away_season_rs": 3.81,
+  "away_season_ra": 3.78,
+  "home_season_games": 37,
+  "away_season_games": 36,
+  "home_starter_fip": 2.67,
+  "home_starter_k_bb": 8.3,
+  "home_starter_whip": 1.36,
+  "away_starter_fip": 3.94,
+  "away_starter_k_bb": 17.9,
+  "away_starter_whip": 1.36,
+  "home_batting_xwoba": 0.358,
+  "home_batting_ops": 0.717,
+  "home_batting_k_pct": 18.6,
+  "away_batting_xwoba": 0.29,
+  "away_batting_ops": 0.642,
+  "away_batting_k_pct": 21.0,
+  "home_pitcher": {
+    "era": 3.21,
+    "xera": 3.57,
+    "ip": 14.0,
+    "era_xera_delta": -0.36,
+    "arsenal_top": []
+  },
+  "away_pitcher": {
+    "era": 4.67,
+    "xera": 4.28,
+    "ip": 34.666666666666664,
+    "era_xera_delta": 0.39,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 44.3,
+        "rv_per_100": 0.5,
+        "xwoba_against": 0.331,
+        "whiff_pct": 24.7,
+        "put_away_pct": 23.5,
+        "hard_hit_pct": 40.5
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 20.7,
+        "rv_per_100": -0.9,
+        "xwoba_against": 0.324,
+        "whiff_pct": 32.2,
+        "put_away_pct": 21.9,
+        "hard_hit_pct": 57.9
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.271
+  },
+  "away_lineup": {
+    "recent_babip": 0.238
+  },
+  "home_bullpen_era": 3.22,
+  "away_bullpen_era": 2.76,
+  "park_factor": 96.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 60,
+    "wind_text": "9 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "New York Yankees",
+    "away_team": "Texas Rangers",
+    "home_sp": "Paul Blackburn",
+    "away_sp": "MacKenzie Gore",
+    "home_sp_starts": 0,
+    "away_sp_starts": 7,
+    "venue": "Yankee Stadium",
+    "game_pk": 823551,
+    "game_date": "2026-05-07T16:35:00Z",
+    "official_date": "2026-05-07"
+  }
+}

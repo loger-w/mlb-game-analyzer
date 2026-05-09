@@ -1,0 +1,172 @@
+{
+  "name": "Jack Kochanowicz",
+  "mlbam_id": 686799,
+  "age": 25,
+  "birth_date": "2000-12-22",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.448,
+    "k_bb_pct": 0.19,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 47.4,
+    "era_only_score": 78.2,
+    "gap": -30.8
+  },
+  "season": {
+    "era": 3.05,
+    "whip": 1.21,
+    "k_pct": 17.1,
+    "bb_pct": 12.0,
+    "k_bb_pct": 5.1,
+    "fip": 3.8,
+    "xfip": 4.21,
+    "hr_per_9": 0.44,
+    "gb_pct": 64.5,
+    "ip": 41.333333333333336,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.48,
+    "xwoba": 0.333,
+    "xba": 0.253
+  },
+  "statcast": {
+    "avg_velo": 92.5,
+    "max_velo": 98.7,
+    "hard_hit_pct": 28.4,
+    "pitch_types": {
+      "SI": 38.1,
+      "CH": 23.9,
+      "SL": 19.3,
+      "FF": 18.7
+    },
+    "barrel_pct": 6.6,
+    "ev95percent": 42.6,
+    "whiff_pct": 10.9,
+    "csw_pct": 27.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Houston Astros",
+      "ip": 4.0,
+      "era": 11.25,
+      "k": 3,
+      "bb": 5,
+      "h": 4,
+      "er": 5,
+      "pitches": 94,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Seattle Mariners",
+      "ip": 5.666666666666667,
+      "era": 4.66,
+      "k": 7,
+      "bb": 2,
+      "h": 4,
+      "er": 0,
+      "pitches": 86,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Cincinnati Reds",
+      "ip": 7.0,
+      "era": 3.24,
+      "k": 2,
+      "bb": 4,
+      "h": 2,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".213",
+      "obp": ".337",
+      "slg": ".253",
+      "k": 14,
+      "bb": 12,
+      "bf": 89,
+      "k_pct": 15.7,
+      "bb_pct": 13.5
+    },
+    "vs_right": {
+      "avg": ".171",
+      "obp": ".256",
+      "slg": ".263",
+      "k": 16,
+      "bb": 9,
+      "bf": 86,
+      "k_pct": 18.6,
+      "bb_pct": 10.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.534,
+      "k_pct": 22.2,
+      "bb_pct": 13.9,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.622,
+      "k_pct": 15.9,
+      "bb_pct": 14.3,
+      "bf": 63
+    },
+    "tto3": {
+      "ops": 0.365,
+      "k_pct": 16.7,
+      "bb_pct": 4.2,
+      "bf": 48
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 38.6,
+      "rv_per_100": 2.1,
+      "xwoba_against": 0.349,
+      "whiff_pct": 15.4,
+      "put_away_pct": 13.0,
+      "hard_hit_pct": 50.8
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 23.3,
+      "rv_per_100": -1.0,
+      "xwoba_against": 0.303,
+      "whiff_pct": 31.6,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 26.9
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 18.8,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.331,
+      "whiff_pct": 17.9,
+      "put_away_pct": 18.2,
+      "hard_hit_pct": 40.9
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "Blake Snell",
+  "mlbam_id": 605483,
+  "age": 33,
+  "birth_date": "1992-12-04",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "Unknown",
+  "tier_v2": null,
+  "tier_components": {
+    "xfip_pct": null,
+    "k_bb_pct": null,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "insufficient_data",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": null,
+    "gap": null
+  },
+  "season": {
+    "error": "No 2026 pitching stats found"
+  },
+  "expected": {
+    "error": "Player 605483 not found in expected stats"
+  },
+  "statcast": {
+    "error": "No Statcast data found"
+  },
+  "game_log": [],
+  "platoon_splits": {
+    "error": "No platoon split data"
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.578,
+      "k_pct": 33.3,
+      "bb_pct": 10.1,
+      "bf": 935
+    },
+    "tto2": {
+      "ops": 0.601,
+      "k_pct": 32.4,
+      "bb_pct": 11.1,
+      "bf": 877
+    },
+    "tto3": {
+      "ops": 0.652,
+      "k_pct": 24.8,
+      "bb_pct": 13.7,
+      "bf": 444
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 605483 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
