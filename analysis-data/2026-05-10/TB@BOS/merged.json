@@ -1,0 +1,113 @@
+{
+  "home_recent_rs": 3.3,
+  "home_recent_ra": 3.3,
+  "away_recent_rs": 3.1,
+  "away_recent_ra": 1.5,
+  "home_recent_30_rs": 3.97,
+  "home_recent_30_ra": 3.7,
+  "away_recent_30_rs": 4.07,
+  "away_recent_30_ra": 3.33,
+  "home_season_rs": 3.88,
+  "home_season_ra": 4.1,
+  "away_season_rs": 4.28,
+  "away_season_ra": 3.85,
+  "home_season_games": 40,
+  "away_season_games": 39,
+  "home_starter_fip": 2.25,
+  "home_starter_k_bb": 25.3,
+  "home_starter_whip": 0.74,
+  "away_starter_fip": 3.41,
+  "away_starter_k_bb": 10.7,
+  "away_starter_whip": 1.02,
+  "home_batting_xwoba": 0.306,
+  "home_batting_ops": 0.605,
+  "home_batting_k_pct": 18.9,
+  "away_batting_xwoba": 0.294,
+  "away_batting_ops": 0.677,
+  "away_batting_k_pct": 17.0,
+  "home_pitcher": {
+    "era": 2.04,
+    "xera": 2.03,
+    "ip": 17.666666666666668,
+    "era_xera_delta": 0.01,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 46.3,
+        "rv_per_100": 3.0,
+        "xwoba_against": 0.116,
+        "whiff_pct": 30.5,
+        "put_away_pct": 36.6,
+        "hard_hit_pct": 29.4
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 1.71,
+    "xera": 3.9,
+    "ip": 42.0,
+    "era_xera_delta": -2.19,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 32.1,
+        "rv_per_100": 3.4,
+        "xwoba_against": 0.288,
+        "whiff_pct": 4.6,
+        "put_away_pct": 24.0,
+        "hard_hit_pct": 38.1
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 27.4,
+        "rv_per_100": 3.0,
+        "xwoba_against": 0.184,
+        "whiff_pct": 33.3,
+        "put_away_pct": 15.6,
+        "hard_hit_pct": 12.1
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 18.2,
+        "rv_per_100": 2.9,
+        "xwoba_against": 0.351,
+        "whiff_pct": 16.4,
+        "put_away_pct": 21.4,
+        "hard_hit_pct": 25.0
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.325
+  },
+  "away_lineup": {
+    "recent_babip": 0.276
+  },
+  "home_bullpen_era": 3.42,
+  "away_bullpen_era": 4.02,
+  "park_factor": 104.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 3,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 70,
+    "wind_text": "9 mph, Out To CF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Boston Red Sox",
+    "away_team": "Tampa Bay Rays",
+    "home_sp": "Payton Tolle",
+    "away_sp": "Nick Martinez",
+    "home_sp_starts": 3,
+    "away_sp_starts": 7,
+    "venue": "Fenway Park",
+    "game_pk": 824765,
+    "game_date": "2026-05-10T17:35:00Z",
+    "official_date": "2026-05-10"
+  }
+}

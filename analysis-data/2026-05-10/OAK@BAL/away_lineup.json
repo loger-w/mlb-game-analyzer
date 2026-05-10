@@ -1,0 +1,473 @@
+{
+  "team": "OAK",
+  "team_id": 133,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟡 Average",
+  "tier_vs_rhp": "🟠 Strong",
+  "avg_ops": 0.784,
+  "avg_ops_vs_lhp": 0.744,
+  "avg_ops_vs_rhp": 0.824,
+  "avg_xwoba": 0.338,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.313,
+  "avg_k_pct": 21.4,
+  "avg_bb_pct": 9.8,
+  "over_under_lean": 0,
+  "recent_heat": "🔥 Hot",
+  "last7_babip": 0.359,
+  "chain": {
+    "obp_top3": 0.361,
+    "slg_mid": 0.4
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-10T16:03:24+00:00",
+    "game_pk": 824845
+  },
+  "lineup": [
+    {
+      "mlbam_id": 701762,
+      "pa": 177,
+      "avg": 0.264,
+      "obp": 0.418,
+      "slg": 0.436,
+      "ops": 0.854,
+      "iso": 0.172,
+      "babip": 0.386,
+      "k_pct": 29.4,
+      "bb_pct": 20.9,
+      "name": "Nick Kurtz",
+      "position": "1B",
+      "batting_order": 1,
+      "xwoba": 0.393,
+      "xba": 0.26,
+      "xslg": 0.493,
+      "ev95pct": 59.1,
+      "barrel_pct": 15.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".224",
+          "obp": ".356",
+          "slg": ".265",
+          "ops": ".621",
+          "pa": 59
+        },
+        "vs_rhp": {
+          "avg": ".286",
+          "obp": ".449",
+          "slg": ".527",
+          "ops": ".976",
+          "pa": 118
+        }
+      },
+      "last_7": {
+        "avg": ".367",
+        "obp": ".424",
+        "slg": ".500",
+        "ops": ".924",
+        "babip": ".458",
+        "pa": 33
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 669127,
+      "pa": 161,
+      "avg": 0.34,
+      "obp": 0.391,
+      "slg": 0.626,
+      "ops": 1.017,
+      "iso": 0.286,
+      "babip": 0.382,
+      "k_pct": 21.7,
+      "bb_pct": 8.1,
+      "name": "Shea Langeliers",
+      "position": "C",
+      "batting_order": 2,
+      "xwoba": 0.416,
+      "xba": 0.319,
+      "xslg": 0.616,
+      "ev95pct": 48.7,
+      "barrel_pct": 15.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".375",
+          "obp": ".405",
+          "slg": ".675",
+          "ops": "1.080",
+          "pa": 42
+        },
+        "vs_rhp": {
+          "avg": ".327",
+          "obp": ".387",
+          "slg": ".607",
+          "ops": ".994",
+          "pa": 119
+        }
+      },
+      "last_7": {
+        "avg": ".433",
+        "obp": ".471",
+        "slg": ".833",
+        "ops": "1.304",
+        "babip": ".417",
+        "pa": 34
+      },
+      "bvp": {
+        "pa": 1,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 667670,
+      "pa": 99,
+      "avg": 0.195,
+      "obp": 0.273,
+      "slg": 0.379,
+      "ops": 0.652,
+      "iso": 0.184,
+      "babip": 0.231,
+      "k_pct": 32.3,
+      "bb_pct": 10.1,
+      "name": "Brent Rooker",
+      "position": "RF",
+      "batting_order": 3,
+      "xwoba": 0.303,
+      "xba": 0.208,
+      "xslg": 0.404,
+      "ev95pct": 42.1,
+      "barrel_pct": 15.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".160",
+          "obp": ".192",
+          "slg": ".280",
+          "ops": ".472",
+          "pa": 26
+        },
+        "vs_rhp": {
+          "avg": ".210",
+          "obp": ".301",
+          "slg": ".419",
+          "ops": ".720",
+          "pa": 73
+        }
+      },
+      "last_7": {
+        "avg": ".321",
+        "obp": ".387",
+        "slg": ".571",
+        "ops": ".958",
+        "babip": ".438",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".500",
+        "obp": ".500",
+        "slg": ".500",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691016,
+      "pa": 160,
+      "avg": 0.206,
+      "obp": 0.294,
+      "slg": 0.404,
+      "ops": 0.698,
+      "iso": 0.198,
+      "babip": 0.238,
+      "k_pct": 22.5,
+      "bb_pct": 11.2,
+      "name": "Tyler Soderstrom",
+      "position": "LF",
+      "batting_order": 4,
+      "xwoba": 0.32,
+      "xba": 0.23,
+      "xslg": 0.419,
+      "ev95pct": 50.0,
+      "barrel_pct": 13.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".133",
+          "obp": ".188",
+          "slg": ".267",
+          "ops": ".455",
+          "pa": 48
+        },
+        "vs_rhp": {
+          "avg": ".240",
+          "obp": ".339",
+          "slg": ".469",
+          "ops": ".808",
+          "pa": 112
+        }
+      },
+      "last_7": {
+        "avg": ".179",
+        "obp": ".258",
+        "slg": ".393",
+        "ops": ".651",
+        "babip": ".188",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 805779,
+      "pa": 166,
+      "avg": 0.289,
+      "obp": 0.309,
+      "slg": 0.396,
+      "ops": 0.705,
+      "iso": 0.107,
+      "babip": 0.314,
+      "k_pct": 12.0,
+      "bb_pct": 3.0,
+      "name": "Jacob Wilson",
+      "position": "SS",
+      "batting_order": 5,
+      "xwoba": 0.274,
+      "xba": 0.266,
+      "xslg": 0.339,
+      "ev95pct": 29.8,
+      "barrel_pct": 2.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".279",
+          "obp": ".289",
+          "slg": ".349",
+          "ops": ".638",
+          "pa": 46
+        },
+        "vs_rhp": {
+          "avg": ".293",
+          "obp": ".317",
+          "slg": ".414",
+          "ops": ".731",
+          "pa": 120
+        }
+      },
+      "last_7": {
+        "avg": ".296",
+        "obp": ".345",
+        "slg": ".444",
+        "ops": ".789",
+        "babip": ".333",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 666126,
+      "pa": 99,
+      "avg": 0.356,
+      "obp": 0.414,
+      "slg": 0.578,
+      "ops": 0.992,
+      "iso": 0.222,
+      "babip": 0.364,
+      "k_pct": 9.1,
+      "bb_pct": 8.1,
+      "name": "Carlos Cortes",
+      "position": "RF",
+      "batting_order": 6,
+      "xwoba": 0.393,
+      "xba": 0.327,
+      "xslg": 0.516,
+      "ev95pct": 43.2,
+      "barrel_pct": 11.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".625",
+          "obp": ".667",
+          "slg": ".875",
+          "ops": "1.542",
+          "pa": 9
+        },
+        "vs_rhp": {
+          "avg": ".329",
+          "obp": ".389",
+          "slg": ".549",
+          "ops": ".938",
+          "pa": 90
+        }
+      },
+      "last_7": {
+        "avg": ".240",
+        "obp": ".240",
+        "slg": ".280",
+        "ops": ".520",
+        "babip": ".286",
+        "pa": 25
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 671732,
+      "pa": 129,
+      "avg": 0.184,
+      "obp": 0.279,
+      "slg": 0.289,
+      "ops": 0.568,
+      "iso": 0.105,
+      "babip": 0.234,
+      "k_pct": 26.4,
+      "bb_pct": 11.6,
+      "name": "Lawrence Butler",
+      "position": "RF",
+      "batting_order": 7,
+      "xwoba": 0.312,
+      "xba": 0.241,
+      "xslg": 0.372,
+      "ev95pct": 47.5,
+      "barrel_pct": 7.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".160",
+          "obp": ".276",
+          "slg": ".200",
+          "ops": ".476",
+          "pa": 29
+        },
+        "vs_rhp": {
+          "avg": ".191",
+          "obp": ".280",
+          "slg": ".315",
+          "ops": ".595",
+          "pa": 100
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".360",
+        "slg": ".250",
+        "ops": ".610",
+        "babip": ".286",
+        "pa": 25
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".500",
+        "obp": ".500",
+        "slg": "1.000",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 680869,
+      "pa": 65,
+      "avg": 0.276,
+      "obp": 0.333,
+      "slg": 0.5,
+      "ops": 0.833,
+      "iso": 0.224,
+      "babip": 0.342,
+      "k_pct": 26.2,
+      "bb_pct": 7.7,
+      "name": "Zack Gelof",
+      "position": "CF",
+      "batting_order": 8,
+      "xwoba": 0.309,
+      "xba": 0.237,
+      "xslg": 0.41,
+      "ev95pct": 41.9,
+      "barrel_pct": 7.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".280",
+          "slg": ".458",
+          "ops": ".738",
+          "pa": 26
+        },
+        "vs_rhp": {
+          "avg": ".294",
+          "obp": ".368",
+          "slg": ".529",
+          "ops": ".897",
+          "pa": 39
+        }
+      },
+      "last_7": {
+        "avg": ".348",
+        "obp": ".444",
+        "slg": ".739",
+        "ops": "1.183",
+        "babip": ".462",
+        "pa": 27
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 643446,
+      "pa": 133,
+      "avg": 0.291,
+      "obp": 0.356,
+      "slg": 0.385,
+      "ops": 0.741,
+      "iso": 0.094,
+      "babip": 0.327,
+      "k_pct": 12.8,
+      "bb_pct": 7.5,
+      "name": "Jeff McNeil",
+      "position": "2B",
+      "batting_order": 9,
+      "xwoba": 0.321,
+      "xba": 0.286,
+      "xslg": 0.361,
+      "ev95pct": 31.1,
+      "barrel_pct": 1.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".238",
+          "obp": ".385",
+          "slg": ".286",
+          "ops": ".671",
+          "pa": 27
+        },
+        "vs_rhp": {
+          "avg": ".302",
+          "obp": ".349",
+          "slg": ".406",
+          "ops": ".755",
+          "pa": 106
+        }
+      },
+      "last_7": {
+        "avg": ".308",
+        "obp": ".321",
+        "slg": ".385",
+        "ops": ".706",
+        "babip": ".364",
+        "pa": 28
+      },
+      "bvp": null
+    }
+  ]
+}

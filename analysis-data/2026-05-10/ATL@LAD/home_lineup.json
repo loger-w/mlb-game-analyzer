@@ -1,0 +1,503 @@
+{
+  "team": "LAD",
+  "team_id": 119,
+  "tier": "🟠 Strong",
+  "tier_vs_lhp": "🟠 Strong",
+  "tier_vs_rhp": "🔴 Elite",
+  "avg_ops": 0.847,
+  "avg_ops_vs_lhp": 0.817,
+  "avg_ops_vs_rhp": 0.834,
+  "avg_xwoba": 0.358,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.333,
+  "avg_k_pct": 20.4,
+  "avg_bb_pct": 10.8,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.339,
+  "chain": {
+    "obp_top3": 0.363,
+    "slg_mid": 0.464
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-10T16:21:59+00:00",
+    "game_pk": 823954
+  },
+  "lineup": [
+    {
+      "mlbam_id": 660271,
+      "pa": 171,
+      "avg": 0.248,
+      "obp": 0.382,
+      "slg": 0.431,
+      "ops": 0.813,
+      "iso": 0.183,
+      "babip": 0.301,
+      "k_pct": 23.4,
+      "bb_pct": 15.8,
+      "name": "Shohei Ohtani",
+      "position": "TWP",
+      "batting_order": 1,
+      "xwoba": 0.386,
+      "xba": 0.258,
+      "xslg": 0.494,
+      "ev95pct": 47.5,
+      "barrel_pct": 17.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".310",
+          "obp": ".420",
+          "slg": ".571",
+          "ops": ".991",
+          "pa": 50
+        },
+        "vs_rhp": {
+          "avg": ".221",
+          "obp": ".367",
+          "slg": ".368",
+          "ops": ".735",
+          "pa": 121
+        }
+      },
+      "last_7": {
+        "avg": ".148",
+        "obp": ".281",
+        "slg": ".185",
+        "ops": ".466",
+        "babip": ".200",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".000",
+        "obp": ".200",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 518692,
+      "pa": 161,
+      "avg": 0.272,
+      "obp": 0.335,
+      "slg": 0.435,
+      "ops": 0.77,
+      "iso": 0.163,
+      "babip": 0.295,
+      "k_pct": 13.0,
+      "bb_pct": 8.1,
+      "name": "Freddie Freeman",
+      "position": "1B",
+      "batting_order": 2,
+      "xwoba": 0.384,
+      "xba": 0.294,
+      "xslg": 0.545,
+      "ev95pct": 49.2,
+      "barrel_pct": 12.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".225",
+          "obp": ".295",
+          "slg": ".400",
+          "ops": ".695",
+          "pa": 44
+        },
+        "vs_rhp": {
+          "avg": ".290",
+          "obp": ".350",
+          "slg": ".449",
+          "ops": ".799",
+          "pa": 117
+        }
+      },
+      "last_7": {
+        "avg": ".296",
+        "obp": ".345",
+        "slg": ".519",
+        "ops": ".864",
+        "babip": ".368",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 6,
+        "avg": ".400",
+        "obp": ".500",
+        "slg": ".400",
+        "h": 2,
+        "hr": 0,
+        "so": 2,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 681624,
+      "pa": 156,
+      "avg": 0.333,
+      "obp": 0.372,
+      "slg": 0.576,
+      "ops": 0.948,
+      "iso": 0.243,
+      "babip": 0.375,
+      "k_pct": 21.2,
+      "bb_pct": 5.8,
+      "name": "Andy Pages",
+      "position": "CF",
+      "batting_order": 3,
+      "xwoba": 0.361,
+      "xba": 0.298,
+      "xslg": 0.49,
+      "ev95pct": 54.0,
+      "barrel_pct": 8.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".323",
+          "obp": ".353",
+          "slg": ".548",
+          "ops": ".901",
+          "pa": 34
+        },
+        "vs_rhp": {
+          "avg": ".336",
+          "obp": ".377",
+          "slg": ".584",
+          "ops": ".961",
+          "pa": 122
+        }
+      },
+      "last_7": {
+        "avg": ".393",
+        "obp": ".414",
+        "slg": ".857",
+        "ops": "1.271",
+        "babip": ".350",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 663656,
+      "pa": 165,
+      "avg": 0.25,
+      "obp": 0.333,
+      "slg": 0.396,
+      "ops": 0.729,
+      "iso": 0.146,
+      "babip": 0.296,
+      "k_pct": 20.6,
+      "bb_pct": 11.5,
+      "name": "Kyle Tucker",
+      "position": "RF",
+      "batting_order": 4,
+      "xwoba": 0.325,
+      "xba": 0.248,
+      "xslg": 0.392,
+      "ev95pct": 42.0,
+      "barrel_pct": 7.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".242",
+          "obp": ".325",
+          "slg": ".394",
+          "ops": ".719",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".252",
+          "obp": ".336",
+          "slg": ".396",
+          "ops": ".732",
+          "pa": 125
+        }
+      },
+      "last_7": {
+        "avg": ".308",
+        "obp": ".357",
+        "slg": ".538",
+        "ops": ".895",
+        "babip": ".350",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 571970,
+      "pa": 144,
+      "avg": 0.274,
+      "obp": 0.375,
+      "slg": 0.532,
+      "ops": 0.907,
+      "iso": 0.258,
+      "babip": 0.313,
+      "k_pct": 24.3,
+      "bb_pct": 13.9,
+      "name": "Max Muncy",
+      "position": "3B",
+      "batting_order": 5,
+      "xwoba": 0.411,
+      "xba": 0.289,
+      "xslg": 0.577,
+      "ev95pct": 53.9,
+      "barrel_pct": 18.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".300",
+          "obp": ".344",
+          "slg": ".633",
+          "ops": ".977",
+          "pa": 32
+        },
+        "vs_rhp": {
+          "avg": ".266",
+          "obp": ".384",
+          "slg": ".500",
+          "ops": ".884",
+          "pa": 112
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".360",
+        "slg": ".200",
+        "ops": ".560",
+        "babip": ".308",
+        "pa": 25
+      },
+      "bvp": {
+        "pa": 12,
+        "avg": ".250",
+        "obp": ".250",
+        "slg": ".583",
+        "h": 3,
+        "hr": 1,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 669743,
+      "pa": 44,
+      "avg": 0.333,
+      "obp": 0.455,
+      "slg": 0.444,
+      "ops": 0.899,
+      "iso": 0.111,
+      "babip": 0.375,
+      "k_pct": 9.1,
+      "bb_pct": 15.9,
+      "name": "Alex Call",
+      "position": "LF",
+      "batting_order": 6,
+      "xwoba": 0.332,
+      "xba": 0.26,
+      "xslg": 0.313,
+      "ev95pct": 21.9,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".500",
+          "obp": ".600",
+          "slg": ".667",
+          "ops": "1.267",
+          "pa": 15
+        },
+        "vs_rhp": {
+          "avg": ".250",
+          "obp": ".379",
+          "slg": ".333",
+          "ops": ".712",
+          "pa": 29
+        }
+      },
+      "last_7": {
+        "avg": ".455",
+        "obp": ".500",
+        "slg": ".636",
+        "ops": "1.136",
+        "babip": ".500",
+        "pa": 12
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 687221,
+      "pa": 66,
+      "avg": 0.322,
+      "obp": 0.394,
+      "slg": 0.712,
+      "ops": 1.106,
+      "iso": 0.39,
+      "babip": 0.343,
+      "k_pct": 25.8,
+      "bb_pct": 6.1,
+      "name": "Dalton Rushing",
+      "position": "C",
+      "batting_order": 7,
+      "xwoba": 0.385,
+      "xba": 0.277,
+      "xslg": 0.538,
+      "ev95pct": 45.2,
+      "barrel_pct": 11.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".333",
+          "obp": ".375",
+          "slg": ".600",
+          "ops": ".975",
+          "pa": 16
+        },
+        "vs_rhp": {
+          "avg": ".318",
+          "obp": ".400",
+          "slg": ".750",
+          "ops": "1.150",
+          "pa": 50
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".238",
+        "slg": ".200",
+        "ops": ".438",
+        "babip": ".286",
+        "pa": 21
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 808975,
+      "pa": 82,
+      "avg": 0.301,
+      "obp": 0.366,
+      "slg": 0.411,
+      "ops": 0.777,
+      "iso": 0.11,
+      "babip": 0.362,
+      "k_pct": 18.3,
+      "bb_pct": 9.8,
+      "name": "Hyeseong Kim",
+      "position": "SS",
+      "batting_order": 8,
+      "xwoba": 0.333,
+      "xba": 0.285,
+      "xslg": 0.387,
+      "ev95pct": 22.0,
+      "barrel_pct": 5.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".125",
+          "obp": ".222",
+          "slg": ".125",
+          "ops": ".347",
+          "pa": 9
+        },
+        "vs_rhp": {
+          "avg": ".323",
+          "obp": ".384",
+          "slg": ".446",
+          "ops": ".830",
+          "pa": 73
+        }
+      },
+      "last_7": {
+        "avg": ".316",
+        "obp": ".350",
+        "slg": ".474",
+        "ops": ".824",
+        "babip": ".353",
+        "pa": 20
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 690976,
+      "pa": 108,
+      "avg": 0.245,
+      "obp": 0.321,
+      "slg": 0.351,
+      "ops": 0.672,
+      "iso": 0.106,
+      "babip": 0.333,
+      "k_pct": 27.8,
+      "bb_pct": 10.2,
+      "name": "Alex Freeland",
+      "position": "2B",
+      "batting_order": 9,
+      "xwoba": 0.302,
+      "xba": 0.231,
+      "xslg": 0.368,
+      "ev95pct": 37.3,
+      "barrel_pct": 9.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".231",
+          "slg": ".250",
+          "ops": ".481",
+          "pa": 13
+        },
+        "vs_rhp": {
+          "avg": ".256",
+          "obp": ".333",
+          "slg": ".366",
+          "ops": ".699",
+          "pa": 95
+        }
+      },
+      "last_7": {
+        "avg": ".300",
+        "obp": ".417",
+        "slg": ".450",
+        "ops": ".867",
+        "babip": ".333",
+        "pa": 25
+      },
+      "bvp": null
+    }
+  ]
+}

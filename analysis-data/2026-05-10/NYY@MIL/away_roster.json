@@ -1,0 +1,317 @@
+{
+  "team": "New York Yankees",
+  "team_id": 147,
+  "active_roster": {
+    "pitchers": [
+      "Brent Headrick",
+      "Cam Schlittler",
+      "Camilo Doval",
+      "Carlos Rodón",
+      "David Bednar",
+      "Fernando Cruz",
+      "Jake Bird",
+      "Max Fried",
+      "Paul Blackburn",
+      "Ryan Weathers",
+      "Ryan Yarbrough",
+      "Tim Hill",
+      "Will Warren"
+    ],
+    "pitcher_ids": [
+      687396,
+      693645,
+      666808,
+      607074,
+      670280,
+      518585,
+      656234,
+      608331,
+      621112,
+      677960,
+      642232,
+      657612,
+      701542
+    ],
+    "position_players": [
+      "Aaron Judge",
+      "Amed Rosario",
+      "Austin Wells",
+      "Ben Rice",
+      "Cody Bellinger",
+      "J.C. Escarra",
+      "Jazz Chisholm Jr.",
+      "José Caballero",
+      "Max Schuemann",
+      "Paul Goldschmidt",
+      "Ryan McMahon",
+      "Spencer Jones",
+      "Trent Grisham"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Brent Headrick",
+        "player_id": 687396,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 21,
+          "gs": 0,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Cam Schlittler",
+        "player_id": 693645,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 53.3
+        }
+      },
+      {
+        "name": "Camilo Doval",
+        "player_id": 666808,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 17,
+          "gs": 0,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Carlos Rodón",
+        "player_id": 607074,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 33,
+          "gs": 33,
+          "ip": 195.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "David Bednar",
+        "player_id": 670280,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 10,
+          "holds": 0,
+          "g": 16,
+          "gs": 0,
+          "ip": 16.3
+        }
+      },
+      {
+        "name": "Fernando Cruz",
+        "player_id": 518585,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 6,
+          "g": 18,
+          "gs": 0,
+          "ip": 14.0
+        }
+      },
+      {
+        "name": "Jake Bird",
+        "player_id": 656234,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 4,
+          "g": 14,
+          "gs": 0,
+          "ip": 12.3
+        }
+      },
+      {
+        "name": "Max Fried",
+        "player_id": 608331,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 58.7
+        }
+      },
+      {
+        "name": "Paul Blackburn",
+        "player_id": 621112,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 1,
+          "ip": 15.0
+        }
+      },
+      {
+        "name": "Ryan Weathers",
+        "player_id": 677960,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 38.7
+        }
+      },
+      {
+        "name": "Ryan Yarbrough",
+        "player_id": 642232,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 0,
+          "ip": 12.7
+        }
+      },
+      {
+        "name": "Tim Hill",
+        "player_id": 657612,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 6,
+          "g": 18,
+          "gs": 0,
+          "ip": 16.3
+        }
+      },
+      {
+        "name": "Will Warren",
+        "player_id": 701542,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 41.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Angel Chivilli",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 683409,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 1,
+        "g": 43,
+        "gs": 0,
+        "ip": 58.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Clarke Schmidt",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 657376,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 14,
+        "gs": 14,
+        "ip": 78.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Gerrit Cole",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 543037,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Giancarlo Stanton",
+      "status": "Injured 10-Day",
+      "position": "Designated Hitter",
+      "player_id": 519317
+    },
+    {
+      "name": "Jasson Domínguez",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 691176
+    }
+  ],
+  "not_active_40man": [
+    "Anthony Volpe",
+    "Brendan Beck",
+    "Chase Hampton",
+    "Elmer Rodríguez",
+    "Kervin Castro",
+    "Luis Gil",
+    "Oswaldo Cabrera",
+    "Yerry De los Santos"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 5,
+    "total_40man_not_active": 8
+  }
+}

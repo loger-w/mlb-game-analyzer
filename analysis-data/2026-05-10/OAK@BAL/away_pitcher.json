@@ -1,0 +1,183 @@
+{
+  "name": "Luis Severino",
+  "mlbam_id": 622663,
+  "age": 32,
+  "birth_date": "1994-02-20",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.574,
+    "k_bb_pct": 0.479,
+    "stuff_pct": null,
+    "age_factor": 0.8
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 58.8,
+    "era_only_score": 56.0,
+    "gap": 2.8
+  },
+  "season": {
+    "era": 4.15,
+    "whip": 1.48,
+    "k_pct": 23.1,
+    "bb_pct": 13.4,
+    "k_bb_pct": 9.7,
+    "fip": 4.35,
+    "xfip": 4.02,
+    "hr_per_9": 1.04,
+    "gb_pct": 49.4,
+    "ip": 43.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.47,
+    "xwoba": 0.333,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 92.1,
+    "max_velo": 99.0,
+    "hard_hit_pct": 26.3,
+    "pitch_types": {
+      "ST": 23.7,
+      "SI": 22.6,
+      "FF": 21.4,
+      "FC": 20.9,
+      "CH": 7.4
+    },
+    "barrel_pct": 9.5,
+    "ev95percent": 42.2,
+    "whiff_pct": 9.1,
+    "csw_pct": 25.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Toronto Blue Jays",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 3,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Atlanta Braves",
+      "ip": 3.3333333333333335,
+      "era": 6.48,
+      "k": 7,
+      "bb": 5,
+      "h": 4,
+      "er": 4,
+      "pitches": 91,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "New York Yankees",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 7,
+      "bb": 5,
+      "h": 4,
+      "er": 2,
+      "pitches": 100,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".258",
+      "obp": ".378",
+      "slg": ".398",
+      "k": 30,
+      "bb": 16,
+      "bf": 111,
+      "k_pct": 27.0,
+      "bb_pct": 14.4
+    },
+    "vs_right": {
+      "avg": ".231",
+      "obp": ".324",
+      "slg": ".385",
+      "k": 13,
+      "bb": 9,
+      "bf": 75,
+      "k_pct": 17.3,
+      "bb_pct": 12.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.906,
+      "k_pct": 23.5,
+      "bb_pct": 19.8,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.77,
+      "k_pct": 29.6,
+      "bb_pct": 9.9,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.336,
+      "k_pct": 16.3,
+      "bb_pct": 7.0,
+      "bf": 43
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 24.9,
+      "rv_per_100": 0.1,
+      "xwoba_against": 0.258,
+      "whiff_pct": 25.6,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 42.3
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 23.3,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.43,
+      "whiff_pct": 18.3,
+      "put_away_pct": 14.9,
+      "hard_hit_pct": 53.7
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 20.8,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.269,
+      "whiff_pct": 26.6,
+      "put_away_pct": 18.5,
+      "hard_hit_pct": 47.6
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 20.7,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.441,
+      "whiff_pct": 17.6,
+      "put_away_pct": 6.3,
+      "hard_hit_pct": 19.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

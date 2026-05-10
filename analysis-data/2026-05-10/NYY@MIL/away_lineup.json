@@ -1,0 +1,443 @@
+{
+  "team": "NYY",
+  "team_id": 147,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟠 Strong",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.717,
+  "avg_ops_vs_lhp": 0.773,
+  "avg_ops_vs_rhp": 0.704,
+  "avg_xwoba": 0.323,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.255,
+  "avg_k_pct": 28.2,
+  "avg_bb_pct": 12.4,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.3,
+  "chain": {
+    "obp_top3": 0.378,
+    "slg_mid": 0.416
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-10T16:14:09+00:00",
+    "game_pk": 823793
+  },
+  "lineup": [
+    {
+      "mlbam_id": 663757,
+      "pa": 151,
+      "avg": 0.176,
+      "obp": 0.305,
+      "slg": 0.36,
+      "ops": 0.665,
+      "iso": 0.184,
+      "babip": 0.177,
+      "k_pct": 17.2,
+      "bb_pct": 15.9,
+      "name": "Trent Grisham",
+      "position": "CF",
+      "batting_order": 1,
+      "xwoba": 0.353,
+      "xba": 0.228,
+      "xslg": 0.453,
+      "ev95pct": 51.5,
+      "barrel_pct": 13.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".206",
+          "obp": ".300",
+          "slg": ".353",
+          "ops": ".653",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".165",
+          "obp": ".306",
+          "slg": ".363",
+          "ops": ".669",
+          "pa": 111
+        }
+      },
+      "last_7": {
+        "avg": ".208",
+        "obp": ".286",
+        "slg": ".333",
+        "ops": ".619",
+        "babip": ".238",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 700250,
+      "pa": 143,
+      "avg": 0.316,
+      "obp": 0.427,
+      "slg": 0.701,
+      "ops": 1.128,
+      "iso": 0.385,
+      "babip": 0.352,
+      "k_pct": 25.2,
+      "bb_pct": 16.1,
+      "name": "Ben Rice",
+      "position": "1B",
+      "batting_order": 2,
+      "xwoba": 0.436,
+      "xba": 0.301,
+      "xslg": 0.606,
+      "ev95pct": 57.8,
+      "barrel_pct": 19.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".314",
+          "obp": ".400",
+          "slg": ".743",
+          "ops": "1.143",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".317",
+          "obp": ".437",
+          "slg": ".683",
+          "ops": "1.120",
+          "pa": 103
+        }
+      },
+      "last_7": {
+        "avg": ".296",
+        "obp": ".345",
+        "slg": ".556",
+        "ops": ".901",
+        "babip": ".316",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 592450,
+      "pa": 177,
+      "avg": 0.266,
+      "obp": 0.403,
+      "slg": 0.622,
+      "ops": 1.025,
+      "iso": 0.356,
+      "babip": 0.299,
+      "k_pct": 28.8,
+      "bb_pct": 17.5,
+      "name": "Aaron Judge",
+      "position": "RF",
+      "batting_order": 3,
+      "xwoba": 0.445,
+      "xba": 0.279,
+      "xslg": 0.663,
+      "ev95pct": 57.6,
+      "barrel_pct": 26.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".444",
+          "slg": ".625",
+          "ops": "1.069",
+          "pa": 54
+        },
+        "vs_rhp": {
+          "avg": ".272",
+          "obp": ".385",
+          "slg": ".621",
+          "ops": "1.006",
+          "pa": 123
+        }
+      },
+      "last_7": {
+        "avg": ".308",
+        "obp": ".438",
+        "slg": ".692",
+        "ops": "1.130",
+        "babip": ".385",
+        "pa": 32
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 641355,
+      "pa": 169,
+      "avg": 0.289,
+      "obp": 0.385,
+      "slg": 0.507,
+      "ops": 0.892,
+      "iso": 0.218,
+      "babip": 0.305,
+      "k_pct": 13.0,
+      "bb_pct": 14.2,
+      "name": "Cody Bellinger",
+      "position": "LF",
+      "batting_order": 4,
+      "xwoba": 0.385,
+      "xba": 0.299,
+      "xslg": 0.485,
+      "ev95pct": 42.3,
+      "barrel_pct": 8.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".273",
+          "obp": ".370",
+          "slg": ".568",
+          "ops": ".938",
+          "pa": 54
+        },
+        "vs_rhp": {
+          "avg": ".296",
+          "obp": ".391",
+          "slg": ".480",
+          "ops": ".871",
+          "pa": 115
+        }
+      },
+      "last_7": {
+        "avg": ".346",
+        "obp": ".438",
+        "slg": ".615",
+        "ops": "1.053",
+        "babip": ".360",
+        "pa": 32
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 665862,
+      "pa": 159,
+      "avg": 0.206,
+      "obp": 0.289,
+      "slg": 0.326,
+      "ops": 0.615,
+      "iso": 0.12,
+      "babip": 0.266,
+      "k_pct": 27.7,
+      "bb_pct": 10.1,
+      "name": "Jazz Chisholm Jr.",
+      "position": "2B",
+      "batting_order": 5,
+      "xwoba": 0.274,
+      "xba": 0.196,
+      "xslg": 0.326,
+      "ev95pct": 35.7,
+      "barrel_pct": 6.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".178",
+          "obp": ".255",
+          "slg": ".244",
+          "ops": ".499",
+          "pa": 51
+        },
+        "vs_rhp": {
+          "avg": ".219",
+          "obp": ".306",
+          "slg": ".365",
+          "ops": ".671",
+          "pa": 108
+        }
+      },
+      "last_7": {
+        "avg": ".192",
+        "obp": ".267",
+        "slg": ".308",
+        "ops": ".575",
+        "babip": ".222",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 641857,
+      "pa": 109,
+      "avg": 0.227,
+      "obp": 0.312,
+      "slg": 0.351,
+      "ops": 0.663,
+      "iso": 0.124,
+      "babip": 0.311,
+      "k_pct": 30.3,
+      "bb_pct": 11.0,
+      "name": "Ryan McMahon",
+      "position": "3B",
+      "batting_order": 6,
+      "xwoba": 0.302,
+      "xba": 0.223,
+      "xslg": 0.368,
+      "ev95pct": 54.7,
+      "barrel_pct": 9.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".238",
+          "obp": ".333",
+          "slg": ".286",
+          "ops": ".619",
+          "pa": 24
+        },
+        "vs_rhp": {
+          "avg": ".224",
+          "obp": ".306",
+          "slg": ".368",
+          "ops": ".674",
+          "pa": 85
+        }
+      },
+      "last_7": {
+        "avg": ".429",
+        "obp": ".478",
+        "slg": ".667",
+        "ops": "1.145",
+        "babip": ".533",
+        "pa": 23
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 676609,
+      "pa": 143,
+      "avg": 0.258,
+      "obp": 0.315,
+      "slg": 0.394,
+      "ops": 0.709,
+      "iso": 0.136,
+      "babip": 0.303,
+      "k_pct": 20.3,
+      "bb_pct": 4.9,
+      "name": "José Caballero",
+      "position": "SS",
+      "batting_order": 7,
+      "xwoba": 0.272,
+      "xba": 0.223,
+      "xslg": 0.322,
+      "ev95pct": 29.1,
+      "barrel_pct": 2.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".244",
+          "obp": ".261",
+          "slg": ".467",
+          "ops": ".728",
+          "pa": 46
+        },
+        "vs_rhp": {
+          "avg": ".264",
+          "obp": ".340",
+          "slg": ".356",
+          "ops": ".696",
+          "pa": 97
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".348",
+        "slg": ".300",
+        "ops": ".648",
+        "babip": ".278",
+        "pa": 23
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 682987,
+      "pa": 6,
+      "avg": 0.0,
+      "obp": 0.167,
+      "slg": 0.0,
+      "ops": 0.167,
+      "iso": 0.0,
+      "babip": 0.0,
+      "k_pct": 66.7,
+      "bb_pct": 16.7,
+      "name": "Spencer Jones",
+      "position": "CF",
+      "batting_order": 8,
+      "xwoba": 0.13,
+      "xba": 0.012,
+      "xslg": 0.019,
+      "ev95pct": 0.0,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".000",
+          "obp": ".000",
+          "slg": ".000",
+          "ops": ".000",
+          "pa": 3
+        },
+        "vs_rhp": {
+          "avg": ".000",
+          "obp": ".333",
+          "slg": ".000",
+          "ops": ".333",
+          "pa": 3
+        }
+      },
+      "last_7": {
+        "avg": ".000",
+        "obp": ".167",
+        "slg": ".000",
+        "ops": ".167",
+        "babip": ".000",
+        "pa": 6
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 641555,
+      "pa": 40,
+      "avg": 0.211,
+      "obp": 0.25,
+      "slg": 0.342,
+      "ops": 0.592,
+      "iso": 0.131,
+      "babip": 0.286,
+      "k_pct": 25.0,
+      "bb_pct": 5.0,
+      "name": "J.C. Escarra",
+      "position": "C",
+      "batting_order": 9,
+      "xwoba": 0.306,
+      "xba": 0.256,
+      "xslg": 0.408,
+      "ev95pct": 39.3,
+      "barrel_pct": 7.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".545",
+          "obp": ".583",
+          "slg": ".727",
+          "ops": "1.310",
+          "pa": 12
+        },
+        "vs_rhp": {
+          "avg": ".074",
+          "obp": ".107",
+          "slg": ".185",
+          "ops": ".292",
+          "pa": 28
+        }
+      },
+      "last_7": {
+        "avg": ".304",
+        "obp": ".333",
+        "slg": ".522",
+        "ops": ".855",
+        "babip": ".368",
+        "pa": 24
+      },
+      "bvp": null
+    }
+  ]
+}

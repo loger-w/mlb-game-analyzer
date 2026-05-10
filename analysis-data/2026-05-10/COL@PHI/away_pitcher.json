@@ -1,0 +1,163 @@
+{
+  "name": "Tomoyuki Sugano",
+  "mlbam_id": 608372,
+  "age": 36,
+  "birth_date": "1989-10-11",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.448,
+    "k_bb_pct": 0.307,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 45.2,
+    "era_only_score": 70.8,
+    "gap": -25.6
+  },
+  "season": {
+    "era": 3.41,
+    "whip": 1.14,
+    "k_pct": 14.6,
+    "bb_pct": 7.3,
+    "k_bb_pct": 7.3,
+    "fip": 4.91,
+    "xfip": 4.21,
+    "hr_per_9": 1.46,
+    "gb_pct": 54.0,
+    "ip": 37.0,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 6.2,
+    "xwoba": 0.383,
+    "xba": 0.281
+  },
+  "statcast": {
+    "avg_velo": 88.3,
+    "max_velo": 94.8,
+    "hard_hit_pct": 28.6,
+    "pitch_types": {
+      "FF": 26.0,
+      "FS": 21.6,
+      "FC": 14.9,
+      "SL": 12.5,
+      "SI": 12.2
+    },
+    "barrel_pct": 15.3,
+    "ev95percent": 44.9,
+    "whiff_pct": 8.2,
+    "csw_pct": 23.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Toronto Blue Jays",
+      "ip": 4.666666666666667,
+      "era": 1.93,
+      "k": 4,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 72,
+      "strikes": 43
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Philadelphia Phillies",
+      "ip": 6.0,
+      "era": 1.69,
+      "k": 5,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 78,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "San Diego Padres",
+      "ip": 6.0,
+      "era": 2.16,
+      "k": 3,
+      "bb": 0,
+      "h": 4,
+      "er": 2,
+      "pitches": 81,
+      "strikes": 52
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".203",
+      "obp": ".282",
+      "slg": ".422",
+      "k": 13,
+      "bb": 7,
+      "bf": 71,
+      "k_pct": 18.3,
+      "bb_pct": 9.9
+    },
+    "vs_right": {
+      "avg": ".243",
+      "obp": ".275",
+      "slg": ".432",
+      "k": 9,
+      "bb": 4,
+      "bf": 80,
+      "k_pct": 11.2,
+      "bb_pct": 5.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.824,
+      "k_pct": 18.1,
+      "bb_pct": 6.0,
+      "bf": 397
+    },
+    "tto2": {
+      "ops": 0.747,
+      "k_pct": 12.7,
+      "bb_pct": 6.2,
+      "bf": 354
+    },
+    "tto3": {
+      "ops": 0.692,
+      "k_pct": 18.7,
+      "bb_pct": 4.2,
+      "bf": 166
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 25.7,
+      "rv_per_100": 0.6,
+      "xwoba_against": 0.371,
+      "whiff_pct": 14.3,
+      "put_away_pct": 12.5,
+      "hard_hit_pct": 59.3
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 21.6,
+      "rv_per_100": 3.2,
+      "xwoba_against": 0.299,
+      "whiff_pct": 30.6,
+      "put_away_pct": 18.6,
+      "hard_hit_pct": 25.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

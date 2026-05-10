@@ -1,0 +1,163 @@
+{
+  "name": "Bubba Chandler",
+  "mlbam_id": 696149,
+  "age": 23,
+  "birth_date": "2002-09-14",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "⚪ Below Average",
+  "tier_components": {
+    "xfip_pct": 0.05,
+    "k_bb_pct": 0.113,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 27.6,
+    "era_only_score": 41.0,
+    "gap": -13.4
+  },
+  "season": {
+    "era": 4.76,
+    "whip": 1.5,
+    "k_pct": 20.4,
+    "bb_pct": 17.1,
+    "k_bb_pct": 3.3,
+    "fip": 5.48,
+    "xfip": 5.14,
+    "hr_per_9": 1.32,
+    "gb_pct": 40.6,
+    "ip": 34.0,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 5.11,
+    "xwoba": 0.353,
+    "xba": 0.234
+  },
+  "statcast": {
+    "avg_velo": 94.8,
+    "max_velo": 101.3,
+    "hard_hit_pct": 20.3,
+    "pitch_types": {
+      "FF": 54.3,
+      "CH": 19.8,
+      "SL": 13.7,
+      "ST": 9.2,
+      "CU": 2.5
+    },
+    "barrel_pct": 9.6,
+    "ev95percent": 37.2,
+    "whiff_pct": 10.5,
+    "csw_pct": 25.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Cincinnati Reds",
+      "ip": 4.333333333333333,
+      "era": 0.0,
+      "k": 6,
+      "bb": 6,
+      "h": 0,
+      "er": 0,
+      "pitches": 81,
+      "strikes": 43
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "San Diego Padres",
+      "ip": 4.333333333333333,
+      "era": 3.12,
+      "k": 4,
+      "bb": 4,
+      "h": 5,
+      "er": 3,
+      "pitches": 83,
+      "strikes": 48
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Chicago Cubs",
+      "ip": 5.333333333333333,
+      "era": 3.86,
+      "k": 4,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 91,
+      "strikes": 64
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".227",
+      "obp": ".325",
+      "slg": ".485",
+      "k": 14,
+      "bb": 10,
+      "bf": 77,
+      "k_pct": 18.2,
+      "bb_pct": 13.0
+    },
+    "vs_right": {
+      "avg": ".175",
+      "obp": ".360",
+      "slg": ".281",
+      "k": 17,
+      "bb": 16,
+      "bf": 75,
+      "k_pct": 22.7,
+      "bb_pct": 21.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.697,
+      "k_pct": 27.0,
+      "bb_pct": 12.9,
+      "bf": 178
+    },
+    "tto2": {
+      "ops": 0.512,
+      "k_pct": 21.5,
+      "bb_pct": 13.8,
+      "bf": 130
+    },
+    "tto3": {
+      "ops": 1.104,
+      "k_pct": 15.6,
+      "bb_pct": 12.5,
+      "bf": 32
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 54.4,
+      "rv_per_100": -1.4,
+      "xwoba_against": 0.416,
+      "whiff_pct": 22.7,
+      "put_away_pct": 14.0,
+      "hard_hit_pct": 48.8
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 19.9,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.262,
+      "whiff_pct": 29.3,
+      "put_away_pct": 20.9,
+      "hard_hit_pct": 27.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

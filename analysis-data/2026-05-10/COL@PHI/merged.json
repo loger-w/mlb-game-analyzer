@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 4.9,
+  "home_recent_ra": 4.1,
+  "away_recent_rs": 4.2,
+  "away_recent_ra": 6.6,
+  "home_recent_30_rs": 4.07,
+  "home_recent_30_ra": 5.03,
+  "away_recent_30_rs": 4.07,
+  "away_recent_30_ra": 5.37,
+  "home_season_rs": 4.0,
+  "home_season_ra": 4.93,
+  "away_season_rs": 4.17,
+  "away_season_ra": 4.86,
+  "home_season_games": 41,
+  "away_season_games": 42,
+  "home_starter_fip": 2.29,
+  "home_starter_k_bb": 22.0,
+  "home_starter_whip": 1.34,
+  "away_starter_fip": 4.91,
+  "away_starter_k_bb": 7.3,
+  "away_starter_whip": 1.14,
+  "home_batting_xwoba": 0.321,
+  "home_batting_ops": 0.733,
+  "home_batting_k_pct": 20.3,
+  "away_batting_xwoba": 0.306,
+  "away_batting_ops": 0.705,
+  "away_batting_k_pct": 26.7,
+  "home_pitcher": {
+    "era": 2.42,
+    "xera": 3.1,
+    "ip": 48.333333333333336,
+    "era_xera_delta": -0.68,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 45.2,
+        "rv_per_100": -0.3,
+        "xwoba_against": 0.355,
+        "whiff_pct": 13.3,
+        "put_away_pct": 19.4,
+        "hard_hit_pct": 61.8
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 36.5,
+        "rv_per_100": 2.1,
+        "xwoba_against": 0.17,
+        "whiff_pct": 51.7,
+        "put_away_pct": 33.9,
+        "hard_hit_pct": 12.8
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 18.4,
+        "rv_per_100": -0.8,
+        "xwoba_against": 0.361,
+        "whiff_pct": 35.8,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 36.8
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 3.41,
+    "xera": 6.2,
+    "ip": 37.0,
+    "era_xera_delta": -2.79,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 25.7,
+        "rv_per_100": 0.6,
+        "xwoba_against": 0.371,
+        "whiff_pct": 14.3,
+        "put_away_pct": 12.5,
+        "hard_hit_pct": 59.3
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 21.6,
+        "rv_per_100": 3.2,
+        "xwoba_against": 0.299,
+        "whiff_pct": 30.6,
+        "put_away_pct": 18.6,
+        "hard_hit_pct": 25.8
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.318
+  },
+  "away_lineup": {
+    "recent_babip": 0.31
+  },
+  "home_bullpen_era": 4.02,
+  "away_bullpen_era": 4.46,
+  "park_factor": 104.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 79,
+    "wind_text": "8 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Philadelphia Phillies",
+    "away_team": "Colorado Rockies",
+    "home_sp": "Cristopher Sánchez",
+    "away_sp": "Tomoyuki Sugano",
+    "home_sp_starts": 8,
+    "away_sp_starts": 7,
+    "venue": "Citizens Bank Park",
+    "game_pk": 823463,
+    "game_date": "2026-05-10T17:35:00Z",
+    "official_date": "2026-05-10"
+  }
+}

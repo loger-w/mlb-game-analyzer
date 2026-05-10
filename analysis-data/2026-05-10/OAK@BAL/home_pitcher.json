@@ -1,0 +1,127 @@
+{
+  "name": "Keegan Akin",
+  "mlbam_id": 669211,
+  "age": 31,
+  "birth_date": "1995-04-01",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15.0,
+    "gap": null
+  },
+  "season": {
+    "era": 11.12,
+    "whip": 1.94,
+    "k_pct": 18.5,
+    "bb_pct": 0.0,
+    "k_bb_pct": 18.5,
+    "fip": 5.92,
+    "xfip": 2.94,
+    "hr_per_9": 3.18,
+    "gb_pct": 36.4,
+    "ip": 5.666666666666667,
+    "games": 6,
+    "gs": 0
+  },
+  "expected": {
+    "xera": 5.28,
+    "xwoba": 0.358,
+    "xba": 0.334
+  },
+  "statcast": {
+    "avg_velo": 89.9,
+    "max_velo": 95.5,
+    "hard_hit_pct": 22.5,
+    "pitch_types": {
+      "FF": 54.9,
+      "CH": 24.5,
+      "SL": 20.6
+    },
+    "barrel_pct": 4.5,
+    "ev95percent": 36.4,
+    "whiff_pct": 6.9,
+    "csw_pct": 30.4
+  },
+  "game_log": [
+    {
+      "date": "2026-04-25",
+      "opponent": "Boston Red Sox",
+      "ip": 1.0,
+      "era": 54.0,
+      "k": 2,
+      "bb": 0,
+      "h": 6,
+      "er": 6,
+      "pitches": 32,
+      "strikes": 23
+    },
+    {
+      "date": "2026-04-30",
+      "opponent": "Houston Astros",
+      "ip": 1.0,
+      "era": 27.0,
+      "k": 1,
+      "bb": 0,
+      "h": 1,
+      "er": 0,
+      "pitches": 14,
+      "strikes": 9
+    },
+    {
+      "date": "2026-05-02",
+      "opponent": "New York Yankees",
+      "ip": 1.0,
+      "era": 21.0,
+      "k": 0,
+      "bb": 0,
+      "h": 2,
+      "er": 1,
+      "pitches": 17,
+      "strikes": 13
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".364",
+      "obp": ".364",
+      "slg": ".636",
+      "k": 2,
+      "bb": 0,
+      "bf": 11,
+      "k_pct": 18.2,
+      "bb_pct": 0.0
+    },
+    "vs_right": {
+      "avg": ".438",
+      "obp": ".438",
+      "slg": ".750",
+      "k": 3,
+      "bb": 0,
+      "bf": 16,
+      "k_pct": 18.8,
+      "bb_pct": 0.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 1.111,
+      "k_pct": 18.5,
+      "bb_pct": 0.0,
+      "bf": 27
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "error": "Player 669211 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "name": "Andrew Morris",
+  "mlbam_id": 702193,
+  "age": 24,
+  "birth_date": "2001-09-01",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 36.0,
+    "gap": null
+  },
+  "season": {
+    "era": 4.96,
+    "whip": 1.53,
+    "k_pct": 20.5,
+    "bb_pct": 6.8,
+    "k_bb_pct": 13.7,
+    "fip": 2.98,
+    "xfip": 3.85,
+    "hr_per_9": 0.55,
+    "gb_pct": 36.4,
+    "ip": 16.333333333333332,
+    "games": 8,
+    "gs": 0
+  },
+  "expected": {
+    "xera": 3.33,
+    "xwoba": 0.291,
+    "xba": 0.25
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 98.6,
+    "hard_hit_pct": 19.3,
+    "pitch_types": {
+      "FF": 38.4,
+      "ST": 21.9,
+      "FC": 14.4,
+      "SI": 12.7,
+      "CH": 7.5
+    },
+    "barrel_pct": 1.9,
+    "ev95percent": 34.0,
+    "whiff_pct": 11.0,
+    "csw_pct": 26.0
+  },
+  "game_log": [
+    {
+      "date": "2026-04-12",
+      "opponent": "Toronto Blue Jays",
+      "ip": 3.0,
+      "era": 3.0,
+      "k": 2,
+      "bb": 0,
+      "h": 6,
+      "er": 1,
+      "pitches": 67,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-19",
+      "opponent": "Cincinnati Reds",
+      "ip": 1.3333333333333333,
+      "era": 8.31,
+      "k": 2,
+      "bb": 2,
+      "h": 3,
+      "er": 3,
+      "pitches": 47,
+      "strikes": 27
+    },
+    {
+      "date": "2026-04-23",
+      "opponent": "New York Mets",
+      "ip": 2.6666666666666665,
+      "era": 7.71,
+      "k": 4,
+      "bb": 0,
+      "h": 2,
+      "er": 2,
+      "pitches": 37,
+      "strikes": 27
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".265",
+      "obp": ".297",
+      "slg": ".500",
+      "k": 9,
+      "bb": 2,
+      "bf": 37,
+      "k_pct": 24.3,
+      "bb_pct": 5.4
+    },
+    "vs_right": {
+      "avg": ".344",
+      "obp": ".400",
+      "slg": ".344",
+      "k": 6,
+      "bb": 3,
+      "bf": 36,
+      "k_pct": 16.7,
+      "bb_pct": 8.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.706,
+      "k_pct": 21.1,
+      "bb_pct": 5.3,
+      "bf": 57
+    },
+    "tto2": {
+      "ops": 1.009,
+      "k_pct": 18.8,
+      "bb_pct": 12.5,
+      "bf": 16
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 38.4,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.222,
+      "whiff_pct": 20.3,
+      "put_away_pct": 19.4,
+      "hard_hit_pct": 25.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

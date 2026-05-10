@@ -1,0 +1,102 @@
+{
+  "home_recent_rs": 4.4,
+  "home_recent_ra": 6.7,
+  "away_recent_rs": 5.5,
+  "away_recent_ra": 4.9,
+  "home_recent_30_rs": 4.63,
+  "home_recent_30_ra": 5.83,
+  "away_recent_30_rs": 4.5,
+  "away_recent_30_ra": 4.27,
+  "home_season_rs": 4.37,
+  "home_season_ra": 5.39,
+  "away_season_rs": 4.49,
+  "away_season_ra": 4.62,
+  "home_season_games": 41,
+  "away_season_games": 39,
+  "home_starter_fip": 5.92,
+  "home_starter_k_bb": 18.5,
+  "home_starter_whip": 1.94,
+  "away_starter_fip": 4.35,
+  "away_starter_k_bb": 9.7,
+  "away_starter_whip": 1.48,
+  "home_batting_xwoba": 0.339,
+  "home_batting_ops": 0.755,
+  "home_batting_k_pct": 23.2,
+  "away_batting_xwoba": 0.338,
+  "away_batting_ops": 0.784,
+  "away_batting_k_pct": 21.4,
+  "home_pitcher": {
+    "era": 11.12,
+    "xera": 5.28,
+    "ip": 5.666666666666667,
+    "era_xera_delta": 5.84,
+    "arsenal_top": []
+  },
+  "away_pitcher": {
+    "era": 4.15,
+    "xera": 4.47,
+    "ip": 43.333333333333336,
+    "era_xera_delta": -0.32,
+    "arsenal_top": [
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 24.9,
+        "rv_per_100": 0.1,
+        "xwoba_against": 0.258,
+        "whiff_pct": 25.6,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 42.3
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 23.3,
+        "rv_per_100": -0.7,
+        "xwoba_against": 0.43,
+        "whiff_pct": 18.3,
+        "put_away_pct": 14.9,
+        "hard_hit_pct": 53.7
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 20.8,
+        "rv_per_100": -0.4,
+        "xwoba_against": 0.269,
+        "whiff_pct": 26.6,
+        "put_away_pct": 18.5,
+        "hard_hit_pct": 47.6
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.35
+  },
+  "away_lineup": {
+    "recent_babip": 0.359
+  },
+  "home_bullpen_era": 4.56,
+  "away_bullpen_era": 4.75,
+  "park_factor": 96.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 78,
+    "wind_text": "8 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Baltimore Orioles",
+    "away_team": "Athletics",
+    "home_sp": "Keegan Akin",
+    "away_sp": "Luis Severino",
+    "home_sp_starts": 0,
+    "away_sp_starts": 8,
+    "venue": "Oriole Park at Camden Yards",
+    "game_pk": 824845,
+    "game_date": "2026-05-10T17:35:00Z",
+    "official_date": "2026-05-10"
+  }
+}
