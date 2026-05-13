@@ -1,0 +1,163 @@
+{
+  "name": "Shohei Ohtani",
+  "mlbam_id": 660271,
+  "age": 31,
+  "birth_date": "1994-07-05",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.84
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 92.6,
+    "era_only_score": 95.0,
+    "gap": -2.4
+  },
+  "season": {
+    "era": 0.97,
+    "whip": 0.81,
+    "k_pct": 29.0,
+    "bb_pct": 6.2,
+    "k_bb_pct": 22.8,
+    "fip": 2.26,
+    "xfip": 2.75,
+    "hr_per_9": 0.49,
+    "gb_pct": 51.4,
+    "ip": 37.0,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 2.17,
+    "xwoba": 0.236,
+    "xba": 0.182
+  },
+  "statcast": {
+    "avg_velo": 90.1,
+    "max_velo": 101.0,
+    "hard_hit_pct": 21.9,
+    "pitch_types": {
+      "FF": 43.4,
+      "ST": 23.6,
+      "CU": 13.7,
+      "FS": 11.3,
+      "SI": 5.9
+    },
+    "barrel_pct": 3.3,
+    "ev95percent": 38.5,
+    "whiff_pct": 14.8,
+    "csw_pct": 32.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Cleveland Guardians",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 3,
+      "h": 1,
+      "er": 0,
+      "pitches": 87,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Toronto Blue Jays",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 2,
+      "bb": 1,
+      "h": 4,
+      "er": 0,
+      "pitches": 96,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "New York Mets",
+      "ip": 6.0,
+      "era": 0.5,
+      "k": 10,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 63
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".162",
+      "obp": ".216",
+      "slg": ".265",
+      "k": 18,
+      "bb": 4,
+      "bf": 75,
+      "k_pct": 24.0,
+      "bb_pct": 5.3
+    },
+    "vs_right": {
+      "avg": ".159",
+      "obp": ".243",
+      "slg": ".254",
+      "k": 24,
+      "bb": 5,
+      "bf": 70,
+      "k_pct": 34.3,
+      "bb_pct": 7.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.463,
+      "k_pct": 41.5,
+      "bb_pct": 3.1,
+      "bf": 65
+    },
+    "tto2": {
+      "ops": 0.531,
+      "k_pct": 21.0,
+      "bb_pct": 11.3,
+      "bf": 62
+    },
+    "tto3": {
+      "ops": 0.507,
+      "k_pct": 36.1,
+      "bb_pct": 5.6,
+      "bf": 36
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 44.5,
+      "rv_per_100": 2.9,
+      "xwoba_against": 0.238,
+      "whiff_pct": 27.1,
+      "put_away_pct": 27.5,
+      "hard_hit_pct": 48.9
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 24.4,
+      "rv_per_100": 3.1,
+      "xwoba_against": 0.175,
+      "whiff_pct": 43.9,
+      "put_away_pct": 28.9,
+      "hard_hit_pct": 6.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

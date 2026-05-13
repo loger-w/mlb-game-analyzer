@@ -1,0 +1,141 @@
+{
+  "name": "Christian Scott",
+  "mlbam_id": 681035,
+  "age": 26,
+  "birth_date": "1999-06-15",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 73.6,
+    "gap": null
+  },
+  "season": {
+    "era": 3.27,
+    "whip": 1.18,
+    "k_pct": 31.2,
+    "bb_pct": 14.6,
+    "k_bb_pct": 16.6,
+    "fip": 3.46,
+    "xfip": 3.7,
+    "hr_per_9": 0.82,
+    "gb_pct": 33.3,
+    "ip": 11.0,
+    "games": 3,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 3.3,
+    "xwoba": 0.29,
+    "xba": 0.172
+  },
+  "statcast": {
+    "avg_velo": 91.7,
+    "max_velo": 98.1,
+    "hard_hit_pct": 15.5,
+    "pitch_types": {
+      "FF": 55.3,
+      "FC": 24.1,
+      "ST": 15.6,
+      "FS": 2.5,
+      "SI": 2.5
+    },
+    "barrel_pct": 4.2,
+    "ev95percent": 29.2,
+    "whiff_pct": 11.1,
+    "csw_pct": 23.6
+  },
+  "game_log": [
+    {
+      "date": "2026-04-23",
+      "opponent": "Minnesota Twins",
+      "ip": 1.3333333333333333,
+      "era": 6.75,
+      "k": 1,
+      "bb": 5,
+      "h": 0,
+      "er": 1,
+      "pitches": 43,
+      "strikes": 18
+    },
+    {
+      "date": "2026-05-01",
+      "opponent": "Los Angeles Angels",
+      "ip": 5.0,
+      "era": 4.26,
+      "k": 8,
+      "bb": 0,
+      "h": 3,
+      "er": 2,
+      "pitches": 74,
+      "strikes": 54
+    },
+    {
+      "date": "2026-05-07",
+      "opponent": "Colorado Rockies",
+      "ip": 4.666666666666667,
+      "era": 3.27,
+      "k": 6,
+      "bb": 2,
+      "h": 3,
+      "er": 1,
+      "pitches": 82,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".087",
+      "obp": ".250",
+      "slg": ".087",
+      "k": 8,
+      "bb": 5,
+      "bf": 28,
+      "k_pct": 28.6,
+      "bb_pct": 17.9
+    },
+    "vs_right": {
+      "avg": ".250",
+      "obp": ".400",
+      "slg": ".500",
+      "k": 7,
+      "bb": 2,
+      "bf": 20,
+      "k_pct": 35.0,
+      "bb_pct": 10.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.757,
+      "k_pct": 24.3,
+      "bb_pct": 8.1,
+      "bf": 148
+    },
+    "tto2": {
+      "ops": 0.606,
+      "k_pct": 24.5,
+      "bb_pct": 7.5,
+      "bf": 106
+    },
+    "tto3": {
+      "ops": 0.87,
+      "k_pct": 21.6,
+      "bb_pct": 10.8,
+      "bf": 37
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 681035 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

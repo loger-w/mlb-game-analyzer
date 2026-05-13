@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 3.5,
+  "home_recent_ra": 5.7,
+  "away_recent_rs": 5.4,
+  "away_recent_ra": 3.5,
+  "home_recent_30_rs": 4.4,
+  "home_recent_30_ra": 5.77,
+  "away_recent_30_rs": 5.53,
+  "away_recent_30_ra": 3.77,
+  "home_season_rs": 4.23,
+  "home_season_ra": 5.23,
+  "away_season_rs": 5.19,
+  "away_season_ra": 3.42,
+  "home_season_games": 44,
+  "away_season_games": 43,
+  "home_starter_fip": 4.1,
+  "home_starter_k_bb": 12.4,
+  "home_starter_whip": 1.66,
+  "away_starter_fip": 2.61,
+  "away_starter_k_bb": 13.2,
+  "away_starter_whip": 0.95,
+  "home_batting_xwoba": 0.323,
+  "home_batting_ops": 0.689,
+  "home_batting_k_pct": 24.7,
+  "away_batting_xwoba": 0.332,
+  "away_batting_ops": 0.635,
+  "away_batting_k_pct": 24.2,
+  "home_pitcher": {
+    "era": 4.83,
+    "xera": 4.32,
+    "ip": 41.0,
+    "era_xera_delta": 0.51,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 30.8,
+        "rv_per_100": -0.7,
+        "xwoba_against": 0.336,
+        "whiff_pct": 12.2,
+        "put_away_pct": 21.9,
+        "hard_hit_pct": 39.0
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 30.8,
+        "rv_per_100": -1.3,
+        "xwoba_against": 0.278,
+        "whiff_pct": 31.6,
+        "put_away_pct": 23.3,
+        "hard_hit_pct": 38.7
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 21.5,
+        "rv_per_100": 0.6,
+        "xwoba_against": 0.201,
+        "whiff_pct": 44.6,
+        "put_away_pct": 23.3,
+        "hard_hit_pct": 47.4
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 2.91,
+    "xera": 2.42,
+    "ip": 58.666666666666664,
+    "era_xera_delta": 0.49,
+    "arsenal_top": [
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 22.4,
+        "rv_per_100": 3.0,
+        "xwoba_against": 0.26,
+        "whiff_pct": 25.7,
+        "put_away_pct": 27.0,
+        "hard_hit_pct": 34.3
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 22.0,
+        "rv_per_100": 2.2,
+        "xwoba_against": 0.252,
+        "whiff_pct": 16.9,
+        "put_away_pct": 17.1,
+        "hard_hit_pct": 36.2
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 16.9,
+        "rv_per_100": -0.8,
+        "xwoba_against": 0.244,
+        "whiff_pct": 22.6,
+        "put_away_pct": 24.1,
+        "hard_hit_pct": 38.9
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.26
+  },
+  "away_lineup": {
+    "recent_babip": 0.266
+  },
+  "home_bullpen_era": 4.16,
+  "away_bullpen_era": 3.2,
+  "park_factor": 96.0,
+  "home_core_bullpen_il_count": 3,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 73,
+    "wind_text": "14 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Baltimore Orioles",
+    "away_team": "New York Yankees",
+    "home_sp": "Kyle Bradish",
+    "away_sp": "Max Fried",
+    "home_sp_starts": 8,
+    "away_sp_starts": 9,
+    "venue": "Oriole Park at Camden Yards",
+    "game_pk": 824841,
+    "game_date": "2026-05-13T17:05:00Z",
+    "official_date": "2026-05-13"
+  }
+}

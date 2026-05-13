@@ -1,0 +1,173 @@
+{
+  "name": "Max Meyer",
+  "mlbam_id": 676974,
+  "age": 27,
+  "birth_date": "1999-03-12",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.851,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 92.5,
+    "era_only_score": 83.8,
+    "gap": 8.7
+  },
+  "season": {
+    "era": 2.79,
+    "whip": 1.1,
+    "k_pct": 25.6,
+    "bb_pct": 8.5,
+    "k_bb_pct": 17.1,
+    "fip": 2.65,
+    "xfip": 3.3,
+    "hr_per_9": 0.43,
+    "gb_pct": 50.0,
+    "ip": 42.0,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.03,
+    "xwoba": 0.318,
+    "xba": 0.25
+  },
+  "statcast": {
+    "avg_velo": 91.0,
+    "max_velo": 97.0,
+    "hard_hit_pct": 26.6,
+    "pitch_types": {
+      "SL": 27.3,
+      "ST": 26.5,
+      "FF": 21.8,
+      "SI": 12.6,
+      "CH": 11.8
+    },
+    "barrel_pct": 9.7,
+    "ev95percent": 40.7,
+    "whiff_pct": 13.6,
+    "csw_pct": 29.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Colorado Rockies",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 5,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 81,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "New York Yankees",
+      "ip": 4.666666666666667,
+      "era": 4.66,
+      "k": 6,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 89,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.0,
+      "era": 3.68,
+      "k": 4,
+      "bb": 3,
+      "h": 4,
+      "er": 1,
+      "pitches": 87,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".198",
+      "obp": ".278",
+      "slg": ".333",
+      "k": 23,
+      "bb": 8,
+      "bf": 90,
+      "k_pct": 25.6,
+      "bb_pct": 8.9
+    },
+    "vs_right": {
+      "avg": ".197",
+      "obp": ".279",
+      "slg": ".263",
+      "k": 22,
+      "bb": 7,
+      "bf": 86,
+      "k_pct": 25.6,
+      "bb_pct": 8.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.555,
+      "k_pct": 26.4,
+      "bb_pct": 6.9,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.502,
+      "k_pct": 29.2,
+      "bb_pct": 9.7,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.795,
+      "k_pct": 15.6,
+      "bb_pct": 9.4,
+      "bf": 32
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 27.3,
+      "rv_per_100": 1.8,
+      "xwoba_against": 0.311,
+      "whiff_pct": 44.0,
+      "put_away_pct": 27.1,
+      "hard_hit_pct": 44.0
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 26.5,
+      "rv_per_100": 1.2,
+      "xwoba_against": 0.283,
+      "whiff_pct": 36.9,
+      "put_away_pct": 22.9,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 21.8,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.364,
+      "whiff_pct": 13.0,
+      "put_away_pct": 12.1,
+      "hard_hit_pct": 50.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

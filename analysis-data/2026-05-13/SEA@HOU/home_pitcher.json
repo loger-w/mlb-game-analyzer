@@ -1,0 +1,183 @@
+{
+  "name": "Lance McCullers Jr.",
+  "mlbam_id": 621121,
+  "age": 32,
+  "birth_date": "1993-10-02",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.706,
+    "k_bb_pct": 0.589,
+    "stuff_pct": null,
+    "age_factor": 0.8
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 68.4,
+    "era_only_score": 15.0,
+    "gap": 53.4
+  },
+  "season": {
+    "era": 7.41,
+    "whip": 1.5,
+    "k_pct": 25.0,
+    "bb_pct": 13.5,
+    "k_bb_pct": 11.5,
+    "fip": 4.6,
+    "xfip": 3.84,
+    "hr_per_9": 1.32,
+    "gb_pct": 48.3,
+    "ip": 34.0,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.5,
+    "xwoba": 0.334,
+    "xba": 0.239
+  },
+  "statcast": {
+    "avg_velo": 87.0,
+    "max_velo": 94.2,
+    "hard_hit_pct": 30.5,
+    "pitch_types": {
+      "FC": 25.9,
+      "SI": 24.4,
+      "ST": 16.3,
+      "KC": 16.2,
+      "CH": 12.7
+    },
+    "barrel_pct": 9.0,
+    "ev95percent": 48.3,
+    "whiff_pct": 9.6,
+    "csw_pct": 26.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Boston Red Sox",
+      "ip": 7.0,
+      "era": 1.29,
+      "k": 9,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 96,
+      "strikes": 63
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Athletics",
+      "ip": 4.0,
+      "era": 3.27,
+      "k": 4,
+      "bb": 3,
+      "h": 5,
+      "er": 3,
+      "pitches": 79,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Seattle Mariners",
+      "ip": 4.333333333333333,
+      "era": 5.87,
+      "k": 4,
+      "bb": 2,
+      "h": 5,
+      "er": 6,
+      "pitches": 79,
+      "strikes": 46
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".260",
+      "obp": ".365",
+      "slg": ".493",
+      "k": 24,
+      "bb": 11,
+      "bf": 85,
+      "k_pct": 28.2,
+      "bb_pct": 12.9
+    },
+    "vs_right": {
+      "avg": ".226",
+      "obp": ".349",
+      "slg": ".415",
+      "k": 13,
+      "bb": 9,
+      "bf": 63,
+      "k_pct": 20.6,
+      "bb_pct": 14.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.732,
+      "k_pct": 22.3,
+      "bb_pct": 15.3,
+      "bf": 327
+    },
+    "tto2": {
+      "ops": 0.785,
+      "k_pct": 23.4,
+      "bb_pct": 11.4,
+      "bf": 273
+    },
+    "tto3": {
+      "ops": 0.864,
+      "k_pct": 26.9,
+      "bb_pct": 6.7,
+      "bf": 119
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 25.9,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.367,
+      "whiff_pct": 20.3,
+      "put_away_pct": 18.5,
+      "hard_hit_pct": 58.3
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 24.4,
+      "rv_per_100": -0.1,
+      "xwoba_against": 0.347,
+      "whiff_pct": 14.0,
+      "put_away_pct": 23.8,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 16.3,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.309,
+      "whiff_pct": 30.6,
+      "put_away_pct": 26.3,
+      "hard_hit_pct": 35.7
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 16.2,
+      "rv_per_100": -2.9,
+      "xwoba_against": 0.32,
+      "whiff_pct": 47.9,
+      "put_away_pct": 20.8,
+      "hard_hit_pct": 54.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

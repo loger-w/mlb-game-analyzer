@@ -1,0 +1,163 @@
+{
+  "name": "Ryne Nelson",
+  "mlbam_id": 669194,
+  "age": 28,
+  "birth_date": "1998-02-01",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.326,
+    "k_bb_pct": 0.661,
+    "stuff_pct": null,
+    "age_factor": 0.96
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 58.1,
+    "era_only_score": 21.4,
+    "gap": 36.7
+  },
+  "season": {
+    "era": 5.68,
+    "whip": 1.26,
+    "k_pct": 21.1,
+    "bb_pct": 8.4,
+    "k_bb_pct": 12.7,
+    "fip": 5.1,
+    "xfip": 4.42,
+    "hr_per_9": 1.89,
+    "gb_pct": 26.8,
+    "ip": 38.0,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 5.07,
+    "xwoba": 0.352,
+    "xba": 0.251
+  },
+  "statcast": {
+    "avg_velo": 92.9,
+    "max_velo": 99.2,
+    "hard_hit_pct": 27.7,
+    "pitch_types": {
+      "FF": 61.1,
+      "SL": 19.6,
+      "CU": 9.7,
+      "FC": 6.2,
+      "SI": 3.5
+    },
+    "barrel_pct": 13.8,
+    "ev95percent": 47.4,
+    "whiff_pct": 10.3,
+    "csw_pct": 23.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 4.666666666666667,
+      "era": 7.71,
+      "k": 4,
+      "bb": 3,
+      "h": 2,
+      "er": 4,
+      "pitches": 83,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-02",
+      "opponent": "Atlanta Braves",
+      "ip": 4.666666666666667,
+      "era": 5.79,
+      "k": 3,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 80,
+      "strikes": 47
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "New York Mets",
+      "ip": 5.666666666666667,
+      "era": 4.2,
+      "k": 5,
+      "bb": 0,
+      "h": 5,
+      "er": 1,
+      "pitches": 86,
+      "strikes": 64
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".197",
+      "obp": ".265",
+      "slg": ".434",
+      "k": 16,
+      "bb": 7,
+      "bf": 83,
+      "k_pct": 19.3,
+      "bb_pct": 8.4
+    },
+    "vs_right": {
+      "avg": ".253",
+      "obp": ".317",
+      "slg": ".480",
+      "k": 19,
+      "bb": 7,
+      "bf": 83,
+      "k_pct": 22.9,
+      "bb_pct": 8.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.777,
+      "k_pct": 30.9,
+      "bb_pct": 4.9,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.58,
+      "k_pct": 15.1,
+      "bb_pct": 8.2,
+      "bf": 73
+    },
+    "tto3": {
+      "ops": 0.855,
+      "k_pct": 19.4,
+      "bb_pct": 9.7,
+      "bf": 31
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 61.4,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.364,
+      "whiff_pct": 21.9,
+      "put_away_pct": 14.9,
+      "hard_hit_pct": 48.7
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 19.1,
+      "rv_per_100": -3.0,
+      "xwoba_against": 0.372,
+      "whiff_pct": 32.8,
+      "put_away_pct": 27.3,
+      "hard_hit_pct": 57.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

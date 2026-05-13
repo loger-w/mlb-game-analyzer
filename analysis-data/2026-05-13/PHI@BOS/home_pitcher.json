@@ -1,0 +1,148 @@
+{
+  "name": "Sonny Gray",
+  "mlbam_id": 543243,
+  "age": 36,
+  "birth_date": "1989-11-07",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 68.2,
+    "gap": null
+  },
+  "season": {
+    "era": 3.54,
+    "whip": 1.29,
+    "k_pct": 12.6,
+    "bb_pct": 5.9,
+    "k_bb_pct": 6.7,
+    "fip": 4.17,
+    "xfip": 4.08,
+    "hr_per_9": 0.96,
+    "gb_pct": 58.2,
+    "ip": 28.0,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 5.48,
+    "xwoba": 0.364,
+    "xba": 0.3
+  },
+  "statcast": {
+    "avg_velo": 87.6,
+    "max_velo": 94.3,
+    "hard_hit_pct": 23.1,
+    "pitch_types": {
+      "FC": 23.4,
+      "SI": 19.5,
+      "CU": 18.6,
+      "FF": 16.5,
+      "ST": 15.6
+    },
+    "barrel_pct": 10.4,
+    "ev95percent": 34.4,
+    "whiff_pct": 8.0,
+    "csw_pct": 26.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Cincinnati Reds",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 5,
+      "bb": 1,
+      "h": 6,
+      "er": 3,
+      "pitches": 80,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "San Diego Padres",
+      "ip": 6.0,
+      "era": 4.5,
+      "k": 3,
+      "bb": 0,
+      "h": 4,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Milwaukee Brewers",
+      "ip": 6.333333333333333,
+      "era": 2.76,
+      "k": 2,
+      "bb": 2,
+      "h": 3,
+      "er": 0,
+      "pitches": 90,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".213",
+      "obp": ".262",
+      "slg": ".295",
+      "k": 10,
+      "bb": 3,
+      "bf": 65,
+      "k_pct": 15.4,
+      "bb_pct": 4.6
+    },
+    "vs_right": {
+      "avg": ".320",
+      "obp": ".370",
+      "slg": ".540",
+      "k": 5,
+      "bb": 4,
+      "bf": 54,
+      "k_pct": 9.3,
+      "bb_pct": 7.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.6,
+      "k_pct": 27.4,
+      "bb_pct": 5.9,
+      "bf": 1237
+    },
+    "tto2": {
+      "ops": 0.709,
+      "k_pct": 26.2,
+      "bb_pct": 6.2,
+      "bf": 1146
+    },
+    "tto3": {
+      "ops": 0.786,
+      "k_pct": 22.3,
+      "bb_pct": 7.6,
+      "bf": 633
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 24.3,
+      "rv_per_100": 2.2,
+      "xwoba_against": 0.354,
+      "whiff_pct": 14.0,
+      "put_away_pct": 0.0,
+      "hard_hit_pct": 20.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

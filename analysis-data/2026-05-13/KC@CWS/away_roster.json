@@ -1,0 +1,345 @@
+{
+  "team": "Kansas City Royals",
+  "team_id": 118,
+  "active_roster": {
+    "pitchers": [
+      "Alex Lange",
+      "Daniel Lynch IV",
+      "John Schreiber",
+      "Kris Bubic",
+      "Lucas Erceg",
+      "Luinder Avila",
+      "Matt Strahm",
+      "Michael Wacha",
+      "Nick Mears",
+      "Noah Cameron",
+      "Seth Lugo",
+      "Stephen Kolek",
+      "Steven Cruz"
+    ],
+    "pitcher_ids": [
+      656638,
+      663738,
+      670167,
+      663460,
+      668674,
+      679883,
+      621381,
+      608379,
+      683232,
+      702070,
+      607625,
+      663568,
+      674444
+    ],
+    "position_players": [
+      "Bobby Witt Jr.",
+      "Carter Jensen",
+      "Elias Díaz",
+      "Isaac Collins",
+      "Jac Caglianone",
+      "Kyle Isbel",
+      "Lane Thomas",
+      "Maikel Garcia",
+      "Michael Massey",
+      "Nick Loftin",
+      "Salvador Perez",
+      "Starling Marte",
+      "Vinnie Pasquantino"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Alex Lange",
+        "player_id": 656638,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 16,
+          "gs": 0,
+          "ip": 18.7
+        }
+      },
+      {
+        "name": "Daniel Lynch IV",
+        "player_id": 663738,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 4,
+          "g": 17,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "John Schreiber",
+        "player_id": 670167,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 1,
+          "g": 17,
+          "gs": 0,
+          "ip": 16.0
+        }
+      },
+      {
+        "name": "Kris Bubic",
+        "player_id": 663460,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 46.3
+        }
+      },
+      {
+        "name": "Lucas Erceg",
+        "player_id": 668674,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 10,
+          "holds": 1,
+          "g": 17,
+          "gs": 0,
+          "ip": 16.3
+        }
+      },
+      {
+        "name": "Luinder Avila",
+        "player_id": 679883,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 1,
+          "ip": 13.3
+        }
+      },
+      {
+        "name": "Matt Strahm",
+        "player_id": 621381,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 8,
+          "g": 16,
+          "gs": 0,
+          "ip": 15.7
+        }
+      },
+      {
+        "name": "Michael Wacha",
+        "player_id": 608379,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 51.3
+        }
+      },
+      {
+        "name": "Nick Mears",
+        "player_id": 683232,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 17,
+          "gs": 0,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Noah Cameron",
+        "player_id": 702070,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 35.7
+        }
+      },
+      {
+        "name": "Seth Lugo",
+        "player_id": 607625,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 47.7
+        }
+      },
+      {
+        "name": "Stephen Kolek",
+        "player_id": 663568,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 19,
+          "gs": 19,
+          "ip": 112.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Steven Cruz",
+        "player_id": 674444,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 0,
+          "ip": 7.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Alec Marsh",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 679525,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Bailey Falter",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 663559,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 26,
+        "gs": 24,
+        "ip": 125.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Carlos Estévez",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 608032,
+      "core_role": "Closer",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 42,
+        "holds": 0,
+        "g": 67,
+        "gs": 0,
+        "ip": 66.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Cole Ragans",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 666142,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 8,
+        "gs": 8,
+        "ip": 35.3
+      }
+    },
+    {
+      "name": "James McArthur",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 663704,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Jonathan India",
+      "status": "Injured 10-Day",
+      "position": "Second Base",
+      "player_id": 663697
+    }
+  ],
+  "not_active_40man": [
+    "Ben Kudrna",
+    "Eli Morgan",
+    "Eric Cerantola",
+    "John Rave",
+    "Kameron Misner",
+    "Mason Black",
+    "Mitch Spence",
+    "Ryan Bergert",
+    "Steven Zobac",
+    "Tyler Tolbert"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 6,
+    "total_40man_not_active": 10
+  }
+}
