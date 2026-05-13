@@ -1,0 +1,168 @@
+{
+  "name": "Walbert Ureña",
+  "mlbam_id": 700712,
+  "age": 22,
+  "birth_date": "2004-01-25",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 74.6,
+    "gap": null
+  },
+  "season": {
+    "era": 3.22,
+    "whip": 1.57,
+    "k_pct": 21.8,
+    "bb_pct": 15.8,
+    "k_bb_pct": 6.0,
+    "fip": 3.86,
+    "xfip": 4.39,
+    "hr_per_9": 0.4,
+    "gb_pct": 56.8,
+    "ip": 22.333333333333332,
+    "games": 6,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 3.28,
+    "xwoba": 0.289,
+    "xba": 0.196
+  },
+  "statcast": {
+    "avg_velo": 94.3,
+    "max_velo": 100.9,
+    "hard_hit_pct": 18.8,
+    "pitch_types": {
+      "SI": 31.5,
+      "CH": 30.6,
+      "FF": 24.5,
+      "ST": 13.2,
+      "PO": 0.2
+    },
+    "barrel_pct": 7.9,
+    "ev95percent": 31.7,
+    "whiff_pct": 10.7,
+    "csw_pct": 22.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Houston Astros",
+      "ip": 0.6666666666666666,
+      "era": 0.0,
+      "k": 1,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 14,
+      "strikes": 8
+    },
+    {
+      "date": "2026-03-28",
+      "opponent": "Houston Astros",
+      "ip": 1.0,
+      "era": 0.0,
+      "k": 1,
+      "bb": 2,
+      "h": 4,
+      "er": 0,
+      "pitches": 48,
+      "strikes": 28
+    },
+    {
+      "date": "2026-04-19",
+      "opponent": "San Diego Padres",
+      "ip": 6.0,
+      "era": 2.35,
+      "k": 8,
+      "bb": 2,
+      "h": 4,
+      "er": 2,
+      "pitches": 92,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".125",
+      "obp": ".294",
+      "slg": ".175",
+      "k": 12,
+      "bb": 10,
+      "bf": 51,
+      "k_pct": 23.5,
+      "bb_pct": 19.6
+    },
+    "vs_right": {
+      "avg": ".318",
+      "obp": ".400",
+      "slg": ".432",
+      "k": 10,
+      "bb": 6,
+      "bf": 50,
+      "k_pct": 20.0,
+      "bb_pct": 12.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.761,
+      "k_pct": 21.4,
+      "bb_pct": 14.3,
+      "bf": 56
+    },
+    "tto2": {
+      "ops": 0.65,
+      "k_pct": 23.7,
+      "bb_pct": 15.8,
+      "bf": 38
+    },
+    "tto3": {
+      "ops": 0.377,
+      "k_pct": 21.4,
+      "bb_pct": 21.4,
+      "bf": 14
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 31.6,
+      "rv_per_100": 2.5,
+      "xwoba_against": 0.15,
+      "whiff_pct": 29.4,
+      "put_away_pct": 25.0,
+      "hard_hit_pct": 10.5
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 29.8,
+      "rv_per_100": -3.5,
+      "xwoba_against": 0.49,
+      "whiff_pct": 16.0,
+      "put_away_pct": 25.0,
+      "hard_hit_pct": 60.0
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 25.5,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.22,
+      "whiff_pct": 29.4,
+      "put_away_pct": 27.8,
+      "hard_hit_pct": 27.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

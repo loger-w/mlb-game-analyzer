@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 4.3,
+  "home_recent_ra": 4.2,
+  "away_recent_rs": 2.9,
+  "away_recent_ra": 4.7,
+  "home_recent_30_rs": 4.47,
+  "home_recent_30_ra": 4.53,
+  "away_recent_30_rs": 4.33,
+  "away_recent_30_ra": 5.1,
+  "home_season_rs": 4.09,
+  "home_season_ra": 4.07,
+  "away_season_rs": 4.26,
+  "away_season_ra": 4.95,
+  "home_season_games": 44,
+  "away_season_games": 42,
+  "home_starter_fip": 5.3,
+  "home_starter_k_bb": 8.0,
+  "home_starter_whip": 1.59,
+  "away_starter_fip": 3.86,
+  "away_starter_k_bb": 6.0,
+  "away_starter_whip": 1.57,
+  "home_batting_xwoba": 0.33,
+  "home_batting_ops": 0.685,
+  "home_batting_k_pct": 18.4,
+  "away_batting_xwoba": 0.321,
+  "away_batting_ops": 0.857,
+  "away_batting_k_pct": 22.0,
+  "home_pitcher": {
+    "era": 6.15,
+    "xera": 5.63,
+    "ip": 41.0,
+    "era_xera_delta": 0.52,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 34.5,
+        "rv_per_100": -0.1,
+        "xwoba_against": 0.411,
+        "whiff_pct": 20.9,
+        "put_away_pct": 21.5,
+        "hard_hit_pct": 51.0
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 25.8,
+        "rv_per_100": 0.8,
+        "xwoba_against": 0.268,
+        "whiff_pct": 18.1,
+        "put_away_pct": 21.6,
+        "hard_hit_pct": 17.6
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 16.4,
+        "rv_per_100": -3.2,
+        "xwoba_against": 0.391,
+        "whiff_pct": 36.4,
+        "put_away_pct": 15.7,
+        "hard_hit_pct": 46.7
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 3.22,
+    "xera": 3.28,
+    "ip": 22.333333333333332,
+    "era_xera_delta": -0.06,
+    "arsenal_top": [
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 31.6,
+        "rv_per_100": 2.5,
+        "xwoba_against": 0.15,
+        "whiff_pct": 29.4,
+        "put_away_pct": 25.0,
+        "hard_hit_pct": 10.5
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 29.8,
+        "rv_per_100": -3.5,
+        "xwoba_against": 0.49,
+        "whiff_pct": 16.0,
+        "put_away_pct": 25.0,
+        "hard_hit_pct": 60.0
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 25.5,
+        "rv_per_100": 2.0,
+        "xwoba_against": 0.22,
+        "whiff_pct": 29.4,
+        "put_away_pct": 27.8,
+        "hard_hit_pct": 27.8
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.255
+  },
+  "away_lineup": {
+    "recent_babip": 0.39
+  },
+  "home_bullpen_era": 4.03,
+  "away_bullpen_era": 5.45,
+  "park_factor": 101.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Cloudy",
+    "temp_f": 60,
+    "wind_text": "6 mph, Calm",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Cleveland Guardians",
+    "away_team": "Los Angeles Angels",
+    "home_sp": "Slade Cecconi",
+    "away_sp": "Walbert Ureña",
+    "home_sp_starts": 8,
+    "away_sp_starts": 4,
+    "venue": "Progressive Field",
+    "game_pk": 824442,
+    "game_date": "2026-05-12T22:10:00Z",
+    "official_date": "2026-05-12"
+  }
+}

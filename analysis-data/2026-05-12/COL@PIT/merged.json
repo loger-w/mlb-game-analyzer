@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 5.8,
+  "home_recent_ra": 4.4,
+  "away_recent_rs": 3.8,
+  "away_recent_ra": 6.6,
+  "home_recent_30_rs": 5.13,
+  "home_recent_30_ra": 4.5,
+  "away_recent_30_rs": 3.97,
+  "away_recent_30_ra": 5.33,
+  "home_season_rs": 5.02,
+  "home_season_ra": 4.27,
+  "away_season_rs": 4.07,
+  "away_season_ra": 4.88,
+  "home_season_games": 41,
+  "away_season_games": 43,
+  "home_starter_fip": 2.65,
+  "home_starter_k_bb": 24.5,
+  "home_starter_whip": 0.71,
+  "away_starter_fip": 5.02,
+  "away_starter_k_bb": 7.4,
+  "away_starter_whip": 1.9,
+  "home_batting_xwoba": 0.335,
+  "home_batting_ops": 0.746,
+  "home_batting_k_pct": 22.5,
+  "away_batting_xwoba": 0.32,
+  "away_batting_ops": 0.772,
+  "away_batting_k_pct": 24.4,
+  "home_pitcher": {
+    "era": 2.36,
+    "xera": 1.96,
+    "ip": 42.0,
+    "era_xera_delta": 0.4,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 35.7,
+        "rv_per_100": 2.4,
+        "xwoba_against": 0.224,
+        "whiff_pct": 27.0,
+        "put_away_pct": 26.3,
+        "hard_hit_pct": 33.3
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 18.0,
+        "rv_per_100": 0.6,
+        "xwoba_against": 0.211,
+        "whiff_pct": 34.9,
+        "put_away_pct": 13.8,
+        "hard_hit_pct": 23.8
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 15.0,
+        "rv_per_100": 2.4,
+        "xwoba_against": 0.272,
+        "whiff_pct": 10.0,
+        "put_away_pct": 26.3,
+        "hard_hit_pct": 42.9
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 6.92,
+    "xera": 5.81,
+    "ip": 39.0,
+    "era_xera_delta": 1.11,
+    "arsenal_top": [
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 20.9,
+        "rv_per_100": -1.4,
+        "xwoba_against": 0.309,
+        "whiff_pct": 34.3,
+        "put_away_pct": 14.3,
+        "hard_hit_pct": 33.3
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 19.4,
+        "rv_per_100": -2.6,
+        "xwoba_against": 0.458,
+        "whiff_pct": 11.3,
+        "put_away_pct": 12.7,
+        "hard_hit_pct": 69.2
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 15.5,
+        "rv_per_100": -0.9,
+        "xwoba_against": 0.373,
+        "whiff_pct": 7.7,
+        "put_away_pct": 12.5,
+        "hard_hit_pct": 54.8
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.28
+  },
+  "away_lineup": {
+    "recent_babip": 0.346
+  },
+  "home_bullpen_era": 4.14,
+  "away_bullpen_era": 4.44,
+  "park_factor": 102.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 70,
+    "wind_text": "9 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Pittsburgh Pirates",
+    "away_team": "Colorado Rockies",
+    "home_sp": "Paul Skenes",
+    "away_sp": "Michael Lorenzen",
+    "home_sp_starts": 8,
+    "away_sp_starts": 8,
+    "venue": "PNC Park",
+    "game_pk": 823385,
+    "game_date": "2026-05-12T22:40:00Z",
+    "official_date": "2026-05-12"
+  }
+}

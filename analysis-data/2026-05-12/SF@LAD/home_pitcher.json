@@ -1,0 +1,173 @@
+{
+  "name": "Yoshinobu Yamamoto",
+  "mlbam_id": 808967,
+  "age": 27,
+  "birth_date": "1998-08-17",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.869,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 93.2,
+    "era_only_score": 77.4,
+    "gap": 15.8
+  },
+  "season": {
+    "era": 3.09,
+    "whip": 1.01,
+    "k_pct": 23.5,
+    "bb_pct": 5.9,
+    "k_bb_pct": 17.6,
+    "fip": 3.44,
+    "xfip": 3.24,
+    "hr_per_9": 1.03,
+    "gb_pct": 49.4,
+    "ip": 43.666666666666664,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.23,
+    "xwoba": 0.325,
+    "xba": 0.259
+  },
+  "statcast": {
+    "avg_velo": 90.4,
+    "max_velo": 97.7,
+    "hard_hit_pct": 27.0,
+    "pitch_types": {
+      "FS": 29.7,
+      "FF": 24.4,
+      "FC": 17.2,
+      "CU": 13.2,
+      "SI": 9.4
+    },
+    "barrel_pct": 10.1,
+    "ev95percent": 40.3,
+    "whiff_pct": 13.5,
+    "csw_pct": 29.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 6.0,
+      "era": 3.0,
+      "k": 6,
+      "bb": 0,
+      "h": 5,
+      "er": 2,
+      "pitches": 95,
+      "strikes": 63
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Cleveland Guardians",
+      "ip": 6.0,
+      "era": 3.0,
+      "k": 2,
+      "bb": 1,
+      "h": 4,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Toronto Blue Jays",
+      "ip": 6.0,
+      "era": 2.5,
+      "k": 6,
+      "bb": 1,
+      "h": 5,
+      "er": 1,
+      "pitches": 97,
+      "strikes": 66
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".244",
+      "obp": ".311",
+      "slg": ".427",
+      "k": 18,
+      "bb": 7,
+      "bf": 90,
+      "k_pct": 20.0,
+      "bb_pct": 7.8
+    },
+    "vs_right": {
+      "avg": ".184",
+      "obp": ".213",
+      "slg": ".289",
+      "k": 22,
+      "bb": 3,
+      "bf": 80,
+      "k_pct": 27.5,
+      "bb_pct": 3.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.632,
+      "k_pct": 26.4,
+      "bb_pct": 4.2,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 0.495,
+      "k_pct": 26.8,
+      "bb_pct": 5.6,
+      "bf": 71
+    },
+    "tto3": {
+      "ops": 0.739,
+      "k_pct": 19.0,
+      "bb_pct": 9.5,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 29.9,
+      "rv_per_100": 1.5,
+      "xwoba_against": 0.207,
+      "whiff_pct": 39.6,
+      "put_away_pct": 22.7,
+      "hard_hit_pct": 38.7
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 25.1,
+      "rv_per_100": 0.5,
+      "xwoba_against": 0.456,
+      "whiff_pct": 24.4,
+      "put_away_pct": 17.0,
+      "hard_hit_pct": 57.1
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 17.9,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.416,
+      "whiff_pct": 27.1,
+      "put_away_pct": 13.6,
+      "hard_hit_pct": 30.4
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

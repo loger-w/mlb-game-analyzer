@@ -1,0 +1,103 @@
+{
+  "home_recent_rs": 4.8,
+  "home_recent_ra": 2.0,
+  "away_recent_rs": 3.1,
+  "away_recent_ra": 3.6,
+  "home_recent_30_rs": 4.5,
+  "home_recent_30_ra": 3.63,
+  "away_recent_30_rs": 4.43,
+  "away_recent_30_ra": 4.27,
+  "home_season_rs": 4.88,
+  "home_season_ra": 3.52,
+  "away_season_rs": 4.25,
+  "away_season_ra": 4.17,
+  "home_season_games": 40,
+  "away_season_games": 40,
+  "home_starter_fip": 5.87,
+  "home_starter_k_bb": 9.2,
+  "home_starter_whip": 1.53,
+  "away_starter_fip": 2.44,
+  "away_starter_k_bb": 11.5,
+  "away_starter_whip": 1.02,
+  "home_batting_xwoba": 0.33,
+  "home_batting_ops": 0.726,
+  "home_batting_k_pct": 20.7,
+  "away_batting_xwoba": 0.315,
+  "away_batting_ops": 0.656,
+  "away_batting_k_pct": 22.7,
+  "home_pitcher": {
+    "era": 5.87,
+    "xera": 5.07,
+    "ip": 30.666666666666668,
+    "era_xera_delta": 0.8,
+    "arsenal_top": [
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 27.4,
+        "rv_per_100": -0.2,
+        "xwoba_against": 0.356,
+        "whiff_pct": 18.5,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 40.9
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 26.4,
+        "rv_per_100": -1.3,
+        "xwoba_against": 0.406,
+        "whiff_pct": 10.7,
+        "put_away_pct": 13.3,
+        "hard_hit_pct": 40.0
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 1.83,
+    "xera": 1.91,
+    "ip": 19.666666666666668,
+    "era_xera_delta": -0.08,
+    "arsenal_top": [
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 43.9,
+        "rv_per_100": 3.3,
+        "xwoba_against": 0.186,
+        "whiff_pct": 45.6,
+        "put_away_pct": 23.3,
+        "hard_hit_pct": 29.4
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.282
+  },
+  "away_lineup": {
+    "recent_babip": 0.187
+  },
+  "home_bullpen_era": 3.42,
+  "away_bullpen_era": 3.5,
+  "park_factor": 97.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Roof Closed",
+    "temp_f": 72,
+    "wind_text": "0 mph, None",
+    "indoor": true
+  },
+  "_meta": {
+    "home_team": "Milwaukee Brewers",
+    "away_team": "San Diego Padres",
+    "home_sp": "Brandon Sproat",
+    "away_sp": "Bradgley Rodriguez",
+    "home_sp_starts": 5,
+    "away_sp_starts": 1,
+    "venue": "American Family Field",
+    "game_pk": 823790,
+    "game_date": "2026-05-12T23:40:00Z",
+    "official_date": "2026-05-12"
+  }
+}

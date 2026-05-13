@@ -1,0 +1,173 @@
+{
+  "name": "Jack Flaherty",
+  "mlbam_id": 656427,
+  "age": 30,
+  "birth_date": "1995-10-15",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.419,
+    "k_bb_pct": 0.493,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 54.4,
+    "era_only_score": 23.8,
+    "gap": 30.6
+  },
+  "season": {
+    "era": 5.56,
+    "whip": 1.65,
+    "k_pct": 25.9,
+    "bb_pct": 16.0,
+    "k_bb_pct": 9.9,
+    "fip": 4.84,
+    "xfip": 4.26,
+    "hr_per_9": 1.32,
+    "gb_pct": 40.7,
+    "ip": 34.0,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.74,
+    "xwoba": 0.342,
+    "xba": 0.217
+  },
+  "statcast": {
+    "avg_velo": 87.5,
+    "max_velo": 96.3,
+    "hard_hit_pct": 24.1,
+    "pitch_types": {
+      "FF": 47.1,
+      "SL": 26.1,
+      "KC": 18.7,
+      "SI": 5.2,
+      "CH": 2.9
+    },
+    "barrel_pct": 9.0,
+    "ev95percent": 44.9,
+    "whiff_pct": 9.6,
+    "csw_pct": 26.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "San Diego Padres",
+      "ip": 4.333333333333333,
+      "era": 4.15,
+      "k": 2,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 89,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "St. Louis Cardinals",
+      "ip": 4.0,
+      "era": 7.56,
+      "k": 6,
+      "bb": 4,
+      "h": 3,
+      "er": 5,
+      "pitches": 86,
+      "strikes": 47
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "Minnesota Twins",
+      "ip": 5.666666666666667,
+      "era": 5.14,
+      "k": 6,
+      "bb": 3,
+      "h": 5,
+      "er": 1,
+      "pitches": 89,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".242",
+      "obp": ".407",
+      "slg": ".424",
+      "k": 20,
+      "bb": 18,
+      "bf": 88,
+      "k_pct": 22.7,
+      "bb_pct": 20.5
+    },
+    "vs_right": {
+      "avg": ".230",
+      "obp": ".351",
+      "slg": ".393",
+      "k": 22,
+      "bb": 8,
+      "bf": 74,
+      "k_pct": 29.7,
+      "bb_pct": 10.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.761,
+      "k_pct": 28.2,
+      "bb_pct": 8.3,
+      "bf": 1177
+    },
+    "tto2": {
+      "ops": 0.715,
+      "k_pct": 23.9,
+      "bb_pct": 9.8,
+      "bf": 1044
+    },
+    "tto3": {
+      "ops": 0.784,
+      "k_pct": 23.9,
+      "bb_pct": 9.3,
+      "bf": 507
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 46.7,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.342,
+      "whiff_pct": 17.2,
+      "put_away_pct": 23.3,
+      "hard_hit_pct": 55.8
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 25.8,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.348,
+      "whiff_pct": 30.3,
+      "put_away_pct": 19.6,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 19.4,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.365,
+      "whiff_pct": 37.9,
+      "put_away_pct": 13.5,
+      "hard_hit_pct": 26.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

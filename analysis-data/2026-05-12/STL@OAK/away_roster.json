@@ -1,0 +1,287 @@
+{
+  "team": "St. Louis Cardinals",
+  "team_id": 138,
+  "active_roster": {
+    "pitchers": [
+      "Andre Pallante",
+      "Dustin May",
+      "George Soriano",
+      "Gordon Graceffo",
+      "Jared Shuster",
+      "JoJo Romero",
+      "Justin Bruihl",
+      "Kyle Leahy",
+      "Matt Svanson",
+      "Matthew Liberatore",
+      "Michael McGreevy",
+      "Riley O'Brien",
+      "Ryne Stanek"
+    ],
+    "pitcher_ids": [
+      669467,
+      669160,
+      666277,
+      700669,
+      694363,
+      668941,
+      677865,
+      681517,
+      694335,
+      669461,
+      700241,
+      676617,
+      592773
+    ],
+    "position_players": [
+      "Alec Burleson",
+      "César Prieto",
+      "Iván Herrera",
+      "JJ Wetherholt",
+      "Jordan Walker",
+      "José Fermín",
+      "Masyn Winn",
+      "Nathan Church",
+      "Nolan Gorman",
+      "Pedro Pagés",
+      "Thomas Saggese",
+      "Victor Scott II",
+      "Yohel Pozo"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Andre Pallante",
+        "player_id": 669467,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 37.3
+        }
+      },
+      {
+        "name": "Dustin May",
+        "player_id": 669160,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 42.7
+        }
+      },
+      {
+        "name": "George Soriano",
+        "player_id": 666277,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 7,
+          "g": 18,
+          "gs": 0,
+          "ip": 17.0
+        }
+      },
+      {
+        "name": "Gordon Graceffo",
+        "player_id": 700669,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 17,
+          "gs": 0,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Jared Shuster",
+        "player_id": 694363,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 12,
+          "gs": 2,
+          "ip": 15.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "JoJo Romero",
+        "player_id": 668941,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 12,
+          "g": 19,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Justin Bruihl",
+        "player_id": 677865,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 19,
+          "gs": 0,
+          "ip": 18.0
+        }
+      },
+      {
+        "name": "Kyle Leahy",
+        "player_id": 681517,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 39.7
+        }
+      },
+      {
+        "name": "Matt Svanson",
+        "player_id": 694335,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 18,
+          "gs": 0,
+          "ip": 19.7
+        }
+      },
+      {
+        "name": "Matthew Liberatore",
+        "player_id": 669461,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 42.0
+        }
+      },
+      {
+        "name": "Michael McGreevy",
+        "player_id": 700241,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 45.3
+        }
+      },
+      {
+        "name": "Riley O'Brien",
+        "player_id": 676617,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 11,
+          "holds": 1,
+          "g": 19,
+          "gs": 0,
+          "ip": 19.0
+        }
+      },
+      {
+        "name": "Ryne Stanek",
+        "player_id": 592773,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 6,
+          "g": 19,
+          "gs": 0,
+          "ip": 17.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Lars Nootbaar",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 663457
+    },
+    {
+      "name": "Matt Pushard",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 690155,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 1,
+        "gs": 0,
+        "ip": 1.0
+      }
+    },
+    {
+      "name": "Ramón Urías",
+      "status": "Injured 10-Day",
+      "position": "Third Base",
+      "player_id": 602104
+    }
+  ],
+  "not_active_40man": [
+    "Bryan Torres",
+    "Brycen Mautz",
+    "Chris Roycroft",
+    "Cooper Hjerpe",
+    "Hunter Dobbins",
+    "Jimmy Crooks",
+    "Joshua Báez",
+    "Leo Bernal",
+    "Richard Fitts",
+    "Ryan Fernandez",
+    "Tekoah Roby",
+    "Tink Hence"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 3,
+    "total_40man_not_active": 12
+  }
+}

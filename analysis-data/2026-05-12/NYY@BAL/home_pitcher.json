@@ -1,0 +1,163 @@
+{
+  "name": "Trevor Rogers",
+  "mlbam_id": 669432,
+  "age": 28,
+  "birth_date": "1997-11-13",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.795,
+    "k_bb_pct": 0.667,
+    "stuff_pct": null,
+    "age_factor": 0.96
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 78.5,
+    "era_only_score": 41.2,
+    "gap": 37.2
+  },
+  "season": {
+    "era": 4.75,
+    "whip": 1.45,
+    "k_pct": 20.3,
+    "bb_pct": 7.5,
+    "k_bb_pct": 12.8,
+    "fip": 3.59,
+    "xfip": 3.68,
+    "hr_per_9": 0.89,
+    "gb_pct": 47.5,
+    "ip": 30.333333333333332,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 3.65,
+    "xwoba": 0.304,
+    "xba": 0.243
+  },
+  "statcast": {
+    "avg_velo": 88.1,
+    "max_velo": 96.6,
+    "hard_hit_pct": 22.2,
+    "pitch_types": {
+      "FF": 42.5,
+      "CH": 25.2,
+      "FC": 12.3,
+      "ST": 10.8,
+      "SI": 9.1
+    },
+    "barrel_pct": 6.3,
+    "ev95percent": 31.6,
+    "whiff_pct": 12.1,
+    "csw_pct": 28.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Minnesota Twins",
+      "ip": 7.0,
+      "era": 0.0,
+      "k": 5,
+      "bb": 4,
+      "h": 3,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Texas Rangers",
+      "ip": 6.0,
+      "era": 1.38,
+      "k": 3,
+      "bb": 1,
+      "h": 6,
+      "er": 2,
+      "pitches": 91,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Chicago White Sox",
+      "ip": 6.0,
+      "era": 1.89,
+      "k": 6,
+      "bb": 0,
+      "h": 6,
+      "er": 2,
+      "pitches": 101,
+      "strikes": 70
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".091",
+      "obp": ".192",
+      "slg": ".182",
+      "k": 8,
+      "bb": 3,
+      "bf": 26,
+      "k_pct": 30.8,
+      "bb_pct": 11.5
+    },
+    "vs_right": {
+      "avg": ".323",
+      "obp": ".374",
+      "slg": ".475",
+      "k": 19,
+      "bb": 7,
+      "bf": 107,
+      "k_pct": 17.8,
+      "bb_pct": 6.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.496,
+      "k_pct": 27.8,
+      "bb_pct": 3.7,
+      "bf": 54
+    },
+    "tto2": {
+      "ops": 1.075,
+      "k_pct": 12.8,
+      "bb_pct": 10.6,
+      "bf": 47
+    },
+    "tto3": {
+      "ops": 0.664,
+      "k_pct": 18.8,
+      "bb_pct": 9.4,
+      "bf": 32
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 42.5,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.346,
+      "whiff_pct": 21.6,
+      "put_away_pct": 11.3,
+      "hard_hit_pct": 35.9
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 25.2,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.313,
+      "whiff_pct": 29.3,
+      "put_away_pct": 16.3,
+      "hard_hit_pct": 33.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

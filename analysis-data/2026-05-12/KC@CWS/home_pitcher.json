@@ -1,0 +1,173 @@
+{
+  "name": "Erick Fedde",
+  "mlbam_id": 607200,
+  "age": 33,
+  "birth_date": "1993-02-25",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.297,
+    "k_bb_pct": 0.293,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 39.5,
+    "era_only_score": 63.2,
+    "gap": -23.7
+  },
+  "season": {
+    "era": 3.79,
+    "whip": 1.13,
+    "k_pct": 15.5,
+    "bb_pct": 8.4,
+    "k_bb_pct": 7.1,
+    "fip": 5.6,
+    "xfip": 4.47,
+    "hr_per_9": 1.89,
+    "gb_pct": 44.7,
+    "ip": 38.0,
+    "games": 7,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 4.06,
+    "xwoba": 0.319,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 87.5,
+    "max_velo": 95.5,
+    "hard_hit_pct": 27.2,
+    "pitch_types": {
+      "ST": 37.8,
+      "FC": 25.7,
+      "SI": 24.4,
+      "CH": 11.3,
+      "FF": 0.8
+    },
+    "barrel_pct": 9.6,
+    "ev95percent": 38.3,
+    "whiff_pct": 7.4,
+    "csw_pct": 23.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Miami Marlins",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 4,
+      "bb": 1,
+      "h": 6,
+      "er": 3,
+      "pitches": 80,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Baltimore Orioles",
+      "ip": 6.0,
+      "era": 4.09,
+      "k": 4,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 86,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Kansas City Royals",
+      "ip": 5.0,
+      "era": 3.38,
+      "k": 4,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 85,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".185",
+      "obp": ".276",
+      "slg": ".277",
+      "k": 11,
+      "bb": 8,
+      "bf": 77,
+      "k_pct": 14.3,
+      "bb_pct": 10.4
+    },
+    "vs_right": {
+      "avg": ".250",
+      "obp": ".308",
+      "slg": ".556",
+      "k": 13,
+      "bb": 5,
+      "bf": 78,
+      "k_pct": 16.7,
+      "bb_pct": 6.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.723,
+      "k_pct": 18.8,
+      "bb_pct": 10.1,
+      "bf": 997
+    },
+    "tto2": {
+      "ops": 0.789,
+      "k_pct": 15.7,
+      "bb_pct": 7.6,
+      "bf": 873
+    },
+    "tto3": {
+      "ops": 0.71,
+      "k_pct": 15.6,
+      "bb_pct": 9.2,
+      "bf": 403
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 37.8,
+      "rv_per_100": 0.8,
+      "xwoba_against": 0.261,
+      "whiff_pct": 22.1,
+      "put_away_pct": 15.9,
+      "hard_hit_pct": 34.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 25.7,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.376,
+      "whiff_pct": 12.5,
+      "put_away_pct": 13.6,
+      "hard_hit_pct": 44.7
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 24.4,
+      "rv_per_100": -1.0,
+      "xwoba_against": 0.363,
+      "whiff_pct": 4.2,
+      "put_away_pct": 13.2,
+      "hard_hit_pct": 45.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,473 @@
+{
+  "team": "MIL",
+  "team_id": 158,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟠 Strong",
+  "avg_ops": 0.726,
+  "avg_ops_vs_lhp": 0.596,
+  "avg_ops_vs_rhp": 0.778,
+  "avg_xwoba": 0.33,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.33,
+  "avg_k_pct": 20.7,
+  "avg_bb_pct": 11.4,
+  "over_under_lean": -1,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.282,
+  "chain": {
+    "obp_top3": 0.405,
+    "slg_mid": 0.432
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-12T21:42:06+00:00",
+    "game_pk": 823790
+  },
+  "lineup": [
+    {
+      "mlbam_id": 668930,
+      "pa": 163,
+      "avg": 0.298,
+      "obp": 0.422,
+      "slg": 0.511,
+      "ops": 0.933,
+      "iso": 0.213,
+      "babip": 0.355,
+      "k_pct": 20.2,
+      "bb_pct": 17.8,
+      "name": "Brice Turang",
+      "position": "2B",
+      "batting_order": 1,
+      "xwoba": 0.416,
+      "xba": 0.296,
+      "xslg": 0.545,
+      "ev95pct": 49.5,
+      "barrel_pct": 10.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".220",
+          "obp": ".360",
+          "slg": ".293",
+          "ops": ".653",
+          "pa": 51
+        },
+        "vs_rhp": {
+          "avg": ".333",
+          "obp": ".450",
+          "slg": ".611",
+          "ops": "1.061",
+          "pa": 112
+        }
+      },
+      "last_7": {
+        "avg": ".321",
+        "obp": ".424",
+        "slg": ".536",
+        "ops": ".960",
+        "babip": ".333",
+        "pa": 34
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 694192,
+      "pa": 24,
+      "avg": 0.364,
+      "obp": 0.417,
+      "slg": 0.5,
+      "ops": 0.917,
+      "iso": 0.136,
+      "babip": 0.471,
+      "k_pct": 20.8,
+      "bb_pct": 8.3,
+      "name": "Jackson Chourio",
+      "position": "CF",
+      "batting_order": 2,
+      "xwoba": 0.428,
+      "xba": 0.277,
+      "xslg": 0.69,
+      "ev95pct": 41.2,
+      "barrel_pct": 23.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".286",
+          "slg": ".167",
+          "ops": ".453",
+          "pa": 7
+        },
+        "vs_rhp": {
+          "avg": ".438",
+          "obp": ".471",
+          "slg": ".625",
+          "ops": "1.096",
+          "pa": 17
+        }
+      },
+      "last_7": {
+        "avg": ".364",
+        "obp": ".417",
+        "slg": ".500",
+        "ops": ".917",
+        "babip": ".471",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 1,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 592885,
+      "pa": 56,
+      "avg": 0.314,
+      "obp": 0.375,
+      "slg": 0.451,
+      "ops": 0.826,
+      "iso": 0.137,
+      "babip": 0.417,
+      "k_pct": 25.0,
+      "bb_pct": 8.9,
+      "name": "Christian Yelich",
+      "position": "LF",
+      "batting_order": 3,
+      "xwoba": 0.282,
+      "xba": 0.229,
+      "xslg": 0.369,
+      "ev95pct": 40.5,
+      "barrel_pct": 5.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".294",
+          "obp": ".333",
+          "slg": ".412",
+          "ops": ".745",
+          "pa": 18
+        },
+        "vs_rhp": {
+          "avg": ".324",
+          "obp": ".395",
+          "slg": ".471",
+          "ops": ".866",
+          "pa": 38
+        }
+      },
+      "last_7": {
+        "avg": ".273",
+        "obp": ".360",
+        "slg": ".455",
+        "ops": ".815",
+        "babip": ".353",
+        "pa": 25
+      },
+      "bvp": {
+        "pa": 1,
+        "avg": ".000",
+        "obp": "1.000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 661388,
+      "pa": 161,
+      "avg": 0.294,
+      "obp": 0.366,
+      "slg": 0.406,
+      "ops": 0.772,
+      "iso": 0.112,
+      "babip": 0.317,
+      "k_pct": 11.2,
+      "bb_pct": 9.9,
+      "name": "William Contreras",
+      "position": "C",
+      "batting_order": 4,
+      "xwoba": 0.347,
+      "xba": 0.288,
+      "xslg": 0.436,
+      "ev95pct": 42.9,
+      "barrel_pct": 6.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".243",
+          "obp": ".341",
+          "slg": ".324",
+          "ops": ".665",
+          "pa": 44
+        },
+        "vs_rhp": {
+          "avg": ".311",
+          "obp": ".376",
+          "slg": ".434",
+          "ops": ".810",
+          "pa": 117
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".313",
+        "slg": ".222",
+        "ops": ".535",
+        "babip": ".250",
+        "pa": 32
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 641343,
+      "pa": 134,
+      "avg": 0.258,
+      "obp": 0.336,
+      "slg": 0.458,
+      "ops": 0.794,
+      "iso": 0.2,
+      "babip": 0.294,
+      "k_pct": 21.6,
+      "bb_pct": 10.4,
+      "name": "Jake Bauers",
+      "position": "1B",
+      "batting_order": 5,
+      "xwoba": 0.336,
+      "xba": 0.254,
+      "xslg": 0.457,
+      "ev95pct": 53.8,
+      "barrel_pct": 11.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".172",
+          "obp": ".226",
+          "slg": ".310",
+          "ops": ".536",
+          "pa": 31
+        },
+        "vs_rhp": {
+          "avg": ".286",
+          "obp": ".369",
+          "slg": ".505",
+          "ops": ".874",
+          "pa": 103
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".400",
+        "slg": ".417",
+        "ops": ".817",
+        "babip": ".313",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 669003,
+      "pa": 129,
+      "avg": 0.21,
+      "obp": 0.344,
+      "slg": 0.314,
+      "ops": 0.658,
+      "iso": 0.104,
+      "babip": 0.362,
+      "k_pct": 36.4,
+      "bb_pct": 16.3,
+      "name": "Garrett Mitchell",
+      "position": "CF",
+      "batting_order": 6,
+      "xwoba": 0.327,
+      "xba": 0.216,
+      "xslg": 0.371,
+      "ev95pct": 50.0,
+      "barrel_pct": 11.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".261",
+          "obp": ".419",
+          "slg": ".348",
+          "ops": ".767",
+          "pa": 32
+        },
+        "vs_rhp": {
+          "avg": ".195",
+          "obp": ".320",
+          "slg": ".305",
+          "ops": ".625",
+          "pa": 97
+        }
+      },
+      "last_7": {
+        "avg": ".111",
+        "obp": ".167",
+        "slg": ".148",
+        "ops": ".315",
+        "babip": ".176",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 686217,
+      "pa": 139,
+      "avg": 0.214,
+      "obp": 0.309,
+      "slg": 0.308,
+      "ops": 0.617,
+      "iso": 0.094,
+      "babip": 0.216,
+      "k_pct": 10.1,
+      "bb_pct": 11.5,
+      "name": "Sal Frelick",
+      "position": "RF",
+      "batting_order": 7,
+      "xwoba": 0.3,
+      "xba": 0.24,
+      "xslg": 0.336,
+      "ev95pct": 25.7,
+      "barrel_pct": 3.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".086",
+          "obp": ".179",
+          "slg": ".171",
+          "ops": ".350",
+          "pa": 39
+        },
+        "vs_rhp": {
+          "avg": ".268",
+          "obp": ".361",
+          "slg": ".366",
+          "ops": ".727",
+          "pa": 100
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".320",
+        "slg": ".227",
+        "ops": ".547",
+        "babip": ".238",
+        "pa": 25
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 666152,
+      "pa": 110,
+      "avg": 0.228,
+      "obp": 0.324,
+      "slg": 0.25,
+      "ops": 0.574,
+      "iso": 0.022,
+      "babip": 0.3,
+      "k_pct": 20.0,
+      "bb_pct": 10.9,
+      "name": "David Hamilton",
+      "position": "3B",
+      "batting_order": 8,
+      "xwoba": 0.276,
+      "xba": 0.206,
+      "xslg": 0.288,
+      "ev95pct": 26.0,
+      "barrel_pct": 2.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".286",
+          "obp": ".400",
+          "slg": ".286",
+          "ops": ".686",
+          "pa": 26
+        },
+        "vs_rhp": {
+          "avg": ".211",
+          "obp": ".300",
+          "slg": ".239",
+          "ops": ".539",
+          "pa": 84
+        }
+      },
+      "last_7": {
+        "avg": ".176",
+        "obp": ".222",
+        "slg": ".176",
+        "ops": ".398",
+        "babip": ".273",
+        "pa": 19
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 687401,
+      "pa": 94,
+      "avg": 0.181,
+      "obp": 0.25,
+      "slg": 0.193,
+      "ops": 0.443,
+      "iso": 0.012,
+      "babip": 0.234,
+      "k_pct": 21.3,
+      "bb_pct": 8.5,
+      "name": "Joey Ortiz",
+      "position": "SS",
+      "batting_order": 9,
+      "xwoba": 0.262,
+      "xba": 0.207,
+      "xslg": 0.265,
+      "ev95pct": 30.3,
+      "barrel_pct": 4.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".207",
+          "obp": ".303",
+          "slg": ".207",
+          "ops": ".510",
+          "pa": 35
+        },
+        "vs_rhp": {
+          "avg": ".167",
+          "obp": ".220",
+          "slg": ".185",
+          "ops": ".405",
+          "pa": 59
+        }
+      },
+      "last_7": {
+        "avg": ".111",
+        "obp": ".150",
+        "slg": ".167",
+        "ops": ".317",
+        "babip": ".133",
+        "pa": 20
+      },
+      "bvp": {
+        "pa": 1,
+        "avg": "1.000",
+        "obp": "1.000",
+        "slg": "1.000",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

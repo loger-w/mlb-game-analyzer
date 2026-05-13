@@ -1,0 +1,173 @@
+{
+  "name": "Bryan Woo",
+  "mlbam_id": 693433,
+  "age": 26,
+  "birth_date": "2000-01-30",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.662,
+    "k_bb_pct": 0.813,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 78.8,
+    "era_only_score": 58.6,
+    "gap": 20.2
+  },
+  "season": {
+    "era": 4.02,
+    "whip": 1.0,
+    "k_pct": 20.3,
+    "bb_pct": 4.3,
+    "k_bb_pct": 16.0,
+    "fip": 3.65,
+    "xfip": 3.9,
+    "hr_per_9": 1.15,
+    "gb_pct": 31.0,
+    "ip": 47.0,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 3.55,
+    "xwoba": 0.3,
+    "xba": 0.238
+  },
+  "statcast": {
+    "avg_velo": 92.5,
+    "max_velo": 98.3,
+    "hard_hit_pct": 27.6,
+    "pitch_types": {
+      "FF": 50.7,
+      "SI": 18.3,
+      "ST": 14.2,
+      "SL": 11.1,
+      "CH": 5.7
+    },
+    "barrel_pct": 9.4,
+    "ev95percent": 46.8,
+    "whiff_pct": 11.2,
+    "csw_pct": 25.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Cleveland Guardians",
+      "ip": 6.0,
+      "era": 3.0,
+      "k": 9,
+      "bb": 1,
+      "h": 4,
+      "er": 2,
+      "pitches": 83,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Los Angeles Angels",
+      "ip": 7.0,
+      "era": 1.38,
+      "k": 6,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 87,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Texas Rangers",
+      "ip": 5.0,
+      "era": 1.5,
+      "k": 2,
+      "bb": 2,
+      "h": 5,
+      "er": 1,
+      "pitches": 83,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".198",
+      "obp": ".248",
+      "slg": ".375",
+      "k": 20,
+      "bb": 6,
+      "bf": 105,
+      "k_pct": 19.0,
+      "bb_pct": 5.7
+    },
+    "vs_right": {
+      "avg": ".256",
+      "obp": ".280",
+      "slg": ".372",
+      "k": 18,
+      "bb": 2,
+      "bf": 82,
+      "k_pct": 22.0,
+      "bb_pct": 2.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.607,
+      "k_pct": 19.5,
+      "bb_pct": 1.2,
+      "bf": 82
+    },
+    "tto2": {
+      "ops": 0.557,
+      "k_pct": 23.8,
+      "bb_pct": 5.0,
+      "bf": 80
+    },
+    "tto3": {
+      "ops": 0.769,
+      "k_pct": 15.9,
+      "bb_pct": 6.8,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 51.6,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.293,
+      "whiff_pct": 23.5,
+      "put_away_pct": 15.2,
+      "hard_hit_pct": 42.6
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.1,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.391,
+      "whiff_pct": 8.1,
+      "put_away_pct": 19.4,
+      "hard_hit_pct": 56.4
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 13.8,
+      "rv_per_100": 1.8,
+      "xwoba_against": 0.224,
+      "whiff_pct": 40.4,
+      "put_away_pct": 23.1,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

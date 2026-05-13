@@ -1,0 +1,173 @@
+{
+  "name": "Miles Mikolas",
+  "mlbam_id": 571945,
+  "age": 37,
+  "birth_date": "1988-08-23",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.706,
+    "k_bb_pct": 0.329,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 57.0,
+    "era_only_score": 15.0,
+    "gap": 42.0
+  },
+  "season": {
+    "era": 7.44,
+    "whip": 1.53,
+    "k_pct": 15.1,
+    "bb_pct": 7.5,
+    "k_bb_pct": 7.6,
+    "fip": 6.34,
+    "xfip": 3.84,
+    "hr_per_9": 2.48,
+    "gb_pct": 63.5,
+    "ip": 32.666666666666664,
+    "games": 8,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 4.81,
+    "xwoba": 0.344,
+    "xba": 0.258
+  },
+  "statcast": {
+    "avg_velo": 87.5,
+    "max_velo": 95.5,
+    "hard_hit_pct": 28.7,
+    "pitch_types": {
+      "FF": 26.4,
+      "SI": 22.8,
+      "SL": 18.1,
+      "CU": 15.7,
+      "CH": 10.5
+    },
+    "barrel_pct": 11.5,
+    "ev95percent": 44.2,
+    "whiff_pct": 8.0,
+    "csw_pct": 25.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Chicago Cubs",
+      "ip": 5.0,
+      "era": 7.2,
+      "k": 4,
+      "bb": 3,
+      "h": 6,
+      "er": 4,
+      "pitches": 97,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 4.333333333333333,
+      "era": 14.46,
+      "k": 4,
+      "bb": 1,
+      "h": 11,
+      "er": 11,
+      "pitches": 87,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "St. Louis Cardinals",
+      "ip": 3.0,
+      "era": 12.41,
+      "k": 3,
+      "bb": 3,
+      "h": 5,
+      "er": 2,
+      "pitches": 55,
+      "strikes": 34
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".301",
+      "obp": ".354",
+      "slg": ".534",
+      "k": 13,
+      "bb": 6,
+      "bf": 79,
+      "k_pct": 16.5,
+      "bb_pct": 7.6
+    },
+    "vs_right": {
+      "avg": ".279",
+      "obp": ".328",
+      "slg": ".541",
+      "k": 9,
+      "bb": 5,
+      "bf": 67,
+      "k_pct": 13.4,
+      "bb_pct": 7.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.711,
+      "k_pct": 18.9,
+      "bb_pct": 5.2,
+      "bf": 1426
+    },
+    "tto2": {
+      "ops": 0.762,
+      "k_pct": 15.3,
+      "bb_pct": 4.4,
+      "bf": 1318
+    },
+    "tto3": {
+      "ops": 0.779,
+      "k_pct": 14.5,
+      "bb_pct": 4.2,
+      "bf": 759
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 26.4,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.373,
+      "whiff_pct": 22.2,
+      "put_away_pct": 19.5,
+      "hard_hit_pct": 57.1
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 22.8,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.284,
+      "whiff_pct": 10.7,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 38.9
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 18.1,
+      "rv_per_100": 0.9,
+      "xwoba_against": 0.317,
+      "whiff_pct": 23.8,
+      "put_away_pct": 11.5,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

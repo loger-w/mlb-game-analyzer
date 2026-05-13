@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 5.3,
+  "home_recent_ra": 3.5,
+  "away_recent_rs": 4.6,
+  "away_recent_ra": 3.4,
+  "home_recent_30_rs": 5.9,
+  "home_recent_30_ra": 3.77,
+  "away_recent_30_rs": 5.5,
+  "away_recent_30_ra": 4.2,
+  "home_season_rs": 5.56,
+  "home_season_ra": 3.44,
+  "away_season_rs": 5.12,
+  "away_season_ra": 4.0,
+  "home_season_games": 41,
+  "away_season_games": 42,
+  "home_starter_fip": 5.0,
+  "home_starter_k_bb": 7.5,
+  "home_starter_whip": 1.31,
+  "away_starter_fip": 3.57,
+  "away_starter_k_bb": 13.9,
+  "away_starter_whip": 1.37,
+  "home_batting_xwoba": 0.347,
+  "home_batting_ops": 0.714,
+  "home_batting_k_pct": 17.4,
+  "away_batting_xwoba": 0.349,
+  "away_batting_ops": 0.808,
+  "away_batting_k_pct": 20.8,
+  "home_pitcher": {
+    "era": 4.34,
+    "xera": 4.35,
+    "ip": 37.333333333333336,
+    "era_xera_delta": -0.01,
+    "arsenal_top": [
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 37.5,
+        "rv_per_100": 0.2,
+        "xwoba_against": 0.286,
+        "whiff_pct": 49.5,
+        "put_away_pct": 25.6,
+        "hard_hit_pct": 34.6
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 37.3,
+        "rv_per_100": 1.7,
+        "xwoba_against": 0.374,
+        "whiff_pct": 15.7,
+        "put_away_pct": 16.2,
+        "hard_hit_pct": 50.0
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 4.03,
+    "xera": 4.5,
+    "ip": 38.0,
+    "era_xera_delta": -0.47,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 40.1,
+        "rv_per_100": -0.3,
+        "xwoba_against": 0.366,
+        "whiff_pct": 14.8,
+        "put_away_pct": 11.5,
+        "hard_hit_pct": 49.1
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 18.6,
+        "rv_per_100": 2.0,
+        "xwoba_against": 0.292,
+        "whiff_pct": 40.0,
+        "put_away_pct": 22.0,
+        "hard_hit_pct": 47.4
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 12.8,
+        "rv_per_100": 4.0,
+        "xwoba_against": 0.212,
+        "whiff_pct": 39.5,
+        "put_away_pct": 36.1,
+        "hard_hit_pct": 61.5
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.311
+  },
+  "away_lineup": {
+    "recent_babip": 0.265
+  },
+  "home_bullpen_era": 3.31,
+  "away_bullpen_era": 3.87,
+  "park_factor": 98.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 4,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 75,
+    "wind_text": "7 mph, In From LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Atlanta Braves",
+    "away_team": "Chicago Cubs",
+    "home_sp": "Grant Holmes",
+    "away_sp": "Colin Rea",
+    "home_sp_starts": 7,
+    "away_sp_starts": 5,
+    "venue": "Truist Park",
+    "game_pk": 824927,
+    "game_date": "2026-05-12T23:15:00Z",
+    "official_date": "2026-05-12"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "home_recent_rs": 4.7,
+  "home_recent_ra": 5.8,
+  "away_recent_rs": 4.1,
+  "away_recent_ra": 4.5,
+  "home_recent_30_rs": 4.83,
+  "home_recent_30_ra": 5.27,
+  "away_recent_30_rs": 4.13,
+  "away_recent_30_ra": 4.33,
+  "home_season_rs": 4.73,
+  "home_season_ra": 5.02,
+  "away_season_rs": 4.29,
+  "away_season_ra": 4.37,
+  "home_season_games": 41,
+  "away_season_games": 41,
+  "home_starter_fip": 4.17,
+  "home_starter_k_bb": 9.5,
+  "home_starter_whip": 1.19,
+  "away_starter_fip": 4.65,
+  "away_starter_k_bb": 13.2,
+  "away_starter_whip": 1.43,
+  "home_batting_xwoba": 0.321,
+  "home_batting_ops": 0.744,
+  "home_batting_k_pct": 20.7,
+  "away_batting_xwoba": 0.306,
+  "away_batting_ops": 0.697,
+  "away_batting_k_pct": 21.7,
+  "home_pitcher": {
+    "era": 4.19,
+    "xera": 3.84,
+    "ip": 43.0,
+    "era_xera_delta": 0.35,
+    "arsenal_top": [
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 35.5,
+        "rv_per_100": -0.1,
+        "xwoba_against": 0.289,
+        "whiff_pct": 22.7,
+        "put_away_pct": 12.0,
+        "hard_hit_pct": 25.5
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 31.4,
+        "rv_per_100": -0.5,
+        "xwoba_against": 0.342,
+        "whiff_pct": 17.0,
+        "put_away_pct": 18.0,
+        "hard_hit_pct": 43.3
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 16.3,
+        "rv_per_100": 2.6,
+        "xwoba_against": 0.254,
+        "whiff_pct": 12.3,
+        "put_away_pct": 20.7,
+        "hard_hit_pct": 35.3
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 5.01,
+    "xera": 4.94,
+    "ip": 41.333333333333336,
+    "era_xera_delta": 0.07,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 51.9,
+        "rv_per_100": -1.3,
+        "xwoba_against": 0.364,
+        "whiff_pct": 23.8,
+        "put_away_pct": 21.8,
+        "hard_hit_pct": 47.7
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.315
+  },
+  "away_lineup": {
+    "recent_babip": 0.3
+  },
+  "home_bullpen_era": 5.54,
+  "away_bullpen_era": 3.37,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 2,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 70,
+    "wind_text": "22 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Minnesota Twins",
+    "away_team": "Miami Marlins",
+    "home_sp": "Bailey Ober",
+    "away_sp": "Eury Pérez",
+    "home_sp_starts": 8,
+    "away_sp_starts": 8,
+    "venue": "Target Field",
+    "game_pk": 823712,
+    "game_date": "2026-05-12T23:40:00Z",
+    "official_date": "2026-05-12"
+  }
+}

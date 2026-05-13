@@ -1,0 +1,163 @@
+{
+  "name": "Brady Singer",
+  "mlbam_id": 663903,
+  "age": 29,
+  "birth_date": "1996-08-04",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.522,
+    "k_bb_pct": 0.429,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 57.4,
+    "era_only_score": 22.4,
+    "gap": 35.0
+  },
+  "season": {
+    "era": 5.63,
+    "whip": 1.64,
+    "k_pct": 14.6,
+    "bb_pct": 5.6,
+    "k_bb_pct": 9.0,
+    "fip": 5.24,
+    "xfip": 4.09,
+    "hr_per_9": 1.88,
+    "gb_pct": 46.5,
+    "ip": 38.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 5.77,
+    "xwoba": 0.372,
+    "xba": 0.299
+  },
+  "statcast": {
+    "avg_velo": 86.7,
+    "max_velo": 93.3,
+    "hard_hit_pct": 30.5,
+    "pitch_types": {
+      "SI": 48.4,
+      "SL": 33.6,
+      "ST": 10.7,
+      "FC": 4.1,
+      "FF": 3.1
+    },
+    "barrel_pct": 9.4,
+    "ev95percent": 43.9,
+    "whiff_pct": 8.8,
+    "csw_pct": 26.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Boston Red Sox",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 5,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 74,
+      "strikes": 40
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Texas Rangers",
+      "ip": 5.0,
+      "era": 5.0,
+      "k": 5,
+      "bb": 1,
+      "h": 6,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Miami Marlins",
+      "ip": 2.6666666666666665,
+      "era": 7.71,
+      "k": 3,
+      "bb": 0,
+      "h": 10,
+      "er": 5,
+      "pitches": 73,
+      "strikes": 48
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".374",
+      "obp": ".414",
+      "slg": ".571",
+      "k": 18,
+      "bb": 5,
+      "bf": 99,
+      "k_pct": 18.2,
+      "bb_pct": 5.1
+    },
+    "vs_right": {
+      "avg": ".260",
+      "obp": ".316",
+      "slg": ".507",
+      "k": 8,
+      "bb": 5,
+      "bf": 79,
+      "k_pct": 10.1,
+      "bb_pct": 6.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.865,
+      "k_pct": 8.6,
+      "bb_pct": 7.4,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 1.078,
+      "k_pct": 16.2,
+      "bb_pct": 5.0,
+      "bf": 80
+    },
+    "tto3": {
+      "ops": 0.679,
+      "k_pct": 25.0,
+      "bb_pct": 0.0,
+      "bf": 36
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 47.3,
+      "rv_per_100": -1.9,
+      "xwoba_against": 0.391,
+      "whiff_pct": 11.8,
+      "put_away_pct": 13.8,
+      "hard_hit_pct": 45.9
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 33.5,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.267,
+      "whiff_pct": 33.3,
+      "put_away_pct": 23.1,
+      "hard_hit_pct": 45.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

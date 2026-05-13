@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 5.0,
+  "home_recent_ra": 4.8,
+  "away_recent_rs": 3.1,
+  "away_recent_ra": 2.5,
+  "home_recent_30_rs": 4.43,
+  "home_recent_30_ra": 4.17,
+  "away_recent_30_rs": 4.43,
+  "away_recent_30_ra": 4.07,
+  "home_season_rs": 4.4,
+  "home_season_ra": 4.55,
+  "away_season_rs": 4.54,
+  "away_season_ra": 4.46,
+  "home_season_games": 40,
+  "away_season_games": 41,
+  "home_starter_fip": 4.21,
+  "home_starter_k_bb": 14.9,
+  "home_starter_whip": 1.14,
+  "away_starter_fip": 4.57,
+  "away_starter_k_bb": 7.9,
+  "away_starter_whip": 1.37,
+  "home_batting_xwoba": 0.332,
+  "home_batting_ops": 0.76,
+  "home_batting_k_pct": 22.1,
+  "away_batting_xwoba": 0.317,
+  "away_batting_ops": 0.676,
+  "away_batting_k_pct": 19.8,
+  "home_pitcher": {
+    "era": 3.89,
+    "xera": 3.5,
+    "ip": 44.0,
+    "era_xera_delta": 0.39,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 42.5,
+        "rv_per_100": 0.1,
+        "xwoba_against": 0.314,
+        "whiff_pct": 15.7,
+        "put_away_pct": 15.5,
+        "hard_hit_pct": 35.8
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 25.2,
+        "rv_per_100": 0.0,
+        "xwoba_against": 0.367,
+        "whiff_pct": 29.5,
+        "put_away_pct": 27.3,
+        "hard_hit_pct": 44.1
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 20.2,
+        "rv_per_100": 0.5,
+        "xwoba_against": 0.215,
+        "whiff_pct": 43.6,
+        "put_away_pct": 27.5,
+        "hard_hit_pct": 18.5
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 4.34,
+    "xera": 4.47,
+    "ip": 37.333333333333336,
+    "era_xera_delta": -0.13,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 29.9,
+        "rv_per_100": -1.2,
+        "xwoba_against": 0.451,
+        "whiff_pct": 14.7,
+        "put_away_pct": 9.4,
+        "hard_hit_pct": 56.3
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 26.7,
+        "rv_per_100": 3.1,
+        "xwoba_against": 0.263,
+        "whiff_pct": 33.7,
+        "put_away_pct": 26.6,
+        "hard_hit_pct": 43.8
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 20.5,
+        "rv_per_100": -1.8,
+        "xwoba_against": 0.337,
+        "whiff_pct": 14.5,
+        "put_away_pct": 10.8,
+        "hard_hit_pct": 15.6
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.312
+  },
+  "away_lineup": {
+    "recent_babip": 0.253
+  },
+  "home_bullpen_era": 4.67,
+  "away_bullpen_era": 4.65,
+  "park_factor": 109.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Clear",
+    "temp_f": 86,
+    "wind_text": "10 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Athletics",
+    "away_team": "St. Louis Cardinals",
+    "home_sp": "Jeffrey Springs",
+    "away_sp": "Andre Pallante",
+    "home_sp_starts": 8,
+    "away_sp_starts": 7,
+    "venue": "Sutter Health Park",
+    "game_pk": 825011,
+    "game_date": "2026-05-13T01:40:00Z",
+    "official_date": "2026-05-12"
+  }
+}

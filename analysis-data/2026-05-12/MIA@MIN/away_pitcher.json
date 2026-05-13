@@ -1,0 +1,153 @@
+{
+  "name": "Eury Pérez",
+  "mlbam_id": 691587,
+  "age": 23,
+  "birth_date": "2003-04-15",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.691,
+    "k_bb_pct": 0.69,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 75.7,
+    "era_only_score": 34.8,
+    "gap": 40.9
+  },
+  "season": {
+    "era": 5.01,
+    "whip": 1.43,
+    "k_pct": 24.7,
+    "bb_pct": 11.5,
+    "k_bb_pct": 13.2,
+    "fip": 4.65,
+    "xfip": 3.86,
+    "hr_per_9": 1.52,
+    "gb_pct": 40.0,
+    "ip": 41.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.94,
+    "xwoba": 0.348,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 92.0,
+    "max_velo": 100.6,
+    "hard_hit_pct": 23.1,
+    "pitch_types": {
+      "FF": 51.6,
+      "SL": 16.0,
+      "ST": 14.3,
+      "CH": 10.7,
+      "CU": 7.4
+    },
+    "barrel_pct": 13.3,
+    "ev95percent": 42.5,
+    "whiff_pct": 13.3,
+    "csw_pct": 26.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Colorado Rockies",
+      "ip": 7.0,
+      "era": 3.86,
+      "k": 8,
+      "bb": 1,
+      "h": 5,
+      "er": 3,
+      "pitches": 93,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "New York Yankees",
+      "ip": 4.0,
+      "era": 5.73,
+      "k": 4,
+      "bb": 6,
+      "h": 2,
+      "er": 4,
+      "pitches": 84,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.0,
+      "era": 5.06,
+      "k": 6,
+      "bb": 2,
+      "h": 6,
+      "er": 2,
+      "pitches": 95,
+      "strikes": 63
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".258",
+      "obp": ".368",
+      "slg": ".427",
+      "k": 28,
+      "bb": 15,
+      "bf": 106,
+      "k_pct": 26.4,
+      "bb_pct": 14.2
+    },
+    "vs_right": {
+      "avg": ".221",
+      "obp": ".303",
+      "slg": ".515",
+      "k": 17,
+      "bb": 6,
+      "bf": 76,
+      "k_pct": 22.4,
+      "bb_pct": 7.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.7,
+      "k_pct": 33.3,
+      "bb_pct": 13.6,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.858,
+      "k_pct": 17.3,
+      "bb_pct": 6.2,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.749,
+      "k_pct": 22.5,
+      "bb_pct": 15.0,
+      "bf": 40
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 51.9,
+      "rv_per_100": -1.3,
+      "xwoba_against": 0.364,
+      "whiff_pct": 23.8,
+      "put_away_pct": 21.8,
+      "hard_hit_pct": 47.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
