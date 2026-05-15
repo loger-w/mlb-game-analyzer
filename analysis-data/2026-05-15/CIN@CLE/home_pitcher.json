@@ -1,0 +1,193 @@
+{
+  "name": "Tanner Bibee",
+  "mlbam_id": 676440,
+  "age": 27,
+  "birth_date": "1999-03-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.809,
+    "k_bb_pct": 0.732,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 82.3,
+    "era_only_score": 55.6,
+    "gap": 26.7
+  },
+  "season": {
+    "era": 4.17,
+    "whip": 1.35,
+    "k_pct": 23.2,
+    "bb_pct": 9.3,
+    "k_bb_pct": 13.9,
+    "fip": 4.31,
+    "xfip": 3.65,
+    "hr_per_9": 1.39,
+    "gb_pct": 46.0,
+    "ip": 45.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 3.8,
+    "xwoba": 0.31,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 87.3,
+    "max_velo": 96.7,
+    "hard_hit_pct": 29.0,
+    "pitch_types": {
+      "FC": 27.5,
+      "FF": 24.5,
+      "CH": 18.7,
+      "SI": 16.1,
+      "CU": 12.3
+    },
+    "barrel_pct": 7.7,
+    "ev95percent": 46.2,
+    "whiff_pct": 12.9,
+    "csw_pct": 29.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Seattle Mariners",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 7,
+      "bb": 2,
+      "h": 4,
+      "er": 3,
+      "pitches": 78,
+      "strikes": 48
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 4.0,
+      "era": 4.0,
+      "k": 4,
+      "bb": 2,
+      "h": 4,
+      "er": 1,
+      "pitches": 74,
+      "strikes": 48
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Kansas City Royals",
+      "ip": 4.666666666666667,
+      "era": 3.29,
+      "k": 3,
+      "bb": 1,
+      "h": 5,
+      "er": 1,
+      "pitches": 87,
+      "strikes": 58
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".200",
+      "obp": ".290",
+      "slg": ".389",
+      "k": 31,
+      "bb": 11,
+      "bf": 107,
+      "k_pct": 29.0,
+      "bb_pct": 10.3
+    },
+    "vs_right": {
+      "avg": ".300",
+      "obp": ".356",
+      "slg": ".425",
+      "k": 14,
+      "bb": 7,
+      "bf": 87,
+      "k_pct": 16.1,
+      "bb_pct": 8.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.637,
+      "k_pct": 24.2,
+      "bb_pct": 7.7,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.883,
+      "k_pct": 22.2,
+      "bb_pct": 12.2,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.865,
+      "k_pct": 16.2,
+      "bb_pct": 0.0,
+      "bf": 37
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 27.4,
+      "rv_per_100": -1.7,
+      "xwoba_against": 0.397,
+      "whiff_pct": 38.4,
+      "put_away_pct": 16.4,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 24.4,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.362,
+      "whiff_pct": 12.5,
+      "put_away_pct": 6.7,
+      "hard_hit_pct": 62.2
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 19.1,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.171,
+      "whiff_pct": 45.5,
+      "put_away_pct": 30.2,
+      "hard_hit_pct": 12.5
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 16.1,
+      "rv_per_100": -1.4,
+      "xwoba_against": 0.362,
+      "whiff_pct": 23.2,
+      "put_away_pct": 21.9,
+      "hard_hit_pct": 43.5
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 12.1,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.203,
+      "whiff_pct": 23.1,
+      "put_away_pct": 14.6,
+      "hard_hit_pct": 35.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

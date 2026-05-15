@@ -1,0 +1,173 @@
+{
+  "name": "Tyler Mahle",
+  "mlbam_id": 641816,
+  "age": 31,
+  "birth_date": "1994-09-29",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.841,
+    "k_bb_pct": 0.625,
+    "stuff_pct": null,
+    "age_factor": 0.84
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 76.4,
+    "era_only_score": 31.4,
+    "gap": 45.0
+  },
+  "season": {
+    "era": 5.18,
+    "whip": 1.49,
+    "k_pct": 23.1,
+    "bb_pct": 11.0,
+    "k_bb_pct": 12.1,
+    "fip": 5.02,
+    "xfip": 3.58,
+    "hr_per_9": 1.73,
+    "gb_pct": 56.4,
+    "ip": 41.666666666666664,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.43,
+    "xwoba": 0.332,
+    "xba": 0.253
+  },
+  "statcast": {
+    "avg_velo": 89.2,
+    "max_velo": 95.4,
+    "hard_hit_pct": 23.6,
+    "pitch_types": {
+      "FF": 47.6,
+      "FS": 25.0,
+      "FC": 15.6,
+      "SL": 9.4,
+      "SI": 2.4
+    },
+    "barrel_pct": 10.0,
+    "ev95percent": 37.5,
+    "whiff_pct": 8.4,
+    "csw_pct": 28.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "New York Yankees",
+      "ip": 4.0,
+      "era": 4.5,
+      "k": 5,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 80,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "New York Mets",
+      "ip": 5.0,
+      "era": 7.0,
+      "k": 4,
+      "bb": 2,
+      "h": 8,
+      "er": 5,
+      "pitches": 91,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Philadelphia Phillies",
+      "ip": 5.666666666666667,
+      "era": 4.3,
+      "k": 6,
+      "bb": 4,
+      "h": 3,
+      "er": 0,
+      "pitches": 94,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".214",
+      "obp": ".280",
+      "slg": ".345",
+      "k": 26,
+      "bb": 8,
+      "bf": 94,
+      "k_pct": 27.7,
+      "bb_pct": 8.5
+    },
+    "vs_right": {
+      "avg": ".316",
+      "obp": ".409",
+      "slg": ".566",
+      "k": 16,
+      "bb": 12,
+      "bf": 88,
+      "k_pct": 18.2,
+      "bb_pct": 13.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.811,
+      "k_pct": 24.7,
+      "bb_pct": 9.6,
+      "bf": 73
+    },
+    "tto2": {
+      "ops": 0.739,
+      "k_pct": 25.4,
+      "bb_pct": 15.5,
+      "bf": 71
+    },
+    "tto3": {
+      "ops": 0.844,
+      "k_pct": 15.8,
+      "bb_pct": 5.3,
+      "bf": 38
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 47.6,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.378,
+      "whiff_pct": 23.1,
+      "put_away_pct": 26.3,
+      "hard_hit_pct": 46.2
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 25.0,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.27,
+      "whiff_pct": 23.6,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 31.8
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 15.6,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.277,
+      "whiff_pct": 7.0,
+      "put_away_pct": 36.4,
+      "hard_hit_pct": 33.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "name": "Michael Wacha",
+  "mlbam_id": 608379,
+  "age": 34,
+  "birth_date": "1991-07-01",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.494,
+    "k_bb_pct": 0.643,
+    "stuff_pct": null,
+    "age_factor": 0.71
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 59.4,
+    "era_only_score": 87.2,
+    "gap": -27.8
+  },
+  "season": {
+    "era": 2.63,
+    "whip": 0.99,
+    "k_pct": 20.9,
+    "bb_pct": 8.5,
+    "k_bb_pct": 12.4,
+    "fip": 3.72,
+    "xfip": 4.13,
+    "hr_per_9": 0.88,
+    "gb_pct": 37.7,
+    "ip": 51.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 3.65,
+    "xwoba": 0.304,
+    "xba": 0.223
+  },
+  "statcast": {
+    "avg_velo": 87.3,
+    "max_velo": 95.6,
+    "hard_hit_pct": 26.4,
+    "pitch_types": {
+      "FF": 29.7,
+      "CH": 23.6,
+      "FC": 17.6,
+      "SI": 14.1,
+      "CU": 7.6
+    },
+    "barrel_pct": 7.1,
+    "ev95percent": 36.4,
+    "whiff_pct": 9.2,
+    "csw_pct": 26.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Atlanta Braves",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 7,
+      "bb": 1,
+      "h": 3,
+      "er": 0,
+      "pitches": 80,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Cleveland Guardians",
+      "ip": 7.0,
+      "era": 0.69,
+      "k": 3,
+      "bb": 3,
+      "h": 3,
+      "er": 1,
+      "pitches": 102,
+      "strikes": 62
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Chicago White Sox",
+      "ip": 8.0,
+      "era": 0.43,
+      "k": 7,
+      "bb": 1,
+      "h": 4,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 63
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".179",
+      "obp": ".264",
+      "slg": ".295",
+      "k": 26,
+      "bb": 11,
+      "bf": 125,
+      "k_pct": 20.8,
+      "bb_pct": 8.8
+    },
+    "vs_right": {
+      "avg": ".203",
+      "obp": ".267",
+      "slg": ".377",
+      "k": 16,
+      "bb": 6,
+      "bf": 76,
+      "k_pct": 21.1,
+      "bb_pct": 7.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.468,
+      "k_pct": 26.5,
+      "bb_pct": 3.6,
+      "bf": 83
+    },
+    "tto2": {
+      "ops": 0.79,
+      "k_pct": 21.0,
+      "bb_pct": 9.9,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.557,
+      "k_pct": 12.1,
+      "bb_pct": 15.5,
+      "bf": 58
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 29.4,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.34,
+      "whiff_pct": 17.5,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 24.8,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.208,
+      "whiff_pct": 30.0,
+      "put_away_pct": 19.7,
+      "hard_hit_pct": 28.1
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 17.1,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.32,
+      "whiff_pct": 17.5,
+      "put_away_pct": 32.1,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 13.7,
+      "rv_per_100": 0.8,
+      "xwoba_against": 0.374,
+      "whiff_pct": 22.0,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 46.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

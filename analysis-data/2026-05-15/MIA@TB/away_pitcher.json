@@ -1,0 +1,183 @@
+{
+  "name": "Janson Junk",
+  "mlbam_id": 676083,
+  "age": 30,
+  "birth_date": "1996-01-15",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.8,
+    "k_bb_pct": 0.661,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 76.7,
+    "era_only_score": 74.0,
+    "gap": 2.7
+  },
+  "season": {
+    "era": 3.25,
+    "whip": 1.11,
+    "k_pct": 18.2,
+    "bb_pct": 5.5,
+    "k_bb_pct": 12.7,
+    "fip": 3.46,
+    "xfip": 3.67,
+    "hr_per_9": 0.81,
+    "gb_pct": 51.5,
+    "ip": 44.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 3.83,
+    "xwoba": 0.311,
+    "xba": 0.252
+  },
+  "statcast": {
+    "avg_velo": 87.8,
+    "max_velo": 96.9,
+    "hard_hit_pct": 25.2,
+    "pitch_types": {
+      "FF": 32.4,
+      "SL": 23.4,
+      "CH": 19.8,
+      "ST": 14.3,
+      "CU": 8.3
+    },
+    "barrel_pct": 6.6,
+    "ev95percent": 42.6,
+    "whiff_pct": 8.1,
+    "csw_pct": 25.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Chicago White Sox",
+      "ip": 4.333333333333333,
+      "era": 4.15,
+      "k": 5,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 79,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Cincinnati Reds",
+      "ip": 7.333333333333333,
+      "era": 3.09,
+      "k": 3,
+      "bb": 1,
+      "h": 7,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Detroit Tigers",
+      "ip": 5.0,
+      "era": 4.32,
+      "k": 4,
+      "bb": 2,
+      "h": 5,
+      "er": 4,
+      "pitches": 99,
+      "strikes": 64
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".287",
+      "obp": ".336",
+      "slg": ".465",
+      "k": 21,
+      "bb": 7,
+      "bf": 110,
+      "k_pct": 19.1,
+      "bb_pct": 6.4
+    },
+    "vs_right": {
+      "avg": ".149",
+      "obp": ".186",
+      "slg": ".224",
+      "k": 12,
+      "bb": 3,
+      "bf": 71,
+      "k_pct": 16.9,
+      "bb_pct": 4.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.772,
+      "k_pct": 18.5,
+      "bb_pct": 6.2,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.594,
+      "k_pct": 14.1,
+      "bb_pct": 6.4,
+      "bf": 78
+    },
+    "tto3": {
+      "ops": 0.466,
+      "k_pct": 21.6,
+      "bb_pct": 2.7,
+      "bf": 37
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.7,
+      "rv_per_100": -0.1,
+      "xwoba_against": 0.313,
+      "whiff_pct": 13.9,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 42.5
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 23.5,
+      "rv_per_100": 2.3,
+      "xwoba_against": 0.338,
+      "whiff_pct": 18.9,
+      "put_away_pct": 13.7,
+      "hard_hit_pct": 44.4
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 20.6,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.314,
+      "whiff_pct": 41.7,
+      "put_away_pct": 12.8,
+      "hard_hit_pct": 47.4
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 14.3,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.273,
+      "whiff_pct": 13.2,
+      "put_away_pct": 13.3,
+      "hard_hit_pct": 41.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

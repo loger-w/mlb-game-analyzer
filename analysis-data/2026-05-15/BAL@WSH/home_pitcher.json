@@ -1,0 +1,183 @@
+{
+  "name": "Zack Littell",
+  "mlbam_id": 641793,
+  "age": 30,
+  "birth_date": "1995-10-05",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "⚪ Below Average",
+  "tier_components": {
+    "xfip_pct": 0.05,
+    "k_bb_pct": 0.05,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 22.8,
+    "era_only_score": 15.0,
+    "gap": 7.8
+  },
+  "season": {
+    "era": 6.94,
+    "whip": 1.6,
+    "k_pct": 10.1,
+    "bb_pct": 7.7,
+    "k_bb_pct": 2.4,
+    "fip": 8.25,
+    "xfip": 5.21,
+    "hr_per_9": 3.47,
+    "gb_pct": 40.9,
+    "ip": 36.333333333333336,
+    "games": 8,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 7.64,
+    "xwoba": 0.417,
+    "xba": 0.313
+  },
+  "statcast": {
+    "avg_velo": 87.3,
+    "max_velo": 93.7,
+    "hard_hit_pct": 31.2,
+    "pitch_types": {
+      "SL": 27.6,
+      "FF": 24.7,
+      "FS": 20.9,
+      "SI": 16.5,
+      "ST": 10.3
+    },
+    "barrel_pct": 12.3,
+    "ev95percent": 47.1,
+    "whiff_pct": 5.1,
+    "csw_pct": 20.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Philadelphia Phillies",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 1,
+      "bb": 2,
+      "h": 6,
+      "er": 3,
+      "pitches": 75,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "St. Louis Cardinals",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 6,
+      "bb": 3,
+      "h": 4,
+      "er": 1,
+      "pitches": 70,
+      "strikes": 44
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Milwaukee Brewers",
+      "ip": 5.0,
+      "era": 4.2,
+      "k": 3,
+      "bb": 0,
+      "h": 6,
+      "er": 3,
+      "pitches": 71,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".305",
+      "obp": ".363",
+      "slg": ".732",
+      "k": 6,
+      "bb": 8,
+      "bf": 92,
+      "k_pct": 6.5,
+      "bb_pct": 8.7
+    },
+    "vs_right": {
+      "avg": ".294",
+      "obp": ".329",
+      "slg": ".471",
+      "k": 11,
+      "bb": 5,
+      "bf": 76,
+      "k_pct": 14.5,
+      "bb_pct": 6.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.781,
+      "k_pct": 21.6,
+      "bb_pct": 5.3,
+      "bf": 1186
+    },
+    "tto2": {
+      "ops": 0.739,
+      "k_pct": 15.2,
+      "bb_pct": 4.2,
+      "bf": 788
+    },
+    "tto3": {
+      "ops": 0.724,
+      "k_pct": 17.0,
+      "bb_pct": 5.3,
+      "bf": 394
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 27.6,
+      "rv_per_100": 0.3,
+      "xwoba_against": 0.462,
+      "whiff_pct": 18.3,
+      "put_away_pct": 21.1,
+      "hard_hit_pct": 62.1
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 24.7,
+      "rv_per_100": -5.2,
+      "xwoba_against": 0.433,
+      "whiff_pct": 4.3,
+      "put_away_pct": 10.0,
+      "hard_hit_pct": 52.8
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 20.9,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.292,
+      "whiff_pct": 15.8,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 36.1
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 16.5,
+      "rv_per_100": -8.9,
+      "xwoba_against": 0.57,
+      "whiff_pct": 5.6,
+      "put_away_pct": 7.1,
+      "hard_hit_pct": 50.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "team": "Chicago Cubs",
+  "team_id": 112,
+  "active_roster": {
+    "pitchers": [
+      "Ben Brown",
+      "Colin Rea",
+      "Daniel Palencia",
+      "Edward Cabrera",
+      "Ethan Roberts",
+      "Hoby Milner",
+      "Jacob Webb",
+      "Jameson Taillon",
+      "Javier Assad",
+      "Phil Maton",
+      "Ryan Rolison",
+      "Shota Imanaga",
+      "Trent Thornton"
+    ],
+    "pitcher_ids": [
+      676962,
+      607067,
+      694037,
+      665795,
+      681799,
+      571948,
+      657097,
+      592791,
+      665871,
+      664208,
+      669020,
+      684007,
+      663423
+    ],
+    "position_players": [
+      "Alex Bregman",
+      "Carson Kelly",
+      "Dansby Swanson",
+      "Ian Happ",
+      "Matt Shaw",
+      "Michael Busch",
+      "Michael Conforto",
+      "Miguel Amaya",
+      "Moisés Ballesteros",
+      "Nicky Lopez",
+      "Nico Hoerner",
+      "Pete Crow-Armstrong",
+      "Seiya Suzuki"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Ben Brown",
+        "player_id": 676962,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 14,
+          "gs": 2,
+          "ip": 33.7
+        }
+      },
+      {
+        "name": "Colin Rea",
+        "player_id": 607067,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 0,
+          "g": 9,
+          "gs": 6,
+          "ip": 42.3
+        }
+      },
+      {
+        "name": "Daniel Palencia",
+        "player_id": 694037,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 0,
+          "g": 9,
+          "gs": 0,
+          "ip": 8.0
+        }
+      },
+      {
+        "name": "Edward Cabrera",
+        "player_id": 665795,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 46.3
+        }
+      },
+      {
+        "name": "Ethan Roberts",
+        "player_id": 681799,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 0,
+          "ip": 5.7
+        }
+      },
+      {
+        "name": "Hoby Milner",
+        "player_id": 571948,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 20,
+          "gs": 0,
+          "ip": 20.3
+        }
+      },
+      {
+        "name": "Jacob Webb",
+        "player_id": 657097,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 19,
+          "gs": 0,
+          "ip": 18.3
+        }
+      },
+      {
+        "name": "Jameson Taillon",
+        "player_id": 592791,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 45.7
+        }
+      },
+      {
+        "name": "Javier Assad",
+        "player_id": 665871,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 3,
+          "ip": 24.0
+        }
+      },
+      {
+        "name": "Phil Maton",
+        "player_id": 664208,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 13,
+          "gs": 0,
+          "ip": 11.7
+        }
+      },
+      {
+        "name": "Ryan Rolison",
+        "player_id": 669020,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 0,
+          "ip": 10.7
+        }
+      },
+      {
+        "name": "Shota Imanaga",
+        "player_id": 684007,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 54.3
+        }
+      },
+      {
+        "name": "Trent Thornton",
+        "player_id": 663423,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 33,
+          "gs": 0,
+          "ip": 42.3,
+          "from_prior_year": true
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Cade Horton",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 690990,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 23,
+        "gs": 22,
+        "ip": 118.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Caleb Thielbar",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 573204,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 1,
+        "g": 11,
+        "gs": 0,
+        "ip": 8.7
+      }
+    },
+    {
+      "name": "Hunter Harvey",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 640451,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 5,
+        "g": 12,
+        "gs": 0,
+        "ip": 10.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Jordan Wicks",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 696136,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 1,
+        "g": 8,
+        "gs": 0,
+        "ip": 14.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Justin Steele",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 657006,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Matthew Boyd",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 571510,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 5,
+        "gs": 5,
+        "ip": 24.0
+      }
+    },
+    {
+      "name": "Porter Hodge",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 687863,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 8,
+        "g": 36,
+        "gs": 0,
+        "ip": 33.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Riley Martin",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 702303,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 8,
+        "gs": 1,
+        "ip": 8.3
+      }
+    },
+    {
+      "name": "Shelby Miller",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 571946,
+      "core_role": "Closer",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 10,
+        "holds": 9,
+        "g": 48,
+        "gs": 0,
+        "ip": 46.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Tyler Austin",
+      "status": "Injured 60-Day",
+      "position": "First Base",
+      "player_id": 592122
+    }
+  ],
+  "not_active_40man": [
+    "Doug Nikhazy",
+    "Gavin Hollowell",
+    "James Triantos",
+    "Justin Dean",
+    "Kevin Alcántara",
+    "Luis Peralta",
+    "Luke Little",
+    "Pedro Ramírez",
+    "Tyler Ferguson"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 10,
+    "total_40man_not_active": 9
+  }
+}
