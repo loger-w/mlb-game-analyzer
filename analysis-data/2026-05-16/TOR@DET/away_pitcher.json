@@ -1,0 +1,111 @@
+{
+  "name": "Mason Fluharty",
+  "mlbam_id": 689254,
+  "age": 24,
+  "birth_date": "2001-08-13",
+  "pitch_hand": "L",
+  "age_assessment": "📈 成長期",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 27.0,
+    "gap": null
+  },
+  "season": {
+    "era": 5.4,
+    "whip": 1.4,
+    "k_pct": 29.2,
+    "bb_pct": 10.8,
+    "k_bb_pct": 18.4,
+    "fip": 2.83,
+    "xfip": 3.27,
+    "hr_per_9": 0.6,
+    "gb_pct": 40.0,
+    "ip": 15.0,
+    "games": 22,
+    "gs": 1
+  },
+  "expected": {
+    "xera": 1.82,
+    "xwoba": 0.216,
+    "xba": 0.148
+  },
+  "statcast": {
+    "avg_velo": 87.4,
+    "max_velo": 93.5,
+    "hard_hit_pct": 12.6,
+    "pitch_types": {
+      "FC": 52.6,
+      "ST": 41.0,
+      "CH": 6.5
+    },
+    "barrel_pct": 7.7,
+    "ev95percent": 23.1,
+    "whiff_pct": 13.1,
+    "csw_pct": 29.5
+  },
+  "game_log": [
+    {
+      "error": "could not convert string to float: '-.--'"
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".103",
+      "obp": ".206",
+      "slg": ".103",
+      "k": 13,
+      "bb": 4,
+      "bf": 34,
+      "k_pct": 38.2,
+      "bb_pct": 11.8
+    },
+    "vs_right": {
+      "avg": ".407",
+      "obp": ".467",
+      "slg": ".593",
+      "k": 6,
+      "bb": 3,
+      "bf": 31,
+      "k_pct": 19.4,
+      "bb_pct": 9.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.615,
+      "k_pct": 30.9,
+      "bb_pct": 8.8,
+      "bf": 68
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 52.3,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.255,
+      "whiff_pct": 25.3,
+      "put_away_pct": 18.6,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 41.9,
+      "rv_per_100": 1.5,
+      "xwoba_against": 0.175,
+      "whiff_pct": 40.0,
+      "put_away_pct": 25.6,
+      "hard_hit_pct": 15.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

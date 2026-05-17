@@ -1,0 +1,295 @@
+{
+  "team": "Cleveland Guardians",
+  "team_id": 114,
+  "active_roster": {
+    "pitchers": [
+      "Cade Smith",
+      "Codi Heuer",
+      "Colin Holderman",
+      "Erik Sabrowski",
+      "Gavin Williams",
+      "Hunter Gaddis",
+      "Joey Cantillo",
+      "Matt Festa",
+      "Parker Messick",
+      "Peyton Pallette",
+      "Slade Cecconi",
+      "Tanner Bibee",
+      "Tim Herrin"
+    ],
+    "pitcher_ids": [
+      671922,
+      676051,
+      670059,
+      681870,
+      668909,
+      683769,
+      676282,
+      670036,
+      800048,
+      688883,
+      677944,
+      676440,
+      682120
+    ],
+    "position_players": [
+      "Angel Martínez",
+      "Austin Hedges",
+      "Brayan Rocchio",
+      "Chase DeLauter",
+      "Daniel Schneemann",
+      "David Fry",
+      "José Ramírez",
+      "Kyle Manzardo",
+      "Patrick Bailey",
+      "Petey Halpin",
+      "Rhys Hoskins",
+      "Steven Kwan",
+      "Travis Bazzana"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Cade Smith",
+        "player_id": 671922,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 13,
+          "holds": 0,
+          "g": 20,
+          "gs": 0,
+          "ip": 20.7
+        }
+      },
+      {
+        "name": "Codi Heuer",
+        "player_id": 676051,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 0,
+          "gs": 0,
+          "ip": 0.0
+        }
+      },
+      {
+        "name": "Colin Holderman",
+        "player_id": 670059,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 10,
+          "gs": 0,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Erik Sabrowski",
+        "player_id": 681870,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 16,
+          "g": 22,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Gavin Williams",
+        "player_id": 668909,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 55.3
+        }
+      },
+      {
+        "name": "Hunter Gaddis",
+        "player_id": 683769,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 12,
+          "gs": 0,
+          "ip": 9.3
+        }
+      },
+      {
+        "name": "Joey Cantillo",
+        "player_id": 676282,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 45.3
+        }
+      },
+      {
+        "name": "Matt Festa",
+        "player_id": 670036,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 6,
+          "g": 20,
+          "gs": 0,
+          "ip": 20.3
+        }
+      },
+      {
+        "name": "Parker Messick",
+        "player_id": 800048,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 53.7
+        }
+      },
+      {
+        "name": "Peyton Pallette",
+        "player_id": 688883,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 14,
+          "gs": 0,
+          "ip": 18.7
+        }
+      },
+      {
+        "name": "Slade Cecconi",
+        "player_id": 677944,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 45.0
+        }
+      },
+      {
+        "name": "Tanner Bibee",
+        "player_id": 676440,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 52.0
+        }
+      },
+      {
+        "name": "Tim Herrin",
+        "player_id": 682120,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 18,
+          "gs": 0,
+          "ip": 14.3
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Andrew Walters",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 689958,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Gabriel Arias",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 672356
+    },
+    {
+      "name": "Shawn Armstrong",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 542888,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 3,
+        "g": 12,
+        "gs": 0,
+        "ip": 10.7
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Angel Genao",
+    "Austin Peterson",
+    "Bo Naylor",
+    "CJ Kayfus",
+    "Daniel Espino",
+    "Franco Aleman",
+    "George Valera",
+    "Juan Brito",
+    "Kahlil Watson",
+    "Logan Allen",
+    "Yorman Gómez"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 3,
+    "total_40man_not_active": 11
+  }
+}

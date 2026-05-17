@@ -1,0 +1,520 @@
+{
+  "team": "HOU",
+  "team_id": 117,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟠 Strong",
+  "avg_ops": 0.756,
+  "avg_ops_vs_lhp": 0.678,
+  "avg_ops_vs_rhp": 0.769,
+  "avg_xwoba": 0.32,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.296,
+  "avg_k_pct": 20.3,
+  "avg_bb_pct": 8.2,
+  "over_under_lean": 0,
+  "recent_heat": "🥶 Cold",
+  "last7_babip": 0.23,
+  "chain": {
+    "obp_top3": 0.367,
+    "slg_mid": 0.352
+  },
+  "lineup_source": "projected",
+  "lineup_source_detail": null,
+  "lineup": [
+    {
+      "mlbam_id": 670541,
+      "pa": 202,
+      "avg": 0.321,
+      "obp": 0.431,
+      "slg": 0.637,
+      "ops": 1.068,
+      "iso": 0.316,
+      "babip": 0.323,
+      "k_pct": 15.3,
+      "bb_pct": 14.4,
+      "name": "Yordan Alvarez",
+      "position": "DH",
+      "batting_order": null,
+      "xwoba": 0.5,
+      "xba": 0.361,
+      "xslg": 0.742,
+      "ev95pct": 52.2,
+      "barrel_pct": 17.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".322",
+          "obp": ".388",
+          "slg": ".661",
+          "ops": "1.049",
+          "pa": 67
+        },
+        "vs_rhp": {
+          "avg": ".321",
+          "obp": ".452",
+          "slg": ".624",
+          "ops": "1.076",
+          "pa": 135
+        }
+      },
+      "last_7": {
+        "avg": ".304",
+        "obp": ".467",
+        "slg": ".522",
+        "ops": ".989",
+        "babip": ".500",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".667",
+        "obp": ".667",
+        "slg": "1.667",
+        "h": 2,
+        "hr": 1,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 572233,
+      "pa": 187,
+      "avg": 0.265,
+      "obp": 0.342,
+      "slg": 0.506,
+      "ops": 0.848,
+      "iso": 0.241,
+      "babip": 0.281,
+      "k_pct": 19.3,
+      "bb_pct": 9.6,
+      "name": "Christian Walker",
+      "position": "1B",
+      "batting_order": null,
+      "xwoba": 0.336,
+      "xba": 0.245,
+      "xslg": 0.451,
+      "ev95pct": 45.8,
+      "barrel_pct": 12.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".200",
+          "obp": ".341",
+          "slg": ".429",
+          "ops": ".770",
+          "pa": 44
+        },
+        "vs_rhp": {
+          "avg": ".282",
+          "obp": ".343",
+          "slg": ".527",
+          "ops": ".870",
+          "pa": 143
+        }
+      },
+      "last_7": {
+        "avg": ".083",
+        "obp": ".185",
+        "slg": ".250",
+        "ops": ".435",
+        "babip": ".063",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 11,
+        "avg": ".091",
+        "obp": ".091",
+        "slg": ".364",
+        "h": 1,
+        "hr": 1,
+        "so": 6,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 514888,
+      "pa": 181,
+      "avg": 0.245,
+      "obp": 0.328,
+      "slg": 0.365,
+      "ops": 0.693,
+      "iso": 0.12,
+      "babip": 0.293,
+      "k_pct": 18.8,
+      "bb_pct": 10.5,
+      "name": "Jose Altuve",
+      "position": "2B",
+      "batting_order": null,
+      "xwoba": 0.316,
+      "xba": 0.253,
+      "xslg": 0.373,
+      "ev95pct": 37.0,
+      "barrel_pct": 6.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".244",
+          "obp": ".358",
+          "slg": ".289",
+          "ops": ".647",
+          "pa": 53
+        },
+        "vs_rhp": {
+          "avg": ".246",
+          "obp": ".315",
+          "slg": ".395",
+          "ops": ".710",
+          "pa": 128
+        }
+      },
+      "last_7": {
+        "avg": ".269",
+        "obp": ".333",
+        "slg": ".308",
+        "ops": ".641",
+        "babip": ".304",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 13,
+        "avg": ".231",
+        "obp": ".231",
+        "slg": ".692",
+        "h": 3,
+        "hr": 2,
+        "so": 4,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 701358,
+      "pa": 174,
+      "avg": 0.199,
+      "obp": 0.289,
+      "slg": 0.318,
+      "ops": 0.607,
+      "iso": 0.119,
+      "babip": 0.263,
+      "k_pct": 28.7,
+      "bb_pct": 10.3,
+      "name": "Cam Smith",
+      "position": "RF",
+      "batting_order": null,
+      "xwoba": 0.337,
+      "xba": 0.248,
+      "xslg": 0.439,
+      "ev95pct": 43.7,
+      "barrel_pct": 13.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".175",
+          "obp": ".244",
+          "slg": ".275",
+          "ops": ".519",
+          "pa": 45
+        },
+        "vs_rhp": {
+          "avg": ".207",
+          "obp": ".299",
+          "slg": ".333",
+          "ops": ".632",
+          "pa": 128
+        }
+      },
+      "last_7": {
+        "avg": ".050",
+        "obp": ".174",
+        "slg": ".050",
+        "ops": ".224",
+        "babip": ".091",
+        "pa": 23
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 670623,
+      "pa": 169,
+      "avg": 0.257,
+      "obp": 0.349,
+      "slg": 0.385,
+      "ops": 0.734,
+      "iso": 0.128,
+      "babip": 0.296,
+      "k_pct": 17.2,
+      "bb_pct": 8.9,
+      "name": "Isaac Paredes",
+      "position": "3B",
+      "batting_order": null,
+      "xwoba": 0.308,
+      "xba": 0.237,
+      "xslg": 0.346,
+      "ev95pct": 26.1,
+      "barrel_pct": 4.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".293",
+          "obp": ".383",
+          "slg": ".415",
+          "ops": ".798",
+          "pa": 47
+        },
+        "vs_rhp": {
+          "avg": ".243",
+          "obp": ".336",
+          "slg": ".374",
+          "ops": ".710",
+          "pa": 122
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".276",
+        "slg": ".333",
+        "ops": ".609",
+        "babip": ".250",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 7,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 694728,
+      "pa": 116,
+      "avg": 0.208,
+      "obp": 0.261,
+      "slg": 0.377,
+      "ops": 0.638,
+      "iso": 0.169,
+      "babip": 0.277,
+      "k_pct": 32.8,
+      "bb_pct": 6.9,
+      "name": "Brice Matthews",
+      "position": "CF",
+      "batting_order": null,
+      "xwoba": 0.271,
+      "xba": 0.193,
+      "xslg": 0.36,
+      "ev95pct": 38.6,
+      "barrel_pct": 8.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".184",
+          "obp": ".225",
+          "slg": ".421",
+          "ops": ".646",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".221",
+          "obp": ".280",
+          "slg": ".353",
+          "ops": ".633",
+          "pa": 76
+        }
+      },
+      "last_7": {
+        "avg": ".148",
+        "obp": ".148",
+        "slg": ".148",
+        "ops": ".296",
+        "babip": ".190",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 543877,
+      "pa": 87,
+      "avg": 0.253,
+      "obp": 0.306,
+      "slg": 0.418,
+      "ops": 0.724,
+      "iso": 0.165,
+      "babip": 0.283,
+      "k_pct": 18.4,
+      "bb_pct": 6.9,
+      "name": "Christian Vázquez",
+      "position": "C",
+      "batting_order": null,
+      "xwoba": 0.24,
+      "xba": 0.202,
+      "xslg": 0.273,
+      "ev95pct": 27.7,
+      "barrel_pct": 3.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".316",
+          "obp": ".316",
+          "slg": ".526",
+          "ops": ".842",
+          "pa": 20
+        },
+        "vs_rhp": {
+          "avg": ".233",
+          "obp": ".303",
+          "slg": ".383",
+          "ops": ".686",
+          "pa": 67
+        }
+      },
+      "last_7": {
+        "avg": ".105",
+        "obp": ".150",
+        "slg": ".263",
+        "ops": ".413",
+        "babip": ".077",
+        "pa": 21
+      },
+      "bvp": {
+        "pa": 7,
+        "avg": ".286",
+        "obp": ".286",
+        "slg": ".429",
+        "h": 2,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 669699,
+      "pa": 42,
+      "avg": 0.366,
+      "obp": 0.366,
+      "slg": 0.61,
+      "ops": 0.976,
+      "iso": 0.244,
+      "babip": 0.375,
+      "k_pct": 14.3,
+      "bb_pct": 0.0,
+      "name": "Braden Shewmake",
+      "position": "SS",
+      "batting_order": null,
+      "xwoba": 0.302,
+      "xba": 0.269,
+      "xslg": 0.439,
+      "ev95pct": 36.1,
+      "barrel_pct": 5.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".167",
+          "slg": ".167",
+          "ops": ".334",
+          "pa": 6
+        },
+        "vs_rhp": {
+          "avg": ".400",
+          "obp": ".400",
+          "slg": ".686",
+          "ops": "1.086",
+          "pa": 36
+        }
+      },
+      "last_7": {
+        "avg": ".400",
+        "obp": ".400",
+        "slg": ".560",
+        "ops": ".960",
+        "babip": ".429",
+        "pa": 25
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 669397,
+      "pa": 34,
+      "avg": 0.219,
+      "obp": 0.265,
+      "slg": 0.25,
+      "ops": 0.515,
+      "iso": 0.031,
+      "babip": 0.269,
+      "k_pct": 17.6,
+      "bb_pct": 5.9,
+      "name": "Nick Allen",
+      "position": "SS",
+      "batting_order": null,
+      "xwoba": 0.269,
+      "xba": 0.256,
+      "xslg": 0.295,
+      "ev95pct": 34.6,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".214",
+          "obp": ".214",
+          "slg": ".286",
+          "ops": ".500",
+          "pa": 14
+        },
+        "vs_rhp": {
+          "avg": ".222",
+          "obp": ".300",
+          "slg": ".222",
+          "ops": ".522",
+          "pa": 20
+        }
+      },
+      "last_7": {
+        "avg": ".154",
+        "obp": ".154",
+        "slg": ".154",
+        "ops": ".308",
+        "babip": ".167",
+        "pa": 13
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

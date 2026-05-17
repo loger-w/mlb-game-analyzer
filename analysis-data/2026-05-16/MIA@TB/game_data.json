@@ -1,0 +1,1450 @@
+{
+  "game": {
+    "gamePk": 822981,
+    "date": "2026-05-16T20:10:00Z",
+    "officialDate": "2026-05-16",
+    "status": "Preview",
+    "venue": "Tropicana Field",
+    "home": {
+      "team": "Tampa Bay Rays",
+      "team_id": 139,
+      "probable_pitcher": "Nick Martinez",
+      "probable_pitcher_id": 607259
+    },
+    "away": {
+      "team": "Miami Marlins",
+      "team_id": 146,
+      "probable_pitcher": "Sandy Alcantara",
+      "probable_pitcher_id": 645261
+    }
+  },
+  "_games_on_date_for_team": 1,
+  "home_recent": {
+    "record": "7-3",
+    "wins": 7,
+    "losses": 3,
+    "rs_per_game": 4.4,
+    "ra_per_game": 2.8,
+    "run_diff": 16,
+    "streak": 1,
+    "games": [
+      {
+        "date": "2026-05-15",
+        "is_home": true,
+        "opponent": "Miami Marlins",
+        "team_score": 7,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-13",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 3,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-12",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 7,
+        "opp_score": 6,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-11",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 8,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-10",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 4,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-09",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 0,
+        "opp_score": 0,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-08",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 0,
+        "opp_score": 2,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-07",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 8,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-06",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 3,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-05",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      }
+    ]
+  },
+  "away_recent": {
+    "record": "4-6",
+    "wins": 4,
+    "losses": 6,
+    "rs_per_game": 4.2,
+    "ra_per_game": 5.5,
+    "run_diff": -13,
+    "streak": -2,
+    "games": [
+      {
+        "date": "2026-05-15",
+        "is_home": false,
+        "opponent": "Tampa Bay Rays",
+        "team_score": 2,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-14",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 1,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-13",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 9,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-12",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 0,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-10",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 5,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-09",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 8,
+        "opp_score": 7,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-08",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 2,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-07",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-06",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 4,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-05",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 7,
+        "opp_score": 9,
+        "is_winner": false
+      }
+    ]
+  },
+  "home_recent_30": {
+    "record": "22-8",
+    "wins": 22,
+    "losses": 8,
+    "rs_per_game": 4.37,
+    "ra_per_game": 3.1,
+    "run_diff": 38,
+    "streak": 1,
+    "games": [
+      {
+        "date": "2026-05-15",
+        "is_home": true,
+        "opponent": "Miami Marlins",
+        "team_score": 7,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-13",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 3,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-12",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 7,
+        "opp_score": 6,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-11",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 8,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-10",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 4,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-09",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 0,
+        "opp_score": 0,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-08",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 0,
+        "opp_score": 2,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-07",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 8,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-06",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 3,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-05",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-04",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 5,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-03",
+        "is_home": true,
+        "opponent": "San Francisco Giants",
+        "team_score": 2,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-02",
+        "is_home": true,
+        "opponent": "San Francisco Giants",
+        "team_score": 5,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-01",
+        "is_home": true,
+        "opponent": "San Francisco Giants",
+        "team_score": 3,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-29",
+        "is_home": false,
+        "opponent": "Cleveland Guardians",
+        "team_score": 1,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-28",
+        "is_home": false,
+        "opponent": "Cleveland Guardians",
+        "team_score": 1,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-27",
+        "is_home": false,
+        "opponent": "Cleveland Guardians",
+        "team_score": 3,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-26",
+        "is_home": true,
+        "opponent": "Minnesota Twins",
+        "team_score": 4,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-25",
+        "is_home": true,
+        "opponent": "Minnesota Twins",
+        "team_score": 6,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-24",
+        "is_home": true,
+        "opponent": "Minnesota Twins",
+        "team_score": 6,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-22",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 6,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-21",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 6,
+        "opp_score": 12,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-20",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 1,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-19",
+        "is_home": false,
+        "opponent": "Pittsburgh Pirates",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-18",
+        "is_home": false,
+        "opponent": "Pittsburgh Pirates",
+        "team_score": 8,
+        "opp_score": 7,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-17",
+        "is_home": false,
+        "opponent": "Pittsburgh Pirates",
+        "team_score": 1,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-16",
+        "is_home": false,
+        "opponent": "Chicago White Sox",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-15",
+        "is_home": false,
+        "opponent": "Chicago White Sox",
+        "team_score": 8,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-14",
+        "is_home": false,
+        "opponent": "Chicago White Sox",
+        "team_score": 8,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-12",
+        "is_home": true,
+        "opponent": "New York Yankees",
+        "team_score": 5,
+        "opp_score": 4,
+        "is_winner": true
+      }
+    ]
+  },
+  "away_recent_30": {
+    "record": "12-18",
+    "wins": 12,
+    "losses": 18,
+    "rs_per_game": 4.0,
+    "ra_per_game": 4.7,
+    "run_diff": -21,
+    "streak": -2,
+    "games": [
+      {
+        "date": "2026-05-15",
+        "is_home": false,
+        "opponent": "Tampa Bay Rays",
+        "team_score": 2,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-14",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 1,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-13",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 9,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-12",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 0,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-10",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 5,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-09",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 8,
+        "opp_score": 7,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-08",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 2,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-07",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-06",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 4,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-05",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 7,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-04",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 0,
+        "opp_score": 1,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-03",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 2,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-02",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 4,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-01",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 5,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-29",
+        "is_home": false,
+        "opponent": "Los Angeles Dodgers",
+        "team_score": 2,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-29",
+        "is_home": false,
+        "opponent": "Los Angeles Dodgers",
+        "team_score": 3,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-28",
+        "is_home": false,
+        "opponent": "Los Angeles Dodgers",
+        "team_score": 4,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-26",
+        "is_home": false,
+        "opponent": "San Francisco Giants",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-25",
+        "is_home": false,
+        "opponent": "San Francisco Giants",
+        "team_score": 9,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-25",
+        "is_home": false,
+        "opponent": "San Francisco Giants",
+        "team_score": 2,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-22",
+        "is_home": true,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 4,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-21",
+        "is_home": true,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 3,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-20",
+        "is_home": true,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-19",
+        "is_home": true,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-18",
+        "is_home": true,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 2,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-17",
+        "is_home": true,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 5,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-15",
+        "is_home": false,
+        "opponent": "Atlanta Braves",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-14",
+        "is_home": false,
+        "opponent": "Atlanta Braves",
+        "team_score": 5,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-13",
+        "is_home": false,
+        "opponent": "Atlanta Braves",
+        "team_score": 10,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-12",
+        "is_home": false,
+        "opponent": "Detroit Tigers",
+        "team_score": 2,
+        "opp_score": 8,
+        "is_winner": false
+      }
+    ]
+  },
+  "home_season": {
+    "record": "29-15",
+    "wins": 29,
+    "losses": 15,
+    "rs_per_game": 4.45,
+    "ra_per_game": 3.84,
+    "run_diff": 27,
+    "streak": 1,
+    "games": [
+      {
+        "date": "2026-05-15",
+        "is_home": true,
+        "opponent": "Miami Marlins",
+        "team_score": 7,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-13",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 3,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-12",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 7,
+        "opp_score": 6,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-11",
+        "is_home": false,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 8,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-10",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 4,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-09",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 0,
+        "opp_score": 0,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-08",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 0,
+        "opp_score": 2,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-07",
+        "is_home": false,
+        "opponent": "Boston Red Sox",
+        "team_score": 8,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-06",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 3,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-05",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-04",
+        "is_home": true,
+        "opponent": "Toronto Blue Jays",
+        "team_score": 5,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-03",
+        "is_home": true,
+        "opponent": "San Francisco Giants",
+        "team_score": 2,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-02",
+        "is_home": true,
+        "opponent": "San Francisco Giants",
+        "team_score": 5,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-01",
+        "is_home": true,
+        "opponent": "San Francisco Giants",
+        "team_score": 3,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-29",
+        "is_home": false,
+        "opponent": "Cleveland Guardians",
+        "team_score": 1,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-28",
+        "is_home": false,
+        "opponent": "Cleveland Guardians",
+        "team_score": 1,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-27",
+        "is_home": false,
+        "opponent": "Cleveland Guardians",
+        "team_score": 3,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-26",
+        "is_home": true,
+        "opponent": "Minnesota Twins",
+        "team_score": 4,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-25",
+        "is_home": true,
+        "opponent": "Minnesota Twins",
+        "team_score": 6,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-24",
+        "is_home": true,
+        "opponent": "Minnesota Twins",
+        "team_score": 6,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-22",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 6,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-21",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 6,
+        "opp_score": 12,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-20",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 1,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-19",
+        "is_home": false,
+        "opponent": "Pittsburgh Pirates",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-18",
+        "is_home": false,
+        "opponent": "Pittsburgh Pirates",
+        "team_score": 8,
+        "opp_score": 7,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-17",
+        "is_home": false,
+        "opponent": "Pittsburgh Pirates",
+        "team_score": 1,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-16",
+        "is_home": false,
+        "opponent": "Chicago White Sox",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-15",
+        "is_home": false,
+        "opponent": "Chicago White Sox",
+        "team_score": 8,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-14",
+        "is_home": false,
+        "opponent": "Chicago White Sox",
+        "team_score": 8,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-12",
+        "is_home": true,
+        "opponent": "New York Yankees",
+        "team_score": 5,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-11",
+        "is_home": true,
+        "opponent": "New York Yankees",
+        "team_score": 5,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-10",
+        "is_home": true,
+        "opponent": "New York Yankees",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-08",
+        "is_home": true,
+        "opponent": "Chicago Cubs",
+        "team_score": 2,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-07",
+        "is_home": true,
+        "opponent": "Chicago Cubs",
+        "team_score": 2,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-06",
+        "is_home": true,
+        "opponent": "Chicago Cubs",
+        "team_score": 6,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-05",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 4,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-04",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 7,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-03",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 4,
+        "opp_score": 10,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-01",
+        "is_home": false,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 2,
+        "opp_score": 8,
+        "is_winner": false
+      },
+      {
+        "date": "2026-03-31",
+        "is_home": false,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 2,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-03-30",
+        "is_home": false,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 3,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-03-29",
+        "is_home": false,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 11,
+        "opp_score": 7,
+        "is_winner": true
+      },
+      {
+        "date": "2026-03-28",
+        "is_home": false,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 5,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-03-26",
+        "is_home": false,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 7,
+        "opp_score": 9,
+        "is_winner": false
+      }
+    ]
+  },
+  "away_season": {
+    "record": "20-25",
+    "wins": 20,
+    "losses": 25,
+    "rs_per_game": 4.18,
+    "ra_per_game": 4.51,
+    "run_diff": -15,
+    "streak": -2,
+    "games": [
+      {
+        "date": "2026-05-15",
+        "is_home": false,
+        "opponent": "Tampa Bay Rays",
+        "team_score": 2,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-14",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 1,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-13",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 9,
+        "opp_score": 5,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-12",
+        "is_home": false,
+        "opponent": "Minnesota Twins",
+        "team_score": 0,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-10",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 5,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-09",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 8,
+        "opp_score": 7,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-08",
+        "is_home": true,
+        "opponent": "Washington Nationals",
+        "team_score": 2,
+        "opp_score": 3,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-07",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-06",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 4,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-05",
+        "is_home": true,
+        "opponent": "Baltimore Orioles",
+        "team_score": 7,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-04",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 0,
+        "opp_score": 1,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-03",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 2,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-05-02",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 4,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-05-01",
+        "is_home": true,
+        "opponent": "Philadelphia Phillies",
+        "team_score": 5,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-29",
+        "is_home": false,
+        "opponent": "Los Angeles Dodgers",
+        "team_score": 2,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-29",
+        "is_home": false,
+        "opponent": "Los Angeles Dodgers",
+        "team_score": 3,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-28",
+        "is_home": false,
+        "opponent": "Los Angeles Dodgers",
+        "team_score": 4,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-26",
+        "is_home": false,
+        "opponent": "San Francisco Giants",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-25",
+        "is_home": false,
+        "opponent": "San Francisco Giants",
+        "team_score": 9,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-25",
+        "is_home": false,
+        "opponent": "San Francisco Giants",
+        "team_score": 2,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-22",
+        "is_home": true,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 4,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-21",
+        "is_home": true,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 3,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-20",
+        "is_home": true,
+        "opponent": "St. Louis Cardinals",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-19",
+        "is_home": true,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 5,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-18",
+        "is_home": true,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 2,
+        "opp_score": 5,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-17",
+        "is_home": true,
+        "opponent": "Milwaukee Brewers",
+        "team_score": 5,
+        "opp_score": 7,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-15",
+        "is_home": false,
+        "opponent": "Atlanta Braves",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-14",
+        "is_home": false,
+        "opponent": "Atlanta Braves",
+        "team_score": 5,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-13",
+        "is_home": false,
+        "opponent": "Atlanta Braves",
+        "team_score": 10,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-12",
+        "is_home": false,
+        "opponent": "Detroit Tigers",
+        "team_score": 2,
+        "opp_score": 8,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-11",
+        "is_home": false,
+        "opponent": "Detroit Tigers",
+        "team_score": 1,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-10",
+        "is_home": false,
+        "opponent": "Detroit Tigers",
+        "team_score": 0,
+        "opp_score": 2,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-09",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 8,
+        "opp_score": 1,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-08",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 7,
+        "opp_score": 4,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-07",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 3,
+        "opp_score": 6,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-06",
+        "is_home": true,
+        "opponent": "Cincinnati Reds",
+        "team_score": 0,
+        "opp_score": 2,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-05",
+        "is_home": false,
+        "opponent": "New York Yankees",
+        "team_score": 7,
+        "opp_score": 6,
+        "is_winner": true
+      },
+      {
+        "date": "2026-04-04",
+        "is_home": false,
+        "opponent": "New York Yankees",
+        "team_score": 7,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-03",
+        "is_home": false,
+        "opponent": "New York Yankees",
+        "team_score": 2,
+        "opp_score": 8,
+        "is_winner": false
+      },
+      {
+        "date": "2026-04-01",
+        "is_home": true,
+        "opponent": "Chicago White Sox",
+        "team_score": 10,
+        "opp_score": 0,
+        "is_winner": true
+      },
+      {
+        "date": "2026-03-31",
+        "is_home": true,
+        "opponent": "Chicago White Sox",
+        "team_score": 9,
+        "opp_score": 2,
+        "is_winner": true
+      },
+      {
+        "date": "2026-03-30",
+        "is_home": true,
+        "opponent": "Chicago White Sox",
+        "team_score": 4,
+        "opp_score": 9,
+        "is_winner": false
+      },
+      {
+        "date": "2026-03-29",
+        "is_home": true,
+        "opponent": "Colorado Rockies",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-03-28",
+        "is_home": true,
+        "opponent": "Colorado Rockies",
+        "team_score": 4,
+        "opp_score": 3,
+        "is_winner": true
+      },
+      {
+        "date": "2026-03-27",
+        "is_home": true,
+        "opponent": "Colorado Rockies",
+        "team_score": 2,
+        "opp_score": 1,
+        "is_winner": true
+      }
+    ]
+  },
+  "home_season_games_count": 44,
+  "away_season_games_count": 45,
+  "series_prev": {
+    "date": "2026-05-15",
+    "home": "Tampa Bay Rays",
+    "away": "Miami Marlins",
+    "home_score": 7,
+    "away_score": 2,
+    "winner": "Tampa Bay Rays"
+  }
+}

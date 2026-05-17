@@ -1,0 +1,183 @@
+{
+  "name": "Logan Gilbert",
+  "mlbam_id": 669302,
+  "age": 29,
+  "birth_date": "1997-05-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 94.4,
+    "era_only_score": 63.4,
+    "gap": 31.0
+  },
+  "season": {
+    "era": 3.78,
+    "whip": 1.16,
+    "k_pct": 25.5,
+    "bb_pct": 4.9,
+    "k_bb_pct": 20.6,
+    "fip": 3.7,
+    "xfip": 2.89,
+    "hr_per_9": 1.44,
+    "gb_pct": 46.2,
+    "ip": 50.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 4.35,
+    "xwoba": 0.33,
+    "xba": 0.264
+  },
+  "statcast": {
+    "avg_velo": 88.2,
+    "max_velo": 98.2,
+    "hard_hit_pct": 30.0,
+    "pitch_types": {
+      "FF": 31.4,
+      "SL": 20.9,
+      "FS": 13.9,
+      "FC": 12.6,
+      "CU": 12.0
+    },
+    "barrel_pct": 10.8,
+    "ev95percent": 48.9,
+    "whiff_pct": 12.6,
+    "csw_pct": 29.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Cleveland Guardians",
+      "ip": 5.333333333333333,
+      "era": 5.06,
+      "k": 7,
+      "bb": 0,
+      "h": 5,
+      "er": 3,
+      "pitches": 86,
+      "strikes": 59
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "New York Yankees",
+      "ip": 5.333333333333333,
+      "era": 6.75,
+      "k": 6,
+      "bb": 3,
+      "h": 7,
+      "er": 5,
+      "pitches": 95,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Texas Rangers",
+      "ip": 6.0,
+      "era": 5.4,
+      "k": 5,
+      "bb": 0,
+      "h": 6,
+      "er": 2,
+      "pitches": 96,
+      "strikes": 65
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".236",
+      "obp": ".305",
+      "slg": ".443",
+      "k": 35,
+      "bb": 9,
+      "bf": 118,
+      "k_pct": 29.7,
+      "bb_pct": 7.6
+    },
+    "vs_right": {
+      "avg": ".274",
+      "obp": ".291",
+      "slg": ".476",
+      "k": 17,
+      "bb": 1,
+      "bf": 86,
+      "k_pct": 19.8,
+      "bb_pct": 1.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.733,
+      "k_pct": 33.3,
+      "bb_pct": 1.2,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.575,
+      "k_pct": 17.3,
+      "bb_pct": 6.2,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 1.109,
+      "k_pct": 25.6,
+      "bb_pct": 7.0,
+      "bf": 43
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.4,
+      "rv_per_100": 0.3,
+      "xwoba_against": 0.404,
+      "whiff_pct": 20.3,
+      "put_away_pct": 13.2,
+      "hard_hit_pct": 58.3
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 20.9,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.376,
+      "whiff_pct": 38.5,
+      "put_away_pct": 25.5,
+      "hard_hit_pct": 61.8
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 13.9,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.214,
+      "whiff_pct": 39.3,
+      "put_away_pct": 18.6,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 9.0,
+      "rv_per_100": 3.0,
+      "xwoba_against": 0.26,
+      "whiff_pct": 34.4,
+      "put_away_pct": 25.7,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

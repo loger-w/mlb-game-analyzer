@@ -1,0 +1,193 @@
+{
+  "name": "Jameson Taillon",
+  "mlbam_id": 592791,
+  "age": 34,
+  "birth_date": "1991-11-18",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.574,
+    "k_bb_pct": 0.673,
+    "stuff_pct": null,
+    "age_factor": 0.71
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 63.8,
+    "era_only_score": 60.2,
+    "gap": 3.6
+  },
+  "season": {
+    "era": 3.94,
+    "whip": 1.14,
+    "k_pct": 21.5,
+    "bb_pct": 8.6,
+    "k_bb_pct": 12.9,
+    "fip": 5.53,
+    "xfip": 4.02,
+    "hr_per_9": 2.17,
+    "gb_pct": 38.0,
+    "ip": 45.666666666666664,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.21,
+    "xwoba": 0.325,
+    "xba": 0.227
+  },
+  "statcast": {
+    "avg_velo": 86.0,
+    "max_velo": 93.3,
+    "hard_hit_pct": 21.3,
+    "pitch_types": {
+      "FF": 26.3,
+      "FC": 23.1,
+      "ST": 14.5,
+      "CH": 14.4,
+      "CU": 11.0
+    },
+    "barrel_pct": 13.3,
+    "ev95percent": 35.9,
+    "whiff_pct": 10.6,
+    "csw_pct": 27.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Los Angeles Angels",
+      "ip": 4.666666666666667,
+      "era": 0.0,
+      "k": 3,
+      "bb": 4,
+      "h": 2,
+      "er": 0,
+      "pitches": 85,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Tampa Bay Rays",
+      "ip": 6.0,
+      "era": 2.53,
+      "k": 4,
+      "bb": 0,
+      "h": 7,
+      "er": 3,
+      "pitches": 83,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 6.0,
+      "era": 4.86,
+      "k": 10,
+      "bb": 2,
+      "h": 6,
+      "er": 6,
+      "pitches": 102,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".203",
+      "obp": ".300",
+      "slg": ".468",
+      "k": 20,
+      "bb": 11,
+      "bf": 90,
+      "k_pct": 22.2,
+      "bb_pct": 12.2
+    },
+    "vs_right": {
+      "avg": ".225",
+      "obp": ".281",
+      "slg": ".427",
+      "k": 20,
+      "bb": 5,
+      "bf": 96,
+      "k_pct": 20.8,
+      "bb_pct": 5.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.789,
+      "k_pct": 24.7,
+      "bb_pct": 11.1,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.791,
+      "k_pct": 21.0,
+      "bb_pct": 7.4,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.609,
+      "k_pct": 20.5,
+      "bb_pct": 4.5,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 26.6,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.385,
+      "whiff_pct": 23.5,
+      "put_away_pct": 17.4,
+      "hard_hit_pct": 37.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 23.2,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.355,
+      "whiff_pct": 27.3,
+      "put_away_pct": 22.6,
+      "hard_hit_pct": 55.6
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 15.1,
+      "rv_per_100": 2.2,
+      "xwoba_against": 0.135,
+      "whiff_pct": 27.5,
+      "put_away_pct": 31.1,
+      "hard_hit_pct": 19.2
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 14.2,
+      "rv_per_100": -3.3,
+      "xwoba_against": 0.346,
+      "whiff_pct": 32.1,
+      "put_away_pct": 14.3,
+      "hard_hit_pct": 21.7
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 10.0,
+      "rv_per_100": -2.6,
+      "xwoba_against": 0.418,
+      "whiff_pct": 12.5,
+      "put_away_pct": 14.3,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
