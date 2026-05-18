@@ -1,0 +1,350 @@
+{
+  "team": "Seattle Mariners",
+  "team_id": 136,
+  "active_roster": {
+    "pitchers": [
+      "Alex Hoppe",
+      "Andrés Muñoz",
+      "Bryan Woo",
+      "Bryce Miller",
+      "Cooper Criswell",
+      "Domingo Gonzalez",
+      "Eduard Bazardo",
+      "Emerson Hancock",
+      "George Kirby",
+      "José A. Ferrer",
+      "Logan Gilbert",
+      "Luis Castillo",
+      "Nick Davila"
+    ],
+    "pitcher_ids": [
+      695380,
+      662253,
+      693433,
+      682243,
+      681867,
+      682445,
+      660825,
+      676106,
+      669923,
+      678606,
+      669302,
+      622491,
+      689546
+    ],
+    "position_players": [
+      "Brendan Donovan",
+      "Cole Young",
+      "Connor Joe",
+      "Dominic Canzone",
+      "J.P. Crawford",
+      "Jhonny Pereda",
+      "Josh Naylor",
+      "Julio Rodríguez",
+      "Leo Rivas",
+      "Luke Raley",
+      "Mitch Garver",
+      "Randy Arozarena",
+      "Rob Refsnyder"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Alex Hoppe",
+        "player_id": 695380,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 0,
+          "ip": 7.7
+        }
+      },
+      {
+        "name": "Andrés Muñoz",
+        "player_id": 662253,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 8,
+          "holds": 0,
+          "g": 18,
+          "gs": 0,
+          "ip": 17.0
+        }
+      },
+      {
+        "name": "Bryan Woo",
+        "player_id": 693433,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 53.0
+        }
+      },
+      {
+        "name": "Bryce Miller",
+        "player_id": 682243,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 18,
+          "gs": 18,
+          "ip": 90.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Cooper Criswell",
+        "player_id": 681867,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 16,
+          "gs": 0,
+          "ip": 19.0
+        }
+      },
+      {
+        "name": "Domingo Gonzalez",
+        "player_id": 682445,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 0,
+          "ip": 4.3
+        }
+      },
+      {
+        "name": "Eduard Bazardo",
+        "player_id": 660825,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 7,
+          "g": 22,
+          "gs": 0,
+          "ip": 20.3
+        }
+      },
+      {
+        "name": "Emerson Hancock",
+        "player_id": 676106,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 53.7
+        }
+      },
+      {
+        "name": "George Kirby",
+        "player_id": 669923,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 57.0
+        }
+      },
+      {
+        "name": "José A. Ferrer",
+        "player_id": 678606,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 4,
+          "g": 22,
+          "gs": 0,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Logan Gilbert",
+        "player_id": 669302,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 56.7
+        }
+      },
+      {
+        "name": "Luis Castillo",
+        "player_id": 622491,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 44.0
+        }
+      },
+      {
+        "name": "Nick Davila",
+        "player_id": 689546,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 6,
+          "gs": 0,
+          "ip": 6.3
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Cal Raleigh",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 663728
+    },
+    {
+      "name": "Carlos Vargas",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 672841,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 14,
+        "g": 70,
+        "gs": 0,
+        "ip": 77.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Gabe Speier",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 642100,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 5,
+        "g": 15,
+        "gs": 0,
+        "ip": 12.3
+      }
+    },
+    {
+      "name": "Logan Evans",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 688138,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 16,
+        "gs": 15,
+        "ip": 81.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Matt Brash",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 666374,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 4,
+        "g": 14,
+        "gs": 0,
+        "ip": 11.3
+      }
+    },
+    {
+      "name": "Miles Mastrobuoni",
+      "status": "Injured 60-Day",
+      "position": "Third Base",
+      "player_id": 670156
+    },
+    {
+      "name": "Patrick Wisdom",
+      "status": "Injured 10-Day",
+      "position": "First Base",
+      "player_id": 621550
+    },
+    {
+      "name": "Victor Robles",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 645302
+    },
+    {
+      "name": "Will Wilson",
+      "status": "Injured 10-Day",
+      "position": "Third Base",
+      "player_id": 669717
+    }
+  ],
+  "not_active_40man": [
+    "Cole Wilcox",
+    "Colt Emerson",
+    "Josh Simpson",
+    "Robinson Ortiz",
+    "Ryan Bliss",
+    "Troy Taylor",
+    "Yosver Zulueta"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 9,
+    "total_40man_not_active": 7
+  }
+}

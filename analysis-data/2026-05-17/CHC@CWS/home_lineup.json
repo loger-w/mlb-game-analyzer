@@ -1,0 +1,483 @@
+{
+  "team": "CWS",
+  "team_id": 145,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.744,
+  "avg_ops_vs_lhp": 0.649,
+  "avg_ops_vs_rhp": 0.712,
+  "avg_xwoba": 0.337,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.288,
+  "avg_k_pct": 24.4,
+  "avg_bb_pct": 10.4,
+  "over_under_lean": 0,
+  "recent_heat": "🔥 Hot",
+  "last7_babip": 0.245,
+  "chain": {
+    "obp_top3": 0.378,
+    "slg_mid": 0.458
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-17T17:22:42+00:00",
+    "game_pk": 824599
+  },
+  "lineup": [
+    {
+      "mlbam_id": 803011,
+      "pa": 106,
+      "avg": 0.284,
+      "obp": 0.385,
+      "slg": 0.42,
+      "ops": 0.805,
+      "iso": 0.136,
+      "babip": 0.32,
+      "k_pct": 12.3,
+      "bb_pct": 6.6,
+      "name": "Sam Antonacci",
+      "position": "LF",
+      "batting_order": 1,
+      "xwoba": 0.401,
+      "xba": 0.331,
+      "xslg": 0.482,
+      "ev95pct": 35.9,
+      "barrel_pct": 10.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".071",
+          "obp": ".235",
+          "slg": ".071",
+          "ops": ".306",
+          "pa": 18
+        },
+        "vs_rhp": {
+          "avg": ".324",
+          "obp": ".414",
+          "slg": ".486",
+          "ops": ".900",
+          "pa": 88
+        }
+      },
+      "last_7": {
+        "avg": ".304",
+        "obp": ".385",
+        "slg": ".435",
+        "ops": ".820",
+        "babip": ".412",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 808959,
+      "pa": 194,
+      "avg": 0.236,
+      "obp": 0.376,
+      "slg": 0.567,
+      "ops": 0.943,
+      "iso": 0.331,
+      "babip": 0.263,
+      "k_pct": 33.5,
+      "bb_pct": 18.6,
+      "name": "Munetaka Murakami",
+      "position": "1B",
+      "batting_order": 2,
+      "xwoba": 0.398,
+      "xba": 0.233,
+      "xslg": 0.577,
+      "ev95pct": 62.4,
+      "barrel_pct": 23.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".222",
+          "obp": ".368",
+          "slg": ".511",
+          "ops": ".879",
+          "pa": 57
+        },
+        "vs_rhp": {
+          "avg": ".241",
+          "obp": ".380",
+          "slg": ".589",
+          "ops": ".969",
+          "pa": 137
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".414",
+        "slg": ".500",
+        "ops": ".914",
+        "babip": ".250",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 678246,
+      "pa": 193,
+      "avg": 0.247,
+      "obp": 0.373,
+      "slg": 0.506,
+      "ops": 0.879,
+      "iso": 0.259,
+      "babip": 0.237,
+      "k_pct": 16.1,
+      "bb_pct": 15.5,
+      "name": "Miguel Vargas",
+      "position": "3B",
+      "batting_order": 3,
+      "xwoba": 0.406,
+      "xba": 0.27,
+      "xslg": 0.551,
+      "ev95pct": 45.0,
+      "barrel_pct": 15.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".327",
+          "obp": ".450",
+          "slg": ".776",
+          "ops": "1.226",
+          "pa": 60
+        },
+        "vs_rhp": {
+          "avg": ".211",
+          "obp": ".338",
+          "slg": ".385",
+          "ops": ".723",
+          "pa": 133
+        }
+      },
+      "last_7": {
+        "avg": ".400",
+        "obp": ".448",
+        "slg": ".960",
+        "ops": "1.408",
+        "babip": ".333",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".667",
+        "obp": ".667",
+        "slg": "1.667",
+        "h": 2,
+        "hr": 1,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 695657,
+      "pa": 183,
+      "avg": 0.238,
+      "obp": 0.333,
+      "slg": 0.531,
+      "ops": 0.864,
+      "iso": 0.293,
+      "babip": 0.263,
+      "k_pct": 28.4,
+      "bb_pct": 8.7,
+      "name": "Colson Montgomery",
+      "position": "SS",
+      "batting_order": 4,
+      "xwoba": 0.344,
+      "xba": 0.224,
+      "xslg": 0.477,
+      "ev95pct": 42.6,
+      "barrel_pct": 15.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".229",
+          "obp": ".327",
+          "slg": ".521",
+          "ops": ".848",
+          "pa": 55
+        },
+        "vs_rhp": {
+          "avg": ".241",
+          "obp": ".336",
+          "slg": ".536",
+          "ops": ".872",
+          "pa": 128
+        }
+      },
+      "last_7": {
+        "avg": ".286",
+        "obp": ".310",
+        "slg": ".750",
+        "ops": "1.060",
+        "babip": ".250",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 805367,
+      "pa": 184,
+      "avg": 0.27,
+      "obp": 0.344,
+      "slg": 0.384,
+      "ops": 0.728,
+      "iso": 0.114,
+      "babip": 0.348,
+      "k_pct": 23.4,
+      "bb_pct": 10.3,
+      "name": "Chase Meidroth",
+      "position": "2B",
+      "batting_order": 5,
+      "xwoba": 0.299,
+      "xba": 0.239,
+      "xslg": 0.336,
+      "ev95pct": 38.8,
+      "barrel_pct": 4.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".364",
+          "obp": ".440",
+          "slg": ".500",
+          "ops": ".940",
+          "pa": 51
+        },
+        "vs_rhp": {
+          "avg": ".235",
+          "obp": ".308",
+          "slg": ".339",
+          "ops": ".647",
+          "pa": 133
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".308",
+        "slg": ".409",
+        "ops": ".717",
+        "babip": ".222",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".667",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 643217,
+      "pa": 141,
+      "avg": 0.227,
+      "obp": 0.277,
+      "slg": 0.375,
+      "ops": 0.652,
+      "iso": 0.148,
+      "babip": 0.302,
+      "k_pct": 29.8,
+      "bb_pct": 7.1,
+      "name": "Andrew Benintendi",
+      "position": "DH",
+      "batting_order": 6,
+      "xwoba": 0.321,
+      "xba": 0.25,
+      "xslg": 0.442,
+      "ev95pct": 52.8,
+      "barrel_pct": 12.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".238",
+          "obp": ".273",
+          "slg": ".238",
+          "ops": ".511",
+          "pa": 22
+        },
+        "vs_rhp": {
+          "avg": ".224",
+          "obp": ".277",
+          "slg": ".402",
+          "ops": ".679",
+          "pa": 119
+        }
+      },
+      "last_7": {
+        "avg": ".158",
+        "obp": ".292",
+        "slg": ".368",
+        "ops": ".660",
+        "babip": ".125",
+        "pa": 24
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 700337,
+      "pa": 103,
+      "avg": 0.151,
+      "obp": 0.248,
+      "slg": 0.163,
+      "ops": 0.411,
+      "iso": 0.012,
+      "babip": 0.206,
+      "k_pct": 25.2,
+      "bb_pct": 8.7,
+      "name": "Edgar Quero",
+      "position": "C",
+      "batting_order": 7,
+      "xwoba": 0.24,
+      "xba": 0.177,
+      "xslg": 0.226,
+      "ev95pct": 29.2,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".034",
+          "obp": ".162",
+          "slg": ".034",
+          "ops": ".196",
+          "pa": 37
+        },
+        "vs_rhp": {
+          "avg": ".211",
+          "obp": ".297",
+          "slg": ".228",
+          "ops": ".525",
+          "pa": 66
+        }
+      },
+      "last_7": {
+        "avg": ".118",
+        "obp": ".150",
+        "slg": ".118",
+        "ops": ".268",
+        "babip": ".200",
+        "pa": 20
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": "1.000",
+        "obp": "1.000",
+        "slg": "1.000",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 671976,
+      "pa": 114,
+      "avg": 0.255,
+      "obp": 0.315,
+      "slg": 0.314,
+      "ops": 0.629,
+      "iso": 0.059,
+      "babip": 0.342,
+      "k_pct": 22.8,
+      "bb_pct": 7.0,
+      "name": "Tristan Peters",
+      "position": "CF",
+      "batting_order": 8,
+      "xwoba": 0.274,
+      "xba": 0.228,
+      "xslg": 0.32,
+      "ev95pct": 22.8,
+      "barrel_pct": 3.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".000",
+          "obp": ".000",
+          "slg": ".000",
+          "ops": ".000",
+          "pa": 6
+        },
+        "vs_rhp": {
+          "avg": ".268",
+          "obp": ".330",
+          "slg": ".330",
+          "ops": ".660",
+          "pa": 108
+        }
+      },
+      "last_7": {
+        "avg": ".211",
+        "obp": ".250",
+        "slg": ".316",
+        "ops": ".566",
+        "babip": ".267",
+        "pa": 21
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 656537,
+      "pa": 54,
+      "avg": 0.255,
+      "obp": 0.34,
+      "slg": 0.447,
+      "ops": 0.787,
+      "iso": 0.192,
+      "babip": 0.31,
+      "k_pct": 27.8,
+      "bb_pct": 11.1,
+      "name": "Derek Hill",
+      "position": "RF",
+      "batting_order": 9,
+      "xwoba": 0.354,
+      "xba": 0.276,
+      "xslg": 0.445,
+      "ev95pct": 39.4,
+      "barrel_pct": 9.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".303",
+          "obp": ".361",
+          "slg": ".576",
+          "ops": ".937",
+          "pa": 37
+        },
+        "vs_rhp": {
+          "avg": ".143",
+          "obp": ".294",
+          "slg": ".143",
+          "ops": ".437",
+          "pa": 17
+        }
+      },
+      "last_7": {
+        "avg": ".300",
+        "obp": ".364",
+        "slg": ".900",
+        "ops": "1.264",
+        "babip": ".143",
+        "pa": 11
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": "1.333",
+        "h": 1,
+        "hr": 1,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

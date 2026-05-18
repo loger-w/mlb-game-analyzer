@@ -1,0 +1,377 @@
+{
+  "team": "Boston Red Sox",
+  "team_id": 111,
+  "active_roster": {
+    "pitchers": [
+      "Aroldis Chapman",
+      "Brayan Bello",
+      "Connelly Early",
+      "Garrett Whitlock",
+      "Greg Weissert",
+      "Jovani Morán",
+      "Justin Slaten",
+      "Payton Tolle",
+      "Ranger Suarez",
+      "Ryan Watson",
+      "Sonny Gray",
+      "Tyler Samaniego",
+      "Zack Kelly"
+    ],
+    "pitcher_ids": [
+      547973,
+      678394,
+      813349,
+      676477,
+      669711,
+      663558,
+      686580,
+      801139,
+      624133,
+      670245,
+      543243,
+      701719,
+      677161
+    ],
+    "position_players": [
+      "Andruw Monasterio",
+      "Caleb Durbin",
+      "Carlos Narváez",
+      "Ceddanne Rafaela",
+      "Connor Wong",
+      "Isiah Kiner-Falefa",
+      "Jarren Duran",
+      "Marcelo Mayer",
+      "Masataka Yoshida",
+      "Mickey Gasper",
+      "Nick Sogard",
+      "Willson Contreras",
+      "Wilyer Abreu"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Aroldis Chapman",
+        "player_id": 547973,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 10,
+          "holds": 0,
+          "g": 16,
+          "gs": 0,
+          "ip": 15.7
+        }
+      },
+      {
+        "name": "Brayan Bello",
+        "player_id": 678394,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 6,
+          "ip": 39.0
+        }
+      },
+      {
+        "name": "Connelly Early",
+        "player_id": 813349,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 47.7
+        }
+      },
+      {
+        "name": "Garrett Whitlock",
+        "player_id": 676477,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 8,
+          "g": 17,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Greg Weissert",
+        "player_id": 669711,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 19,
+          "gs": 0,
+          "ip": 16.7
+        }
+      },
+      {
+        "name": "Jovani Morán",
+        "player_id": 663558,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 14,
+          "gs": 2,
+          "ip": 24.3
+        }
+      },
+      {
+        "name": "Justin Slaten",
+        "player_id": 686580,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 7,
+          "gs": 0,
+          "ip": 6.0
+        }
+      },
+      {
+        "name": "Payton Tolle",
+        "player_id": 801139,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 5,
+          "ip": 30.7
+        }
+      },
+      {
+        "name": "Ranger Suarez",
+        "player_id": 624133,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 44.3
+        }
+      },
+      {
+        "name": "Ryan Watson",
+        "player_id": 670245,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 16,
+          "gs": 0,
+          "ip": 24.7
+        }
+      },
+      {
+        "name": "Sonny Gray",
+        "player_id": 543243,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 34.0
+        }
+      },
+      {
+        "name": "Tyler Samaniego",
+        "player_id": 701719,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 15,
+          "gs": 0,
+          "ip": 15.3
+        }
+      },
+      {
+        "name": "Zack Kelly",
+        "player_id": 677161,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 16,
+          "gs": 0,
+          "ip": 15.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Danny Coulombe",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 543056,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 3,
+        "g": 12,
+        "gs": 0,
+        "ip": 8.0
+      }
+    },
+    {
+      "name": "Garrett Crochet",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 676979,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 6,
+        "ip": 30.0
+      }
+    },
+    {
+      "name": "Johan Oviedo",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 670912,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 9,
+        "gs": 9,
+        "ip": 40.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Kutter Crawford",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 676710,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Patrick Sandoval",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 663776,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Roman Anthony",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 701350
+    },
+    {
+      "name": "Romy Gonzalez",
+      "status": "Injured 60-Day",
+      "position": "First Base",
+      "player_id": 663853
+    },
+    {
+      "name": "Tanner Houck",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 656557,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 9,
+        "gs": 9,
+        "ip": 43.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Trevor Story",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 596115
+    },
+    {
+      "name": "Triston Casas",
+      "status": "Injured 60-Day",
+      "position": "First Base",
+      "player_id": 671213
+    }
+  ],
+  "not_active_40man": [
+    "Alec Gamboa",
+    "Anthony Seigler",
+    "Eduardo Rivera",
+    "Jack Anderson",
+    "Jake Bennett",
+    "Kristian Campbell",
+    "Nate Eaton",
+    "Tsung-Che Cheng",
+    "Tyler Uberstine"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 10,
+    "total_40man_not_active": 9
+  }
+}

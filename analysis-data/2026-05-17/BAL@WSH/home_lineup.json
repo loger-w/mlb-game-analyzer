@@ -1,0 +1,443 @@
+{
+  "team": "WSH",
+  "team_id": 120,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟠 Strong",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.737,
+  "avg_ops_vs_lhp": 0.766,
+  "avg_ops_vs_rhp": 0.723,
+  "avg_xwoba": 0.326,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.289,
+  "avg_k_pct": 21.4,
+  "avg_bb_pct": 8.2,
+  "over_under_lean": 0,
+  "recent_heat": "🔥 Hot",
+  "last7_babip": 0.26,
+  "chain": {
+    "obp_top3": 0.321,
+    "slg_mid": 0.498
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-17T17:16:06+00:00",
+    "game_pk": 822738
+  },
+  "lineup": [
+    {
+      "mlbam_id": 695578,
+      "pa": 216,
+      "avg": 0.236,
+      "obp": 0.384,
+      "slg": 0.511,
+      "ops": 0.895,
+      "iso": 0.275,
+      "babip": 0.305,
+      "k_pct": 31.0,
+      "bb_pct": 17.6,
+      "name": "James Wood",
+      "position": "RF",
+      "batting_order": 1,
+      "xwoba": 0.429,
+      "xba": 0.271,
+      "xslg": 0.616,
+      "ev95pct": 62.6,
+      "barrel_pct": 27.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".203",
+          "obp": ".365",
+          "slg": ".424",
+          "ops": ".789",
+          "pa": 74
+        },
+        "vs_rhp": {
+          "avg": ".252",
+          "obp": ".394",
+          "slg": ".557",
+          "ops": ".951",
+          "pa": 142
+        }
+      },
+      "last_7": {
+        "avg": ".240",
+        "obp": ".387",
+        "slg": ".600",
+        "ops": ".987",
+        "babip": ".250",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 671277,
+      "pa": 141,
+      "avg": 0.269,
+      "obp": 0.298,
+      "slg": 0.425,
+      "ops": 0.723,
+      "iso": 0.156,
+      "babip": 0.297,
+      "k_pct": 14.9,
+      "bb_pct": 4.3,
+      "name": "Luis García Jr.",
+      "position": "1B",
+      "batting_order": 2,
+      "xwoba": 0.323,
+      "xba": 0.279,
+      "xslg": 0.434,
+      "ev95pct": 46.5,
+      "barrel_pct": 7.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".294",
+          "obp": ".294",
+          "slg": ".471",
+          "ops": ".765",
+          "pa": 17
+        },
+        "vs_rhp": {
+          "avg": ".265",
+          "obp": ".298",
+          "slg": ".419",
+          "ops": ".717",
+          "pa": 124
+        }
+      },
+      "last_7": {
+        "avg": ".423",
+        "obp": ".464",
+        "slg": ".808",
+        "ops": "1.272",
+        "babip": ".409",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 691781,
+      "pa": 168,
+      "avg": 0.226,
+      "obp": 0.28,
+      "slg": 0.406,
+      "ops": 0.686,
+      "iso": 0.18,
+      "babip": 0.277,
+      "k_pct": 28.6,
+      "bb_pct": 7.1,
+      "name": "Brady House",
+      "position": "3B",
+      "batting_order": 3,
+      "xwoba": 0.321,
+      "xba": 0.25,
+      "xslg": 0.434,
+      "ev95pct": 43.5,
+      "barrel_pct": 11.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".354",
+          "obp": ".415",
+          "slg": ".563",
+          "ops": ".978",
+          "pa": 53
+        },
+        "vs_rhp": {
+          "avg": ".168",
+          "obp": ".217",
+          "slg": ".336",
+          "ops": ".553",
+          "pa": 115
+        }
+      },
+      "last_7": {
+        "avg": ".160",
+        "obp": ".185",
+        "slg": ".480",
+        "ops": ".665",
+        "babip": ".118",
+        "pa": 27
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 682928,
+      "pa": 191,
+      "avg": 0.301,
+      "obp": 0.393,
+      "slg": 0.54,
+      "ops": 0.933,
+      "iso": 0.239,
+      "babip": 0.336,
+      "k_pct": 19.4,
+      "bb_pct": 10.5,
+      "name": "CJ Abrams",
+      "position": "SS",
+      "batting_order": 4,
+      "xwoba": 0.372,
+      "xba": 0.275,
+      "xslg": 0.483,
+      "ev95pct": 41.4,
+      "barrel_pct": 10.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".304",
+          "obp": ".350",
+          "slg": ".375",
+          "ops": ".725",
+          "pa": 60
+        },
+        "vs_rhp": {
+          "avg": ".299",
+          "obp": ".412",
+          "slg": ".626",
+          "ops": "1.038",
+          "pa": 131
+        }
+      },
+      "last_7": {
+        "avg": ".345",
+        "obp": ".387",
+        "slg": ".552",
+        "ops": ".939",
+        "babip": ".476",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 695734,
+      "pa": 199,
+      "avg": 0.272,
+      "obp": 0.332,
+      "slg": 0.456,
+      "ops": 0.788,
+      "iso": 0.184,
+      "babip": 0.3,
+      "k_pct": 17.6,
+      "bb_pct": 8.0,
+      "name": "Daylen Lile",
+      "position": "LF",
+      "batting_order": 5,
+      "xwoba": 0.352,
+      "xba": 0.28,
+      "xslg": 0.464,
+      "ev95pct": 38.4,
+      "barrel_pct": 8.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".259",
+          "obp": ".328",
+          "slg": ".296",
+          "ops": ".624",
+          "pa": 61
+        },
+        "vs_rhp": {
+          "avg": ".278",
+          "obp": ".333",
+          "slg": ".524",
+          "ops": ".857",
+          "pa": 138
+        }
+      },
+      "last_7": {
+        "avg": ".414",
+        "obp": ".387",
+        "slg": ".931",
+        "ops": "1.318",
+        "babip": ".348",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 696285,
+      "pa": 165,
+      "avg": 0.221,
+      "obp": 0.268,
+      "slg": 0.331,
+      "ops": 0.599,
+      "iso": 0.11,
+      "babip": 0.246,
+      "k_pct": 17.0,
+      "bb_pct": 4.8,
+      "name": "Jacob Young",
+      "position": "CF",
+      "batting_order": 6,
+      "xwoba": 0.303,
+      "xba": 0.264,
+      "xslg": 0.378,
+      "ev95pct": 31.5,
+      "barrel_pct": 4.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".233",
+          "obp": ".313",
+          "slg": ".372",
+          "ops": ".685",
+          "pa": 49
+        },
+        "vs_rhp": {
+          "avg": ".216",
+          "obp": ".250",
+          "slg": ".315",
+          "ops": ".565",
+          "pa": 116
+        }
+      },
+      "last_7": {
+        "avg": ".148",
+        "obp": ".207",
+        "slg": ".259",
+        "ops": ".466",
+        "babip": ".130",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 677588,
+      "pa": 87,
+      "avg": 0.263,
+      "obp": 0.322,
+      "slg": 0.438,
+      "ops": 0.76,
+      "iso": 0.175,
+      "babip": 0.358,
+      "k_pct": 28.7,
+      "bb_pct": 6.9,
+      "name": "José Tena",
+      "position": "DH",
+      "batting_order": 7,
+      "xwoba": 0.324,
+      "xba": 0.256,
+      "xslg": 0.424,
+      "ev95pct": 54.5,
+      "barrel_pct": 10.9,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".500",
+          "slg": ".250",
+          "ops": ".750",
+          "pa": 6
+        },
+        "vs_rhp": {
+          "avg": ".263",
+          "obp": ".309",
+          "slg": ".447",
+          "ops": ".756",
+          "pa": 81
+        }
+      },
+      "last_7": {
+        "avg": ".190",
+        "obp": ".261",
+        "slg": ".476",
+        "ops": ".737",
+        "babip": ".214",
+        "pa": 23
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 660688,
+      "pa": 90,
+      "avg": 0.23,
+      "obp": 0.244,
+      "slg": 0.471,
+      "ops": 0.715,
+      "iso": 0.241,
+      "babip": 0.229,
+      "k_pct": 15.6,
+      "bb_pct": 1.1,
+      "name": "Keibert Ruiz",
+      "position": "C",
+      "batting_order": 8,
+      "xwoba": 0.237,
+      "xba": 0.199,
+      "xslg": 0.337,
+      "ev95pct": 40.5,
+      "barrel_pct": 6.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".297",
+          "obp": ".297",
+          "slg": ".568",
+          "ops": ".865",
+          "pa": 37
+        },
+        "vs_rhp": {
+          "avg": ".180",
+          "obp": ".208",
+          "slg": ".400",
+          "ops": ".608",
+          "pa": 53
+        }
+      },
+      "last_7": {
+        "avg": ".321",
+        "obp": ".321",
+        "slg": ".821",
+        "ops": "1.142",
+        "babip": ".300",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 683083,
+      "pa": 154,
+      "avg": 0.197,
+      "obp": 0.313,
+      "slg": 0.22,
+      "ops": 0.533,
+      "iso": 0.023,
+      "babip": 0.255,
+      "k_pct": 19.5,
+      "bb_pct": 13.6,
+      "name": "Nasim Nuñez",
+      "position": "2B",
+      "batting_order": 9,
+      "xwoba": 0.277,
+      "xba": 0.206,
+      "xslg": 0.254,
+      "ev95pct": 17.6,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".278",
+          "obp": ".409",
+          "slg": ".306",
+          "ops": ".715",
+          "pa": 44
+        },
+        "vs_rhp": {
+          "avg": ".165",
+          "obp": ".274",
+          "slg": ".187",
+          "ops": ".461",
+          "pa": 110
+        }
+      },
+      "last_7": {
+        "avg": ".059",
+        "obp": ".273",
+        "slg": ".059",
+        "ops": ".332",
+        "babip": ".091",
+        "pa": 23
+      },
+      "bvp": null
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "name": "Michael Soroka",
+  "mlbam_id": 647336,
+  "age": 28,
+  "birth_date": "1997-08-04",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.96
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 95.2,
+    "era_only_score": 68.4,
+    "gap": 26.8
+  },
+  "season": {
+    "era": 3.53,
+    "whip": 1.32,
+    "k_pct": 25.4,
+    "bb_pct": 6.5,
+    "k_bb_pct": 18.9,
+    "fip": 2.96,
+    "xfip": 2.9,
+    "hr_per_9": 0.83,
+    "gb_pct": 51.3,
+    "ip": 43.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.75,
+    "xwoba": 0.343,
+    "xba": 0.272
+  },
+  "statcast": {
+    "avg_velo": 88.2,
+    "max_velo": 95.8,
+    "hard_hit_pct": 22.9,
+    "pitch_types": {
+      "FF": 33.6,
+      "SV": 32.6,
+      "FC": 12.0,
+      "SI": 11.2,
+      "CH": 10.5
+    },
+    "barrel_pct": 10.6,
+    "ev95percent": 38.2,
+    "whiff_pct": 10.1,
+    "csw_pct": 27.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Detroit Tigers",
+      "ip": 5.0,
+      "era": 0.0,
+      "k": 10,
+      "bb": 1,
+      "h": 4,
+      "er": 0,
+      "pitches": 89,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Atlanta Braves",
+      "ip": 5.0,
+      "era": 0.9,
+      "k": 3,
+      "bb": 3,
+      "h": 4,
+      "er": 1,
+      "pitches": 91,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Philadelphia Phillies",
+      "ip": 5.666666666666667,
+      "era": 2.87,
+      "k": 10,
+      "bb": 2,
+      "h": 5,
+      "er": 4,
+      "pitches": 93,
+      "strikes": 61
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".309",
+      "obp": ".380",
+      "slg": ".454",
+      "k": 23,
+      "bb": 8,
+      "bf": 108,
+      "k_pct": 21.3,
+      "bb_pct": 7.4
+    },
+    "vs_right": {
+      "avg": ".208",
+      "obp": ".250",
+      "slg": ".333",
+      "k": 24,
+      "bb": 4,
+      "bf": 77,
+      "k_pct": 31.2,
+      "bb_pct": 5.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.94,
+      "k_pct": 22.4,
+      "bb_pct": 12.9,
+      "bf": 85
+    },
+    "tto2": {
+      "ops": 0.835,
+      "k_pct": 23.8,
+      "bb_pct": 2.5,
+      "bf": 80
+    },
+    "tto3": {
+      "ops": 0.481,
+      "k_pct": 30.2,
+      "bb_pct": 2.3,
+      "bf": 43
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 34.3,
+      "rv_per_100": -1.1,
+      "xwoba_against": 0.37,
+      "whiff_pct": 16.1,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 46.2
+    },
+    {
+      "pitch_type": "SV",
+      "pitch_name": "Slurve",
+      "usage": 32.2,
+      "rv_per_100": 1.3,
+      "xwoba_against": 0.295,
+      "whiff_pct": 35.1,
+      "put_away_pct": 23.3,
+      "hard_hit_pct": 40.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

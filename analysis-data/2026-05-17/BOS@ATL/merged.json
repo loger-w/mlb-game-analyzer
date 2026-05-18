@@ -1,0 +1,113 @@
+{
+  "home_recent_rs": 3.3,
+  "home_recent_ra": 2.2,
+  "away_recent_rs": 2.1,
+  "away_recent_ra": 2.3,
+  "home_recent_30_rs": 5.07,
+  "home_recent_30_ra": 3.57,
+  "away_recent_30_rs": 3.27,
+  "away_recent_30_ra": 3.47,
+  "home_season_rs": 5.26,
+  "home_season_ra": 3.28,
+  "away_season_rs": 3.61,
+  "away_season_ra": 3.89,
+  "home_season_games": 46,
+  "away_season_games": 46,
+  "home_starter_fip": 5.18,
+  "home_starter_k_bb": 7.3,
+  "home_starter_whip": 1.31,
+  "away_starter_fip": 5.59,
+  "away_starter_k_bb": 6.6,
+  "away_starter_whip": 1.74,
+  "home_batting_xwoba": 0.344,
+  "home_batting_ops": 0.828,
+  "home_batting_k_pct": 21.8,
+  "away_batting_xwoba": 0.328,
+  "away_batting_ops": 0.647,
+  "away_batting_k_pct": 19.0,
+  "home_pitcher": {
+    "era": 4.35,
+    "xera": 4.47,
+    "ip": 41.333333333333336,
+    "era_xera_delta": -0.12,
+    "arsenal_top": [
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 38.1,
+        "rv_per_100": 0.4,
+        "xwoba_against": 0.312,
+        "whiff_pct": 47.7,
+        "put_away_pct": 23.9,
+        "hard_hit_pct": 41.4
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 36.9,
+        "rv_per_100": 1.0,
+        "xwoba_against": 0.371,
+        "whiff_pct": 14.9,
+        "put_away_pct": 15.9,
+        "hard_hit_pct": 49.1
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 6.46,
+    "xera": 6.28,
+    "ip": 39.0,
+    "era_xera_delta": 0.18,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 44.5,
+        "rv_per_100": -0.4,
+        "xwoba_against": 0.406,
+        "whiff_pct": 16.4,
+        "put_away_pct": 16.9,
+        "hard_hit_pct": 50.0
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 20.0,
+        "rv_per_100": -2.8,
+        "xwoba_against": 0.465,
+        "whiff_pct": 50.0,
+        "put_away_pct": 31.8,
+        "hard_hit_pct": 30.4
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.369
+  },
+  "away_lineup": {
+    "recent_babip": 0.305
+  },
+  "home_bullpen_era": 3.04,
+  "away_bullpen_era": 3.16,
+  "park_factor": 98.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 83,
+    "wind_text": "8 mph, L To R",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Atlanta Braves",
+    "away_team": "Boston Red Sox",
+    "home_sp": "Grant Holmes",
+    "away_sp": "Brayan Bello",
+    "home_sp_starts": 8,
+    "away_sp_starts": 6,
+    "venue": "Truist Park",
+    "game_pk": 824923,
+    "game_date": "2026-05-17T17:35:00Z",
+    "official_date": "2026-05-17"
+  }
+}

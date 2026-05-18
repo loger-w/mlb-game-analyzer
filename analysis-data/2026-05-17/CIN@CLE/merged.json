@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 4.9,
+  "home_recent_ra": 3.4,
+  "away_recent_rs": 5.4,
+  "away_recent_ra": 5.8,
+  "home_recent_30_rs": 4.43,
+  "home_recent_30_ra": 4.13,
+  "away_recent_30_rs": 4.9,
+  "away_recent_30_ra": 5.3,
+  "home_season_rs": 4.17,
+  "home_season_ra": 4.04,
+  "away_season_rs": 4.37,
+  "away_season_ra": 4.98,
+  "home_season_games": 48,
+  "away_season_games": 46,
+  "home_starter_fip": 3.79,
+  "home_starter_k_bb": 19.5,
+  "home_starter_whip": 1.17,
+  "away_starter_fip": 5.96,
+  "away_starter_k_bb": 8.7,
+  "away_starter_whip": 1.67,
+  "home_batting_xwoba": 0.327,
+  "home_batting_ops": 0.685,
+  "home_batting_k_pct": 18.5,
+  "away_batting_xwoba": 0.357,
+  "away_batting_ops": 0.765,
+  "away_batting_k_pct": 23.3,
+  "home_pitcher": {
+    "era": 3.74,
+    "xera": 4.27,
+    "ip": 55.333333333333336,
+    "era_xera_delta": -0.53,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 28.6,
+        "rv_per_100": -0.1,
+        "xwoba_against": 0.391,
+        "whiff_pct": 28.8,
+        "put_away_pct": 19.4,
+        "hard_hit_pct": 45.7
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 27.2,
+        "rv_per_100": -1.2,
+        "xwoba_against": 0.271,
+        "whiff_pct": 43.9,
+        "put_away_pct": 24.4,
+        "hard_hit_pct": 33.3
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 20.9,
+        "rv_per_100": -0.5,
+        "xwoba_against": 0.255,
+        "whiff_pct": 28.4,
+        "put_away_pct": 21.4,
+        "hard_hit_pct": 45.5
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 5.79,
+    "xera": 6.05,
+    "ip": 42.0,
+    "era_xera_delta": -0.26,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 46.6,
+        "rv_per_100": -1.9,
+        "xwoba_against": 0.387,
+        "whiff_pct": 10.8,
+        "put_away_pct": 13.7,
+        "hard_hit_pct": 46.3
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 33.9,
+        "rv_per_100": 0.0,
+        "xwoba_against": 0.313,
+        "whiff_pct": 32.4,
+        "put_away_pct": 21.3,
+        "hard_hit_pct": 45.9
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.262
+  },
+  "away_lineup": {
+    "recent_babip": 0.265
+  },
+  "home_bullpen_era": 4.02,
+  "away_bullpen_era": 4.89,
+  "park_factor": 101.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 2,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 76,
+    "wind_text": "7 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Cleveland Guardians",
+    "away_team": "Cincinnati Reds",
+    "home_sp": "Gavin Williams",
+    "away_sp": "Brady Singer",
+    "home_sp_starts": 9,
+    "away_sp_starts": 9,
+    "venue": "Progressive Field",
+    "game_pk": 824436,
+    "game_date": "2026-05-17T17:40:00Z",
+    "official_date": "2026-05-17"
+  }
+}

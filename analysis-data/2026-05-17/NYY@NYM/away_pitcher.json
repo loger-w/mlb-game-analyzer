@@ -1,0 +1,129 @@
+{
+  "name": "Elmer Rodríguez",
+  "mlbam_id": 695684,
+  "age": 22,
+  "birth_date": "2003-08-18",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 31.2,
+    "gap": null
+  },
+  "season": {
+    "era": 5.19,
+    "whip": 2.08,
+    "k_pct": 11.4,
+    "bb_pct": 18.2,
+    "k_bb_pct": -6.8,
+    "fip": 4.72,
+    "xfip": 6.07,
+    "hr_per_9": 0.0,
+    "gb_pct": 52.6,
+    "ip": 8.666666666666666,
+    "games": 2,
+    "gs": 2
+  },
+  "expected": {
+    "xera": 7.48,
+    "xwoba": 0.414,
+    "xba": 0.298
+  },
+  "statcast": {
+    "avg_velo": 90.4,
+    "max_velo": 97.8,
+    "hard_hit_pct": 25.5,
+    "pitch_types": {
+      "SI": 43.7,
+      "FF": 23.0,
+      "SL": 16.7,
+      "CH": 8.6,
+      "CU": 8.0
+    },
+    "barrel_pct": 6.9,
+    "ev95percent": 37.9,
+    "whiff_pct": 10.3,
+    "csw_pct": 27.6
+  },
+  "game_log": [
+    {
+      "date": "2026-04-29",
+      "opponent": "Texas Rangers",
+      "ip": 4.0,
+      "era": 4.5,
+      "k": 3,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 80,
+      "strikes": 42
+    },
+    {
+      "date": "2026-05-05",
+      "opponent": "Texas Rangers",
+      "ip": 4.666666666666667,
+      "era": 5.19,
+      "k": 2,
+      "bb": 4,
+      "h": 6,
+      "er": 3,
+      "pitches": 94,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".143",
+      "obp": ".409",
+      "slg": ".214",
+      "k": 2,
+      "bb": 5,
+      "bf": 22,
+      "k_pct": 9.1,
+      "bb_pct": 22.7
+    },
+    "vs_right": {
+      "avg": ".421",
+      "obp": ".500",
+      "slg": ".421",
+      "k": 3,
+      "bb": 3,
+      "bf": 22,
+      "k_pct": 13.6,
+      "bb_pct": 13.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.919,
+      "k_pct": 11.1,
+      "bb_pct": 27.8,
+      "bf": 18
+    },
+    "tto2": {
+      "ops": 0.478,
+      "k_pct": 11.1,
+      "bb_pct": 11.1,
+      "bf": 18
+    },
+    "tto3": {
+      "ops": 1.196,
+      "k_pct": 12.5,
+      "bb_pct": 12.5,
+      "bf": 8
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "error": "Player 695684 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

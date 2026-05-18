@@ -1,0 +1,163 @@
+{
+  "name": "Grant Holmes",
+  "mlbam_id": 656550,
+  "age": 30,
+  "birth_date": "1996-03-22",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.36,
+    "k_bb_pct": 0.307,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 45.3,
+    "era_only_score": 51.3,
+    "gap": -6.0
+  },
+  "season": {
+    "era": 4.35,
+    "whip": 1.31,
+    "k_pct": 19.2,
+    "bb_pct": 11.9,
+    "k_bb_pct": 7.3,
+    "fip": 5.18,
+    "xfip": 4.36,
+    "hr_per_9": 1.52,
+    "gb_pct": 50.6,
+    "ip": 41.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.47,
+    "xwoba": 0.334,
+    "xba": 0.243
+  },
+  "statcast": {
+    "avg_velo": 89.5,
+    "max_velo": 96.9,
+    "hard_hit_pct": 30.0,
+    "pitch_types": {
+      "SL": 37.6,
+      "FF": 35.2,
+      "CU": 10.8,
+      "FC": 6.3,
+      "SI": 5.9
+    },
+    "barrel_pct": 8.2,
+    "ev95percent": 44.3,
+    "whiff_pct": 12.5,
+    "csw_pct": 26.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Kansas City Royals",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 4,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 76,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 6.0,
+      "era": 2.45,
+      "k": 4,
+      "bb": 3,
+      "h": 1,
+      "er": 0,
+      "pitches": 85,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Los Angeles Angels",
+      "ip": 6.666666666666667,
+      "era": 2.55,
+      "k": 6,
+      "bb": 3,
+      "h": 5,
+      "er": 2,
+      "pitches": 99,
+      "strikes": 62
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".207",
+      "obp": ".313",
+      "slg": ".366",
+      "k": 18,
+      "bb": 13,
+      "bf": 96,
+      "k_pct": 18.8,
+      "bb_pct": 13.5
+    },
+    "vs_right": {
+      "avg": ".219",
+      "obp": ".296",
+      "slg": ".384",
+      "k": 16,
+      "bb": 8,
+      "bf": 81,
+      "k_pct": 19.8,
+      "bb_pct": 9.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.595,
+      "k_pct": 21.2,
+      "bb_pct": 11.8,
+      "bf": 85
+    },
+    "tto2": {
+      "ops": 0.781,
+      "k_pct": 17.9,
+      "bb_pct": 12.8,
+      "bf": 78
+    },
+    "tto3": {
+      "ops": 0.583,
+      "k_pct": 15.2,
+      "bb_pct": 12.1,
+      "bf": 33
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 38.1,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.312,
+      "whiff_pct": 47.7,
+      "put_away_pct": 23.9,
+      "hard_hit_pct": 41.4
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 36.9,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.371,
+      "whiff_pct": 14.9,
+      "put_away_pct": 15.9,
+      "hard_hit_pct": 49.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

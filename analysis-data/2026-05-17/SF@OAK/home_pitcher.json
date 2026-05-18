@@ -1,0 +1,173 @@
+{
+  "name": "Jeffrey Springs",
+  "mlbam_id": 605488,
+  "age": 33,
+  "birth_date": "1992-09-20",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.669,
+    "k_bb_pct": 0.744,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 71.5,
+    "era_only_score": 54.5,
+    "gap": 17.0
+  },
+  "season": {
+    "era": 4.22,
+    "whip": 1.22,
+    "k_pct": 21.4,
+    "bb_pct": 7.3,
+    "k_bb_pct": 14.1,
+    "fip": 4.08,
+    "xfip": 3.89,
+    "hr_per_9": 1.29,
+    "gb_pct": 37.0,
+    "ip": 49.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 3.59,
+    "xwoba": 0.302,
+    "xba": 0.225
+  },
+  "statcast": {
+    "avg_velo": 85.5,
+    "max_velo": 93.8,
+    "hard_hit_pct": 19.6,
+    "pitch_types": {
+      "FF": 43.1,
+      "SL": 24.8,
+      "CH": 20.3,
+      "ST": 8.3,
+      "FC": 3.4
+    },
+    "barrel_pct": 8.3,
+    "ev95percent": 32.4,
+    "whiff_pct": 10.5,
+    "csw_pct": 29.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Toronto Blue Jays",
+      "ip": 5.333333333333333,
+      "era": 3.38,
+      "k": 2,
+      "bb": 3,
+      "h": 5,
+      "er": 2,
+      "pitches": 83,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Houston Astros",
+      "ip": 6.0,
+      "era": 2.38,
+      "k": 7,
+      "bb": 1,
+      "h": 2,
+      "er": 1,
+      "pitches": 103,
+      "strikes": 66
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "New York Yankees",
+      "ip": 7.0,
+      "era": 1.47,
+      "k": 6,
+      "bb": 2,
+      "h": 1,
+      "er": 0,
+      "pitches": 93,
+      "strikes": 60
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".231",
+      "obp": ".250",
+      "slg": ".423",
+      "k": 11,
+      "bb": 2,
+      "bf": 56,
+      "k_pct": 19.6,
+      "bb_pct": 3.6
+    },
+    "vs_right": {
+      "avg": ".246",
+      "obp": ".320",
+      "slg": ".403",
+      "k": 33,
+      "bb": 13,
+      "bf": 150,
+      "k_pct": 22.0,
+      "bb_pct": 8.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.659,
+      "k_pct": 21.7,
+      "bb_pct": 8.7,
+      "bf": 92
+    },
+    "tto2": {
+      "ops": 0.575,
+      "k_pct": 24.1,
+      "bb_pct": 2.5,
+      "bf": 79
+    },
+    "tto3": {
+      "ops": 0.905,
+      "k_pct": 20.5,
+      "bb_pct": 11.4,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 43.4,
+      "rv_per_100": 0.1,
+      "xwoba_against": 0.307,
+      "whiff_pct": 17.0,
+      "put_away_pct": 15.3,
+      "hard_hit_pct": 34.4
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 25.2,
+      "rv_per_100": 0.6,
+      "xwoba_against": 0.366,
+      "whiff_pct": 28.4,
+      "put_away_pct": 28.2,
+      "hard_hit_pct": 43.2
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 20.0,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.232,
+      "whiff_pct": 41.4,
+      "put_away_pct": 25.4,
+      "hard_hit_pct": 19.4
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 5.2,
+  "home_recent_ra": 5.1,
+  "away_recent_rs": 4.0,
+  "away_recent_ra": 4.1,
+  "home_recent_30_rs": 5.3,
+  "home_recent_30_ra": 4.53,
+  "away_recent_30_rs": 5.33,
+  "away_recent_30_ra": 4.03,
+  "home_season_rs": 4.39,
+  "home_season_ra": 4.57,
+  "away_season_rs": 4.96,
+  "away_season_ra": 4.04,
+  "home_season_games": 46,
+  "away_season_games": 47,
+  "home_starter_fip": 5.89,
+  "home_starter_k_bb": 6.8,
+  "home_starter_whip": 1.16,
+  "away_starter_fip": 4.16,
+  "away_starter_k_bb": 12.4,
+  "away_starter_whip": 1.42,
+  "home_batting_xwoba": 0.337,
+  "home_batting_ops": 0.744,
+  "home_batting_k_pct": 24.4,
+  "away_batting_xwoba": 0.345,
+  "away_batting_ops": 0.779,
+  "away_batting_k_pct": 21.2,
+  "home_pitcher": {
+    "era": 3.77,
+    "xera": 4.15,
+    "ip": 43.0,
+    "era_xera_delta": -0.38,
+    "arsenal_top": [
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 38.2,
+        "rv_per_100": 1.1,
+        "xwoba_against": 0.263,
+        "whiff_pct": 21.2,
+        "put_away_pct": 14.3,
+        "hard_hit_pct": 32.8
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 25.8,
+        "rv_per_100": -2.7,
+        "xwoba_against": 0.389,
+        "whiff_pct": 5.0,
+        "put_away_pct": 13.6,
+        "hard_hit_pct": 50.0
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 24.0,
+        "rv_per_100": -0.6,
+        "xwoba_against": 0.376,
+        "whiff_pct": 12.0,
+        "put_away_pct": 12.5,
+        "hard_hit_pct": 44.7
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 4.68,
+    "xera": 5.35,
+    "ip": 42.333333333333336,
+    "era_xera_delta": -0.67,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 38.4,
+        "rv_per_100": -0.5,
+        "xwoba_against": 0.374,
+        "whiff_pct": 14.2,
+        "put_away_pct": 10.6,
+        "hard_hit_pct": 48.1
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 19.6,
+        "rv_per_100": 2.7,
+        "xwoba_against": 0.286,
+        "whiff_pct": 33.3,
+        "put_away_pct": 17.6,
+        "hard_hit_pct": 38.5
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 12.3,
+        "rv_per_100": 2.5,
+        "xwoba_against": 0.244,
+        "whiff_pct": 36.2,
+        "put_away_pct": 31.7,
+        "hard_hit_pct": 66.7
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.245
+  },
+  "away_lineup": {
+    "recent_babip": 0.282
+  },
+  "home_bullpen_era": 4.65,
+  "away_bullpen_era": 3.69,
+  "park_factor": 97.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 4,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 80,
+    "wind_text": "10 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Chicago White Sox",
+    "away_team": "Chicago Cubs",
+    "home_sp": "Erick Fedde",
+    "away_sp": "Colin Rea",
+    "home_sp_starts": 6,
+    "away_sp_starts": 6,
+    "venue": "Rate Field",
+    "game_pk": 824599,
+    "game_date": "2026-05-17T18:10:00Z",
+    "official_date": "2026-05-17"
+  }
+}

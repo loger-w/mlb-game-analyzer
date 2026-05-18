@@ -1,0 +1,453 @@
+{
+  "team": "LAA",
+  "team_id": 108,
+  "tier": "🟢 Weak",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟢 Weak",
+  "avg_ops": 0.687,
+  "avg_ops_vs_lhp": 0.627,
+  "avg_ops_vs_rhp": 0.69,
+  "avg_xwoba": 0.305,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.287,
+  "avg_k_pct": 27.1,
+  "avg_bb_pct": 10.2,
+  "over_under_lean": -1,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.313,
+  "chain": {
+    "obp_top3": 0.348,
+    "slg_mid": 0.373
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-17T17:30:09+00:00",
+    "game_pk": 824034
+  },
+  "lineup": [
+    {
+      "mlbam_id": 687263,
+      "pa": 212,
+      "avg": 0.228,
+      "obp": 0.34,
+      "slg": 0.406,
+      "ops": 0.746,
+      "iso": 0.178,
+      "babip": 0.312,
+      "k_pct": 30.7,
+      "bb_pct": 13.2,
+      "name": "Zach Neto",
+      "position": "SS",
+      "batting_order": 1,
+      "xwoba": 0.321,
+      "xba": 0.214,
+      "xslg": 0.391,
+      "ev95pct": 38.8,
+      "barrel_pct": 10.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".286",
+          "obp": ".426",
+          "slg": ".490",
+          "ops": ".916",
+          "pa": 61
+        },
+        "vs_rhp": {
+          "avg": ".206",
+          "obp": ".305",
+          "slg": ".374",
+          "ops": ".679",
+          "pa": 151
+        }
+      },
+      "last_7": {
+        "avg": ".259",
+        "obp": ".375",
+        "slg": ".407",
+        "ops": ".782",
+        "babip": ".375",
+        "pa": 32
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 545361,
+      "pa": 204,
+      "avg": 0.238,
+      "obp": 0.402,
+      "slg": 0.481,
+      "ops": 0.883,
+      "iso": 0.243,
+      "babip": 0.281,
+      "k_pct": 26.0,
+      "bb_pct": 20.1,
+      "name": "Mike Trout",
+      "position": "CF",
+      "batting_order": 2,
+      "xwoba": 0.424,
+      "xba": 0.258,
+      "xslg": 0.587,
+      "ev95pct": 51.4,
+      "barrel_pct": 22.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".222",
+          "obp": ".386",
+          "slg": ".422",
+          "ops": ".808",
+          "pa": 57
+        },
+        "vs_rhp": {
+          "avg": ".243",
+          "obp": ".408",
+          "slg": ".504",
+          "ops": ".912",
+          "pa": 147
+        }
+      },
+      "last_7": {
+        "avg": ".120",
+        "obp": ".267",
+        "slg": ".160",
+        "ops": ".427",
+        "babip": ".214",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 694384,
+      "pa": 179,
+      "avg": 0.25,
+      "obp": 0.302,
+      "slg": 0.366,
+      "ops": 0.668,
+      "iso": 0.116,
+      "babip": 0.284,
+      "k_pct": 16.2,
+      "bb_pct": 6.7,
+      "name": "Nolan Schanuel",
+      "position": "1B",
+      "batting_order": 3,
+      "xwoba": 0.302,
+      "xba": 0.267,
+      "xslg": 0.36,
+      "ev95pct": 31.4,
+      "barrel_pct": 2.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".170",
+          "obp": ".231",
+          "slg": ".255",
+          "ops": ".486",
+          "pa": 52
+        },
+        "vs_rhp": {
+          "avg": ".282",
+          "obp": ".331",
+          "slg": ".410",
+          "ops": ".741",
+          "pa": 127
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".276",
+        "slg": ".259",
+        "ops": ".535",
+        "babip": ".300",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 624585,
+      "pa": 178,
+      "avg": 0.224,
+      "obp": 0.32,
+      "slg": 0.441,
+      "ops": 0.761,
+      "iso": 0.217,
+      "babip": 0.292,
+      "k_pct": 32.6,
+      "bb_pct": 10.7,
+      "name": "Jorge Soler",
+      "position": "DH",
+      "batting_order": 4,
+      "xwoba": 0.315,
+      "xba": 0.211,
+      "xslg": 0.397,
+      "ev95pct": 44.3,
+      "barrel_pct": 12.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".238",
+          "obp": ".340",
+          "slg": ".381",
+          "ops": ".721",
+          "pa": 53
+        },
+        "vs_rhp": {
+          "avg": ".218",
+          "obp": ".312",
+          "slg": ".464",
+          "ops": ".776",
+          "pa": 125
+        }
+      },
+      "last_7": {
+        "avg": ".192",
+        "obp": ".250",
+        "slg": ".346",
+        "ops": ".596",
+        "babip": ".333",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 660162,
+      "pa": 123,
+      "avg": 0.19,
+      "obp": 0.309,
+      "slg": 0.305,
+      "ops": 0.614,
+      "iso": 0.115,
+      "babip": 0.288,
+      "k_pct": 35.0,
+      "bb_pct": 13.0,
+      "name": "Yoán Moncada",
+      "position": "3B",
+      "batting_order": 5,
+      "xwoba": 0.274,
+      "xba": 0.173,
+      "xslg": 0.295,
+      "ev95pct": 41.9,
+      "barrel_pct": 8.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".048",
+          "obp": ".231",
+          "slg": ".048",
+          "ops": ".279",
+          "pa": 26
+        },
+        "vs_rhp": {
+          "avg": ".226",
+          "obp": ".330",
+          "slg": ".369",
+          "ops": ".699",
+          "pa": 97
+        }
+      },
+      "last_7": {
+        "avg": ".235",
+        "obp": ".278",
+        "slg": ".235",
+        "ops": ".513",
+        "babip": ".364",
+        "pa": 18
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 666176,
+      "pa": 192,
+      "avg": 0.266,
+      "obp": 0.313,
+      "slg": 0.401,
+      "ops": 0.714,
+      "iso": 0.135,
+      "babip": 0.318,
+      "k_pct": 22.9,
+      "bb_pct": 3.6,
+      "name": "Jo Adell",
+      "position": "RF",
+      "batting_order": 6,
+      "xwoba": 0.33,
+      "xba": 0.27,
+      "xslg": 0.435,
+      "ev95pct": 47.4,
+      "barrel_pct": 7.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".298",
+          "obp": ".344",
+          "slg": ".649",
+          "ops": ".993",
+          "pa": 64
+        },
+        "vs_rhp": {
+          "avg": ".250",
+          "obp": ".297",
+          "slg": ".283",
+          "ops": ".580",
+          "pa": 128
+        }
+      },
+      "last_7": {
+        "avg": ".261",
+        "obp": ".357",
+        "slg": ".652",
+        "ops": "1.009",
+        "babip": ".267",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 666139,
+      "pa": 119,
+      "avg": 0.173,
+      "obp": 0.22,
+      "slg": 0.291,
+      "ops": 0.511,
+      "iso": 0.118,
+      "babip": 0.208,
+      "k_pct": 29.4,
+      "bb_pct": 5.0,
+      "name": "Josh Lowe",
+      "position": "LF",
+      "batting_order": 7,
+      "xwoba": 0.247,
+      "xba": 0.186,
+      "xslg": 0.328,
+      "ev95pct": 32.5,
+      "barrel_pct": 7.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".118",
+          "obp": ".118",
+          "slg": ".118",
+          "ops": ".236",
+          "pa": 18
+        },
+        "vs_rhp": {
+          "avg": ".183",
+          "obp": ".238",
+          "slg": ".323",
+          "ops": ".561",
+          "pa": 101
+        }
+      },
+      "last_7": {
+        "avg": ".313",
+        "obp": ".353",
+        "slg": ".313",
+        "ops": ".666",
+        "babip": ".500",
+        "pa": 17
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 681351,
+      "pa": 99,
+      "avg": 0.202,
+      "obp": 0.313,
+      "slg": 0.25,
+      "ops": 0.563,
+      "iso": 0.048,
+      "babip": 0.262,
+      "k_pct": 23.2,
+      "bb_pct": 11.1,
+      "name": "Logan O'Hoppe",
+      "position": "C",
+      "batting_order": 8,
+      "xwoba": 0.29,
+      "xba": 0.189,
+      "xslg": 0.315,
+      "ev95pct": 41.9,
+      "barrel_pct": 9.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".276",
+          "obp": ".364",
+          "slg": ".310",
+          "ops": ".674",
+          "pa": 33
+        },
+        "vs_rhp": {
+          "avg": ".164",
+          "obp": ".288",
+          "slg": ".218",
+          "ops": ".506",
+          "pa": 66
+        }
+      },
+      "last_7": {
+        "avg": ".182",
+        "obp": ".250",
+        "slg": ".182",
+        "ops": ".432",
+        "babip": ".267",
+        "pa": 24
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 624428,
+      "pa": 71,
+      "avg": 0.242,
+      "obp": 0.319,
+      "slg": 0.403,
+      "ops": 0.722,
+      "iso": 0.161,
+      "babip": 0.341,
+      "k_pct": 28.2,
+      "bb_pct": 8.5,
+      "name": "Adam Frazier",
+      "position": "2B",
+      "batting_order": 9,
+      "xwoba": 0.238,
+      "xba": 0.179,
+      "xslg": 0.248,
+      "ev95pct": 15.9,
+      "barrel_pct": 2.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".200",
+          "obp": ".333",
+          "slg": ".200",
+          "ops": ".533",
+          "pa": 13
+        },
+        "vs_rhp": {
+          "avg": ".250",
+          "obp": ".316",
+          "slg": ".442",
+          "ops": ".758",
+          "pa": 58
+        }
+      },
+      "last_7": {
+        "avg": ".154",
+        "obp": ".154",
+        "slg": ".308",
+        "ops": ".462",
+        "babip": ".200",
+        "pa": 13
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".500",
+        "obp": ".500",
+        "slg": ".500",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}
