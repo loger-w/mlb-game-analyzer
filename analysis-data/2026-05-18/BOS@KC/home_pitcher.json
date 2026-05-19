@@ -1,0 +1,183 @@
+{
+  "name": "Seth Lugo",
+  "mlbam_id": 607625,
+  "age": 36,
+  "birth_date": "1989-11-17",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.706,
+    "k_bb_pct": 0.631,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 67.8,
+    "era_only_score": 63.8,
+    "gap": 4.0
+  },
+  "season": {
+    "era": 3.76,
+    "whip": 1.42,
+    "k_pct": 20.8,
+    "bb_pct": 8.6,
+    "k_bb_pct": 12.2,
+    "fip": 2.68,
+    "xfip": 3.84,
+    "hr_per_9": 0.17,
+    "gb_pct": 43.0,
+    "ip": 52.666666666666664,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 4.86,
+    "xwoba": 0.346,
+    "xba": 0.281
+  },
+  "statcast": {
+    "avg_velo": 85.6,
+    "max_velo": 96.5,
+    "hard_hit_pct": 26.2,
+    "pitch_types": {
+      "SI": 20.0,
+      "FF": 17.1,
+      "CU": 15.3,
+      "FC": 14.6,
+      "SL": 9.8
+    },
+    "barrel_pct": 9.6,
+    "ev95percent": 41.7,
+    "whiff_pct": 7.5,
+    "csw_pct": 25.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Atlanta Braves",
+      "ip": 6.333333333333333,
+      "era": 0.0,
+      "k": 3,
+      "bb": 0,
+      "h": 5,
+      "er": 0,
+      "pitches": 77,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Milwaukee Brewers",
+      "ip": 5.0,
+      "era": 1.59,
+      "k": 7,
+      "bb": 2,
+      "h": 4,
+      "er": 2,
+      "pitches": 103,
+      "strikes": 69
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "Chicago White Sox",
+      "ip": 6.333333333333333,
+      "era": 1.53,
+      "k": 4,
+      "bb": 4,
+      "h": 4,
+      "er": 1,
+      "pitches": 92,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".295",
+      "obp": ".367",
+      "slg": ".379",
+      "k": 34,
+      "bb": 15,
+      "bf": 147,
+      "k_pct": 23.1,
+      "bb_pct": 10.2
+    },
+    "vs_right": {
+      "avg": ".254",
+      "obp": ".288",
+      "slg": ".388",
+      "k": 12,
+      "bb": 4,
+      "bf": 74,
+      "k_pct": 16.2,
+      "bb_pct": 5.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.801,
+      "k_pct": 21.5,
+      "bb_pct": 7.5,
+      "bf": 93
+    },
+    "tto2": {
+      "ops": 0.625,
+      "k_pct": 23.9,
+      "bb_pct": 9.1,
+      "bf": 88
+    },
+    "tto3": {
+      "ops": 0.728,
+      "k_pct": 16.7,
+      "bb_pct": 13.0,
+      "bf": 54
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.5,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.379,
+      "whiff_pct": 15.8,
+      "put_away_pct": 13.8,
+      "hard_hit_pct": 45.2
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 17.7,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.217,
+      "whiff_pct": 16.0,
+      "put_away_pct": 21.2,
+      "hard_hit_pct": 32.4
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 16.6,
+      "rv_per_100": -2.2,
+      "xwoba_against": 0.392,
+      "whiff_pct": 15.5,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 45.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 14.7,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.389,
+      "whiff_pct": 25.0,
+      "put_away_pct": 21.2,
+      "hard_hit_pct": 48.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

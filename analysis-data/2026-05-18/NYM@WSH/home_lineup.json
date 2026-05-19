@@ -1,0 +1,483 @@
+{
+  "team": "WSH",
+  "team_id": 120,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟡 Average",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.722,
+  "avg_ops_vs_lhp": 0.706,
+  "avg_ops_vs_rhp": 0.728,
+  "avg_xwoba": 0.329,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.294,
+  "avg_k_pct": 22.2,
+  "avg_bb_pct": 8.4,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.271,
+  "chain": {
+    "obp_top3": 0.322,
+    "slg_mid": 0.491
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-18T19:27:08+00:00",
+    "game_pk": 822734
+  },
+  "lineup": [
+    {
+      "mlbam_id": 695578,
+      "pa": 221,
+      "avg": 0.242,
+      "obp": 0.389,
+      "slg": 0.511,
+      "ops": 0.9,
+      "iso": 0.269,
+      "babip": 0.32,
+      "k_pct": 31.2,
+      "bb_pct": 17.6,
+      "name": "James Wood",
+      "position": "RF",
+      "batting_order": 1,
+      "xwoba": 0.428,
+      "xba": 0.271,
+      "xslg": 0.611,
+      "ev95pct": 62.4,
+      "barrel_pct": 26.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".203",
+          "obp": ".365",
+          "slg": ".424",
+          "ops": ".789",
+          "pa": 74
+        },
+        "vs_rhp": {
+          "avg": ".261",
+          "obp": ".401",
+          "slg": ".555",
+          "ops": ".956",
+          "pa": 147
+        }
+      },
+      "last_7": {
+        "avg": ".231",
+        "obp": ".355",
+        "slg": ".423",
+        "ops": ".778",
+        "babip": ".313",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".500",
+        "obp": ".667",
+        "slg": ".500",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 671277,
+      "pa": 146,
+      "avg": 0.273,
+      "obp": 0.301,
+      "slg": 0.432,
+      "ops": 0.733,
+      "iso": 0.159,
+      "babip": 0.304,
+      "k_pct": 15.1,
+      "bb_pct": 4.1,
+      "name": "Luis García Jr.",
+      "position": "1B",
+      "batting_order": 2,
+      "xwoba": 0.329,
+      "xba": 0.287,
+      "xslg": 0.441,
+      "ev95pct": 47.5,
+      "barrel_pct": 6.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".294",
+          "obp": ".294",
+          "slg": ".471",
+          "ops": ".765",
+          "pa": 17
+        },
+        "vs_rhp": {
+          "avg": ".270",
+          "obp": ".302",
+          "slg": ".426",
+          "ops": ".728",
+          "pa": 129
+        }
+      },
+      "last_7": {
+        "avg": ".385",
+        "obp": ".429",
+        "slg": ".808",
+        "ops": "1.237",
+        "babip": ".381",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".500",
+        "obp": ".667",
+        "slg": "2.000",
+        "h": 1,
+        "hr": 1,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 691781,
+      "pa": 173,
+      "avg": 0.225,
+      "obp": 0.277,
+      "slg": 0.4,
+      "ops": 0.677,
+      "iso": 0.175,
+      "babip": 0.279,
+      "k_pct": 28.9,
+      "bb_pct": 6.9,
+      "name": "Brady House",
+      "position": "3B",
+      "batting_order": 3,
+      "xwoba": 0.317,
+      "xba": 0.249,
+      "xslg": 0.427,
+      "ev95pct": 43.2,
+      "barrel_pct": 10.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".354",
+          "obp": ".415",
+          "slg": ".563",
+          "ops": ".978",
+          "pa": 53
+        },
+        "vs_rhp": {
+          "avg": ".170",
+          "obp": ".217",
+          "slg": ".330",
+          "ops": ".547",
+          "pa": 120
+        }
+      },
+      "last_7": {
+        "avg": ".154",
+        "obp": ".179",
+        "slg": ".423",
+        "ops": ".602",
+        "babip": ".111",
+        "pa": 28
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 682928,
+      "pa": 196,
+      "avg": 0.298,
+      "obp": 0.388,
+      "slg": 0.53,
+      "ops": 0.918,
+      "iso": 0.232,
+      "babip": 0.333,
+      "k_pct": 19.4,
+      "bb_pct": 10.2,
+      "name": "CJ Abrams",
+      "position": "SS",
+      "batting_order": 4,
+      "xwoba": 0.363,
+      "xba": 0.268,
+      "xslg": 0.469,
+      "ev95pct": 40.2,
+      "barrel_pct": 10.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".304",
+          "obp": ".350",
+          "slg": ".375",
+          "ops": ".725",
+          "pa": 60
+        },
+        "vs_rhp": {
+          "avg": ".295",
+          "obp": ".404",
+          "slg": ".607",
+          "ops": "1.011",
+          "pa": 136
+        }
+      },
+      "last_7": {
+        "avg": ".310",
+        "obp": ".355",
+        "slg": ".448",
+        "ops": ".803",
+        "babip": ".450",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 695734,
+      "pa": 203,
+      "avg": 0.272,
+      "obp": 0.33,
+      "slg": 0.451,
+      "ops": 0.781,
+      "iso": 0.179,
+      "babip": 0.303,
+      "k_pct": 18.2,
+      "bb_pct": 7.9,
+      "name": "Daylen Lile",
+      "position": "LF",
+      "batting_order": 5,
+      "xwoba": 0.347,
+      "xba": 0.277,
+      "xslg": 0.457,
+      "ev95pct": 37.8,
+      "barrel_pct": 8.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".259",
+          "obp": ".328",
+          "slg": ".296",
+          "ops": ".624",
+          "pa": 61
+        },
+        "vs_rhp": {
+          "avg": ".277",
+          "obp": ".331",
+          "slg": ".515",
+          "ops": ".846",
+          "pa": 142
+        }
+      },
+      "last_7": {
+        "avg": ".400",
+        "obp": ".387",
+        "slg": ".867",
+        "ops": "1.254",
+        "babip": ".381",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 696285,
+      "pa": 168,
+      "avg": 0.224,
+      "obp": 0.275,
+      "slg": 0.353,
+      "ops": 0.628,
+      "iso": 0.129,
+      "babip": 0.244,
+      "k_pct": 16.7,
+      "bb_pct": 5.4,
+      "name": "Jacob Young",
+      "position": "CF",
+      "batting_order": 6,
+      "xwoba": 0.311,
+      "xba": 0.266,
+      "xslg": 0.392,
+      "ev95pct": 31.8,
+      "barrel_pct": 5.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".233",
+          "obp": ".313",
+          "slg": ".372",
+          "ops": ".685",
+          "pa": 49
+        },
+        "vs_rhp": {
+          "avg": ".221",
+          "obp": ".261",
+          "slg": ".345",
+          "ops": ".606",
+          "pa": 119
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".286",
+        "slg": ".440",
+        "ops": ".726",
+        "babip": ".143",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 677588,
+      "pa": 91,
+      "avg": 0.253,
+      "obp": 0.319,
+      "slg": 0.422,
+      "ops": 0.741,
+      "iso": 0.169,
+      "babip": 0.345,
+      "k_pct": 28.6,
+      "bb_pct": 7.7,
+      "name": "José Tena",
+      "position": "DH",
+      "batting_order": 7,
+      "xwoba": 0.326,
+      "xba": 0.255,
+      "xslg": 0.422,
+      "ev95pct": 54.4,
+      "barrel_pct": 10.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".500",
+          "slg": ".250",
+          "ops": ".750",
+          "pa": 6
+        },
+        "vs_rhp": {
+          "avg": ".253",
+          "obp": ".306",
+          "slg": ".430",
+          "ops": ".736",
+          "pa": 85
+        }
+      },
+      "last_7": {
+        "avg": ".105",
+        "obp": ".227",
+        "slg": ".211",
+        "ops": ".438",
+        "babip": ".167",
+        "pa": 22
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 678391,
+      "pa": 99,
+      "avg": 0.241,
+      "obp": 0.333,
+      "slg": 0.289,
+      "ops": 0.622,
+      "iso": 0.048,
+      "babip": 0.282,
+      "k_pct": 13.1,
+      "bb_pct": 8.1,
+      "name": "Jorbit Vivas",
+      "position": "3B",
+      "batting_order": 8,
+      "xwoba": 0.292,
+      "xba": 0.239,
+      "xslg": 0.297,
+      "ev95pct": 23.3,
+      "barrel_pct": 2.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".333",
+          "obp": ".455",
+          "slg": ".333",
+          "ops": ".788",
+          "pa": 12
+        },
+        "vs_rhp": {
+          "avg": ".230",
+          "obp": ".318",
+          "slg": ".284",
+          "ops": ".602",
+          "pa": 87
+        }
+      },
+      "last_7": {
+        "avg": ".200",
+        "obp": ".333",
+        "slg": ".300",
+        "ops": ".633",
+        "babip": ".222",
+        "pa": 13
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 686452,
+      "pa": 78,
+      "avg": 0.171,
+      "obp": 0.237,
+      "slg": 0.257,
+      "ops": 0.494,
+      "iso": 0.086,
+      "babip": 0.234,
+      "k_pct": 28.2,
+      "bb_pct": 7.7,
+      "name": "Drew Millas",
+      "position": "C",
+      "batting_order": 9,
+      "xwoba": 0.244,
+      "xba": 0.199,
+      "xslg": 0.274,
+      "ev95pct": 22.4,
+      "barrel_pct": 4.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".000",
+          "obp": ".250",
+          "slg": ".000",
+          "ops": ".250",
+          "pa": 8
+        },
+        "vs_rhp": {
+          "avg": ".188",
+          "obp": ".235",
+          "slg": ".281",
+          "ops": ".516",
+          "pa": 70
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".300",
+        "slg": ".444",
+        "ops": ".744",
+        "babip": ".273",
+        "pa": 20
+      },
+      "bvp": null
+    }
+  ]
+}

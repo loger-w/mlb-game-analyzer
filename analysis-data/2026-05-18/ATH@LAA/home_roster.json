@@ -1,0 +1,337 @@
+{
+  "team": "Los Angeles Angels",
+  "team_id": 108,
+  "active_roster": {
+    "pitchers": [
+      "Brent Suter",
+      "Chase Silseth",
+      "Grayson Rodriguez",
+      "Jack Kochanowicz",
+      "José Fermin",
+      "José Soriano",
+      "Kirby Yates",
+      "Mitch Farris",
+      "Reid Detmers",
+      "Ryan Johnson",
+      "Ryan Zeferjahn",
+      "Sam Bachman",
+      "Walbert Ureña"
+    ],
+    "pitcher_ids": [
+      608718,
+      681217,
+      680570,
+      686799,
+      820862,
+      667755,
+      489446,
+      815083,
+      672282,
+      696270,
+      666171,
+      696147,
+      700712
+    ],
+    "position_players": [
+      "Adam Frazier",
+      "Jo Adell",
+      "Jorge Soler",
+      "Jose Siri",
+      "Josh Lowe",
+      "Logan O'Hoppe",
+      "Mike Trout",
+      "Nolan Schanuel",
+      "Oswald Peraza",
+      "Sebastián Rivero",
+      "Vaughn Grissom",
+      "Yoán Moncada",
+      "Zach Neto"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Brent Suter",
+        "player_id": 608718,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 17,
+          "gs": 2,
+          "ip": 25.0
+        }
+      },
+      {
+        "name": "Chase Silseth",
+        "player_id": 681217,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 19,
+          "gs": 0,
+          "ip": 15.0
+        }
+      },
+      {
+        "name": "Grayson Rodriguez",
+        "player_id": 680570,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 1,
+          "gs": 1,
+          "ip": 3.7
+        }
+      },
+      {
+        "name": "Jack Kochanowicz",
+        "player_id": 686799,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 51.3
+        }
+      },
+      {
+        "name": "José Fermin",
+        "player_id": 820862,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 0,
+          "ip": 9.0
+        }
+      },
+      {
+        "name": "José Soriano",
+        "player_id": 667755,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 59.7
+        }
+      },
+      {
+        "name": "Kirby Yates",
+        "player_id": 489446,
+        "core_role": "Setup",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 15,
+          "g": 50,
+          "gs": 0,
+          "ip": 41.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Mitch Farris",
+        "player_id": 815083,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 0,
+          "ip": 17.0
+        }
+      },
+      {
+        "name": "Reid Detmers",
+        "player_id": 672282,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 49.3
+        }
+      },
+      {
+        "name": "Ryan Johnson",
+        "player_id": 696270,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 1,
+          "g": 14,
+          "gs": 0,
+          "ip": 14.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Ryan Zeferjahn",
+        "player_id": 666171,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 15,
+          "gs": 0,
+          "ip": 21.7
+        }
+      },
+      {
+        "name": "Sam Bachman",
+        "player_id": 696147,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 7,
+          "g": 15,
+          "gs": 0,
+          "ip": 20.3
+        }
+      },
+      {
+        "name": "Walbert Ureña",
+        "player_id": 700712,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 7,
+          "gs": 5,
+          "ip": 27.3
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Anthony Rendon",
+      "status": "Injured 60-Day",
+      "position": "Third Base",
+      "player_id": 543685
+    },
+    {
+      "name": "Ben Joyce",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 690829,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 2,
+        "g": 5,
+        "gs": 0,
+        "ip": 4.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Drew Pomeranz",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 519141,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 6,
+        "g": 17,
+        "gs": 0,
+        "ip": 15.0
+      }
+    },
+    {
+      "name": "Robert Stephenson",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 596112,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 12,
+        "gs": 0,
+        "ip": 10.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Travis d'Arnaud",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 518595
+    },
+    {
+      "name": "Yusei Kikuchi",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 579328,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 7,
+        "ip": 31.0
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Alek Manoah",
+    "Bryce Teodosio",
+    "Caden Dana",
+    "Christian Moore",
+    "Denzer Guzman",
+    "George Klassen",
+    "Kyren Paris",
+    "Matthew Lugo",
+    "Omar Martinez",
+    "Sam Aldegheri",
+    "Tayler Saucedo"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 6,
+    "total_40man_not_active": 11
+  }
+}

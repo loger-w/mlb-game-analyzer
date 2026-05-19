@@ -1,0 +1,183 @@
+{
+  "name": "J.T. Ginn",
+  "mlbam_id": 669372,
+  "age": 26,
+  "birth_date": "1999-05-20",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.728,
+    "k_bb_pct": 0.518,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 71.1,
+    "era_only_score": 76.7,
+    "gap": -5.6
+  },
+  "season": {
+    "era": 3.12,
+    "whip": 1.2,
+    "k_pct": 19.4,
+    "bb_pct": 9.1,
+    "k_bb_pct": 10.3,
+    "fip": 4.14,
+    "xfip": 3.81,
+    "hr_per_9": 1.04,
+    "gb_pct": 55.7,
+    "ip": 43.333333333333336,
+    "games": 10,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 3.86,
+    "xwoba": 0.312,
+    "xba": 0.248
+  },
+  "statcast": {
+    "avg_velo": 91.3,
+    "max_velo": 96.4,
+    "hard_hit_pct": 23.9,
+    "pitch_types": {
+      "SI": 36.6,
+      "SL": 17.5,
+      "CH": 16.5,
+      "FC": 16.2,
+      "FF": 13.2
+    },
+    "barrel_pct": 6.5,
+    "ev95percent": 33.9,
+    "whiff_pct": 9.8,
+    "csw_pct": 27.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Toronto Blue Jays",
+      "ip": 3.6666666666666665,
+      "era": 0.0,
+      "k": 2,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 45,
+      "strikes": 31
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Houston Astros",
+      "ip": 2.0,
+      "era": 3.18,
+      "k": 1,
+      "bb": 1,
+      "h": 3,
+      "er": 2,
+      "pitches": 32,
+      "strikes": 19
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Houston Astros",
+      "ip": 1.3333333333333333,
+      "era": 5.14,
+      "k": 1,
+      "bb": 0,
+      "h": 2,
+      "er": 2,
+      "pitches": 27,
+      "strikes": 18
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".250",
+      "obp": ".349",
+      "slg": ".435",
+      "k": 18,
+      "bb": 13,
+      "bf": 106,
+      "k_pct": 17.0,
+      "bb_pct": 12.3
+    },
+    "vs_right": {
+      "avg": ".203",
+      "obp": ".235",
+      "slg": ".297",
+      "k": 16,
+      "bb": 3,
+      "bf": 69,
+      "k_pct": 23.2,
+      "bb_pct": 4.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.824,
+      "k_pct": 25.2,
+      "bb_pct": 8.5,
+      "bf": 468
+    },
+    "tto2": {
+      "ops": 0.682,
+      "k_pct": 22.1,
+      "bb_pct": 5.5,
+      "bf": 289
+    },
+    "tto3": {
+      "ops": 0.745,
+      "k_pct": 14.3,
+      "bb_pct": 13.3,
+      "bf": 98
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 36.0,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.339,
+      "whiff_pct": 23.2,
+      "put_away_pct": 31.6,
+      "hard_hit_pct": 43.5
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 17.5,
+      "rv_per_100": -2.6,
+      "xwoba_against": 0.266,
+      "whiff_pct": 20.5,
+      "put_away_pct": 11.9,
+      "hard_hit_pct": 26.1
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 16.3,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.202,
+      "whiff_pct": 34.5,
+      "put_away_pct": 17.1,
+      "hard_hit_pct": 16.7
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 16.3,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.405,
+      "whiff_pct": 14.6,
+      "put_away_pct": 10.0,
+      "hard_hit_pct": 35.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

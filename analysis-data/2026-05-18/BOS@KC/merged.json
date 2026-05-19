@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 3.7,
+  "home_recent_ra": 4.5,
+  "away_recent_rs": 1.8,
+  "away_recent_ra": 3.1,
+  "home_recent_30_rs": 4.47,
+  "home_recent_30_ra": 4.77,
+  "away_recent_30_rs": 3.3,
+  "away_recent_30_ra": 3.53,
+  "home_season_rs": 3.94,
+  "home_season_ra": 4.38,
+  "away_season_rs": 3.55,
+  "away_season_ra": 3.98,
+  "home_season_games": 48,
+  "away_season_games": 47,
+  "home_starter_fip": 2.68,
+  "home_starter_k_bb": 12.2,
+  "home_starter_whip": 1.42,
+  "away_starter_fip": 4.1,
+  "away_starter_k_bb": 9.3,
+  "away_starter_whip": 1.15,
+  "home_batting_xwoba": 0.316,
+  "home_batting_ops": 0.707,
+  "home_batting_k_pct": 22.2,
+  "away_batting_xwoba": 0.308,
+  "away_batting_ops": 0.677,
+  "away_batting_k_pct": 20.4,
+  "home_pitcher": {
+    "era": 3.76,
+    "xera": 4.86,
+    "ip": 52.666666666666664,
+    "era_xera_delta": -1.1,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 19.5,
+        "rv_per_100": 1.0,
+        "xwoba_against": 0.379,
+        "whiff_pct": 15.8,
+        "put_away_pct": 13.8,
+        "hard_hit_pct": 45.2
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 17.7,
+        "rv_per_100": 0.7,
+        "xwoba_against": 0.217,
+        "whiff_pct": 16.0,
+        "put_away_pct": 21.2,
+        "hard_hit_pct": 32.4
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 16.6,
+        "rv_per_100": -2.2,
+        "xwoba_against": 0.392,
+        "whiff_pct": 15.5,
+        "put_away_pct": 16.7,
+        "hard_hit_pct": 45.0
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 3.18,
+    "xera": 5.16,
+    "ip": 34.0,
+    "era_xera_delta": -1.98,
+    "arsenal_top": [
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 23.6,
+        "rv_per_100": 2.5,
+        "xwoba_against": 0.358,
+        "whiff_pct": 12.7,
+        "put_away_pct": 0.0,
+        "hard_hit_pct": 21.9
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 18.4,
+        "rv_per_100": 1.1,
+        "xwoba_against": 0.318,
+        "whiff_pct": 20.9,
+        "put_away_pct": 24.3,
+        "hard_hit_pct": 45.0
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 16.9,
+        "rv_per_100": -1.1,
+        "xwoba_against": 0.347,
+        "whiff_pct": 22.7,
+        "put_away_pct": 10.4,
+        "hard_hit_pct": 47.6
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.272
+  },
+  "away_lineup": {
+    "recent_babip": 0.248
+  },
+  "home_bullpen_era": 4.42,
+  "away_bullpen_era": 3.16,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 81,
+    "wind_text": "18 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Kansas City Royals",
+    "away_team": "Boston Red Sox",
+    "home_sp": "Seth Lugo",
+    "away_sp": "Sonny Gray",
+    "home_sp_starts": 9,
+    "away_sp_starts": 7,
+    "venue": "Kauffman Stadium",
+    "game_pk": 824114,
+    "game_date": "2026-05-18T23:10:00Z",
+    "official_date": "2026-05-18"
+  }
+}

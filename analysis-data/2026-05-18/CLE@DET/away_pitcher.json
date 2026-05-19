@@ -1,0 +1,183 @@
+{
+  "name": "Slade Cecconi",
+  "mlbam_id": 677944,
+  "age": 26,
+  "birth_date": "1999-06-24",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.64,
+    "k_bb_pct": 0.512,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 67.1,
+    "era_only_score": 23.0,
+    "gap": 44.1
+  },
+  "season": {
+    "era": 5.6,
+    "whip": 1.58,
+    "k_pct": 18.5,
+    "bb_pct": 8.3,
+    "k_bb_pct": 10.2,
+    "fip": 4.86,
+    "xfip": 3.93,
+    "hr_per_9": 1.6,
+    "gb_pct": 48.4,
+    "ip": 45.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 5.19,
+    "xwoba": 0.356,
+    "xba": 0.279
+  },
+  "statcast": {
+    "avg_velo": 87.9,
+    "max_velo": 97.1,
+    "hard_hit_pct": 24.3,
+    "pitch_types": {
+      "FF": 34.7,
+      "FC": 24.4,
+      "SI": 15.4,
+      "CU": 15.2,
+      "ST": 10.3
+    },
+    "barrel_pct": 10.2,
+    "ev95percent": 36.1,
+    "whiff_pct": 8.6,
+    "csw_pct": 25.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Seattle Mariners",
+      "ip": 4.333333333333333,
+      "era": 12.46,
+      "k": 5,
+      "bb": 3,
+      "h": 6,
+      "er": 6,
+      "pitches": 93,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Chicago Cubs",
+      "ip": 6.0,
+      "era": 5.23,
+      "k": 6,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 85,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Atlanta Braves",
+      "ip": 5.333333333333333,
+      "era": 5.74,
+      "k": 3,
+      "bb": 1,
+      "h": 7,
+      "er": 4,
+      "pitches": 85,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".266",
+      "obp": ".343",
+      "slg": ".383",
+      "k": 23,
+      "bb": 10,
+      "bf": 108,
+      "k_pct": 21.3,
+      "bb_pct": 9.3
+    },
+    "vs_right": {
+      "avg": ".330",
+      "obp": ".381",
+      "slg": ".580",
+      "k": 15,
+      "bb": 7,
+      "bf": 97,
+      "k_pct": 15.5,
+      "bb_pct": 7.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.688,
+      "k_pct": 18.7,
+      "bb_pct": 8.8,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.622,
+      "k_pct": 21.8,
+      "bb_pct": 9.2,
+      "bf": 87
+    },
+    "tto3": {
+      "ops": 1.422,
+      "k_pct": 9.5,
+      "bb_pct": 7.1,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 34.2,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.397,
+      "whiff_pct": 20.8,
+      "put_away_pct": 22.2,
+      "hard_hit_pct": 51.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 25.5,
+      "rv_per_100": 0.6,
+      "xwoba_against": 0.273,
+      "whiff_pct": 18.5,
+      "put_away_pct": 17.8,
+      "hard_hit_pct": 16.7
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 15.8,
+      "rv_per_100": -0.1,
+      "xwoba_against": 0.347,
+      "whiff_pct": 13.8,
+      "put_away_pct": 8.6,
+      "hard_hit_pct": 30.3
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 15.0,
+      "rv_per_100": -3.2,
+      "xwoba_against": 0.391,
+      "whiff_pct": 36.4,
+      "put_away_pct": 15.1,
+      "hard_hit_pct": 46.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

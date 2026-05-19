@@ -1,0 +1,173 @@
+{
+  "name": "Ryan Weathers",
+  "mlbam_id": 677960,
+  "age": 26,
+  "birth_date": "1999-12-17",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 79.3,
+    "gap": 16.8
+  },
+  "season": {
+    "era": 3.0,
+    "whip": 1.11,
+    "k_pct": 29.8,
+    "bb_pct": 7.2,
+    "k_bb_pct": 22.6,
+    "fip": 3.3,
+    "xfip": 2.64,
+    "hr_per_9": 1.2,
+    "gb_pct": 51.9,
+    "ip": 45.0,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.22,
+    "xwoba": 0.325,
+    "xba": 0.251
+  },
+  "statcast": {
+    "avg_velo": 89.7,
+    "max_velo": 101.0,
+    "hard_hit_pct": 24.9,
+    "pitch_types": {
+      "FF": 30.6,
+      "CH": 23.3,
+      "ST": 20.3,
+      "SI": 17.8,
+      "SL": 8.0
+    },
+    "barrel_pct": 11.4,
+    "ev95percent": 42.1,
+    "whiff_pct": 12.1,
+    "csw_pct": 32.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Seattle Mariners",
+      "ip": 4.333333333333333,
+      "era": 2.08,
+      "k": 7,
+      "bb": 2,
+      "h": 4,
+      "er": 1,
+      "pitches": 77,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Miami Marlins",
+      "ip": 3.6666666666666665,
+      "era": 4.5,
+      "k": 4,
+      "bb": 3,
+      "h": 6,
+      "er": 3,
+      "pitches": 88,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "Athletics",
+      "ip": 8.0,
+      "era": 2.81,
+      "k": 7,
+      "bb": 0,
+      "h": 7,
+      "er": 1,
+      "pitches": 101,
+      "strikes": 73
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".242",
+      "obp": ".265",
+      "slg": ".242",
+      "k": 14,
+      "bb": 1,
+      "bf": 34,
+      "k_pct": 41.2,
+      "bb_pct": 2.9
+    },
+    "vs_right": {
+      "avg": ".216",
+      "obp": ".281",
+      "slg": ".396",
+      "k": 40,
+      "bb": 12,
+      "bf": 147,
+      "k_pct": 27.2,
+      "bb_pct": 8.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.683,
+      "k_pct": 23.0,
+      "bb_pct": 10.3,
+      "bf": 87
+    },
+    "tto2": {
+      "ops": 0.498,
+      "k_pct": 39.7,
+      "bb_pct": 3.8,
+      "bf": 78
+    },
+    "tto3": {
+      "ops": 0.942,
+      "k_pct": 17.6,
+      "bb_pct": 5.9,
+      "bf": 34
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 30.0,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.442,
+      "whiff_pct": 22.1,
+      "put_away_pct": 17.4,
+      "hard_hit_pct": 59.4
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 23.9,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.24,
+      "whiff_pct": 35.2,
+      "put_away_pct": 19.5,
+      "hard_hit_pct": 35.3
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 17.8,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.417,
+      "whiff_pct": 10.7,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

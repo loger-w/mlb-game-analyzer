@@ -1,0 +1,148 @@
+{
+  "name": "JR Ritchie",
+  "mlbam_id": 702275,
+  "age": 22,
+  "birth_date": "2003-06-26",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 72.6,
+    "gap": null
+  },
+  "season": {
+    "era": 3.32,
+    "whip": 1.43,
+    "k_pct": 18.3,
+    "bb_pct": 16.1,
+    "k_bb_pct": 2.2,
+    "fip": 6.01,
+    "xfip": 5.05,
+    "hr_per_9": 1.66,
+    "gb_pct": 45.5,
+    "ip": 21.666666666666668,
+    "games": 4,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 4.55,
+    "xwoba": 0.336,
+    "xba": 0.215
+  },
+  "statcast": {
+    "avg_velo": 88.8,
+    "max_velo": 97.4,
+    "hard_hit_pct": 25.5,
+    "pitch_types": {
+      "CU": 25.4,
+      "FF": 24.9,
+      "CH": 17.8,
+      "SI": 12.3,
+      "SL": 9.8
+    },
+    "barrel_pct": 6.7,
+    "ev95percent": 35.0,
+    "whiff_pct": 8.2,
+    "csw_pct": 23.2
+  },
+  "game_log": [
+    {
+      "date": "2026-04-23",
+      "opponent": "Washington Nationals",
+      "ip": 7.0,
+      "era": 2.57,
+      "k": 7,
+      "bb": 2,
+      "h": 5,
+      "er": 2,
+      "pitches": 89,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-29",
+      "opponent": "Detroit Tigers",
+      "ip": 5.333333333333333,
+      "era": 2.92,
+      "k": 4,
+      "bb": 4,
+      "h": 5,
+      "er": 2,
+      "pitches": 97,
+      "strikes": 56
+    },
+    {
+      "date": "2026-05-04",
+      "opponent": "Seattle Mariners",
+      "ip": 5.0,
+      "era": 3.63,
+      "k": 2,
+      "bb": 6,
+      "h": 4,
+      "er": 3,
+      "pitches": 93,
+      "strikes": 47
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".255",
+      "obp": ".397",
+      "slg": ".510",
+      "k": 12,
+      "bb": 11,
+      "bf": 63,
+      "k_pct": 19.0,
+      "bb_pct": 17.5
+    },
+    "vs_right": {
+      "avg": ".115",
+      "obp": ".233",
+      "slg": ".115",
+      "k": 5,
+      "bb": 4,
+      "bf": 30,
+      "k_pct": 16.7,
+      "bb_pct": 13.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.628,
+      "k_pct": 22.2,
+      "bb_pct": 13.9,
+      "bf": 36
+    },
+    "tto2": {
+      "ops": 0.771,
+      "k_pct": 16.7,
+      "bb_pct": 8.3,
+      "bf": 36
+    },
+    "tto3": {
+      "ops": 0.742,
+      "k_pct": 13.6,
+      "bb_pct": 31.8,
+      "bf": 22
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 24.9,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.344,
+      "whiff_pct": 18.2,
+      "put_away_pct": 17.9,
+      "hard_hit_pct": 37.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

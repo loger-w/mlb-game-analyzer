@@ -1,0 +1,173 @@
+{
+  "name": "Zac Gallen",
+  "mlbam_id": 668678,
+  "age": 30,
+  "birth_date": "1995-08-03",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.522,
+    "k_bb_pct": 0.336,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 53.2,
+    "era_only_score": 34.6,
+    "gap": 18.6
+  },
+  "season": {
+    "era": 5.02,
+    "whip": 1.51,
+    "k_pct": 15.0,
+    "bb_pct": 7.3,
+    "k_bb_pct": 7.7,
+    "fip": 4.54,
+    "xfip": 4.09,
+    "hr_per_9": 1.26,
+    "gb_pct": 53.6,
+    "ip": 43.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 5.33,
+    "xwoba": 0.36,
+    "xba": 0.293
+  },
+  "statcast": {
+    "avg_velo": 89.1,
+    "max_velo": 96.6,
+    "hard_hit_pct": 28.7,
+    "pitch_types": {
+      "FF": 37.6,
+      "SL": 23.4,
+      "KC": 18.9,
+      "CH": 13.8,
+      "SI": 6.3
+    },
+    "barrel_pct": 10.1,
+    "ev95percent": 44.6,
+    "whiff_pct": 8.0,
+    "csw_pct": 24.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 4.0,
+      "era": 9.0,
+      "k": 2,
+      "bb": 2,
+      "h": 5,
+      "er": 4,
+      "pitches": 76,
+      "strikes": 47
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Detroit Tigers",
+      "ip": 6.0,
+      "era": 3.6,
+      "k": 2,
+      "bb": 0,
+      "h": 4,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "New York Mets",
+      "ip": 5.0,
+      "era": 3.0,
+      "k": 5,
+      "bb": 4,
+      "h": 5,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".278",
+      "obp": ".340",
+      "slg": ".444",
+      "k": 12,
+      "bb": 7,
+      "bf": 100,
+      "k_pct": 12.0,
+      "bb_pct": 7.0
+    },
+    "vs_right": {
+      "avg": ".306",
+      "obp": ".359",
+      "slg": ".482",
+      "k": 17,
+      "bb": 7,
+      "bf": 93,
+      "k_pct": 18.3,
+      "bb_pct": 7.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.743,
+      "k_pct": 13.2,
+      "bb_pct": 8.8,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.869,
+      "k_pct": 17.1,
+      "bb_pct": 6.1,
+      "bf": 82
+    },
+    "tto3": {
+      "ops": 1.286,
+      "k_pct": 7.5,
+      "bb_pct": 7.5,
+      "bf": 40
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 37.3,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.404,
+      "whiff_pct": 5.0,
+      "put_away_pct": 14.5,
+      "hard_hit_pct": 48.3
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 24.7,
+      "rv_per_100": -2.0,
+      "xwoba_against": 0.303,
+      "whiff_pct": 36.8,
+      "put_away_pct": 15.2,
+      "hard_hit_pct": 41.7
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 19.1,
+      "rv_per_100": -2.7,
+      "xwoba_against": 0.433,
+      "whiff_pct": 24.3,
+      "put_away_pct": 9.8,
+      "hard_hit_pct": 53.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "name": "Robbie Ray",
+  "mlbam_id": 592662,
+  "age": 34,
+  "birth_date": "1991-10-01",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.551,
+    "k_bb_pct": 0.75,
+    "stuff_pct": null,
+    "age_factor": 0.71
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 65.6,
+    "era_only_score": 78.4,
+    "gap": -12.8
+  },
+  "season": {
+    "era": 3.04,
+    "whip": 1.17,
+    "k_pct": 24.1,
+    "bb_pct": 9.9,
+    "k_bb_pct": 14.2,
+    "fip": 4.93,
+    "xfip": 4.05,
+    "hr_per_9": 1.79,
+    "gb_pct": 30.5,
+    "ip": 50.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 4.58,
+    "xwoba": 0.337,
+    "xba": 0.235
+  },
+  "statcast": {
+    "avg_velo": 88.5,
+    "max_velo": 95.7,
+    "hard_hit_pct": 21.2,
+    "pitch_types": {
+      "FF": 47.8,
+      "SL": 29.4,
+      "CH": 15.6,
+      "KC": 7.2
+    },
+    "barrel_pct": 11.9,
+    "ev95percent": 33.6,
+    "whiff_pct": 12.3,
+    "csw_pct": 25.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "New York Yankees",
+      "ip": 5.333333333333333,
+      "era": 3.38,
+      "k": 4,
+      "bb": 0,
+      "h": 5,
+      "er": 2,
+      "pitches": 89,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-02",
+      "opponent": "New York Mets",
+      "ip": 5.333333333333333,
+      "era": 3.38,
+      "k": 7,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 96,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Philadelphia Phillies",
+      "ip": 6.666666666666667,
+      "era": 2.08,
+      "k": 7,
+      "bb": 3,
+      "h": 3,
+      "er": 0,
+      "pitches": 109,
+      "strikes": 69
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".220",
+      "obp": ".267",
+      "slg": ".268",
+      "k": 11,
+      "bb": 3,
+      "bf": 45,
+      "k_pct": 24.4,
+      "bb_pct": 6.7
+    },
+    "vs_right": {
+      "avg": ".214",
+      "obp": ".297",
+      "slg": ".471",
+      "k": 38,
+      "bb": 17,
+      "bf": 158,
+      "k_pct": 24.1,
+      "bb_pct": 10.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.739,
+      "k_pct": 28.6,
+      "bb_pct": 5.5,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.618,
+      "k_pct": 24.4,
+      "bb_pct": 14.4,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.76,
+      "k_pct": 15.9,
+      "bb_pct": 9.1,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 47.5,
+      "rv_per_100": 0.9,
+      "xwoba_against": 0.334,
+      "whiff_pct": 19.0,
+      "put_away_pct": 17.4,
+      "hard_hit_pct": 38.9
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 28.7,
+      "rv_per_100": -0.1,
+      "xwoba_against": 0.383,
+      "whiff_pct": 39.8,
+      "put_away_pct": 19.3,
+      "hard_hit_pct": 35.7
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 16.5,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.255,
+      "whiff_pct": 30.7,
+      "put_away_pct": 22.7,
+      "hard_hit_pct": 19.2
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "name": "Sonny Gray",
+  "mlbam_id": 543243,
+  "age": 36,
+  "birth_date": "1989-11-07",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.684,
+    "k_bb_pct": 0.45,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 60.4,
+    "era_only_score": 75.4,
+    "gap": -15.0
+  },
+  "season": {
+    "era": 3.18,
+    "whip": 1.15,
+    "k_pct": 15.1,
+    "bb_pct": 5.8,
+    "k_bb_pct": 9.3,
+    "fip": 4.1,
+    "xfip": 3.87,
+    "hr_per_9": 1.06,
+    "gb_pct": 56.4,
+    "ip": 34.0,
+    "games": 7,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 5.16,
+    "xwoba": 0.355,
+    "xba": 0.294
+  },
+  "statcast": {
+    "avg_velo": 87.5,
+    "max_velo": 94.3,
+    "hard_hit_pct": 22.1,
+    "pitch_types": {
+      "FC": 22.9,
+      "SI": 19.8,
+      "CU": 19.0,
+      "ST": 17.0,
+      "FF": 16.1
+    },
+    "barrel_pct": 10.1,
+    "ev95percent": 33.9,
+    "whiff_pct": 8.4,
+    "csw_pct": 26.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Cincinnati Reds",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 5,
+      "bb": 1,
+      "h": 6,
+      "er": 3,
+      "pitches": 80,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "San Diego Padres",
+      "ip": 6.0,
+      "era": 4.5,
+      "k": 3,
+      "bb": 0,
+      "h": 4,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Milwaukee Brewers",
+      "ip": 6.333333333333333,
+      "era": 2.76,
+      "k": 2,
+      "bb": 2,
+      "h": 3,
+      "er": 0,
+      "pitches": 90,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".194",
+      "obp": ".247",
+      "slg": ".306",
+      "k": 12,
+      "bb": 4,
+      "bf": 77,
+      "k_pct": 15.6,
+      "bb_pct": 5.2
+    },
+    "vs_right": {
+      "avg": ".293",
+      "obp": ".339",
+      "slg": ".483",
+      "k": 9,
+      "bb": 4,
+      "bf": 62,
+      "k_pct": 14.5,
+      "bb_pct": 6.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.6,
+      "k_pct": 27.5,
+      "bb_pct": 5.9,
+      "bf": 1246
+    },
+    "tto2": {
+      "ops": 0.706,
+      "k_pct": 26.1,
+      "bb_pct": 6.2,
+      "bf": 1155
+    },
+    "tto3": {
+      "ops": 0.784,
+      "k_pct": 22.4,
+      "bb_pct": 7.6,
+      "bf": 635
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 23.6,
+      "rv_per_100": 2.5,
+      "xwoba_against": 0.358,
+      "whiff_pct": 12.7,
+      "put_away_pct": 0.0,
+      "hard_hit_pct": 21.9
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 18.4,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.318,
+      "whiff_pct": 20.9,
+      "put_away_pct": 24.3,
+      "hard_hit_pct": 45.0
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 16.9,
+      "rv_per_100": -1.1,
+      "xwoba_against": 0.347,
+      "whiff_pct": 22.7,
+      "put_away_pct": 10.4,
+      "hard_hit_pct": 47.6
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 16.9,
+      "rv_per_100": 0.8,
+      "xwoba_against": 0.407,
+      "whiff_pct": 14.6,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 27.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

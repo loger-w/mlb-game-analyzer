@@ -1,0 +1,128 @@
+{
+  "name": "Nick Lodolo",
+  "mlbam_id": 666157,
+  "age": 28,
+  "birth_date": "1998-02-05",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15.0,
+    "gap": null
+  },
+  "season": {
+    "era": 8.68,
+    "whip": 1.61,
+    "k_pct": 18.6,
+    "bb_pct": 9.3,
+    "k_bb_pct": 9.3,
+    "fip": 6.85,
+    "xfip": 3.79,
+    "hr_per_9": 2.89,
+    "gb_pct": 55.6,
+    "ip": 9.333333333333334,
+    "games": 2,
+    "gs": 2
+  },
+  "expected": {
+    "xera": 8.8,
+    "xwoba": 0.44,
+    "xba": 0.313
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 96.2,
+    "hard_hit_pct": 35.7,
+    "pitch_types": {
+      "SI": 28.0,
+      "CH": 27.4,
+      "CU": 26.3,
+      "FF": 18.3
+    },
+    "barrel_pct": 20.7,
+    "ev95percent": 48.3,
+    "whiff_pct": 11.4,
+    "csw_pct": 27.4
+  },
+  "game_log": [
+    {
+      "date": "2026-05-08",
+      "opponent": "Houston Astros",
+      "ip": 5.333333333333333,
+      "era": 6.75,
+      "k": 2,
+      "bb": 1,
+      "h": 5,
+      "er": 4,
+      "pitches": 78,
+      "strikes": 53
+    },
+    {
+      "date": "2026-05-13",
+      "opponent": "Washington Nationals",
+      "ip": 4.0,
+      "era": 8.68,
+      "k": 6,
+      "bb": 3,
+      "h": 6,
+      "er": 5,
+      "pitches": 87,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".444",
+      "obp": ".455",
+      "slg": "1.000",
+      "k": 3,
+      "bb": 1,
+      "bf": 11,
+      "k_pct": 27.3,
+      "bb_pct": 9.1
+    },
+    "vs_right": {
+      "avg": ".259",
+      "obp": ".375",
+      "slg": ".630",
+      "k": 5,
+      "bb": 3,
+      "bf": 32,
+      "k_pct": 15.6,
+      "bb_pct": 9.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.659,
+      "k_pct": 31.2,
+      "bb_pct": 5.9,
+      "bf": 864
+    },
+    "tto2": {
+      "ops": 0.819,
+      "k_pct": 24.1,
+      "bb_pct": 8.7,
+      "bf": 763
+    },
+    "tto3": {
+      "ops": 0.663,
+      "k_pct": 19.5,
+      "bb_pct": 5.7,
+      "bf": 405
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 666157 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

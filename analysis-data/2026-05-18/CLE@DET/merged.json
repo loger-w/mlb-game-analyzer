@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 2.3,
+  "home_recent_ra": 4.6,
+  "away_recent_rs": 5.6,
+  "away_recent_ra": 3.6,
+  "home_recent_30_rs": 3.87,
+  "home_recent_30_ra": 4.67,
+  "away_recent_30_rs": 4.6,
+  "away_recent_30_ra": 4.03,
+  "home_season_rs": 4.0,
+  "home_season_ra": 4.28,
+  "away_season_rs": 4.29,
+  "away_season_ra": 4.02,
+  "home_season_games": 47,
+  "away_season_games": 49,
+  "home_starter_fip": 3.74,
+  "home_starter_k_bb": 11.2,
+  "home_starter_whip": 1.36,
+  "away_starter_fip": 4.86,
+  "away_starter_k_bb": 10.2,
+  "away_starter_whip": 1.58,
+  "home_batting_xwoba": 0.329,
+  "home_batting_ops": 0.646,
+  "home_batting_k_pct": 20.6,
+  "away_batting_xwoba": 0.324,
+  "away_batting_ops": 0.755,
+  "away_batting_k_pct": 17.7,
+  "home_pitcher": {
+    "era": 4.32,
+    "xera": 4.25,
+    "ip": 50.0,
+    "era_xera_delta": 0.07,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 46.5,
+        "rv_per_100": -0.2,
+        "xwoba_against": 0.386,
+        "whiff_pct": 10.7,
+        "put_away_pct": 14.1,
+        "hard_hit_pct": 56.8
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 29.8,
+        "rv_per_100": -0.4,
+        "xwoba_against": 0.296,
+        "whiff_pct": 34.9,
+        "put_away_pct": 17.1,
+        "hard_hit_pct": 30.6
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 19.4,
+        "rv_per_100": 1.3,
+        "xwoba_against": 0.286,
+        "whiff_pct": 23.2,
+        "put_away_pct": 14.9,
+        "hard_hit_pct": 33.3
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 5.6,
+    "xera": 5.19,
+    "ip": 45.0,
+    "era_xera_delta": 0.41,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 34.2,
+        "rv_per_100": 0.0,
+        "xwoba_against": 0.397,
+        "whiff_pct": 20.8,
+        "put_away_pct": 22.2,
+        "hard_hit_pct": 51.0
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 25.5,
+        "rv_per_100": 0.6,
+        "xwoba_against": 0.273,
+        "whiff_pct": 18.5,
+        "put_away_pct": 17.8,
+        "hard_hit_pct": 16.7
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 15.8,
+        "rv_per_100": -0.1,
+        "xwoba_against": 0.347,
+        "whiff_pct": 13.8,
+        "put_away_pct": 8.6,
+        "hard_hit_pct": 30.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.266
+  },
+  "away_lineup": {
+    "recent_babip": 0.278
+  },
+  "home_bullpen_era": 3.84,
+  "away_bullpen_era": 4.0,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 0,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 76,
+    "wind_text": "21 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Detroit Tigers",
+    "away_team": "Cleveland Guardians",
+    "home_sp": "Framber Valdez",
+    "away_sp": "Slade Cecconi",
+    "home_sp_starts": 9,
+    "away_sp_starts": 9,
+    "venue": "Comerica Park",
+    "game_pk": 824277,
+    "game_date": "2026-05-18T22:40:00Z",
+    "official_date": "2026-05-18"
+  }
+}
