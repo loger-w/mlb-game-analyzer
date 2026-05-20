@@ -1,0 +1,141 @@
+{
+  "name": "Griffin Canning",
+  "mlbam_id": 656288,
+  "age": 30,
+  "birth_date": "1996-05-11",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15.0,
+    "gap": null
+  },
+  "season": {
+    "era": 10.64,
+    "whip": 2.18,
+    "k_pct": 25.5,
+    "bb_pct": 16.4,
+    "k_bb_pct": 9.1,
+    "fip": 4.19,
+    "xfip": 4.07,
+    "hr_per_9": 0.82,
+    "gb_pct": 47.1,
+    "ip": 11.0,
+    "games": 3,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 4.41,
+    "xwoba": 0.331,
+    "xba": 0.24
+  },
+  "statcast": {
+    "avg_velo": 91.1,
+    "max_velo": 96.2,
+    "hard_hit_pct": 25.9,
+    "pitch_types": {
+      "CH": 35.0,
+      "FF": 27.3,
+      "SL": 20.9,
+      "SI": 12.3,
+      "ST": 3.6
+    },
+    "barrel_pct": 6.3,
+    "ev95percent": 43.8,
+    "whiff_pct": 11.4,
+    "csw_pct": 27.3
+  },
+  "game_log": [
+    {
+      "date": "2026-05-03",
+      "opponent": "Chicago White Sox",
+      "ip": 5.0,
+      "era": 1.8,
+      "k": 7,
+      "bb": 3,
+      "h": 3,
+      "er": 1,
+      "pitches": 73,
+      "strikes": 42
+    },
+    {
+      "date": "2026-05-08",
+      "opponent": "St. Louis Cardinals",
+      "ip": 4.333333333333333,
+      "era": 6.75,
+      "k": 5,
+      "bb": 2,
+      "h": 7,
+      "er": 6,
+      "pitches": 83,
+      "strikes": 49
+    },
+    {
+      "date": "2026-05-14",
+      "opponent": "Milwaukee Brewers",
+      "ip": 1.6666666666666665,
+      "era": 10.64,
+      "k": 2,
+      "bb": 4,
+      "h": 5,
+      "er": 6,
+      "pitches": 64,
+      "strikes": 33
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".267",
+      "obp": ".371",
+      "slg": ".433",
+      "k": 9,
+      "bb": 5,
+      "bf": 35,
+      "k_pct": 25.7,
+      "bb_pct": 14.3
+    },
+    "vs_right": {
+      "avg": ".438",
+      "obp": ".550",
+      "slg": ".500",
+      "k": 5,
+      "bb": 4,
+      "bf": 20,
+      "k_pct": 25.0,
+      "bb_pct": 20.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.767,
+      "k_pct": 23.6,
+      "bb_pct": 8.4,
+      "bf": 795
+    },
+    "tto2": {
+      "ops": 0.696,
+      "k_pct": 21.4,
+      "bb_pct": 7.9,
+      "bf": 710
+    },
+    "tto3": {
+      "ops": 0.745,
+      "k_pct": 19.6,
+      "bb_pct": 10.4,
+      "bf": 337
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 656288 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

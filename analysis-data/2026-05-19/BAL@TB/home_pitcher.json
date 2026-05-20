@@ -1,0 +1,141 @@
+{
+  "name": "Griffin Jax",
+  "mlbam_id": 643377,
+  "age": 31,
+  "birth_date": "1994-11-22",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 60.8,
+    "gap": null
+  },
+  "season": {
+    "era": 3.91,
+    "whip": 1.48,
+    "k_pct": 18.2,
+    "bb_pct": 14.1,
+    "k_bb_pct": 4.1,
+    "fip": 5.06,
+    "xfip": 4.6,
+    "hr_per_9": 1.17,
+    "gb_pct": 53.2,
+    "ip": 23.0,
+    "games": 15,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 5.31,
+    "xwoba": 0.359,
+    "xba": 0.268
+  },
+  "statcast": {
+    "avg_velo": 92.5,
+    "max_velo": 98.9,
+    "hard_hit_pct": 23.3,
+    "pitch_types": {
+      "ST": 27.5,
+      "FF": 25.4,
+      "SI": 18.7,
+      "CH": 16.6,
+      "CU": 6.2
+    },
+    "barrel_pct": 7.5,
+    "ev95percent": 38.8,
+    "whiff_pct": 11.7,
+    "csw_pct": 25.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "St. Louis Cardinals",
+      "ip": 0.6666666666666666,
+      "era": 13.5,
+      "k": 0,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 14,
+      "strikes": 11
+    },
+    {
+      "date": "2026-03-28",
+      "opponent": "St. Louis Cardinals",
+      "ip": 0.3333333333333333,
+      "era": 18.0,
+      "k": 0,
+      "bb": 1,
+      "h": 1,
+      "er": 1,
+      "pitches": 9,
+      "strikes": 3
+    },
+    {
+      "date": "2026-03-30",
+      "opponent": "Milwaukee Brewers",
+      "ip": 1.0,
+      "era": 9.0,
+      "k": 1,
+      "bb": 0,
+      "h": 0,
+      "er": 0,
+      "pitches": 15,
+      "strikes": 9
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".289",
+      "obp": ".385",
+      "slg": ".444",
+      "k": 9,
+      "bb": 7,
+      "bf": 55,
+      "k_pct": 16.4,
+      "bb_pct": 12.7
+    },
+    "vs_right": {
+      "avg": ".194",
+      "obp": ".318",
+      "slg": ".278",
+      "k": 9,
+      "bb": 7,
+      "bf": 44,
+      "k_pct": 20.5,
+      "bb_pct": 15.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.749,
+      "k_pct": 18.8,
+      "bb_pct": 12.5,
+      "bf": 80
+    },
+    "tto2": {
+      "ops": 0.567,
+      "k_pct": 16.7,
+      "bb_pct": 16.7,
+      "bf": 18
+    },
+    "tto3": {
+      "ops": 0.0,
+      "k_pct": 0.0,
+      "bb_pct": 0.0,
+      "bf": 2
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "error": "Player 643377 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

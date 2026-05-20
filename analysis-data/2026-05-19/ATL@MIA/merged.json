@@ -1,0 +1,102 @@
+{
+  "home_recent_rs": 5.2,
+  "home_recent_ra": 4.7,
+  "away_recent_rs": 3.7,
+  "away_recent_ra": 3.0,
+  "home_recent_30_rs": 4.27,
+  "home_recent_30_ra": 4.47,
+  "away_recent_30_rs": 5.0,
+  "away_recent_30_ra": 3.5,
+  "home_season_rs": 4.44,
+  "home_season_ra": 4.46,
+  "away_season_rs": 5.21,
+  "away_season_ra": 3.42,
+  "home_season_games": 48,
+  "away_season_games": 48,
+  "home_starter_fip": 9.85,
+  "home_starter_k_bb": -15.4,
+  "home_starter_whip": 6.75,
+  "away_starter_fip": 3.91,
+  "away_starter_k_bb": 12.1,
+  "away_starter_whip": 0.94,
+  "home_batting_xwoba": 0.3,
+  "home_batting_ops": 0.648,
+  "home_batting_k_pct": 23.8,
+  "away_batting_xwoba": 0.306,
+  "away_batting_ops": 0.688,
+  "away_batting_k_pct": 21.0,
+  "home_pitcher": {
+    "era": 33.75,
+    "xera": 7.91,
+    "ip": 1.3333333333333333,
+    "era_xera_delta": 25.84,
+    "arsenal_top": []
+  },
+  "away_pitcher": {
+    "era": 2.25,
+    "xera": 4.04,
+    "ip": 36.0,
+    "era_xera_delta": -1.79,
+    "arsenal_top": [
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 32.1,
+        "rv_per_100": 1.6,
+        "xwoba_against": 0.272,
+        "whiff_pct": 35.6,
+        "put_away_pct": 18.4,
+        "hard_hit_pct": 19.4
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 29.4,
+        "rv_per_100": 0.4,
+        "xwoba_against": 0.408,
+        "whiff_pct": 4.8,
+        "put_away_pct": 9.5,
+        "hard_hit_pct": 48.5
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 21.3,
+        "rv_per_100": 0.8,
+        "xwoba_against": 0.278,
+        "whiff_pct": 12.5,
+        "put_away_pct": 29.0,
+        "hard_hit_pct": 41.7
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.268
+  },
+  "away_lineup": {
+    "recent_babip": 0.245
+  },
+  "home_bullpen_era": 3.25,
+  "away_bullpen_era": 3.29,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Cloudy",
+    "temp_f": 84,
+    "wind_text": "0 mph, None",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Miami Marlins",
+    "away_team": "Atlanta Braves",
+    "home_sp": "Braxton Garrett",
+    "away_sp": "Martín Pérez",
+    "home_sp_starts": 1,
+    "away_sp_starts": 5,
+    "venue": "loanDepot park",
+    "game_pk": 823865,
+    "game_date": "2026-05-19T20:10:00Z",
+    "official_date": "2026-05-19"
+  }
+}

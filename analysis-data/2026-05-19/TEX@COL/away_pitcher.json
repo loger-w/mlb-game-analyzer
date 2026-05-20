@@ -1,0 +1,158 @@
+{
+  "name": "Tyler Alexander",
+  "mlbam_id": 641302,
+  "age": 31,
+  "birth_date": "1994-07-14",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 93.6,
+    "gap": null
+  },
+  "season": {
+    "era": 2.14,
+    "whip": 1.38,
+    "k_pct": 17.8,
+    "bb_pct": 6.7,
+    "k_bb_pct": 11.1,
+    "fip": 3.05,
+    "xfip": 3.86,
+    "hr_per_9": 0.43,
+    "gb_pct": 47.7,
+    "ip": 21.0,
+    "games": 20,
+    "gs": 0
+  },
+  "expected": {
+    "xera": 2.85,
+    "xwoba": 0.27,
+    "xba": 0.229
+  },
+  "statcast": {
+    "avg_velo": 86.6,
+    "max_velo": 92.8,
+    "hard_hit_pct": 20.8,
+    "pitch_types": {
+      "FC": 26.6,
+      "SI": 26.0,
+      "CH": 24.6,
+      "ST": 15.7,
+      "FF": 7.1
+    },
+    "barrel_pct": 1.5,
+    "ev95percent": 26.9,
+    "whiff_pct": 6.6,
+    "csw_pct": 26.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Philadelphia Phillies",
+      "ip": 1.0,
+      "era": 0.0,
+      "k": 0,
+      "bb": 0,
+      "h": 0,
+      "er": 0,
+      "pitches": 9,
+      "strikes": 6
+    },
+    {
+      "date": "2026-03-28",
+      "opponent": "Philadelphia Phillies",
+      "ip": 1.0,
+      "era": 0.0,
+      "k": 1,
+      "bb": 0,
+      "h": 1,
+      "er": 0,
+      "pitches": 21,
+      "strikes": 11
+    },
+    {
+      "date": "2026-03-30",
+      "opponent": "Baltimore Orioles",
+      "ip": 1.0,
+      "era": 0.0,
+      "k": 2,
+      "bb": 0,
+      "h": 0,
+      "er": 0,
+      "pitches": 10,
+      "strikes": 7
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".316",
+      "obp": ".366",
+      "slg": ".316",
+      "k": 6,
+      "bb": 3,
+      "bf": 42,
+      "k_pct": 14.3,
+      "bb_pct": 7.1
+    },
+    "vs_right": {
+      "avg": ".256",
+      "obp": ".313",
+      "slg": ".395",
+      "k": 10,
+      "bb": 3,
+      "bf": 48,
+      "k_pct": 20.8,
+      "bb_pct": 6.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.731,
+      "k_pct": 18.4,
+      "bb_pct": 6.0,
+      "bf": 1206
+    },
+    "tto2": {
+      "ops": 0.736,
+      "k_pct": 19.9,
+      "bb_pct": 4.9,
+      "bf": 452
+    },
+    "tto3": {
+      "ops": 1.065,
+      "k_pct": 12.2,
+      "bb_pct": 6.1,
+      "bf": 131
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 26.4,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.311,
+      "whiff_pct": 7.0,
+      "put_away_pct": 17.4,
+      "hard_hit_pct": 25.9
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 23.7,
+      "rv_per_100": -2.3,
+      "xwoba_against": 0.265,
+      "whiff_pct": 23.9,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 36.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

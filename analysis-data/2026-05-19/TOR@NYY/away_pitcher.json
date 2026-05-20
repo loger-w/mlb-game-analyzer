@@ -1,0 +1,163 @@
+{
+  "name": "Dylan Cease",
+  "mlbam_id": 656302,
+  "age": 30,
+  "birth_date": "1995-12-28",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 93.5,
+    "era_only_score": 90.9,
+    "gap": 2.6
+  },
+  "season": {
+    "era": 2.41,
+    "whip": 1.18,
+    "k_pct": 34.6,
+    "bb_pct": 9.7,
+    "k_bb_pct": 24.9,
+    "fip": 1.69,
+    "xfip": 2.36,
+    "hr_per_9": 0.17,
+    "gb_pct": 51.9,
+    "ip": 52.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 2.9,
+    "xwoba": 0.272,
+    "xba": 0.213
+  },
+  "statcast": {
+    "avg_velo": 91.4,
+    "max_velo": 100.0,
+    "hard_hit_pct": 20.8,
+    "pitch_types": {
+      "FF": 34.1,
+      "SL": 29.3,
+      "CH": 11.6,
+      "SI": 9.7,
+      "KC": 8.9
+    },
+    "barrel_pct": 4.2,
+    "ev95percent": 37.3,
+    "whiff_pct": 15.4,
+    "csw_pct": 30.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Athletics",
+      "ip": 5.333333333333333,
+      "era": 1.69,
+      "k": 12,
+      "bb": 2,
+      "h": 3,
+      "er": 1,
+      "pitches": 90,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Chicago White Sox",
+      "ip": 4.333333333333333,
+      "era": 2.79,
+      "k": 6,
+      "bb": 3,
+      "h": 5,
+      "er": 2,
+      "pitches": 93,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 2.45,
+      "k": 8,
+      "bb": 4,
+      "h": 4,
+      "er": 1,
+      "pitches": 96,
+      "strikes": 57
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".206",
+      "obp": ".305",
+      "slg": ".245",
+      "k": 43,
+      "bb": 13,
+      "bf": 118,
+      "k_pct": 36.4,
+      "bb_pct": 11.0
+    },
+    "vs_right": {
+      "avg": ".222",
+      "obp": ".293",
+      "slg": ".278",
+      "k": 32,
+      "bb": 8,
+      "bf": 99,
+      "k_pct": 32.3,
+      "bb_pct": 8.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.4,
+      "k_pct": 40.0,
+      "bb_pct": 5.6,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.552,
+      "k_pct": 36.7,
+      "bb_pct": 10.0,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.806,
+      "k_pct": 21.4,
+      "bb_pct": 16.1,
+      "bf": 56
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 35.1,
+      "rv_per_100": 0.1,
+      "xwoba_against": 0.321,
+      "whiff_pct": 28.3,
+      "put_away_pct": 24.5,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 29.3,
+      "rv_per_100": 2.9,
+      "xwoba_against": 0.225,
+      "whiff_pct": 47.3,
+      "put_away_pct": 27.0,
+      "hard_hit_pct": 28.2
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

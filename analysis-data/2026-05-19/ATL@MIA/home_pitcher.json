@@ -1,0 +1,117 @@
+{
+  "name": "Braxton Garrett",
+  "mlbam_id": 666129,
+  "age": 28,
+  "birth_date": "1997-08-05",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15.0,
+    "gap": null
+  },
+  "season": {
+    "era": 33.75,
+    "whip": 6.75,
+    "k_pct": 23.1,
+    "bb_pct": 38.5,
+    "k_bb_pct": -15.4,
+    "fip": 9.85,
+    "xfip": 9.85,
+    "hr_per_9": 0.0,
+    "gb_pct": 100.0,
+    "ip": 1.3333333333333333,
+    "games": 1,
+    "gs": 1
+  },
+  "expected": {
+    "xera": 7.91,
+    "xwoba": 0.422,
+    "xba": 0.197
+  },
+  "statcast": {
+    "avg_velo": 87.7,
+    "max_velo": 92.4,
+    "hard_hit_pct": 13.3,
+    "pitch_types": {
+      "SI": 26.6,
+      "SL": 21.9,
+      "FC": 20.3,
+      "CH": 15.6,
+      "FF": 15.6
+    },
+    "barrel_pct": 20.0,
+    "ev95percent": 40.0,
+    "whiff_pct": 7.8,
+    "csw_pct": 20.3
+  },
+  "game_log": [
+    {
+      "date": "2026-05-14",
+      "opponent": "Minnesota Twins",
+      "ip": 1.3333333333333333,
+      "era": 33.75,
+      "k": 3,
+      "bb": 5,
+      "h": 4,
+      "er": 5,
+      "pitches": 64,
+      "strikes": 30
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".000",
+      "obp": "1.000",
+      "slg": ".000",
+      "k": 0,
+      "bb": 1,
+      "bf": 1,
+      "k_pct": 0.0,
+      "bb_pct": 100.0
+    },
+    "vs_right": {
+      "avg": ".500",
+      "obp": ".667",
+      "slg": ".875",
+      "k": 3,
+      "bb": 4,
+      "bf": 12,
+      "k_pct": 25.0,
+      "bb_pct": 33.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.765,
+      "k_pct": 25.5,
+      "bb_pct": 5.7,
+      "bf": 581
+    },
+    "tto2": {
+      "ops": 0.698,
+      "k_pct": 22.9,
+      "bb_pct": 4.9,
+      "bf": 506
+    },
+    "tto3": {
+      "ops": 0.703,
+      "k_pct": 18.6,
+      "bb_pct": 5.6,
+      "bf": 215
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 666129 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

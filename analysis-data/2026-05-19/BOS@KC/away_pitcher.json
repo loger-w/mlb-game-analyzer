@@ -1,0 +1,173 @@
+{
+  "name": "Ranger Suarez",
+  "mlbam_id": 624133,
+  "age": 30,
+  "birth_date": "1995-08-26",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.855,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 90.1,
+    "era_only_score": 90.6,
+    "gap": -0.5
+  },
+  "season": {
+    "era": 2.44,
+    "whip": 0.95,
+    "k_pct": 23.7,
+    "bb_pct": 6.5,
+    "k_bb_pct": 17.2,
+    "fip": 2.92,
+    "xfip": 3.39,
+    "hr_per_9": 0.61,
+    "gb_pct": 47.1,
+    "ip": 44.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 3.17,
+    "xwoba": 0.284,
+    "xba": 0.233
+  },
+  "statcast": {
+    "avg_velo": 86.1,
+    "max_velo": 94.9,
+    "hard_hit_pct": 21.7,
+    "pitch_types": {
+      "SI": 28.1,
+      "FC": 20.7,
+      "CH": 18.5,
+      "FF": 17.7,
+      "CU": 14.0
+    },
+    "barrel_pct": 6.8,
+    "ev95percent": 35.6,
+    "whiff_pct": 9.3,
+    "csw_pct": 25.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Houston Astros",
+      "ip": 4.333333333333333,
+      "era": 8.31,
+      "k": 3,
+      "bb": 1,
+      "h": 7,
+      "er": 4,
+      "pitches": 76,
+      "strikes": 44
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "San Diego Padres",
+      "ip": 4.0,
+      "era": 8.64,
+      "k": 2,
+      "bb": 2,
+      "h": 6,
+      "er": 4,
+      "pitches": 75,
+      "strikes": 48
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "St. Louis Cardinals",
+      "ip": 6.0,
+      "era": 5.02,
+      "k": 6,
+      "bb": 2,
+      "h": 3,
+      "er": 0,
+      "pitches": 84,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".216",
+      "obp": ".256",
+      "slg": ".324",
+      "k": 12,
+      "bb": 2,
+      "bf": 39,
+      "k_pct": 30.8,
+      "bb_pct": 5.1
+    },
+    "vs_right": {
+      "avg": ".192",
+      "obp": ".246",
+      "slg": ".275",
+      "k": 28,
+      "bb": 9,
+      "bf": 130,
+      "k_pct": 21.5,
+      "bb_pct": 6.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.643,
+      "k_pct": 19.8,
+      "bb_pct": 7.4,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.617,
+      "k_pct": 22.8,
+      "bb_pct": 5.1,
+      "bf": 79
+    },
+    "tto3": {
+      "ops": 0.485,
+      "k_pct": 31.2,
+      "bb_pct": 6.2,
+      "bf": 32
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 28.9,
+      "rv_per_100": 2.5,
+      "xwoba_against": 0.318,
+      "whiff_pct": 14.6,
+      "put_away_pct": 30.2,
+      "hard_hit_pct": 35.6
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 19.8,
+      "rv_per_100": 2.6,
+      "xwoba_against": 0.301,
+      "whiff_pct": 13.9,
+      "put_away_pct": 18.5,
+      "hard_hit_pct": 36.7
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 17.8,
+      "rv_per_100": -1.0,
+      "xwoba_against": 0.294,
+      "whiff_pct": 28.8,
+      "put_away_pct": 11.4,
+      "hard_hit_pct": 34.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

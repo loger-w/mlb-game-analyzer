@@ -1,0 +1,173 @@
+{
+  "name": "Matthew Liberatore",
+  "mlbam_id": 669461,
+  "age": 26,
+  "birth_date": "1999-11-06",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.32,
+    "k_bb_pct": 0.343,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 47.4,
+    "era_only_score": 50.0,
+    "gap": -2.6
+  },
+  "season": {
+    "era": 4.4,
+    "whip": 1.51,
+    "k_pct": 16.7,
+    "bb_pct": 8.9,
+    "k_bb_pct": 7.8,
+    "fip": 5.29,
+    "xfip": 4.43,
+    "hr_per_9": 1.72,
+    "gb_pct": 39.8,
+    "ip": 47.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 5.86,
+    "xwoba": 0.374,
+    "xba": 0.297
+  },
+  "statcast": {
+    "avg_velo": 89.3,
+    "max_velo": 96.8,
+    "hard_hit_pct": 29.7,
+    "pitch_types": {
+      "FF": 33.2,
+      "SL": 25.1,
+      "CH": 16.0,
+      "CU": 12.5,
+      "SI": 9.5
+    },
+    "barrel_pct": 9.9,
+    "ev95percent": 45.0,
+    "whiff_pct": 9.2,
+    "csw_pct": 25.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Tampa Bay Rays",
+      "ip": 5.0,
+      "era": 1.8,
+      "k": 2,
+      "bb": 2,
+      "h": 7,
+      "er": 1,
+      "pitches": 78,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "New York Mets",
+      "ip": 6.0,
+      "era": 1.64,
+      "k": 2,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 76,
+      "strikes": 47
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Washington Nationals",
+      "ip": 5.0,
+      "era": 3.38,
+      "k": 6,
+      "bb": 2,
+      "h": 9,
+      "er": 4,
+      "pitches": 92,
+      "strikes": 60
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".326",
+      "obp": ".360",
+      "slg": ".717",
+      "k": 10,
+      "bb": 3,
+      "bf": 50,
+      "k_pct": 20.0,
+      "bb_pct": 6.0
+    },
+    "vs_right": {
+      "avg": ".281",
+      "obp": ".349",
+      "slg": ".400",
+      "k": 24,
+      "bb": 15,
+      "bf": 153,
+      "k_pct": 15.7,
+      "bb_pct": 9.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.682,
+      "k_pct": 24.4,
+      "bb_pct": 6.7,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.645,
+      "k_pct": 15.9,
+      "bb_pct": 8.0,
+      "bf": 88
+    },
+    "tto3": {
+      "ops": 1.3,
+      "k_pct": 7.1,
+      "bb_pct": 14.3,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 33.8,
+      "rv_per_100": -1.1,
+      "xwoba_against": 0.454,
+      "whiff_pct": 8.9,
+      "put_away_pct": 9.4,
+      "hard_hit_pct": 53.3
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 25.0,
+      "rv_per_100": -1.7,
+      "xwoba_against": 0.297,
+      "whiff_pct": 36.9,
+      "put_away_pct": 26.2,
+      "hard_hit_pct": 45.2
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 15.9,
+      "rv_per_100": 0.9,
+      "xwoba_against": 0.338,
+      "whiff_pct": 22.0,
+      "put_away_pct": 5.9,
+      "hard_hit_pct": 25.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

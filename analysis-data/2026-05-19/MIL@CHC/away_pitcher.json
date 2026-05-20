@@ -1,0 +1,172 @@
+{
+  "name": "Jacob Misiorowski",
+  "mlbam_id": 694819,
+  "age": 24,
+  "birth_date": "2002-04-03",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 93.8,
+    "gap": 2.3
+  },
+  "season": {
+    "era": 2.12,
+    "whip": 0.9,
+    "k_pct": 39.6,
+    "bb_pct": 8.4,
+    "k_bb_pct": 31.2,
+    "fip": 1.98,
+    "xfip": 1.91,
+    "hr_per_9": 0.71,
+    "gb_pct": 47.9,
+    "ip": 51.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 2.5,
+    "xwoba": 0.253,
+    "xba": 0.189
+  },
+  "statcast": {
+    "avg_velo": 96.6,
+    "max_velo": 103.6,
+    "hard_hit_pct": 18.5,
+    "pitch_types": {
+      "FF": 61.1,
+      "SL": 23.6,
+      "CU": 12.8,
+      "CH": 2.5
+    },
+    "barrel_pct": 3.0,
+    "ev95percent": 34.0,
+    "whiff_pct": 17.1,
+    "csw_pct": 34.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Chicago White Sox",
+      "ip": 5.0,
+      "era": 1.8,
+      "k": 11,
+      "bb": 3,
+      "h": 2,
+      "er": 1,
+      "pitches": 94,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Tampa Bay Rays",
+      "ip": 6.0,
+      "era": 2.45,
+      "k": 7,
+      "bb": 2,
+      "h": 4,
+      "er": 2,
+      "pitches": 94,
+      "strikes": 62
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Boston Red Sox",
+      "ip": 5.333333333333333,
+      "era": 3.31,
+      "k": 10,
+      "bb": 4,
+      "h": 2,
+      "er": 3,
+      "pitches": 101,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".125",
+      "obp": ".248",
+      "slg": ".208",
+      "k": 52,
+      "bb": 12,
+      "bf": 113,
+      "k_pct": 46.0,
+      "bb_pct": 10.6
+    },
+    "vs_right": {
+      "avg": ".205",
+      "obp": ".258",
+      "slg": ".277",
+      "k": 28,
+      "bb": 5,
+      "bf": 89,
+      "k_pct": 31.5,
+      "bb_pct": 5.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.504,
+      "k_pct": 43.3,
+      "bb_pct": 8.9,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.553,
+      "k_pct": 34.4,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.437,
+      "k_pct": 31.0,
+      "bb_pct": 9.5,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 61.3,
+      "rv_per_100": 0.9,
+      "xwoba_against": 0.286,
+      "whiff_pct": 45.6,
+      "put_away_pct": 33.3,
+      "hard_hit_pct": 42.2
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 24.1,
+      "rv_per_100": 4.1,
+      "xwoba_against": 0.192,
+      "whiff_pct": 25.9,
+      "put_away_pct": 28.6,
+      "hard_hit_pct": 25.6
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 12.7,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.234,
+      "whiff_pct": 39.0,
+      "put_away_pct": 21.4,
+      "hard_hit_pct": 28.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

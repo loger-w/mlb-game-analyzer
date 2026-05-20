@@ -1,0 +1,172 @@
+{
+  "name": "Emmet Sheehan",
+  "mlbam_id": 686218,
+  "age": 26,
+  "birth_date": "1999-11-15",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 46.5,
+    "gap": 49.6
+  },
+  "season": {
+    "era": 4.54,
+    "whip": 1.25,
+    "k_pct": 28.0,
+    "bb_pct": 6.9,
+    "k_bb_pct": 21.1,
+    "fip": 3.8,
+    "xfip": 2.74,
+    "hr_per_9": 1.51,
+    "gb_pct": 50.0,
+    "ip": 41.666666666666664,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 3.74,
+    "xwoba": 0.307,
+    "xba": 0.239
+  },
+  "statcast": {
+    "avg_velo": 88.5,
+    "max_velo": 97.0,
+    "hard_hit_pct": 25.3,
+    "pitch_types": {
+      "FF": 41.6,
+      "SL": 31.8,
+      "CH": 17.4,
+      "CU": 9.1
+    },
+    "barrel_pct": 8.9,
+    "ev95percent": 39.3,
+    "whiff_pct": 15.8,
+    "csw_pct": 29.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 3.3333333333333335,
+      "era": 10.8,
+      "k": 6,
+      "bb": 2,
+      "h": 5,
+      "er": 4,
+      "pitches": 83,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Washington Nationals",
+      "ip": 5.666666666666667,
+      "era": 8.0,
+      "k": 2,
+      "bb": 3,
+      "h": 7,
+      "er": 4,
+      "pitches": 98,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Texas Rangers",
+      "ip": 6.0,
+      "era": 6.6,
+      "k": 6,
+      "bb": 1,
+      "h": 4,
+      "er": 3,
+      "pitches": 77,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".278",
+      "obp": ".333",
+      "slg": ".588",
+      "k": 28,
+      "bb": 7,
+      "bf": 105,
+      "k_pct": 26.7,
+      "bb_pct": 6.7
+    },
+    "vs_right": {
+      "avg": ".206",
+      "obp": ".271",
+      "slg": ".254",
+      "k": 21,
+      "bb": 5,
+      "bf": 70,
+      "k_pct": 30.0,
+      "bb_pct": 7.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.719,
+      "k_pct": 35.8,
+      "bb_pct": 4.9,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.804,
+      "k_pct": 24.1,
+      "bb_pct": 10.1,
+      "bf": 79
+    },
+    "tto3": {
+      "ops": 0.702,
+      "k_pct": 17.6,
+      "bb_pct": 5.9,
+      "bf": 34
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 41.2,
+      "rv_per_100": -1.4,
+      "xwoba_against": 0.395,
+      "whiff_pct": 29.3,
+      "put_away_pct": 18.6,
+      "hard_hit_pct": 45.9
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 31.8,
+      "rv_per_100": 1.6,
+      "xwoba_against": 0.254,
+      "whiff_pct": 42.0,
+      "put_away_pct": 31.4,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 17.8,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.285,
+      "whiff_pct": 22.2,
+      "put_away_pct": 14.3,
+      "hard_hit_pct": 45.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
