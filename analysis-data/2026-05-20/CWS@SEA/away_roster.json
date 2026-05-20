@@ -1,0 +1,354 @@
+{
+  "team": "Chicago White Sox",
+  "team_id": 145,
+  "active_roster": {
+    "pitchers": [
+      "Anthony Kay",
+      "Brandon Eisert",
+      "Bryan Hudson",
+      "Davis Martin",
+      "Erick Fedde",
+      "Grant Taylor",
+      "Jordan Hicks",
+      "Noah Schultz",
+      "Sean Burke",
+      "Sean Newcomb",
+      "Seranthony Domínguez",
+      "Trevor Richards",
+      "Tyler Davis"
+    ],
+    "pitcher_ids": [
+      641743,
+      685126,
+      663542,
+      663436,
+      607200,
+      691799,
+      663855,
+      702273,
+      680732,
+      656794,
+      622554,
+      670950,
+      699823
+    ],
+    "position_players": [
+      "Andrew Benintendi",
+      "Chase Meidroth",
+      "Colson Montgomery",
+      "Derek Hill",
+      "Drew Romo",
+      "Edgar Quero",
+      "Jarred Kelenic",
+      "Luisangel Acuña",
+      "Miguel Vargas",
+      "Munetaka Murakami",
+      "Randal Grichuk",
+      "Sam Antonacci",
+      "Tristan Peters"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Anthony Kay",
+        "player_id": 641743,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 8,
+          "ip": 46.3
+        }
+      },
+      {
+        "name": "Brandon Eisert",
+        "player_id": 685126,
+        "core_role": "Setup",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 9,
+          "g": 72,
+          "gs": 3,
+          "ip": 69.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Bryan Hudson",
+        "player_id": 663542,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 2,
+          "g": 24,
+          "gs": 2,
+          "ip": 23.0
+        }
+      },
+      {
+        "name": "Davis Martin",
+        "player_id": 663436,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 56.0
+        }
+      },
+      {
+        "name": "Erick Fedde",
+        "player_id": 607200,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 7,
+          "ip": 46.0
+        }
+      },
+      {
+        "name": "Grant Taylor",
+        "player_id": 691799,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 19,
+          "gs": 4,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "Jordan Hicks",
+        "player_id": 663855,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 19,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Noah Schultz",
+        "player_id": 702273,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 34.7
+        }
+      },
+      {
+        "name": "Sean Burke",
+        "player_id": 680732,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 7,
+          "ip": 48.3
+        }
+      },
+      {
+        "name": "Sean Newcomb",
+        "player_id": 656794,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 20,
+          "gs": 0,
+          "ip": 27.7
+        }
+      },
+      {
+        "name": "Seranthony Domínguez",
+        "player_id": 622554,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 10,
+          "holds": 0,
+          "g": 20,
+          "gs": 0,
+          "ip": 18.7
+        }
+      },
+      {
+        "name": "Trevor Richards",
+        "player_id": 670950,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 0,
+          "ip": 9.0
+        }
+      },
+      {
+        "name": "Tyler Davis",
+        "player_id": 699823,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 0,
+          "ip": 11.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Austin Hays",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 669720
+    },
+    {
+      "name": "Brooks Baldwin",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 681460
+    },
+    {
+      "name": "Drew Thorpe",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 689672,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Everson Pereira",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 677592
+    },
+    {
+      "name": "Ky Bush",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 681066,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Kyle Teel",
+      "status": "Injured 60-Day",
+      "position": "Catcher",
+      "player_id": 691019
+    },
+    {
+      "name": "Mike Vasil",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 678024,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 4,
+        "holds": 3,
+        "g": 47,
+        "gs": 3,
+        "ip": 101.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Prelander Berroa",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 672860,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Tanner Murray",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 695020
+    }
+  ],
+  "not_active_40man": [
+    "Chris Murphy",
+    "David Sandlin",
+    "Duncan Davitt",
+    "Joe Rock",
+    "Jonathan Cannon",
+    "Jordan Leasure",
+    "Junior Perez",
+    "Shane Smith",
+    "Tanner McDougal",
+    "Tyler Gilbert",
+    "Tyler Schweitzer",
+    "Wikelman González"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 9,
+    "total_40man_not_active": 12
+  }
+}

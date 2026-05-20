@@ -1,0 +1,162 @@
+{
+  "name": "Kyle Harrison",
+  "mlbam_id": 690986,
+  "age": 24,
+  "birth_date": "2001-08-12",
+  "pitch_hand": "L",
+  "age_assessment": "📈 成長期",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 94.1,
+    "gap": 2.0
+  },
+  "season": {
+    "era": 2.09,
+    "whip": 1.19,
+    "k_pct": 30.0,
+    "bb_pct": 8.1,
+    "k_bb_pct": 21.9,
+    "fip": 2.63,
+    "xfip": 2.87,
+    "hr_per_9": 0.7,
+    "gb_pct": 41.3,
+    "ip": 38.666666666666664,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 3.39,
+    "xwoba": 0.293,
+    "xba": 0.235
+  },
+  "statcast": {
+    "avg_velo": 90.4,
+    "max_velo": 97.9,
+    "hard_hit_pct": 16.1,
+    "pitch_types": {
+      "FF": 58.7,
+      "SV": 25.9,
+      "CH": 12.9,
+      "SI": 2.6
+    },
+    "barrel_pct": 6.3,
+    "ev95percent": 28.1,
+    "whiff_pct": 14.1,
+    "csw_pct": 30.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Tampa Bay Rays",
+      "ip": 5.0,
+      "era": 1.8,
+      "k": 8,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 87,
+      "strikes": 64
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Kansas City Royals",
+      "ip": 5.333333333333333,
+      "era": 2.61,
+      "k": 6,
+      "bb": 2,
+      "h": 3,
+      "er": 2,
+      "pitches": 90,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Washington Nationals",
+      "ip": 4.333333333333333,
+      "era": 3.07,
+      "k": 1,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 76,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".282",
+      "obp": ".364",
+      "slg": ".333",
+      "k": 10,
+      "bb": 4,
+      "bf": 44,
+      "k_pct": 22.7,
+      "bb_pct": 9.1
+    },
+    "vs_right": {
+      "avg": ".210",
+      "obp": ".284",
+      "slg": ".333",
+      "k": 38,
+      "bb": 9,
+      "bf": 116,
+      "k_pct": 32.8,
+      "bb_pct": 7.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.779,
+      "k_pct": 26.6,
+      "bb_pct": 8.0,
+      "bf": 560
+    },
+    "tto2": {
+      "ops": 0.741,
+      "k_pct": 24.1,
+      "bb_pct": 8.6,
+      "bf": 452
+    },
+    "tto3": {
+      "ops": 0.825,
+      "k_pct": 17.9,
+      "bb_pct": 6.0,
+      "bf": 168
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 58.6,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.313,
+      "whiff_pct": 32.2,
+      "put_away_pct": 21.5,
+      "hard_hit_pct": 32.0
+    },
+    {
+      "pitch_type": "SV",
+      "pitch_name": "Slurve",
+      "usage": 27.1,
+      "rv_per_100": 2.1,
+      "xwoba_against": 0.192,
+      "whiff_pct": 28.4,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 8.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

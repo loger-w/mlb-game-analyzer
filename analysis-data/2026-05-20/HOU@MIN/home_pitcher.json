@@ -1,0 +1,173 @@
+{
+  "name": "Joe Ryan",
+  "mlbam_id": 657746,
+  "age": 29,
+  "birth_date": "1996-06-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 94.4,
+    "era_only_score": 75.0,
+    "gap": 19.4
+  },
+  "season": {
+    "era": 3.2,
+    "whip": 1.01,
+    "k_pct": 25.6,
+    "bb_pct": 6.9,
+    "k_bb_pct": 18.7,
+    "fip": 2.65,
+    "xfip": 3.31,
+    "hr_per_9": 0.53,
+    "gb_pct": 42.3,
+    "ip": 50.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 3.15,
+    "xwoba": 0.283,
+    "xba": 0.215
+  },
+  "statcast": {
+    "avg_velo": 88.1,
+    "max_velo": 95.8,
+    "hard_hit_pct": 24.4,
+    "pitch_types": {
+      "FF": 42.1,
+      "SI": 13.8,
+      "KC": 12.1,
+      "FS": 11.8,
+      "ST": 11.1
+    },
+    "barrel_pct": 10.4,
+    "ev95percent": 42.5,
+    "whiff_pct": 11.1,
+    "csw_pct": 27.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Baltimore Orioles",
+      "ip": 5.333333333333333,
+      "era": 0.0,
+      "k": 7,
+      "bb": 2,
+      "h": 1,
+      "er": 0,
+      "pitches": 85,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Kansas City Royals",
+      "ip": 4.0,
+      "era": 4.82,
+      "k": 3,
+      "bb": 0,
+      "h": 9,
+      "er": 5,
+      "pitches": 77,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Detroit Tigers",
+      "ip": 5.0,
+      "era": 4.4,
+      "k": 7,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 101,
+      "strikes": 61
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".211",
+      "obp": ".271",
+      "slg": ".358",
+      "k": 28,
+      "bb": 6,
+      "bf": 118,
+      "k_pct": 23.7,
+      "bb_pct": 5.1
+    },
+    "vs_right": {
+      "avg": ".187",
+      "obp": ".259",
+      "slg": ".267",
+      "k": 24,
+      "bb": 8,
+      "bf": 85,
+      "k_pct": 28.2,
+      "bb_pct": 9.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.553,
+      "k_pct": 23.7,
+      "bb_pct": 7.5,
+      "bf": 93
+    },
+    "tto2": {
+      "ops": 0.71,
+      "k_pct": 25.6,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.298,
+      "k_pct": 23.7,
+      "bb_pct": 2.6,
+      "bf": 38
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 42.9,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.311,
+      "whiff_pct": 26.4,
+      "put_away_pct": 16.0,
+      "hard_hit_pct": 44.1
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 13.3,
+      "rv_per_100": 2.8,
+      "xwoba_against": 0.333,
+      "whiff_pct": 11.5,
+      "put_away_pct": 19.4,
+      "hard_hit_pct": 52.2
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 12.2,
+      "rv_per_100": 2.6,
+      "xwoba_against": 0.165,
+      "whiff_pct": 26.8,
+      "put_away_pct": 20.6,
+      "hard_hit_pct": 13.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "name": "Chris Sale",
+  "mlbam_id": 519242,
+  "age": 37,
+  "birth_date": "1989-03-30",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 89.6,
+    "era_only_score": 95.0,
+    "gap": -5.4
+  },
+  "season": {
+    "era": 1.96,
+    "whip": 0.91,
+    "k_pct": 29.6,
+    "bb_pct": 6.5,
+    "k_bb_pct": 23.1,
+    "fip": 2.95,
+    "xfip": 2.69,
+    "hr_per_9": 0.98,
+    "gb_pct": 49.5,
+    "ip": 55.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 3.08,
+    "xwoba": 0.28,
+    "xba": 0.214
+  },
+  "statcast": {
+    "avg_velo": 87.6,
+    "max_velo": 99.4,
+    "hard_hit_pct": 18.1,
+    "pitch_types": {
+      "SL": 40.0,
+      "FF": 39.1,
+      "CH": 12.3,
+      "SI": 8.6
+    },
+    "barrel_pct": 7.5,
+    "ev95percent": 31.6,
+    "whiff_pct": 13.6,
+    "csw_pct": 31.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Kansas City Royals",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 3,
+      "h": 3,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Athletics",
+      "ip": 6.0,
+      "era": 0.75,
+      "k": 3,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 79,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Los Angeles Angels",
+      "ip": 4.0,
+      "era": 3.94,
+      "k": 7,
+      "bb": 2,
+      "h": 5,
+      "er": 6,
+      "pitches": 77,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".218",
+      "obp": ".259",
+      "slg": ".327",
+      "k": 18,
+      "bb": 2,
+      "bf": 58,
+      "k_pct": 31.0,
+      "bb_pct": 3.4
+    },
+    "vs_right": {
+      "avg": ".169",
+      "obp": ".253",
+      "slg": ".282",
+      "k": 46,
+      "bb": 12,
+      "bf": 158,
+      "k_pct": 29.1,
+      "bb_pct": 7.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.571,
+      "k_pct": 34.8,
+      "bb_pct": 3.3,
+      "bf": 92
+    },
+    "tto2": {
+      "ops": 0.437,
+      "k_pct": 18.9,
+      "bb_pct": 11.1,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.558,
+      "k_pct": 34.5,
+      "bb_pct": 3.6,
+      "bf": 55
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 40.1,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.232,
+      "whiff_pct": 36.0,
+      "put_away_pct": 27.9,
+      "hard_hit_pct": 12.2
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 39.1,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.329,
+      "whiff_pct": 23.0,
+      "put_away_pct": 22.3,
+      "hard_hit_pct": 49.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

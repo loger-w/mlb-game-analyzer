@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 3.9,
+  "home_recent_ra": 2.9,
+  "away_recent_rs": 2.1,
+  "away_recent_ra": 4.5,
+  "home_recent_30_rs": 4.1,
+  "home_recent_30_ra": 4.8,
+  "away_recent_30_rs": 3.5,
+  "away_recent_30_ra": 4.87,
+  "home_season_rs": 4.61,
+  "home_season_ra": 4.69,
+  "away_season_rs": 4.25,
+  "away_season_ra": 5.29,
+  "home_season_games": 49,
+  "away_season_games": 51,
+  "home_starter_fip": 2.65,
+  "home_starter_k_bb": 18.7,
+  "home_starter_whip": 1.01,
+  "away_starter_fip": 4.87,
+  "away_starter_k_bb": 13.1,
+  "away_starter_whip": 1.53,
+  "home_batting_xwoba": 0.314,
+  "home_batting_ops": 0.71,
+  "home_batting_k_pct": 24.5,
+  "away_batting_xwoba": 0.33,
+  "away_batting_ops": 0.729,
+  "away_batting_k_pct": 20.8,
+  "home_pitcher": {
+    "era": 3.2,
+    "xera": 3.15,
+    "ip": 50.666666666666664,
+    "era_xera_delta": 0.05,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 42.9,
+        "rv_per_100": 0.4,
+        "xwoba_against": 0.311,
+        "whiff_pct": 26.4,
+        "put_away_pct": 16.0,
+        "hard_hit_pct": 44.1
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 13.3,
+        "rv_per_100": 2.8,
+        "xwoba_against": 0.333,
+        "whiff_pct": 11.5,
+        "put_away_pct": 19.4,
+        "hard_hit_pct": 52.2
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 12.2,
+        "rv_per_100": 2.6,
+        "xwoba_against": 0.165,
+        "whiff_pct": 26.8,
+        "put_away_pct": 20.6,
+        "hard_hit_pct": 13.3
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 5.72,
+    "xera": 3.96,
+    "ip": 50.333333333333336,
+    "era_xera_delta": 1.76,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 26.7,
+        "rv_per_100": -2.3,
+        "xwoba_against": 0.411,
+        "whiff_pct": 11.6,
+        "put_away_pct": 11.9,
+        "hard_hit_pct": 45.7
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 26.2,
+        "rv_per_100": 0.3,
+        "xwoba_against": 0.274,
+        "whiff_pct": 36.0,
+        "put_away_pct": 22.4,
+        "hard_hit_pct": 32.4
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 17.1,
+        "rv_per_100": -1.1,
+        "xwoba_against": 0.253,
+        "whiff_pct": 28.6,
+        "put_away_pct": 24.4,
+        "hard_hit_pct": 29.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.336
+  },
+  "away_lineup": {
+    "recent_babip": 0.227
+  },
+  "home_bullpen_era": 5.08,
+  "away_bullpen_era": 5.78,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 56,
+    "wind_text": "6 mph, L To R",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Minnesota Twins",
+    "away_team": "Houston Astros",
+    "home_sp": "Joe Ryan",
+    "away_sp": "Mike Burrows",
+    "home_sp_starts": 10,
+    "away_sp_starts": 9,
+    "venue": "Target Field",
+    "game_pk": 823703,
+    "game_date": "2026-05-20T17:40:00Z",
+    "official_date": "2026-05-20"
+  }
+}

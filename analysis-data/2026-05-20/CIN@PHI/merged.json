@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 5.0,
+  "home_recent_ra": 2.5,
+  "away_recent_rs": 5.6,
+  "away_recent_ra": 4.9,
+  "home_recent_30_rs": 4.4,
+  "home_recent_30_ra": 3.83,
+  "away_recent_30_rs": 4.93,
+  "away_recent_30_ra": 5.6,
+  "home_season_rs": 4.1,
+  "home_season_ra": 4.48,
+  "away_season_rs": 4.33,
+  "away_season_ra": 5.0,
+  "home_season_games": 50,
+  "away_season_games": 49,
+  "home_starter_fip": 4.83,
+  "home_starter_k_bb": 13.9,
+  "home_starter_whip": 1.55,
+  "away_starter_fip": 4.6,
+  "away_starter_k_bb": 5.4,
+  "away_starter_whip": 1.5,
+  "home_batting_xwoba": 0.304,
+  "home_batting_ops": 0.628,
+  "home_batting_k_pct": 22.3,
+  "away_batting_xwoba": 0.351,
+  "away_batting_ops": 0.787,
+  "away_batting_k_pct": 23.9,
+  "home_pitcher": {
+    "era": 5.91,
+    "xera": 4.85,
+    "ip": 45.666666666666664,
+    "era_xera_delta": 1.06,
+    "arsenal_top": [
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 31.7,
+        "rv_per_100": 2.0,
+        "xwoba_against": 0.195,
+        "whiff_pct": 39.0,
+        "put_away_pct": 24.0,
+        "hard_hit_pct": 21.1
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 27.9,
+        "rv_per_100": -5.6,
+        "xwoba_against": 0.469,
+        "whiff_pct": 14.9,
+        "put_away_pct": 23.1,
+        "hard_hit_pct": 57.6
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 18.3,
+        "rv_per_100": -1.2,
+        "xwoba_against": 0.455,
+        "whiff_pct": 11.7,
+        "put_away_pct": 10.6,
+        "hard_hit_pct": 46.7
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 4.21,
+    "xera": 4.79,
+    "ip": 51.333333333333336,
+    "era_xera_delta": -0.58,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 46.6,
+        "rv_per_100": 0.3,
+        "xwoba_against": 0.411,
+        "whiff_pct": 8.6,
+        "put_away_pct": 11.3,
+        "hard_hit_pct": 48.4
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 20.4,
+        "rv_per_100": -0.7,
+        "xwoba_against": 0.239,
+        "whiff_pct": 25.9,
+        "put_away_pct": 17.7,
+        "hard_hit_pct": 35.5
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 19.1,
+        "rv_per_100": -1.2,
+        "xwoba_against": 0.282,
+        "whiff_pct": 47.9,
+        "put_away_pct": 18.4,
+        "hard_hit_pct": 10.7
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.221
+  },
+  "away_lineup": {
+    "recent_babip": 0.307
+  },
+  "home_bullpen_era": 3.88,
+  "away_bullpen_era": 4.98,
+  "park_factor": 104.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 2,
+  "weather": {
+    "condition": "Sunny",
+    "temp_f": 90,
+    "wind_text": "11 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Philadelphia Phillies",
+    "away_team": "Cincinnati Reds",
+    "home_sp": "Aaron Nola",
+    "away_sp": "Andrew Abbott",
+    "home_sp_starts": 9,
+    "away_sp_starts": 10,
+    "venue": "Citizens Bank Park",
+    "game_pk": 823462,
+    "game_date": "2026-05-20T17:05:00Z",
+    "official_date": "2026-05-20"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "name": "Andrew Abbott",
+  "mlbam_id": 671096,
+  "age": 26,
+  "birth_date": "1999-06-01",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.22,
+    "k_bb_pct": 0.203,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 38.1,
+    "era_only_score": 54.8,
+    "gap": -16.7
+  },
+  "season": {
+    "era": 4.21,
+    "whip": 1.5,
+    "k_pct": 15.6,
+    "bb_pct": 10.2,
+    "k_bb_pct": 5.4,
+    "fip": 4.6,
+    "xfip": 4.63,
+    "hr_per_9": 1.05,
+    "gb_pct": 46.0,
+    "ip": 51.333333333333336,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.79,
+    "xwoba": 0.343,
+    "xba": 0.279
+  },
+  "statcast": {
+    "avg_velo": 87.4,
+    "max_velo": 94.4,
+    "hard_hit_pct": 25.9,
+    "pitch_types": {
+      "FF": 46.8,
+      "ST": 20.4,
+      "CH": 18.8,
+      "CU": 13.2,
+      "FC": 0.8
+    },
+    "barrel_pct": 6.0,
+    "ev95percent": 37.1,
+    "whiff_pct": 8.7,
+    "csw_pct": 25.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Boston Red Sox",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 4,
+      "bb": 1,
+      "h": 7,
+      "er": 0,
+      "pitches": 83,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 5.666666666666667,
+      "era": 3.09,
+      "k": 5,
+      "bb": 3,
+      "h": 5,
+      "er": 4,
+      "pitches": 88,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Miami Marlins",
+      "ip": 5.333333333333333,
+      "era": 3.18,
+      "k": 2,
+      "bb": 2,
+      "h": 6,
+      "er": 2,
+      "pitches": 91,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".320",
+      "obp": ".358",
+      "slg": ".440",
+      "k": 14,
+      "bb": 3,
+      "bf": 53,
+      "k_pct": 26.4,
+      "bb_pct": 5.7
+    },
+    "vs_right": {
+      "avg": ".252",
+      "obp": ".337",
+      "slg": ".377",
+      "k": 21,
+      "bb": 20,
+      "bf": 172,
+      "k_pct": 12.2,
+      "bb_pct": 11.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.842,
+      "k_pct": 18.2,
+      "bb_pct": 9.1,
+      "bf": 99
+    },
+    "tto2": {
+      "ops": 0.609,
+      "k_pct": 14.4,
+      "bb_pct": 9.3,
+      "bf": 97
+    },
+    "tto3": {
+      "ops": 0.739,
+      "k_pct": 16.3,
+      "bb_pct": 12.2,
+      "bf": 49
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 46.6,
+      "rv_per_100": 0.3,
+      "xwoba_against": 0.411,
+      "whiff_pct": 8.6,
+      "put_away_pct": 11.3,
+      "hard_hit_pct": 48.4
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 20.4,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.239,
+      "whiff_pct": 25.9,
+      "put_away_pct": 17.7,
+      "hard_hit_pct": 35.5
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 19.1,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.282,
+      "whiff_pct": 47.9,
+      "put_away_pct": 18.4,
+      "hard_hit_pct": 10.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

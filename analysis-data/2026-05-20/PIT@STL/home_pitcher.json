@@ -1,0 +1,173 @@
+{
+  "name": "Michael McGreevy",
+  "mlbam_id": 700241,
+  "age": 25,
+  "birth_date": "2000-07-08",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.782,
+    "k_bb_pct": 0.679,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 79.2,
+    "era_only_score": 94.0,
+    "gap": -14.8
+  },
+  "season": {
+    "era": 2.1,
+    "whip": 0.88,
+    "k_pct": 18.8,
+    "bb_pct": 5.8,
+    "k_bb_pct": 13.0,
+    "fip": 3.86,
+    "xfip": 3.71,
+    "hr_per_9": 1.05,
+    "gb_pct": 50.9,
+    "ip": 51.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 5.79,
+    "xwoba": 0.372,
+    "xba": 0.288
+  },
+  "statcast": {
+    "avg_velo": 86.4,
+    "max_velo": 93.6,
+    "hard_hit_pct": 25.7,
+    "pitch_types": {
+      "FF": 24.0,
+      "CH": 20.0,
+      "SI": 16.7,
+      "ST": 12.1,
+      "CU": 11.5
+    },
+    "barrel_pct": 11.1,
+    "ev95percent": 39.6,
+    "whiff_pct": 8.2,
+    "csw_pct": 25.3
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Tampa Bay Rays",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 5,
+      "bb": 2,
+      "h": 0,
+      "er": 0,
+      "pitches": 96,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Detroit Tigers",
+      "ip": 4.666666666666667,
+      "era": 2.53,
+      "k": 4,
+      "bb": 0,
+      "h": 7,
+      "er": 3,
+      "pitches": 75,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Washington Nationals",
+      "ip": 6.0,
+      "era": 2.16,
+      "k": 1,
+      "bb": 0,
+      "h": 4,
+      "er": 1,
+      "pitches": 91,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".198",
+      "obp": ".244",
+      "slg": ".336",
+      "k": 19,
+      "bb": 7,
+      "bf": 123,
+      "k_pct": 15.4,
+      "bb_pct": 5.7
+    },
+    "vs_right": {
+      "avg": ".172",
+      "obp": ".221",
+      "slg": ".297",
+      "k": 17,
+      "bb": 4,
+      "bf": 68,
+      "k_pct": 25.0,
+      "bb_pct": 5.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.687,
+      "k_pct": 18.2,
+      "bb_pct": 2.5,
+      "bf": 401
+    },
+    "tto2": {
+      "ops": 0.624,
+      "k_pct": 13.4,
+      "bb_pct": 5.9,
+      "bf": 307
+    },
+    "tto3": {
+      "ops": 0.659,
+      "k_pct": 21.0,
+      "bb_pct": 5.6,
+      "bf": 143
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 23.6,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.462,
+      "whiff_pct": 10.5,
+      "put_away_pct": 11.9,
+      "hard_hit_pct": 47.6
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 20.2,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.28,
+      "whiff_pct": 32.4,
+      "put_away_pct": 27.9,
+      "hard_hit_pct": 21.2
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 17.2,
+      "rv_per_100": 4.8,
+      "xwoba_against": 0.283,
+      "whiff_pct": 13.4,
+      "put_away_pct": 17.9,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

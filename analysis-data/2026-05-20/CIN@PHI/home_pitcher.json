@@ -1,0 +1,183 @@
+{
+  "name": "Aaron Nola",
+  "mlbam_id": 605400,
+  "age": 32,
+  "birth_date": "1993-06-04",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.895,
+    "k_bb_pct": 0.732,
+    "stuff_pct": null,
+    "age_factor": 0.8
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 81.7,
+    "era_only_score": 16.8,
+    "gap": 64.9
+  },
+  "season": {
+    "era": 5.91,
+    "whip": 1.55,
+    "k_pct": 22.9,
+    "bb_pct": 9.0,
+    "k_bb_pct": 13.9,
+    "fip": 4.83,
+    "xfip": 3.46,
+    "hr_per_9": 1.77,
+    "gb_pct": 50.0,
+    "ip": 45.666666666666664,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 4.85,
+    "xwoba": 0.345,
+    "xba": 0.266
+  },
+  "statcast": {
+    "avg_velo": 86.1,
+    "max_velo": 94.6,
+    "hard_hit_pct": 25.4,
+    "pitch_types": {
+      "KC": 31.2,
+      "FF": 27.8,
+      "SI": 18.1,
+      "CH": 13.4,
+      "FC": 9.4
+    },
+    "barrel_pct": 9.5,
+    "ev95percent": 41.6,
+    "whiff_pct": 10.2,
+    "csw_pct": 27.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Texas Rangers",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 7,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 91,
+      "strikes": 62
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Colorado Rockies",
+      "ip": 6.333333333333333,
+      "era": 3.18,
+      "k": 9,
+      "bb": 1,
+      "h": 5,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 63
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "San Francisco Giants",
+      "ip": 6.0,
+      "era": 3.63,
+      "k": 3,
+      "bb": 1,
+      "h": 5,
+      "er": 3,
+      "pitches": 84,
+      "strikes": 49
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".323",
+      "obp": ".414",
+      "slg": ".525",
+      "k": 21,
+      "bb": 16,
+      "bf": 116,
+      "k_pct": 18.1,
+      "bb_pct": 13.8
+    },
+    "vs_right": {
+      "avg": ".256",
+      "obp": ".274",
+      "slg": ".476",
+      "k": 25,
+      "bb": 2,
+      "bf": 85,
+      "k_pct": 29.4,
+      "bb_pct": 2.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.862,
+      "k_pct": 25.6,
+      "bb_pct": 10.0,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.813,
+      "k_pct": 18.9,
+      "bb_pct": 6.7,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 1.01,
+      "k_pct": 24.4,
+      "bb_pct": 14.6,
+      "bf": 41
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 31.7,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.195,
+      "whiff_pct": 39.0,
+      "put_away_pct": 24.0,
+      "hard_hit_pct": 21.1
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 27.9,
+      "rv_per_100": -5.6,
+      "xwoba_against": 0.469,
+      "whiff_pct": 14.9,
+      "put_away_pct": 23.1,
+      "hard_hit_pct": 57.6
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 18.3,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.455,
+      "whiff_pct": 11.7,
+      "put_away_pct": 10.6,
+      "hard_hit_pct": 46.7
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 9.0,
+      "rv_per_100": -1.5,
+      "xwoba_against": 0.332,
+      "whiff_pct": 28.9,
+      "put_away_pct": 27.8,
+      "hard_hit_pct": 47.4
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
