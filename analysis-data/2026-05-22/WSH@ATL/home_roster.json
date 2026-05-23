@@ -1,0 +1,379 @@
+{
+  "team": "Atlanta Braves",
+  "team_id": 144,
+  "active_roster": {
+    "pitchers": [
+      "Bryce Elder",
+      "Carlos Carrasco",
+      "Chris Sale",
+      "Didier Fuentes",
+      "Dylan Dodd",
+      "Dylan Lee",
+      "Grant Holmes",
+      "Martín Pérez",
+      "Raisel Iglesias",
+      "Reynaldo López",
+      "Robert Suarez",
+      "Spencer Strider",
+      "Tyler Kinley"
+    ],
+    "pitcher_ids": [
+      693821,
+      471911,
+      519242,
+      800311,
+      689266,
+      669276,
+      656550,
+      527048,
+      628452,
+      625643,
+      663158,
+      675911,
+      641755
+    ],
+    "position_players": [
+      "Austin Riley",
+      "Chadwick Tromp",
+      "Dominic Smith",
+      "Eli White",
+      "Ha-Seong Kim",
+      "Jorge Mateo",
+      "Matt Olson",
+      "Mauricio Dubón",
+      "Michael Harris II",
+      "Mike Yastrzemski",
+      "Ozzie Albies",
+      "Ronald Acuña Jr.",
+      "Sandy León"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Bryce Elder",
+        "player_id": 693821,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 62.7
+        }
+      },
+      {
+        "name": "Carlos Carrasco",
+        "player_id": 471911,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 9,
+          "ip": 45.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Chris Sale",
+        "player_id": 519242,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 62.0
+        }
+      },
+      {
+        "name": "Didier Fuentes",
+        "player_id": 800311,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 10,
+          "gs": 1,
+          "ip": 18.3
+        }
+      },
+      {
+        "name": "Dylan Dodd",
+        "player_id": 689266,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 28,
+          "gs": 0,
+          "ip": 35.0,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Dylan Lee",
+        "player_id": 669276,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 8,
+          "g": 24,
+          "gs": 0,
+          "ip": 23.3
+        }
+      },
+      {
+        "name": "Grant Holmes",
+        "player_id": 656550,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 47.3
+        }
+      },
+      {
+        "name": "Martín Pérez",
+        "player_id": 527048,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 6,
+          "ip": 41.0
+        }
+      },
+      {
+        "name": "Raisel Iglesias",
+        "player_id": 628452,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 8,
+          "holds": 0,
+          "g": 14,
+          "gs": 0,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Reynaldo López",
+        "player_id": 625643,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 10,
+          "gs": 5,
+          "ip": 30.3
+        }
+      },
+      {
+        "name": "Robert Suarez",
+        "player_id": 663158,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 4,
+          "holds": 6,
+          "g": 21,
+          "gs": 0,
+          "ip": 21.3
+        }
+      },
+      {
+        "name": "Spencer Strider",
+        "player_id": 675911,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 23,
+          "gs": 23,
+          "ip": 125.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Tyler Kinley",
+        "player_id": 641755,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 6,
+          "g": 23,
+          "gs": 0,
+          "ip": 20.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "AJ Smith-Shawver",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 700363,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 9,
+        "gs": 9,
+        "ip": 44.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Danny Young",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 664849,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 4,
+        "g": 10,
+        "gs": 0,
+        "ip": 8.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Drake Baldwin",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 686948
+    },
+    {
+      "name": "Hurston Waldrep",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 694462,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 10,
+        "gs": 9,
+        "ip": 56.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Joe Jiménez",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 641729,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Joey Wentz",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 666214,
+      "core_role": "Long RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 39,
+        "gs": 13,
+        "ip": 98.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Kyle Farmer",
+      "status": "Injured 10-Day",
+      "position": "Designated Hitter",
+      "player_id": 571657
+    },
+    {
+      "name": "Sean Murphy",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 669221
+    },
+    {
+      "name": "Spencer Schwellenbach",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 680885,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 17,
+        "gs": 17,
+        "ip": 110.7,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Anthony Molina",
+    "Daysbel Hernández",
+    "Hayden Harris",
+    "Hunter Stratton",
+    "JR Ritchie",
+    "Jhancarlos Lara",
+    "Jim Jarvis",
+    "Maverick Handley",
+    "Nacho Alvarez Jr.",
+    "Rolddy Muñoz",
+    "Victor Mederos"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 9,
+    "total_40man_not_active": 11
+  }
+}

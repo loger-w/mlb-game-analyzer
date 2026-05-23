@@ -1,0 +1,157 @@
+{
+  "name": "Logan Henderson",
+  "mlbam_id": 701656,
+  "age": 24,
+  "birth_date": "2002-03-02",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 69.0,
+    "gap": null
+  },
+  "season": {
+    "era": 3.5,
+    "whip": 1.06,
+    "k_pct": 32.4,
+    "bb_pct": 4.2,
+    "k_bb_pct": 28.2,
+    "fip": 2.49,
+    "xfip": 2.85,
+    "hr_per_9": 1.0,
+    "gb_pct": 13.8,
+    "ip": 18.0,
+    "games": 4,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 2.94,
+    "xwoba": 0.274,
+    "xba": 0.227
+  },
+  "statcast": {
+    "avg_velo": 88.2,
+    "max_velo": 95.2,
+    "hard_hit_pct": 19.2,
+    "pitch_types": {
+      "FF": 44.4,
+      "CH": 32.5,
+      "FC": 18.3,
+      "SL": 4.7
+    },
+    "barrel_pct": 11.1,
+    "ev95percent": 28.9,
+    "whiff_pct": 12.9,
+    "csw_pct": 25.4
+  },
+  "game_log": [
+    {
+      "date": "2026-04-04",
+      "opponent": "Kansas City Royals",
+      "ip": 2.0,
+      "era": 9.0,
+      "k": 3,
+      "bb": 1,
+      "h": 3,
+      "er": 2,
+      "pitches": 35,
+      "strikes": 23
+    },
+    {
+      "date": "2026-05-03",
+      "opponent": "Washington Nationals",
+      "ip": 6.0,
+      "era": 4.5,
+      "k": 8,
+      "bb": 0,
+      "h": 3,
+      "er": 2,
+      "pitches": 76,
+      "strikes": 56
+    },
+    {
+      "date": "2026-05-10",
+      "opponent": "New York Yankees",
+      "ip": 5.0,
+      "era": 4.15,
+      "k": 5,
+      "bb": 1,
+      "h": 4,
+      "er": 2,
+      "pitches": 74,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".204",
+      "obp": ".235",
+      "slg": ".347",
+      "k": 15,
+      "bb": 2,
+      "bf": 51,
+      "k_pct": 29.4,
+      "bb_pct": 3.9
+    },
+    "vs_right": {
+      "avg": ".316",
+      "obp": ".350",
+      "slg": ".526",
+      "k": 8,
+      "bb": 1,
+      "bf": 20,
+      "k_pct": 40.0,
+      "bb_pct": 5.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.686,
+      "k_pct": 34.1,
+      "bb_pct": 6.8,
+      "bf": 44
+    },
+    "tto2": {
+      "ops": 0.704,
+      "k_pct": 29.6,
+      "bb_pct": 0.0,
+      "bf": 27
+    },
+    "tto3": {
+      "ops": 0.0,
+      "k_pct": 42.9,
+      "bb_pct": 0.0,
+      "bf": 7
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 44.2,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.28,
+      "whiff_pct": 27.5,
+      "put_away_pct": 24.4,
+      "hard_hit_pct": 40.0
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 32.3,
+      "rv_per_100": 2.3,
+      "xwoba_against": 0.193,
+      "whiff_pct": 30.4,
+      "put_away_pct": 21.9,
+      "hard_hit_pct": 11.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

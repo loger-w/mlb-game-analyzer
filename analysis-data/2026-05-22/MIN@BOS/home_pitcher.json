@@ -1,0 +1,163 @@
+{
+  "name": "Payton Tolle",
+  "mlbam_id": 801139,
+  "age": 23,
+  "birth_date": "2002-11-01",
+  "pitch_hand": "L",
+  "age_assessment": "📈 成長期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.845,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 91.6,
+    "era_only_score": 94.5,
+    "gap": -2.9
+  },
+  "season": {
+    "era": 2.05,
+    "whip": 0.78,
+    "k_pct": 26.1,
+    "bb_pct": 6.1,
+    "k_bb_pct": 20.0,
+    "fip": 3.1,
+    "xfip": 3.57,
+    "hr_per_9": 0.88,
+    "gb_pct": 31.7,
+    "ip": 30.666666666666668,
+    "games": 5,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 2.44,
+    "xwoba": 0.25,
+    "xba": 0.191
+  },
+  "statcast": {
+    "avg_velo": 92.8,
+    "max_velo": 99.5,
+    "hard_hit_pct": 25.8,
+    "pitch_types": {
+      "FF": 44.6,
+      "SI": 23.2,
+      "FC": 17.1,
+      "CU": 11.2,
+      "CH": 3.9
+    },
+    "barrel_pct": 7.8,
+    "ev95percent": 39.0,
+    "whiff_pct": 11.7,
+    "csw_pct": 27.8
+  },
+  "game_log": [
+    {
+      "date": "2026-04-23",
+      "opponent": "New York Yankees",
+      "ip": 6.0,
+      "era": 1.5,
+      "k": 11,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 93,
+      "strikes": 63
+    },
+    {
+      "date": "2026-04-28",
+      "opponent": "Toronto Blue Jays",
+      "ip": 4.666666666666667,
+      "era": 3.38,
+      "k": 4,
+      "bb": 4,
+      "h": 3,
+      "er": 3,
+      "pitches": 68,
+      "strikes": 42
+    },
+    {
+      "date": "2026-05-04",
+      "opponent": "Detroit Tigers",
+      "ip": 7.0,
+      "era": 2.04,
+      "k": 8,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 83,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".226",
+      "obp": ".273",
+      "slg": ".452",
+      "k": 6,
+      "bb": 1,
+      "bf": 33,
+      "k_pct": 18.2,
+      "bb_pct": 3.0
+    },
+    "vs_right": {
+      "avg": ".133",
+      "obp": ".198",
+      "slg": ".213",
+      "k": 24,
+      "bb": 6,
+      "bf": 82,
+      "k_pct": 29.3,
+      "bb_pct": 7.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.491,
+      "k_pct": 33.3,
+      "bb_pct": 4.4,
+      "bf": 45
+    },
+    "tto2": {
+      "ops": 0.67,
+      "k_pct": 22.2,
+      "bb_pct": 4.4,
+      "bf": 45
+    },
+    "tto3": {
+      "ops": 0.214,
+      "k_pct": 20.8,
+      "bb_pct": 12.5,
+      "bf": 24
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 44.6,
+      "rv_per_100": 3.0,
+      "xwoba_against": 0.139,
+      "whiff_pct": 27.2,
+      "put_away_pct": 30.3,
+      "hard_hit_pct": 25.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 23.2,
+      "rv_per_100": -3.8,
+      "xwoba_against": 0.524,
+      "whiff_pct": 10.5,
+      "put_away_pct": 0.0,
+      "hard_hit_pct": 63.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

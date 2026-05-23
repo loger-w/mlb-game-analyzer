@@ -1,0 +1,128 @@
+{
+  "home_recent_rs": 5.4,
+  "home_recent_ra": 3.3,
+  "away_recent_rs": 3.6,
+  "away_recent_ra": 5.6,
+  "home_recent_30_rs": 4.67,
+  "home_recent_30_ra": 4.57,
+  "away_recent_30_rs": 3.97,
+  "away_recent_30_ra": 5.17,
+  "home_season_rs": 4.55,
+  "home_season_ra": 4.57,
+  "away_season_rs": 3.98,
+  "away_season_ra": 5.02,
+  "home_season_games": 49,
+  "away_season_games": 53,
+  "home_starter_fip": 2.77,
+  "home_starter_k_bb": 19.5,
+  "home_starter_whip": 1.33,
+  "away_starter_fip": 5.42,
+  "away_starter_k_bb": 5.6,
+  "away_starter_whip": 1.26,
+  "home_batting_xwoba": 0.322,
+  "home_batting_ops": 0.731,
+  "home_batting_k_pct": 19.8,
+  "away_batting_xwoba": 0.315,
+  "away_batting_ops": 0.729,
+  "away_batting_k_pct": 24.8,
+  "home_pitcher": {
+    "era": 3.49,
+    "xera": 4.79,
+    "ip": 49.0,
+    "era_xera_delta": -1.3,
+    "arsenal_top": [
+      {
+        "pitch_type": "SV",
+        "pitch_name": "Slurve",
+        "usage": 33.0,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.303,
+        "whiff_pct": 36.9,
+        "put_away_pct": 24.6,
+        "hard_hit_pct": 41.0
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 32.8,
+        "rv_per_100": -1.1,
+        "xwoba_against": 0.38,
+        "whiff_pct": 15.3,
+        "put_away_pct": 17.9,
+        "hard_hit_pct": 47.8
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 10.9,
+        "rv_per_100": -1.7,
+        "xwoba_against": 0.42,
+        "whiff_pct": 28.9,
+        "put_away_pct": 17.6,
+        "hard_hit_pct": 33.3
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 4.02,
+    "xera": 7.4,
+    "ip": 47.0,
+    "era_xera_delta": -3.38,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 22.7,
+        "rv_per_100": -1.0,
+        "xwoba_against": 0.412,
+        "whiff_pct": 12.8,
+        "put_away_pct": 10.9,
+        "hard_hit_pct": 61.3
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 20.7,
+        "rv_per_100": 1.8,
+        "xwoba_against": 0.294,
+        "whiff_pct": 28.9,
+        "put_away_pct": 21.2,
+        "hard_hit_pct": 28.9
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 16.5,
+        "rv_per_100": -0.2,
+        "xwoba_against": 0.492,
+        "whiff_pct": 2.0,
+        "put_away_pct": 0.0,
+        "hard_hit_pct": 61.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.35
+  },
+  "away_lineup": {
+    "recent_babip": 0.256
+  },
+  "home_bullpen_era": 4.17,
+  "away_bullpen_era": 4.36,
+  "park_factor": 101.0,
+  "home_core_bullpen_il_count": 3,
+  "away_core_bullpen_il_count": 2,
+  "weather": null,
+  "_meta": {
+    "home_team": "Arizona Diamondbacks",
+    "away_team": "Colorado Rockies",
+    "home_sp": "Michael Soroka",
+    "away_sp": "Tomoyuki Sugano",
+    "home_sp_starts": 9,
+    "away_sp_starts": 9,
+    "venue": "Chase Field",
+    "game_pk": 825082,
+    "game_date": "2026-05-23T01:40:00Z",
+    "official_date": "2026-05-22"
+  }
+}

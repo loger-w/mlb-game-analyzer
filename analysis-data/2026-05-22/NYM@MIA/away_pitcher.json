@@ -1,0 +1,147 @@
+{
+  "name": "Tobias Myers",
+  "mlbam_id": 668964,
+  "age": 27,
+  "birth_date": "1998-08-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 70.8,
+    "gap": null
+  },
+  "season": {
+    "era": 3.41,
+    "whip": 1.03,
+    "k_pct": 20.0,
+    "bb_pct": 5.2,
+    "k_bb_pct": 14.8,
+    "fip": 4.38,
+    "xfip": 3.66,
+    "hr_per_9": 1.55,
+    "gb_pct": 45.2,
+    "ip": 29.0,
+    "games": 16,
+    "gs": 1
+  },
+  "expected": {
+    "xera": 3.03,
+    "xwoba": 0.278,
+    "xba": 0.231
+  },
+  "statcast": {
+    "avg_velo": 87.3,
+    "max_velo": 96.0,
+    "hard_hit_pct": 26.0,
+    "pitch_types": {
+      "FF": 50.5,
+      "FS": 21.5,
+      "SL": 17.3,
+      "FC": 10.7
+    },
+    "barrel_pct": 5.8,
+    "ev95percent": 41.9,
+    "whiff_pct": 9.3,
+    "csw_pct": 24.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 3.0,
+      "era": 3.0,
+      "k": 1,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 39,
+      "strikes": 22
+    },
+    {
+      "date": "2026-03-30",
+      "opponent": "St. Louis Cardinals",
+      "ip": 1.3333333333333333,
+      "era": 2.08,
+      "k": 3,
+      "bb": 0,
+      "h": 0,
+      "er": 0,
+      "pitches": 14,
+      "strikes": 10
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "St. Louis Cardinals",
+      "ip": 1.6666666666666665,
+      "era": 1.5,
+      "k": 1,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 20,
+      "strikes": 13
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".156",
+      "obp": ".169",
+      "slg": ".313",
+      "k": 18,
+      "bb": 1,
+      "bf": 65,
+      "k_pct": 27.7,
+      "bb_pct": 1.5
+    },
+    "vs_right": {
+      "avg": ".318",
+      "obp": ".388",
+      "slg": ".568",
+      "k": 5,
+      "bb": 5,
+      "bf": 50,
+      "k_pct": 10.0,
+      "bb_pct": 10.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.671,
+      "k_pct": 23.6,
+      "bb_pct": 6.8,
+      "bf": 665
+    },
+    "tto2": {
+      "ops": 0.692,
+      "k_pct": 21.8,
+      "bb_pct": 5.9,
+      "bf": 303
+    },
+    "tto3": {
+      "ops": 0.844,
+      "k_pct": 13.0,
+      "bb_pct": 7.4,
+      "bf": 108
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 50.1,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.333,
+      "whiff_pct": 15.1,
+      "put_away_pct": 21.6,
+      "hard_hit_pct": 52.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

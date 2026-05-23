@@ -1,0 +1,173 @@
+{
+  "name": "Walker Buehler",
+  "mlbam_id": 621111,
+  "age": 31,
+  "birth_date": "1994-07-28",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.809,
+    "k_bb_pct": 0.667,
+    "stuff_pct": null,
+    "age_factor": 0.84
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 76.5,
+    "era_only_score": 34.8,
+    "gap": 41.7
+  },
+  "season": {
+    "era": 5.01,
+    "whip": 1.35,
+    "k_pct": 20.6,
+    "bb_pct": 7.8,
+    "k_bb_pct": 12.8,
+    "fip": 3.58,
+    "xfip": 3.65,
+    "hr_per_9": 0.87,
+    "gb_pct": 50.6,
+    "ip": 41.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 4.85,
+    "xwoba": 0.345,
+    "xba": 0.284
+  },
+  "statcast": {
+    "avg_velo": 88.2,
+    "max_velo": 96.0,
+    "hard_hit_pct": 24.3,
+    "pitch_types": {
+      "FC": 22.9,
+      "FF": 19.9,
+      "KC": 14.9,
+      "SI": 13.8,
+      "CH": 10.9
+    },
+    "barrel_pct": 6.3,
+    "ev95percent": 40.2,
+    "whiff_pct": 7.6,
+    "csw_pct": 26.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "San Francisco Giants",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 3,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 72,
+      "strikes": 43
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Boston Red Sox",
+      "ip": 2.6666666666666665,
+      "era": 9.45,
+      "k": 4,
+      "bb": 3,
+      "h": 3,
+      "er": 4,
+      "pitches": 61,
+      "strikes": 33
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Colorado Rockies",
+      "ip": 6.0,
+      "era": 4.97,
+      "k": 4,
+      "bb": 0,
+      "h": 3,
+      "er": 0,
+      "pitches": 68,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".308",
+      "obp": ".382",
+      "slg": ".385",
+      "k": 18,
+      "bb": 10,
+      "bf": 102,
+      "k_pct": 17.6,
+      "bb_pct": 9.8
+    },
+    "vs_right": {
+      "avg": ".192",
+      "obp": ".244",
+      "slg": ".356",
+      "k": 19,
+      "bb": 4,
+      "bf": 78,
+      "k_pct": 24.4,
+      "bb_pct": 5.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.805,
+      "k_pct": 19.7,
+      "bb_pct": 8.2,
+      "bf": 684
+    },
+    "tto2": {
+      "ops": 0.716,
+      "k_pct": 18.7,
+      "bb_pct": 9.0,
+      "bf": 620
+    },
+    "tto3": {
+      "ops": 0.857,
+      "k_pct": 18.3,
+      "bb_pct": 6.3,
+      "bf": 268
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 24.2,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.384,
+      "whiff_pct": 14.1,
+      "put_away_pct": 16.1,
+      "hard_hit_pct": 31.0
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 18.9,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.371,
+      "whiff_pct": 6.1,
+      "put_away_pct": 2.4,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 14.7,
+      "rv_per_100": -1.7,
+      "xwoba_against": 0.388,
+      "whiff_pct": 34.5,
+      "put_away_pct": 25.6,
+      "hard_hit_pct": 52.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

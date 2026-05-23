@@ -1,0 +1,351 @@
+{
+  "team": "Cincinnati Reds",
+  "team_id": 113,
+  "active_roster": {
+    "pitchers": [
+      "Andrew Abbott",
+      "Brady Singer",
+      "Brock Burke",
+      "Chase Burns",
+      "Chris Paddack",
+      "Connor Phillips",
+      "Graham Ashcraft",
+      "Jose Franco",
+      "Nick Lodolo",
+      "Pierce Johnson",
+      "Sam Moll",
+      "Tejay Antone",
+      "Tony Santillan"
+    ],
+    "pitcher_ids": [
+      671096,
+      663903,
+      656271,
+      695505,
+      663978,
+      683175,
+      668933,
+      683742,
+      666157,
+      572955,
+      594580,
+      622088,
+      663574
+    ],
+    "position_players": [
+      "Blake Dunn",
+      "Dane Myers",
+      "Elly De La Cruz",
+      "JJ Bleday",
+      "Ke'Bryan Hayes",
+      "Matt McLain",
+      "Nathaniel Lowe",
+      "P.J. Higgins",
+      "Sal Stewart",
+      "Spencer Steer",
+      "TJ Friedl",
+      "Tyler Stephenson",
+      "Will Benson"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Andrew Abbott",
+        "player_id": 671096,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 56.7
+        }
+      },
+      {
+        "name": "Brady Singer",
+        "player_id": 663903,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 46.0
+        }
+      },
+      {
+        "name": "Brock Burke",
+        "player_id": 656271,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 5,
+          "g": 24,
+          "gs": 0,
+          "ip": 22.7
+        }
+      },
+      {
+        "name": "Chase Burns",
+        "player_id": 695505,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 59.0
+        }
+      },
+      {
+        "name": "Chris Paddack",
+        "player_id": 663978,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 7,
+          "ip": 35.7
+        }
+      },
+      {
+        "name": "Connor Phillips",
+        "player_id": 683175,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 5,
+          "g": 24,
+          "gs": 0,
+          "ip": 26.7
+        }
+      },
+      {
+        "name": "Graham Ashcraft",
+        "player_id": 668933,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 9,
+          "g": 24,
+          "gs": 0,
+          "ip": 24.3
+        }
+      },
+      {
+        "name": "Jose Franco",
+        "player_id": 683742,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 8,
+          "gs": 0,
+          "ip": 14.7
+        }
+      },
+      {
+        "name": "Nick Lodolo",
+        "player_id": 666157,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 29,
+          "gs": 28,
+          "ip": 156.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Pierce Johnson",
+        "player_id": 572955,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 4,
+          "g": 22,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Sam Moll",
+        "player_id": 594580,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 23,
+          "gs": 0,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Tejay Antone",
+        "player_id": 622088,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 0,
+          "g": 7,
+          "gs": 0,
+          "ip": 7.3
+        }
+      },
+      {
+        "name": "Tony Santillan",
+        "player_id": 663574,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 10,
+          "g": 21,
+          "gs": 0,
+          "ip": 19.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Brandon Williamson",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 682227,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 6,
+        "ip": 28.0
+      }
+    },
+    {
+      "name": "Caleb Ferguson",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 657571,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 14,
+        "g": 70,
+        "gs": 0,
+        "ip": 65.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Emilio Pagán",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 641941,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 6,
+        "holds": 0,
+        "g": 15,
+        "gs": 0,
+        "ip": 14.0
+      }
+    },
+    {
+      "name": "Eugenio Suárez",
+      "status": "Injured 10-Day",
+      "position": "Third Base",
+      "player_id": 553993
+    },
+    {
+      "name": "Hunter Greene",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 668881,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 19,
+        "gs": 19,
+        "ip": 107.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Jose Trevino",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 624431
+    },
+    {
+      "name": "Rhett Lowder",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 695076,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 8,
+        "gs": 8,
+        "ip": 38.3
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Chase Petty",
+    "Edwin Arroyo",
+    "Héctor Rodríguez",
+    "Julian Aguiar",
+    "Kyle Nicolas",
+    "Leo Balcazar",
+    "Luis Mey",
+    "Noelvi Marte",
+    "Zach Maxwell",
+    "Zach McCambley"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 7,
+    "total_40man_not_active": 10
+  }
+}

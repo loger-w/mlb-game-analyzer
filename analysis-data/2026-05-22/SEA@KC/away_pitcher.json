@@ -1,0 +1,203 @@
+{
+  "name": "Logan Gilbert",
+  "mlbam_id": 669302,
+  "age": 29,
+  "birth_date": "1997-05-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 94.4,
+    "era_only_score": 48.8,
+    "gap": 45.7
+  },
+  "season": {
+    "era": 4.45,
+    "whip": 1.15,
+    "k_pct": 24.7,
+    "bb_pct": 5.2,
+    "k_bb_pct": 19.5,
+    "fip": 4.25,
+    "xfip": 3.03,
+    "hr_per_9": 1.75,
+    "gb_pct": 46.2,
+    "ip": 56.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.19,
+    "xwoba": 0.323,
+    "xba": 0.256
+  },
+  "statcast": {
+    "avg_velo": 88.1,
+    "max_velo": 98.2,
+    "hard_hit_pct": 29.1,
+    "pitch_types": {
+      "FF": 31.3,
+      "SL": 21.8,
+      "FS": 15.2,
+      "CU": 11.7,
+      "FC": 11.5
+    },
+    "barrel_pct": 11.3,
+    "ev95percent": 47.2,
+    "whiff_pct": 12.8,
+    "csw_pct": 29.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Cleveland Guardians",
+      "ip": 5.333333333333333,
+      "era": 5.06,
+      "k": 7,
+      "bb": 0,
+      "h": 5,
+      "er": 3,
+      "pitches": 86,
+      "strikes": 59
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "New York Yankees",
+      "ip": 5.333333333333333,
+      "era": 6.75,
+      "k": 6,
+      "bb": 3,
+      "h": 7,
+      "er": 5,
+      "pitches": 95,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Texas Rangers",
+      "ip": 6.0,
+      "era": 5.4,
+      "k": 5,
+      "bb": 0,
+      "h": 6,
+      "er": 2,
+      "pitches": 96,
+      "strikes": 65
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".234",
+      "obp": ".306",
+      "slg": ".459",
+      "k": 37,
+      "bb": 10,
+      "bf": 124,
+      "k_pct": 29.8,
+      "bb_pct": 8.1
+    },
+    "vs_right": {
+      "avg": ".260",
+      "obp": ".280",
+      "slg": ".490",
+      "k": 20,
+      "bb": 2,
+      "bf": 107,
+      "k_pct": 18.7,
+      "bb_pct": 1.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.715,
+      "k_pct": 32.2,
+      "bb_pct": 1.1,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.627,
+      "k_pct": 17.8,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 1.07,
+      "k_pct": 23.1,
+      "bb_pct": 5.8,
+      "bf": 52
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.3,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.405,
+      "whiff_pct": 19.3,
+      "put_away_pct": 12.7,
+      "hard_hit_pct": 58.5
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 21.8,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.372,
+      "whiff_pct": 37.8,
+      "put_away_pct": 25.4,
+      "hard_hit_pct": 59.0
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 15.2,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.187,
+      "whiff_pct": 38.8,
+      "put_away_pct": 17.9,
+      "hard_hit_pct": 25.0
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 11.7,
+      "rv_per_100": 0.1,
+      "xwoba_against": 0.341,
+      "whiff_pct": 29.4,
+      "put_away_pct": 12.1,
+      "hard_hit_pct": 28.6
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 11.5,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.328,
+      "whiff_pct": 18.4,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 52.6
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 8.3,
+      "rv_per_100": 2.8,
+      "xwoba_against": 0.26,
+      "whiff_pct": 34.4,
+      "put_away_pct": 25.7,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

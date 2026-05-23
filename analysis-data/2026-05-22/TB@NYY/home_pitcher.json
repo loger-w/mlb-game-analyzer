@@ -1,0 +1,75 @@
+{
+  "name": "Gerrit Cole",
+  "mlbam_id": 543037,
+  "age": 35,
+  "birth_date": "1990-09-08",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "Unknown",
+  "tier_v2": null,
+  "tier_components": {
+    "xfip_pct": null,
+    "k_bb_pct": null,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "insufficient_data",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": null,
+    "gap": null
+  },
+  "season": {
+    "error": "No 2026 pitching stats found"
+  },
+  "expected": {
+    "error": "Player 543037 not found in expected stats"
+  },
+  "statcast": {
+    "avg_velo": 92.7,
+    "max_velo": 98.0,
+    "hard_hit_pct": 37.5,
+    "pitch_types": {
+      "FF": 61.5,
+      "KC": 15.4,
+      "SL": 11.5,
+      "SI": 7.7,
+      "CH": 3.8
+    },
+    "whiff_pct": 11.5,
+    "csw_pct": 26.9
+  },
+  "game_log": [],
+  "platoon_splits": {
+    "error": "No platoon split data"
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.63,
+      "k_pct": 29.2,
+      "bb_pct": 7.2,
+      "bf": 931
+    },
+    "tto2": {
+      "ops": 0.616,
+      "k_pct": 28.4,
+      "bb_pct": 5.6,
+      "bf": 860
+    },
+    "tto3": {
+      "ops": 0.681,
+      "k_pct": 27.1,
+      "bb_pct": 5.0,
+      "bf": 560
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 543037 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

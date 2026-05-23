@@ -1,0 +1,173 @@
+{
+  "name": "Nick Martinez",
+  "mlbam_id": 607259,
+  "age": 35,
+  "birth_date": "1990-08-05",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.544,
+    "k_bb_pct": 0.565,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 58.5,
+    "era_only_score": 95.0,
+    "gap": -36.5
+  },
+  "season": {
+    "era": 1.51,
+    "whip": 1.04,
+    "k_pct": 16.2,
+    "bb_pct": 5.1,
+    "k_bb_pct": 11.1,
+    "fip": 3.14,
+    "xfip": 4.06,
+    "hr_per_9": 0.5,
+    "gb_pct": 44.7,
+    "ip": 53.666666666666664,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 3.88,
+    "xwoba": 0.312,
+    "xba": 0.257
+  },
+  "statcast": {
+    "avg_velo": 86.6,
+    "max_velo": 94.8,
+    "hard_hit_pct": 24.1,
+    "pitch_types": {
+      "SI": 29.7,
+      "CH": 28.2,
+      "FC": 19.0,
+      "FF": 10.9,
+      "CU": 8.2
+    },
+    "barrel_pct": 7.1,
+    "ev95percent": 30.4,
+    "whiff_pct": 7.6,
+    "csw_pct": 25.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Milwaukee Brewers",
+      "ip": 6.0,
+      "era": 3.0,
+      "k": 3,
+      "bb": 0,
+      "h": 6,
+      "er": 2,
+      "pitches": 88,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Minnesota Twins",
+      "ip": 6.0,
+      "era": 2.25,
+      "k": 4,
+      "bb": 1,
+      "h": 1,
+      "er": 1,
+      "pitches": 81,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "New York Yankees",
+      "ip": 4.666666666666667,
+      "era": 2.16,
+      "k": 4,
+      "bb": 3,
+      "h": 5,
+      "er": 1,
+      "pitches": 87,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".223",
+      "obp": ".273",
+      "slg": ".331",
+      "k": 23,
+      "bb": 9,
+      "bf": 140,
+      "k_pct": 16.4,
+      "bb_pct": 6.4
+    },
+    "vs_right": {
+      "avg": ".225",
+      "obp": ".263",
+      "slg": ".324",
+      "k": 12,
+      "bb": 2,
+      "bf": 76,
+      "k_pct": 15.8,
+      "bb_pct": 2.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.815,
+      "k_pct": 19.6,
+      "bb_pct": 4.3,
+      "bf": 92
+    },
+    "tto2": {
+      "ops": 0.544,
+      "k_pct": 13.3,
+      "bb_pct": 4.4,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.808,
+      "k_pct": 7.1,
+      "bb_pct": 8.9,
+      "bf": 56
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 30.2,
+      "rv_per_100": 2.8,
+      "xwoba_against": 0.306,
+      "whiff_pct": 6.7,
+      "put_away_pct": 23.2,
+      "hard_hit_pct": 40.8
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 28.6,
+      "rv_per_100": 3.0,
+      "xwoba_against": 0.208,
+      "whiff_pct": 36.1,
+      "put_away_pct": 19.3,
+      "hard_hit_pct": 16.3
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 18.1,
+      "rv_per_100": 2.8,
+      "xwoba_against": 0.313,
+      "whiff_pct": 12.7,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 19.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

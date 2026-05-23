@@ -1,0 +1,183 @@
+{
+  "name": "Noah Cameron",
+  "mlbam_id": 702070,
+  "age": 26,
+  "birth_date": "1999-07-17",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.494,
+    "k_bb_pct": 0.607,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 64.3,
+    "era_only_score": 27.0,
+    "gap": 37.3
+  },
+  "season": {
+    "era": 5.4,
+    "whip": 1.51,
+    "k_pct": 19.3,
+    "bb_pct": 7.5,
+    "k_bb_pct": 11.8,
+    "fip": 3.94,
+    "xfip": 4.13,
+    "hr_per_9": 1.08,
+    "gb_pct": 36.4,
+    "ip": 41.666666666666664,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 5.46,
+    "xwoba": 0.363,
+    "xba": 0.288
+  },
+  "statcast": {
+    "avg_velo": 87.1,
+    "max_velo": 94.7,
+    "hard_hit_pct": 30.3,
+    "pitch_types": {
+      "FF": 31.4,
+      "CH": 21.0,
+      "FC": 20.1,
+      "CU": 15.1,
+      "SL": 11.4
+    },
+    "barrel_pct": 11.7,
+    "ev95percent": 43.8,
+    "whiff_pct": 10.1,
+    "csw_pct": 25.4
+  },
+  "game_log": [
+    {
+      "date": "2026-04-01",
+      "opponent": "Minnesota Twins",
+      "ip": 5.0,
+      "era": 1.8,
+      "k": 5,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 86,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Cleveland Guardians",
+      "ip": 5.666666666666667,
+      "era": 1.69,
+      "k": 5,
+      "bb": 1,
+      "h": 6,
+      "er": 1,
+      "pitches": 97,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Chicago White Sox",
+      "ip": 5.333333333333333,
+      "era": 3.94,
+      "k": 4,
+      "bb": 2,
+      "h": 6,
+      "er": 5,
+      "pitches": 67,
+      "strikes": 47
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".310",
+      "obp": ".333",
+      "slg": ".619",
+      "k": 9,
+      "bb": 2,
+      "bf": 45,
+      "k_pct": 20.0,
+      "bb_pct": 4.4
+    },
+    "vs_right": {
+      "avg": ".279",
+      "obp": ".338",
+      "slg": ".419",
+      "k": 27,
+      "bb": 12,
+      "bf": 142,
+      "k_pct": 19.0,
+      "bb_pct": 8.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.602,
+      "k_pct": 19.4,
+      "bb_pct": 8.3,
+      "bf": 72
+    },
+    "tto2": {
+      "ops": 1.074,
+      "k_pct": 20.8,
+      "bb_pct": 6.9,
+      "bf": 72
+    },
+    "tto3": {
+      "ops": 0.649,
+      "k_pct": 16.7,
+      "bb_pct": 7.1,
+      "bf": 42
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.4,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.386,
+      "whiff_pct": 20.6,
+      "put_away_pct": 11.8,
+      "hard_hit_pct": 52.5
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 21.0,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.291,
+      "whiff_pct": 30.0,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 31.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 20.1,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.396,
+      "whiff_pct": 27.4,
+      "put_away_pct": 26.3,
+      "hard_hit_pct": 37.1
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 11.4,
+      "rv_per_100": -5.6,
+      "xwoba_against": 0.479,
+      "whiff_pct": 18.2,
+      "put_away_pct": 23.8,
+      "hard_hit_pct": 60.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

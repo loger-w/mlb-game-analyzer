@@ -1,0 +1,163 @@
+{
+  "name": "Justin Wrobleski",
+  "mlbam_id": 680736,
+  "age": 25,
+  "birth_date": "2000-07-14",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.205,
+    "k_bb_pct": 0.314,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 41.4,
+    "era_only_score": 90.1,
+    "gap": -48.7
+  },
+  "season": {
+    "era": 2.49,
+    "whip": 1.03,
+    "k_pct": 13.3,
+    "bb_pct": 5.9,
+    "k_bb_pct": 7.4,
+    "fip": 3.26,
+    "xfip": 4.67,
+    "hr_per_9": 0.36,
+    "gb_pct": 38.5,
+    "ip": 50.666666666666664,
+    "games": 8,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 3.91,
+    "xwoba": 0.313,
+    "xba": 0.259
+  },
+  "statcast": {
+    "avg_velo": 89.3,
+    "max_velo": 96.9,
+    "hard_hit_pct": 27.1,
+    "pitch_types": {
+      "FF": 50.6,
+      "SL": 34.2,
+      "CU": 6.2,
+      "SI": 4.6,
+      "CH": 2.5
+    },
+    "barrel_pct": 6.8,
+    "ev95percent": 40.7,
+    "whiff_pct": 7.7,
+    "csw_pct": 24.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Cleveland Guardians",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 2,
+      "bb": 1,
+      "h": 4,
+      "er": 3,
+      "pitches": 60,
+      "strikes": 39
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Toronto Blue Jays",
+      "ip": 5.0,
+      "era": 4.0,
+      "k": 2,
+      "bb": 4,
+      "h": 2,
+      "er": 1,
+      "pitches": 78,
+      "strikes": 42
+    },
+    {
+      "date": "2026-04-13",
+      "opponent": "New York Mets",
+      "ip": 8.0,
+      "era": 2.12,
+      "k": 2,
+      "bb": 0,
+      "h": 2,
+      "er": 0,
+      "pitches": 90,
+      "strikes": 64
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".244",
+      "obp": ".306",
+      "slg": ".422",
+      "k": 6,
+      "bb": 3,
+      "bf": 49,
+      "k_pct": 12.2,
+      "bb_pct": 6.1
+    },
+    "vs_right": {
+      "avg": ".201",
+      "obp": ".253",
+      "slg": ".250",
+      "k": 21,
+      "bb": 9,
+      "bf": 154,
+      "k_pct": 13.6,
+      "bb_pct": 5.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.635,
+      "k_pct": 18.1,
+      "bb_pct": 9.6,
+      "bf": 83
+    },
+    "tto2": {
+      "ops": 0.362,
+      "k_pct": 13.7,
+      "bb_pct": 2.7,
+      "bf": 73
+    },
+    "tto3": {
+      "ops": 0.416,
+      "k_pct": 13.5,
+      "bb_pct": 3.8,
+      "bf": 52
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 51.2,
+      "rv_per_100": 2.3,
+      "xwoba_against": 0.296,
+      "whiff_pct": 14.3,
+      "put_away_pct": 17.3,
+      "hard_hit_pct": 41.5
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 33.3,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.303,
+      "whiff_pct": 20.0,
+      "put_away_pct": 11.3,
+      "hard_hit_pct": 45.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
