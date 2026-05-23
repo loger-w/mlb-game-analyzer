@@ -1,0 +1,520 @@
+{
+  "team": "ATL",
+  "team_id": 144,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟠 Strong",
+  "avg_ops": 0.761,
+  "avg_ops_vs_lhp": 0.644,
+  "avg_ops_vs_rhp": 0.778,
+  "avg_xwoba": 0.334,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.3,
+  "avg_k_pct": 19.9,
+  "avg_bb_pct": 7.2,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.291,
+  "chain": {
+    "obp_top3": 0.326,
+    "slg_mid": 0.442
+  },
+  "lineup_source": "projected",
+  "lineup_source_detail": null,
+  "lineup": [
+    {
+      "mlbam_id": 621566,
+      "pa": 219,
+      "avg": 0.281,
+      "obp": 0.361,
+      "slg": 0.583,
+      "ops": 0.944,
+      "iso": 0.302,
+      "babip": 0.315,
+      "k_pct": 24.2,
+      "bb_pct": 11.4,
+      "name": "Matt Olson",
+      "position": "1B",
+      "batting_order": null,
+      "xwoba": 0.389,
+      "xba": 0.265,
+      "xslg": 0.568,
+      "ev95pct": 51.8,
+      "barrel_pct": 16.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".259",
+          "obp": ".322",
+          "slg": ".519",
+          "ops": ".841",
+          "pa": 90
+        },
+        "vs_rhp": {
+          "avg": ".297",
+          "obp": ".388",
+          "slg": ".631",
+          "ops": "1.019",
+          "pa": 129
+        }
+      },
+      "last_7": {
+        "avg": ".192",
+        "obp": ".276",
+        "slg": ".231",
+        "ops": ".507",
+        "babip": ".294",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 28,
+        "avg": ".080",
+        "obp": ".179",
+        "slg": ".080",
+        "h": 2,
+        "hr": 0,
+        "so": 9,
+        "bb": 3,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 645277,
+      "pa": 214,
+      "avg": 0.276,
+      "obp": 0.332,
+      "slg": 0.443,
+      "ops": 0.775,
+      "iso": 0.167,
+      "babip": 0.278,
+      "k_pct": 12.1,
+      "bb_pct": 7.5,
+      "name": "Ozzie Albies",
+      "position": "2B",
+      "batting_order": null,
+      "xwoba": 0.301,
+      "xba": 0.249,
+      "xslg": 0.378,
+      "ev95pct": 27.1,
+      "barrel_pct": 4.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".304",
+          "obp": ".329",
+          "slg": ".506",
+          "ops": ".835",
+          "pa": 85
+        },
+        "vs_rhp": {
+          "avg": ".257",
+          "obp": ".333",
+          "slg": ".398",
+          "ops": ".731",
+          "pa": 129
+        }
+      },
+      "last_7": {
+        "avg": ".154",
+        "obp": ".233",
+        "slg": ".154",
+        "ops": ".387",
+        "babip": ".160",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 13,
+        "avg": ".333",
+        "obp": ".308",
+        "slg": ".417",
+        "h": 4,
+        "hr": 0,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 663586,
+      "pa": 208,
+      "avg": 0.213,
+      "obp": 0.284,
+      "slg": 0.383,
+      "ops": 0.667,
+      "iso": 0.17,
+      "babip": 0.256,
+      "k_pct": 26.9,
+      "bb_pct": 7.2,
+      "name": "Austin Riley",
+      "position": "3B",
+      "batting_order": null,
+      "xwoba": 0.313,
+      "xba": 0.224,
+      "xslg": 0.424,
+      "ev95pct": 46.6,
+      "barrel_pct": 10.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".254",
+          "obp": ".315",
+          "slg": ".343",
+          "ops": ".658",
+          "pa": 73
+        },
+        "vs_rhp": {
+          "avg": ".190",
+          "obp": ".267",
+          "slg": ".405",
+          "ops": ".672",
+          "pa": 135
+        }
+      },
+      "last_7": {
+        "avg": ".192",
+        "obp": ".276",
+        "slg": ".462",
+        "ops": ".738",
+        "babip": ".200",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 12,
+        "avg": ".091",
+        "obp": ".167",
+        "slg": ".091",
+        "h": 1,
+        "hr": 0,
+        "so": 5,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 643289,
+      "pa": 190,
+      "avg": 0.256,
+      "obp": 0.311,
+      "slg": 0.392,
+      "ops": 0.703,
+      "iso": 0.136,
+      "babip": 0.296,
+      "k_pct": 16.3,
+      "bb_pct": 6.3,
+      "name": "Mauricio Dubón",
+      "position": "SS",
+      "batting_order": null,
+      "xwoba": 0.301,
+      "xba": 0.251,
+      "xslg": 0.375,
+      "ev95pct": 29.0,
+      "barrel_pct": 5.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".282",
+          "slg": ".324",
+          "ops": ".606",
+          "pa": 71
+        },
+        "vs_rhp": {
+          "avg": ".259",
+          "obp": ".328",
+          "slg": ".435",
+          "ops": ".763",
+          "pa": 119
+        }
+      },
+      "last_7": {
+        "avg": ".214",
+        "obp": ".241",
+        "slg": ".357",
+        "ops": ".598",
+        "babip": ".217",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 671739,
+      "pa": 171,
+      "avg": 0.294,
+      "obp": 0.322,
+      "slg": 0.491,
+      "ops": 0.813,
+      "iso": 0.197,
+      "babip": 0.322,
+      "k_pct": 19.9,
+      "bb_pct": 4.1,
+      "name": "Michael Harris II",
+      "position": "CF",
+      "batting_order": null,
+      "xwoba": 0.391,
+      "xba": 0.308,
+      "xslg": 0.573,
+      "ev95pct": 55.4,
+      "barrel_pct": 16.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".235",
+          "obp": ".278",
+          "slg": ".431",
+          "ops": ".709",
+          "pa": 54
+        },
+        "vs_rhp": {
+          "avg": ".321",
+          "obp": ".342",
+          "slg": ".518",
+          "ops": ".860",
+          "pa": 117
+        }
+      },
+      "last_7": {
+        "avg": ".214",
+        "obp": ".241",
+        "slg": ".429",
+        "ops": ".670",
+        "babip": ".211",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 9,
+        "avg": ".250",
+        "obp": ".333",
+        "slg": ".250",
+        "h": 2,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 660670,
+      "pa": 162,
+      "avg": 0.252,
+      "obp": 0.364,
+      "slg": 0.378,
+      "ops": 0.742,
+      "iso": 0.126,
+      "babip": 0.314,
+      "k_pct": 20.4,
+      "bb_pct": 13.6,
+      "name": "Ronald Acuña Jr.",
+      "position": "RF",
+      "batting_order": null,
+      "xwoba": 0.377,
+      "xba": 0.262,
+      "xslg": 0.48,
+      "ev95pct": 41.3,
+      "barrel_pct": 12.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".205",
+          "obp": ".314",
+          "slg": ".318",
+          "ops": ".632",
+          "pa": 51
+        },
+        "vs_rhp": {
+          "avg": ".275",
+          "obp": ".387",
+          "slg": ".407",
+          "ops": ".794",
+          "pa": 111
+        }
+      },
+      "last_7": {
+        "avg": ".308",
+        "obp": ".400",
+        "slg": ".462",
+        "ops": ".862",
+        "babip": ".444",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 10,
+        "avg": ".000",
+        "obp": ".200",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 2,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 573262,
+      "pa": 148,
+      "avg": 0.216,
+      "obp": 0.291,
+      "slg": 0.321,
+      "ops": 0.612,
+      "iso": 0.105,
+      "babip": 0.284,
+      "k_pct": 25.0,
+      "bb_pct": 8.1,
+      "name": "Mike Yastrzemski",
+      "position": "LF",
+      "batting_order": null,
+      "xwoba": 0.27,
+      "xba": 0.217,
+      "xslg": 0.304,
+      "ev95pct": 36.1,
+      "barrel_pct": 4.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".158",
+          "obp": ".273",
+          "slg": ".211",
+          "ops": ".484",
+          "pa": 22
+        },
+        "vs_rhp": {
+          "avg": ".226",
+          "obp": ".294",
+          "slg": ".339",
+          "ops": ".633",
+          "pa": 126
+        }
+      },
+      "last_7": {
+        "avg": ".235",
+        "obp": ".381",
+        "slg": ".529",
+        "ops": ".910",
+        "babip": ".300",
+        "pa": 21
+      },
+      "bvp": {
+        "pa": 21,
+        "avg": ".222",
+        "obp": ".333",
+        "slg": ".444",
+        "h": 4,
+        "hr": 1,
+        "so": 3,
+        "bb": 3,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 642086,
+      "pa": 106,
+      "avg": 0.337,
+      "obp": 0.362,
+      "slg": 0.541,
+      "ops": 0.903,
+      "iso": 0.204,
+      "babip": 0.354,
+      "k_pct": 15.1,
+      "bb_pct": 3.8,
+      "name": "Dominic Smith",
+      "position": "DH",
+      "batting_order": null,
+      "xwoba": 0.381,
+      "xba": 0.314,
+      "xslg": 0.528,
+      "ev95pct": 42.4,
+      "barrel_pct": 10.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".125",
+          "obp": ".125",
+          "slg": ".125",
+          "ops": ".250",
+          "pa": 9
+        },
+        "vs_rhp": {
+          "avg": ".356",
+          "obp": ".381",
+          "slg": ".578",
+          "ops": ".959",
+          "pa": 97
+        }
+      },
+      "last_7": {
+        "avg": ".222",
+        "obp": ".222",
+        "slg": ".500",
+        "ops": ".722",
+        "babip": ".250",
+        "pa": 18
+      },
+      "bvp": {
+        "pa": 23,
+        "avg": ".217",
+        "obp": ".217",
+        "slg": ".261",
+        "h": 5,
+        "hr": 0,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": true
+      }
+    },
+    {
+      "mlbam_id": 642201,
+      "pa": 63,
+      "avg": 0.25,
+      "obp": 0.27,
+      "slg": 0.417,
+      "ops": 0.687,
+      "iso": 0.167,
+      "babip": 0.277,
+      "k_pct": 19.0,
+      "bb_pct": 3.2,
+      "name": "Eli White",
+      "position": "CF",
+      "batting_order": null,
+      "xwoba": 0.28,
+      "xba": 0.257,
+      "xslg": 0.361,
+      "ev95pct": 32.7,
+      "barrel_pct": 8.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".281",
+          "obp": ".314",
+          "slg": ".469",
+          "ops": ".783",
+          "pa": 35
+        },
+        "vs_rhp": {
+          "avg": ".214",
+          "obp": ".214",
+          "slg": ".357",
+          "ops": ".571",
+          "pa": 28
+        }
+      },
+      "last_7": {
+        "avg": ".429",
+        "obp": ".467",
+        "slg": ".643",
+        "ops": "1.110",
+        "babip": ".545",
+        "pa": 15
+      },
+      "bvp": null
+    }
+  ]
+}

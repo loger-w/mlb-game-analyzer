@@ -1,0 +1,183 @@
+{
+  "name": "Dustin May",
+  "mlbam_id": 669160,
+  "age": 28,
+  "birth_date": "1997-09-06",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.647,
+    "k_bb_pct": 0.548,
+    "stuff_pct": null,
+    "age_factor": 0.96
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 67.9,
+    "era_only_score": 41.0,
+    "gap": 26.9
+  },
+  "season": {
+    "era": 4.76,
+    "whip": 1.37,
+    "k_pct": 17.8,
+    "bb_pct": 7.0,
+    "k_bb_pct": 10.8,
+    "fip": 3.77,
+    "xfip": 3.92,
+    "hr_per_9": 0.88,
+    "gb_pct": 45.1,
+    "ip": 51.0,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.43,
+    "xwoba": 0.332,
+    "xba": 0.27
+  },
+  "statcast": {
+    "avg_velo": 92.6,
+    "max_velo": 99.4,
+    "hard_hit_pct": 32.1,
+    "pitch_types": {
+      "FF": 26.9,
+      "FC": 21.9,
+      "ST": 18.3,
+      "SI": 18.1,
+      "CU": 7.7
+    },
+    "barrel_pct": 6.6,
+    "ev95percent": 52.0,
+    "whiff_pct": 7.8,
+    "csw_pct": 24.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Tampa Bay Rays",
+      "ip": 4.0,
+      "era": 13.5,
+      "k": 3,
+      "bb": 1,
+      "h": 10,
+      "er": 6,
+      "pitches": 61,
+      "strikes": 40
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Detroit Tigers",
+      "ip": 3.3333333333333335,
+      "era": 15.95,
+      "k": 4,
+      "bb": 2,
+      "h": 7,
+      "er": 7,
+      "pitches": 79,
+      "strikes": 48
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Boston Red Sox",
+      "ip": 6.0,
+      "era": 9.45,
+      "k": 4,
+      "bb": 0,
+      "h": 4,
+      "er": 1,
+      "pitches": 75,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".333",
+      "obp": ".411",
+      "slg": ".486",
+      "k": 17,
+      "bb": 14,
+      "bf": 129,
+      "k_pct": 13.2,
+      "bb_pct": 10.9
+    },
+    "vs_right": {
+      "avg": ".230",
+      "obp": ".250",
+      "slg": ".338",
+      "k": 18,
+      "bb": 1,
+      "bf": 76,
+      "k_pct": 23.7,
+      "bb_pct": 1.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.792,
+      "k_pct": 19.8,
+      "bb_pct": 7.4,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.805,
+      "k_pct": 16.0,
+      "bb_pct": 8.6,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.655,
+      "k_pct": 13.0,
+      "bb_pct": 4.3,
+      "bf": 46
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 26.9,
+      "rv_per_100": 0.3,
+      "xwoba_against": 0.336,
+      "whiff_pct": 16.2,
+      "put_away_pct": 13.6,
+      "hard_hit_pct": 59.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 21.9,
+      "rv_per_100": 2.2,
+      "xwoba_against": 0.291,
+      "whiff_pct": 17.6,
+      "put_away_pct": 17.9,
+      "hard_hit_pct": 42.9
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 18.3,
+      "rv_per_100": -3.2,
+      "xwoba_against": 0.308,
+      "whiff_pct": 28.6,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 30.8
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 18.1,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.376,
+      "whiff_pct": 13.2,
+      "put_away_pct": 16.1,
+      "hard_hit_pct": 66.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

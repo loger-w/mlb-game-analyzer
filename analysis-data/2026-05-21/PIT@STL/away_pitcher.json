@@ -1,0 +1,183 @@
+{
+  "name": "Braxton Ashcraft",
+  "mlbam_id": 677952,
+  "age": 26,
+  "birth_date": "1999-10-05",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 79.7,
+    "gap": 16.4
+  },
+  "season": {
+    "era": 2.98,
+    "whip": 1.05,
+    "k_pct": 26.0,
+    "bb_pct": 6.6,
+    "k_bb_pct": 19.4,
+    "fip": 2.96,
+    "xfip": 2.89,
+    "hr_per_9": 0.78,
+    "gb_pct": 55.2,
+    "ip": 57.333333333333336,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 2.87,
+    "xwoba": 0.271,
+    "xba": 0.214
+  },
+  "statcast": {
+    "avg_velo": 92.4,
+    "max_velo": 99.6,
+    "hard_hit_pct": 25.9,
+    "pitch_types": {
+      "FF": 32.3,
+      "CU": 26.4,
+      "SL": 20.5,
+      "SI": 16.6,
+      "FS": 4.2
+    },
+    "barrel_pct": 5.5,
+    "ev95percent": 37.7,
+    "whiff_pct": 12.6,
+    "csw_pct": 30.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Cincinnati Reds",
+      "ip": 6.0,
+      "era": 3.0,
+      "k": 3,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Baltimore Orioles",
+      "ip": 6.0,
+      "era": 2.25,
+      "k": 8,
+      "bb": 0,
+      "h": 4,
+      "er": 1,
+      "pitches": 87,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Chicago Cubs",
+      "ip": 5.0,
+      "era": 2.12,
+      "k": 9,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 77,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".234",
+      "obp": ".314",
+      "slg": ".402",
+      "k": 35,
+      "bb": 10,
+      "bf": 122,
+      "k_pct": 28.7,
+      "bb_pct": 8.2
+    },
+    "vs_right": {
+      "avg": ".209",
+      "obp": ".237",
+      "slg": ".286",
+      "k": 21,
+      "bb": 4,
+      "bf": 97,
+      "k_pct": 21.6,
+      "bb_pct": 4.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.544,
+      "k_pct": 29.6,
+      "bb_pct": 4.9,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.724,
+      "k_pct": 23.5,
+      "bb_pct": 6.2,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.626,
+      "k_pct": 23.2,
+      "bb_pct": 8.9,
+      "bf": 56
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 32.3,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.314,
+      "whiff_pct": 18.0,
+      "put_away_pct": 19.6,
+      "hard_hit_pct": 39.1
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 26.4,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.217,
+      "whiff_pct": 39.8,
+      "put_away_pct": 31.4,
+      "hard_hit_pct": 40.6
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 20.5,
+      "rv_per_100": -1.0,
+      "xwoba_against": 0.262,
+      "whiff_pct": 37.9,
+      "put_away_pct": 30.2,
+      "hard_hit_pct": 21.7
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 16.6,
+      "rv_per_100": 2.3,
+      "xwoba_against": 0.318,
+      "whiff_pct": 19.4,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 47.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

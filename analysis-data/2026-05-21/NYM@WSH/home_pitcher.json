@@ -1,0 +1,183 @@
+{
+  "name": "Cade Cavalli",
+  "mlbam_id": 676917,
+  "age": 27,
+  "birth_date": "1998-08-14",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.806,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 90.9,
+    "era_only_score": 58.0,
+    "gap": 32.9
+  },
+  "season": {
+    "era": 4.05,
+    "whip": 1.54,
+    "k_pct": 24.1,
+    "bb_pct": 8.3,
+    "k_bb_pct": 15.8,
+    "fip": 2.86,
+    "xfip": 3.14,
+    "hr_per_9": 0.58,
+    "gb_pct": 52.4,
+    "ip": 46.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.14,
+    "xwoba": 0.322,
+    "xba": 0.249
+  },
+  "statcast": {
+    "avg_velo": 91.0,
+    "max_velo": 99.1,
+    "hard_hit_pct": 24.4,
+    "pitch_types": {
+      "FF": 33.6,
+      "KC": 23.9,
+      "SI": 16.9,
+      "ST": 16.2,
+      "CH": 8.8
+    },
+    "barrel_pct": 8.0,
+    "ev95percent": 41.3,
+    "whiff_pct": 10.4,
+    "csw_pct": 28.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Chicago Cubs",
+      "ip": 3.6666666666666665,
+      "era": 4.91,
+      "k": 5,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 75,
+      "strikes": 46
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Philadelphia Phillies",
+      "ip": 6.0,
+      "era": 2.79,
+      "k": 3,
+      "bb": 2,
+      "h": 5,
+      "er": 1,
+      "pitches": 84,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "St. Louis Cardinals",
+      "ip": 4.666666666666667,
+      "era": 2.51,
+      "k": 3,
+      "bb": 4,
+      "h": 4,
+      "er": 1,
+      "pitches": 94,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".356",
+      "obp": ".431",
+      "slg": ".485",
+      "k": 31,
+      "bb": 7,
+      "bf": 116,
+      "k_pct": 26.7,
+      "bb_pct": 6.0
+    },
+    "vs_right": {
+      "avg": ".207",
+      "obp": ".300",
+      "slg": ".276",
+      "k": 21,
+      "bb": 11,
+      "bf": 100,
+      "k_pct": 21.0,
+      "bb_pct": 11.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.632,
+      "k_pct": 24.2,
+      "bb_pct": 8.1,
+      "bf": 99
+    },
+    "tto2": {
+      "ops": 0.816,
+      "k_pct": 20.7,
+      "bb_pct": 9.8,
+      "bf": 92
+    },
+    "tto3": {
+      "ops": 0.743,
+      "k_pct": 22.7,
+      "bb_pct": 2.3,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 33.3,
+      "rv_per_100": -1.8,
+      "xwoba_against": 0.39,
+      "whiff_pct": 18.2,
+      "put_away_pct": 16.3,
+      "hard_hit_pct": 44.2
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 24.2,
+      "rv_per_100": 0.5,
+      "xwoba_against": 0.22,
+      "whiff_pct": 44.7,
+      "put_away_pct": 28.8,
+      "hard_hit_pct": 28.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 16.9,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.333,
+      "whiff_pct": 11.4,
+      "put_away_pct": 30.4,
+      "hard_hit_pct": 56.7
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 16.8,
+      "rv_per_100": -2.1,
+      "xwoba_against": 0.386,
+      "whiff_pct": 27.8,
+      "put_away_pct": 13.2,
+      "hard_hit_pct": 36.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

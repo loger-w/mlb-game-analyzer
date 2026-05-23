@@ -1,0 +1,147 @@
+{
+  "name": "Spencer Strider",
+  "mlbam_id": 675911,
+  "age": 27,
+  "birth_date": "1998-10-28",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 90.5,
+    "gap": null
+  },
+  "season": {
+    "era": 2.45,
+    "whip": 1.23,
+    "k_pct": 31.0,
+    "bb_pct": 17.2,
+    "k_bb_pct": 13.8,
+    "fip": 3.58,
+    "xfip": 3.84,
+    "hr_per_9": 0.61,
+    "gb_pct": 40.9,
+    "ip": 14.666666666666666,
+    "games": 3,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 2.89,
+    "xwoba": 0.272,
+    "xba": 0.164
+  },
+  "statcast": {
+    "avg_velo": 88.9,
+    "max_velo": 97.7,
+    "hard_hit_pct": 17.6,
+    "pitch_types": {
+      "FF": 48.5,
+      "SL": 27.9,
+      "CU": 17.2,
+      "CH": 6.5
+    },
+    "barrel_pct": 6.7,
+    "ev95percent": 33.3,
+    "whiff_pct": 13.7,
+    "csw_pct": 28.6
+  },
+  "game_log": [
+    {
+      "date": "2026-05-03",
+      "opponent": "Colorado Rockies",
+      "ip": 3.3333333333333335,
+      "era": 8.1,
+      "k": 6,
+      "bb": 5,
+      "h": 4,
+      "er": 3,
+      "pitches": 87,
+      "strikes": 48
+    },
+    {
+      "date": "2026-05-09",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 6.0,
+      "era": 2.89,
+      "k": 8,
+      "bb": 2,
+      "h": 1,
+      "er": 0,
+      "pitches": 91,
+      "strikes": 59
+    },
+    {
+      "date": "2026-05-15",
+      "opponent": "Boston Red Sox",
+      "ip": 5.333333333333333,
+      "era": 2.45,
+      "k": 4,
+      "bb": 3,
+      "h": 3,
+      "er": 1,
+      "pitches": 84,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".129",
+      "obp": ".270",
+      "slg": ".290",
+      "k": 13,
+      "bb": 6,
+      "bf": 37,
+      "k_pct": 35.1,
+      "bb_pct": 16.2
+    },
+    "vs_right": {
+      "avg": ".235",
+      "obp": ".381",
+      "slg": ".353",
+      "k": 5,
+      "bb": 4,
+      "bf": 21,
+      "k_pct": 23.8,
+      "bb_pct": 19.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.611,
+      "k_pct": 36.1,
+      "bb_pct": 7.8,
+      "bf": 987
+    },
+    "tto2": {
+      "ops": 0.672,
+      "k_pct": 32.3,
+      "bb_pct": 10.0,
+      "bf": 826
+    },
+    "tto3": {
+      "ops": 0.696,
+      "k_pct": 30.3,
+      "bb_pct": 7.2,
+      "bf": 416
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 48.5,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.436,
+      "whiff_pct": 23.4,
+      "put_away_pct": 13.3,
+      "hard_hit_pct": 47.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

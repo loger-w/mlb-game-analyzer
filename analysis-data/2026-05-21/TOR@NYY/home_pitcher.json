@@ -1,0 +1,128 @@
+{
+  "name": "Carlos Rodón",
+  "mlbam_id": 607074,
+  "age": 33,
+  "birth_date": "1992-12-10",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 22.4,
+    "gap": null
+  },
+  "season": {
+    "era": 5.63,
+    "whip": 1.63,
+    "k_pct": 26.3,
+    "bb_pct": 21.1,
+    "k_bb_pct": 5.2,
+    "fip": 3.6,
+    "xfip": 4.25,
+    "hr_per_9": 0.0,
+    "gb_pct": 71.4,
+    "ip": 8.0,
+    "games": 2,
+    "gs": 2
+  },
+  "expected": {
+    "xera": 4.17,
+    "xwoba": 0.323,
+    "xba": 0.179
+  },
+  "statcast": {
+    "avg_velo": 91.6,
+    "max_velo": 97.7,
+    "hard_hit_pct": 19.1,
+    "pitch_types": {
+      "FF": 39.8,
+      "SL": 28.9,
+      "SI": 21.1,
+      "CH": 10.2
+    },
+    "barrel_pct": 10.5,
+    "ev95percent": 26.3,
+    "whiff_pct": 10.8,
+    "csw_pct": 23.5
+  },
+  "game_log": [
+    {
+      "date": "2026-05-10",
+      "opponent": "Milwaukee Brewers",
+      "ip": 4.333333333333333,
+      "era": 6.23,
+      "k": 4,
+      "bb": 5,
+      "h": 2,
+      "er": 3,
+      "pitches": 78,
+      "strikes": 42
+    },
+    {
+      "date": "2026-05-16",
+      "opponent": "New York Mets",
+      "ip": 3.6666666666666665,
+      "era": 5.63,
+      "k": 6,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 88,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".400",
+      "obp": ".417",
+      "slg": ".600",
+      "k": 2,
+      "bb": 1,
+      "bf": 13,
+      "k_pct": 15.4,
+      "bb_pct": 7.7
+    },
+    "vs_right": {
+      "avg": ".059",
+      "obp": ".360",
+      "slg": ".059",
+      "k": 8,
+      "bb": 7,
+      "bf": 25,
+      "k_pct": 32.0,
+      "bb_pct": 28.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.673,
+      "k_pct": 28.8,
+      "bb_pct": 7.5,
+      "bf": 1167
+    },
+    "tto2": {
+      "ops": 0.645,
+      "k_pct": 26.8,
+      "bb_pct": 8.2,
+      "bf": 1102
+    },
+    "tto3": {
+      "ops": 0.709,
+      "k_pct": 25.4,
+      "bb_pct": 9.9,
+      "bf": 568
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 607074 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
