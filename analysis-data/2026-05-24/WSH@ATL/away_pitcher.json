@@ -1,0 +1,183 @@
+{
+  "name": "Foster Griffin",
+  "mlbam_id": 656492,
+  "age": 30,
+  "birth_date": "1995-07-27",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.895,
+    "k_bb_pct": 0.785,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 85.3,
+    "era_only_score": 58.6,
+    "gap": 26.7
+  },
+  "season": {
+    "era": 4.02,
+    "whip": 1.18,
+    "k_pct": 22.8,
+    "bb_pct": 7.6,
+    "k_bb_pct": 15.2,
+    "fip": 4.46,
+    "xfip": 3.46,
+    "hr_per_9": 1.61,
+    "gb_pct": 49.6,
+    "ip": 56.0,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.33,
+    "xwoba": 0.329,
+    "xba": 0.251
+  },
+  "statcast": {
+    "avg_velo": 85.7,
+    "max_velo": 94.1,
+    "hard_hit_pct": 21.7,
+    "pitch_types": {
+      "FC": 29.8,
+      "FF": 17.5,
+      "ST": 14.8,
+      "CH": 11.2,
+      "SI": 11.0
+    },
+    "barrel_pct": 12.4,
+    "ev95percent": 37.3,
+    "whiff_pct": 10.0,
+    "csw_pct": 28.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Philadelphia Phillies",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 5,
+      "bb": 0,
+      "h": 5,
+      "er": 2,
+      "pitches": 86,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 2.7,
+      "k": 6,
+      "bb": 3,
+      "h": 5,
+      "er": 1,
+      "pitches": 95,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Milwaukee Brewers",
+      "ip": 5.333333333333333,
+      "era": 1.76,
+      "k": 1,
+      "bb": 3,
+      "h": 1,
+      "er": 0,
+      "pitches": 80,
+      "strikes": 50
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".185",
+      "obp": ".264",
+      "slg": ".369",
+      "k": 19,
+      "bb": 5,
+      "bf": 72,
+      "k_pct": 26.4,
+      "bb_pct": 6.9
+    },
+    "vs_right": {
+      "avg": ".243",
+      "obp": ".311",
+      "slg": ".426",
+      "k": 35,
+      "bb": 13,
+      "bf": 165,
+      "k_pct": 21.2,
+      "bb_pct": 7.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.671,
+      "k_pct": 23.0,
+      "bb_pct": 8.0,
+      "bf": 100
+    },
+    "tto2": {
+      "ops": 0.746,
+      "k_pct": 22.2,
+      "bb_pct": 6.1,
+      "bf": 99
+    },
+    "tto3": {
+      "ops": 0.661,
+      "k_pct": 23.3,
+      "bb_pct": 10.0,
+      "bf": 60
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 31.1,
+      "rv_per_100": -0.1,
+      "xwoba_against": 0.36,
+      "whiff_pct": 21.7,
+      "put_away_pct": 25.9,
+      "hard_hit_pct": 44.8
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 16.5,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.383,
+      "whiff_pct": 16.7,
+      "put_away_pct": 16.9,
+      "hard_hit_pct": 36.8
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 14.6,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.29,
+      "whiff_pct": 35.3,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 28.6
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 11.4,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.341,
+      "whiff_pct": 21.3,
+      "put_away_pct": 11.8,
+      "hard_hit_pct": 31.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

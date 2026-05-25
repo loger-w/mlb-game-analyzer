@@ -1,0 +1,183 @@
+{
+  "name": "Jose Quintana",
+  "mlbam_id": 500779,
+  "age": 37,
+  "birth_date": "1989-01-24",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "⚪ Below Average",
+  "tier_components": {
+    "xfip_pct": 0.05,
+    "k_bb_pct": 0.05,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 18.9,
+    "era_only_score": 57.4,
+    "gap": -38.5
+  },
+  "season": {
+    "era": 4.08,
+    "whip": 1.41,
+    "k_pct": 11.7,
+    "bb_pct": 9.9,
+    "k_bb_pct": 1.8,
+    "fip": 5.34,
+    "xfip": 5.15,
+    "hr_per_9": 1.36,
+    "gb_pct": 42.6,
+    "ip": 39.666666666666664,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.48,
+    "xwoba": 0.334,
+    "xba": 0.267
+  },
+  "statcast": {
+    "avg_velo": 85.7,
+    "max_velo": 92.3,
+    "hard_hit_pct": 23.6,
+    "pitch_types": {
+      "FF": 30.0,
+      "CH": 20.8,
+      "SI": 19.0,
+      "CU": 15.9,
+      "SV": 14.4
+    },
+    "barrel_pct": 7.5,
+    "ev95percent": 32.3,
+    "whiff_pct": 9.3,
+    "csw_pct": 22.1
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Miami Marlins",
+      "ip": 4.333333333333333,
+      "era": 4.15,
+      "k": 2,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 78,
+      "strikes": 42
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "Houston Astros",
+      "ip": 3.6666666666666665,
+      "era": 5.63,
+      "k": 1,
+      "bb": 4,
+      "h": 3,
+      "er": 3,
+      "pitches": 75,
+      "strikes": 41
+    },
+    {
+      "date": "2026-04-20",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 6.23,
+      "k": 1,
+      "bb": 1,
+      "h": 8,
+      "er": 4,
+      "pitches": 90,
+      "strikes": 52
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".226",
+      "obp": ".368",
+      "slg": ".613",
+      "k": 6,
+      "bb": 6,
+      "bf": 38,
+      "k_pct": 15.8,
+      "bb_pct": 15.8
+    },
+    "vs_right": {
+      "avg": ".276",
+      "obp": ".328",
+      "slg": ".414",
+      "k": 14,
+      "bb": 11,
+      "bf": 133,
+      "k_pct": 10.5,
+      "bb_pct": 8.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.697,
+      "k_pct": 19.8,
+      "bb_pct": 8.6,
+      "bf": 1147
+    },
+    "tto2": {
+      "ops": 0.706,
+      "k_pct": 16.5,
+      "bb_pct": 8.7,
+      "bf": 1062
+    },
+    "tto3": {
+      "ops": 0.724,
+      "k_pct": 17.1,
+      "bb_pct": 7.1,
+      "bf": 519
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 30.0,
+      "rv_per_100": 0.5,
+      "xwoba_against": 0.304,
+      "whiff_pct": 19.8,
+      "put_away_pct": 12.3,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 20.8,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.325,
+      "whiff_pct": 30.5,
+      "put_away_pct": 6.5,
+      "hard_hit_pct": 15.4
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.0,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.411,
+      "whiff_pct": 6.7,
+      "put_away_pct": 16.7,
+      "hard_hit_pct": 61.9
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 15.9,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.325,
+      "whiff_pct": 21.4,
+      "put_away_pct": 7.1,
+      "hard_hit_pct": 26.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

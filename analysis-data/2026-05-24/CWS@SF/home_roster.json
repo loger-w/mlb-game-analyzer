@@ -1,0 +1,390 @@
+{
+  "team": "San Francisco Giants",
+  "team_id": 137,
+  "active_roster": {
+    "pitchers": [
+      "Adrian Houser",
+      "Caleb Kilian",
+      "Erik Miller",
+      "JT Brubaker",
+      "Joel Peguero",
+      "Keaton Winn",
+      "Landen Roupp",
+      "Matt Gage",
+      "Robbie Ray",
+      "Ryan Borucki",
+      "Sam Hentges",
+      "Trevor McDonald",
+      "Tyler Mahle"
+    ],
+    "pitcher_ids": [
+      605288,
+      668873,
+      669062,
+      664141,
+      666711,
+      676775,
+      694738,
+      657424,
+      592662,
+      621366,
+      656529,
+      686790,
+      641816
+    ],
+    "position_players": [
+      "Bryce Eldridge",
+      "Casey Schmitt",
+      "Daniel Susac",
+      "Drew Gilbert",
+      "Eric Haase",
+      "Harrison Bader",
+      "Jesus Rodriguez",
+      "Luis Arraez",
+      "Matt Chapman",
+      "Rafael Devers",
+      "Victor Bericoto",
+      "Will Brennan",
+      "Willy Adames"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Adrian Houser",
+        "player_id": 605288,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 52.7
+        }
+      },
+      {
+        "name": "Caleb Kilian",
+        "player_id": 668873,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 3,
+          "g": 20,
+          "gs": 0,
+          "ip": 21.3
+        }
+      },
+      {
+        "name": "Erik Miller",
+        "player_id": 669062,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 5,
+          "g": 15,
+          "gs": 0,
+          "ip": 13.3
+        }
+      },
+      {
+        "name": "JT Brubaker",
+        "player_id": 664141,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 17,
+          "gs": 0,
+          "ip": 24.3
+        }
+      },
+      {
+        "name": "Joel Peguero",
+        "player_id": 666711,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 0,
+          "ip": 9.0
+        }
+      },
+      {
+        "name": "Keaton Winn",
+        "player_id": 676775,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 10,
+          "g": 22,
+          "gs": 0,
+          "ip": 21.3
+        }
+      },
+      {
+        "name": "Landen Roupp",
+        "player_id": 694738,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 55.0
+        }
+      },
+      {
+        "name": "Matt Gage",
+        "player_id": 657424,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 5,
+          "g": 25,
+          "gs": 0,
+          "ip": 20.7
+        }
+      },
+      {
+        "name": "Robbie Ray",
+        "player_id": 592662,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 54.7
+        }
+      },
+      {
+        "name": "Ryan Borucki",
+        "player_id": 621366,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 19,
+          "gs": 0,
+          "ip": 19.7
+        }
+      },
+      {
+        "name": "Sam Hentges",
+        "player_id": 656529,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 6,
+          "gs": 0,
+          "ip": 5.7
+        }
+      },
+      {
+        "name": "Trevor McDonald",
+        "player_id": 686790,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 4,
+          "gs": 4,
+          "ip": 22.7
+        }
+      },
+      {
+        "name": "Tyler Mahle",
+        "player_id": 641816,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 51.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Hayden Birdsong",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 806185,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 3,
+        "g": 21,
+        "gs": 10,
+        "ip": 65.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Heliot Ramos",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 671218
+    },
+    {
+      "name": "Jared Oliva",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 666931
+    },
+    {
+      "name": "Jason Foley",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 671345,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "José Buttó",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 676130,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 6,
+        "g": 55,
+        "gs": 0,
+        "ip": 67.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Jung Hoo Lee",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 808982
+    },
+    {
+      "name": "Logan Webb",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 657277,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 8,
+        "gs": 8,
+        "ip": 48.0
+      }
+    },
+    {
+      "name": "Randy Rodríguez",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 678495,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 4,
+        "holds": 13,
+        "g": 50,
+        "gs": 0,
+        "ip": 50.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Reiver Sanmartin",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 665665,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Rowan Wick",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 592858,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Blade Tidwell",
+    "Carson Seymour",
+    "Carson Whisenhunt",
+    "Christian Koss",
+    "Dylan Smith",
+    "Grant McCray",
+    "Gregory Santos",
+    "Logan Porter",
+    "Ryan Walker",
+    "Spencer Bivens",
+    "Tristan Beck"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 10,
+    "total_40man_not_active": 11
+  }
+}

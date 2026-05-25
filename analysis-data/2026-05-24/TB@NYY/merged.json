@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 2.9,
+  "home_recent_ra": 4.0,
+  "away_recent_rs": 5.7,
+  "away_recent_ra": 3.8,
+  "home_recent_30_rs": 4.6,
+  "home_recent_30_ra": 3.5,
+  "away_recent_30_rs": 4.43,
+  "away_recent_30_ra": 2.83,
+  "home_season_rs": 4.75,
+  "home_season_ra": 3.53,
+  "away_season_rs": 4.63,
+  "away_season_ra": 3.8,
+  "home_season_games": 53,
+  "away_season_games": 51,
+  "home_starter_fip": 3.52,
+  "home_starter_k_bb": 23.5,
+  "home_starter_whip": 1.13,
+  "away_starter_fip": 3.68,
+  "away_starter_k_bb": 18.6,
+  "away_starter_whip": 1.0,
+  "home_batting_xwoba": 0.347,
+  "home_batting_ops": 0.769,
+  "home_batting_k_pct": 23.3,
+  "away_batting_xwoba": 0.292,
+  "away_batting_ops": 0.686,
+  "away_batting_k_pct": 19.1,
+  "home_pitcher": {
+    "era": 3.58,
+    "xera": 4.1,
+    "ip": 50.333333333333336,
+    "era_xera_delta": -0.52,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 29.0,
+        "rv_per_100": -1.5,
+        "xwoba_against": 0.436,
+        "whiff_pct": 23.0,
+        "put_away_pct": 18.2,
+        "hard_hit_pct": 58.8
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 23.5,
+        "rv_per_100": -0.7,
+        "xwoba_against": 0.249,
+        "whiff_pct": 32.7,
+        "put_away_pct": 18.5,
+        "hard_hit_pct": 33.3
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 20.3,
+        "rv_per_100": 1.9,
+        "xwoba_against": 0.187,
+        "whiff_pct": 49.0,
+        "put_away_pct": 42.4,
+        "hard_hit_pct": 16.7
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 3.19,
+    "xera": 3.37,
+    "ip": 48.0,
+    "era_xera_delta": -0.18,
+    "arsenal_top": [
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 35.2,
+        "rv_per_100": 1.4,
+        "xwoba_against": 0.293,
+        "whiff_pct": 21.9,
+        "put_away_pct": 16.1,
+        "hard_hit_pct": 21.4
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 28.0,
+        "rv_per_100": -1.6,
+        "xwoba_against": 0.376,
+        "whiff_pct": 23.0,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 48.5
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 20.2,
+        "rv_per_100": 3.5,
+        "xwoba_against": 0.222,
+        "whiff_pct": 11.9,
+        "put_away_pct": 20.0,
+        "hard_hit_pct": 35.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.287
+  },
+  "away_lineup": {
+    "recent_babip": 0.286
+  },
+  "home_bullpen_era": 3.55,
+  "away_bullpen_era": 4.31,
+  "park_factor": 96.0,
+  "home_core_bullpen_il_count": 0,
+  "away_core_bullpen_il_count": 4,
+  "weather": {
+    "condition": "Overcast",
+    "temp_f": 56,
+    "wind_text": "11 mph, In From CF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "New York Yankees",
+    "away_team": "Tampa Bay Rays",
+    "home_sp": "Ryan Weathers",
+    "away_sp": "Drew Rasmussen",
+    "home_sp_starts": 9,
+    "away_sp_starts": 9,
+    "venue": "Yankee Stadium",
+    "game_pk": 823544,
+    "game_date": "2026-05-24T17:35:00Z",
+    "official_date": "2026-05-24"
+  }
+}

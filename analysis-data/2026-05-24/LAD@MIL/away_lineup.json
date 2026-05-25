@@ -1,0 +1,443 @@
+{
+  "team": "LAD",
+  "team_id": 119,
+  "tier": "🟠 Strong",
+  "tier_vs_lhp": "🟡 Average",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.766,
+  "avg_ops_vs_lhp": 0.75,
+  "avg_ops_vs_rhp": 0.747,
+  "avg_xwoba": 0.348,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.293,
+  "avg_k_pct": 19.5,
+  "avg_bb_pct": 10.0,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.273,
+  "chain": {
+    "obp_top3": 0.336,
+    "slg_mid": 0.442
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-24T16:30:33+00:00",
+    "game_pk": 823786
+  },
+  "lineup": [
+    {
+      "mlbam_id": 660271,
+      "pa": 225,
+      "avg": 0.276,
+      "obp": 0.402,
+      "slg": 0.481,
+      "ops": 0.883,
+      "iso": 0.205,
+      "babip": 0.339,
+      "k_pct": 23.1,
+      "bb_pct": 16.0,
+      "name": "Shohei Ohtani",
+      "position": "TWP",
+      "batting_order": 1,
+      "xwoba": 0.402,
+      "xba": 0.278,
+      "xslg": 0.526,
+      "ev95pct": 49.2,
+      "barrel_pct": 16.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".288",
+          "obp": ".377",
+          "slg": ".519",
+          "ops": ".896",
+          "pa": 61
+        },
+        "vs_rhp": {
+          "avg": ".271",
+          "obp": ".411",
+          "slg": ".465",
+          "ops": ".876",
+          "pa": 164
+        }
+      },
+      "last_7": {
+        "avg": ".481",
+        "obp": ".571",
+        "slg": ".778",
+        "ops": "1.349",
+        "babip": ".571",
+        "pa": 35
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 605141,
+      "pa": 78,
+      "avg": 0.169,
+      "obp": 0.244,
+      "slg": 0.366,
+      "ops": 0.61,
+      "iso": 0.197,
+      "babip": 0.138,
+      "k_pct": 11.5,
+      "bb_pct": 7.7,
+      "name": "Mookie Betts",
+      "position": "SS",
+      "batting_order": 2,
+      "xwoba": 0.351,
+      "xba": 0.271,
+      "xslg": 0.473,
+      "ev95pct": 38.7,
+      "barrel_pct": 11.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".105",
+          "obp": ".150",
+          "slg": ".316",
+          "ops": ".466",
+          "pa": 20
+        },
+        "vs_rhp": {
+          "avg": ".192",
+          "obp": ".276",
+          "slg": ".385",
+          "ops": ".661",
+          "pa": 58
+        }
+      },
+      "last_7": {
+        "avg": ".167",
+        "obp": ".242",
+        "slg": ".300",
+        "ops": ".542",
+        "babip": ".160",
+        "pa": 33
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 518692,
+      "pa": 213,
+      "avg": 0.265,
+      "obp": 0.362,
+      "slg": 0.449,
+      "ops": 0.811,
+      "iso": 0.184,
+      "babip": 0.295,
+      "k_pct": 15.5,
+      "bb_pct": 12.7,
+      "name": "Freddie Freeman",
+      "position": "1B",
+      "batting_order": 3,
+      "xwoba": 0.385,
+      "xba": 0.285,
+      "xslg": 0.512,
+      "ev95pct": 47.4,
+      "barrel_pct": 11.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".224",
+          "obp": ".356",
+          "slg": ".388",
+          "ops": ".744",
+          "pa": 59
+        },
+        "vs_rhp": {
+          "avg": ".279",
+          "obp": ".364",
+          "slg": ".471",
+          "ops": ".835",
+          "pa": 154
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".469",
+        "slg": ".636",
+        "ops": "1.105",
+        "babip": ".300",
+        "pa": 32
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 663656,
+      "pa": 215,
+      "avg": 0.247,
+      "obp": 0.353,
+      "slg": 0.396,
+      "ops": 0.749,
+      "iso": 0.149,
+      "babip": 0.293,
+      "k_pct": 18.6,
+      "bb_pct": 14.0,
+      "name": "Kyle Tucker",
+      "position": "RF",
+      "batting_order": 4,
+      "xwoba": 0.34,
+      "xba": 0.257,
+      "xslg": 0.389,
+      "ev95pct": 42.4,
+      "barrel_pct": 5.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".295",
+          "obp": ".389",
+          "slg": ".523",
+          "ops": ".912",
+          "pa": 54
+        },
+        "vs_rhp": {
+          "avg": ".232",
+          "obp": ".342",
+          "slg": ".355",
+          "ops": ".697",
+          "pa": 161
+        }
+      },
+      "last_7": {
+        "avg": ".208",
+        "obp": ".367",
+        "slg": ".333",
+        "ops": ".700",
+        "babip": ".250",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 681624,
+      "pa": 211,
+      "avg": 0.283,
+      "obp": 0.336,
+      "slg": 0.487,
+      "ops": 0.823,
+      "iso": 0.204,
+      "babip": 0.31,
+      "k_pct": 19.9,
+      "bb_pct": 7.1,
+      "name": "Andy Pages",
+      "position": "CF",
+      "batting_order": 5,
+      "xwoba": 0.342,
+      "xba": 0.276,
+      "xslg": 0.451,
+      "ev95pct": 46.7,
+      "barrel_pct": 7.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".275",
+          "obp": ".333",
+          "slg": ".475",
+          "ops": ".808",
+          "pa": 45
+        },
+        "vs_rhp": {
+          "avg": ".285",
+          "obp": ".337",
+          "slg": ".490",
+          "ops": ".827",
+          "pa": 166
+        }
+      },
+      "last_7": {
+        "avg": ".148",
+        "obp": ".226",
+        "slg": ".185",
+        "ops": ".411",
+        "babip": ".182",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 606192,
+      "pa": 192,
+      "avg": 0.276,
+      "obp": 0.349,
+      "slg": 0.447,
+      "ops": 0.796,
+      "iso": 0.171,
+      "babip": 0.354,
+      "k_pct": 27.1,
+      "bb_pct": 9.4,
+      "name": "Teoscar Hernández",
+      "position": "LF",
+      "batting_order": 6,
+      "xwoba": 0.34,
+      "xba": 0.257,
+      "xslg": 0.441,
+      "ev95pct": 42.5,
+      "barrel_pct": 11.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".257",
+          "obp": ".422",
+          "slg": ".400",
+          "ops": ".822",
+          "pa": 45
+        },
+        "vs_rhp": {
+          "avg": ".281",
+          "obp": ".327",
+          "slg": ".459",
+          "ops": ".786",
+          "pa": 147
+        }
+      },
+      "last_7": {
+        "avg": ".320",
+        "obp": ".400",
+        "slg": ".600",
+        "ops": "1.000",
+        "babip": ".353",
+        "pa": 30
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 687221,
+      "pa": 87,
+      "avg": 0.26,
+      "obp": 0.345,
+      "slg": 0.558,
+      "ops": 0.903,
+      "iso": 0.298,
+      "babip": 0.283,
+      "k_pct": 27.6,
+      "bb_pct": 8.0,
+      "name": "Dalton Rushing",
+      "position": "C",
+      "batting_order": 7,
+      "xwoba": 0.357,
+      "xba": 0.256,
+      "xslg": 0.475,
+      "ev95pct": 43.4,
+      "barrel_pct": 11.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".353",
+          "obp": ".421",
+          "slg": ".588",
+          "ops": "1.009",
+          "pa": 19
+        },
+        "vs_rhp": {
+          "avg": ".233",
+          "obp": ".324",
+          "slg": ".550",
+          "ops": ".874",
+          "pa": 68
+        }
+      },
+      "last_7": {
+        "avg": ".053",
+        "obp": ".182",
+        "slg": ".053",
+        "ops": ".235",
+        "babip": ".091",
+        "pa": 22
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 808975,
+      "pa": 119,
+      "avg": 0.264,
+      "obp": 0.331,
+      "slg": 0.34,
+      "ops": 0.671,
+      "iso": 0.076,
+      "babip": 0.342,
+      "k_pct": 22.7,
+      "bb_pct": 9.2,
+      "name": "Hyeseong Kim",
+      "position": "SS",
+      "batting_order": 8,
+      "xwoba": 0.307,
+      "xba": 0.264,
+      "xslg": 0.347,
+      "ev95pct": 21.3,
+      "barrel_pct": 3.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".091",
+          "obp": ".167",
+          "slg": ".091",
+          "ops": ".258",
+          "pa": 12
+        },
+        "vs_rhp": {
+          "avg": ".284",
+          "obp": ".349",
+          "slg": ".368",
+          "ops": ".717",
+          "pa": 107
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".320",
+        "slg": ".227",
+        "ops": ".547",
+        "babip": ".313",
+        "pa": 25
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 500743,
+      "pa": 84,
+      "avg": 0.267,
+      "obp": 0.305,
+      "slg": 0.347,
+      "ops": 0.652,
+      "iso": 0.08,
+      "babip": 0.279,
+      "k_pct": 9.5,
+      "bb_pct": 6.0,
+      "name": "Miguel Rojas",
+      "position": "SS",
+      "batting_order": 9,
+      "xwoba": 0.309,
+      "xba": 0.287,
+      "xslg": 0.376,
+      "ev95pct": 31.0,
+      "barrel_pct": 4.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".308",
+          "obp": ".372",
+          "slg": ".462",
+          "ops": ".834",
+          "pa": 43
+        },
+        "vs_rhp": {
+          "avg": ".222",
+          "obp": ".231",
+          "slg": ".222",
+          "ops": ".453",
+          "pa": 41
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".273",
+        "slg": ".250",
+        "ops": ".523",
+        "babip": ".238",
+        "pa": 23
+      },
+      "bvp": null
+    }
+  ]
+}

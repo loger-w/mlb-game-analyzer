@@ -1,0 +1,173 @@
+{
+  "name": "Brandon Sproat",
+  "mlbam_id": 687075,
+  "age": 25,
+  "birth_date": "2000-09-17",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.64,
+    "k_bb_pct": 0.518,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 67.3,
+    "era_only_score": 20.0,
+    "gap": 47.3
+  },
+  "season": {
+    "era": 5.75,
+    "whip": 1.5,
+    "k_pct": 23.4,
+    "bb_pct": 13.1,
+    "k_bb_pct": 10.3,
+    "fip": 5.66,
+    "xfip": 3.93,
+    "hr_per_9": 1.99,
+    "gb_pct": 49.3,
+    "ip": 40.666666666666664,
+    "games": 9,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.79,
+    "xwoba": 0.344,
+    "xba": 0.239
+  },
+  "statcast": {
+    "avg_velo": 92.6,
+    "max_velo": 99.9,
+    "hard_hit_pct": 23.5,
+    "pitch_types": {
+      "SI": 27.7,
+      "FC": 26.8,
+      "FF": 14.6,
+      "CU": 13.4,
+      "ST": 10.1
+    },
+    "barrel_pct": 9.2,
+    "ev95percent": 40.4,
+    "whiff_pct": 10.3,
+    "csw_pct": 28.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Chicago White Sox",
+      "ip": 3.0,
+      "era": 21.0,
+      "k": 3,
+      "bb": 4,
+      "h": 6,
+      "er": 7,
+      "pitches": 86,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Kansas City Royals",
+      "ip": 3.6666666666666665,
+      "era": 14.85,
+      "k": 4,
+      "bb": 3,
+      "h": 4,
+      "er": 4,
+      "pitches": 70,
+      "strikes": 39
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Washington Nationals",
+      "ip": 3.6666666666666665,
+      "era": 10.45,
+      "k": 3,
+      "bb": 3,
+      "h": 4,
+      "er": 1,
+      "pitches": 65,
+      "strikes": 38
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".254",
+      "obp": ".405",
+      "slg": ".493",
+      "k": 21,
+      "bb": 15,
+      "bf": 86,
+      "k_pct": 24.4,
+      "bb_pct": 17.4
+    },
+    "vs_right": {
+      "avg": ".259",
+      "obp": ".326",
+      "slg": ".469",
+      "k": 20,
+      "bb": 8,
+      "bf": 89,
+      "k_pct": 22.5,
+      "bb_pct": 9.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.601,
+      "k_pct": 26.7,
+      "bb_pct": 13.4,
+      "bf": 172
+    },
+    "tto2": {
+      "ops": 0.895,
+      "k_pct": 22.6,
+      "bb_pct": 6.5,
+      "bf": 124
+    },
+    "tto3": {
+      "ops": 0.973,
+      "k_pct": 6.2,
+      "bb_pct": 12.5,
+      "bf": 32
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 27.7,
+      "rv_per_100": 0.5,
+      "xwoba_against": 0.338,
+      "whiff_pct": 25.3,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 35.7
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 27.3,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.362,
+      "whiff_pct": 13.3,
+      "put_away_pct": 15.8,
+      "hard_hit_pct": 36.1
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 15.6,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.316,
+      "whiff_pct": 25.0,
+      "put_away_pct": 31.0,
+      "hard_hit_pct": 61.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

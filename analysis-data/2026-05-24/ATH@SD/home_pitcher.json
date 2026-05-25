@@ -1,0 +1,183 @@
+{
+  "name": "Michael King",
+  "mlbam_id": 650633,
+  "age": 30,
+  "birth_date": "1995-05-25",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.788,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 87.7,
+    "era_only_score": 91.9,
+    "gap": -4.2
+  },
+  "season": {
+    "era": 2.31,
+    "whip": 1.06,
+    "k_pct": 25.8,
+    "bb_pct": 10.5,
+    "k_bb_pct": 15.3,
+    "fip": 3.2,
+    "xfip": 3.36,
+    "hr_per_9": 0.62,
+    "gb_pct": 54.4,
+    "ip": 58.333333333333336,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 3.59,
+    "xwoba": 0.302,
+    "xba": 0.221
+  },
+  "statcast": {
+    "avg_velo": 88.6,
+    "max_velo": 96.2,
+    "hard_hit_pct": 21.4,
+    "pitch_types": {
+      "CH": 26.7,
+      "SI": 26.4,
+      "FF": 20.7,
+      "ST": 20.7,
+      "SL": 5.4
+    },
+    "barrel_pct": 9.2,
+    "ev95percent": 31.9,
+    "whiff_pct": 11.5,
+    "csw_pct": 28.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Detroit Tigers",
+      "ip": 5.0,
+      "era": 0.0,
+      "k": 6,
+      "bb": 4,
+      "h": 1,
+      "er": 0,
+      "pitches": 82,
+      "strikes": 46
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Boston Red Sox",
+      "ip": 5.666666666666667,
+      "era": 3.38,
+      "k": 5,
+      "bb": 1,
+      "h": 7,
+      "er": 4,
+      "pitches": 81,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 6.0,
+      "era": 3.24,
+      "k": 4,
+      "bb": 3,
+      "h": 4,
+      "er": 2,
+      "pitches": 95,
+      "strikes": 57
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".175",
+      "obp": ".259",
+      "slg": ".258",
+      "k": 35,
+      "bb": 12,
+      "bf": 136,
+      "k_pct": 25.7,
+      "bb_pct": 8.8
+    },
+    "vs_right": {
+      "avg": ".215",
+      "obp": ".333",
+      "slg": ".316",
+      "k": 24,
+      "bb": 12,
+      "bf": 93,
+      "k_pct": 25.8,
+      "bb_pct": 12.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.372,
+      "k_pct": 31.9,
+      "bb_pct": 12.1,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.563,
+      "k_pct": 25.8,
+      "bb_pct": 9.0,
+      "bf": 89
+    },
+    "tto3": {
+      "ops": 0.911,
+      "k_pct": 14.0,
+      "bb_pct": 10.0,
+      "bf": 50
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 26.7,
+      "rv_per_100": 2.1,
+      "xwoba_against": 0.279,
+      "whiff_pct": 32.6,
+      "put_away_pct": 22.7,
+      "hard_hit_pct": 28.3
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 26.4,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.397,
+      "whiff_pct": 20.4,
+      "put_away_pct": 23.0,
+      "hard_hit_pct": 48.6
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 20.7,
+      "rv_per_100": 1.8,
+      "xwoba_against": 0.276,
+      "whiff_pct": 32.5,
+      "put_away_pct": 24.7,
+      "hard_hit_pct": 27.8
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 20.7,
+      "rv_per_100": 0.6,
+      "xwoba_against": 0.273,
+      "whiff_pct": 30.5,
+      "put_away_pct": 16.0,
+      "hard_hit_pct": 22.2
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

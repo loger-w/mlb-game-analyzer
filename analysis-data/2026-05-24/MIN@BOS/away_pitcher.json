@@ -1,0 +1,173 @@
+{
+  "name": "Bailey Ober",
+  "mlbam_id": 641927,
+  "age": 30,
+  "birth_date": "1995-07-12",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.343,
+    "k_bb_pct": 0.493,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 51.2,
+    "era_only_score": 66.4,
+    "gap": -15.2
+  },
+  "season": {
+    "era": 3.63,
+    "whip": 1.07,
+    "k_pct": 17.2,
+    "bb_pct": 7.3,
+    "k_bb_pct": 9.9,
+    "fip": 4.19,
+    "xfip": 4.39,
+    "hr_per_9": 1.11,
+    "gb_pct": 38.8,
+    "ip": 57.0,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 3.77,
+    "xwoba": 0.309,
+    "xba": 0.235
+  },
+  "statcast": {
+    "avg_velo": 84.0,
+    "max_velo": 90.9,
+    "hard_hit_pct": 24.4,
+    "pitch_types": {
+      "CH": 36.5,
+      "FF": 31.2,
+      "SL": 15.4,
+      "ST": 10.4,
+      "SI": 3.9
+    },
+    "barrel_pct": 8.7,
+    "ev95percent": 30.6,
+    "whiff_pct": 9.0,
+    "csw_pct": 25.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Baltimore Orioles",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 1,
+      "bb": 1,
+      "h": 4,
+      "er": 3,
+      "pitches": 56,
+      "strikes": 37
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Tampa Bay Rays",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 4,
+      "bb": 2,
+      "h": 4,
+      "er": 3,
+      "pitches": 82,
+      "strikes": 45
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Detroit Tigers",
+      "ip": 5.666666666666667,
+      "era": 5.27,
+      "k": 2,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 99,
+      "strikes": 64
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".187",
+      "obp": ".250",
+      "slg": ".421",
+      "k": 16,
+      "bb": 8,
+      "bf": 117,
+      "k_pct": 13.7,
+      "bb_pct": 6.8
+    },
+    "vs_right": {
+      "avg": ".229",
+      "obp": ".296",
+      "slg": ".314",
+      "k": 24,
+      "bb": 9,
+      "bf": 115,
+      "k_pct": 20.9,
+      "bb_pct": 7.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.44,
+      "k_pct": 16.2,
+      "bb_pct": 11.1,
+      "bf": 99
+    },
+    "tto2": {
+      "ops": 0.86,
+      "k_pct": 16.3,
+      "bb_pct": 5.1,
+      "bf": 98
+    },
+    "tto3": {
+      "ops": 0.849,
+      "k_pct": 17.5,
+      "bb_pct": 7.0,
+      "bf": 57
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 36.7,
+      "rv_per_100": 0.0,
+      "xwoba_against": 0.325,
+      "whiff_pct": 25.2,
+      "put_away_pct": 13.9,
+      "hard_hit_pct": 26.6
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.5,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.309,
+      "whiff_pct": 14.8,
+      "put_away_pct": 17.2,
+      "hard_hit_pct": 39.6
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 15.7,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.264,
+      "whiff_pct": 10.6,
+      "put_away_pct": 22.6,
+      "hard_hit_pct": 35.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

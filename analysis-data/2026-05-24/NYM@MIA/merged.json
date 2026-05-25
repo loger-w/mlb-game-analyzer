@@ -1,0 +1,113 @@
+{
+  "home_recent_rs": 4.2,
+  "home_recent_ra": 5.5,
+  "away_recent_rs": 5.4,
+  "away_recent_ra": 4.9,
+  "home_recent_30_rs": 4.07,
+  "home_recent_30_ra": 4.6,
+  "away_recent_30_rs": 4.27,
+  "away_recent_30_ra": 3.97,
+  "home_season_rs": 4.28,
+  "home_season_ra": 4.57,
+  "away_season_rs": 3.81,
+  "away_season_ra": 4.13,
+  "home_season_games": 53,
+  "away_season_games": 54,
+  "home_starter_fip": 3.33,
+  "home_starter_k_bb": 8.6,
+  "home_starter_whip": 1.27,
+  "away_starter_fip": 3.05,
+  "away_starter_k_bb": 14.5,
+  "away_starter_whip": 1.47,
+  "home_batting_xwoba": 0.297,
+  "home_batting_ops": 0.692,
+  "home_batting_k_pct": 22.8,
+  "away_batting_xwoba": 0.299,
+  "away_batting_ops": 0.6,
+  "away_batting_k_pct": 23.5,
+  "home_pitcher": {
+    "era": 1.2,
+    "xera": 3.44,
+    "ip": 30.0,
+    "era_xera_delta": -2.24,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 27.0,
+        "rv_per_100": 1.6,
+        "xwoba_against": 0.342,
+        "whiff_pct": 3.6,
+        "put_away_pct": 5.6,
+        "hard_hit_pct": 39.4
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 26.0,
+        "rv_per_100": 2.0,
+        "xwoba_against": 0.197,
+        "whiff_pct": 40.3,
+        "put_away_pct": 22.4,
+        "hard_hit_pct": 20.0
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 24.9,
+        "rv_per_100": 2.9,
+        "xwoba_against": 0.207,
+        "whiff_pct": 37.8,
+        "put_away_pct": 29.6,
+        "hard_hit_pct": 27.8
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 4.12,
+    "xera": 4.19,
+    "ip": 19.666666666666668,
+    "era_xera_delta": -0.07,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 55.0,
+        "rv_per_100": 0.2,
+        "xwoba_against": 0.325,
+        "whiff_pct": 20.0,
+        "put_away_pct": 18.5,
+        "hard_hit_pct": 40.0
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.278
+  },
+  "away_lineup": {
+    "recent_babip": 0.256
+  },
+  "home_bullpen_era": 3.43,
+  "away_bullpen_era": 3.33,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 3,
+  "weather": {
+    "condition": "Roof Closed",
+    "temp_f": 72,
+    "wind_text": "0 mph, None",
+    "indoor": true
+  },
+  "_meta": {
+    "home_team": "Miami Marlins",
+    "away_team": "New York Mets",
+    "home_sp": "Tyler Phillips",
+    "away_sp": "Christian Scott",
+    "home_sp_starts": 0,
+    "away_sp_starts": 5,
+    "venue": "loanDepot park",
+    "game_pk": 823861,
+    "game_date": "2026-05-24T17:40:00Z",
+    "official_date": "2026-05-24"
+  }
+}
