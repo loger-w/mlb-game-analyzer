@@ -1,0 +1,116 @@
+{
+  "name": "Lucas Giolito",
+  "mlbam_id": 608337,
+  "age": 31,
+  "birth_date": "1994-07-14",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 27.0,
+    "gap": null
+  },
+  "season": {
+    "era": 5.4,
+    "whip": 0.8,
+    "k_pct": 15.0,
+    "bb_pct": 15.0,
+    "k_bb_pct": 0.0,
+    "fip": 3.7,
+    "xfip": 5.52,
+    "hr_per_9": 0.0,
+    "gb_pct": 41.7,
+    "ip": 5.0,
+    "games": 1,
+    "gs": 1
+  },
+  "expected": {
+    "xera": 2.38,
+    "xwoba": 0.247,
+    "xba": 0.126
+  },
+  "statcast": {
+    "avg_velo": 85.4,
+    "max_velo": 92.3,
+    "hard_hit_pct": 25.0,
+    "pitch_types": {
+      "FF": 55.1,
+      "CH": 29.5,
+      "SL": 11.5,
+      "CU": 3.8
+    },
+    "barrel_pct": 0.0,
+    "ev95percent": 38.5,
+    "whiff_pct": 6.3,
+    "csw_pct": 24.1
+  },
+  "game_log": [
+    {
+      "date": "2026-05-17",
+      "opponent": "Seattle Mariners",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 3,
+      "bb": 3,
+      "h": 1,
+      "er": 3,
+      "pitches": 78,
+      "strikes": 44
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".100",
+      "obp": ".308",
+      "slg": ".100",
+      "k": 1,
+      "bb": 2,
+      "bf": 13,
+      "k_pct": 7.7,
+      "bb_pct": 15.4
+    },
+    "vs_right": {
+      "avg": ".000",
+      "obp": ".143",
+      "slg": ".000",
+      "k": 2,
+      "bb": 1,
+      "bf": 7,
+      "k_pct": 28.6,
+      "bb_pct": 14.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.811,
+      "k_pct": 27.0,
+      "bb_pct": 9.5,
+      "bf": 905
+    },
+    "tto2": {
+      "ops": 0.709,
+      "k_pct": 22.7,
+      "bb_pct": 10.0,
+      "bf": 846
+    },
+    "tto3": {
+      "ops": 0.713,
+      "k_pct": 20.5,
+      "bb_pct": 6.8,
+      "bf": 503
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "error": "Player 608337 not found in arsenal data"
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

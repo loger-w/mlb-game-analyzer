@@ -1,0 +1,163 @@
+{
+  "name": "Zack Wheeler",
+  "mlbam_id": 554430,
+  "age": 35,
+  "birth_date": "1990-05-30",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 89.6,
+    "era_only_score": 95.0,
+    "gap": -5.4
+  },
+  "season": {
+    "era": 1.99,
+    "whip": 0.88,
+    "k_pct": 25.0,
+    "bb_pct": 5.8,
+    "k_bb_pct": 19.2,
+    "fip": 2.28,
+    "xfip": 3.02,
+    "hr_per_9": 0.28,
+    "gb_pct": 54.1,
+    "ip": 31.666666666666668,
+    "games": 5,
+    "gs": 5
+  },
+  "expected": {
+    "xera": 3.4,
+    "xwoba": 0.294,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 90.4,
+    "max_velo": 97.8,
+    "hard_hit_pct": 25.8,
+    "pitch_types": {
+      "FF": 35.8,
+      "SI": 19.3,
+      "FS": 13.0,
+      "ST": 13.0,
+      "FC": 10.6
+    },
+    "barrel_pct": 7.3,
+    "ev95percent": 37.8,
+    "whiff_pct": 11.1,
+    "csw_pct": 26.2
+  },
+  "game_log": [
+    {
+      "date": "2026-04-25",
+      "opponent": "Atlanta Braves",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 6,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 56
+    },
+    {
+      "date": "2026-05-01",
+      "opponent": "Miami Marlins",
+      "ip": 6.0,
+      "era": 2.45,
+      "k": 8,
+      "bb": 2,
+      "h": 3,
+      "er": 1,
+      "pitches": 94,
+      "strikes": 60
+    },
+    {
+      "date": "2026-05-06",
+      "opponent": "Athletics",
+      "ip": 6.333333333333333,
+      "era": 3.12,
+      "k": 4,
+      "bb": 1,
+      "h": 5,
+      "er": 3,
+      "pitches": 98,
+      "strikes": 62
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".156",
+      "obp": ".236",
+      "slg": ".234",
+      "k": 17,
+      "bb": 6,
+      "bf": 72,
+      "k_pct": 23.6,
+      "bb_pct": 8.3
+    },
+    "vs_right": {
+      "avg": ".234",
+      "obp": ".250",
+      "slg": ".319",
+      "k": 13,
+      "bb": 1,
+      "bf": 48,
+      "k_pct": 27.1,
+      "bb_pct": 2.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.442,
+      "k_pct": 20.0,
+      "bb_pct": 6.7,
+      "bf": 45
+    },
+    "tto2": {
+      "ops": 0.469,
+      "k_pct": 33.3,
+      "bb_pct": 8.9,
+      "bf": 45
+    },
+    "tto3": {
+      "ops": 0.667,
+      "k_pct": 20.0,
+      "bb_pct": 0.0,
+      "bf": 30
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 35.8,
+      "rv_per_100": 3.7,
+      "xwoba_against": 0.265,
+      "whiff_pct": 33.0,
+      "put_away_pct": 25.6,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.3,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.311,
+      "whiff_pct": 2.1,
+      "put_away_pct": 21.1,
+      "hard_hit_pct": 37.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

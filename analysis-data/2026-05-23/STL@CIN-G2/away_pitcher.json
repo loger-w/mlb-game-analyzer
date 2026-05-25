@@ -1,0 +1,183 @@
+{
+  "name": "Andre Pallante",
+  "mlbam_id": 669467,
+  "age": 27,
+  "birth_date": "1998-09-18",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.768,
+    "k_bb_pct": 0.493,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 72.0,
+    "era_only_score": 58.2,
+    "gap": 13.8
+  },
+  "season": {
+    "era": 4.04,
+    "whip": 1.35,
+    "k_pct": 18.8,
+    "bb_pct": 8.9,
+    "k_bb_pct": 9.9,
+    "fip": 4.22,
+    "xfip": 3.74,
+    "hr_per_9": 1.1,
+    "gb_pct": 59.6,
+    "ip": 49.0,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 3.79,
+    "xwoba": 0.309,
+    "xba": 0.231
+  },
+  "statcast": {
+    "avg_velo": 89.2,
+    "max_velo": 97.6,
+    "hard_hit_pct": 23.6,
+    "pitch_types": {
+      "FF": 31.0,
+      "SL": 27.6,
+      "KC": 18.7,
+      "SI": 18.7,
+      "FS": 3.6
+    },
+    "barrel_pct": 7.3,
+    "ev95percent": 38.4,
+    "whiff_pct": 9.7,
+    "csw_pct": 28.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "New York Mets",
+      "ip": 5.0,
+      "era": 0.0,
+      "k": 3,
+      "bb": 3,
+      "h": 3,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Washington Nationals",
+      "ip": 5.0,
+      "era": 1.8,
+      "k": 2,
+      "bb": 4,
+      "h": 3,
+      "er": 2,
+      "pitches": 88,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "Boston Red Sox",
+      "ip": 5.0,
+      "era": 4.8,
+      "k": 2,
+      "bb": 1,
+      "h": 9,
+      "er": 6,
+      "pitches": 95,
+      "strikes": 61
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".257",
+      "obp": ".333",
+      "slg": ".390",
+      "k": 20,
+      "bb": 12,
+      "bf": 117,
+      "k_pct": 17.1,
+      "bb_pct": 10.3
+    },
+    "vs_right": {
+      "avg": ".235",
+      "obp": ".313",
+      "slg": ".376",
+      "k": 20,
+      "bb": 7,
+      "bf": 96,
+      "k_pct": 20.8,
+      "bb_pct": 7.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.828,
+      "k_pct": 16.0,
+      "bb_pct": 8.6,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.573,
+      "k_pct": 16.0,
+      "bb_pct": 9.9,
+      "bf": 81
+    },
+    "tto3": {
+      "ops": 0.738,
+      "k_pct": 27.5,
+      "bb_pct": 7.8,
+      "bf": 51
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.0,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.409,
+      "whiff_pct": 16.7,
+      "put_away_pct": 10.0,
+      "hard_hit_pct": 52.1
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 27.6,
+      "rv_per_100": 2.8,
+      "xwoba_against": 0.245,
+      "whiff_pct": 35.3,
+      "put_away_pct": 25.6,
+      "hard_hit_pct": 35.9
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 18.7,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.328,
+      "whiff_pct": 13.4,
+      "put_away_pct": 13.6,
+      "hard_hit_pct": 21.6
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 18.7,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.236,
+      "whiff_pct": 30.2,
+      "put_away_pct": 16.1,
+      "hard_hit_pct": 39.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

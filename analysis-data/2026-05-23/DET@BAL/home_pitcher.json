@@ -1,0 +1,158 @@
+{
+  "name": "Brandon Young",
+  "mlbam_id": 687064,
+  "age": 27,
+  "birth_date": "1998-08-19",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 53.8,
+    "gap": null
+  },
+  "season": {
+    "era": 4.25,
+    "whip": 1.48,
+    "k_pct": 16.4,
+    "bb_pct": 10.4,
+    "k_bb_pct": 6.0,
+    "fip": 5.22,
+    "xfip": 4.92,
+    "hr_per_9": 1.52,
+    "gb_pct": 36.8,
+    "ip": 29.666666666666668,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 4.53,
+    "xwoba": 0.335,
+    "xba": 0.245
+  },
+  "statcast": {
+    "avg_velo": 89.1,
+    "max_velo": 96.9,
+    "hard_hit_pct": 25.6,
+    "pitch_types": {
+      "FF": 42.9,
+      "FS": 19.2,
+      "SL": 15.8,
+      "SI": 12.6,
+      "CU": 9.6
+    },
+    "barrel_pct": 8.2,
+    "ev95percent": 40.8,
+    "whiff_pct": 10.2,
+    "csw_pct": 22.8
+  },
+  "game_log": [
+    {
+      "date": "2026-04-06",
+      "opponent": "Chicago White Sox",
+      "ip": 5.0,
+      "era": 0.0,
+      "k": 2,
+      "bb": 2,
+      "h": 2,
+      "er": 0,
+      "pitches": 66,
+      "strikes": 39
+    },
+    {
+      "date": "2026-04-24",
+      "opponent": "Boston Red Sox",
+      "ip": 5.666666666666667,
+      "era": 2.53,
+      "k": 5,
+      "bb": 1,
+      "h": 7,
+      "er": 3,
+      "pitches": 93,
+      "strikes": 65
+    },
+    {
+      "date": "2026-04-30",
+      "opponent": "Houston Astros",
+      "ip": 4.0,
+      "era": 4.3,
+      "k": 2,
+      "bb": 2,
+      "h": 9,
+      "er": 4,
+      "pitches": 82,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".239",
+      "obp": ".309",
+      "slg": ".423",
+      "k": 10,
+      "bb": 8,
+      "bf": 81,
+      "k_pct": 12.3,
+      "bb_pct": 9.9
+    },
+    "vs_right": {
+      "avg": ".277",
+      "obp": ".358",
+      "slg": ".426",
+      "k": 12,
+      "bb": 6,
+      "bf": 53,
+      "k_pct": 22.6,
+      "bb_pct": 11.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.889,
+      "k_pct": 17.0,
+      "bb_pct": 9.7,
+      "bf": 206
+    },
+    "tto2": {
+      "ops": 0.817,
+      "k_pct": 17.6,
+      "bb_pct": 9.1,
+      "bf": 165
+    },
+    "tto3": {
+      "ops": 0.702,
+      "k_pct": 19.4,
+      "bb_pct": 6.0,
+      "bf": 67
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 42.9,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.325,
+      "whiff_pct": 23.8,
+      "put_away_pct": 12.7,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 15.8,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.256,
+      "whiff_pct": 36.8,
+      "put_away_pct": 30.0,
+      "hard_hit_pct": 50.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,434 @@
+{
+  "team": "Detroit Tigers",
+  "team_id": 116,
+  "active_roster": {
+    "pitchers": [
+      "Brant Hurter",
+      "Brenan Hanifee",
+      "Casey Mize",
+      "Connor Seabold",
+      "Drew Anderson",
+      "Enmanuel De Jesus",
+      "Framber Valdez",
+      "Jack Flaherty",
+      "Keider Montero",
+      "Kenley Jansen",
+      "Kyle Finnegan",
+      "Tyler Holton",
+      "Will Vest"
+    ],
+    "pitcher_ids": [
+      676428,
+      669724,
+      663554,
+      657756,
+      623454,
+      646241,
+      664285,
+      656427,
+      672456,
+      445276,
+      640448,
+      663947,
+      676684
+    ],
+    "position_players": [
+      "Colt Keith",
+      "Dillon Dingler",
+      "Gage Workman",
+      "Hao-Yu  Lee",
+      "Jahmai Jones",
+      "Jake Rogers",
+      "Kevin McGonigle",
+      "Matt Vierling",
+      "Riley Greene",
+      "Spencer Torkelson",
+      "Wenceel Pérez",
+      "Zach McKinstry",
+      "Zack Short"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Brant Hurter",
+        "player_id": 676428,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 21,
+          "gs": 0,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "Brenan Hanifee",
+        "player_id": 669724,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 2,
+          "ip": 9.3
+        }
+      },
+      {
+        "name": "Casey Mize",
+        "player_id": 663554,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 43.7
+        }
+      },
+      {
+        "name": "Connor Seabold",
+        "player_id": 657756,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 0,
+          "ip": 15.7
+        }
+      },
+      {
+        "name": "Drew Anderson",
+        "player_id": 623454,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 16,
+          "gs": 1,
+          "ip": 31.7
+        }
+      },
+      {
+        "name": "Enmanuel De Jesus",
+        "player_id": 646241,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 16,
+          "gs": 0,
+          "ip": 21.3
+        }
+      },
+      {
+        "name": "Framber Valdez",
+        "player_id": 664285,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 55.0
+        }
+      },
+      {
+        "name": "Jack Flaherty",
+        "player_id": 656427,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 47.0
+        }
+      },
+      {
+        "name": "Keider Montero",
+        "player_id": 672456,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 49.3
+        }
+      },
+      {
+        "name": "Kenley Jansen",
+        "player_id": 445276,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 7,
+          "holds": 1,
+          "g": 16,
+          "gs": 0,
+          "ip": 13.3
+        }
+      },
+      {
+        "name": "Kyle Finnegan",
+        "player_id": 640448,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 5,
+          "g": 23,
+          "gs": 0,
+          "ip": 24.0
+        }
+      },
+      {
+        "name": "Tyler Holton",
+        "player_id": 663947,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 22,
+          "gs": 2,
+          "ip": 23.0
+        }
+      },
+      {
+        "name": "Will Vest",
+        "player_id": 676684,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 4,
+          "g": 15,
+          "gs": 0,
+          "ip": 13.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Bailey Horn",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 690544,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 10,
+        "gs": 0,
+        "ip": 11.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Beau Brieske",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 689225,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 5,
+        "g": 22,
+        "gs": 1,
+        "ip": 22.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Burch Smith",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 572143,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 13,
+        "gs": 1,
+        "ip": 17.0
+      }
+    },
+    {
+      "name": "Gleyber Torres",
+      "status": "Injured 10-Day",
+      "position": "Second Base",
+      "player_id": 650402
+    },
+    {
+      "name": "Jackson Jobe",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 695549,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 10,
+        "gs": 10,
+        "ip": 49.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Javier Báez",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 595879
+    },
+    {
+      "name": "Justin Verlander",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 434378,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 29,
+        "gs": 29,
+        "ip": 152.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Kerry Carpenter",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 681481
+    },
+    {
+      "name": "Parker Meadows",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 678009
+    },
+    {
+      "name": "Reese Olson",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 681857,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 13,
+        "gs": 13,
+        "ip": 68.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Tarik Skubal",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 669373,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 7,
+        "ip": 43.3
+      }
+    },
+    {
+      "name": "Trey Sweeney",
+      "status": "Injured 60-Day",
+      "position": "Shortstop",
+      "player_id": 700242
+    },
+    {
+      "name": "Troy Melton",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 675512,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 4,
+        "g": 16,
+        "gs": 4,
+        "ip": 45.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Ty Madden",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 680744,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 3,
+        "gs": 0,
+        "ip": 11.3
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Drew Sommers",
+    "Eduardo Valencia",
+    "Jace Jung",
+    "Jake Miller",
+    "Ricky Vanasco",
+    "Sawyer Gipson-Long",
+    "Thayron Liranzo",
+    "Trei Cruz"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 14,
+    "total_40man_not_active": 8
+  }
+}

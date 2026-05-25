@@ -1,0 +1,183 @@
+{
+  "name": "Paul Skenes",
+  "mlbam_id": 694973,
+  "age": 23,
+  "birth_date": "2002-05-29",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 87.4,
+    "gap": 8.7
+  },
+  "season": {
+    "era": 2.62,
+    "whip": 0.71,
+    "k_pct": 30.3,
+    "bb_pct": 3.8,
+    "k_bb_pct": 26.5,
+    "fip": 2.43,
+    "xfip": 2.47,
+    "hr_per_9": 0.82,
+    "gb_pct": 48.5,
+    "ip": 55.0,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 2.08,
+    "xwoba": 0.231,
+    "xba": 0.181
+  },
+  "statcast": {
+    "avg_velo": 92.7,
+    "max_velo": 99.5,
+    "hard_hit_pct": 19.9,
+    "pitch_types": {
+      "FF": 36.6,
+      "CH": 16.9,
+      "ST": 16.1,
+      "SI": 15.7,
+      "FS": 12.9
+    },
+    "barrel_pct": 4.5,
+    "ev95percent": 32.6,
+    "whiff_pct": 11.8,
+    "csw_pct": 26.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "New York Mets",
+      "ip": 0.6666666666666666,
+      "era": 67.5,
+      "k": 1,
+      "bb": 2,
+      "h": 4,
+      "er": 5,
+      "pitches": 37,
+      "strikes": 26
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.0,
+      "era": 9.53,
+      "k": 5,
+      "bb": 2,
+      "h": 3,
+      "er": 1,
+      "pitches": 77,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "San Diego Padres",
+      "ip": 6.333333333333333,
+      "era": 5.25,
+      "k": 6,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 87,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".150",
+      "obp": ".190",
+      "slg": ".267",
+      "k": 37,
+      "bb": 5,
+      "bf": 128,
+      "k_pct": 28.9,
+      "bb_pct": 3.9
+    },
+    "vs_right": {
+      "avg": ".178",
+      "obp": ".238",
+      "slg": ".288",
+      "k": 26,
+      "bb": 3,
+      "bf": 80,
+      "k_pct": 32.5,
+      "bb_pct": 3.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.472,
+      "k_pct": 38.4,
+      "bb_pct": 5.1,
+      "bf": 99
+    },
+    "tto2": {
+      "ops": 0.339,
+      "k_pct": 23.3,
+      "bb_pct": 7.0,
+      "bf": 86
+    },
+    "tto3": {
+      "ops": 0.769,
+      "k_pct": 25.6,
+      "bb_pct": 0.0,
+      "bf": 39
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 36.5,
+      "rv_per_100": 2.2,
+      "xwoba_against": 0.22,
+      "whiff_pct": 29.1,
+      "put_away_pct": 27.8,
+      "hard_hit_pct": 34.9
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 17.8,
+      "rv_per_100": 1.5,
+      "xwoba_against": 0.212,
+      "whiff_pct": 35.8,
+      "put_away_pct": 17.9,
+      "hard_hit_pct": 18.5
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 14.5,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.306,
+      "whiff_pct": 7.8,
+      "put_away_pct": 21.7,
+      "hard_hit_pct": 48.1
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 13.7,
+      "rv_per_100": 1.9,
+      "xwoba_against": 0.234,
+      "whiff_pct": 17.9,
+      "put_away_pct": 25.0,
+      "hard_hit_pct": 30.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "team": "Miami Marlins",
+  "team_id": 146,
+  "active_roster": {
+    "pitchers": [
+      "Andrew Nardi",
+      "Anthony Bender",
+      "Cade Gibson",
+      "Calvin Faucher",
+      "Eury Pérez",
+      "Janson Junk",
+      "John King",
+      "Lake Bachar",
+      "Max Meyer",
+      "Michael Petersen",
+      "Pete Fairbanks",
+      "Sandy Alcantara",
+      "Tyler Phillips"
+    ],
+    "pitcher_ids": [
+      677053,
+      669622,
+      806188,
+      676534,
+      691587,
+      676083,
+      667463,
+      669199,
+      676974,
+      656848,
+      664126,
+      645261,
+      663969
+    ],
+    "position_players": [
+      "Christopher Morel",
+      "Connor Norby",
+      "Esteury Ruiz",
+      "Graham Pauley",
+      "Heriberto Hernández",
+      "Jakob Marsee",
+      "Javier Sanoja",
+      "Joe Mack",
+      "Kyle Stowers",
+      "Liam Hicks",
+      "Otto Lopez",
+      "Owen Caissie",
+      "Xavier Edwards"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Andrew Nardi",
+        "player_id": 677053,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 7,
+          "g": 22,
+          "gs": 0,
+          "ip": 20.0
+        }
+      },
+      {
+        "name": "Anthony Bender",
+        "player_id": 669622,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 4,
+          "g": 20,
+          "gs": 0,
+          "ip": 19.0
+        }
+      },
+      {
+        "name": "Cade Gibson",
+        "player_id": 806188,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 44,
+          "gs": 1,
+          "ip": 54.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Calvin Faucher",
+        "player_id": 676534,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 20,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Eury Pérez",
+        "player_id": 691587,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 58.7
+        }
+      },
+      {
+        "name": "Janson Junk",
+        "player_id": 676083,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 55.0
+        }
+      },
+      {
+        "name": "John King",
+        "player_id": 667463,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 3,
+          "g": 23,
+          "gs": 0,
+          "ip": 20.7
+        }
+      },
+      {
+        "name": "Lake Bachar",
+        "player_id": 669199,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 16,
+          "gs": 0,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "Max Meyer",
+        "player_id": 676974,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 53.7
+        }
+      },
+      {
+        "name": "Michael Petersen",
+        "player_id": 656848,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 5,
+          "g": 17,
+          "gs": 0,
+          "ip": 18.3
+        }
+      },
+      {
+        "name": "Pete Fairbanks",
+        "player_id": 664126,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 6,
+          "holds": 1,
+          "g": 13,
+          "gs": 1,
+          "ip": 12.0
+        }
+      },
+      {
+        "name": "Sandy Alcantara",
+        "player_id": 645261,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 69.7
+        }
+      },
+      {
+        "name": "Tyler Phillips",
+        "player_id": 663969,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 0,
+          "g": 15,
+          "gs": 0,
+          "ip": 30.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Adam Mazur",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 800049,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 6,
+        "ip": 30.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Griffin Conine",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 665052
+    },
+    {
+      "name": "Leo Jiménez",
+      "status": "Injured 7-Day",
+      "position": "Third Base",
+      "player_id": 677870
+    },
+    {
+      "name": "Robby Snelling",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 702281,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 1,
+        "gs": 1,
+        "ip": 5.0
+      }
+    },
+    {
+      "name": "Ronny Henriquez",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 678692,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 7,
+        "holds": 26,
+        "g": 69,
+        "gs": 0,
+        "ip": 73.0,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Agustín Ramírez",
+    "Bradley Blalock",
+    "Braxton Garrett",
+    "Dax Fulton",
+    "Deyvison De Los Santos",
+    "Jared Serna",
+    "Josh Ekness",
+    "Josh White",
+    "Maximo Acosta",
+    "Rece Hinds",
+    "Ryan Gusto",
+    "William Kempner"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 5,
+    "total_40man_not_active": 12
+  }
+}

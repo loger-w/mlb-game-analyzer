@@ -1,0 +1,163 @@
+{
+  "name": "Kai-Wei Teng",
+  "mlbam_id": 678906,
+  "age": 27,
+  "birth_date": "1998-12-01",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.841,
+    "k_bb_pct": 0.757,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 84.5,
+    "era_only_score": 87.6,
+    "gap": -3.1
+  },
+  "season": {
+    "era": 2.61,
+    "whip": 1.1,
+    "k_pct": 24.0,
+    "bb_pct": 9.6,
+    "k_bb_pct": 14.4,
+    "fip": 3.58,
+    "xfip": 3.58,
+    "hr_per_9": 0.87,
+    "gb_pct": 49.2,
+    "ip": 31.0,
+    "games": 16,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 3.76,
+    "xwoba": 0.308,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 89.0,
+    "max_velo": 96.8,
+    "hard_hit_pct": 19.9,
+    "pitch_types": {
+      "ST": 35.7,
+      "FF": 27.8,
+      "SI": 17.3,
+      "CU": 10.1,
+      "CH": 9.1
+    },
+    "barrel_pct": 6.2,
+    "ev95percent": 35.8,
+    "whiff_pct": 10.3,
+    "csw_pct": 30.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Los Angeles Angels",
+      "ip": 2.3333333333333335,
+      "era": 0.0,
+      "k": 2,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 39,
+      "strikes": 19
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Boston Red Sox",
+      "ip": 1.0,
+      "era": 2.7,
+      "k": 1,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 14,
+      "strikes": 9
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Athletics",
+      "ip": 2.3333333333333335,
+      "era": 1.59,
+      "k": 3,
+      "bb": 0,
+      "h": 2,
+      "er": 0,
+      "pitches": 33,
+      "strikes": 22
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".236",
+      "obp": ".323",
+      "slg": ".473",
+      "k": 15,
+      "bb": 6,
+      "bf": 62,
+      "k_pct": 24.2,
+      "bb_pct": 9.7
+    },
+    "vs_right": {
+      "avg": ".161",
+      "obp": ".254",
+      "slg": ".179",
+      "k": 15,
+      "bb": 6,
+      "bf": 63,
+      "k_pct": 23.8,
+      "bb_pct": 9.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.527,
+      "k_pct": 23.6,
+      "bb_pct": 8.5,
+      "bf": 106
+    },
+    "tto2": {
+      "ops": 1.036,
+      "k_pct": 21.1,
+      "bb_pct": 10.5,
+      "bf": 19
+    },
+    "tto3": {
+      "ops": 0.25,
+      "k_pct": 25.0,
+      "bb_pct": 25.0,
+      "bf": 4
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 36.0,
+      "rv_per_100": 3.6,
+      "xwoba_against": 0.262,
+      "whiff_pct": 30.1,
+      "put_away_pct": 22.1,
+      "hard_hit_pct": 23.5
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 27.6,
+      "rv_per_100": -1.3,
+      "xwoba_against": 0.363,
+      "whiff_pct": 17.2,
+      "put_away_pct": 12.5,
+      "hard_hit_pct": 45.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

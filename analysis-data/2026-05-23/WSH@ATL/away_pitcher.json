@@ -1,0 +1,183 @@
+{
+  "name": "Jake Irvin",
+  "mlbam_id": 663623,
+  "age": 29,
+  "birth_date": "1997-02-18",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.832,
+    "k_bb_pct": 0.75,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 82.1,
+    "era_only_score": 19.2,
+    "gap": 62.9
+  },
+  "season": {
+    "era": 5.79,
+    "whip": 1.48,
+    "k_pct": 24.1,
+    "bb_pct": 9.9,
+    "k_bb_pct": 14.2,
+    "fip": 4.21,
+    "xfip": 3.6,
+    "hr_per_9": 1.35,
+    "gb_pct": 44.2,
+    "ip": 46.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 5.59,
+    "xwoba": 0.367,
+    "xba": 0.262
+  },
+  "statcast": {
+    "avg_velo": 87.0,
+    "max_velo": 96.3,
+    "hard_hit_pct": 27.7,
+    "pitch_types": {
+      "FF": 26.7,
+      "SI": 25.2,
+      "CU": 23.5,
+      "FC": 11.6,
+      "ST": 8.5
+    },
+    "barrel_pct": 12.7,
+    "ev95percent": 47.0,
+    "whiff_pct": 10.1,
+    "csw_pct": 27.3
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Chicago Cubs",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 7,
+      "bb": 1,
+      "h": 3,
+      "er": 2,
+      "pitches": 93,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 4.0,
+      "era": 8.0,
+      "k": 4,
+      "bb": 2,
+      "h": 8,
+      "er": 6,
+      "pitches": 85,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Milwaukee Brewers",
+      "ip": 5.0,
+      "era": 7.07,
+      "k": 5,
+      "bb": 5,
+      "h": 2,
+      "er": 3,
+      "pitches": 100,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".235",
+      "obp": ".348",
+      "slg": ".400",
+      "k": 35,
+      "bb": 16,
+      "bf": 135,
+      "k_pct": 25.9,
+      "bb_pct": 11.9
+    },
+    "vs_right": {
+      "avg": ".304",
+      "obp": ".364",
+      "slg": ".478",
+      "k": 16,
+      "bb": 5,
+      "bf": 77,
+      "k_pct": 20.8,
+      "bb_pct": 6.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.782,
+      "k_pct": 23.1,
+      "bb_pct": 11.0,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.831,
+      "k_pct": 23.3,
+      "bb_pct": 10.0,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.647,
+      "k_pct": 29.0,
+      "bb_pct": 6.5,
+      "bf": 31
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 26.7,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.342,
+      "whiff_pct": 25.7,
+      "put_away_pct": 17.8,
+      "hard_hit_pct": 58.1
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 25.2,
+      "rv_per_100": -1.1,
+      "xwoba_against": 0.492,
+      "whiff_pct": 8.9,
+      "put_away_pct": 10.3,
+      "hard_hit_pct": 51.3
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 23.5,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.265,
+      "whiff_pct": 43.8,
+      "put_away_pct": 20.8,
+      "hard_hit_pct": 23.8
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 11.6,
+      "rv_per_100": -2.8,
+      "xwoba_against": 0.449,
+      "whiff_pct": 15.4,
+      "put_away_pct": 23.5,
+      "hard_hit_pct": 60.9
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

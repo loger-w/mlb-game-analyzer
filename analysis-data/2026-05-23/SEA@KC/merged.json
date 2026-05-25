@@ -1,0 +1,102 @@
+{
+  "home_recent_rs": 2.5,
+  "home_recent_ra": 4.3,
+  "away_recent_rs": 4.2,
+  "away_recent_ra": 3.3,
+  "home_recent_30_rs": 4.1,
+  "home_recent_30_ra": 4.33,
+  "away_recent_30_rs": 4.23,
+  "away_recent_30_ra": 3.9,
+  "home_season_rs": 3.73,
+  "home_season_ra": 4.35,
+  "away_season_rs": 4.08,
+  "away_season_ra": 3.83,
+  "home_season_games": 52,
+  "away_season_games": 52,
+  "home_starter_fip": 4.69,
+  "home_starter_k_bb": 11.6,
+  "home_starter_whip": 1.0,
+  "away_starter_fip": 3.45,
+  "away_starter_k_bb": 14.3,
+  "away_starter_whip": 1.18,
+  "home_batting_xwoba": 0.309,
+  "home_batting_ops": 0.689,
+  "home_batting_k_pct": 22.8,
+  "away_batting_xwoba": 0.332,
+  "away_batting_ops": 0.698,
+  "away_batting_k_pct": 24.3,
+  "home_pitcher": {
+    "era": 4.24,
+    "xera": 4.0,
+    "ip": 17.0,
+    "era_xera_delta": 0.24,
+    "arsenal_top": []
+  },
+  "away_pitcher": {
+    "era": 3.45,
+    "xera": 3.21,
+    "ip": 62.666666666666664,
+    "era_xera_delta": 0.24,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 31.8,
+        "rv_per_100": 0.2,
+        "xwoba_against": 0.317,
+        "whiff_pct": 20.8,
+        "put_away_pct": 14.3,
+        "hard_hit_pct": 43.9
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 26.5,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.206,
+        "whiff_pct": 29.5,
+        "put_away_pct": 26.3,
+        "hard_hit_pct": 27.5
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 20.6,
+        "rv_per_100": 1.1,
+        "xwoba_against": 0.303,
+        "whiff_pct": 12.1,
+        "put_away_pct": 19.2,
+        "hard_hit_pct": 48.8
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.252
+  },
+  "away_lineup": {
+    "recent_babip": 0.216
+  },
+  "home_bullpen_era": 4.53,
+  "away_bullpen_era": 3.04,
+  "park_factor": 106.0,
+  "home_core_bullpen_il_count": 2,
+  "away_core_bullpen_il_count": 2,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 77,
+    "wind_text": "6 mph, In From LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "Kansas City Royals",
+    "away_team": "Seattle Mariners",
+    "home_sp": "Stephen Kolek",
+    "away_sp": "George Kirby",
+    "home_sp_starts": 3,
+    "away_sp_starts": 10,
+    "venue": "Kauffman Stadium",
+    "game_pk": 824109,
+    "game_date": "2026-05-23T20:10:00Z",
+    "official_date": "2026-05-23"
+  }
+}

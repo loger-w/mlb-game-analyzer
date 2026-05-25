@@ -1,0 +1,128 @@
+{
+  "home_recent_rs": 5.5,
+  "home_recent_ra": 3.6,
+  "away_recent_rs": 3.8,
+  "away_recent_ra": 5.5,
+  "home_recent_30_rs": 4.53,
+  "home_recent_30_ra": 4.57,
+  "away_recent_30_rs": 4.07,
+  "away_recent_30_ra": 5.2,
+  "home_season_rs": 4.5,
+  "home_season_ra": 4.54,
+  "away_season_rs": 3.96,
+  "away_season_ra": 4.96,
+  "home_season_games": 50,
+  "away_season_games": 54,
+  "home_starter_fip": 4.49,
+  "home_starter_k_bb": 8.8,
+  "home_starter_whip": 1.43,
+  "away_starter_fip": 5.07,
+  "away_starter_k_bb": 8.0,
+  "away_starter_whip": 1.91,
+  "home_batting_xwoba": 0.325,
+  "home_batting_ops": 0.725,
+  "home_batting_k_pct": 19.4,
+  "away_batting_xwoba": 0.315,
+  "away_batting_ops": 0.696,
+  "away_batting_k_pct": 23.3,
+  "home_pitcher": {
+    "era": 4.78,
+    "xera": 5.17,
+    "ip": 49.0,
+    "era_xera_delta": -0.39,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 37.1,
+        "rv_per_100": 0.1,
+        "xwoba_against": 0.391,
+        "whiff_pct": 4.6,
+        "put_away_pct": 15.7,
+        "hard_hit_pct": 50.0
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 24.1,
+        "rv_per_100": -1.4,
+        "xwoba_against": 0.308,
+        "whiff_pct": 35.0,
+        "put_away_pct": 16.2,
+        "hard_hit_pct": 43.9
+      },
+      {
+        "pitch_type": "CU",
+        "pitch_name": "Curveball",
+        "usage": 19.4,
+        "rv_per_100": -2.0,
+        "xwoba_against": 0.405,
+        "whiff_pct": 25.3,
+        "put_away_pct": 11.3,
+        "hard_hit_pct": 53.3
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 7.03,
+    "xera": 6.0,
+    "ip": 48.666666666666664,
+    "era_xera_delta": 1.03,
+    "arsenal_top": [
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 21.4,
+        "rv_per_100": -2.7,
+        "xwoba_against": 0.323,
+        "whiff_pct": 33.3,
+        "put_away_pct": 14.1,
+        "hard_hit_pct": 33.3
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 20.4,
+        "rv_per_100": -3.0,
+        "xwoba_against": 0.487,
+        "whiff_pct": 10.0,
+        "put_away_pct": 11.3,
+        "hard_hit_pct": 65.6
+      },
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 16.0,
+        "rv_per_100": -1.5,
+        "xwoba_against": 0.379,
+        "whiff_pct": 11.8,
+        "put_away_pct": 16.0,
+        "hard_hit_pct": 51.2
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.34
+  },
+  "away_lineup": {
+    "recent_babip": 0.286
+  },
+  "home_bullpen_era": 4.2,
+  "away_bullpen_era": 4.32,
+  "park_factor": 101.0,
+  "home_core_bullpen_il_count": 3,
+  "away_core_bullpen_il_count": 2,
+  "weather": null,
+  "_meta": {
+    "home_team": "Arizona Diamondbacks",
+    "away_team": "Colorado Rockies",
+    "home_sp": "Zac Gallen",
+    "away_sp": "Michael Lorenzen",
+    "home_sp_starts": 10,
+    "away_sp_starts": 10,
+    "venue": "Chase Field",
+    "game_pk": 825080,
+    "game_date": "2026-05-24T02:10:00Z",
+    "official_date": "2026-05-23"
+  }
+}

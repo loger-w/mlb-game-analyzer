@@ -1,0 +1,349 @@
+{
+  "team": "Milwaukee Brewers",
+  "team_id": 158,
+  "active_roster": {
+    "pitchers": [
+      "Aaron Ashby",
+      "Abner Uribe",
+      "Brandon Sproat",
+      "Chad Patrick",
+      "DL Hall",
+      "Grant Anderson",
+      "Jacob Misiorowski",
+      "Jake Woodford",
+      "Kyle Harrison",
+      "Logan Henderson",
+      "Robert Gasser",
+      "Shane Drohan",
+      "Trevor Megill"
+    ],
+    "pitcher_ids": [
+      676879,
+      682842,
+      687075,
+      694477,
+      669084,
+      681982,
+      694819,
+      663765,
+      690986,
+      701656,
+      688107,
+      675660,
+      656730
+    ],
+    "position_players": [
+      "Andrew Vaughn",
+      "Blake Perkins",
+      "Brice Turang",
+      "Christian Yelich",
+      "David Hamilton",
+      "Garrett Mitchell",
+      "Gary Sánchez",
+      "Jackson Chourio",
+      "Jake Bauers",
+      "Joey Ortiz",
+      "Luis Rengifo",
+      "Sal Frelick",
+      "William Contreras"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Aaron Ashby",
+        "player_id": 676879,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 23,
+          "gs": 1,
+          "ip": 31.0
+        }
+      },
+      {
+        "name": "Abner Uribe",
+        "player_id": 682842,
+        "core_role": "Co-Closer",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 5,
+          "holds": 5,
+          "g": 20,
+          "gs": 0,
+          "ip": 18.3
+        }
+      },
+      {
+        "name": "Brandon Sproat",
+        "player_id": 687075,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 7,
+          "ip": 40.7
+        }
+      },
+      {
+        "name": "Chad Patrick",
+        "player_id": 694477,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 2,
+          "g": 12,
+          "gs": 5,
+          "ip": 41.0
+        }
+      },
+      {
+        "name": "DL Hall",
+        "player_id": 669084,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 20,
+          "gs": 1,
+          "ip": 23.3
+        }
+      },
+      {
+        "name": "Grant Anderson",
+        "player_id": 681982,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 20,
+          "gs": 0,
+          "ip": 19.7
+        }
+      },
+      {
+        "name": "Jacob Misiorowski",
+        "player_id": 694819,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 57.0
+        }
+      },
+      {
+        "name": "Jake Woodford",
+        "player_id": 663765,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 0,
+          "g": 12,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Kyle Harrison",
+        "player_id": 690986,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 45.7
+        }
+      },
+      {
+        "name": "Logan Henderson",
+        "player_id": 701656,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 5,
+          "ip": 23.0
+        }
+      },
+      {
+        "name": "Robert Gasser",
+        "player_id": 688107,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 1,
+          "gs": 1,
+          "ip": 4.0
+        }
+      },
+      {
+        "name": "Shane Drohan",
+        "player_id": 675660,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 9,
+          "gs": 1,
+          "ip": 22.3
+        }
+      },
+      {
+        "name": "Trevor Megill",
+        "player_id": 656730,
+        "core_role": "Co-Closer",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 5,
+          "holds": 6,
+          "g": 18,
+          "gs": 0,
+          "ip": 17.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Akil Baddoo",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 668731
+    },
+    {
+      "name": "Angel Zerpa",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 672582,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 2,
+        "g": 12,
+        "gs": 0,
+        "ip": 12.7
+      }
+    },
+    {
+      "name": "Brandon Lockridge",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 663604
+    },
+    {
+      "name": "Brandon Woodruff",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 605540,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 6,
+        "ip": 30.0
+      }
+    },
+    {
+      "name": "Jared Koenig",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 657649,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 27,
+        "g": 72,
+        "gs": 0,
+        "ip": 66.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Quinn Priester",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 682990,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 29,
+        "gs": 24,
+        "ip": 157.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Rob Zastryzny",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 642239,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 2,
+        "g": 26,
+        "gs": 1,
+        "ip": 22.0,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Brian Fitzpatrick",
+    "Carlos Rodriguez",
+    "Coleman Crow",
+    "Cooper Pratt",
+    "Craig Yoho",
+    "Easton McGee",
+    "Jeferson Quero",
+    "Tyler Black"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 7,
+    "total_40man_not_active": 8
+  }
+}

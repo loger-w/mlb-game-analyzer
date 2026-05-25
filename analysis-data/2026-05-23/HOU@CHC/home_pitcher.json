@@ -1,0 +1,173 @@
+{
+  "name": "Colin Rea",
+  "mlbam_id": 607067,
+  "age": 35,
+  "birth_date": "1990-07-01",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.649,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 78.9,
+    "era_only_score": 35.5,
+    "gap": 43.4
+  },
+  "season": {
+    "era": 4.98,
+    "whip": 1.43,
+    "k_pct": 19.3,
+    "bb_pct": 6.8,
+    "k_bb_pct": 12.5,
+    "fip": 3.95,
+    "xfip": 3.34,
+    "hr_per_9": 1.15,
+    "gb_pct": 61.2,
+    "ip": 47.0,
+    "games": 10,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 5.31,
+    "xwoba": 0.359,
+    "xba": 0.284
+  },
+  "statcast": {
+    "avg_velo": 89.5,
+    "max_velo": 96.0,
+    "hard_hit_pct": 27.2,
+    "pitch_types": {
+      "FF": 40.4,
+      "FS": 18.0,
+      "SL": 12.3,
+      "SI": 9.3,
+      "FC": 7.2
+    },
+    "barrel_pct": 11.3,
+    "ev95percent": 46.4,
+    "whiff_pct": 8.9,
+    "csw_pct": 25.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Los Angeles Angels",
+      "ip": 3.0,
+      "era": 6.0,
+      "k": 4,
+      "bb": 0,
+      "h": 4,
+      "er": 2,
+      "pitches": 42,
+      "strikes": 27
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Cleveland Guardians",
+      "ip": 3.3333333333333335,
+      "era": 4.26,
+      "k": 4,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 57,
+      "strikes": 37
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Tampa Bay Rays",
+      "ip": 5.0,
+      "era": 3.18,
+      "k": 2,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 79,
+      "strikes": 51
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".333",
+      "obp": ".382",
+      "slg": ".458",
+      "k": 27,
+      "bb": 10,
+      "bf": 132,
+      "k_pct": 20.5,
+      "bb_pct": 7.6
+    },
+    "vs_right": {
+      "avg": ".188",
+      "obp": ".253",
+      "slg": ".333",
+      "k": 13,
+      "bb": 4,
+      "bf": 75,
+      "k_pct": 17.3,
+      "bb_pct": 5.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.702,
+      "k_pct": 19.2,
+      "bb_pct": 4.0,
+      "bf": 99
+    },
+    "tto2": {
+      "ops": 0.839,
+      "k_pct": 21.3,
+      "bb_pct": 10.1,
+      "bf": 89
+    },
+    "tto3": {
+      "ops": 0.687,
+      "k_pct": 17.1,
+      "bb_pct": 8.6,
+      "bf": 35
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 40.9,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.379,
+      "whiff_pct": 13.0,
+      "put_away_pct": 11.9,
+      "hard_hit_pct": 47.7
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 18.7,
+      "rv_per_100": 1.9,
+      "xwoba_against": 0.282,
+      "whiff_pct": 33.3,
+      "put_away_pct": 17.3,
+      "hard_hit_pct": 37.0
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 12.2,
+      "rv_per_100": 3.1,
+      "xwoba_against": 0.235,
+      "whiff_pct": 36.5,
+      "put_away_pct": 29.8,
+      "hard_hit_pct": 64.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

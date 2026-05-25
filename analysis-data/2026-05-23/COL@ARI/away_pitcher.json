@@ -1,0 +1,183 @@
+{
+  "name": "Michael Lorenzen",
+  "mlbam_id": 547179,
+  "age": 34,
+  "birth_date": "1992-01-04",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.662,
+    "k_bb_pct": 0.357,
+    "stuff_pct": null,
+    "age_factor": 0.71
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 56.3,
+    "era_only_score": 15.0,
+    "gap": 41.3
+  },
+  "season": {
+    "era": 7.03,
+    "whip": 1.91,
+    "k_pct": 15.2,
+    "bb_pct": 7.2,
+    "k_bb_pct": 8.0,
+    "fip": 5.07,
+    "xfip": 3.9,
+    "hr_per_9": 1.66,
+    "gb_pct": 56.2,
+    "ip": 48.666666666666664,
+    "games": 11,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 6.0,
+    "xwoba": 0.378,
+    "xba": 0.317
+  },
+  "statcast": {
+    "avg_velo": 88.1,
+    "max_velo": 96.8,
+    "hard_hit_pct": 32.8,
+    "pitch_types": {
+      "CH": 20.7,
+      "FF": 19.5,
+      "SI": 16.8,
+      "CU": 13.8,
+      "FC": 12.0
+    },
+    "barrel_pct": 9.4,
+    "ev95percent": 47.5,
+    "whiff_pct": 8.9,
+    "csw_pct": 25.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Miami Marlins",
+      "ip": 4.333333333333333,
+      "era": 6.23,
+      "k": 4,
+      "bb": 0,
+      "h": 7,
+      "er": 3,
+      "pitches": 93,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Philadelphia Phillies",
+      "ip": 3.0,
+      "era": 14.73,
+      "k": 2,
+      "bb": 2,
+      "h": 12,
+      "er": 9,
+      "pitches": 77,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-08",
+      "opponent": "Houston Astros",
+      "ip": 5.666666666666667,
+      "era": 9.0,
+      "k": 4,
+      "bb": 2,
+      "h": 7,
+      "er": 1,
+      "pitches": 100,
+      "strikes": 62
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".408",
+      "obp": ".461",
+      "slg": ".748",
+      "k": 20,
+      "bb": 10,
+      "bf": 115,
+      "k_pct": 17.4,
+      "bb_pct": 8.7
+    },
+    "vs_right": {
+      "avg": ".304",
+      "obp": ".355",
+      "slg": ".393",
+      "k": 16,
+      "bb": 7,
+      "bf": 122,
+      "k_pct": 13.1,
+      "bb_pct": 5.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.96,
+      "k_pct": 19.4,
+      "bb_pct": 6.8,
+      "bf": 103
+    },
+    "tto2": {
+      "ops": 0.776,
+      "k_pct": 12.1,
+      "bb_pct": 9.1,
+      "bf": 99
+    },
+    "tto3": {
+      "ops": 1.306,
+      "k_pct": 12.5,
+      "bb_pct": 7.1,
+      "bf": 56
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 21.4,
+      "rv_per_100": -2.7,
+      "xwoba_against": 0.323,
+      "whiff_pct": 33.3,
+      "put_away_pct": 14.1,
+      "hard_hit_pct": 33.3
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 20.4,
+      "rv_per_100": -3.0,
+      "xwoba_against": 0.487,
+      "whiff_pct": 10.0,
+      "put_away_pct": 11.3,
+      "hard_hit_pct": 65.6
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 16.0,
+      "rv_per_100": -1.5,
+      "xwoba_against": 0.379,
+      "whiff_pct": 11.8,
+      "put_away_pct": 16.0,
+      "hard_hit_pct": 51.2
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 11.9,
+      "rv_per_100": -2.7,
+      "xwoba_against": 0.388,
+      "whiff_pct": 16.7,
+      "put_away_pct": 13.3,
+      "hard_hit_pct": 37.9
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

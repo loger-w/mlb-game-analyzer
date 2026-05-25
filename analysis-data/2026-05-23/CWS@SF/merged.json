@@ -1,0 +1,118 @@
+{
+  "home_recent_rs": 3.8,
+  "home_recent_ra": 5.3,
+  "away_recent_rs": 5.6,
+  "away_recent_ra": 4.9,
+  "home_recent_30_rs": 3.4,
+  "home_recent_30_ra": 4.6,
+  "away_recent_30_rs": 5.37,
+  "away_recent_30_ra": 4.23,
+  "home_season_rs": 3.4,
+  "home_season_ra": 4.5,
+  "away_season_rs": 4.45,
+  "away_season_ra": 4.59,
+  "home_season_games": 52,
+  "away_season_games": 51,
+  "home_starter_fip": 5.37,
+  "home_starter_k_bb": 3.2,
+  "home_starter_whip": 1.48,
+  "away_starter_fip": 2.4,
+  "away_starter_k_bb": 13.1,
+  "away_starter_whip": 1.35,
+  "home_batting_xwoba": 0.294,
+  "home_batting_ops": 0.684,
+  "home_batting_k_pct": 23.1,
+  "away_batting_xwoba": 0.324,
+  "away_batting_ops": 0.702,
+  "away_batting_k_pct": 23.4,
+  "home_pitcher": {
+    "era": 5.25,
+    "xera": 5.81,
+    "ip": 48.0,
+    "era_xera_delta": -0.56,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 45.9,
+        "rv_per_100": -0.7,
+        "xwoba_against": 0.414,
+        "whiff_pct": 8.7,
+        "put_away_pct": 9.7,
+        "hard_hit_pct": 48.9
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 18.7,
+        "rv_per_100": -2.1,
+        "xwoba_against": 0.294,
+        "whiff_pct": 33.8,
+        "put_away_pct": 13.3,
+        "hard_hit_pct": 35.0
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 13.3,
+        "rv_per_100": -3.1,
+        "xwoba_against": 0.391,
+        "whiff_pct": 16.0,
+        "put_away_pct": 12.5,
+        "hard_hit_pct": 44.8
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 1.57,
+    "xera": 3.02,
+    "ip": 23.0,
+    "era_xera_delta": -1.45,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 62.4,
+        "rv_per_100": 0.9,
+        "xwoba_against": 0.267,
+        "whiff_pct": 27.2,
+        "put_away_pct": 19.2,
+        "hard_hit_pct": 30.8
+      },
+      {
+        "pitch_type": "ST",
+        "pitch_name": "Sweeper",
+        "usage": 23.9,
+        "rv_per_100": -0.5,
+        "xwoba_against": 0.28,
+        "whiff_pct": 25.6,
+        "put_away_pct": 15.4,
+        "hard_hit_pct": 35.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.302
+  },
+  "away_lineup": {
+    "recent_babip": 0.27
+  },
+  "home_bullpen_era": 3.42,
+  "away_bullpen_era": 4.56,
+  "park_factor": 91.0,
+  "home_core_bullpen_il_count": 3,
+  "away_core_bullpen_il_count": 1,
+  "weather": null,
+  "_meta": {
+    "home_team": "San Francisco Giants",
+    "away_team": "Chicago White Sox",
+    "home_sp": "Adrian Houser",
+    "away_sp": "Bryan Hudson",
+    "home_sp_starts": 9,
+    "away_sp_starts": 2,
+    "venue": "Oracle Park",
+    "game_pk": 823222,
+    "game_date": "2026-05-23T20:05:00Z",
+    "official_date": "2026-05-23"
+  }
+}

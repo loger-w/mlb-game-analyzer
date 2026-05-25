@@ -1,0 +1,173 @@
+{
+  "name": "Freddy Peralta",
+  "mlbam_id": 642547,
+  "age": 29,
+  "birth_date": "1996-06-04",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.662,
+    "k_bb_pct": 0.649,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 71.2,
+    "era_only_score": 72.8,
+    "gap": -1.6
+  },
+  "season": {
+    "era": 3.31,
+    "whip": 1.25,
+    "k_pct": 23.2,
+    "bb_pct": 10.7,
+    "k_bb_pct": 12.5,
+    "fip": 3.93,
+    "xfip": 3.9,
+    "hr_per_9": 0.99,
+    "gb_pct": 45.9,
+    "ip": 54.333333333333336,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 3.87,
+    "xwoba": 0.312,
+    "xba": 0.236
+  },
+  "statcast": {
+    "avg_velo": 89.4,
+    "max_velo": 98.0,
+    "hard_hit_pct": 23.1,
+    "pitch_types": {
+      "FF": 56.2,
+      "CH": 20.7,
+      "CU": 11.6,
+      "SL": 9.5,
+      "CS": 2.0
+    },
+    "barrel_pct": 5.9,
+    "ev95percent": 39.5,
+    "whiff_pct": 11.8,
+    "csw_pct": 27.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 5.0,
+      "era": 7.2,
+      "k": 7,
+      "bb": 0,
+      "h": 6,
+      "er": 4,
+      "pitches": 80,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "St. Louis Cardinals",
+      "ip": 5.333333333333333,
+      "era": 4.35,
+      "k": 7,
+      "bb": 2,
+      "h": 3,
+      "er": 1,
+      "pitches": 92,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 4.666666666666667,
+      "era": 4.8,
+      "k": 5,
+      "bb": 3,
+      "h": 3,
+      "er": 3,
+      "pitches": 101,
+      "strikes": 62
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".218",
+      "obp": ".297",
+      "slg": ".368",
+      "k": 35,
+      "bb": 15,
+      "bf": 149,
+      "k_pct": 23.5,
+      "bb_pct": 10.1
+    },
+    "vs_right": {
+      "avg": ".197",
+      "obp": ".310",
+      "slg": ".268",
+      "k": 19,
+      "bb": 10,
+      "bf": 84,
+      "k_pct": 22.6,
+      "bb_pct": 11.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.655,
+      "k_pct": 27.8,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.651,
+      "k_pct": 20.0,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.554,
+      "k_pct": 20.8,
+      "bb_pct": 20.8,
+      "bf": 53
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 56.2,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.315,
+      "whiff_pct": 24.7,
+      "put_away_pct": 17.9,
+      "hard_hit_pct": 46.8
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 20.7,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.273,
+      "whiff_pct": 27.0,
+      "put_away_pct": 19.0,
+      "hard_hit_pct": 22.5
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 13.6,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.287,
+      "whiff_pct": 32.8,
+      "put_away_pct": 23.3,
+      "hard_hit_pct": 42.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "name": "Chris Paddack",
+  "mlbam_id": 663978,
+  "age": 30,
+  "birth_date": "1996-01-08",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.735,
+    "k_bb_pct": 0.577,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 71.0,
+    "era_only_score": 15.0,
+    "gap": 56.0
+  },
+  "season": {
+    "era": 7.07,
+    "whip": 1.63,
+    "k_pct": 17.8,
+    "bb_pct": 6.5,
+    "k_bb_pct": 11.3,
+    "fip": 4.53,
+    "xfip": 3.8,
+    "hr_per_9": 1.51,
+    "gb_pct": 49.4,
+    "ip": 35.666666666666664,
+    "games": 8,
+    "gs": 7
+  },
+  "expected": {
+    "xera": 4.2,
+    "xwoba": 0.324,
+    "xba": 0.262
+  },
+  "statcast": {
+    "avg_velo": 87.0,
+    "max_velo": 95.8,
+    "hard_hit_pct": 25.1,
+    "pitch_types": {
+      "FF": 33.5,
+      "CH": 26.2,
+      "FC": 12.0,
+      "ST": 10.5,
+      "CU": 9.9
+    },
+    "barrel_pct": 8.7,
+    "ev95percent": 42.1,
+    "whiff_pct": 10.2,
+    "csw_pct": 24.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Chicago White Sox",
+      "ip": 4.0,
+      "era": 18.0,
+      "k": 6,
+      "bb": 0,
+      "h": 8,
+      "er": 8,
+      "pitches": 79,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "New York Yankees",
+      "ip": 4.666666666666667,
+      "era": 8.31,
+      "k": 4,
+      "bb": 4,
+      "h": 3,
+      "er": 0,
+      "pitches": 88,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Detroit Tigers",
+      "ip": 6.0,
+      "era": 6.14,
+      "k": 4,
+      "bb": 1,
+      "h": 7,
+      "er": 2,
+      "pitches": 96,
+      "strikes": 65
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".301",
+      "obp": ".369",
+      "slg": ".430",
+      "k": 15,
+      "bb": 9,
+      "bf": 104,
+      "k_pct": 14.4,
+      "bb_pct": 8.7
+    },
+    "vs_right": {
+      "avg": ".311",
+      "obp": ".338",
+      "slg": ".541",
+      "k": 15,
+      "bb": 2,
+      "bf": 65,
+      "k_pct": 23.1,
+      "bb_pct": 3.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.732,
+      "k_pct": 21.6,
+      "bb_pct": 5.0,
+      "bf": 740
+    },
+    "tto2": {
+      "ops": 0.828,
+      "k_pct": 18.3,
+      "bb_pct": 4.6,
+      "bf": 591
+    },
+    "tto3": {
+      "ops": 0.708,
+      "k_pct": 17.7,
+      "bb_pct": 8.2,
+      "bf": 231
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 34.1,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.318,
+      "whiff_pct": 15.9,
+      "put_away_pct": 13.0,
+      "hard_hit_pct": 34.3
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 26.7,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.286,
+      "whiff_pct": 26.7,
+      "put_away_pct": 20.0,
+      "hard_hit_pct": 41.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

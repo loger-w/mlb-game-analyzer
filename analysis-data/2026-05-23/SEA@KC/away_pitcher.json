@@ -1,0 +1,173 @@
+{
+  "name": "George Kirby",
+  "mlbam_id": 669923,
+  "age": 28,
+  "birth_date": "1998-02-04",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.753,
+    "stuff_pct": null,
+    "age_factor": 0.96
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 88.2,
+    "era_only_score": 70.0,
+    "gap": 18.2
+  },
+  "season": {
+    "era": 3.45,
+    "whip": 1.18,
+    "k_pct": 20.7,
+    "bb_pct": 6.4,
+    "k_bb_pct": 14.3,
+    "fip": 3.45,
+    "xfip": 3.22,
+    "hr_per_9": 0.86,
+    "gb_pct": 60.2,
+    "ip": 62.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 3.21,
+    "xwoba": 0.286,
+    "xba": 0.233
+  },
+  "statcast": {
+    "avg_velo": 92.1,
+    "max_velo": 99.7,
+    "hard_hit_pct": 25.9,
+    "pitch_types": {
+      "FF": 31.6,
+      "ST": 26.4,
+      "SI": 20.3,
+      "KC": 9.4,
+      "CH": 8.8
+    },
+    "barrel_pct": 5.5,
+    "ev95percent": 40.3,
+    "whiff_pct": 10.1,
+    "csw_pct": 24.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Cleveland Guardians",
+      "ip": 6.0,
+      "era": 1.5,
+      "k": 6,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 90,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "New York Yankees",
+      "ip": 6.0,
+      "era": 3.75,
+      "k": 6,
+      "bb": 3,
+      "h": 5,
+      "er": 4,
+      "pitches": 89,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Texas Rangers",
+      "ip": 8.0,
+      "era": 3.6,
+      "k": 4,
+      "bb": 0,
+      "h": 6,
+      "er": 3,
+      "pitches": 90,
+      "strikes": 68
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".214",
+      "obp": ".296",
+      "slg": ".330",
+      "k": 23,
+      "bb": 12,
+      "bf": 125,
+      "k_pct": 18.4,
+      "bb_pct": 9.6
+    },
+    "vs_right": {
+      "avg": ".281",
+      "obp": ".310",
+      "slg": ".388",
+      "k": 29,
+      "bb": 4,
+      "bf": 126,
+      "k_pct": 23.0,
+      "bb_pct": 3.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.586,
+      "k_pct": 24.0,
+      "bb_pct": 4.0,
+      "bf": 100
+    },
+    "tto2": {
+      "ops": 0.719,
+      "k_pct": 17.2,
+      "bb_pct": 8.1,
+      "bf": 99
+    },
+    "tto3": {
+      "ops": 0.721,
+      "k_pct": 21.1,
+      "bb_pct": 7.0,
+      "bf": 71
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.8,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.317,
+      "whiff_pct": 20.8,
+      "put_away_pct": 14.3,
+      "hard_hit_pct": 43.9
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 26.5,
+      "rv_per_100": 0.9,
+      "xwoba_against": 0.206,
+      "whiff_pct": 29.5,
+      "put_away_pct": 26.3,
+      "hard_hit_pct": 27.5
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 20.6,
+      "rv_per_100": 1.1,
+      "xwoba_against": 0.303,
+      "whiff_pct": 12.1,
+      "put_away_pct": 19.2,
+      "hard_hit_pct": 48.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

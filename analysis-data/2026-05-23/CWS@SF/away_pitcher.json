@@ -1,0 +1,145 @@
+{
+  "name": "Bryan Hudson",
+  "mlbam_id": 663542,
+  "age": 29,
+  "birth_date": "1997-05-08",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 95.0,
+    "gap": null
+  },
+  "season": {
+    "era": 1.57,
+    "whip": 1.35,
+    "k_pct": 23.2,
+    "bb_pct": 10.1,
+    "k_bb_pct": 13.1,
+    "fip": 2.4,
+    "xfip": 3.37,
+    "hr_per_9": 0.0,
+    "gb_pct": 59.5,
+    "ip": 23.0,
+    "games": 24,
+    "gs": 2
+  },
+  "expected": {
+    "xera": 3.02,
+    "xwoba": 0.278,
+    "xba": 0.221
+  },
+  "statcast": {
+    "avg_velo": 88.8,
+    "max_velo": 95.3,
+    "hard_hit_pct": 20.3,
+    "pitch_types": {
+      "FF": 62.9,
+      "ST": 23.8,
+      "SI": 9.8,
+      "FC": 3.5
+    },
+    "barrel_pct": 0.0,
+    "ev95percent": 33.3,
+    "whiff_pct": 10.9,
+    "csw_pct": 29.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Milwaukee Brewers",
+      "ip": 0.6666666666666666,
+      "era": 13.5,
+      "k": 2,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 33,
+      "strikes": 16
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "Miami Marlins",
+      "ip": 1.6666666666666665,
+      "era": 7.71,
+      "k": 1,
+      "bb": 1,
+      "h": 1,
+      "er": 1,
+      "pitches": 25,
+      "strikes": 15
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Toronto Blue Jays",
+      "ip": 0.6666666666666666,
+      "era": 6.0,
+      "k": 1,
+      "bb": 0,
+      "h": 2,
+      "er": 0,
+      "pitches": 19,
+      "strikes": 13
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".314",
+      "obp": ".395",
+      "slg": ".371",
+      "k": 10,
+      "bb": 5,
+      "bf": 44,
+      "k_pct": 22.7,
+      "bb_pct": 11.4
+    },
+    "vs_right": {
+      "avg": ".217",
+      "obp": ".321",
+      "slg": ".217",
+      "k": 13,
+      "bb": 5,
+      "bf": 55,
+      "k_pct": 23.6,
+      "bb_pct": 9.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.678,
+      "k_pct": 22.9,
+      "bb_pct": 10.5,
+      "bf": 105
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 62.4,
+      "rv_per_100": 0.9,
+      "xwoba_against": 0.267,
+      "whiff_pct": 27.2,
+      "put_away_pct": 19.2,
+      "hard_hit_pct": 30.8
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 23.9,
+      "rv_per_100": -0.5,
+      "xwoba_against": 0.28,
+      "whiff_pct": 25.6,
+      "put_away_pct": 15.4,
+      "hard_hit_pct": 35.3
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
