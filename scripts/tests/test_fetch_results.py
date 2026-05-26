@@ -4,8 +4,6 @@ import sys
 from pathlib import Path
 from unittest.mock import patch
 
-import pytest
-
 SCRIPT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
@@ -58,3 +56,15 @@ def test_build_result_record_winner_home():
     })
     assert record["winner"] == "HOME"
     assert record["total"] == 11
+
+
+def test_build_result_record_winner_tie():
+    record = build_result_record({
+        "game_pk": 1,
+        "home_team": "H",
+        "away_team": "A",
+        "home_score": 5,
+        "away_score": 5,
+    })
+    assert record["winner"] == "TIE"
+    assert record["total"] == 10

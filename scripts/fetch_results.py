@@ -55,12 +55,15 @@ def fetch_final_scores(date: str) -> list[dict]:
 
 
 def build_result_record(raw: dict) -> dict:
-    """Convert MLB API row → result.json schema per spec §2."""
+    """Convert MLB API row → result.json schema per spec §2.
+
+    Returns dict with winner ∈ {"HOME", "AWAY", "TIE"}.
+    """
     home = raw["home_score"]
     away = raw["away_score"]
     return {
         "game_pk": raw["game_pk"],
-        "winner": "HOME" if home > away else "AWAY",
+        "winner": "HOME" if home > away else ("TIE" if home == away else "AWAY"),
         "final_score": [home, away],
         "home_score": home,
         "away_score": away,
@@ -90,7 +93,7 @@ def find_matchup_dir(date: str, home_team: str, away_team: str) -> Optional[Path
             g = data.get("game", {})
             if g.get("home", {}).get("team") == home_team and g.get("away", {}).get("team") == away_team:
                 return sub
-        except (json.JSONDecodeError, KeyError):
+        except json.JSONDecodeError:
             continue
     return None
 
@@ -102,7 +105,7 @@ def write_result(matchup_dir: Path, record: dict) -> Path:
 
 
 def process_date(date: str) -> dict:
-    """Fetch & write all results for one date. Returns {matched, missing, postponed} counts."""
+    """Fetch & write all results for one date. Returns {date, fetched, matched, missing} dict."""
     scores = fetch_final_scores(date)
     matched = 0
     missing = []
