@@ -161,5 +161,5 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
         "closing_missing": closing_missing,
         "closing_snapshot_ts": snap_filename or "",
         "result_missing": result_missing,
-        "dossier_path": (matchup_dir / "dossier.md").relative_to(SKILL_ROOT).as_posix(),
+        "dossier_path": f"../{date}/{matchup_dir.name}/dossier.md",
     }

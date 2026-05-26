@@ -210,7 +210,7 @@ def compute_slice_metrics(df: pd.DataFrame) -> pd.DataFrame:
 
     def _slice_stats(sub: pd.DataFrame) -> dict:
         if len(sub) == 0:
-            return {"n": 0, "dir_hit": None, "ou_hit": None, "mae": None, "bias": None}
+            return {"n": 0, "dir_n": 0, "dir_hit": None, "ou_hit": None, "mae": None, "bias": None}
         dir_sub = sub[sub["skill_direction"].isin(["HOME", "AWAY"])]
         dir_hit = (dir_sub["skill_direction"] == dir_sub["actual_winner"]).mean() if len(dir_sub) else None
         # OU
@@ -225,7 +225,7 @@ def compute_slice_metrics(df: pd.DataFrame) -> pd.DataFrame:
             ou_hit = None
         mae = float((tot_sub["skill_total"] - tot_sub["actual_total"]).abs().mean()) if len(tot_sub) else None
         bias = float((tot_sub["skill_total"] - tot_sub["actual_total"]).mean()) if len(tot_sub) else None
-        return {"n": len(sub), "dir_hit": dir_hit, "ou_hit": ou_hit, "mae": mae, "bias": bias}
+        return {"n": len(sub), "dir_n": len(dir_sub), "dir_hit": dir_hit, "ou_hit": ou_hit, "mae": mae, "bias": bias}
 
     slices: dict[str, dict] = {}
 

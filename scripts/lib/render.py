@@ -161,10 +161,10 @@ def render_report(
     # 切片
     lines.append("## 4. 分組切片")
     lines.append("")
-    lines.append("| 切片 | n | dir_hit | ou_hit | mae | bias |")
-    lines.append("|---|---|---|---|---|---|")
+    lines.append("| 切片 | n | dir_n | dir_hit | ou_hit | mae | bias |")
+    lines.append("|---|---|---|---|---|---|---|")
     for idx, r in slices.iterrows():
-        lines.append(f"| {idx} | {r['n']} | {_fmt_pct(r['dir_hit'])} | {_fmt_pct(r['ou_hit'])} | "
+        lines.append(f"| {idx} | {int(r['n'])} | {int(r['dir_n'])} | {_fmt_pct(r['dir_hit'])} | {_fmt_pct(r['ou_hit'])} | "
                      f"{_fmt_num(r['mae'])} | {_fmt_num(r['bias'])} |")
     lines.append("")
 

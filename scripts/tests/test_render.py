@@ -38,7 +38,7 @@ def _sample_data():
         "brier_score": 0.38, "log_loss": 0.95,
         "brier_baseline_market": 0.36, "log_loss_baseline_market": 0.92,
     }
-    slices = pd.DataFrame({"n": [1], "dir_hit": [0.0], "ou_hit": [0.0], "mae": [4.5], "bias": [-4.5]},
+    slices = pd.DataFrame({"n": [1], "dir_n": [1], "dir_hit": [0.0], "ou_hit": [0.0], "mae": [4.5], "bias": [-4.5]},
                          index=["direction_HOME"])
     failures = df.copy()
     failures["dual_failure"] = True
