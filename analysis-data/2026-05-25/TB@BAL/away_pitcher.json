@@ -1,0 +1,172 @@
+{
+  "name": "Shane McClanahan",
+  "mlbam_id": 663556,
+  "age": 29,
+  "birth_date": "1997-04-28",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.873,
+    "k_bb_pct": 0.83,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 86.8,
+    "era_only_score": 83.1,
+    "gap": 3.7
+  },
+  "season": {
+    "era": 2.82,
+    "whip": 1.05,
+    "k_pct": 25.8,
+    "bb_pct": 9.3,
+    "k_bb_pct": 16.5,
+    "fip": 2.72,
+    "xfip": 3.51,
+    "hr_per_9": 0.4,
+    "gb_pct": 46.0,
+    "ip": 44.666666666666664,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 3.43,
+    "xwoba": 0.295,
+    "xba": 0.221
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 97.8,
+    "hard_hit_pct": 23.5,
+    "pitch_types": {
+      "FF": 37.2,
+      "CH": 29.5,
+      "SL": 20.5,
+      "CU": 12.8
+    },
+    "barrel_pct": 9.4,
+    "ev95percent": 41.0,
+    "whiff_pct": 12.1,
+    "csw_pct": 29.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Milwaukee Brewers",
+      "ip": 4.666666666666667,
+      "era": 3.86,
+      "k": 4,
+      "bb": 3,
+      "h": 2,
+      "er": 2,
+      "pitches": 79,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Chicago Cubs",
+      "ip": 4.0,
+      "era": 4.15,
+      "k": 5,
+      "bb": 4,
+      "h": 1,
+      "er": 2,
+      "pitches": 69,
+      "strikes": 35
+    },
+    {
+      "date": "2026-04-14",
+      "opponent": "Chicago White Sox",
+      "ip": 5.0,
+      "era": 3.95,
+      "k": 4,
+      "bb": 4,
+      "h": 2,
+      "er": 2,
+      "pitches": 83,
+      "strikes": 49
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".125",
+      "obp": ".200",
+      "slg": ".156",
+      "k": 9,
+      "bb": 3,
+      "bf": 35,
+      "k_pct": 25.7,
+      "bb_pct": 8.6
+    },
+    "vs_right": {
+      "avg": ".197",
+      "obp": ".274",
+      "slg": ".295",
+      "k": 38,
+      "bb": 14,
+      "bf": 147,
+      "k_pct": 25.9,
+      "bb_pct": 9.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.577,
+      "k_pct": 31.3,
+      "bb_pct": 8.5,
+      "bf": 636
+    },
+    "tto2": {
+      "ops": 0.627,
+      "k_pct": 26.0,
+      "bb_pct": 6.4,
+      "bf": 561
+    },
+    "tto3": {
+      "ops": 0.587,
+      "k_pct": 23.6,
+      "bb_pct": 5.3,
+      "bf": 263
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 35.9,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.401,
+      "whiff_pct": 22.0,
+      "put_away_pct": 22.6,
+      "hard_hit_pct": 52.5
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 30.0,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.187,
+      "whiff_pct": 38.3,
+      "put_away_pct": 26.8,
+      "hard_hit_pct": 32.3
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 21.4,
+      "rv_per_100": 2.0,
+      "xwoba_against": 0.315,
+      "whiff_pct": 27.4,
+      "put_away_pct": 23.3,
+      "hard_hit_pct": 40.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

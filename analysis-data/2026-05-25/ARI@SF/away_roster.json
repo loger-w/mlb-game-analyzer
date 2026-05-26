@@ -1,0 +1,387 @@
+{
+  "team": "Arizona Diamondbacks",
+  "team_id": 109,
+  "active_roster": {
+    "pitchers": [
+      "Brandon Pfaadt",
+      "Brandyn Garcia",
+      "Eduardo Rodriguez",
+      "Jonathan Loáisiga",
+      "Juan Morillo",
+      "Kevin Ginkel",
+      "Merrill Kelly",
+      "Michael Soroka",
+      "Paul Sewald",
+      "Ryan Thompson",
+      "Ryne Nelson",
+      "Taylor Clarke",
+      "Zac Gallen"
+    ],
+    "pitcher_ids": [
+      694297,
+      805299,
+      593958,
+      642528,
+      666661,
+      656464,
+      518876,
+      647336,
+      623149,
+      657044,
+      669194,
+      664199,
+      668678
+    ],
+    "position_players": [
+      "Adrian Del Castillo",
+      "Aramis Garcia",
+      "Corbin Carroll",
+      "Gabriel Moreno",
+      "Geraldo Perdomo",
+      "Ildemaro Vargas",
+      "Jorge Barrosa",
+      "Jose Fernandez",
+      "Ketel Marte",
+      "Nolan Arenado",
+      "Ryan Waldschmidt",
+      "Tim Tawa",
+      "Tommy Troy"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Brandon Pfaadt",
+        "player_id": 694297,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 11,
+          "gs": 3,
+          "ip": 35.3
+        }
+      },
+      {
+        "name": "Brandyn Garcia",
+        "player_id": 805299,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 9,
+          "gs": 0,
+          "ip": 7.7
+        }
+      },
+      {
+        "name": "Eduardo Rodriguez",
+        "player_id": 593958,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 60.3
+        }
+      },
+      {
+        "name": "Jonathan Loáisiga",
+        "player_id": 642528,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 4,
+          "g": 21,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Juan Morillo",
+        "player_id": 666661,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 8,
+          "g": 23,
+          "gs": 0,
+          "ip": 20.7
+        }
+      },
+      {
+        "name": "Kevin Ginkel",
+        "player_id": 656464,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 22,
+          "gs": 0,
+          "ip": 20.7
+        }
+      },
+      {
+        "name": "Merrill Kelly",
+        "player_id": 518876,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 7,
+          "gs": 7,
+          "ip": 41.0
+        }
+      },
+      {
+        "name": "Michael Soroka",
+        "player_id": 647336,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 55.0
+        }
+      },
+      {
+        "name": "Paul Sewald",
+        "player_id": 623149,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 12,
+          "holds": 0,
+          "g": 22,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Ryan Thompson",
+        "player_id": 657044,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 4,
+          "g": 23,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Ryne Nelson",
+        "player_id": 669194,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 60.0
+        }
+      },
+      {
+        "name": "Taylor Clarke",
+        "player_id": 664199,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 11,
+          "g": 24,
+          "gs": 0,
+          "ip": 22.7
+        }
+      },
+      {
+        "name": "Zac Gallen",
+        "player_id": 668678,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 54.3
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "A.J. Puk",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 640462,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 4,
+        "holds": 2,
+        "g": 8,
+        "gs": 0,
+        "ip": 8.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Andrew Saalfrank",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 685314,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 3,
+        "holds": 5,
+        "g": 28,
+        "gs": 0,
+        "ip": 29.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Blake Walston",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 686796,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Carlos Santana",
+      "status": "Injured 10-Day",
+      "position": "First Base",
+      "player_id": 467793
+    },
+    {
+      "name": "Corbin Burnes",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 669203,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 11,
+        "gs": 11,
+        "ip": 64.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Cristian Mena",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 691441,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "James McCann",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 543510
+    },
+    {
+      "name": "Jordan Lawlar",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 691783
+    },
+    {
+      "name": "Justin Martinez",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 679885,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 5,
+        "holds": 4,
+        "g": 17,
+        "gs": 0,
+        "ip": 15.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Lourdes Gurriel Jr.",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 666971
+    },
+    {
+      "name": "Pavin Smith",
+      "status": "Injured 60-Day",
+      "position": "First Base",
+      "player_id": 656976
+    }
+  ],
+  "not_active_40man": [
+    "Andrew Hoffmann",
+    "Drey Jameson",
+    "Dylan Ray",
+    "Juan Burgos",
+    "Kade Strowd",
+    "Kohl Drake",
+    "Mitch Bratt",
+    "Philip Abner",
+    "Taylor Rashi",
+    "Tyler Locklear",
+    "Yilber Díaz"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 11,
+    "total_40man_not_active": 11
+  }
+}

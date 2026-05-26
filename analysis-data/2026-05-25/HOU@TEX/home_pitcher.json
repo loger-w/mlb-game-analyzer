@@ -1,0 +1,163 @@
+{
+  "name": "Kumar Rocker",
+  "mlbam_id": 677958,
+  "age": 26,
+  "birth_date": "1999-11-22",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.61,
+    "k_bb_pct": 0.414,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 62.4,
+    "era_only_score": 67.0,
+    "gap": -4.6
+  },
+  "season": {
+    "era": 3.6,
+    "whip": 1.38,
+    "k_pct": 19.1,
+    "bb_pct": 10.3,
+    "k_bb_pct": 8.8,
+    "fip": 3.94,
+    "xfip": 3.97,
+    "hr_per_9": 0.8,
+    "gb_pct": 56.4,
+    "ip": 45.0,
+    "games": 9,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.82,
+    "xwoba": 0.344,
+    "xba": 0.269
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 97.5,
+    "hard_hit_pct": 29.1,
+    "pitch_types": {
+      "SI": 36.6,
+      "SL": 36.6,
+      "FF": 9.7,
+      "FC": 9.1,
+      "CH": 8.0
+    },
+    "barrel_pct": 7.4,
+    "ev95percent": 44.1,
+    "whiff_pct": 10.3,
+    "csw_pct": 24.1
+  },
+  "game_log": [
+    {
+      "date": "2026-04-04",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 3,
+      "bb": 1,
+      "h": 6,
+      "er": 2,
+      "pitches": 80,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 4.5,
+      "k": 5,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 83,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-15",
+      "opponent": "Athletics",
+      "ip": 4.666666666666667,
+      "era": 4.3,
+      "k": 6,
+      "bb": 4,
+      "h": 4,
+      "er": 2,
+      "pitches": 97,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".247",
+      "obp": ".349",
+      "slg": ".366",
+      "k": 24,
+      "bb": 15,
+      "bf": 109,
+      "k_pct": 22.0,
+      "bb_pct": 13.8
+    },
+    "vs_right": {
+      "avg": ".241",
+      "obp": ".294",
+      "slg": ".342",
+      "k": 13,
+      "bb": 5,
+      "bf": 85,
+      "k_pct": 15.3,
+      "bb_pct": 5.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.788,
+      "k_pct": 18.3,
+      "bb_pct": 6.1,
+      "bf": 82
+    },
+    "tto2": {
+      "ops": 0.648,
+      "k_pct": 20.0,
+      "bb_pct": 13.3,
+      "bf": 75
+    },
+    "tto3": {
+      "ops": 0.469,
+      "k_pct": 19.4,
+      "bb_pct": 11.1,
+      "bf": 36
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 36.6,
+      "rv_per_100": -0.7,
+      "xwoba_against": 0.406,
+      "whiff_pct": 11.6,
+      "put_away_pct": 8.9,
+      "hard_hit_pct": 52.9
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 36.6,
+      "rv_per_100": 0.3,
+      "xwoba_against": 0.232,
+      "whiff_pct": 35.9,
+      "put_away_pct": 23.1,
+      "hard_hit_pct": 35.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

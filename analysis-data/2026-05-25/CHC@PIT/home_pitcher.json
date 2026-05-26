@@ -1,0 +1,173 @@
+{
+  "name": "Carmen Mlodzinski",
+  "mlbam_id": 669387,
+  "age": 27,
+  "birth_date": "1999-02-19",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.818,
+    "k_bb_pct": 0.649,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 79.7,
+    "era_only_score": 59.8,
+    "gap": 19.9
+  },
+  "season": {
+    "era": 3.96,
+    "whip": 1.4,
+    "k_pct": 20.4,
+    "bb_pct": 7.9,
+    "k_bb_pct": 12.5,
+    "fip": 2.88,
+    "xfip": 3.63,
+    "hr_per_9": 0.36,
+    "gb_pct": 50.5,
+    "ip": 50.0,
+    "games": 10,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.66,
+    "xwoba": 0.339,
+    "xba": 0.285
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 97.1,
+    "hard_hit_pct": 31.4,
+    "pitch_types": {
+      "FS": 27.8,
+      "FF": 27.3,
+      "SI": 20.9,
+      "CU": 11.4,
+      "ST": 8.6
+    },
+    "barrel_pct": 7.2,
+    "ev95percent": 51.3,
+    "whiff_pct": 7.9,
+    "csw_pct": 27.3
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "New York Mets",
+      "ip": 4.333333333333333,
+      "era": 4.15,
+      "k": 8,
+      "bb": 0,
+      "h": 6,
+      "er": 2,
+      "pitches": 85,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Baltimore Orioles",
+      "ip": 4.666666666666667,
+      "era": 4.0,
+      "k": 5,
+      "bb": 3,
+      "h": 5,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 49
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Chicago Cubs",
+      "ip": 5.333333333333333,
+      "era": 2.51,
+      "k": 2,
+      "bb": 3,
+      "h": 6,
+      "er": 0,
+      "pitches": 81,
+      "strikes": 48
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".327",
+      "obp": ".390",
+      "slg": ".482",
+      "k": 23,
+      "bb": 10,
+      "bf": 124,
+      "k_pct": 18.5,
+      "bb_pct": 8.1
+    },
+    "vs_right": {
+      "avg": ".202",
+      "obp": ".261",
+      "slg": ".250",
+      "k": 21,
+      "bb": 7,
+      "bf": 92,
+      "k_pct": 22.8,
+      "bb_pct": 7.6
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.715,
+      "k_pct": 18.5,
+      "bb_pct": 9.8,
+      "bf": 92
+    },
+    "tto2": {
+      "ops": 0.659,
+      "k_pct": 24.4,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.832,
+      "k_pct": 15.2,
+      "bb_pct": 3.0,
+      "bf": 33
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 27.8,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.284,
+      "whiff_pct": 30.8,
+      "put_away_pct": 17.4,
+      "hard_hit_pct": 31.9
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 27.3,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.383,
+      "whiff_pct": 15.9,
+      "put_away_pct": 22.5,
+      "hard_hit_pct": 65.9
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 20.9,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.416,
+      "whiff_pct": 7.4,
+      "put_away_pct": 8.3,
+      "hard_hit_pct": 57.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

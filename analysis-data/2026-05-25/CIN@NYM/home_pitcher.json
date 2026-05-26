@@ -1,0 +1,183 @@
+{
+  "name": "Nolan McLean",
+  "mlbam_id": 690997,
+  "age": 24,
+  "birth_date": "2001-07-24",
+  "pitch_hand": "R",
+  "age_assessment": "📈 成長期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 67.6,
+    "gap": 28.5
+  },
+  "season": {
+    "era": 3.57,
+    "whip": 1.03,
+    "k_pct": 29.5,
+    "bb_pct": 7.3,
+    "k_bb_pct": 22.2,
+    "fip": 2.94,
+    "xfip": 2.56,
+    "hr_per_9": 0.93,
+    "gb_pct": 57.0,
+    "ip": 58.0,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 2.92,
+    "xwoba": 0.273,
+    "xba": 0.214
+  },
+  "statcast": {
+    "avg_velo": 90.9,
+    "max_velo": 98.4,
+    "hard_hit_pct": 21.7,
+    "pitch_types": {
+      "SI": 35.5,
+      "FF": 18.3,
+      "ST": 15.4,
+      "CU": 12.3,
+      "FC": 9.9
+    },
+    "barrel_pct": 6.3,
+    "ev95percent": 37.8,
+    "whiff_pct": 9.2,
+    "csw_pct": 29.5
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 8,
+      "bb": 2,
+      "h": 4,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "San Francisco Giants",
+      "ip": 5.333333333333333,
+      "era": 2.61,
+      "k": 4,
+      "bb": 2,
+      "h": 1,
+      "er": 1,
+      "pitches": 93,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 6.333333333333333,
+      "era": 2.7,
+      "k": 8,
+      "bb": 2,
+      "h": 3,
+      "er": 2,
+      "pitches": 100,
+      "strikes": 64
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".218",
+      "obp": ".300",
+      "slg": ".353",
+      "k": 39,
+      "bb": 13,
+      "bf": 150,
+      "k_pct": 26.0,
+      "bb_pct": 8.7
+    },
+    "vs_right": {
+      "avg": ".179",
+      "obp": ".238",
+      "slg": ".295",
+      "k": 30,
+      "bb": 4,
+      "bf": 84,
+      "k_pct": 35.7,
+      "bb_pct": 4.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.493,
+      "k_pct": 32.2,
+      "bb_pct": 4.4,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.673,
+      "k_pct": 22.2,
+      "bb_pct": 11.1,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.749,
+      "k_pct": 34.7,
+      "bb_pct": 6.1,
+      "bf": 49
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 35.5,
+      "rv_per_100": 2.9,
+      "xwoba_against": 0.259,
+      "whiff_pct": 15.8,
+      "put_away_pct": 29.7,
+      "hard_hit_pct": 39.7
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 18.3,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.395,
+      "whiff_pct": 19.5,
+      "put_away_pct": 17.5,
+      "hard_hit_pct": 58.3
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 15.4,
+      "rv_per_100": -3.1,
+      "xwoba_against": 0.345,
+      "whiff_pct": 23.1,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 25.0
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 12.3,
+      "rv_per_100": 2.6,
+      "xwoba_against": 0.073,
+      "whiff_pct": 44.2,
+      "put_away_pct": 25.8,
+      "hard_hit_pct": 11.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

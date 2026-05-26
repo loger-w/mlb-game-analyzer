@@ -1,0 +1,378 @@
+{
+  "team": "Tampa Bay Rays",
+  "team_id": 139,
+  "active_roster": {
+    "pitchers": [
+      "Bryan Baker",
+      "Casey Legumina",
+      "Drew Rasmussen",
+      "Garrett Cleavinger",
+      "Griffin Jax",
+      "Hunter Bigge",
+      "Ian Seymour",
+      "Jesse Scholtens",
+      "Kevin Kelly",
+      "Nick Martinez",
+      "Shane McClanahan",
+      "Steven Matz",
+      "Trevor Martin"
+    ],
+    "pitcher_ids": [
+      641329,
+      668984,
+      656876,
+      664076,
+      643377,
+      685801,
+      693855,
+      669947,
+      687330,
+      607259,
+      663556,
+      571927,
+      694680
+    ],
+    "position_players": [
+      "Carson Williams",
+      "Cedric Mullins",
+      "Chandler Simpson",
+      "Hunter Feduccia",
+      "Jonathan Aranda",
+      "Junior Caminero",
+      "Nick Fortes",
+      "Oliver Dunn",
+      "Richie Palacios",
+      "Ryan Vilade",
+      "Taylor Walls",
+      "Victor Mesa Jr.",
+      "Yandy Díaz"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Bryan Baker",
+        "player_id": 641329,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 14,
+          "holds": 1,
+          "g": 23,
+          "gs": 0,
+          "ip": 21.3
+        }
+      },
+      {
+        "name": "Casey Legumina",
+        "player_id": 668984,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 15,
+          "gs": 0,
+          "ip": 19.7
+        }
+      },
+      {
+        "name": "Drew Rasmussen",
+        "player_id": 656876,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 55.0
+        }
+      },
+      {
+        "name": "Garrett Cleavinger",
+        "player_id": 664076,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 7,
+          "g": 11,
+          "gs": 0,
+          "ip": 8.3
+        }
+      },
+      {
+        "name": "Griffin Jax",
+        "player_id": 643377,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 16,
+          "gs": 5,
+          "ip": 28.0
+        }
+      },
+      {
+        "name": "Hunter Bigge",
+        "player_id": 685801,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 15,
+          "gs": 0,
+          "ip": 17.7
+        }
+      },
+      {
+        "name": "Ian Seymour",
+        "player_id": 693855,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 10,
+          "g": 23,
+          "gs": 1,
+          "ip": 26.0
+        }
+      },
+      {
+        "name": "Jesse Scholtens",
+        "player_id": 669947,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 2,
+          "ip": 36.3
+        }
+      },
+      {
+        "name": "Kevin Kelly",
+        "player_id": 687330,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 11,
+          "g": 24,
+          "gs": 0,
+          "ip": 24.7
+        }
+      },
+      {
+        "name": "Nick Martinez",
+        "player_id": 607259,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 59.7
+        }
+      },
+      {
+        "name": "Shane McClanahan",
+        "player_id": 663556,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 44.7
+        }
+      },
+      {
+        "name": "Steven Matz",
+        "player_id": 571927,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 41.3
+        }
+      },
+      {
+        "name": "Trevor Martin",
+        "player_id": 694680,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 0,
+          "ip": 4.3
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Ben Williamson",
+      "status": "Injured 10-Day",
+      "position": "Second Base",
+      "player_id": 810938
+    },
+    {
+      "name": "Cole Sulser",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 642121,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 4,
+        "g": 18,
+        "gs": 1,
+        "ip": 22.0
+      }
+    },
+    {
+      "name": "Edwin Uceta",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 670955,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 21,
+        "g": 70,
+        "gs": 0,
+        "ip": 76.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Gavin Lux",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 666158
+    },
+    {
+      "name": "Jake Fraley",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 641584
+    },
+    {
+      "name": "Jonny DeLuca",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 676356
+    },
+    {
+      "name": "Manuel Rodríguez",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 655889,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 11,
+        "g": 31,
+        "gs": 0,
+        "ip": 30.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Michael Grove",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 675627,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Ryan Pepiot",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 686752,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 31,
+        "gs": 31,
+        "ip": 167.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Steven Wilson",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 621051,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 2,
+        "holds": 10,
+        "g": 59,
+        "gs": 0,
+        "ip": 55.3,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Alex Cook",
+    "Cam Booser",
+    "Chase Solesky",
+    "Dom Keegan",
+    "Jacob Melton",
+    "Jadher Areinamo",
+    "Joe Boyle",
+    "Mason Englert"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 10,
+    "total_40man_not_active": 8
+  }
+}

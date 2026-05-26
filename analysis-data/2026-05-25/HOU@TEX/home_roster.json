@@ -1,0 +1,358 @@
+{
+  "team": "Texas Rangers",
+  "team_id": 140,
+  "active_roster": {
+    "pitchers": [
+      "Cal Quantrill",
+      "Chris Martin",
+      "Gavin Collyer",
+      "Jack Leiter",
+      "Jacob Latz",
+      "Jacob deGrom",
+      "Jakob Junis",
+      "Jalen Beeks",
+      "Kumar Rocker",
+      "MacKenzie Gore",
+      "Nathan Eovaldi",
+      "Peyton Gray",
+      "Tyler Alexander"
+    ],
+    "pitcher_ids": [
+      615698,
+      455119,
+      686560,
+      683004,
+      656641,
+      594798,
+      596001,
+      656222,
+      677958,
+      669022,
+      543135,
+      682608,
+      641302
+    ],
+    "position_players": [
+      "Alejandro Osuna",
+      "Andrew McCutchen",
+      "Brandon Nimmo",
+      "Danny Jansen",
+      "Evan Carter",
+      "Ezequiel Duran",
+      "Jake Burger",
+      "Joc Pederson",
+      "Josh Jung",
+      "Justin Foscue",
+      "Kyle Higashioka",
+      "Michael Helman",
+      "Sam Haggerty"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Cal Quantrill",
+        "player_id": 615698,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Chris Martin",
+        "player_id": 455119,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 9,
+          "gs": 0,
+          "ip": 7.3
+        }
+      },
+      {
+        "name": "Gavin Collyer",
+        "player_id": 686560,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 15,
+          "gs": 0,
+          "ip": 13.3
+        }
+      },
+      {
+        "name": "Jack Leiter",
+        "player_id": 683004,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 54.7
+        }
+      },
+      {
+        "name": "Jacob Latz",
+        "player_id": 656641,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 5,
+          "holds": 2,
+          "g": 19,
+          "gs": 1,
+          "ip": 23.7
+        }
+      },
+      {
+        "name": "Jacob deGrom",
+        "player_id": 594798,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 53.7
+        }
+      },
+      {
+        "name": "Jakob Junis",
+        "player_id": 596001,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 5,
+          "g": 19,
+          "gs": 1,
+          "ip": 23.0
+        }
+      },
+      {
+        "name": "Jalen Beeks",
+        "player_id": 656222,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 5,
+          "g": 23,
+          "gs": 0,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Kumar Rocker",
+        "player_id": 677958,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 8,
+          "ip": 45.0
+        }
+      },
+      {
+        "name": "MacKenzie Gore",
+        "player_id": 669022,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 55.0
+        }
+      },
+      {
+        "name": "Nathan Eovaldi",
+        "player_id": 543135,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 61.7
+        }
+      },
+      {
+        "name": "Peyton Gray",
+        "player_id": 682608,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 8,
+          "gs": 0,
+          "ip": 13.0
+        }
+      },
+      {
+        "name": "Tyler Alexander",
+        "player_id": 641302,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 4,
+          "g": 23,
+          "gs": 1,
+          "ip": 23.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Carter Baumler",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 691945,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 4,
+        "gs": 0,
+        "ip": 5.7
+      }
+    },
+    {
+      "name": "Cody Bradford",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 674003,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Cody Freeman",
+      "status": "Injured 10-Day",
+      "position": "Third Base",
+      "player_id": 683227
+    },
+    {
+      "name": "Cole Winn",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 668390,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 5,
+        "g": 22,
+        "gs": 0,
+        "ip": 19.3
+      }
+    },
+    {
+      "name": "Corey Seager",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 608369
+    },
+    {
+      "name": "Jordan Montgomery",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 656756,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Josh Smith",
+      "status": "Injured 10-Day",
+      "position": "Second Base",
+      "player_id": 669701
+    },
+    {
+      "name": "Robert Garcia",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 676395,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 2,
+        "g": 9,
+        "gs": 0,
+        "ip": 8.0
+      }
+    },
+    {
+      "name": "Wyatt Langford",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 694671
+    }
+  ],
+  "not_active_40man": [
+    "Blaine Crim",
+    "David Davalillo",
+    "Emiliano Teodo",
+    "Jose Corniell",
+    "Leandro Lopez",
+    "Luis Curvelo",
+    "Michel Otañez",
+    "Winston Santos"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 9,
+    "total_40man_not_active": 8
+  }
+}

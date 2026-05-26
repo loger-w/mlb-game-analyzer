@@ -1,0 +1,172 @@
+{
+  "name": "Ben Brown",
+  "mlbam_id": 676962,
+  "age": 26,
+  "birth_date": "1999-09-09",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.89,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 93.9,
+    "era_only_score": 94.1,
+    "gap": -0.2
+  },
+  "season": {
+    "era": 2.09,
+    "whip": 0.98,
+    "k_pct": 26.0,
+    "bb_pct": 7.8,
+    "k_bb_pct": 18.2,
+    "fip": 2.3,
+    "xfip": 3.0,
+    "hr_per_9": 0.23,
+    "gb_pct": 58.7,
+    "ip": 38.666666666666664,
+    "games": 15,
+    "gs": 3
+  },
+  "expected": {
+    "xera": 2.62,
+    "xwoba": 0.259,
+    "xba": 0.21
+  },
+  "statcast": {
+    "avg_velo": 92.8,
+    "max_velo": 98.6,
+    "hard_hit_pct": 25.4,
+    "pitch_types": {
+      "FF": 37.5,
+      "KC": 36.5,
+      "SI": 20.5,
+      "CH": 5.6
+    },
+    "barrel_pct": 4.0,
+    "ev95percent": 38.6,
+    "whiff_pct": 12.1,
+    "csw_pct": 29.7
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Washington Nationals",
+      "ip": 3.3333333333333335,
+      "era": 5.4,
+      "k": 3,
+      "bb": 1,
+      "h": 3,
+      "er": 2,
+      "pitches": 49,
+      "strikes": 29
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "Los Angeles Angels",
+      "ip": 3.3333333333333335,
+      "era": 2.7,
+      "k": 5,
+      "bb": 1,
+      "h": 1,
+      "er": 0,
+      "pitches": 50,
+      "strikes": 39
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Cleveland Guardians",
+      "ip": 2.0,
+      "era": 4.15,
+      "k": 0,
+      "bb": 2,
+      "h": 2,
+      "er": 2,
+      "pitches": 42,
+      "strikes": 22
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".181",
+      "obp": ".268",
+      "slg": ".208",
+      "k": 25,
+      "bb": 9,
+      "bf": 82,
+      "k_pct": 30.5,
+      "bb_pct": 11.0
+    },
+    "vs_right": {
+      "avg": ".194",
+      "obp": ".236",
+      "slg": ".254",
+      "k": 15,
+      "bb": 3,
+      "bf": 72,
+      "k_pct": 20.8,
+      "bb_pct": 4.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.66,
+      "k_pct": 27.9,
+      "bb_pct": 8.6,
+      "bf": 617
+    },
+    "tto2": {
+      "ops": 0.707,
+      "k_pct": 24.2,
+      "bb_pct": 6.0,
+      "bf": 331
+    },
+    "tto3": {
+      "ops": 0.923,
+      "k_pct": 25.5,
+      "bb_pct": 4.3,
+      "bf": 94
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 37.9,
+      "rv_per_100": 0.1,
+      "xwoba_against": 0.296,
+      "whiff_pct": 14.9,
+      "put_away_pct": 12.7,
+      "hard_hit_pct": 38.9
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 36.0,
+      "rv_per_100": 3.3,
+      "xwoba_against": 0.237,
+      "whiff_pct": 47.2,
+      "put_away_pct": 31.5,
+      "hard_hit_pct": 41.2
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 20.2,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.263,
+      "whiff_pct": 14.8,
+      "put_away_pct": 18.8,
+      "hard_hit_pct": 34.6
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

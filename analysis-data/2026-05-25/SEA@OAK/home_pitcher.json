@@ -1,0 +1,183 @@
+{
+  "name": "Aaron Civale",
+  "mlbam_id": 650644,
+  "age": 30,
+  "birth_date": "1995-06-12",
+  "pitch_hand": "R",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.302,
+    "k_bb_pct": 0.457,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 48.1,
+    "era_only_score": 72.8,
+    "gap": -24.7
+  },
+  "season": {
+    "era": 3.31,
+    "whip": 1.39,
+    "k_pct": 16.5,
+    "bb_pct": 7.1,
+    "k_bb_pct": 9.4,
+    "fip": 4.86,
+    "xfip": 4.46,
+    "hr_per_9": 1.57,
+    "gb_pct": 34.5,
+    "ip": 51.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.91,
+    "xwoba": 0.347,
+    "xba": 0.275
+  },
+  "statcast": {
+    "avg_velo": 85.8,
+    "max_velo": 93.7,
+    "hard_hit_pct": 32.0,
+    "pitch_types": {
+      "FC": 34.7,
+      "CU": 22.7,
+      "SI": 19.7,
+      "FF": 12.0,
+      "FS": 7.0
+    },
+    "barrel_pct": 8.3,
+    "ev95percent": 48.5,
+    "whiff_pct": 7.7,
+    "csw_pct": 27.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-31",
+      "opponent": "Atlanta Braves",
+      "ip": 5.0,
+      "era": 3.6,
+      "k": 3,
+      "bb": 1,
+      "h": 4,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "New York Yankees",
+      "ip": 5.0,
+      "era": 2.7,
+      "k": 6,
+      "bb": 4,
+      "h": 2,
+      "er": 1,
+      "pitches": 88,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-12",
+      "opponent": "New York Mets",
+      "ip": 5.666666666666667,
+      "era": 1.72,
+      "k": 3,
+      "bb": 0,
+      "h": 4,
+      "er": 0,
+      "pitches": 75,
+      "strikes": 46
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".297",
+      "obp": ".362",
+      "slg": ".475",
+      "k": 19,
+      "bb": 11,
+      "bf": 131,
+      "k_pct": 14.5,
+      "bb_pct": 8.4
+    },
+    "vs_right": {
+      "avg": ".247",
+      "obp": ".283",
+      "slg": ".459",
+      "k": 18,
+      "bb": 5,
+      "bf": 93,
+      "k_pct": 19.4,
+      "bb_pct": 5.4
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.819,
+      "k_pct": 24.2,
+      "bb_pct": 6.6,
+      "bf": 91
+    },
+    "tto2": {
+      "ops": 0.729,
+      "k_pct": 11.1,
+      "bb_pct": 6.7,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.816,
+      "k_pct": 11.4,
+      "bb_pct": 6.8,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 34.7,
+      "rv_per_100": 2.5,
+      "xwoba_against": 0.275,
+      "whiff_pct": 22.1,
+      "put_away_pct": 19.2,
+      "hard_hit_pct": 45.7
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 22.7,
+      "rv_per_100": 0.7,
+      "xwoba_against": 0.306,
+      "whiff_pct": 26.4,
+      "put_away_pct": 15.1,
+      "hard_hit_pct": 36.6
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.7,
+      "rv_per_100": -3.6,
+      "xwoba_against": 0.425,
+      "whiff_pct": 10.3,
+      "put_away_pct": 14.3,
+      "hard_hit_pct": 60.6
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 12.0,
+      "rv_per_100": -2.5,
+      "xwoba_against": 0.46,
+      "whiff_pct": 11.1,
+      "put_away_pct": 10.3,
+      "hard_hit_pct": 73.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

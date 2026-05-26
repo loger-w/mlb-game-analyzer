@@ -1,0 +1,424 @@
+{
+  "team": "Toronto Blue Jays",
+  "team_id": 141,
+  "active_roster": {
+    "pitchers": [
+      "Adam Macko",
+      "Braydon Fisher",
+      "Chase Lee",
+      "Dylan Cease",
+      "Jeff Hoffman",
+      "Kevin Gausman",
+      "Louis Varland",
+      "Mason Fluharty",
+      "Patrick Corbin",
+      "Spencer Miles",
+      "Trey Yesavage",
+      "Tyler Rogers",
+      "Yariel Rodríguez"
+    ],
+    "pitcher_ids": [
+      671936,
+      680755,
+      695445,
+      656302,
+      656546,
+      592332,
+      686973,
+      689254,
+      571578,
+      693686,
+      702056,
+      643511,
+      684320
+    ],
+    "position_players": [
+      "Andrés Giménez",
+      "Brandon Valenzuela",
+      "Daulton Varsho",
+      "Davis Schneider",
+      "Ernie Clement",
+      "George Springer",
+      "Jesús Sánchez",
+      "Kazuma Okamoto",
+      "Lenyn Sosa",
+      "Myles Straw",
+      "Tyler Heineman",
+      "Vladimir Guerrero Jr.",
+      "Yohendrick Piñango"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Adam Macko",
+        "player_id": 671936,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 4,
+          "gs": 0,
+          "ip": 3.3
+        }
+      },
+      {
+        "name": "Braydon Fisher",
+        "player_id": 680755,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 6,
+          "g": 27,
+          "gs": 2,
+          "ip": 29.7
+        }
+      },
+      {
+        "name": "Chase Lee",
+        "player_id": 695445,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 4,
+          "g": 32,
+          "gs": 0,
+          "ip": 37.3,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Dylan Cease",
+        "player_id": 656302,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 62.0
+        }
+      },
+      {
+        "name": "Jeff Hoffman",
+        "player_id": 656546,
+        "core_role": "Co-Closer",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 5,
+          "holds": 6,
+          "g": 25,
+          "gs": 0,
+          "ip": 23.0
+        }
+      },
+      {
+        "name": "Kevin Gausman",
+        "player_id": 592332,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 64.0
+        }
+      },
+      {
+        "name": "Louis Varland",
+        "player_id": 686973,
+        "core_role": "Co-Closer",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 7,
+          "holds": 3,
+          "g": 25,
+          "gs": 0,
+          "ip": 27.7
+        }
+      },
+      {
+        "name": "Mason Fluharty",
+        "player_id": 689254,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 7,
+          "g": 27,
+          "gs": 2,
+          "ip": 18.7
+        }
+      },
+      {
+        "name": "Patrick Corbin",
+        "player_id": 571578,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 9,
+          "gs": 9,
+          "ip": 44.3
+        }
+      },
+      {
+        "name": "Spencer Miles",
+        "player_id": 693686,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 14,
+          "gs": 1,
+          "ip": 29.0
+        }
+      },
+      {
+        "name": "Trey Yesavage",
+        "player_id": 702056,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 5,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "Tyler Rogers",
+        "player_id": 643511,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 9,
+          "g": 24,
+          "gs": 0,
+          "ip": 23.3
+        }
+      },
+      {
+        "name": "Yariel Rodríguez",
+        "player_id": 684320,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 0,
+          "ip": 4.3
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Addison Barger",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 680718
+    },
+    {
+      "name": "Alejandro Kirk",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 672386
+    },
+    {
+      "name": "Anthony Santander",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 623993
+    },
+    {
+      "name": "Bowden Francis",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 670102,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 14,
+        "gs": 14,
+        "ip": 64.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Cody Ponce",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 664074,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 1,
+        "gs": 1,
+        "ip": 2.3
+      }
+    },
+    {
+      "name": "Joe Mantiply",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 573009,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 17,
+        "gs": 0,
+        "ip": 17.7
+      }
+    },
+    {
+      "name": "José Berríos",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 621244,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 31,
+        "gs": 30,
+        "ip": 166.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Lazaro Estrada",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 681751,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 1,
+        "gs": 0,
+        "ip": 4.0
+      }
+    },
+    {
+      "name": "Max Scherzer",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 453286,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 5,
+        "gs": 5,
+        "ip": 18.7
+      }
+    },
+    {
+      "name": "Nathan Lukes",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 664770
+    },
+    {
+      "name": "Shane Bieber",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 669456,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 7,
+        "ip": 40.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Tommy Nance",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 667297,
+      "core_role": "Middle RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 1,
+        "g": 20,
+        "gs": 0,
+        "ip": 21.0
+      }
+    },
+    {
+      "name": "Yimi García",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 554340,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 3,
+        "holds": 6,
+        "g": 22,
+        "gs": 0,
+        "ip": 21.0,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Brendon Little",
+    "Jake Bloss",
+    "Jonatan Clase",
+    "Ricky Tiedemann",
+    "Willie MacIver"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 13,
+    "total_40man_not_active": 5
+  }
+}

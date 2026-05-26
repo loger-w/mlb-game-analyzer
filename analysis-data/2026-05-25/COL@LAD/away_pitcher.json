@@ -1,0 +1,158 @@
+{
+  "name": "Tanner Gordon",
+  "mlbam_id": 685299,
+  "age": 28,
+  "birth_date": "1997-10-26",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15.0,
+    "gap": null
+  },
+  "season": {
+    "era": 6.59,
+    "whip": 1.5,
+    "k_pct": 25.0,
+    "bb_pct": 5.0,
+    "k_bb_pct": 20.0,
+    "fip": 4.42,
+    "xfip": 3.04,
+    "hr_per_9": 1.98,
+    "gb_pct": 36.7,
+    "ip": 27.333333333333332,
+    "games": 7,
+    "gs": 0
+  },
+  "expected": {
+    "xera": 4.98,
+    "xwoba": 0.349,
+    "xba": 0.268
+  },
+  "statcast": {
+    "avg_velo": 88.3,
+    "max_velo": 96.2,
+    "hard_hit_pct": 30.2,
+    "pitch_types": {
+      "FF": 35.0,
+      "SL": 26.3,
+      "CH": 20.4,
+      "CU": 10.1,
+      "SI": 8.2
+    },
+    "barrel_pct": 15.5,
+    "ev95percent": 45.2,
+    "whiff_pct": 11.3,
+    "csw_pct": 26.3
+  },
+  "game_log": [
+    {
+      "date": "2026-04-15",
+      "opponent": "Houston Astros",
+      "ip": 4.0,
+      "era": 0.0,
+      "k": 4,
+      "bb": 1,
+      "h": 2,
+      "er": 0,
+      "pitches": 60,
+      "strikes": 40
+    },
+    {
+      "date": "2026-04-20",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 4.0,
+      "era": 6.75,
+      "k": 6,
+      "bb": 3,
+      "h": 7,
+      "er": 6,
+      "pitches": 84,
+      "strikes": 51
+    },
+    {
+      "date": "2026-04-28",
+      "opponent": "Cincinnati Reds",
+      "ip": 3.0,
+      "era": 7.36,
+      "k": 3,
+      "bb": 0,
+      "h": 6,
+      "er": 3,
+      "pitches": 50,
+      "strikes": 33
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".373",
+      "obp": ".407",
+      "slg": ".784",
+      "k": 17,
+      "bb": 3,
+      "bf": 54,
+      "k_pct": 31.5,
+      "bb_pct": 5.6
+    },
+    "vs_right": {
+      "avg": ".267",
+      "obp": ".297",
+      "slg": ".367",
+      "k": 13,
+      "bb": 3,
+      "bf": 66,
+      "k_pct": 19.7,
+      "bb_pct": 4.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.905,
+      "k_pct": 21.1,
+      "bb_pct": 5.1,
+      "bf": 336
+    },
+    "tto2": {
+      "ops": 0.916,
+      "k_pct": 19.3,
+      "bb_pct": 3.6,
+      "bf": 249
+    },
+    "tto3": {
+      "ops": 0.699,
+      "k_pct": 17.3,
+      "bb_pct": 5.8,
+      "bf": 104
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 35.0,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.309,
+      "whiff_pct": 31.3,
+      "put_away_pct": 30.4,
+      "hard_hit_pct": 55.2
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 26.3,
+      "rv_per_100": -2.4,
+      "xwoba_against": 0.377,
+      "whiff_pct": 29.0,
+      "put_away_pct": 22.6,
+      "hard_hit_pct": 48.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
