@@ -59,3 +59,48 @@ def test_extract_pinnacle_no_vig_returns_complete_dict():
 def test_extract_returns_none_if_pinnacle_missing(tmp_path):
     line = extract_pinnacle_no_vig({"bookmakers": {}})
     assert line is None
+
+
+def test_excludes_next_day_game_in_late_snapshot(tmp_path):
+    """A snapshot file dated 5/02 can contain games for 5/03. Must not match
+    when caller asks for 5/02 matchup."""
+    import json
+    # Build a snapshot that has snapshot_time_utc on 5/02 22:00 ET (= 5/03 02:00 UTC),
+    # containing a game whose game_date_et is 5/03 (commence 5/03 17:36 UTC).
+    cross_day = {
+        "snapshot_time_utc": "2026-05-03T02:00:00+00:00",
+        "snapshot_time_et": "2026-05-02 22:00 ET",
+        "game_count": 1,
+        "games": [
+            {
+                "game": "Baltimore Orioles @ New York Yankees",
+                "away_team": "Baltimore Orioles",
+                "home_team": "New York Yankees",
+                "commence_utc": "2026-05-03T17:36:00Z",
+                "commence_et": "2026-05-03 13:36 ET",
+                "game_date_et": "2026-05-03",
+                "bookmakers": {
+                    "pinnacle": {
+                        "title": "Pinnacle",
+                        "ml": {
+                            "Baltimore Orioles": {"odds": 2.5, "implied_pct": 40.0, "no_vig_pct": 39.2},
+                            "New York Yankees": {"odds": 1.61, "implied_pct": 62.1, "no_vig_pct": 60.8}
+                        },
+                        "ou": {
+                            "Over": {"odds": 1.9, "point": 8.5, "implied_pct": 52.6, "no_vig_pct": 51.0},
+                            "Under": {"odds": 1.99, "point": 8.5, "implied_pct": 50.3, "no_vig_pct": 49.0}
+                        }
+                    }
+                }
+            }
+        ]
+    }
+    (tmp_path / "2026-05-02_22-00-ET.json").write_text(json.dumps(cross_day), encoding="utf-8")
+    snap, _ = find_closing_snapshot_for_game(
+        snapshots_dir=tmp_path,
+        date="2026-05-02",  # caller asks for 5/02
+        home_team="New York Yankees",
+        away_team="Baltimore Orioles",
+    )
+    # Should NOT return the 5/03 game even though it's in a 5/02-named file
+    assert snap is None

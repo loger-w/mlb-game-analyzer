@@ -43,6 +43,8 @@ def find_closing_snapshot_for_game(
         if snap_ts is None:
             continue
         for g in data.get("games", []):
+            if g.get("game_date_et") != date:
+                continue
             if g.get("home_team") != home_team or g.get("away_team") != away_team:
                 continue
             commence_ts = _parse_iso_utc(g.get("commence_utc", ""))
