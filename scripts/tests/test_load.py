@@ -43,10 +43,11 @@ def test_build_dataframe_real_data_smoke(tmp_path):
 
 
 def test_build_dataframe_marks_template_as_parse_failed():
-    """Template summaries should have parse_failed=True."""
+    """All 5/25 summaries are template state; all rows should be parse_failed=True."""
     df = build_dataframe_for_month(month="2026-05", days_filter={"2026-05-25"})
-    # 5/25 batch is all template state
-    assert df["parse_failed"].sum() > 0
+    assert len(df) > 0, "Expected at least 1 row for 5/25"
+    assert df["parse_failed"].all(), \
+        f"Expected all rows to be parse_failed=True, got {df['parse_failed'].sum()}/{len(df)}"
 
 
 def test_skill_prob_mapped_prefers_pct_when_available():
@@ -55,15 +56,19 @@ def test_skill_prob_mapped_prefers_pct_when_available():
     # Use real data — pick a day where some rows have pct, some have bucket
     df = build_dataframe_for_month(month="2026-05", days_filter={"2026-05-02", "2026-05-15"})
     valid = df[~df["parse_failed"]]
-    # For rows where confidence_pct is set, skill_prob_mapped should equal confidence_pct
+
     pct_rows = valid[valid["skill_confidence_pct"].notna()]
-    if len(pct_rows) > 0:
-        # Sample one row, verify
-        r = pct_rows.iloc[0]
-        assert r["skill_prob_mapped"] == r["skill_confidence_pct"]
-    # For rows where confidence is set but pct is not, skill_prob_mapped should be from mapping
     bucket_only = valid[valid["skill_confidence_pct"].isna() & valid["skill_confidence"].notna()]
-    if len(bucket_only) > 0:
-        expected_map = {"LOW": 0.55, "MEDIUM": 0.62, "HIGH": 0.72}
-        for _, r in bucket_only.iterrows():
-            assert r["skill_prob_mapped"] == expected_map[r["skill_confidence"]]
+
+    # Both paths must be exercised in current data — fail loudly if data changes
+    assert len(pct_rows) > 0, "Expected ≥1 row with confidence_pct set (post-5/4 format)"
+    assert len(bucket_only) > 0, "Expected ≥1 row with only bucket confidence (pre-5/4 format)"
+
+    # pct path
+    for _, r in pct_rows.iterrows():
+        assert r["skill_prob_mapped"] == r["skill_confidence_pct"]
+
+    # bucket path
+    expected_map = {"LOW": 0.55, "MEDIUM": 0.62, "HIGH": 0.72}
+    for _, r in bucket_only.iterrows():
+        assert r["skill_prob_mapped"] == expected_map[r["skill_confidence"]]
