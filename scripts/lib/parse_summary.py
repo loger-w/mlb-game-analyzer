@@ -4,11 +4,20 @@ Schema (per spec §2 / §7):
   {direction: "HOME"|"AWAY"|"持平"|None,
    total: float|None,
    confidence: "LOW"|"MEDIUM"|"HIGH"|None,
+   confidence_pct: float|None,
    park_factor: float|None,
    has_reverse_platoon: bool,
    has_chain_break_300: bool,
    has_bullpen_il_2plus: bool,
    parse_failed: bool}
+
+Notes:
+  - confidence: bucket label from older (pre-5/4) format: LOW/MEDIUM/HIGH
+  - confidence_pct: percentage as decimal (e.g. 0.62) from newer (5/4+) format.
+    Range values (e.g. 62-65%) are stored as midpoint (0.635).
+    Downstream consumers should prefer confidence_pct when available,
+    falling back to bucket mapping for older-format rows where only
+    confidence is populated.
 """
 
 import re
@@ -82,15 +91,28 @@ _TOTAL_LINE_RE = re.compile(
     re.MULTILINE | re.IGNORECASE,
 )
 _TOTAL_LINE_FALLBACK_RE = re.compile(
-    r"^-\s+\*\*總分（基本面）\*\*[:：]\s*\*?\*?\s*([0-9]+(?:\.[0-9]+)?)",
+    r"^-\s+\*\*總分（基本面）\*\*[:：]\s*\*?\*?~?\s*([0-9]+(?:\.[0-9]+)?)",
     re.MULTILINE,
 )
-_CONFIDENCE_RE = re.compile(
-    r"^-\s+\*\*信心\*\*[:：]\s*\*?\*?\s*(LOW|MEDIUM|MED|HIGH)",
+# Match BOTH '**信心**' AND '**方向信心**' labels.
+# Bucket value: LOW / MEDIUM / MED / HIGH
+_CONFIDENCE_BUCKET_RE = re.compile(
+    r"^-\s+\*\*(?:方向)?信心\*\*[:：]\s*\*?\*?\s*(LOW|MEDIUM|MED|HIGH)",
     re.MULTILINE | re.IGNORECASE,
 )
+# Percentage value: 'X%', 'X-Y%' (range → midpoint), '~X%', '約 X%', '**約 X%**', etc.
+# Two alternations:
+#   A) range without % on first number: X-Y%   → groups (X, Y)
+#   B) single value (possibly with ~ or 約):    → groups (X, None)
+_CONFIDENCE_PCT_RE = re.compile(
+    r"^-\s+\*\*(?:方向)?信心\*\*[:：]\s*\*?\*?約?\s*~?\s*"
+    r"(?:([0-9]+(?:\.[0-9]+)?)\s*[-–]\s*([0-9]+(?:\.[0-9]+)?)\s*%"
+    r"|([0-9]+(?:\.[0-9]+)?)\s*%)",
+    re.MULTILINE,
+)
 _PARK_FACTOR_RE = re.compile(
-    r"Park Factor[:：]\s*([0-9]+(?:\.[0-9]+)?)",
+    r"\*?\*?Park Factor\*?\*?[:：]\s*(?:[^0-9(（\n]*?)([0-9]+(?:\.[0-9]+)?)",
+    re.IGNORECASE,
 )
 
 
@@ -110,6 +132,7 @@ def parse_summary(path: Path, home_team_abbr: str, away_team_abbr: str) -> dict:
         "direction": None,
         "total": None,
         "confidence": None,
+        "confidence_pct": None,
         "park_factor": None,
         "has_reverse_platoon": False,
         "has_chain_break_300": False,
@@ -139,11 +162,27 @@ def parse_summary(path: Path, home_team_abbr: str, away_team_abbr: str) -> dict:
         except ValueError:
             pass
 
-    # Confidence
-    conf_match = _CONFIDENCE_RE.search(text)
+    # Confidence — try bucket first (older format), then percentage (newer format)
+    conf_match = _CONFIDENCE_BUCKET_RE.search(text)
     if conf_match:
         c = conf_match.group(1).upper()
         result["confidence"] = "MEDIUM" if c == "MED" else c
+
+    pct_match = _CONFIDENCE_PCT_RE.search(text)
+    if pct_match:
+        try:
+            if pct_match.group(1) is not None:
+                # Range alternation: groups 1 and 2 (e.g. 62-65%)
+                n1 = float(pct_match.group(1))
+                n2 = float(pct_match.group(2))
+            else:
+                # Single-value alternation: group 3 (e.g. 62%, ~70%)
+                n1 = float(pct_match.group(3))
+                n2 = n1
+            # Midpoint for range; single number otherwise; divide by 200 to convert % to decimal and average
+            result["confidence_pct"] = round((n1 + n2) / 200.0, 4)
+        except (ValueError, TypeError):
+            pass
 
     # Park Factor
     pf_match = _PARK_FACTOR_RE.search(text)
@@ -155,12 +194,11 @@ def parse_summary(path: Path, home_team_abbr: str, away_team_abbr: str) -> dict:
 
     # Flags
     result["has_reverse_platoon"] = bool(re.search(r"reverse platoon", text, re.IGNORECASE))
-    chain_break_match = re.search(r"chain breaks? at #.*OPS 落差\s+([0-9]+\.[0-9]+)", text)
-    if chain_break_match:
-        try:
-            result["has_chain_break_300"] = float(chain_break_match.group(1)) >= 0.300
-        except ValueError:
-            pass
+    chain_breaks = re.findall(r"chain breaks? at #.*OPS 落差\s+([0-9]+\.[0-9]+)", text)
+    try:
+        result["has_chain_break_300"] = any(float(v) >= 0.300 for v in chain_breaks)
+    except ValueError:
+        pass
     result["has_bullpen_il_2plus"] = bool(re.search(r"牛棚 core IL [×x](?:2|3)", text))
 
     # parse_failed only if direction couldn't be resolved (other fields are best-effort)
