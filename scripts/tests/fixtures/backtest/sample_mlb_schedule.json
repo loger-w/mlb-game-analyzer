@@ -1,0 +1,27 @@
+{
+  "dates": [
+    {
+      "date": "2026-05-02",
+      "games": [
+        {
+          "gamePk": 823554,
+          "gameType": "R",
+          "status": {"abstractGameState": "Final", "detailedState": "Final"},
+          "teams": {
+            "home": {"team": {"id": 147, "name": "New York Yankees"}, "score": 5},
+            "away": {"team": {"id": 110, "name": "Baltimore Orioles"}, "score": 8}
+          }
+        },
+        {
+          "gamePk": 823555,
+          "gameType": "R",
+          "status": {"abstractGameState": "Preview", "detailedState": "Postponed"},
+          "teams": {
+            "home": {"team": {"id": 142, "name": "Minnesota Twins"}, "score": 0},
+            "away": {"team": {"id": 141, "name": "Toronto Blue Jays"}, "score": 0}
+          }
+        }
+      ]
+    }
+  ]
+}
