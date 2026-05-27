@@ -78,6 +78,9 @@ def find_matchup_dir(date: str, home_team: str, away_team: str) -> Optional[Path
 
     Matchup dirs are like 'BAL@NYY' (away@home, both English abbr). We resolve by
     reading each subdir's game_data.json `game.home.team` / `game.away.team`.
+
+    Note: ambiguous for doubleheaders (same teams, two games on the same day).
+    Prefer `find_matchup_dir_by_pk` when game_pk is available.
     """
     date_dir = ANALYSIS_DATA_DIR / date
     if not date_dir.is_dir():
@@ -98,6 +101,29 @@ def find_matchup_dir(date: str, home_team: str, away_team: str) -> Optional[Path
     return None
 
 
+def find_matchup_dir_by_pk(date: str, game_pk: int) -> Optional[Path]:
+    """Locate analysis-data/{date}/{matchup}/ by exact game_pk in game_data.json.
+
+    Unambiguous for doubleheaders. Returns None if no matchup dir has matching gamePk.
+    """
+    date_dir = ANALYSIS_DATA_DIR / date
+    if not date_dir.is_dir():
+        return None
+    for sub in date_dir.iterdir():
+        if not sub.is_dir():
+            continue
+        gd = sub / "game_data.json"
+        if not gd.exists():
+            continue
+        try:
+            data = json.loads(gd.read_text(encoding="utf-8"))
+            if data.get("game", {}).get("gamePk") == game_pk:
+                return sub
+        except json.JSONDecodeError:
+            continue
+    return None
+
+
 def write_result(matchup_dir: Path, record: dict) -> Path:
     out = matchup_dir / "result.json"
     out.write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -105,14 +131,19 @@ def write_result(matchup_dir: Path, record: dict) -> Path:
 
 
 def process_date(date: str) -> dict:
-    """Fetch & write all results for one date. Returns {date, fetched, matched, missing} dict."""
+    """Fetch & write all results for one date. Returns {date, fetched, matched, missing} dict.
+
+    Match strictly by game_pk (unambiguous for doubleheaders). Games with no matching
+    matchup dir are reported as missing rather than falling back to team-name match
+    (which would overwrite the wrong dir for doubleheader games).
+    """
     scores = fetch_final_scores(date)
     matched = 0
     missing = []
     for raw in scores:
-        matchup_dir = find_matchup_dir(date, raw["home_team"], raw["away_team"])
+        matchup_dir = find_matchup_dir_by_pk(date, raw["game_pk"])
         if matchup_dir is None:
-            missing.append(f"{raw['away_team']}@{raw['home_team']}")
+            missing.append(f"{raw['away_team']}@{raw['home_team']} (game_pk={raw['game_pk']})")
             continue
         record = build_result_record(raw)
         write_result(matchup_dir, record)

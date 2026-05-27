@@ -7,7 +7,8 @@ from unittest.mock import patch
 SCRIPT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
-from fetch_results import fetch_final_scores, build_result_record
+import fetch_results
+from fetch_results import fetch_final_scores, build_result_record, find_matchup_dir_by_pk
 
 
 FIXTURE = Path(__file__).parent / "fixtures" / "backtest" / "sample_mlb_schedule.json"
@@ -68,3 +69,33 @@ def test_build_result_record_winner_tie():
     })
     assert record["winner"] == "TIE"
     assert record["total"] == 10
+
+
+def test_find_matchup_dir_by_pk_distinguishes_doubleheader(tmp_path, monkeypatch):
+    """When 2 dirs share home/away team names (doubleheader), gamePk picks the right one."""
+    date_dir = tmp_path / "2026-05-23"
+    g1 = date_dir / "STL@CIN-G1"
+    g2 = date_dir / "STL@CIN-G2"
+    g1.mkdir(parents=True)
+    g2.mkdir(parents=True)
+    (g1 / "game_data.json").write_text(json.dumps({"game": {
+        "gamePk": 824518,
+        "home": {"team": "Cincinnati Reds"},
+        "away": {"team": "St. Louis Cardinals"},
+    }}), encoding="utf-8")
+    (g2 / "game_data.json").write_text(json.dumps({"game": {
+        "gamePk": 824519,
+        "home": {"team": "Cincinnati Reds"},
+        "away": {"team": "St. Louis Cardinals"},
+    }}), encoding="utf-8")
+
+    monkeypatch.setattr(fetch_results, "ANALYSIS_DATA_DIR", tmp_path)
+
+    assert find_matchup_dir_by_pk("2026-05-23", 824518) == g1
+    assert find_matchup_dir_by_pk("2026-05-23", 824519) == g2
+    assert find_matchup_dir_by_pk("2026-05-23", 999999) is None
+
+
+def test_find_matchup_dir_by_pk_returns_none_when_date_missing(tmp_path, monkeypatch):
+    monkeypatch.setattr(fetch_results, "ANALYSIS_DATA_DIR", tmp_path)
+    assert find_matchup_dir_by_pk("2026-05-23", 824518) is None

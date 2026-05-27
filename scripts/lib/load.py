@@ -90,10 +90,16 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
     home_team = game_data.get("game", {}).get("home", {}).get("team", "")
     away_team = game_data.get("game", {}).get("away", {}).get("team", "")
 
-    # Parse summary
+    # Parse summary — fallback to summary-G*.md for doubleheader dirs
     summary_path = matchup_dir / "summary.md"
+    dossier_filename = "dossier.md"
     if not summary_path.exists():
-        return None
+        g_summaries = sorted(matchup_dir.glob("summary-G*.md"))
+        if not g_summaries:
+            return None
+        summary_path = g_summaries[0]
+        suffix = summary_path.stem[len("summary"):]  # e.g. "-G1"
+        dossier_filename = f"dossier{suffix}.md"
     pred = parse_summary(summary_path, home_team_abbr=home_abbr, away_team_abbr=away_abbr)
 
     # Closing snapshot
@@ -161,5 +167,5 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
         "closing_missing": closing_missing,
         "closing_snapshot_ts": snap_filename or "",
         "result_missing": result_missing,
-        "dossier_path": f"../{date}/{matchup_dir.name}/dossier.md",
+        "dossier_path": f"../{date}/{matchup_dir.name}/{dossier_filename}",
     }
