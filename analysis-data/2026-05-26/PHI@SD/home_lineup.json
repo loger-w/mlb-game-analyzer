@@ -1,0 +1,533 @@
+{
+  "team": "SD",
+  "team_id": 135,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟢 Weak",
+  "avg_ops": 0.676,
+  "avg_ops_vs_lhp": 0.666,
+  "avg_ops_vs_rhp": 0.686,
+  "avg_xwoba": 0.316,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.268,
+  "avg_k_pct": 22.3,
+  "avg_bb_pct": 8.5,
+  "over_under_lean": 1,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.231,
+  "chain": {
+    "obp_top3": 0.328,
+    "slg_mid": 0.407
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-26T21:39:13+00:00",
+    "game_pk": 823294
+  },
+  "lineup": [
+    {
+      "mlbam_id": 665487,
+      "pa": 223,
+      "avg": 0.255,
+      "obp": 0.338,
+      "slg": 0.297,
+      "ops": 0.635,
+      "iso": 0.042,
+      "babip": 0.336,
+      "k_pct": 22.4,
+      "bb_pct": 10.8,
+      "name": "Fernando Tatis Jr.",
+      "position": "RF",
+      "batting_order": 1,
+      "xwoba": 0.349,
+      "xba": 0.277,
+      "xslg": 0.396,
+      "ev95pct": 53.7,
+      "barrel_pct": 10.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".286",
+          "obp": ".375",
+          "slg": ".429",
+          "ops": ".804",
+          "pa": 40
+        },
+        "vs_rhp": {
+          "avg": ".248",
+          "obp": ".330",
+          "slg": ".268",
+          "ops": ".598",
+          "pa": 183
+        }
+      },
+      "last_7": {
+        "avg": ".417",
+        "obp": ".533",
+        "slg": ".458",
+        "ops": ".991",
+        "babip": ".476",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 4,
+        "avg": ".000",
+        "obp": ".250",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 593428,
+      "pa": 204,
+      "avg": 0.245,
+      "obp": 0.314,
+      "slg": 0.375,
+      "ops": 0.689,
+      "iso": 0.13,
+      "babip": 0.266,
+      "k_pct": 17.2,
+      "bb_pct": 9.3,
+      "name": "Xander Bogaerts",
+      "position": "SS",
+      "batting_order": 2,
+      "xwoba": 0.327,
+      "xba": 0.261,
+      "xslg": 0.411,
+      "ev95pct": 36.0,
+      "barrel_pct": 6.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".263",
+          "obp": ".333",
+          "slg": ".289",
+          "ops": ".622",
+          "pa": 42
+        },
+        "vs_rhp": {
+          "avg": ".240",
+          "obp": ".309",
+          "slg": ".397",
+          "ops": ".706",
+          "pa": 162
+        }
+      },
+      "last_7": {
+        "avg": ".125",
+        "obp": ".185",
+        "slg": ".125",
+        "ops": ".310",
+        "babip": ".158",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 6,
+        "avg": ".167",
+        "obp": ".167",
+        "slg": ".167",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 657757,
+      "pa": 163,
+      "avg": 0.253,
+      "obp": 0.331,
+      "slg": 0.507,
+      "ops": 0.838,
+      "iso": 0.254,
+      "babip": 0.272,
+      "k_pct": 20.9,
+      "bb_pct": 9.8,
+      "name": "Gavin Sheets",
+      "position": "1B",
+      "batting_order": 3,
+      "xwoba": 0.35,
+      "xba": 0.262,
+      "xslg": 0.466,
+      "ev95pct": 46.4,
+      "barrel_pct": 9.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".211",
+          "slg": ".167",
+          "ops": ".378",
+          "pa": 19
+        },
+        "vs_rhp": {
+          "avg": ".266",
+          "obp": ".347",
+          "slg": ".555",
+          "ops": ".902",
+          "pa": 144
+        }
+      },
+      "last_7": {
+        "avg": ".304",
+        "obp": ".407",
+        "slg": ".609",
+        "ops": "1.016",
+        "babip": ".333",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".667",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 592518,
+      "pa": 212,
+      "avg": 0.17,
+      "obp": 0.265,
+      "slg": 0.33,
+      "ops": 0.595,
+      "iso": 0.16,
+      "babip": 0.18,
+      "k_pct": 23.6,
+      "bb_pct": 11.8,
+      "name": "Manny Machado",
+      "position": "3B",
+      "batting_order": 4,
+      "xwoba": 0.301,
+      "xba": 0.221,
+      "xslg": 0.366,
+      "ev95pct": 42.3,
+      "barrel_pct": 6.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".270",
+          "obp": ".349",
+          "slg": ".514",
+          "ops": ".863",
+          "pa": 43
+        },
+        "vs_rhp": {
+          "avg": ".145",
+          "obp": ".244",
+          "slg": ".283",
+          "ops": ".527",
+          "pa": 169
+        }
+      },
+      "last_7": {
+        "avg": ".087",
+        "obp": ".185",
+        "slg": ".348",
+        "ops": ".533",
+        "babip": ".000",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 7,
+        "avg": ".000",
+        "obp": ".143",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 609280,
+      "pa": 159,
+      "avg": 0.281,
+      "obp": 0.308,
+      "slg": 0.484,
+      "ops": 0.792,
+      "iso": 0.203,
+      "babip": 0.311,
+      "k_pct": 16.4,
+      "bb_pct": 3.1,
+      "name": "Miguel Andujar",
+      "position": "DH",
+      "batting_order": 5,
+      "xwoba": 0.301,
+      "xba": 0.272,
+      "xslg": 0.396,
+      "ev95pct": 38.6,
+      "barrel_pct": 4.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".250",
+          "obp": ".302",
+          "slg": ".425",
+          "ops": ".727",
+          "pa": 43
+        },
+        "vs_rhp": {
+          "avg": ".292",
+          "obp": ".310",
+          "slg": ".504",
+          "ops": ".814",
+          "pa": 116
+        }
+      },
+      "last_7": {
+        "avg": ".231",
+        "obp": ".286",
+        "slg": ".500",
+        "ops": ".786",
+        "babip": ".182",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 701538,
+      "pa": 208,
+      "avg": 0.198,
+      "obp": 0.272,
+      "slg": 0.316,
+      "ops": 0.588,
+      "iso": 0.118,
+      "babip": 0.254,
+      "k_pct": 25.5,
+      "bb_pct": 8.7,
+      "name": "Jackson Merrill",
+      "position": "CF",
+      "batting_order": 6,
+      "xwoba": 0.307,
+      "xba": 0.235,
+      "xslg": 0.403,
+      "ev95pct": 47.1,
+      "barrel_pct": 9.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".209",
+          "obp": ".292",
+          "slg": ".302",
+          "ops": ".594",
+          "pa": 48
+        },
+        "vs_rhp": {
+          "avg": ".194",
+          "obp": ".266",
+          "slg": ".319",
+          "ops": ".585",
+          "pa": 160
+        }
+      },
+      "last_7": {
+        "avg": ".143",
+        "obp": ".250",
+        "slg": ".238",
+        "ops": ".488",
+        "babip": ".176",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 664034,
+      "pa": 94,
+      "avg": 0.289,
+      "obp": 0.319,
+      "slg": 0.533,
+      "ops": 0.852,
+      "iso": 0.244,
+      "babip": 0.323,
+      "k_pct": 21.3,
+      "bb_pct": 3.2,
+      "name": "Ty France",
+      "position": "1B",
+      "batting_order": 7,
+      "xwoba": 0.342,
+      "xba": 0.267,
+      "xslg": 0.498,
+      "ev95pct": 48.6,
+      "barrel_pct": 14.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".233",
+          "obp": ".233",
+          "slg": ".333",
+          "ops": ".566",
+          "pa": 30
+        },
+        "vs_rhp": {
+          "avg": ".317",
+          "obp": ".359",
+          "slg": ".633",
+          "ops": ".992",
+          "pa": 64
+        }
+      },
+      "last_7": {
+        "avg": ".421",
+        "obp": ".450",
+        "slg": ".632",
+        "ops": "1.082",
+        "babip": ".583",
+        "pa": 20
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".667",
+        "obp": ".667",
+        "slg": "1.000",
+        "h": 2,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 657656,
+      "pa": 190,
+      "avg": 0.208,
+      "obp": 0.289,
+      "slg": 0.369,
+      "ops": 0.658,
+      "iso": 0.161,
+      "babip": 0.282,
+      "k_pct": 32.1,
+      "bb_pct": 9.5,
+      "name": "Ramón Laureano",
+      "position": "LF",
+      "batting_order": 8,
+      "xwoba": 0.314,
+      "xba": 0.226,
+      "xslg": 0.409,
+      "ev95pct": 43.1,
+      "barrel_pct": 13.8,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".239",
+          "slg": ".286",
+          "ops": ".525",
+          "pa": 46
+        },
+        "vs_rhp": {
+          "avg": ".222",
+          "obp": ".306",
+          "slg": ".397",
+          "ops": ".703",
+          "pa": 144
+        }
+      },
+      "last_7": {
+        "avg": ".100",
+        "obp": ".217",
+        "slg": ".250",
+        "ops": ".467",
+        "babip": ".100",
+        "pa": 23
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".333",
+        "h": 1,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 666023,
+      "pa": 104,
+      "avg": 0.146,
+      "obp": 0.25,
+      "slg": 0.191,
+      "ops": 0.441,
+      "iso": 0.045,
+      "babip": 0.188,
+      "k_pct": 21.2,
+      "bb_pct": 10.6,
+      "name": "Freddy Fermin",
+      "position": "C",
+      "batting_order": 9,
+      "xwoba": 0.25,
+      "xba": 0.183,
+      "xslg": 0.241,
+      "ev95pct": 26.1,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".333",
+          "obp": ".444",
+          "slg": ".467",
+          "ops": ".911",
+          "pa": 18
+        },
+        "vs_rhp": {
+          "avg": ".108",
+          "obp": ".209",
+          "slg": ".135",
+          "ops": ".344",
+          "pa": 86
+        }
+      },
+      "last_7": {
+        "avg": ".053",
+        "obp": ".182",
+        "slg": ".053",
+        "ops": ".235",
+        "babip": ".071",
+        "pa": 22
+      },
+      "bvp": {
+        "pa": 2,
+        "avg": ".500",
+        "obp": ".500",
+        "slg": ".500",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

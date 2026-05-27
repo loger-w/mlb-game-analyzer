@@ -1,0 +1,163 @@
+{
+  "name": "Eric Lauer",
+  "mlbam_id": 641778,
+  "age": 30,
+  "birth_date": "1995-06-03",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "⚪ Below Average",
+  "tier_components": {
+    "xfip_pct": 0.05,
+    "k_bb_pct": 0.233,
+    "stuff_pct": null,
+    "age_factor": 0.88
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 29.3,
+    "era_only_score": 15.0,
+    "gap": 14.3
+  },
+  "season": {
+    "era": 6.69,
+    "whip": 1.49,
+    "k_pct": 16.0,
+    "bb_pct": 9.9,
+    "k_bb_pct": 6.1,
+    "fip": 6.93,
+    "xfip": 5.07,
+    "hr_per_9": 2.72,
+    "gb_pct": 28.4,
+    "ip": 36.333333333333336,
+    "games": 8,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 5.84,
+    "xwoba": 0.374,
+    "xba": 0.274
+  },
+  "statcast": {
+    "avg_velo": 86.1,
+    "max_velo": 93.1,
+    "hard_hit_pct": 24.8,
+    "pitch_types": {
+      "FF": 45.5,
+      "CH": 17.4,
+      "FC": 16.4,
+      "SL": 10.6,
+      "CU": 10.0
+    },
+    "barrel_pct": 12.6,
+    "ev95percent": 42.0,
+    "whiff_pct": 7.5,
+    "csw_pct": 22.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Athletics",
+      "ip": 5.333333333333333,
+      "era": 3.38,
+      "k": 9,
+      "bb": 1,
+      "h": 3,
+      "er": 2,
+      "pitches": 87,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Chicago White Sox",
+      "ip": 2.0,
+      "era": 4.91,
+      "k": 0,
+      "bb": 3,
+      "h": 3,
+      "er": 2,
+      "pitches": 49,
+      "strikes": 26
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Minnesota Twins",
+      "ip": 5.333333333333333,
+      "era": 7.82,
+      "k": 3,
+      "bb": 5,
+      "h": 5,
+      "er": 7,
+      "pitches": 95,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".348",
+      "obp": ".464",
+      "slg": ".609",
+      "k": 5,
+      "bb": 5,
+      "bf": 28,
+      "k_pct": 17.9,
+      "bb_pct": 17.9
+    },
+    "vs_right": {
+      "avg": ".248",
+      "obp": ".308",
+      "slg": ".529",
+      "k": 21,
+      "bb": 11,
+      "bf": 134,
+      "k_pct": 15.7,
+      "bb_pct": 8.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.704,
+      "k_pct": 25.9,
+      "bb_pct": 8.6,
+      "bf": 793
+    },
+    "tto2": {
+      "ops": 0.817,
+      "k_pct": 20.5,
+      "bb_pct": 8.1,
+      "bf": 616
+    },
+    "tto3": {
+      "ops": 0.815,
+      "k_pct": 14.2,
+      "bb_pct": 7.7,
+      "bf": 260
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 45.5,
+      "rv_per_100": -1.2,
+      "xwoba_against": 0.376,
+      "whiff_pct": 21.9,
+      "put_away_pct": 22.0,
+      "hard_hit_pct": 46.0
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 17.4,
+      "rv_per_100": 0.1,
+      "xwoba_against": 0.334,
+      "whiff_pct": 12.2,
+      "put_away_pct": 9.7,
+      "hard_hit_pct": 43.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

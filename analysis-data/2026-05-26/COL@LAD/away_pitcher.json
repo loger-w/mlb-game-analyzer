@@ -1,0 +1,183 @@
+{
+  "name": "Kyle Freeland",
+  "mlbam_id": 607536,
+  "age": 33,
+  "birth_date": "1993-05-14",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.823,
+    "k_bb_pct": 0.595,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 72.8,
+    "era_only_score": 15.0,
+    "gap": 57.8
+  },
+  "season": {
+    "era": 7.04,
+    "whip": 1.7,
+    "k_pct": 19.4,
+    "bb_pct": 7.8,
+    "k_bb_pct": 11.6,
+    "fip": 5.42,
+    "xfip": 3.62,
+    "hr_per_9": 2.11,
+    "gb_pct": 51.3,
+    "ip": 38.333333333333336,
+    "games": 8,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 5.73,
+    "xwoba": 0.371,
+    "xba": 0.3
+  },
+  "statcast": {
+    "avg_velo": 86.5,
+    "max_velo": 93.9,
+    "hard_hit_pct": 26.9,
+    "pitch_types": {
+      "FF": 26.9,
+      "KC": 22.5,
+      "ST": 16.6,
+      "CH": 15.7,
+      "FC": 14.5
+    },
+    "barrel_pct": 7.1,
+    "ev95percent": 40.2,
+    "whiff_pct": 10.2,
+    "csw_pct": 26.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Miami Marlins",
+      "ip": 4.333333333333333,
+      "era": 4.15,
+      "k": 2,
+      "bb": 2,
+      "h": 5,
+      "er": 2,
+      "pitches": 81,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Toronto Blue Jays",
+      "ip": 5.0,
+      "era": 2.89,
+      "k": 6,
+      "bb": 1,
+      "h": 5,
+      "er": 1,
+      "pitches": 88,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Houston Astros",
+      "ip": 6.333333333333333,
+      "era": 2.3,
+      "k": 5,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 81,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".333",
+      "obp": ".382",
+      "slg": ".533",
+      "k": 6,
+      "bb": 1,
+      "bf": 34,
+      "k_pct": 17.6,
+      "bb_pct": 2.9
+    },
+    "vs_right": {
+      "avg": ".313",
+      "obp": ".384",
+      "slg": ".542",
+      "k": 29,
+      "bb": 13,
+      "bf": 146,
+      "k_pct": 19.9,
+      "bb_pct": 8.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.977,
+      "k_pct": 18.5,
+      "bb_pct": 8.6,
+      "bf": 81
+    },
+    "tto2": {
+      "ops": 0.902,
+      "k_pct": 19.0,
+      "bb_pct": 3.8,
+      "bf": 79
+    },
+    "tto3": {
+      "ops": 0.727,
+      "k_pct": 19.4,
+      "bb_pct": 13.9,
+      "bf": 36
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 27.5,
+      "rv_per_100": -3.6,
+      "xwoba_against": 0.42,
+      "whiff_pct": 13.2,
+      "put_away_pct": 11.3,
+      "hard_hit_pct": 40.5
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 23.0,
+      "rv_per_100": -4.0,
+      "xwoba_against": 0.377,
+      "whiff_pct": 32.1,
+      "put_away_pct": 19.6,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 17.0,
+      "rv_per_100": 2.8,
+      "xwoba_against": 0.233,
+      "whiff_pct": 31.7,
+      "put_away_pct": 25.0,
+      "hard_hit_pct": 22.7
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 15.4,
+      "rv_per_100": -1.9,
+      "xwoba_against": 0.428,
+      "whiff_pct": 23.3,
+      "put_away_pct": 14.8,
+      "hard_hit_pct": 44.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

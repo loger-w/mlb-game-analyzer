@@ -1,0 +1,133 @@
+{
+  "home_recent_rs": 5.0,
+  "home_recent_ra": 5.6,
+  "away_recent_rs": 6.4,
+  "away_recent_ra": 2.6,
+  "home_recent_30_rs": 3.87,
+  "home_recent_30_ra": 4.93,
+  "away_recent_30_rs": 4.7,
+  "away_recent_30_ra": 4.03,
+  "home_season_rs": 3.58,
+  "home_season_ra": 4.51,
+  "away_season_rs": 4.62,
+  "away_season_ra": 4.42,
+  "home_season_games": 55,
+  "away_season_games": 53,
+  "home_starter_fip": 4.75,
+  "home_starter_k_bb": 14.4,
+  "home_starter_whip": 1.57,
+  "away_starter_fip": 3.68,
+  "away_starter_k_bb": 8.1,
+  "away_starter_whip": 1.19,
+  "home_batting_xwoba": 0.297,
+  "home_batting_ops": 0.693,
+  "home_batting_k_pct": 22.8,
+  "away_batting_xwoba": 0.353,
+  "away_batting_ops": 0.817,
+  "away_batting_k_pct": 17.8,
+  "home_pitcher": {
+    "era": 6.1,
+    "xera": 4.06,
+    "ip": 51.666666666666664,
+    "era_xera_delta": 2.04,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 47.2,
+        "rv_per_100": 0.0,
+        "xwoba_against": 0.339,
+        "whiff_pct": 21.7,
+        "put_away_pct": 28.1,
+        "hard_hit_pct": 37.7
+      },
+      {
+        "pitch_type": "FS",
+        "pitch_name": "Split-Finger",
+        "usage": 24.4,
+        "rv_per_100": -1.9,
+        "xwoba_against": 0.254,
+        "whiff_pct": 26.4,
+        "put_away_pct": 19.4,
+        "hard_hit_pct": 31.9
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 16.8,
+        "rv_per_100": -0.7,
+        "xwoba_against": 0.345,
+        "whiff_pct": 7.8,
+        "put_away_pct": 33.3,
+        "hard_hit_pct": 35.3
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 2.24,
+    "xera": 4.26,
+    "ip": 60.333333333333336,
+    "era_xera_delta": -2.02,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 39.7,
+        "rv_per_100": 1.0,
+        "xwoba_against": 0.325,
+        "whiff_pct": 23.7,
+        "put_away_pct": 23.8,
+        "hard_hit_pct": 44.0
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 28.6,
+        "rv_per_100": 2.4,
+        "xwoba_against": 0.277,
+        "whiff_pct": 16.3,
+        "put_away_pct": 9.9,
+        "hard_hit_pct": 23.0
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 15.1,
+        "rv_per_100": -1.5,
+        "xwoba_against": 0.418,
+        "whiff_pct": 14.8,
+        "put_away_pct": 25.0,
+        "hard_hit_pct": 40.0
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.278
+  },
+  "away_lineup": {
+    "recent_babip": 0.354
+  },
+  "home_bullpen_era": 3.32,
+  "away_bullpen_era": 4.09,
+  "park_factor": 91.0,
+  "home_core_bullpen_il_count": 3,
+  "away_core_bullpen_il_count": 3,
+  "weather": {
+    "condition": "Clear",
+    "temp_f": 60,
+    "wind_text": "22 mph, Out To RF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "San Francisco Giants",
+    "away_team": "Arizona Diamondbacks",
+    "home_sp": "Tyler Mahle",
+    "away_sp": "Eduardo Rodriguez",
+    "home_sp_starts": 10,
+    "away_sp_starts": 10,
+    "venue": "Oracle Park",
+    "game_pk": 823216,
+    "game_date": "2026-05-27T01:45:00Z",
+    "official_date": "2026-05-26"
+  }
+}

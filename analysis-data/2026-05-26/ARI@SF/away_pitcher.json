@@ -1,0 +1,173 @@
+{
+  "name": "Eduardo Rodriguez",
+  "mlbam_id": 593958,
+  "age": 33,
+  "birth_date": "1993-04-07",
+  "pitch_hand": "L",
+  "age_assessment": "📉 初期退化",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.483,
+    "k_bb_pct": 0.364,
+    "stuff_pct": null,
+    "age_factor": 0.76
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 50.0,
+    "era_only_score": 92.6,
+    "gap": -42.6
+  },
+  "season": {
+    "era": 2.24,
+    "whip": 1.19,
+    "k_pct": 17.4,
+    "bb_pct": 9.3,
+    "k_bb_pct": 8.1,
+    "fip": 3.68,
+    "xfip": 4.15,
+    "hr_per_9": 0.6,
+    "gb_pct": 53.0,
+    "ip": 60.333333333333336,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.26,
+    "xwoba": 0.326,
+    "xba": 0.255
+  },
+  "statcast": {
+    "avg_velo": 88.4,
+    "max_velo": 94.6,
+    "hard_hit_pct": 23.1,
+    "pitch_types": {
+      "FF": 39.7,
+      "CH": 28.6,
+      "FC": 15.1,
+      "CU": 9.7,
+      "SI": 6.9
+    },
+    "barrel_pct": 7.2,
+    "ev95percent": 34.3,
+    "whiff_pct": 7.2,
+    "csw_pct": 24.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-28",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.0,
+      "era": 0.0,
+      "k": 5,
+      "bb": 2,
+      "h": 4,
+      "er": 0,
+      "pitches": 79,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-03",
+      "opponent": "Atlanta Braves",
+      "ip": 7.0,
+      "era": 0.0,
+      "k": 3,
+      "bb": 1,
+      "h": 4,
+      "er": 0,
+      "pitches": 90,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-09",
+      "opponent": "New York Mets",
+      "ip": 6.0,
+      "era": 0.5,
+      "k": 3,
+      "bb": 2,
+      "h": 5,
+      "er": 1,
+      "pitches": 102,
+      "strikes": 65
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".237",
+      "obp": ".286",
+      "slg": ".339",
+      "k": 11,
+      "bb": 4,
+      "bf": 63,
+      "k_pct": 17.5,
+      "bb_pct": 6.3
+    },
+    "vs_right": {
+      "avg": ".212",
+      "obp": ".293",
+      "slg": ".327",
+      "k": 32,
+      "bb": 19,
+      "bf": 184,
+      "k_pct": 17.4,
+      "bb_pct": 10.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.618,
+      "k_pct": 18.9,
+      "bb_pct": 8.9,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.733,
+      "k_pct": 15.6,
+      "bb_pct": 11.1,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.479,
+      "k_pct": 17.5,
+      "bb_pct": 7.9,
+      "bf": 63
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 39.7,
+      "rv_per_100": 1.0,
+      "xwoba_against": 0.325,
+      "whiff_pct": 23.7,
+      "put_away_pct": 23.8,
+      "hard_hit_pct": 44.0
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 28.6,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.277,
+      "whiff_pct": 16.3,
+      "put_away_pct": 9.9,
+      "hard_hit_pct": 23.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 15.1,
+      "rv_per_100": -1.5,
+      "xwoba_against": 0.418,
+      "whiff_pct": 14.8,
+      "put_away_pct": 25.0,
+      "hard_hit_pct": 40.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

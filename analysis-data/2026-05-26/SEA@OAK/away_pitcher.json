@@ -1,0 +1,173 @@
+{
+  "name": "Emerson Hancock",
+  "mlbam_id": 676106,
+  "age": 26,
+  "birth_date": "1999-05-31",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 96.1,
+    "era_only_score": 77.8,
+    "gap": 18.3
+  },
+  "season": {
+    "era": 3.07,
+    "whip": 1.06,
+    "k_pct": 26.2,
+    "bb_pct": 5.7,
+    "k_bb_pct": 20.5,
+    "fip": 3.49,
+    "xfip": 2.92,
+    "hr_per_9": 1.23,
+    "gb_pct": 48.6,
+    "ip": 58.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.08,
+    "xwoba": 0.32,
+    "xba": 0.249
+  },
+  "statcast": {
+    "avg_velo": 89.5,
+    "max_velo": 97.7,
+    "hard_hit_pct": 24.2,
+    "pitch_types": {
+      "FF": 37.3,
+      "SI": 23.1,
+      "ST": 20.5,
+      "FC": 11.8,
+      "CH": 5.8
+    },
+    "barrel_pct": 9.7,
+    "ev95percent": 44.2,
+    "whiff_pct": 11.4,
+    "csw_pct": 23.2
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Cleveland Guardians",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 9,
+      "bb": 1,
+      "h": 0,
+      "er": 0,
+      "pitches": 97,
+      "strikes": 62
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Los Angeles Angels",
+      "ip": 6.666666666666667,
+      "era": 0.71,
+      "k": 5,
+      "bb": 0,
+      "h": 6,
+      "er": 1,
+      "pitches": 82,
+      "strikes": 58
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Houston Astros",
+      "ip": 5.0,
+      "era": 2.04,
+      "k": 5,
+      "bb": 2,
+      "h": 4,
+      "er": 3,
+      "pitches": 88,
+      "strikes": 56
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".220",
+      "obp": ".276",
+      "slg": ".381",
+      "k": 34,
+      "bb": 8,
+      "bf": 127,
+      "k_pct": 26.8,
+      "bb_pct": 6.3
+    },
+    "vs_right": {
+      "avg": ".240",
+      "obp": ".284",
+      "slg": ".385",
+      "k": 26,
+      "bb": 5,
+      "bf": 102,
+      "k_pct": 25.5,
+      "bb_pct": 4.9
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.592,
+      "k_pct": 27.8,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.638,
+      "k_pct": 25.6,
+      "bb_pct": 5.6,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.786,
+      "k_pct": 24.5,
+      "bb_pct": 2.0,
+      "bf": 49
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 37.3,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.352,
+      "whiff_pct": 27.6,
+      "put_away_pct": 23.5,
+      "hard_hit_pct": 63.8
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 23.1,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.377,
+      "whiff_pct": 9.4,
+      "put_away_pct": 13.5,
+      "hard_hit_pct": 48.4
+    },
+    {
+      "pitch_type": "ST",
+      "pitch_name": "Sweeper",
+      "usage": 20.5,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.183,
+      "whiff_pct": 37.0,
+      "put_away_pct": 19.3,
+      "hard_hit_pct": 5.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "home_recent_rs": 3.9,
+  "home_recent_ra": 4.2,
+  "away_recent_rs": 3.6,
+  "away_recent_ra": 2.7,
+  "home_recent_30_rs": 3.47,
+  "home_recent_30_ra": 4.03,
+  "away_recent_30_rs": 3.5,
+  "away_recent_30_ra": 4.37,
+  "home_season_rs": 3.79,
+  "home_season_ra": 3.85,
+  "away_season_rs": 4.32,
+  "away_season_ra": 5.02,
+  "home_season_games": 53,
+  "away_season_games": 56,
+  "home_starter_fip": 4.07,
+  "home_starter_k_bb": 15.5,
+  "home_starter_whip": 1.39,
+  "away_starter_fip": 5.05,
+  "away_starter_k_bb": 7.0,
+  "away_starter_whip": 1.7,
+  "home_batting_xwoba": 0.337,
+  "home_batting_ops": 0.733,
+  "home_batting_k_pct": 22.6,
+  "away_batting_xwoba": 0.325,
+  "away_batting_ops": 0.703,
+  "away_batting_k_pct": 20.7,
+  "home_pitcher": {
+    "era": 4.61,
+    "xera": 4.52,
+    "ip": 54.666666666666664,
+    "era_xera_delta": 0.09,
+    "arsenal_top": [
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 37.2,
+        "rv_per_100": 0.5,
+        "xwoba_against": 0.327,
+        "whiff_pct": 25.3,
+        "put_away_pct": 17.8,
+        "hard_hit_pct": 44.9
+      },
+      {
+        "pitch_type": "CH",
+        "pitch_name": "Changeup",
+        "usage": 19.1,
+        "rv_per_100": -1.0,
+        "xwoba_against": 0.314,
+        "whiff_pct": 33.0,
+        "put_away_pct": 21.4,
+        "hard_hit_pct": 36.8
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 17.7,
+        "rv_per_100": -0.8,
+        "xwoba_against": 0.393,
+        "whiff_pct": 37.3,
+        "put_away_pct": 28.0,
+        "hard_hit_pct": 55.6
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 7.3,
+    "xera": 3.89,
+    "ip": 12.333333333333334,
+    "era_xera_delta": 3.41,
+    "arsenal_top": []
+  },
+  "home_lineup": {
+    "recent_babip": 0.325
+  },
+  "away_lineup": {
+    "recent_babip": 0.258
+  },
+  "home_bullpen_era": 3.04,
+  "away_bullpen_era": 5.48,
+  "park_factor": 96.0,
+  "home_core_bullpen_il_count": 1,
+  "away_core_bullpen_il_count": 1,
+  "weather": {
+    "condition": "Roof Closed",
+    "temp_f": 72,
+    "wind_text": "0 mph, None",
+    "indoor": true
+  },
+  "_meta": {
+    "home_team": "Texas Rangers",
+    "away_team": "Houston Astros",
+    "home_sp": "Jack Leiter",
+    "away_sp": "Jason Alexander",
+    "home_sp_starts": 10,
+    "away_sp_starts": 1,
+    "venue": "Globe Life Field",
+    "game_pk": 822898,
+    "game_date": "2026-05-27T00:05:00Z",
+    "official_date": "2026-05-26"
+  }
+}

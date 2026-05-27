@@ -1,0 +1,406 @@
+{
+  "team": "Colorado Rockies",
+  "team_id": 115,
+  "active_roster": {
+    "pitchers": [
+      "Antonio Senzatela",
+      "Blas Castaño",
+      "Brennan Bernardino",
+      "Jaden Hill",
+      "Juan Mejia",
+      "Keegan Thompson",
+      "Kyle Freeland",
+      "Michael Lorenzen",
+      "Seth Halvorsen",
+      "Tanner Gordon",
+      "Tomoyuki Sugano",
+      "Welinton Herrera",
+      "Zach Agnos"
+    ],
+    "pitcher_ids": [
+      622608,
+      680604,
+      657514,
+      677955,
+      675848,
+      624522,
+      607536,
+      547179,
+      678020,
+      685299,
+      608372,
+      700327,
+      688642
+    ],
+    "position_players": [
+      "Braxton Fulford",
+      "Brett Sullivan",
+      "Chad Stevens",
+      "Edouard Julien",
+      "Ezequiel Tovar",
+      "Hunter Goodman",
+      "Jake McCarthy",
+      "Kyle Karros",
+      "Sterlin Thompson",
+      "TJ Rumfield",
+      "Troy Johnston",
+      "Tyler Freeman",
+      "Willi Castro"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Antonio Senzatela",
+        "player_id": 622608,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 2,
+          "g": 15,
+          "gs": 0,
+          "ip": 32.0
+        }
+      },
+      {
+        "name": "Blas Castaño",
+        "player_id": 680604,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 3,
+          "gs": 0,
+          "ip": 8.0
+        }
+      },
+      {
+        "name": "Brennan Bernardino",
+        "player_id": 657514,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 25,
+          "gs": 2,
+          "ip": 21.0
+        }
+      },
+      {
+        "name": "Jaden Hill",
+        "player_id": 677955,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 9,
+          "g": 22,
+          "gs": 0,
+          "ip": 19.3
+        }
+      },
+      {
+        "name": "Juan Mejia",
+        "player_id": 675848,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 3,
+          "holds": 4,
+          "g": 22,
+          "gs": 1,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "Keegan Thompson",
+        "player_id": 624522,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 1,
+          "gs": 0,
+          "ip": 2.7
+        }
+      },
+      {
+        "name": "Kyle Freeland",
+        "player_id": 607536,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 8,
+          "ip": 38.3
+        }
+      },
+      {
+        "name": "Michael Lorenzen",
+        "player_id": 547179,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 12,
+          "gs": 11,
+          "ip": 53.7
+        }
+      },
+      {
+        "name": "Seth Halvorsen",
+        "player_id": 678020,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 10,
+          "gs": 0,
+          "ip": 9.3
+        }
+      },
+      {
+        "name": "Tanner Gordon",
+        "player_id": 685299,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 8,
+          "gs": 1,
+          "ip": 32.3
+        }
+      },
+      {
+        "name": "Tomoyuki Sugano",
+        "player_id": 608372,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 53.7
+        }
+      },
+      {
+        "name": "Welinton Herrera",
+        "player_id": 700327,
+        "core_role": "Unknown",
+        "core_role_confidence": "insufficient",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 1,
+          "gs": 0,
+          "ip": 1.0
+        }
+      },
+      {
+        "name": "Zach Agnos",
+        "player_id": 688642,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 2,
+          "holds": 0,
+          "g": 14,
+          "gs": 1,
+          "ip": 34.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Brenton Doyle",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 686668
+    },
+    {
+      "name": "Chase Dollander",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 801403,
+      "core_role": "Long RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 10,
+        "gs": 3,
+        "ip": 44.0
+      }
+    },
+    {
+      "name": "Jeff Criswell",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 676105,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Jimmy Herget",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 623474,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 3,
+        "g": 15,
+        "gs": 3,
+        "ip": 16.0
+      }
+    },
+    {
+      "name": "Jordan Beck",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 687597
+    },
+    {
+      "name": "Jose Quintana",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 500779,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 9,
+        "gs": 9,
+        "ip": 41.0
+      }
+    },
+    {
+      "name": "Kris Bryant",
+      "status": "Injured 60-Day",
+      "position": "Designated Hitter",
+      "player_id": 592178
+    },
+    {
+      "name": "McCade Brown",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 685326,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 7,
+        "ip": 25.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Mickey Moniak",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 666160
+    },
+    {
+      "name": "Pierson Ohl",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 701487,
+      "core_role": "Long RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 2,
+        "g": 14,
+        "gs": 3,
+        "ip": 30.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Ryan Feltner",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 663372,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 5,
+        "gs": 5,
+        "ip": 20.0
+      }
+    },
+    {
+      "name": "Victor Vodnik",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 680767,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 4,
+        "holds": 0,
+        "g": 18,
+        "gs": 0,
+        "ip": 18.0
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Adael Amador",
+    "Gabriel Hughes",
+    "Ryan Ritter",
+    "Sammy Peralta",
+    "Valente Bellozo",
+    "Zac Veen"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 12,
+    "total_40man_not_active": 6
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "name": "Jack Leiter",
+  "mlbam_id": 683004,
+  "age": 26,
+  "birth_date": "2000-04-21",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.9,
+    "k_bb_pct": 0.795,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 88.4,
+    "era_only_score": 44.7,
+    "gap": 43.7
+  },
+  "season": {
+    "era": 4.61,
+    "whip": 1.39,
+    "k_pct": 25.2,
+    "bb_pct": 9.7,
+    "k_bb_pct": 15.5,
+    "fip": 4.07,
+    "xfip": 3.45,
+    "hr_per_9": 1.32,
+    "gb_pct": 46.0,
+    "ip": 54.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.52,
+    "xwoba": 0.335,
+    "xba": 0.254
+  },
+  "statcast": {
+    "avg_velo": 92.1,
+    "max_velo": 99.4,
+    "hard_hit_pct": 28.2,
+    "pitch_types": {
+      "FF": 36.7,
+      "CH": 19.4,
+      "SL": 17.7,
+      "FC": 10.5,
+      "SI": 8.1
+    },
+    "barrel_pct": 11.8,
+    "ev95percent": 42.5,
+    "whiff_pct": 12.2,
+    "csw_pct": 28.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Baltimore Orioles",
+      "ip": 6.0,
+      "era": 3.0,
+      "k": 8,
+      "bb": 1,
+      "h": 5,
+      "er": 2,
+      "pitches": 92,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.0,
+      "era": 2.45,
+      "k": 9,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 85,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 3.6666666666666665,
+      "era": 4.91,
+      "k": 4,
+      "bb": 4,
+      "h": 5,
+      "er": 5,
+      "pitches": 93,
+      "strikes": 54
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".257",
+      "obp": ".344",
+      "slg": ".416",
+      "k": 26,
+      "bb": 14,
+      "bf": 128,
+      "k_pct": 20.3,
+      "bb_pct": 10.9
+    },
+    "vs_right": {
+      "avg": ".240",
+      "obp": ".309",
+      "slg": ".400",
+      "k": 34,
+      "bb": 9,
+      "bf": 110,
+      "k_pct": 30.9,
+      "bb_pct": 8.2
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.539,
+      "k_pct": 29.7,
+      "bb_pct": 6.9,
+      "bf": 101
+    },
+    "tto2": {
+      "ops": 0.9,
+      "k_pct": 20.4,
+      "bb_pct": 12.9,
+      "bf": 93
+    },
+    "tto3": {
+      "ops": 0.715,
+      "k_pct": 29.3,
+      "bb_pct": 6.9,
+      "bf": 58
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 37.2,
+      "rv_per_100": 0.5,
+      "xwoba_against": 0.327,
+      "whiff_pct": 25.3,
+      "put_away_pct": 17.8,
+      "hard_hit_pct": 44.9
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 19.1,
+      "rv_per_100": -1.0,
+      "xwoba_against": 0.314,
+      "whiff_pct": 33.0,
+      "put_away_pct": 21.4,
+      "hard_hit_pct": 36.8
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 17.7,
+      "rv_per_100": -0.8,
+      "xwoba_against": 0.393,
+      "whiff_pct": 37.3,
+      "put_away_pct": 28.0,
+      "hard_hit_pct": 55.6
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 10.8,
+      "rv_per_100": 2.5,
+      "xwoba_against": 0.284,
+      "whiff_pct": 26.0,
+      "put_away_pct": 35.3,
+      "hard_hit_pct": 29.4
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "name": "Bailey Falter",
+  "mlbam_id": 663559,
+  "age": 29,
+  "birth_date": "1997-04-24",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 15.0,
+    "gap": null
+  },
+  "season": {
+    "era": 9.82,
+    "whip": 2.86,
+    "k_pct": 14.6,
+    "bb_pct": 14.6,
+    "k_bb_pct": 0.0,
+    "fip": 5.69,
+    "xfip": 5.34,
+    "hr_per_9": 1.23,
+    "gb_pct": 42.9,
+    "ip": 7.333333333333333,
+    "games": 4,
+    "gs": 1
+  },
+  "expected": {
+    "xera": 4.8,
+    "xwoba": 0.344,
+    "xba": 0.287
+  },
+  "statcast": {
+    "avg_velo": 89.0,
+    "max_velo": 94.8,
+    "hard_hit_pct": 22.5,
+    "pitch_types": {
+      "FF": 60.7,
+      "SL": 17.8,
+      "FS": 11.1,
+      "CU": 7.4,
+      "SI": 3.0
+    },
+    "barrel_pct": 0.0,
+    "ev95percent": 24.1,
+    "whiff_pct": 8.9,
+    "csw_pct": 24.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Atlanta Braves",
+      "ip": 3.0,
+      "era": 6.0,
+      "k": 4,
+      "bb": 0,
+      "h": 5,
+      "er": 2,
+      "pitches": 48,
+      "strikes": 29
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Minnesota Twins",
+      "ip": 0.3333333333333333,
+      "era": 13.5,
+      "k": 0,
+      "bb": 2,
+      "h": 3,
+      "er": 3,
+      "pitches": 20,
+      "strikes": 8
+    },
+    {
+      "date": "2026-05-16",
+      "opponent": "St. Louis Cardinals",
+      "ip": 2.0,
+      "era": 10.13,
+      "k": 0,
+      "bb": 1,
+      "h": 3,
+      "er": 1,
+      "pitches": 28,
+      "strikes": 17
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".636",
+      "obp": ".692",
+      "slg": ".727",
+      "k": 1,
+      "bb": 2,
+      "bf": 13,
+      "k_pct": 7.7,
+      "bb_pct": 15.4
+    },
+    "vs_right": {
+      "avg": ".333",
+      "obp": ".429",
+      "slg": ".500",
+      "k": 5,
+      "bb": 4,
+      "bf": 28,
+      "k_pct": 17.9,
+      "bb_pct": 14.3
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.795,
+      "k_pct": 18.9,
+      "bb_pct": 7.7,
+      "bf": 1056
+    },
+    "tto2": {
+      "ops": 0.786,
+      "k_pct": 15.3,
+      "bb_pct": 5.9,
+      "bf": 799
+    },
+    "tto3": {
+      "ops": 0.704,
+      "k_pct": 17.3,
+      "bb_pct": 7.7,
+      "bf": 272
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 60.7,
+      "rv_per_100": -3.8,
+      "xwoba_against": 0.424,
+      "whiff_pct": 12.1,
+      "put_away_pct": 0.0,
+      "hard_hit_pct": 25.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "team": "San Diego Padres",
+  "team_id": 135,
+  "active_roster": {
+    "pitchers": [
+      "Adrian Morejon",
+      "Bradgley Rodriguez",
+      "Griffin Canning",
+      "Jason Adam",
+      "Jeremiah Estrada",
+      "Lucas Giolito",
+      "Mason Miller",
+      "Michael King",
+      "Randy Vásquez",
+      "Ron Marinaccio",
+      "Walker Buehler",
+      "Wandy Peralta",
+      "Yuki Matsui"
+    ],
+    "pitcher_ids": [
+      670970,
+      699134,
+      656288,
+      592094,
+      669093,
+      608337,
+      695243,
+      650633,
+      681190,
+      676760,
+      621111,
+      593974,
+      673513
+    ],
+    "position_players": [
+      "Bryce Johnson",
+      "Fernando Tatis Jr.",
+      "Freddy Fermin",
+      "Gavin Sheets",
+      "Jackson Merrill",
+      "Manny Machado",
+      "Miguel Andujar",
+      "Nick Castellanos",
+      "Ramón Laureano",
+      "Rodolfo Durán",
+      "Sung-Mun Song",
+      "Ty France",
+      "Xander Bogaerts"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "Adrian Morejon",
+        "player_id": 670970,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 10,
+          "g": 23,
+          "gs": 0,
+          "ip": 26.3
+        }
+      },
+      {
+        "name": "Bradgley Rodriguez",
+        "player_id": 699134,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 3,
+          "g": 22,
+          "gs": 2,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "Griffin Canning",
+        "player_id": 656288,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 5,
+          "ip": 22.7
+        }
+      },
+      {
+        "name": "Jason Adam",
+        "player_id": 592094,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 11,
+          "g": 19,
+          "gs": 0,
+          "ip": 17.7
+        }
+      },
+      {
+        "name": "Jeremiah Estrada",
+        "player_id": 669093,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 6,
+          "g": 17,
+          "gs": 0,
+          "ip": 17.0
+        }
+      },
+      {
+        "name": "Lucas Giolito",
+        "player_id": 608337,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 26,
+          "gs": 26,
+          "ip": 145.0,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Mason Miller",
+        "player_id": 695243,
+        "core_role": "Closer",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 16,
+          "holds": 0,
+          "g": 23,
+          "gs": 0,
+          "ip": 23.7
+        }
+      },
+      {
+        "name": "Michael King",
+        "player_id": 650633,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 62.0
+        }
+      },
+      {
+        "name": "Randy Vásquez",
+        "player_id": 681190,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 54.7
+        }
+      },
+      {
+        "name": "Ron Marinaccio",
+        "player_id": 676760,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 19,
+          "gs": 0,
+          "ip": 30.0
+        }
+      },
+      {
+        "name": "Walker Buehler",
+        "player_id": 621111,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 10,
+          "gs": 10,
+          "ip": 46.3
+        }
+      },
+      {
+        "name": "Wandy Peralta",
+        "player_id": 593974,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 21,
+          "gs": 0,
+          "ip": 24.3
+        }
+      },
+      {
+        "name": "Yuki Matsui",
+        "player_id": 673513,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 0,
+          "ip": 12.0
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Bryan Hoeing",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 663773,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 7,
+        "gs": 0,
+        "ip": 8.0,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Germán Márquez",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 608566,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 6,
+        "ip": 29.7
+      }
+    },
+    {
+      "name": "Jake Cronenworth",
+      "status": "Injured 7-Day",
+      "position": "Second Base",
+      "player_id": 630105
+    },
+    {
+      "name": "Jhony Brito",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 666745,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Joe Musgrove",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 605397,
+      "core_role": "Unknown",
+      "core_role_confidence": "insufficient",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 0,
+        "gs": 0,
+        "ip": 0.0
+      }
+    },
+    {
+      "name": "Luis Campusano",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 669134
+    },
+    {
+      "name": "Matt Waldron",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 663362,
+      "core_role": "Long RP",
+      "core_role_confidence": "heuristic",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 6,
+        "gs": 3,
+        "ip": 23.3
+      }
+    },
+    {
+      "name": "Nick Pivetta",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 601713,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 31,
+        "gs": 31,
+        "ip": 181.7,
+        "from_prior_year": true
+      }
+    }
+  ],
+  "not_active_40man": [
+    "Alek Jacob",
+    "David Morgan",
+    "Garrett Hawkins",
+    "JP Sears",
+    "Kyle Hart",
+    "Mason McCoy",
+    "Miguel Mendez",
+    "Ty Adcock",
+    "Will Wagner"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 8,
+    "total_40man_not_active": 9
+  }
+}
