@@ -127,6 +127,28 @@ odds_state :=
 
 ---
 
+## 📊 回測校準提示（讀報告時參考）
+
+基於 2026-05 回測 n=114（純基本面 vs Pinnacle 12:00 ET no-vig vs 實際結果）。
+
+### 信心檔位 → 真實命中率
+| 信心 | 真實命中率 | n | 建議 |
+|---|---|---|---|
+| HIGH | **80%** | 20 | 唯一強訊號，可下注參考 |
+| MEDIUM | 51% | 70 | ~coin flip，只看不碰 |
+| LOW | 48% | 21 | ~coin flip，只看不碰 |
+
+註：MEDIUM 桶門檻已於 5 月校準後收緊（須 adjusted total gap ≥ 0.8 run 且無反向信號），未來 MEDIUM 場應減少但命中率應拉高；新 baseline 待 6 月驗證。
+
+### 內部已自動校正（formula 已 bake-in，不用手動調）
+- HOME +0.3 run（fix HOME 預測不足，原本 HOME 命中 62% vs AWAY 52%）
+- Total −1.0 run（fix over-estimate，原本 bias +0.96）
+
+### 觀察中（樣本不足下定論）
+- skill 反市場時命中 47%（n=38）— 跟 Pinnacle 收盤線意見不合且非 HIGH 信心時，建議使用者 fade skill；待 6 月底回測驗證後決定是否寫成 hard rule
+
+---
+
 ## 初始化
 
 ### Python 指令偵測
