@@ -27,6 +27,12 @@ def _enrich_with_per_row_metrics(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     eps = 1e-12
 
+    # Coerce numeric columns — when all parse_failed/result_missing, dtype is object
+    # and downstream arithmetic / np.sign fails.
+    for col in ("skill_total", "actual_total", "market_total_line", "skill_prob_mapped"):
+        if col in out.columns:
+            out[col] = pd.to_numeric(out[col], errors="coerce")
+
     out["direction_hit"] = (out["skill_direction"] == out["actual_winner"]).where(
         out["skill_direction"].isin(["HOME", "AWAY"]) & out["actual_winner"].notna()
     )

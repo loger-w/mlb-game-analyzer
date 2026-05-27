@@ -53,7 +53,10 @@ def select_failure_cases(df: pd.DataFrame, top_total_miss: int = 10) -> pd.DataF
 
     # 2. Top total misses (exclude exact hits: abs_error must be > 0)
     with_err = valid[valid["skill_total"].notna() & valid["actual_total"].notna()].copy()
-    with_err["total_abs_error"] = (with_err["skill_total"] - with_err["actual_total"]).abs()
+    # Coerce to float — when valid is empty, subtraction gives object dtype and nlargest fails
+    with_err["total_abs_error"] = pd.to_numeric(
+        (with_err["skill_total"] - with_err["actual_total"]).abs(), errors="coerce"
+    )
     with_err = with_err[with_err["total_abs_error"] > 0]
     top_total = with_err.nlargest(top_total_miss, "total_abs_error").copy()
     top_total["is_top_total_miss"] = True
