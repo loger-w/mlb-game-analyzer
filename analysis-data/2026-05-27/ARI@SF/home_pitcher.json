@@ -1,0 +1,157 @@
+{
+  "name": "Trevor McDonald",
+  "mlbam_id": 686790,
+  "age": 25,
+  "birth_date": "2001-02-26",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟢 Back-end Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 41.0,
+    "gap": null
+  },
+  "season": {
+    "era": 4.76,
+    "whip": 1.01,
+    "k_pct": 22.3,
+    "bb_pct": 4.3,
+    "k_bb_pct": 18.0,
+    "fip": 2.92,
+    "xfip": 2.64,
+    "hr_per_9": 0.79,
+    "gb_pct": 67.4,
+    "ip": 22.666666666666668,
+    "games": 4,
+    "gs": 4
+  },
+  "expected": {
+    "xera": 4.02,
+    "xwoba": 0.317,
+    "xba": 0.262
+  },
+  "statcast": {
+    "avg_velo": 90.8,
+    "max_velo": 96.6,
+    "hard_hit_pct": 31.9,
+    "pitch_types": {
+      "SI": 59.2,
+      "SL": 27.9,
+      "CH": 12.3,
+      "FC": 0.5
+    },
+    "barrel_pct": 4.6,
+    "ev95percent": 44.6,
+    "whiff_pct": 12.1,
+    "csw_pct": 28.5
+  },
+  "game_log": [
+    {
+      "date": "2026-05-04",
+      "opponent": "San Diego Padres",
+      "ip": 7.0,
+      "era": 1.29,
+      "k": 8,
+      "bb": 0,
+      "h": 2,
+      "er": 1,
+      "pitches": 81,
+      "strikes": 60
+    },
+    {
+      "date": "2026-05-11",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.333333333333333,
+      "era": 2.92,
+      "k": 4,
+      "bb": 2,
+      "h": 9,
+      "er": 3,
+      "pitches": 101,
+      "strikes": 58
+    },
+    {
+      "date": "2026-05-16",
+      "opponent": "Athletics",
+      "ip": 6.666666666666667,
+      "era": 2.37,
+      "k": 5,
+      "bb": 1,
+      "h": 5,
+      "er": 1,
+      "pitches": 90,
+      "strikes": 55
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".256",
+      "obp": ".356",
+      "slg": ".487",
+      "k": 9,
+      "bb": 2,
+      "bf": 45,
+      "k_pct": 20.0,
+      "bb_pct": 4.4
+    },
+    "vs_right": {
+      "avg": ".191",
+      "obp": ".224",
+      "slg": ".234",
+      "k": 12,
+      "bb": 2,
+      "bf": 49,
+      "k_pct": 24.5,
+      "bb_pct": 4.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.697,
+      "k_pct": 22.5,
+      "bb_pct": 6.5,
+      "bf": 138
+    },
+    "tto2": {
+      "ops": 0.682,
+      "k_pct": 18.2,
+      "bb_pct": 6.1,
+      "bf": 66
+    },
+    "tto3": {
+      "ops": 0.76,
+      "k_pct": 25.0,
+      "bb_pct": 5.6,
+      "bf": 36
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 60.1,
+      "rv_per_100": 1.9,
+      "xwoba_against": 0.289,
+      "whiff_pct": 18.4,
+      "put_away_pct": 29.4,
+      "hard_hit_pct": 43.5
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 27.5,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.288,
+      "whiff_pct": 37.0,
+      "put_away_pct": 22.9,
+      "hard_hit_pct": 46.7
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

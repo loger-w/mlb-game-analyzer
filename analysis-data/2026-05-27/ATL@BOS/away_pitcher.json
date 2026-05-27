@@ -1,0 +1,183 @@
+{
+  "name": "Bryce Elder",
+  "mlbam_id": 693821,
+  "age": 27,
+  "birth_date": "1999-05-19",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.818,
+    "k_bb_pct": 0.753,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 83.4,
+    "era_only_score": 95.0,
+    "gap": -11.6
+  },
+  "season": {
+    "era": 1.97,
+    "whip": 0.99,
+    "k_pct": 22.0,
+    "bb_pct": 7.7,
+    "k_bb_pct": 14.3,
+    "fip": 3.22,
+    "xfip": 3.63,
+    "hr_per_9": 0.66,
+    "gb_pct": 49.7,
+    "ip": 68.66666666666667,
+    "games": 11,
+    "gs": 11
+  },
+  "expected": {
+    "xera": 2.99,
+    "xwoba": 0.276,
+    "xba": 0.22
+  },
+  "statcast": {
+    "avg_velo": 88.5,
+    "max_velo": 95.2,
+    "hard_hit_pct": 25.9,
+    "pitch_types": {
+      "SL": 29.2,
+      "FF": 24.5,
+      "SI": 24.4,
+      "FC": 11.6,
+      "CH": 10.4
+    },
+    "barrel_pct": 3.7,
+    "ev95percent": 37.9,
+    "whiff_pct": 10.0,
+    "csw_pct": 26.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Athletics",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 5,
+      "bb": 1,
+      "h": 5,
+      "er": 0,
+      "pitches": 83,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "Arizona Diamondbacks",
+      "ip": 7.0,
+      "era": 0.0,
+      "k": 8,
+      "bb": 1,
+      "h": 4,
+      "er": 0,
+      "pitches": 89,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Cleveland Guardians",
+      "ip": 4.666666666666667,
+      "era": 1.02,
+      "k": 3,
+      "bb": 3,
+      "h": 4,
+      "er": 2,
+      "pitches": 76,
+      "strikes": 43
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".135",
+      "obp": ".232",
+      "slg": ".231",
+      "k": 39,
+      "bb": 19,
+      "bf": 178,
+      "k_pct": 21.9,
+      "bb_pct": 10.7
+    },
+    "vs_right": {
+      "avg": ".283",
+      "obp": ".305",
+      "slg": ".391",
+      "k": 21,
+      "bb": 2,
+      "bf": 95,
+      "k_pct": 22.1,
+      "bb_pct": 2.1
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.437,
+      "k_pct": 27.3,
+      "bb_pct": 8.1,
+      "bf": 99
+    },
+    "tto2": {
+      "ops": 0.621,
+      "k_pct": 20.2,
+      "bb_pct": 6.1,
+      "bf": 99
+    },
+    "tto3": {
+      "ops": 0.521,
+      "k_pct": 18.8,
+      "bb_pct": 10.1,
+      "bf": 69
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 29.2,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.246,
+      "whiff_pct": 34.0,
+      "put_away_pct": 29.5,
+      "hard_hit_pct": 39.6
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 24.5,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.27,
+      "whiff_pct": 21.4,
+      "put_away_pct": 19.1,
+      "hard_hit_pct": 34.1
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 24.4,
+      "rv_per_100": 1.6,
+      "xwoba_against": 0.327,
+      "whiff_pct": 15.7,
+      "put_away_pct": 29.8,
+      "hard_hit_pct": 46.2
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 11.6,
+      "rv_per_100": 3.3,
+      "xwoba_against": 0.364,
+      "whiff_pct": 12.7,
+      "put_away_pct": 0.0,
+      "hard_hit_pct": 38.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "name": "José Soriano",
+  "mlbam_id": 667755,
+  "age": 27,
+  "birth_date": "1998-10-20",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟠 Strong Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.872,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 93.3,
+    "era_only_score": 90.6,
+    "gap": 2.7
+  },
+  "season": {
+    "era": 2.44,
+    "whip": 1.07,
+    "k_pct": 27.9,
+    "bb_pct": 10.2,
+    "k_bb_pct": 17.7,
+    "fip": 3.07,
+    "xfip": 3.11,
+    "hr_per_9": 0.68,
+    "gb_pct": 56.3,
+    "ip": 66.33333333333333,
+    "games": 11,
+    "gs": 11
+  },
+  "expected": {
+    "xera": 3.7,
+    "xwoba": 0.305,
+    "xba": 0.23
+  },
+  "statcast": {
+    "avg_velo": 93.4,
+    "max_velo": 101.3,
+    "hard_hit_pct": 23.6,
+    "pitch_types": {
+      "SI": 28.7,
+      "FF": 25.0,
+      "KC": 23.0,
+      "FS": 17.2,
+      "SL": 6.0
+    },
+    "barrel_pct": 8.6,
+    "ev95percent": 36.8,
+    "whiff_pct": 14.0,
+    "csw_pct": 30.0
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Houston Astros",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 7,
+      "bb": 4,
+      "h": 2,
+      "er": 0,
+      "pitches": 91,
+      "strikes": 60
+    },
+    {
+      "date": "2026-03-31",
+      "opponent": "Chicago Cubs",
+      "ip": 6.0,
+      "era": 0.0,
+      "k": 4,
+      "bb": 2,
+      "h": 2,
+      "er": 0,
+      "pitches": 90,
+      "strikes": 56
+    },
+    {
+      "date": "2026-04-06",
+      "opponent": "Atlanta Braves",
+      "ip": 8.0,
+      "era": 0.45,
+      "k": 10,
+      "bb": 0,
+      "h": 3,
+      "er": 1,
+      "pitches": 97,
+      "strikes": 69
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".216",
+      "obp": ".305",
+      "slg": ".328",
+      "k": 36,
+      "bb": 15,
+      "bf": 132,
+      "k_pct": 27.3,
+      "bb_pct": 11.4
+    },
+    "vs_right": {
+      "avg": ".160",
+      "obp": ".241",
+      "slg": ".202",
+      "k": 38,
+      "bb": 12,
+      "bf": 133,
+      "k_pct": 28.6,
+      "bb_pct": 9.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.449,
+      "k_pct": 33.0,
+      "bb_pct": 11.9,
+      "bf": 109
+    },
+    "tto2": {
+      "ops": 0.492,
+      "k_pct": 24.8,
+      "bb_pct": 9.9,
+      "bf": 101
+    },
+    "tto3": {
+      "ops": 0.681,
+      "k_pct": 25.0,
+      "bb_pct": 9.4,
+      "bf": 64
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 29.0,
+      "rv_per_100": 2.1,
+      "xwoba_against": 0.361,
+      "whiff_pct": 26.5,
+      "put_away_pct": 18.6,
+      "hard_hit_pct": 47.5
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 24.2,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.371,
+      "whiff_pct": 20.7,
+      "put_away_pct": 21.1,
+      "hard_hit_pct": 47.5
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 23.6,
+      "rv_per_100": 1.3,
+      "xwoba_against": 0.259,
+      "whiff_pct": 45.0,
+      "put_away_pct": 29.2,
+      "hard_hit_pct": 29.0
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 17.7,
+      "rv_per_100": 2.2,
+      "xwoba_against": 0.188,
+      "whiff_pct": 46.1,
+      "put_away_pct": 27.8,
+      "hard_hit_pct": 11.5
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

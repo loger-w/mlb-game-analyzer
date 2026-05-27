@@ -1,0 +1,173 @@
+{
+  "name": "Connelly Early",
+  "mlbam_id": 813349,
+  "age": 24,
+  "birth_date": "2002-04-03",
+  "pitch_hand": "L",
+  "age_assessment": "📈 成長期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟠 Strong Ace",
+  "tier_components": {
+    "xfip_pct": 0.786,
+    "k_bb_pct": 0.72,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 80.9,
+    "era_only_score": 72.4,
+    "gap": 8.5
+  },
+  "season": {
+    "era": 3.33,
+    "whip": 1.19,
+    "k_pct": 22.1,
+    "bb_pct": 8.4,
+    "k_bb_pct": 13.7,
+    "fip": 4.47,
+    "xfip": 3.7,
+    "hr_per_9": 1.5,
+    "gb_pct": 45.8,
+    "ip": 54.0,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.7,
+    "xwoba": 0.34,
+    "xba": 0.244
+  },
+  "statcast": {
+    "avg_velo": 88.3,
+    "max_velo": 97.3,
+    "hard_hit_pct": 26.6,
+    "pitch_types": {
+      "FF": 32.9,
+      "CH": 21.4,
+      "SI": 19.8,
+      "CU": 12.5,
+      "SL": 7.1
+    },
+    "barrel_pct": 13.2,
+    "ev95percent": 42.8,
+    "whiff_pct": 9.1,
+    "csw_pct": 27.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-29",
+      "opponent": "Cincinnati Reds",
+      "ip": 5.333333333333333,
+      "era": 1.69,
+      "k": 6,
+      "bb": 2,
+      "h": 5,
+      "er": 1,
+      "pitches": 96,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-04",
+      "opponent": "San Diego Padres",
+      "ip": 4.0,
+      "era": 2.89,
+      "k": 4,
+      "bb": 4,
+      "h": 3,
+      "er": 2,
+      "pitches": 88,
+      "strikes": 53
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "St. Louis Cardinals",
+      "ip": 4.333333333333333,
+      "era": 2.63,
+      "k": 5,
+      "bb": 2,
+      "h": 5,
+      "er": 1,
+      "pitches": 86,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".208",
+      "obp": ".259",
+      "slg": ".434",
+      "k": 14,
+      "bb": 3,
+      "bf": 58,
+      "k_pct": 24.1,
+      "bb_pct": 5.2
+    },
+    "vs_right": {
+      "avg": ".230",
+      "obp": ".321",
+      "slg": ".378",
+      "k": 36,
+      "bb": 16,
+      "bf": 168,
+      "k_pct": 21.4,
+      "bb_pct": 9.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.782,
+      "k_pct": 18.9,
+      "bb_pct": 8.9,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.741,
+      "k_pct": 25.6,
+      "bb_pct": 7.8,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.455,
+      "k_pct": 21.7,
+      "bb_pct": 8.7,
+      "bf": 46
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 32.9,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.368,
+      "whiff_pct": 25.0,
+      "put_away_pct": 18.9,
+      "hard_hit_pct": 48.9
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 21.4,
+      "rv_per_100": 0.6,
+      "xwoba_against": 0.319,
+      "whiff_pct": 21.2,
+      "put_away_pct": 13.4,
+      "hard_hit_pct": 45.7
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 19.8,
+      "rv_per_100": 1.3,
+      "xwoba_against": 0.333,
+      "whiff_pct": 10.5,
+      "put_away_pct": 33.3,
+      "hard_hit_pct": 37.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

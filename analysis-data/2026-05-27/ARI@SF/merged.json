@@ -1,0 +1,123 @@
+{
+  "home_recent_rs": 5.3,
+  "home_recent_ra": 5.8,
+  "away_recent_rs": 6.2,
+  "away_recent_ra": 3.0,
+  "home_recent_30_rs": 3.83,
+  "home_recent_30_ra": 5.1,
+  "away_recent_30_rs": 4.9,
+  "away_recent_30_ra": 4.07,
+  "home_season_rs": 3.61,
+  "home_season_ra": 4.55,
+  "away_season_rs": 4.67,
+  "away_season_ra": 4.43,
+  "home_season_games": 56,
+  "away_season_games": 54,
+  "home_starter_fip": 2.92,
+  "home_starter_k_bb": 18.0,
+  "home_starter_whip": 1.01,
+  "away_starter_fip": 2.74,
+  "away_starter_k_bb": 18.5,
+  "away_starter_whip": 1.25,
+  "home_batting_xwoba": 0.291,
+  "home_batting_ops": 0.654,
+  "home_batting_k_pct": 20.8,
+  "away_batting_xwoba": 0.33,
+  "away_batting_ops": 0.786,
+  "away_batting_k_pct": 20.8,
+  "home_pitcher": {
+    "era": 4.76,
+    "xera": 4.02,
+    "ip": 22.666666666666668,
+    "era_xera_delta": 0.74,
+    "arsenal_top": [
+      {
+        "pitch_type": "SI",
+        "pitch_name": "Sinker",
+        "usage": 60.1,
+        "rv_per_100": 1.9,
+        "xwoba_against": 0.289,
+        "whiff_pct": 18.4,
+        "put_away_pct": 29.4,
+        "hard_hit_pct": 43.5
+      },
+      {
+        "pitch_type": "SL",
+        "pitch_name": "Slider",
+        "usage": 27.5,
+        "rv_per_100": 1.4,
+        "xwoba_against": 0.288,
+        "whiff_pct": 37.0,
+        "put_away_pct": 22.9,
+        "hard_hit_pct": 46.7
+      }
+    ]
+  },
+  "away_pitcher": {
+    "era": 3.27,
+    "xera": 4.42,
+    "ip": 55.0,
+    "era_xera_delta": -1.15,
+    "arsenal_top": [
+      {
+        "pitch_type": "SV",
+        "pitch_name": "Slurve",
+        "usage": 33.3,
+        "rv_per_100": 1.0,
+        "xwoba_against": 0.3,
+        "whiff_pct": 34.7,
+        "put_away_pct": 24.0,
+        "hard_hit_pct": 39.1
+      },
+      {
+        "pitch_type": "FF",
+        "pitch_name": "4-Seam Fastball",
+        "usage": 32.9,
+        "rv_per_100": -0.6,
+        "xwoba_against": 0.37,
+        "whiff_pct": 15.0,
+        "put_away_pct": 17.0,
+        "hard_hit_pct": 45.1
+      },
+      {
+        "pitch_type": "FC",
+        "pitch_name": "Cutter",
+        "usage": 12.3,
+        "rv_per_100": 0.8,
+        "xwoba_against": 0.325,
+        "whiff_pct": 21.3,
+        "put_away_pct": 28.6,
+        "hard_hit_pct": 27.3
+      }
+    ]
+  },
+  "home_lineup": {
+    "recent_babip": 0.284
+  },
+  "away_lineup": {
+    "recent_babip": 0.371
+  },
+  "home_bullpen_era": 3.39,
+  "away_bullpen_era": 4.18,
+  "park_factor": 91.0,
+  "home_core_bullpen_il_count": 3,
+  "away_core_bullpen_il_count": 3,
+  "weather": {
+    "condition": "Partly Cloudy",
+    "temp_f": 60,
+    "wind_text": "7 mph, Out To LF",
+    "indoor": false
+  },
+  "_meta": {
+    "home_team": "San Francisco Giants",
+    "away_team": "Arizona Diamondbacks",
+    "home_sp": "Trevor McDonald",
+    "away_sp": "Michael Soroka",
+    "home_sp_starts": 4,
+    "away_sp_starts": 10,
+    "venue": "Oracle Park",
+    "game_pk": 823217,
+    "game_date": "2026-05-27T19:45:00Z",
+    "official_date": "2026-05-27"
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "team": "New York Mets",
+  "team_id": 121,
+  "active_roster": {
+    "pitchers": [
+      "A.J. Minter",
+      "Austin Warren",
+      "Brooks Raley",
+      "Christian Scott",
+      "David Peterson",
+      "Devin Williams",
+      "Freddy Peralta",
+      "Huascar Brazobán",
+      "Jonah Tong",
+      "Luke Weaver",
+      "Nolan McLean",
+      "Sean Manaea",
+      "Tobias Myers"
+    ],
+    "pitcher_ids": [
+      621345,
+      681810,
+      548384,
+      681035,
+      656849,
+      642207,
+      642547,
+      623211,
+      804636,
+      596133,
+      690997,
+      640455,
+      668964
+    ],
+    "position_players": [
+      "A.J. Ewing",
+      "Bo Bichette",
+      "Brett Baty",
+      "Carson Benge",
+      "Eric Wagaman",
+      "Hayden Senger",
+      "Jared Young",
+      "Juan Soto",
+      "Luis Torrens",
+      "MJ Melendez",
+      "Marcus Semien",
+      "Mark Vientos",
+      "Vidal Bruján"
+    ],
+    "pitcher_roles": [
+      {
+        "name": "A.J. Minter",
+        "player_id": 621345,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 7,
+          "g": 13,
+          "gs": 0,
+          "ip": 11.0,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Austin Warren",
+        "player_id": 681810,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 12,
+          "gs": 0,
+          "ip": 17.3
+        }
+      },
+      {
+        "name": "Brooks Raley",
+        "player_id": 548384,
+        "core_role": "Setup",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 8,
+          "g": 22,
+          "gs": 0,
+          "ip": 20.0
+        }
+      },
+      {
+        "name": "Christian Scott",
+        "player_id": 681035,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 6,
+          "gs": 6,
+          "ip": 25.3
+        }
+      },
+      {
+        "name": "David Peterson",
+        "player_id": 656849,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 1,
+          "g": 12,
+          "gs": 7,
+          "ip": 53.3
+        }
+      },
+      {
+        "name": "Devin Williams",
+        "player_id": 642207,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 7,
+          "holds": 0,
+          "g": 20,
+          "gs": 0,
+          "ip": 17.0
+        }
+      },
+      {
+        "name": "Freddy Peralta",
+        "player_id": 642547,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 61.3
+        }
+      },
+      {
+        "name": "Huascar Brazobán",
+        "player_id": 623211,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 2,
+          "g": 22,
+          "gs": 3,
+          "ip": 26.0
+        }
+      },
+      {
+        "name": "Jonah Tong",
+        "player_id": 804636,
+        "core_role": "Starter",
+        "core_role_confidence": "data, prior_year",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 5,
+          "gs": 5,
+          "ip": 18.7,
+          "from_prior_year": true
+        }
+      },
+      {
+        "name": "Luke Weaver",
+        "player_id": 596133,
+        "core_role": "High-leverage RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 6,
+          "g": 21,
+          "gs": 0,
+          "ip": 22.3
+        }
+      },
+      {
+        "name": "Nolan McLean",
+        "player_id": 690997,
+        "core_role": "Starter",
+        "core_role_confidence": "data",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 11,
+          "gs": 11,
+          "ip": 61.3
+        }
+      },
+      {
+        "name": "Sean Manaea",
+        "player_id": 640455,
+        "core_role": "Long RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 0,
+          "holds": 0,
+          "g": 12,
+          "gs": 0,
+          "ip": 34.0
+        }
+      },
+      {
+        "name": "Tobias Myers",
+        "player_id": 668964,
+        "core_role": "Middle RP",
+        "core_role_confidence": "heuristic",
+        "core_role_small_sample": false,
+        "core_role_evidence": {
+          "saves": 1,
+          "holds": 2,
+          "g": 18,
+          "gs": 2,
+          "ip": 31.7
+        }
+      }
+    ]
+  },
+  "injured_list": [
+    {
+      "name": "Clay Holmes",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 605280,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 9,
+        "gs": 9,
+        "ip": 52.7
+      }
+    },
+    {
+      "name": "Dedniel Núñez",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 673380,
+      "core_role": "High-leverage RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 3,
+        "g": 10,
+        "gs": 0,
+        "ip": 9.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Francisco Alvarez",
+      "status": "Injured 10-Day",
+      "position": "Catcher",
+      "player_id": 682626
+    },
+    {
+      "name": "Francisco Lindor",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 596019
+    },
+    {
+      "name": "Jorge Polanco",
+      "status": "Injured 10-Day",
+      "position": "First Base",
+      "player_id": 593871
+    },
+    {
+      "name": "Justin Hagenman",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 663795,
+      "core_role": "Long RP",
+      "core_role_confidence": "heuristic, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 1,
+        "holds": 0,
+        "g": 9,
+        "gs": 1,
+        "ip": 23.7,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Kodai Senga",
+      "status": "Injured 15-Day",
+      "position": "Pitcher",
+      "player_id": 673540,
+      "core_role": "Starter",
+      "core_role_confidence": "data",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 5,
+        "gs": 5,
+        "ip": 20.0
+      }
+    },
+    {
+      "name": "Luis Robert Jr.",
+      "status": "Injured 60-Day",
+      "position": "Outfielder",
+      "player_id": 673357
+    },
+    {
+      "name": "Reed Garrett",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 657585,
+      "core_role": "Setup",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 3,
+        "holds": 20,
+        "g": 58,
+        "gs": 1,
+        "ip": 55.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Ronny Mauricio",
+      "status": "Injured 10-Day",
+      "position": "Shortstop",
+      "player_id": 677595
+    },
+    {
+      "name": "Tylor Megill",
+      "status": "Injured 60-Day",
+      "position": "Pitcher",
+      "player_id": 656731,
+      "core_role": "Starter",
+      "core_role_confidence": "data, prior_year",
+      "core_role_small_sample": false,
+      "core_role_evidence": {
+        "saves": 0,
+        "holds": 0,
+        "g": 14,
+        "gs": 14,
+        "ip": 68.3,
+        "from_prior_year": true
+      }
+    },
+    {
+      "name": "Tyrone Taylor",
+      "status": "Injured 10-Day",
+      "position": "Outfielder",
+      "player_id": 621438
+    }
+  ],
+  "not_active_40man": [
+    "Alex Carrillo",
+    "Anderson Severino",
+    "Daniel Duarte",
+    "Dylan Ross",
+    "Joey Gerber",
+    "Jonathan Pintaro",
+    "Nick Morabito",
+    "Zach Thornton"
+  ],
+  "summary": {
+    "total_active": 26,
+    "total_active_pitchers": 13,
+    "total_active_position": 13,
+    "total_il": 12,
+    "total_40man_not_active": 8
+  }
+}
