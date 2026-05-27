@@ -99,14 +99,14 @@ def render_report(
     lines = []
     lines.append(f"# MLB Skill 回測 — {month[:4]} 年 {int(month[5:7])} 月")
     lines.append("")
-    lines.append(f"_樣本：{n_valid} 場有效（{month} 全月） ｜ baseline: Pinnacle no-vig 收盤線 ｜ 生成於 {today}_")
+    lines.append(f"_樣本：{n_valid} 場有效（{month} 全月） ｜ baseline: Pinnacle no-vig 12:00 ET 盤口 ｜ 生成於 {today}_")
     lines.append("")
 
     # 資料健康度
     lines.append("## 資料健康度")
     lines.append(f"- 輸入 summary.md：{n_input}")
     lines.append(f"- 通過解析：{n_parse_ok}（剔出 parse_failed {n_input - n_parse_ok}）")
-    lines.append(f"- 通過 closing snapshot 匹配：{n_closing_ok}（剔出 closing_missing {n_input - n_closing_ok}）")
+    lines.append(f"- 通過 12:00 ET snapshot 匹配：{n_closing_ok}（剔出 snapshot_missing {n_input - n_closing_ok}）")
     lines.append(f"- 通過 result 取得：{n_result_ok}（剔出 result_missing {n_input - n_result_ok}）")
     lines.append(f"- **有效樣本：{n_valid} 場**")
     lines.append("")

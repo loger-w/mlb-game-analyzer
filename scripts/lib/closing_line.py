@@ -1,12 +1,16 @@
-"""Find closing-line snapshot for a single game from flat odds/odds_snapshots/.
+"""Find the fixed 12:00 ET snapshot for a single game from flat odds/odds_snapshots/.
 
-'Closing' = last Pinnacle pre-game snapshot whose snapshot_time_utc < commence_utc.
+Methodology choice: use the 12:00 ET snapshot of the ET game date as the market
+baseline. Matches the future production workflow where the user triggers one
+on-demand snapshot per game before fundamentals analysis.
 """
 
 import json
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
+
+SNAPSHOT_TIME = "12-00-ET"
 
 
 def _parse_iso_utc(s: str) -> Optional[datetime]:
@@ -26,40 +30,40 @@ def find_closing_snapshot_for_game(
     home_team: str,
     away_team: str,
 ) -> tuple[Optional[dict], Optional[str]]:
-    """Find latest pre-game snapshot containing this matchup.
+    """Find the 12:00 ET snapshot entry for this matchup on the given ET date.
 
-    Returns (game_dict, snapshot_filename) or (None, None) if no pre-game snapshot.
-    `game_dict` is the inner `games[]` entry, with `snapshot_time_et` injected.
+    Returns (game_dict, snapshot_filename) or (None, None) if the 12:00 ET file
+    doesn't exist, the matchup isn't in it, or the game already started before
+    12:00 ET (in-play safety).
     """
     snapshots_dir = Path(snapshots_dir)
-    candidates: list[tuple[datetime, dict, str]] = []
-
-    for f in sorted(snapshots_dir.glob(f"{date}_*.json")):
-        try:
-            data = json.loads(f.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            continue
-        snap_ts = _parse_iso_utc(data.get("snapshot_time_utc", ""))
-        if snap_ts is None:
-            continue
-        for g in data.get("games", []):
-            if g.get("game_date_et") != date:
-                continue
-            if g.get("home_team") != home_team or g.get("away_team") != away_team:
-                continue
-            commence_ts = _parse_iso_utc(g.get("commence_utc", ""))
-            if commence_ts is None or snap_ts >= commence_ts:
-                continue  # in-play / post-game
-            g_copy = dict(g)
-            g_copy["snapshot_time_et"] = data.get("snapshot_time_et", "")
-            g_copy["snapshot_time_utc"] = data.get("snapshot_time_utc", "")
-            candidates.append((snap_ts, g_copy, f.name))
-
-    if not candidates:
+    snap_file = snapshots_dir / f"{date}_{SNAPSHOT_TIME}.json"
+    if not snap_file.exists():
         return None, None
-    candidates.sort(key=lambda x: x[0])
-    _, game_dict, filename = candidates[-1]
-    return game_dict, filename
+
+    try:
+        data = json.loads(snap_file.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None, None
+
+    snap_ts = _parse_iso_utc(data.get("snapshot_time_utc", ""))
+    if snap_ts is None:
+        return None, None
+
+    for g in data.get("games", []):
+        if g.get("game_date_et") != date:
+            continue
+        if g.get("home_team") != home_team or g.get("away_team") != away_team:
+            continue
+        commence_ts = _parse_iso_utc(g.get("commence_utc", ""))
+        if commence_ts is None or snap_ts >= commence_ts:
+            continue  # game started before 12:00 ET (rare)
+        g_copy = dict(g)
+        g_copy["snapshot_time_et"] = data.get("snapshot_time_et", "")
+        g_copy["snapshot_time_utc"] = data.get("snapshot_time_utc", "")
+        return g_copy, snap_file.name
+
+    return None, None
 
 
 def extract_pinnacle_no_vig(game: dict) -> Optional[dict]:

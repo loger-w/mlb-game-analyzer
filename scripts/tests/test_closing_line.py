@@ -13,12 +13,10 @@ from lib.closing_line import (
 FIXTURES = Path(__file__).parent / "fixtures" / "backtest"
 
 
-def test_finds_latest_pregame_snapshot_excludes_inplay(tmp_path):
-    # Two snapshots: one pre-game @ 12:00 ET, one in-play @ 15:00 ET
+def test_finds_12_00_et_snapshot_for_matchup(tmp_path):
+    """Loads {date}_12-00-ET.json and finds the matchup within."""
     pre = (FIXTURES / "sample_snapshot_pregame.json").read_text(encoding="utf-8")
-    inp = (FIXTURES / "sample_snapshot_inplay.json").read_text(encoding="utf-8")
-    (tmp_path / "2026-05-02_09-00-ET.json").write_text(pre, encoding="utf-8")
-    (tmp_path / "2026-05-02_15-00-ET.json").write_text(inp, encoding="utf-8")
+    (tmp_path / "2026-05-02_12-00-ET.json").write_text(pre, encoding="utf-8")
 
     snap, snap_ts = find_closing_snapshot_for_game(
         snapshots_dir=tmp_path,
@@ -27,13 +25,26 @@ def test_finds_latest_pregame_snapshot_excludes_inplay(tmp_path):
         away_team="Baltimore Orioles",
     )
     assert snap is not None
-    # Must pick the pre-game one (snapshot_time_utc < commence_utc)
-    assert "12:00 ET" in snap.get("snapshot_time_et", "") or "09-00" in str(snap_ts)
+    assert snap_ts == "2026-05-02_12-00-ET.json"
 
 
-def test_returns_none_when_no_pregame_snapshot(tmp_path):
+def test_returns_none_when_12_00_et_file_missing(tmp_path):
+    """Only non-12:00-ET snapshots exist → return None (we only consult 12:00 ET)."""
     inp = (FIXTURES / "sample_snapshot_inplay.json").read_text(encoding="utf-8")
     (tmp_path / "2026-05-02_15-00-ET.json").write_text(inp, encoding="utf-8")
+    snap, snap_ts = find_closing_snapshot_for_game(
+        snapshots_dir=tmp_path,
+        date="2026-05-02",
+        home_team="New York Yankees",
+        away_team="Baltimore Orioles",
+    )
+    assert snap is None
+
+
+def test_returns_none_when_12_00_et_snapshot_is_after_commence(tmp_path):
+    """Safety net: if 12:00 ET file's snapshot_time_utc >= commence_utc, skip (in-play)."""
+    inp = (FIXTURES / "sample_snapshot_inplay.json").read_text(encoding="utf-8")
+    (tmp_path / "2026-05-02_12-00-ET.json").write_text(inp, encoding="utf-8")
     snap, snap_ts = find_closing_snapshot_for_game(
         snapshots_dir=tmp_path,
         date="2026-05-02",
@@ -95,7 +106,7 @@ def test_excludes_next_day_game_in_late_snapshot(tmp_path):
             }
         ]
     }
-    (tmp_path / "2026-05-02_22-00-ET.json").write_text(json.dumps(cross_day), encoding="utf-8")
+    (tmp_path / "2026-05-02_12-00-ET.json").write_text(json.dumps(cross_day), encoding="utf-8")
     snap, _ = find_closing_snapshot_for_game(
         snapshots_dir=tmp_path,
         date="2026-05-02",  # caller asks for 5/02
