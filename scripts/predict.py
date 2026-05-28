@@ -23,3 +23,28 @@ def confidence_bucket(p: float) -> str:
     if p < 0.67:
         return "MEDIUM"
     return "HIGH"
+
+
+def predict(home_score: float, away_score: float) -> dict:
+    """確定性預測。回傳 {direction, total, confidence_pct, confidence_bucket}。
+
+    direction ∈ {HOME, AWAY, 持平}；持平時 confidence_bucket = None。
+    confidence_pct 一律是「預測那一側」的勝率（持平時為較高側勝率，仍 < PUSH_FLOOR）。
+    """
+    gap = home_score - away_score
+    p_home = winprob(gap)
+    p_away = 1.0 - p_home
+
+    if p_home >= PUSH_FLOOR:
+        direction, conf = "HOME", p_home
+    elif p_away >= PUSH_FLOOR:
+        direction, conf = "AWAY", p_away
+    else:
+        direction, conf = "持平", max(p_home, p_away)
+
+    return {
+        "direction": direction,
+        "total": round(home_score + away_score, 1),
+        "confidence_pct": round(conf, 4),
+        "confidence_bucket": confidence_bucket(conf) if direction != "持平" else None,
+    }

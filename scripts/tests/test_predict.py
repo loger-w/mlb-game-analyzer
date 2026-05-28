@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from predict import winprob, confidence_bucket
+from predict import winprob, confidence_bucket, predict
 
 
 def test_winprob_known_points():
@@ -22,3 +22,24 @@ def test_confidence_bucket_boundaries():
     assert confidence_bucket(0.669) == "MEDIUM"
     assert confidence_bucket(0.67) == "HIGH"
     assert confidence_bucket(0.80) == "HIGH"
+
+
+def test_predict_home_favored():
+    r = predict(home_score=5.5, away_score=3.0)
+    assert r["direction"] == "HOME"
+    assert r["total"] == 8.5
+    assert abs(r["confidence_pct"] - 0.734) < 0.005
+    assert r["confidence_bucket"] == "HIGH"
+
+
+def test_predict_away_favored():
+    r = predict(home_score=3.0, away_score=5.0)
+    assert r["direction"] == "AWAY"
+    assert abs(r["confidence_pct"] - 0.691) < 0.005
+    assert r["confidence_bucket"] == "HIGH"
+
+
+def test_predict_pickem_is_push():
+    r = predict(home_score=4.1, away_score=4.0)
+    assert r["direction"] == "持平"
+    assert r["confidence_bucket"] is None
