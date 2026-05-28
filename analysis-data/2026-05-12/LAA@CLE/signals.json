@@ -1,0 +1,234 @@
+{
+  "signals": [
+    {
+      "name": "tier_mismatch",
+      "fired": true,
+      "value": 38.9,
+      "severity": "high",
+      "label": "ERA 低估真實水平 +38.9（v2 score 53.9 vs ERA-only 15.0）",
+      "details": {
+        "expected_score": 53.9,
+        "era_only_score": 15.0
+      },
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "HOME"
+    },
+    {
+      "name": "reverse_platoon",
+      "fired": true,
+      "value": 0.275,
+      "severity": "high",
+      "label": "reverse platoon Δ +0.275（vs RHB OPS 0.999 > vs LHB OPS 0.724）— RHP 對非預期手別反而吃虧",
+      "details": {
+        "pitch_hand": "R",
+        "vs_lhb_ops": 0.724,
+        "vs_lhb_bf": 100,
+        "vs_rhb_ops": 0.999,
+        "vs_rhb_bf": 87
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "pitch_mix_concentration",
+      "fired": false,
+      "value": 34.9,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "tto3_penalty",
+      "fired": true,
+      "value": 0.732,
+      "severity": "high",
+      "label": "TTO3 penalty：OPS Δ +0.732（TTO1 0.690 → TTO3 1.422），第三輪明顯衰退；K% 從 18.3% 掉到 9.5%（Δ -8.8pp）",
+      "details": {
+        "ops_delta": 0.732,
+        "k_delta": -8.8,
+        "tto1_ops": 0.69,
+        "tto3_ops": 1.422,
+        "tto3_bf": 42,
+        "source": "season"
+      },
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "HOME"
+    },
+    {
+      "name": "tier_mismatch",
+      "fired": false,
+      "value": null,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "small_sample",
+      "half_life": "structural",
+      "side": "AWAY"
+    },
+    {
+      "name": "reverse_platoon",
+      "fired": true,
+      "value": 0.363,
+      "severity": "high",
+      "label": "reverse platoon Δ +0.363（vs RHB OPS 0.832 > vs LHB OPS 0.469）— RHP 對非預期手別反而吃虧",
+      "details": {
+        "pitch_hand": "R",
+        "vs_lhb_ops": 0.469,
+        "vs_lhb_bf": 51,
+        "vs_rhb_ops": 0.8320000000000001,
+        "vs_rhb_bf": 50
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "pitch_mix_concentration",
+      "fired": false,
+      "value": 31.5,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "tto3_penalty",
+      "fired": false,
+      "value": null,
+      "severity": "low",
+      "label": "",
+      "details": {
+        "tto3_bf": 14
+      },
+      "confidence": "small_sample",
+      "half_life": "structural",
+      "side": "AWAY"
+    },
+    {
+      "name": "heat_vs_babip",
+      "fired": true,
+      "value": 0.255,
+      "severity": "medium",
+      "label": "unlucky-cold：last7 BABIP 0.255 偏低，冷期可能反彈",
+      "details": {
+        "heat": "🥶 Cold",
+        "last7_babip": 0.255
+      },
+      "confidence": "heuristic",
+      "half_life": "short",
+      "side": "HOME"
+    },
+    {
+      "name": "platoon_advantage",
+      "fired": false,
+      "value": 0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "chain_break",
+      "fired": true,
+      "value": 0.337,
+      "severity": "high",
+      "label": "chain breaks at #7-8：OPS 落差 0.337",
+      "details": {
+        "drop_position": [
+          7,
+          8
+        ],
+        "ops_drop": 0.337
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "heat_vs_babip",
+      "fired": false,
+      "value": 0.39,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "short",
+      "side": "AWAY"
+    },
+    {
+      "name": "platoon_advantage",
+      "fired": false,
+      "value": 1,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "chain_break",
+      "fired": true,
+      "value": 0.236,
+      "severity": "medium",
+      "label": "chain breaks at #7-8：OPS 落差 0.236",
+      "details": {
+        "drop_position": [
+          7,
+          8
+        ],
+        "ops_drop": 0.236
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "core_il_count",
+      "fired": true,
+      "value": 1,
+      "severity": "medium",
+      "label": "牛棚 core IL ×1：🟠 中高（後段防守變薄）",
+      "details": {
+        "side": "HOME",
+        "count": 1
+      },
+      "confidence": "data",
+      "half_life": "short",
+      "side": "HOME"
+    },
+    {
+      "name": "core_il_count",
+      "fired": false,
+      "value": 0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "short",
+      "side": "AWAY"
+    },
+    {
+      "name": "strong_park",
+      "fired": false,
+      "value": 101.0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "GAME"
+    }
+  ],
+  "fired_count": 8
+}

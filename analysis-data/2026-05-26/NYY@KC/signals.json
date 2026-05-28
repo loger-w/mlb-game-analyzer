@@ -1,0 +1,232 @@
+{
+  "signals": [
+    {
+      "name": "tier_mismatch",
+      "fired": false,
+      "value": null,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "small_sample",
+      "half_life": "structural",
+      "side": "HOME"
+    },
+    {
+      "name": "reverse_platoon",
+      "fired": false,
+      "value": null,
+      "severity": "low",
+      "label": "",
+      "details": {
+        "lhb_bf": 13,
+        "rhb_bf": 28
+      },
+      "confidence": "small_sample",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "pitch_mix_concentration",
+      "fired": true,
+      "value": 60.7,
+      "severity": "medium",
+      "label": "single-pitch dependent：主球種使用率 60.7%（≥45.0%）",
+      "details": {
+        "max_usage": 60.7,
+        "pitch_types": {
+          "FF": 60.7,
+          "SL": 17.8,
+          "FS": 11.1,
+          "CU": 7.4,
+          "SI": 3.0
+        }
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "tto3_penalty",
+      "fired": false,
+      "value": -0.091,
+      "severity": "low",
+      "label": "",
+      "details": {
+        "tto3_bf": 272,
+        "source": "career"
+      },
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "HOME"
+    },
+    {
+      "name": "tier_mismatch",
+      "fired": false,
+      "value": 1.1,
+      "severity": "low",
+      "label": "tier_gap +1.1 在容許範圍",
+      "details": {},
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "AWAY"
+    },
+    {
+      "name": "reverse_platoon",
+      "fired": false,
+      "value": -0.17899999999999994,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "pitch_mix_concentration",
+      "fired": false,
+      "value": 44.2,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "tto3_penalty",
+      "fired": true,
+      "value": 0.222,
+      "severity": "high",
+      "label": "TTO3 penalty：OPS Δ +0.222（TTO1 0.443 → TTO3 0.665），第三輪明顯衰退；K% 從 32.4% 掉到 14.5%（Δ -17.9pp）",
+      "details": {
+        "ops_delta": 0.222,
+        "k_delta": -17.9,
+        "tto1_ops": 0.443,
+        "tto3_ops": 0.665,
+        "tto3_bf": 55,
+        "source": "season"
+      },
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "AWAY"
+    },
+    {
+      "name": "heat_vs_babip",
+      "fired": true,
+      "value": 0.259,
+      "severity": "medium",
+      "label": "unlucky-cold：last7 BABIP 0.259 偏低，冷期可能反彈",
+      "details": {
+        "heat": "🥶 Cold",
+        "last7_babip": 0.259
+      },
+      "confidence": "heuristic",
+      "half_life": "short",
+      "side": "HOME"
+    },
+    {
+      "name": "platoon_advantage",
+      "fired": false,
+      "value": 2,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "chain_break",
+      "fired": true,
+      "value": 0.219,
+      "severity": "medium",
+      "label": "chain breaks at #2-3：OPS 落差 0.219",
+      "details": {
+        "drop_position": [
+          2,
+          3
+        ],
+        "ops_drop": 0.219
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "heat_vs_babip",
+      "fired": false,
+      "value": 0.27,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "short",
+      "side": "AWAY"
+    },
+    {
+      "name": "platoon_advantage",
+      "fired": false,
+      "value": 2,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "chain_break",
+      "fired": true,
+      "value": 0.223,
+      "severity": "medium",
+      "label": "chain breaks at #5-6：OPS 落差 0.223",
+      "details": {
+        "drop_position": [
+          5,
+          6
+        ],
+        "ops_drop": 0.223
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "core_il_count",
+      "fired": true,
+      "value": 2,
+      "severity": "high",
+      "label": "牛棚 core IL ×2：🔴 高（牛棚明顯吃緊）",
+      "details": {
+        "side": "HOME",
+        "count": 2
+      },
+      "confidence": "data",
+      "half_life": "short",
+      "side": "HOME"
+    },
+    {
+      "name": "core_il_count",
+      "fired": false,
+      "value": 0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "short",
+      "side": "AWAY"
+    },
+    {
+      "name": "strong_park",
+      "fired": false,
+      "value": 106.0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "GAME"
+    }
+  ],
+  "fired_count": 6
+}
