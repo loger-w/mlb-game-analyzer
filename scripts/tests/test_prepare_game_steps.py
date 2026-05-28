@@ -632,6 +632,37 @@ def test_step_g_force_overwrites_edited(monkeypatch, tmp_path):
     assert "FRESH" in summary_path.read_text(encoding="utf-8")
 
 
+def test_step_g_writes_signals_json(monkeypatch, tmp_path):
+    """step_g: signals.json を summary.md と同じ output_dir に書く。"""
+    from prepare_game import step_g
+
+    (tmp_path / "merged.json").write_text('{}', encoding="utf-8")
+
+    monkeypatch.setattr("prepare_game.sys.path", list(sys.path))
+
+    import types
+    fake_renderer = types.ModuleType("summary_renderer")
+    fake_renderer.render_summary = lambda bundle, formula_pred: "# S <!-- AI 補 -->"
+    monkeypatch.setitem(sys.modules, "summary_renderer", fake_renderer)
+
+    fake_pred = types.ModuleType("scoring_formula")
+    fake_pred.predict_with_formula = lambda merged: {"home_score": 4, "away_score": 3}
+    monkeypatch.setitem(sys.modules, "scoring_formula", fake_pred)
+
+    fake_sig = types.ModuleType("signals_lib")
+    fake_sig.signals_for_bundle = lambda bundle: {"signals": [{"name": "x", "fired": False}], "fired_count": 0}
+    monkeypatch.setitem(sys.modules, "signals_lib", fake_sig)
+
+    summary_path = tmp_path / "summary.md"
+    step_g(output_dir=tmp_path, summary_path=summary_path, force=True,
+           bundle={"merged": {}})
+
+    sig_path = tmp_path / "signals.json"
+    assert sig_path.exists()
+    data = json.loads(sig_path.read_text(encoding="utf-8"))
+    assert "signals" in data and "fired_count" in data
+
+
 # ---------------------------------------------------------------------------
 # 11g: _print_risk_notes + main()
 # ---------------------------------------------------------------------------

@@ -418,6 +418,13 @@ def step_g(*, output_dir: Path, summary_path: Path, force: bool = False,
     md = render_summary(bundle, formula_pred)
     summary_path.write_text(md, encoding="utf-8")
 
+    from signals_lib import signals_for_bundle
+    signals_result = signals_for_bundle(bundle)
+    (output_dir / "signals.json").write_text(
+        json.dumps(signals_result, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(f"[G] signals  → {output_dir / 'signals.json'}", file=sys.stderr)
+
 
 # ---------------------------------------------------------------------------
 # Risk Notes
