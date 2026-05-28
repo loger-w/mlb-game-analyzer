@@ -30,8 +30,6 @@ from lib.closing_line import find_closing_snapshot_for_game, extract_pinnacle_no
 # Matchup dir name: "BAL@NYY", optionally with -1 / -2 / -G2 doubleheader suffix
 _MATCHUP_RE = re.compile(r"^([A-Z]{2,4})@([A-Z]{2,4})(?:-(?:G?\d+))?$")
 
-CONFIDENCE_TO_PROB = {"LOW": 0.55, "MEDIUM": 0.62, "HIGH": 0.72}
-
 
 def _read_json(path: Path) -> Optional[dict]:
     if not path.exists():
@@ -51,23 +49,11 @@ def _matchup_to_abbrs(matchup_dir_name: str) -> tuple[Optional[str], Optional[st
 
 
 def _read_game_data(matchup_dir: Path) -> Optional[dict]:
-    gd = matchup_dir / "game_data.json"
-    if not gd.exists():
-        return None
-    try:
-        return json.loads(gd.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return None
+    return _read_json(matchup_dir / "game_data.json")
 
 
 def _read_result(matchup_dir: Path) -> Optional[dict]:
-    rj = matchup_dir / "result.json"
-    if not rj.exists():
-        return None
-    try:
-        return json.loads(rj.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return None
+    return _read_json(matchup_dir / "result.json")
 
 
 def build_dataframe_for_month(
@@ -135,19 +121,19 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
     signals = signals_data.get("signals", [])
 
     has_reverse_platoon = any(
-        s["name"] == "reverse_platoon" and s.get("fired")
+        s.get("name") == "reverse_platoon" and s.get("fired")
         for s in signals
     )
     # chain_break: fired + OPS-gap value (field: "value") >= 0.300
     has_chain_break_300 = any(
-        s["name"] == "chain_break" and s.get("fired")
-        and isinstance(s.get("value"), (int, float)) and s["value"] >= 0.300
+        s.get("name") == "chain_break" and s.get("fired")
+        and isinstance(s.get("value"), (int, float)) and s.get("value") >= 0.300
         for s in signals
     )
     # core_il_count: fired + count (field: "value") >= 2
     has_bullpen_il_2plus = any(
-        s["name"] == "core_il_count" and s.get("fired")
-        and isinstance(s.get("value"), (int, float)) and s["value"] >= 2
+        s.get("name") == "core_il_count" and s.get("fired")
+        and isinstance(s.get("value"), (int, float)) and s.get("value") >= 2
         for s in signals
     )
 
