@@ -1,0 +1,483 @@
+{
+  "team": "SF",
+  "team_id": 137,
+  "tier": "🟢 Weak",
+  "tier_vs_lhp": "🟠 Strong",
+  "tier_vs_rhp": "🟢 Weak",
+  "avg_ops": 0.654,
+  "avg_ops_vs_lhp": 0.773,
+  "avg_ops_vs_rhp": 0.653,
+  "avg_xwoba": 0.291,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.292,
+  "avg_k_pct": 20.8,
+  "avg_bb_pct": 5.9,
+  "over_under_lean": 0,
+  "recent_heat": "⚖️ Normal",
+  "last7_babip": 0.284,
+  "chain": {
+    "obp_top3": 0.325,
+    "slg_mid": 0.37
+  },
+  "lineup_source": "official",
+  "lineup_source_detail": {
+    "fetched_at": "2026-05-27T16:35:51+00:00",
+    "game_pk": 823217
+  },
+  "lineup": [
+    {
+      "mlbam_id": 642715,
+      "pa": 230,
+      "avg": 0.239,
+      "obp": 0.278,
+      "slg": 0.413,
+      "ops": 0.691,
+      "iso": 0.174,
+      "babip": 0.308,
+      "k_pct": 28.3,
+      "bb_pct": 4.8,
+      "name": "Willy Adames",
+      "position": "SS",
+      "batting_order": 1,
+      "xwoba": 0.286,
+      "xba": 0.227,
+      "xslg": 0.39,
+      "ev95pct": 41.8,
+      "barrel_pct": 9.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".158",
+          "obp": ".213",
+          "slg": ".246",
+          "ops": ".459",
+          "pa": 61
+        },
+        "vs_rhp": {
+          "avg": ".267",
+          "obp": ".302",
+          "slg": ".472",
+          "ops": ".774",
+          "pa": 169
+        }
+      },
+      "last_7": {
+        "avg": ".241",
+        "obp": ".313",
+        "slg": ".655",
+        "ops": ".968",
+        "babip": ".235",
+        "pa": 32
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": "1.333",
+        "h": 1,
+        "hr": 1,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 650333,
+      "pa": 224,
+      "avg": 0.317,
+      "obp": 0.359,
+      "slg": 0.426,
+      "ops": 0.785,
+      "iso": 0.109,
+      "babip": 0.32,
+      "k_pct": 4.0,
+      "bb_pct": 5.8,
+      "name": "Luis Arraez",
+      "position": "2B",
+      "batting_order": 2,
+      "xwoba": 0.307,
+      "xba": 0.29,
+      "xslg": 0.365,
+      "ev95pct": 22.0,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".292",
+          "obp": ".324",
+          "slg": ".431",
+          "ops": ".755",
+          "pa": 71
+        },
+        "vs_rhp": {
+          "avg": ".328",
+          "obp": ".375",
+          "slg": ".423",
+          "ops": ".798",
+          "pa": 153
+        }
+      },
+      "last_7": {
+        "avg": ".269",
+        "obp": ".321",
+        "slg": ".385",
+        "ops": ".706",
+        "babip": ".292",
+        "pa": 29
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".333",
+        "obp": ".333",
+        "slg": ".333",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 669477,
+      "pa": 192,
+      "avg": 0.298,
+      "obp": 0.339,
+      "slg": 0.567,
+      "ops": 0.906,
+      "iso": 0.269,
+      "babip": 0.315,
+      "k_pct": 19.8,
+      "bb_pct": 3.6,
+      "name": "Casey Schmitt",
+      "position": "DH",
+      "batting_order": 3,
+      "xwoba": 0.367,
+      "xba": 0.282,
+      "xslg": 0.535,
+      "ev95pct": 45.8,
+      "barrel_pct": 15.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".389",
+          "obp": ".411",
+          "slg": ".630",
+          "ops": "1.041",
+          "pa": 56
+        },
+        "vs_rhp": {
+          "avg": ".258",
+          "obp": ".309",
+          "slg": ".540",
+          "ops": ".849",
+          "pa": 136
+        }
+      },
+      "last_7": {
+        "avg": ".310",
+        "obp": ".323",
+        "slg": ".793",
+        "ops": "1.116",
+        "babip": ".227",
+        "pa": 31
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 646240,
+      "pa": 227,
+      "avg": 0.246,
+      "obp": 0.291,
+      "slg": 0.417,
+      "ops": 0.708,
+      "iso": 0.171,
+      "babip": 0.324,
+      "k_pct": 29.5,
+      "bb_pct": 5.7,
+      "name": "Rafael Devers",
+      "position": "1B",
+      "batting_order": 4,
+      "xwoba": 0.292,
+      "xba": 0.225,
+      "xslg": 0.413,
+      "ev95pct": 49.3,
+      "barrel_pct": 10.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".221",
+          "obp": ".284",
+          "slg": ".309",
+          "ops": ".593",
+          "pa": 74
+        },
+        "vs_rhp": {
+          "avg": ".259",
+          "obp": ".294",
+          "slg": ".469",
+          "ops": ".763",
+          "pa": 153
+        }
+      },
+      "last_7": {
+        "avg": ".286",
+        "obp": ".310",
+        "slg": ".679",
+        "ops": ".989",
+        "babip": ".316",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 656305,
+      "pa": 226,
+      "avg": 0.234,
+      "obp": 0.319,
+      "slg": 0.323,
+      "ops": 0.642,
+      "iso": 0.089,
+      "babip": 0.313,
+      "k_pct": 23.5,
+      "bb_pct": 10.2,
+      "name": "Matt Chapman",
+      "position": "3B",
+      "batting_order": 5,
+      "xwoba": 0.263,
+      "xba": 0.204,
+      "xslg": 0.28,
+      "ev95pct": 32.4,
+      "barrel_pct": 4.7,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".269",
+          "obp": ".387",
+          "slg": ".385",
+          "ops": ".772",
+          "pa": 62
+        },
+        "vs_rhp": {
+          "avg": ".221",
+          "obp": ".293",
+          "slg": ".302",
+          "ops": ".595",
+          "pa": 164
+        }
+      },
+      "last_7": {
+        "avg": ".364",
+        "obp": ".500",
+        "slg": ".455",
+        "ops": ".955",
+        "babip": ".421",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".500",
+        "obp": ".667",
+        "slg": ".500",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 805811,
+      "pa": 50,
+      "avg": 0.178,
+      "obp": 0.26,
+      "slg": 0.289,
+      "ops": 0.549,
+      "iso": 0.111,
+      "babip": 0.233,
+      "k_pct": 28.0,
+      "bb_pct": 10.0,
+      "name": "Bryce Eldridge",
+      "position": "DH",
+      "batting_order": 6,
+      "xwoba": 0.327,
+      "xba": 0.271,
+      "xslg": 0.41,
+      "ev95pct": 58.1,
+      "barrel_pct": 6.5,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".167",
+          "obp": ".167",
+          "slg": ".333",
+          "ops": ".500",
+          "pa": 6
+        },
+        "vs_rhp": {
+          "avg": ".179",
+          "obp": ".273",
+          "slg": ".282",
+          "ops": ".555",
+          "pa": 44
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".333",
+        "slg": ".333",
+        "ops": ".666",
+        "babip": ".316",
+        "pa": 27
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 691740,
+      "pa": 53,
+      "avg": 0.327,
+      "obp": 0.377,
+      "slg": 0.429,
+      "ops": 0.806,
+      "iso": 0.102,
+      "babip": 0.444,
+      "k_pct": 24.5,
+      "bb_pct": 7.5,
+      "name": "Daniel Susac",
+      "position": "C",
+      "batting_order": 7,
+      "xwoba": 0.338,
+      "xba": 0.292,
+      "xslg": 0.425,
+      "ev95pct": 36.1,
+      "barrel_pct": 8.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".389",
+          "obp": ".450",
+          "slg": ".389",
+          "ops": ".839",
+          "pa": 20
+        },
+        "vs_rhp": {
+          "avg": ".290",
+          "obp": ".333",
+          "slg": ".452",
+          "ops": ".785",
+          "pa": 33
+        }
+      },
+      "last_7": {
+        "avg": ".192",
+        "obp": ".276",
+        "slg": ".231",
+        "ops": ".507",
+        "babip": ".313",
+        "pa": 29
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 687551,
+      "pa": 111,
+      "avg": 0.223,
+      "obp": 0.273,
+      "slg": 0.34,
+      "ops": 0.613,
+      "iso": 0.117,
+      "babip": 0.266,
+      "k_pct": 19.8,
+      "bb_pct": 5.4,
+      "name": "Drew Gilbert",
+      "position": "CF",
+      "batting_order": 8,
+      "xwoba": 0.248,
+      "xba": 0.214,
+      "xslg": 0.297,
+      "ev95pct": 30.5,
+      "barrel_pct": 2.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".000",
+          "obp": ".000",
+          "slg": ".000",
+          "ops": ".000",
+          "pa": 21
+        },
+        "vs_rhp": {
+          "avg": ".277",
+          "obp": ".333",
+          "slg": ".422",
+          "ops": ".755",
+          "pa": 90
+        }
+      },
+      "last_7": {
+        "avg": ".250",
+        "obp": ".250",
+        "slg": ".350",
+        "ops": ".600",
+        "babip": ".278",
+        "pa": 20
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 686823,
+      "pa": 21,
+      "avg": 0.095,
+      "obp": 0.095,
+      "slg": 0.095,
+      "ops": 0.19,
+      "iso": 0.0,
+      "babip": 0.105,
+      "k_pct": 9.5,
+      "bb_pct": 0.0,
+      "name": "Will Brennan",
+      "position": "LF",
+      "batting_order": 9,
+      "xwoba": 0.189,
+      "xba": 0.185,
+      "xslg": 0.254,
+      "ev95pct": 26.3,
+      "barrel_pct": 0.0,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": "1.000",
+          "obp": "1.000",
+          "slg": "1.000",
+          "ops": "2.000",
+          "pa": 2
+        },
+        "vs_rhp": {
+          "avg": ".000",
+          "obp": ".000",
+          "slg": ".000",
+          "ops": ".000",
+          "pa": 19
+        }
+      },
+      "last_7": {
+        "avg": ".143",
+        "obp": ".143",
+        "slg": ".143",
+        "ops": ".286",
+        "babip": ".154",
+        "pa": 14
+      },
+      "bvp": {
+        "pa": 7,
+        "avg": ".286",
+        "obp": ".286",
+        "slg": ".286",
+        "h": 2,
+        "hr": 0,
+        "so": 3,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    }
+  ]
+}

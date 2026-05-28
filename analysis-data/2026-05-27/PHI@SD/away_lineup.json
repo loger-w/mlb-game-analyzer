@@ -1,0 +1,520 @@
+{
+  "team": "PHI",
+  "team_id": 143,
+  "tier": "🟡 Average",
+  "tier_vs_lhp": "🟢 Weak",
+  "tier_vs_rhp": "🟡 Average",
+  "avg_ops": 0.717,
+  "avg_ops_vs_lhp": 0.683,
+  "avg_ops_vs_rhp": 0.729,
+  "avg_xwoba": 0.323,
+  "avg_wrc_plus": null,
+  "avg_babip": 0.277,
+  "avg_k_pct": 21.3,
+  "avg_bb_pct": 8.5,
+  "over_under_lean": 0,
+  "recent_heat": "🥶 Cold",
+  "last7_babip": 0.252,
+  "chain": {
+    "obp_top3": 0.332,
+    "slg_mid": 0.324
+  },
+  "lineup_source": "projected",
+  "lineup_source_detail": null,
+  "lineup": [
+    {
+      "mlbam_id": 607208,
+      "pa": 240,
+      "avg": 0.225,
+      "obp": 0.279,
+      "slg": 0.347,
+      "ops": 0.626,
+      "iso": 0.122,
+      "babip": 0.268,
+      "k_pct": 22.1,
+      "bb_pct": 7.1,
+      "name": "Trea Turner",
+      "position": "SS",
+      "batting_order": null,
+      "xwoba": 0.288,
+      "xba": 0.239,
+      "xslg": 0.356,
+      "ev95pct": 40.0,
+      "barrel_pct": 5.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".200",
+          "obp": ".307",
+          "slg": ".277",
+          "ops": ".584",
+          "pa": 75
+        },
+        "vs_rhp": {
+          "avg": ".236",
+          "obp": ".267",
+          "slg": ".376",
+          "ops": ".643",
+          "pa": 165
+        }
+      },
+      "last_7": {
+        "avg": ".148",
+        "obp": ".233",
+        "slg": ".370",
+        "ops": ".603",
+        "babip": ".118",
+        "pa": 30
+      },
+      "bvp": {
+        "pa": 11,
+        "avg": ".000",
+        "obp": ".091",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 2,
+        "bb": 1,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 656941,
+      "pa": 234,
+      "avg": 0.232,
+      "obp": 0.35,
+      "slg": 0.606,
+      "ops": 0.956,
+      "iso": 0.374,
+      "babip": 0.253,
+      "k_pct": 33.3,
+      "bb_pct": 13.7,
+      "name": "Kyle Schwarber",
+      "position": "DH",
+      "batting_order": null,
+      "xwoba": 0.391,
+      "xba": 0.239,
+      "xslg": 0.561,
+      "ev95pct": 50.8,
+      "barrel_pct": 24.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".260",
+          "obp": ".372",
+          "slg": ".603",
+          "ops": ".975",
+          "pa": 86
+        },
+        "vs_rhp": {
+          "avg": ".216",
+          "obp": ".338",
+          "slg": ".608",
+          "ops": ".946",
+          "pa": 148
+        }
+      },
+      "last_7": {
+        "avg": ".207",
+        "obp": ".258",
+        "slg": ".379",
+        "ops": ".637",
+        "babip": ".357",
+        "pa": 31
+      },
+      "bvp": {
+        "pa": 5,
+        "avg": ".200",
+        "obp": ".200",
+        "slg": ".200",
+        "h": 1,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 547180,
+      "pa": 229,
+      "avg": 0.272,
+      "obp": 0.367,
+      "slg": 0.533,
+      "ops": 0.9,
+      "iso": 0.261,
+      "babip": 0.278,
+      "k_pct": 17.9,
+      "bb_pct": 13.5,
+      "name": "Bryce Harper",
+      "position": "1B",
+      "batting_order": null,
+      "xwoba": 0.418,
+      "xba": 0.296,
+      "xslg": 0.586,
+      "ev95pct": 42.0,
+      "barrel_pct": 14.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".211",
+          "obp": ".306",
+          "slg": ".380",
+          "ops": ".686",
+          "pa": 85
+        },
+        "vs_rhp": {
+          "avg": ".306",
+          "obp": ".403",
+          "slg": ".621",
+          "ops": "1.024",
+          "pa": 144
+        }
+      },
+      "last_7": {
+        "avg": ".227",
+        "obp": ".321",
+        "slg": ".409",
+        "ops": ".730",
+        "babip": ".235",
+        "pa": 28
+      },
+      "bvp": {
+        "pa": 9,
+        "avg": ".667",
+        "obp": ".778",
+        "slg": "1.667",
+        "h": 4,
+        "hr": 1,
+        "so": 0,
+        "bb": 3,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 666969,
+      "pa": 213,
+      "avg": 0.204,
+      "obp": 0.291,
+      "slg": 0.317,
+      "ops": 0.608,
+      "iso": 0.113,
+      "babip": 0.281,
+      "k_pct": 30.0,
+      "bb_pct": 9.4,
+      "name": "Adolis García",
+      "position": "RF",
+      "batting_order": null,
+      "xwoba": 0.301,
+      "xba": 0.226,
+      "xslg": 0.353,
+      "ev95pct": 48.0,
+      "barrel_pct": 7.2,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".240",
+          "obp": ".339",
+          "slg": ".440",
+          "ops": ".779",
+          "pa": 59
+        },
+        "vs_rhp": {
+          "avg": ".191",
+          "obp": ".273",
+          "slg": ".272",
+          "ops": ".545",
+          "pa": 154
+        }
+      },
+      "last_7": {
+        "avg": ".111",
+        "obp": ".304",
+        "slg": ".167",
+        "ops": ".471",
+        "babip": ".286",
+        "pa": 23
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "h": 0,
+        "hr": 0,
+        "so": 1,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 664761,
+      "pa": 205,
+      "avg": 0.211,
+      "obp": 0.273,
+      "slg": 0.33,
+      "ops": 0.603,
+      "iso": 0.119,
+      "babip": 0.221,
+      "k_pct": 14.1,
+      "bb_pct": 7.3,
+      "name": "Alec Bohm",
+      "position": "3B",
+      "batting_order": null,
+      "xwoba": 0.29,
+      "xba": 0.237,
+      "xslg": 0.34,
+      "ev95pct": 42.8,
+      "barrel_pct": 3.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".232",
+          "obp": ".290",
+          "slg": ".500",
+          "ops": ".790",
+          "pa": 62
+        },
+        "vs_rhp": {
+          "avg": ".202",
+          "obp": ".266",
+          "slg": ".256",
+          "ops": ".522",
+          "pa": 143
+        }
+      },
+      "last_7": {
+        "avg": ".167",
+        "obp": ".259",
+        "slg": ".333",
+        "ops": ".592",
+        "babip": ".158",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": ".667",
+        "obp": ".667",
+        "slg": ".667",
+        "h": 2,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 669016,
+      "pa": 194,
+      "avg": 0.326,
+      "obp": 0.356,
+      "slg": 0.481,
+      "ops": 0.837,
+      "iso": 0.155,
+      "babip": 0.394,
+      "k_pct": 21.6,
+      "bb_pct": 4.6,
+      "name": "Brandon Marsh",
+      "position": "LF",
+      "batting_order": null,
+      "xwoba": 0.33,
+      "xba": 0.293,
+      "xslg": 0.446,
+      "ev95pct": 47.2,
+      "barrel_pct": 6.3,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".282",
+          "obp": ".326",
+          "slg": ".385",
+          "ops": ".711",
+          "pa": 43
+        },
+        "vs_rhp": {
+          "avg": ".338",
+          "obp": ".364",
+          "slg": ".507",
+          "ops": ".871",
+          "pa": 151
+        }
+      },
+      "last_7": {
+        "avg": ".318",
+        "obp": ".375",
+        "slg": ".545",
+        "ops": ".920",
+        "babip": ".500",
+        "pa": 24
+      },
+      "bvp": {
+        "pa": 3,
+        "avg": "1.000",
+        "obp": "1.000",
+        "slg": "1.000",
+        "h": 1,
+        "hr": 0,
+        "so": 0,
+        "bb": 2,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 681082,
+      "pa": 184,
+      "avg": 0.231,
+      "obp": 0.28,
+      "slg": 0.391,
+      "ops": 0.671,
+      "iso": 0.16,
+      "babip": 0.256,
+      "k_pct": 17.4,
+      "bb_pct": 6.0,
+      "name": "Bryson Stott",
+      "position": "2B",
+      "batting_order": null,
+      "xwoba": 0.306,
+      "xba": 0.253,
+      "xslg": 0.394,
+      "ev95pct": 40.7,
+      "barrel_pct": 6.4,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".333",
+          "obp": ".438",
+          "slg": ".481",
+          "ops": ".919",
+          "pa": 33
+        },
+        "vs_rhp": {
+          "avg": ".211",
+          "obp": ".247",
+          "slg": ".373",
+          "ops": ".620",
+          "pa": 151
+        }
+      },
+      "last_7": {
+        "avg": ".261",
+        "obp": ".320",
+        "slg": ".304",
+        "ops": ".624",
+        "babip": ".333",
+        "pa": 25
+      },
+      "bvp": {
+        "pa": 4,
+        "avg": ".500",
+        "obp": ".500",
+        "slg": ".500",
+        "h": 2,
+        "hr": 0,
+        "so": 0,
+        "bb": 0,
+        "sample_sufficient": false
+      }
+    },
+    {
+      "mlbam_id": 702222,
+      "pa": 172,
+      "avg": 0.229,
+      "obp": 0.297,
+      "slg": 0.338,
+      "ops": 0.635,
+      "iso": 0.109,
+      "babip": 0.279,
+      "k_pct": 19.2,
+      "bb_pct": 7.6,
+      "name": "Justin Crawford",
+      "position": "CF",
+      "batting_order": null,
+      "xwoba": 0.271,
+      "xba": 0.23,
+      "xslg": 0.299,
+      "ev95pct": 36.3,
+      "barrel_pct": 1.6,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".080",
+          "obp": ".179",
+          "slg": ".080",
+          "ops": ".259",
+          "pa": 28
+        },
+        "vs_rhp": {
+          "avg": ".258",
+          "obp": ".319",
+          "slg": ".386",
+          "ops": ".705",
+          "pa": 144
+        }
+      },
+      "last_7": {
+        "avg": ".000",
+        "obp": ".000",
+        "slg": ".000",
+        "ops": ".000",
+        "babip": ".000",
+        "pa": 20
+      },
+      "bvp": null
+    },
+    {
+      "mlbam_id": 592663,
+      "pa": 131,
+      "avg": 0.231,
+      "obp": 0.305,
+      "slg": 0.316,
+      "ops": 0.621,
+      "iso": 0.085,
+      "babip": 0.263,
+      "k_pct": 16.0,
+      "bb_pct": 6.9,
+      "name": "J.T. Realmuto",
+      "position": "C",
+      "batting_order": null,
+      "xwoba": 0.315,
+      "xba": 0.254,
+      "xslg": 0.374,
+      "ev95pct": 41.2,
+      "barrel_pct": 3.1,
+      "wrc_plus": null,
+      "platoon": {
+        "vs_lhp": {
+          "avg": ".188",
+          "obp": ".257",
+          "slg": ".188",
+          "ops": ".445",
+          "pa": 35
+        },
+        "vs_rhp": {
+          "avg": ".247",
+          "obp": ".323",
+          "slg": ".365",
+          "ops": ".688",
+          "pa": 96
+        }
+      },
+      "last_7": {
+        "avg": ".261",
+        "obp": ".370",
+        "slg": ".391",
+        "ops": ".761",
+        "babip": ".278",
+        "pa": 27
+      },
+      "bvp": {
+        "pa": 15,
+        "avg": ".200",
+        "obp": ".200",
+        "slg": ".200",
+        "h": 3,
+        "hr": 0,
+        "so": 2,
+        "bb": 0,
+        "sample_sufficient": true
+      }
+    }
+  ]
+}

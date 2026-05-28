@@ -1,0 +1,193 @@
+{
+  "name": "Mike Burrows",
+  "mlbam_id": 681347,
+  "age": 26,
+  "birth_date": "1999-11-08",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.618,
+    "k_bb_pct": 0.577,
+    "stuff_pct": null,
+    "age_factor": 1.0
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 68.5,
+    "era_only_score": 20.0,
+    "gap": 48.5
+  },
+  "season": {
+    "era": 5.75,
+    "whip": 1.53,
+    "k_pct": 19.4,
+    "bb_pct": 8.1,
+    "k_bb_pct": 11.3,
+    "fip": 5.23,
+    "xfip": 3.96,
+    "hr_per_9": 1.92,
+    "gb_pct": 41.4,
+    "ip": 56.333333333333336,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.19,
+    "xwoba": 0.323,
+    "xba": 0.25
+  },
+  "statcast": {
+    "avg_velo": 89.6,
+    "max_velo": 97.8,
+    "hard_hit_pct": 25.0,
+    "pitch_types": {
+      "CH": 27.2,
+      "FF": 27.2,
+      "SL": 16.4,
+      "SI": 14.8,
+      "CU": 14.5
+    },
+    "barrel_pct": 8.5,
+    "ev95percent": 37.3,
+    "whiff_pct": 10.9,
+    "csw_pct": 26.6
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Los Angeles Angels",
+      "ip": 5.666666666666667,
+      "era": 7.94,
+      "k": 6,
+      "bb": 2,
+      "h": 9,
+      "er": 5,
+      "pitches": 94,
+      "strikes": 59
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Boston Red Sox",
+      "ip": 5.0,
+      "era": 5.91,
+      "k": 6,
+      "bb": 3,
+      "h": 5,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Colorado Rockies",
+      "ip": 5.333333333333333,
+      "era": 5.63,
+      "k": 3,
+      "bb": 1,
+      "h": 8,
+      "er": 3,
+      "pitches": 87,
+      "strikes": 58
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".336",
+      "obp": ".403",
+      "slg": ".608",
+      "k": 22,
+      "bb": 14,
+      "bf": 139,
+      "k_pct": 15.8,
+      "bb_pct": 10.1
+    },
+    "vs_right": {
+      "avg": ".240",
+      "obp": ".303",
+      "slg": ".390",
+      "k": 26,
+      "bb": 6,
+      "bf": 109,
+      "k_pct": 23.9,
+      "bb_pct": 5.5
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.833,
+      "k_pct": 15.0,
+      "bb_pct": 8.0,
+      "bf": 100
+    },
+    "tto2": {
+      "ops": 0.982,
+      "k_pct": 22.4,
+      "bb_pct": 7.1,
+      "bf": 98
+    },
+    "tto3": {
+      "ops": 0.733,
+      "k_pct": 18.8,
+      "bb_pct": 5.8,
+      "bf": 69
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 27.6,
+      "rv_per_100": 0.4,
+      "xwoba_against": 0.264,
+      "whiff_pct": 33.6,
+      "put_away_pct": 20.5,
+      "hard_hit_pct": 31.0
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 27.2,
+      "rv_per_100": -3.6,
+      "xwoba_against": 0.461,
+      "whiff_pct": 11.4,
+      "put_away_pct": 10.6,
+      "hard_hit_pct": 50.0
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 16.0,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.249,
+      "whiff_pct": 29.9,
+      "put_away_pct": 25.6,
+      "hard_hit_pct": 29.3
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 14.8,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.295,
+      "whiff_pct": 34.0,
+      "put_away_pct": 21.6,
+      "hard_hit_pct": 43.8
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 14.4,
+      "rv_per_100": -0.9,
+      "xwoba_against": 0.339,
+      "whiff_pct": 11.0,
+      "put_away_pct": 23.1,
+      "hard_hit_pct": 36.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

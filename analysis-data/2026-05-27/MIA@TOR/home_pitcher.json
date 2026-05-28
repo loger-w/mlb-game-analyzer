@@ -1,0 +1,161 @@
+{
+  "name": "Kevin Gausman",
+  "mlbam_id": 592332,
+  "age": 35,
+  "birth_date": "1991-01-06",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 89.6,
+    "era_only_score": 74.4,
+    "gap": 15.2
+  },
+  "season": {
+    "era": 3.23,
+    "whip": 1.05,
+    "k_pct": 23.6,
+    "bb_pct": 3.9,
+    "k_bb_pct": 19.7,
+    "fip": 2.88,
+    "xfip": 3.1,
+    "hr_per_9": 0.84,
+    "gb_pct": 45.4,
+    "ip": 64.0,
+    "games": 11,
+    "gs": 11
+  },
+  "expected": {
+    "xera": 3.29,
+    "xwoba": 0.289,
+    "xba": 0.241
+  },
+  "statcast": {
+    "avg_velo": 89.1,
+    "max_velo": 97.4,
+    "hard_hit_pct": 21.8,
+    "pitch_types": {
+      "FF": 52.5,
+      "FS": 39.3,
+      "SL": 8.2
+    },
+    "barrel_pct": 8.6,
+    "ev95percent": 34.2,
+    "whiff_pct": 12.4,
+    "csw_pct": 26.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-27",
+      "opponent": "Athletics",
+      "ip": 6.0,
+      "era": 1.5,
+      "k": 11,
+      "bb": 0,
+      "h": 1,
+      "er": 1,
+      "pitches": 83,
+      "strikes": 60
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Colorado Rockies",
+      "ip": 6.0,
+      "era": 0.75,
+      "k": 10,
+      "bb": 0,
+      "h": 2,
+      "er": 0,
+      "pitches": 89,
+      "strikes": 67
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Los Angeles Dodgers",
+      "ip": 5.333333333333333,
+      "era": 1.56,
+      "k": 5,
+      "bb": 2,
+      "h": 5,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 53
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".254",
+      "obp": ".280",
+      "slg": ".359",
+      "k": 33,
+      "bb": 6,
+      "bf": 153,
+      "k_pct": 21.6,
+      "bb_pct": 3.9
+    },
+    "vs_right": {
+      "avg": ".208",
+      "obp": ".238",
+      "slg": ".347",
+      "k": 28,
+      "bb": 4,
+      "bf": 105,
+      "k_pct": 26.7,
+      "bb_pct": 3.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.468,
+      "k_pct": 22.0,
+      "bb_pct": 3.7,
+      "bf": 109
+    },
+    "tto2": {
+      "ops": 0.677,
+      "k_pct": 24.1,
+      "bb_pct": 4.6,
+      "bf": 108
+    },
+    "tto3": {
+      "ops": 0.846,
+      "k_pct": 20.0,
+      "bb_pct": 6.2,
+      "bf": 65
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 52.5,
+      "rv_per_100": 1.7,
+      "xwoba_against": 0.335,
+      "whiff_pct": 19.1,
+      "put_away_pct": 21.3,
+      "hard_hit_pct": 43.5
+    },
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 39.4,
+      "rv_per_100": 0.6,
+      "xwoba_against": 0.223,
+      "whiff_pct": 37.1,
+      "put_away_pct": 16.0,
+      "hard_hit_pct": 21.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

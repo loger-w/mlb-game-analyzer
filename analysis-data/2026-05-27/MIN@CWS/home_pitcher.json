@@ -1,0 +1,193 @@
+{
+  "name": "Davis Martin",
+  "mlbam_id": 663436,
+  "age": 29,
+  "birth_date": "1997-01-04",
+  "pitch_hand": "R",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🔴 Elite Ace",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.95,
+    "stuff_pct": null,
+    "age_factor": 0.92
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 94.4,
+    "era_only_score": 94.6,
+    "gap": -0.2
+  },
+  "season": {
+    "era": 2.04,
+    "whip": 1.02,
+    "k_pct": 27.4,
+    "bb_pct": 5.0,
+    "k_bb_pct": 22.4,
+    "fip": 2.18,
+    "xfip": 2.62,
+    "hr_per_9": 0.44,
+    "gb_pct": 53.2,
+    "ip": 61.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 3.57,
+    "xwoba": 0.3,
+    "xba": 0.252
+  },
+  "statcast": {
+    "avg_velo": 90.1,
+    "max_velo": 96.9,
+    "hard_hit_pct": 28.6,
+    "pitch_types": {
+      "FF": 25.5,
+      "CH": 17.2,
+      "SI": 15.9,
+      "SL": 15.6,
+      "FC": 14.0
+    },
+    "barrel_pct": 7.5,
+    "ev95percent": 46.9,
+    "whiff_pct": 12.9,
+    "csw_pct": 29.8
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Miami Marlins",
+      "ip": 5.0,
+      "era": 5.4,
+      "k": 6,
+      "bb": 2,
+      "h": 5,
+      "er": 3,
+      "pitches": 92,
+      "strikes": 54
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Toronto Blue Jays",
+      "ip": 6.0,
+      "era": 2.45,
+      "k": 6,
+      "bb": 2,
+      "h": 4,
+      "er": 0,
+      "pitches": 85,
+      "strikes": 57
+    },
+    {
+      "date": "2026-04-10",
+      "opponent": "Kansas City Royals",
+      "ip": 7.0,
+      "era": 2.5,
+      "k": 3,
+      "bb": 0,
+      "h": 7,
+      "er": 2,
+      "pitches": 82,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".186",
+      "obp": ".234",
+      "slg": ".318",
+      "k": 36,
+      "bb": 8,
+      "bf": 137,
+      "k_pct": 26.3,
+      "bb_pct": 5.8
+    },
+    "vs_right": {
+      "avg": ".278",
+      "obp": ".327",
+      "slg": ".361",
+      "k": 30,
+      "bb": 4,
+      "bf": 104,
+      "k_pct": 28.8,
+      "bb_pct": 3.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.443,
+      "k_pct": 31.1,
+      "bb_pct": 3.3,
+      "bf": 90
+    },
+    "tto2": {
+      "ops": 0.702,
+      "k_pct": 30.0,
+      "bb_pct": 6.7,
+      "bf": 90
+    },
+    "tto3": {
+      "ops": 0.725,
+      "k_pct": 18.0,
+      "bb_pct": 4.9,
+      "bf": 61
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 25.5,
+      "rv_per_100": -0.4,
+      "xwoba_against": 0.309,
+      "whiff_pct": 29.7,
+      "put_away_pct": 23.5,
+      "hard_hit_pct": 28.6
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 17.3,
+      "rv_per_100": 2.4,
+      "xwoba_against": 0.33,
+      "whiff_pct": 16.5,
+      "put_away_pct": 12.1,
+      "hard_hit_pct": 59.0
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 16.0,
+      "rv_per_100": 2.6,
+      "xwoba_against": 0.304,
+      "whiff_pct": 7.5,
+      "put_away_pct": 20.8,
+      "hard_hit_pct": 48.7
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 15.6,
+      "rv_per_100": 2.1,
+      "xwoba_against": 0.177,
+      "whiff_pct": 54.5,
+      "put_away_pct": 34.5,
+      "hard_hit_pct": 40.0
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 14.0,
+      "rv_per_100": -0.3,
+      "xwoba_against": 0.386,
+      "whiff_pct": 27.3,
+      "put_away_pct": 30.8,
+      "hard_hit_pct": 54.2
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "name": "Connor Prielipp",
+  "mlbam_id": 687570,
+  "age": 25,
+  "birth_date": "2001-01-10",
+  "pitch_hand": "L",
+  "age_assessment": "⚡ 巔峰期",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": null,
+  "tier_components": {},
+  "tier_confidence": "small_sample",
+  "tier_gap": {
+    "expected_score": null,
+    "era_only_score": 58.4,
+    "gap": null
+  },
+  "season": {
+    "era": 4.03,
+    "whip": 1.17,
+    "k_pct": 24.4,
+    "bb_pct": 9.8,
+    "k_bb_pct": 14.6,
+    "fip": 4.07,
+    "xfip": 3.84,
+    "hr_per_9": 1.24,
+    "gb_pct": 38.6,
+    "ip": 29.0,
+    "games": 6,
+    "gs": 6
+  },
+  "expected": {
+    "xera": 3.75,
+    "xwoba": 0.307,
+    "xba": 0.212
+  },
+  "statcast": {
+    "avg_velo": 89.2,
+    "max_velo": 97.3,
+    "hard_hit_pct": 24.1,
+    "pitch_types": {
+      "SL": 34.5,
+      "FF": 31.1,
+      "CU": 15.0,
+      "CH": 12.1,
+      "SI": 7.3
+    },
+    "barrel_pct": 11.4,
+    "ev95percent": 35.4,
+    "whiff_pct": 9.6,
+    "csw_pct": 26.6
+  },
+  "game_log": [
+    {
+      "date": "2026-04-22",
+      "opponent": "New York Mets",
+      "ip": 4.0,
+      "era": 4.5,
+      "k": 6,
+      "bb": 0,
+      "h": 4,
+      "er": 2,
+      "pitches": 82,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-27",
+      "opponent": "Seattle Mariners",
+      "ip": 5.0,
+      "era": 4.0,
+      "k": 5,
+      "bb": 3,
+      "h": 1,
+      "er": 2,
+      "pitches": 84,
+      "strikes": 49
+    },
+    {
+      "date": "2026-05-02",
+      "opponent": "Toronto Blue Jays",
+      "ip": 5.0,
+      "era": 3.86,
+      "k": 4,
+      "bb": 2,
+      "h": 3,
+      "er": 2,
+      "pitches": 91,
+      "strikes": 59
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".231",
+      "obp": ".290",
+      "slg": ".423",
+      "k": 5,
+      "bb": 3,
+      "bf": 31,
+      "k_pct": 16.1,
+      "bb_pct": 9.7
+    },
+    "vs_right": {
+      "avg": ".203",
+      "obp": ".297",
+      "slg": ".367",
+      "k": 25,
+      "bb": 9,
+      "bf": 92,
+      "k_pct": 27.2,
+      "bb_pct": 9.8
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.724,
+      "k_pct": 23.6,
+      "bb_pct": 5.5,
+      "bf": 55
+    },
+    "tto2": {
+      "ops": 0.54,
+      "k_pct": 24.5,
+      "bb_pct": 13.2,
+      "bf": 53
+    },
+    "tto3": {
+      "ops": 0.875,
+      "k_pct": 25.0,
+      "bb_pct": 12.5,
+      "bf": 16
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 34.5,
+      "rv_per_100": 0.2,
+      "xwoba_against": 0.281,
+      "whiff_pct": 30.3,
+      "put_away_pct": 18.2,
+      "hard_hit_pct": 43.3
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 31.1,
+      "rv_per_100": 0.8,
+      "xwoba_against": 0.371,
+      "whiff_pct": 14.8,
+      "put_away_pct": 7.5,
+      "hard_hit_pct": 26.1
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
