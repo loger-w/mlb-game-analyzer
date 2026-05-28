@@ -281,21 +281,32 @@ def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]
     ]
 
 
-def _render_overall_section() -> list[str]:
+def _render_overall_section(prediction: dict) -> list[str]:
+    d = prediction["direction"]
+    total = prediction["total"]
+    pct = prediction["confidence_pct"]
+    bucket = prediction["confidence_bucket"]
+    conf_str = f"{pct*100:.0f}%（{bucket}）" if bucket else f"{pct*100:.0f}%（持平）"
     return [
         "## 整體判斷",
         "",
-        "- **方向（基本面）**：<!-- AI 補 HOME / AWAY / 持平 -->",
-        "- **總分（基本面）**：<!-- AI 補 數值（formula base ± 信號修正後） -->",
-        "- **方向信心**：<!-- AI 補 50-75% 機率。**門檻（2026-05 回測校準，MEDIUM 桶 over-confident −10pp 故收緊）**：≤ 55% 寫「持平」；55-65% 須同時滿足 (adjusted total HOME-AWAY gap ≥ 0.8 run) AND (無同強度反向信號) 否則改寫「持平」；> 75% 需在風險段說明依據 -->",
+        f"- **方向（基本面）**：{d}",
+        f"- **總分（基本面）**：{total}",
+        f"- **方向信心**：{conf_str}",
         "- **風險**：<!-- AI 補 1-4 點 -->",
         "",
         "⛔ MUST NOT contain：星級、盤口推薦（ML / O/U / RL）— 盤口屬 odds/ 模組",
+        "ℹ️ 方向/總分/信心由 scripts/predict.py 確定性計算；AI 僅補風險敘事，不得改數字。",
     ]
 
 
 def render_summary(bundle: dict, formula_pred: dict) -> str:
     """主入口：渲染 summary.md template，回傳 markdown 字串（不寫檔；caller 寫檔）。"""
+    from predict import predict
+    prediction = predict(
+        home_score=formula_pred.get("home_score", 0.0),
+        away_score=formula_pred.get("away_score", 0.0),
+    )
     lines: list[str] = []
     lines += _render_pitcher_matchup_section(bundle)
     lines += _render_lineup_section(bundle)
@@ -303,5 +314,5 @@ def render_summary(bundle: dict, formula_pred: dict) -> str:
     lines += _render_risk_section(bundle)
     lines += _render_conditional_section(bundle)
     lines += _render_expected_runs_section(bundle, formula_pred)
-    lines += _render_overall_section()
+    lines += _render_overall_section(prediction)
     return "\n".join(lines)

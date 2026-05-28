@@ -417,3 +417,14 @@ def test_expected_runs_no_ai_placeholder():
     assert "| HOME | 4.0 | 0 | 4.0 |" in section
     assert "| AWAY | 3.0 | 0 | 3.0 |" in section
     assert "| Total | 7.0 | 0 | 7.0 |" in section
+
+
+def test_overall_section_filled_by_script():
+    from summary_renderer import render_summary
+    output = render_summary(_minimal_bundle(), {"home_score": 5.5, "away_score": 3.0})
+    overall = output.split("## 整體判斷", 1)[1]
+    assert "**方向（基本面）**：HOME" in overall
+    assert "**總分（基本面）**：8.5" in overall
+    assert "73%" in overall and "HIGH" in overall
+    assert "AI 補 HOME / AWAY" not in overall
+    assert "**風險**：<!-- AI 補 1-4 點 -->" in overall
