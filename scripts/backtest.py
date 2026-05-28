@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MLB Skill Backtest — entry point.
+"""MLB Skill Backtest — entry point(v2:讀 features.json,聚焦 RL / O/U / edge)。
 
 用法：
   python scripts/backtest.py run --month 2026-05
@@ -8,7 +8,6 @@
 """
 
 import argparse
-import re
 import sys
 from pathlib import Path
 
@@ -21,28 +20,8 @@ SKILL_ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
 from lib.load import build_dataframe_for_month
-from lib.metrics import (
-    compute_direction_metrics, compute_total_metrics,
-    compute_calibration, compute_slice_metrics,
-)
-from lib.diagnostic import select_failure_cases, extract_main_signal
+from lib.metrics import compute_rl_metrics, compute_ou_metrics, compute_edge_calibration
 from lib.render import render_report, render_details_csv
-
-
-def _attach_main_signal(failure_cases, df):
-    """For each failure row, read summary.md and extract main signal."""
-    if len(failure_cases) == 0:
-        failure_cases["main_signal"] = []
-        return failure_cases
-    signals = []
-    for _, r in failure_cases.iterrows():
-        summary_path = SKILL_ROOT / "analysis-data" / r["date"] / r["matchup"] / "summary.md"
-        if summary_path.exists():
-            signals.append(extract_main_signal(summary_path.read_text(encoding="utf-8")))
-        else:
-            signals.append("")
-    failure_cases["main_signal"] = signals
-    return failure_cases
 
 
 def cmd_run(args):
@@ -54,27 +33,20 @@ def cmd_run(args):
     df = build_dataframe_for_month(month=args.month, days_filter=days_filter)
     print(f"Loaded {len(df)} rows.")
 
-    print("Computing metrics...")
-    dm = compute_direction_metrics(df)
-    tm = compute_total_metrics(df)
-    cal = compute_calibration(df)
-    slices = compute_slice_metrics(df)
+    rl = compute_rl_metrics(df)
+    ou = compute_ou_metrics(df)
+    edge = compute_edge_calibration(df)
 
-    print("Selecting failure cases...")
-    failures = select_failure_cases(df, top_total_miss=10)
-    failures = _attach_main_signal(failures, df)
-
-    print("Rendering...")
     report_path = out_dir / f"{args.month}-report.md"
     csv_path = out_dir / f"{args.month}-details.csv"
-    render_report(df=df, direction_metrics=dm, total_metrics=tm,
-                  calibration=cal, slices=slices, failure_cases=failures,
-                  month=args.month, out_path=report_path)
+    render_report(df=df, rl=rl, ou=ou, edge=edge, month=args.month, out_path=report_path)
     render_details_csv(df, out_path=csv_path)
 
     print(f"Report: {report_path}")
     print(f"CSV:    {csv_path}")
-    print(f"Valid:  {((~df['closing_missing']) & (~df['result_missing'])).sum()} / {len(df)}")
+    if len(df):
+        valid = int(((~df["odds_missing"]) & (~df["result_missing"])).sum())
+        print(f"Valid (odds+result): {valid} / {len(df)}")
 
 
 def main():
