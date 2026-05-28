@@ -102,3 +102,23 @@ def extract_pinnacle_no_vig(game: dict) -> Optional[dict]:
         "over_no_vig": over["no_vig_pct"] / 100.0,
         "under_no_vig": under["no_vig_pct"] / 100.0,
     }
+
+
+def extract_pinnacle_rl_no_vig(game: dict) -> Optional[dict]:
+    """抽 Pinnacle RL 的 home/away point + no-vig 機率。缺 → None。"""
+    pinn = game.get("bookmakers", {}).get("pinnacle")
+    if not pinn:
+        return None
+    rl = pinn.get("rl", {})
+    home = game.get("home_team")
+    away = game.get("away_team")
+    h = rl.get(home, {})
+    a = rl.get(away, {})
+    if "no_vig_pct" not in h or "no_vig_pct" not in a:
+        return None
+    if "point" not in h or "point" not in a:
+        return None
+    return {
+        "home_point": float(h["point"]), "home_no_vig": h["no_vig_pct"] / 100.0,
+        "away_point": float(a["point"]), "away_no_vig": a["no_vig_pct"] / 100.0,
+    }
