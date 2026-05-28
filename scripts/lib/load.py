@@ -1,11 +1,14 @@
-"""Integrate parse_summary + closing_line + result.json into a pandas DataFrame.
+"""Integrate merged.json + signals.json + closing_line + result.json into a pandas DataFrame.
 
-One row per game. Marks parse_failed / closing_missing / result_missing flags
+One row per game. Predictions are computed deterministically from the frozen
+merged.json feature set via predict_with_formula() + predict(). Slice flags come
+from signals.json. Marks parse_failed / closing_missing / result_missing flags
 so downstream metrics can exclude them while CSV retains every row.
 """
 
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -16,13 +19,27 @@ SKILL_ROOT = SCRIPT_DIR.parent
 ANALYSIS_DATA_DIR = SKILL_ROOT / "analysis-data"
 SNAPSHOTS_DIR = SKILL_ROOT / "odds" / "odds_snapshots"
 
-from lib.parse_summary import parse_summary
+# Ensure scripts/ is importable so predict and scoring_formula can be imported
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from predict import predict
+from scoring_formula import predict_with_formula
 from lib.closing_line import find_closing_snapshot_for_game, extract_pinnacle_no_vig
 
 # Matchup dir name: "BAL@NYY", optionally with -1 / -2 / -G2 doubleheader suffix
 _MATCHUP_RE = re.compile(r"^([A-Z]{2,4})@([A-Z]{2,4})(?:-(?:G?\d+))?$")
 
 CONFIDENCE_TO_PROB = {"LOW": 0.55, "MEDIUM": 0.62, "HIGH": 0.72}
+
+
+def _read_json(path: Path) -> Optional[dict]:
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
 
 
 def _matchup_to_abbrs(matchup_dir_name: str) -> tuple[Optional[str], Optional[str]]:
@@ -90,17 +107,49 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
     home_team = game_data.get("game", {}).get("home", {}).get("team", "")
     away_team = game_data.get("game", {}).get("away", {}).get("team", "")
 
-    # Parse summary — fallback to summary-G*.md for doubleheader dirs
-    summary_path = matchup_dir / "summary.md"
+    # Determine dossier filename (doubleheader-aware)
     dossier_filename = "dossier.md"
-    if not summary_path.exists():
+    if not (matchup_dir / "summary.md").exists():
         g_summaries = sorted(matchup_dir.glob("summary-G*.md"))
-        if not g_summaries:
-            return None
-        summary_path = g_summaries[0]
-        suffix = summary_path.stem[len("summary"):]  # e.g. "-G1"
-        dossier_filename = f"dossier{suffix}.md"
-    pred = parse_summary(summary_path, home_team_abbr=home_abbr, away_team_abbr=away_abbr)
+        if g_summaries:
+            suffix = g_summaries[0].stem[len("summary"):]  # e.g. "-G1"
+            dossier_filename = f"dossier{suffix}.md"
+
+    # Prediction — computed deterministically from frozen merged.json
+    merged_json = _read_json(matchup_dir / "merged.json")
+    if merged_json is None:
+        return None  # merged.json required for deterministic prediction
+
+    formula_pred = predict_with_formula(merged_json)
+    pred = predict(formula_pred["home_score"], formula_pred["away_score"])
+
+    skill_direction = pred["direction"]
+    skill_total = pred["total"]
+    skill_confidence_pct = pred["confidence_pct"]
+    skill_confidence = pred["confidence_bucket"]
+    skill_prob_mapped = skill_confidence_pct  # always available from predict()
+    parse_failed = False
+
+    # Slice flags — read from signals.json (fallback empty if missing)
+    signals_data = _read_json(matchup_dir / "signals.json") or {"signals": []}
+    signals = signals_data.get("signals", [])
+
+    has_reverse_platoon = any(
+        s["name"] == "reverse_platoon" and s.get("fired")
+        for s in signals
+    )
+    # chain_break: fired + OPS-gap value (field: "value") >= 0.300
+    has_chain_break_300 = any(
+        s["name"] == "chain_break" and s.get("fired")
+        and isinstance(s.get("value"), (int, float)) and s["value"] >= 0.300
+        for s in signals
+    )
+    # core_il_count: fired + count (field: "value") >= 2
+    has_bullpen_il_2plus = any(
+        s["name"] == "core_il_count" and s.get("fired")
+        and isinstance(s.get("value"), (int, float)) and s["value"] >= 2
+        for s in signals
+    )
 
     # Closing snapshot
     snap_game, snap_filename = find_closing_snapshot_for_game(
@@ -115,16 +164,6 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
     # Result
     result = _read_result(matchup_dir)
     result_missing = result is None
-
-    # Skill probability: prefer percentage when available, else bucket mapping
-    skill_conf = pred.get("confidence")
-    skill_conf_pct = pred.get("confidence_pct")
-    if skill_conf_pct is not None:
-        skill_prob_mapped = skill_conf_pct
-    elif skill_conf is not None:
-        skill_prob_mapped = CONFIDENCE_TO_PROB.get(skill_conf)
-    else:
-        skill_prob_mapped = None
 
     # Market favorite
     market_favorite = None
@@ -141,11 +180,11 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
         "date": date,
         "matchup": matchup_dir.name,
         "game_pk": game_pk,
-        # Skill prediction
-        "skill_direction": pred.get("direction"),
-        "skill_total": pred.get("total"),
-        "skill_confidence": skill_conf,
-        "skill_confidence_pct": skill_conf_pct,
+        # Skill prediction (deterministic from merged.json)
+        "skill_direction": skill_direction,
+        "skill_total": skill_total,
+        "skill_confidence": skill_confidence,
+        "skill_confidence_pct": skill_confidence_pct,
         "skill_prob_mapped": skill_prob_mapped,
         # Market
         "market_home_winprob_no_vig": no_vig["home_winprob_no_vig"] if no_vig else None,
@@ -157,13 +196,13 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
         "actual_total": result.get("total") if result else None,
         "actual_home_score": result.get("home_score") if result else None,
         "actual_away_score": result.get("away_score") if result else None,
-        # Flags
-        "park_factor": pred.get("park_factor"),
-        "has_reverse_platoon": pred.get("has_reverse_platoon", False),
-        "has_chain_break_300": pred.get("has_chain_break_300", False),
-        "has_bullpen_il_2plus": pred.get("has_bullpen_il_2plus", False),
+        # Flags (from signals.json)
+        "park_factor": merged_json.get("park_factor"),
+        "has_reverse_platoon": has_reverse_platoon,
+        "has_chain_break_300": has_chain_break_300,
+        "has_bullpen_il_2plus": has_bullpen_il_2plus,
         # Status
-        "parse_failed": pred.get("parse_failed", True),
+        "parse_failed": parse_failed,
         "closing_missing": closing_missing,
         "closing_snapshot_ts": snap_filename or "",
         "result_missing": result_missing,
