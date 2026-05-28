@@ -1,0 +1,254 @@
+{
+  "signals": [
+    {
+      "name": "tier_mismatch",
+      "fired": false,
+      "value": 4.0,
+      "severity": "low",
+      "label": "tier_gap +4.0 在容許範圍",
+      "details": {},
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "HOME"
+    },
+    {
+      "name": "reverse_platoon",
+      "fired": false,
+      "value": -0.07000000000000006,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "pitch_mix_concentration",
+      "fired": true,
+      "value": 20.0,
+      "severity": "low",
+      "label": "balanced 4+ pitches：最高球種僅 20.0%（<25.0%）",
+      "details": {
+        "max_usage": 20.0,
+        "pitch_types": {
+          "SI": 20.0,
+          "FF": 17.1,
+          "CU": 15.3,
+          "FC": 14.6,
+          "SL": 9.8
+        }
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "tto3_penalty",
+      "fired": true,
+      "value": -0.073,
+      "severity": "medium",
+      "label": "TTO3 penalty：OPS Δ +-0.073（TTO1 0.801 → TTO3 0.728），第三輪明顯衰退；K% 從 21.5% 掉到 16.7%（Δ -4.8pp）",
+      "details": {
+        "ops_delta": -0.073,
+        "k_delta": -4.8,
+        "tto1_ops": 0.801,
+        "tto3_ops": 0.728,
+        "tto3_bf": 54,
+        "source": "season"
+      },
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "HOME"
+    },
+    {
+      "name": "tier_mismatch",
+      "fired": true,
+      "value": -15.0,
+      "severity": "medium",
+      "label": "ERA 高估真實水平 -15.0（v2 score 60.4 vs ERA-only 75.4）",
+      "details": {
+        "expected_score": 60.4,
+        "era_only_score": 75.4
+      },
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "AWAY"
+    },
+    {
+      "name": "reverse_platoon",
+      "fired": true,
+      "value": 0.269,
+      "severity": "high",
+      "label": "reverse platoon Δ +0.269（vs RHB OPS 0.822 > vs LHB OPS 0.553）— RHP 對非預期手別反而吃虧",
+      "details": {
+        "pitch_hand": "R",
+        "vs_lhb_ops": 0.5529999999999999,
+        "vs_lhb_bf": 77,
+        "vs_rhb_ops": 0.8220000000000001,
+        "vs_rhb_bf": 62
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "pitch_mix_concentration",
+      "fired": true,
+      "value": 22.9,
+      "severity": "low",
+      "label": "balanced 4+ pitches：最高球種僅 22.9%（<25.0%）",
+      "details": {
+        "max_usage": 22.9,
+        "pitch_types": {
+          "FC": 22.9,
+          "SI": 19.8,
+          "CU": 19.0,
+          "ST": 17.0,
+          "FF": 16.1
+        }
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "tto3_penalty",
+      "fired": true,
+      "value": 0.184,
+      "severity": "high",
+      "label": "TTO3 penalty：OPS Δ +0.184（TTO1 0.600 → TTO3 0.784），第三輪明顯衰退；K% 從 27.5% 掉到 22.4%（Δ -5.1pp）（career fallback）",
+      "details": {
+        "ops_delta": 0.184,
+        "k_delta": -5.1,
+        "tto1_ops": 0.6,
+        "tto3_ops": 0.784,
+        "tto3_bf": 635,
+        "source": "career"
+      },
+      "confidence": "heuristic",
+      "half_life": "structural",
+      "side": "AWAY"
+    },
+    {
+      "name": "heat_vs_babip",
+      "fired": false,
+      "value": 0.272,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "short",
+      "side": "HOME"
+    },
+    {
+      "name": "platoon_advantage",
+      "fired": false,
+      "value": 2,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "chain_break",
+      "fired": true,
+      "value": 0.244,
+      "severity": "medium",
+      "label": "chain breaks at #2-3：OPS 落差 0.244",
+      "details": {
+        "drop_position": [
+          2,
+          3
+        ],
+        "ops_drop": 0.244
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "HOME"
+    },
+    {
+      "name": "heat_vs_babip",
+      "fired": true,
+      "value": 0.248,
+      "severity": "medium",
+      "label": "unlucky-cold：last7 BABIP 0.248 偏低，冷期可能反彈",
+      "details": {
+        "heat": "🥶 Cold",
+        "last7_babip": 0.248
+      },
+      "confidence": "heuristic",
+      "half_life": "short",
+      "side": "AWAY"
+    },
+    {
+      "name": "platoon_advantage",
+      "fired": false,
+      "value": 0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "chain_break",
+      "fired": true,
+      "value": 0.294,
+      "severity": "medium",
+      "label": "chain breaks at #4-5：OPS 落差 0.294",
+      "details": {
+        "drop_position": [
+          4,
+          5
+        ],
+        "ops_drop": 0.294
+      },
+      "confidence": "data",
+      "half_life": "medium",
+      "side": "AWAY"
+    },
+    {
+      "name": "core_il_count",
+      "fired": true,
+      "value": 2,
+      "severity": "high",
+      "label": "牛棚 core IL ×2：🔴 高（牛棚明顯吃緊）",
+      "details": {
+        "side": "HOME",
+        "count": 2
+      },
+      "confidence": "data",
+      "half_life": "short",
+      "side": "HOME"
+    },
+    {
+      "name": "core_il_count",
+      "fired": true,
+      "value": 1,
+      "severity": "medium",
+      "label": "牛棚 core IL ×1：🟠 中高（後段防守變薄）",
+      "details": {
+        "side": "AWAY",
+        "count": 1
+      },
+      "confidence": "data",
+      "half_life": "short",
+      "side": "AWAY"
+    },
+    {
+      "name": "strong_park",
+      "fired": false,
+      "value": 106.0,
+      "severity": "low",
+      "label": "",
+      "details": {},
+      "confidence": "data",
+      "half_life": "structural",
+      "side": "GAME"
+    }
+  ],
+  "fired_count": 11
+}
