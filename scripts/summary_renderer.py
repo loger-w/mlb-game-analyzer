@@ -262,7 +262,7 @@ def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]
     home_base = formula_pred.get("home_score", "?")
     away_base = formula_pred.get("away_score", "?")
     total_base = (
-        (home_base + away_base)
+        round(home_base + away_base, 1)
         if isinstance(home_base, (int, float)) and isinstance(away_base, (int, float))
         else "?"
     )

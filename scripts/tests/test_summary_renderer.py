@@ -428,3 +428,12 @@ def test_overall_section_filled_by_script():
     assert "73%" in overall and "HIGH" in overall
     assert "AI 補 HOME / AWAY" not in overall
     assert "**風險**：<!-- AI 補 1-4 點 -->" in overall
+
+
+def test_expected_runs_total_no_float_noise():
+    """4.1 + 4.3 = 8.399999999999999 in IEEE-754 — must render as 8.4"""
+    from summary_renderer import render_summary
+    output = render_summary(_minimal_bundle(), {"home_score": 4.1, "away_score": 4.3})
+    section = output.split("## 修正後預期得分", 1)[1].split("\n## ", 1)[0]
+    assert "8.399999999999999" not in section
+    assert "| Total | 8.4 | 0 | 8.4 |" in section
