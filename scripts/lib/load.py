@@ -2,7 +2,7 @@
 
 One row per game. Predictions are computed deterministically from the frozen
 merged.json feature set via predict_with_formula() + predict(). Slice flags come
-from signals.json. Marks parse_failed / closing_missing / result_missing flags
+from signals.json. Marks closing_missing / result_missing flags
 so downstream metrics can exclude them while CSV retains every row.
 """
 
@@ -113,8 +113,6 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
     skill_total = pred["total"]
     skill_confidence_pct = pred["confidence_pct"]
     skill_confidence = pred["confidence_bucket"]
-    skill_prob_mapped = skill_confidence_pct  # always available from predict()
-    parse_failed = False
 
     # Slice flags — read from signals.json (fallback empty if missing)
     signals_data = _read_json(matchup_dir / "signals.json") or {"signals": []}
@@ -171,7 +169,6 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
         "skill_total": skill_total,
         "skill_confidence": skill_confidence,
         "skill_confidence_pct": skill_confidence_pct,
-        "skill_prob_mapped": skill_prob_mapped,
         # Market
         "market_home_winprob_no_vig": no_vig["home_winprob_no_vig"] if no_vig else None,
         "market_total_line": no_vig["total_line"] if no_vig else None,
@@ -188,7 +185,6 @@ def _build_row(date: str, matchup_dir: Path, home_abbr: str, away_abbr: str) -> 
         "has_chain_break_300": has_chain_break_300,
         "has_bullpen_il_2plus": has_bullpen_il_2plus,
         # Status
-        "parse_failed": parse_failed,
         "closing_missing": closing_missing,
         "closing_snapshot_ts": snap_filename or "",
         "result_missing": result_missing,

@@ -37,7 +37,7 @@ def select_failure_cases(df: pd.DataFrame, top_total_miss: int = 10) -> pd.DataF
        Merged + deduped by matchup. Flags `dual_failure` for rows in both lists.
     """
     valid = df[
-        (~df["parse_failed"]) & (~df["closing_missing"]) & (~df["result_missing"])
+        (~df["closing_missing"]) & (~df["result_missing"])
     ].copy()
 
     # Derive effective confidence bucket (handles pct-only rows)

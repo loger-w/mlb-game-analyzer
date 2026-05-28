@@ -33,24 +33,13 @@ def test_build_dataframe_real_data_smoke(tmp_path):
     required_cols = {
         "date", "matchup", "game_pk",
         "skill_direction", "skill_total", "skill_confidence", "skill_confidence_pct",
-        "skill_prob_mapped",
         "market_home_winprob_no_vig", "market_total_line",
         "actual_winner", "actual_total",
-        "parse_failed", "closing_missing", "result_missing",
+        "closing_missing", "result_missing",
         "park_factor", "has_reverse_platoon",
     }
     missing = required_cols - set(df.columns)
     assert not missing, f"Missing columns: {missing}"
-
-
-def test_build_dataframe_parse_failed_always_false_for_merged_rows():
-    """After deterministic-prediction change, predictions come from merged.json via predict().
-    Any row that loads successfully (has merged.json) should have parse_failed=False —
-    the template-state of summary.md is no longer relevant to prediction quality."""
-    df = build_dataframe_for_month(month="2026-05", days_filter={"2026-05-25"})
-    assert len(df) > 0, "Expected at least 1 row for 5/25"
-    assert not df["parse_failed"].any(), \
-        f"Expected all rows parse_failed=False (deterministic path), got {df['parse_failed'].sum()}/{len(df)}"
 
 
 def test_load_handles_doubleheader_g_suffix_summary(tmp_path, monkeypatch):
@@ -91,7 +80,6 @@ def test_load_handles_doubleheader_g_suffix_summary(tmp_path, monkeypatch):
     row = df.iloc[0]
     assert row["matchup"] == "STL@CIN-G1"
     assert row["dossier_path"] == "../2026-05-23/STL@CIN-G1/dossier-G1.md"
-    assert row["parse_failed"] == False
     assert row["actual_winner"] == "HOME"
 
 
@@ -123,21 +111,14 @@ def test_load_falls_back_to_summary_md_when_both_exist(tmp_path, monkeypatch):
     assert df.iloc[0]["dossier_path"] == "../2026-05-23/STL@CIN/dossier.md"
 
 
-def test_skill_prob_mapped_uses_confidence_pct_from_predict():
-    """After deterministic-prediction change, all valid rows use confidence_pct from
-    predict() — skill_prob_mapped always equals skill_confidence_pct (no bucket fallback)."""
+def test_all_rows_have_confidence_pct_from_predict():
+    """Deterministic path: every loaded row carries a confidence_pct from predict()
+    (it always returns one, even for 持平)."""
     df = build_dataframe_for_month(month="2026-05", days_filter={"2026-05-02", "2026-05-15"})
-    valid = df[~df["parse_failed"]]
 
-    # All valid rows must have confidence_pct (predict() always returns it)
-    assert len(valid) > 0, "Expected ≥1 valid row"
-    assert valid["skill_confidence_pct"].notna().all(), \
-        "All valid rows should have confidence_pct from predict()"
-
-    # skill_prob_mapped must equal skill_confidence_pct for every valid row
-    for _, r in valid.iterrows():
-        assert r["skill_prob_mapped"] == r["skill_confidence_pct"], \
-            f"skill_prob_mapped {r['skill_prob_mapped']} != skill_confidence_pct {r['skill_confidence_pct']}"
+    assert len(df) > 0, "Expected ≥1 row"
+    assert df["skill_confidence_pct"].notna().all(), \
+        "All rows should have confidence_pct from predict()"
 
 
 def test_build_row_prediction_from_merged(tmp_path):
@@ -166,6 +147,5 @@ def test_build_row_prediction_from_merged(tmp_path):
     assert row is not None
     assert row["skill_direction"] in ("HOME", "AWAY", "持平")
     assert row["skill_confidence_pct"] is not None
-    assert row["parse_failed"] is False
     assert row["has_reverse_platoon"] is True
     assert row["park_factor"] == 100

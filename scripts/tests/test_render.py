@@ -13,13 +13,13 @@ def _sample_data():
     df = pd.DataFrame([{
         "date": "2026-05-02", "matchup": "BAL@NYY", "game_pk": 1,
         "skill_direction": "HOME", "skill_total": 8.5, "skill_confidence": "MEDIUM",
-        "skill_confidence_pct": None, "skill_prob_mapped": 0.62,
+        "skill_confidence_pct": 0.62,
         "market_home_winprob_no_vig": 0.60, "market_total_line": 8.5,
         "market_favorite": "HOME", "market_favorite_winprob": 0.60,
         "actual_winner": "AWAY", "actual_total": 13, "actual_home_score": 5, "actual_away_score": 8,
         "park_factor": 105.0,
         "has_reverse_platoon": True, "has_chain_break_300": False, "has_bullpen_il_2plus": True,
-        "parse_failed": False, "closing_missing": False, "closing_snapshot_ts": "2026-05-02_12-00-ET.json",
+        "closing_missing": False, "closing_snapshot_ts": "2026-05-02_12-00-ET.json",
         "result_missing": False,
         "dossier_path": "analysis-data/2026-05-02/BAL@NYY/dossier.md",
     }])

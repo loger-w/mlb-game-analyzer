@@ -9,13 +9,13 @@ import pandas as pd
 
 CSV_COLUMNS = [
     "date", "matchup", "game_pk",
-    "skill_direction", "skill_total", "skill_confidence", "skill_confidence_pct", "skill_prob_mapped",
+    "skill_direction", "skill_total", "skill_confidence", "skill_confidence_pct",
     "market_home_winprob_no_vig", "market_total_line", "market_favorite", "market_favorite_winprob",
     "actual_winner", "actual_total", "actual_home_score", "actual_away_score",
     "direction_hit", "ou_hit", "total_abs_error", "total_signed_error",
     "brier_score", "log_loss",
     "park_factor", "has_reverse_platoon", "has_chain_break_300", "has_bullpen_il_2plus",
-    "closing_snapshot_ts", "closing_missing", "result_missing", "parse_failed",
+    "closing_snapshot_ts", "closing_missing", "result_missing",
     "dossier_path",
 ]
 
@@ -27,9 +27,9 @@ def _enrich_with_per_row_metrics(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     eps = 1e-12
 
-    # Coerce numeric columns — when all parse_failed/result_missing, dtype is object
+    # Coerce numeric columns — when all result_missing, dtype is object
     # and downstream arithmetic / np.sign fails.
-    for col in ("skill_total", "actual_total", "market_total_line", "skill_prob_mapped"):
+    for col in ("skill_total", "actual_total", "market_total_line", "skill_confidence_pct"):
         if col in out.columns:
             out[col] = pd.to_numeric(out[col], errors="coerce")
 
@@ -45,8 +45,8 @@ def _enrich_with_per_row_metrics(df: pd.DataFrame) -> pd.DataFrame:
     sa = np.sign(out["actual_total"] - line)
     out["ou_hit"] = (ss == sa).where(no_push_mask)
 
-    # Brier / log-loss per row (NaN if skill_prob_mapped missing)
-    p = out["skill_prob_mapped"]
+    # Brier / log-loss per row (NaN if skill_confidence_pct missing)
+    p = out["skill_confidence_pct"]
     y = out["direction_hit"].astype(float)
     out["brier_score"] = ((p - y) ** 2).where(p.notna() & y.notna())
     log_term = -(y * np.log(p.clip(eps, 1 - eps)) + (1 - y) * np.log((1 - p).clip(eps, 1 - eps)))
@@ -90,10 +90,9 @@ def render_report(
     out_path: Path,
 ):
     n_input = len(df)
-    n_parse_ok = int((~df["parse_failed"]).sum())
     n_closing_ok = int((~df["closing_missing"]).sum())
     n_result_ok = int((~df["result_missing"]).sum())
-    n_valid = int(((~df["parse_failed"]) & (~df["closing_missing"]) & (~df["result_missing"])).sum())
+    n_valid = int(((~df["closing_missing"]) & (~df["result_missing"])).sum())
 
     today = _date.today().isoformat()
     lines = []
@@ -104,8 +103,7 @@ def render_report(
 
     # 資料健康度
     lines.append("## 資料健康度")
-    lines.append(f"- 輸入 summary.md：{n_input}")
-    lines.append(f"- 通過解析：{n_parse_ok}（剔出 parse_failed {n_input - n_parse_ok}）")
+    lines.append(f"- 輸入場次（含 merged.json）：{n_input}")
     lines.append(f"- 通過 12:00 ET snapshot 匹配：{n_closing_ok}（剔出 snapshot_missing {n_input - n_closing_ok}）")
     lines.append(f"- 通過 result 取得：{n_result_ok}（剔出 result_missing {n_input - n_result_ok}）")
     lines.append(f"- **有效樣本：{n_valid} 場**")

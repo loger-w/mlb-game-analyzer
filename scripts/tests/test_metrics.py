@@ -46,13 +46,11 @@ def _mini_df():
             "market_total_line": ln,
             "actual_total": at,
             "skill_confidence": cf,
-            "skill_confidence_pct": None,
-            "skill_prob_mapped": {"LOW": 0.55, "MEDIUM": 0.62, "HIGH": 0.72}[cf],
+            "skill_confidence_pct": {"LOW": 0.55, "MEDIUM": 0.62, "HIGH": 0.72}[cf],
             "park_factor": 100.0,
             "has_reverse_platoon": False,
             "has_chain_break_300": False,
             "has_bullpen_il_2plus": False,
-            "parse_failed": False,
             "closing_missing": False,
             "result_missing": False,
         })
@@ -119,15 +117,12 @@ def test_calibration_with_pct_rows():
     # Convert 3 rows to pct-only format
     df.loc[0, "skill_confidence"] = None
     df.loc[0, "skill_confidence_pct"] = 0.72  # → HIGH bucket
-    df.loc[0, "skill_prob_mapped"] = 0.72
 
     df.loc[1, "skill_confidence"] = None
     df.loc[1, "skill_confidence_pct"] = 0.55  # → LOW bucket
-    df.loc[1, "skill_prob_mapped"] = 0.55
 
     df.loc[2, "skill_confidence"] = None
     df.loc[2, "skill_confidence_pct"] = 0.63  # → MEDIUM bucket
-    df.loc[2, "skill_prob_mapped"] = 0.63
 
     cal = compute_calibration(df)
     rt = cal["reliability_table"]

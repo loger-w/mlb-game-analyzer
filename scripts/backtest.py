@@ -74,7 +74,7 @@ def cmd_run(args):
 
     print(f"Report: {report_path}")
     print(f"CSV:    {csv_path}")
-    print(f"Valid:  {((~df['parse_failed']) & (~df['closing_missing']) & (~df['result_missing'])).sum()} / {len(df)}")
+    print(f"Valid:  {((~df['closing_missing']) & (~df['result_missing'])).sum()} / {len(df)}")
 
 
 def main():

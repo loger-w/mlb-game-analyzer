@@ -9,12 +9,13 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 
+from predict import confidence_bucket
+
 
 def _valid_rows(df: pd.DataFrame) -> pd.DataFrame:
-    """Rows usable for indicator computation (excludes parse/closing/result failures)."""
+    """Rows usable for indicator computation (excludes closing/result failures)."""
     return df[
-        (~df["parse_failed"])
-        & (~df["closing_missing"])
+        (~df["closing_missing"])
         & (~df["result_missing"])
     ].copy()
 
@@ -40,19 +41,15 @@ def _effective_confidence_bucket(row) -> Optional[str]:
     """Derive an effective LOW / MEDIUM / HIGH bucket.
 
     Order of preference:
-      1. `skill_confidence` if set (old-format LOW/MED/HIGH)
-      2. `skill_confidence_pct` mapped to bucket: <0.58 LOW, 0.58-0.67 MEDIUM, ≥0.67 HIGH
+      1. `skill_confidence` if set (LOW/MED/HIGH bucket)
+      2. `skill_confidence_pct` mapped via predict.confidence_bucket
       3. None
     """
     if row.get("skill_confidence") in ("LOW", "MEDIUM", "HIGH"):
         return row["skill_confidence"]
     pct = row.get("skill_confidence_pct")
     if pct is not None and not pd.isna(pct):
-        if pct < 0.58:
-            return "LOW"
-        if pct < 0.67:
-            return "MEDIUM"
-        return "HIGH"
+        return confidence_bucket(pct)
     return None
 
 
@@ -138,7 +135,7 @@ def compute_calibration(df: pd.DataFrame) -> dict:
     OR skill_confidence_pct), plus skill/market Brier and log-loss."""
     valid = _valid_rows(df)
     valid = valid[valid["skill_direction"].isin(["HOME", "AWAY"])]
-    valid = valid[valid["skill_prob_mapped"].notna()]
+    valid = valid[valid["skill_confidence_pct"].notna()]
 
     if len(valid) == 0:
         return {"reliability_table": pd.DataFrame(), "brier_score": None, "log_loss": None,
@@ -154,8 +151,8 @@ def compute_calibration(df: pd.DataFrame) -> dict:
         sub = valid[valid["effective_bucket"] == conf]
         n_sub = len(sub)
         hit = float(sub["outcome"].mean()) if n_sub > 0 else None
-        # Use median of skill_prob_mapped within bucket (mix of pct + bucket rows)
-        mapped = float(sub["skill_prob_mapped"].median()) if n_sub > 0 else None
+        # Use median of skill_confidence_pct within bucket
+        mapped = float(sub["skill_confidence_pct"].median()) if n_sub > 0 else None
         ci = _wilson_ci(hit, n_sub) if n_sub > 0 and hit is not None else (None, None)
         rows.append({
             "confidence": conf,
@@ -168,10 +165,9 @@ def compute_calibration(df: pd.DataFrame) -> dict:
         })
     reliability = pd.DataFrame(rows)
 
-    # Brier / log-loss with skill mapping (uses skill_prob_mapped directly — already correct
-    # whether sourced from pct or bucket)
+    # Brier / log-loss from the deterministic per-side win probability
     eps = 1e-12
-    p = valid["skill_prob_mapped"].astype(float)
+    p = valid["skill_confidence_pct"].astype(float)
     y = valid["outcome"]
     brier = float(((p - y) ** 2).mean())
     log_loss = float(-(y * np.log(p.clip(eps, 1 - eps)) + (1 - y) * np.log((1 - p).clip(eps, 1 - eps))).mean())
