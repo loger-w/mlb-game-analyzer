@@ -269,14 +269,14 @@ def _render_expected_runs_section(bundle: dict, formula_pred: dict) -> list[str]
     return [
         "## 修正後預期得分",
         "",
-        "> 「+ 信號」欄：依 `reference/matchup-factors.md §量級錨點` 區間挑值（單側 cap ±0.8 run / 場）。",
-        "> ⛔ **不入此欄**：BABIP 極端值（Flag 3）/ ERA-xERA gap（Flag 8）/ strong_park（已含於 PF 倍率）。",
+        "> v1：信號只進敘事、不進數字（+信號 欄一律 0、adjusted = base）。",
+        "> 哪個信號該進數字由未來 ablation 決定（見 spec §10）。",
         "",
         "| | base (formula) | + 信號 | adjusted |",
         "|---|---|---|---|",
-        f"| HOME | {home_base} | <!-- AI 補 --> | <!-- AI 補 --> |",
-        f"| AWAY | {away_base} | <!-- AI 補 --> | <!-- AI 補 --> |",
-        f"| Total | {total_base} | <!-- AI 補 --> | <!-- AI 補 --> |",
+        f"| HOME | {home_base} | 0 | {home_base} |",
+        f"| AWAY | {away_base} | 0 | {away_base} |",
+        f"| Total | {total_base} | 0 | {total_base} |",
         "",
     ]
 

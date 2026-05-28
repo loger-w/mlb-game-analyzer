@@ -322,13 +322,12 @@ def test_risk_section_labels_small_sample_regression_correctly():
 # ---------------------------------------------------------------------------
 
 def test_expected_runs_has_signal_column_caveat():
-    """## 修正後預期得分 段必須在表格前提示 BABIP / era_xera 不入「+ 信號」欄"""
+    """## 修正後預期得分 段必須在表格前有 v1 caveat（信號只進敘事、不進數字）"""
     from summary_renderer import render_summary
     output = render_summary(_minimal_bundle(), _minimal_formula_pred())
     expected_section = output.split("## 修正後預期得分")[1].split("\n## ")[0]
-    assert "BABIP" in expected_section
-    assert "ERA-xERA" in expected_section or "era_xera" in expected_section
-    assert "不入此欄" in expected_section or "不入欄" in expected_section
+    assert "v1" in expected_section
+    assert "ablation" in expected_section
 
 
 def test_summary_lineup_section_marks_source():
@@ -408,3 +407,13 @@ def test_summary_conditional_weather_absent():
     md = render_summary(bundle, {"home_score": 0, "away_score": 0})
     assert "天氣：未公布" in md
     assert "對得分 / HR 影響判讀" not in md
+
+
+def test_expected_runs_no_ai_placeholder():
+    from summary_renderer import render_summary
+    output = render_summary(_minimal_bundle(), {"home_score": 4.0, "away_score": 3.0})
+    section = output.split("## 修正後預期得分", 1)[1].split("\n## ", 1)[0]
+    assert "<!-- AI 補 -->" not in section
+    assert "| HOME | 4.0 | 0 | 4.0 |" in section
+    assert "| AWAY | 3.0 | 0 | 3.0 |" in section
+    assert "| Total | 7.0 | 0 | 7.0 |" in section
