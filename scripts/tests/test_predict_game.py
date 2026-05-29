@@ -22,7 +22,7 @@ def _inputs():
 
 def test_run_one_from_inputs_no_market():
     bundle = pg.run_one_from_inputs(_inputs(), market=None, snapshot_file=None)
-    assert round(bundle["model"]["mu_home"], 2) == 4.10
+    assert bundle["model"]["mu_home"] > 0          # μ 有算出來
     assert bundle["edges"]["home_rl_pp"] is None   # 無 market
     assert bundle["model"]["p_home_cover_rl"] is None
 
@@ -32,5 +32,9 @@ def test_run_one_from_inputs_with_market():
                      "away_point": 1.5, "away_no_vig": 0.59},
               "total": {"line": 8.5, "over_no_vig": 0.52, "under_no_vig": 0.48}}
     bundle = pg.run_one_from_inputs(_inputs(), market=market, snapshot_file="s.json")
-    assert round(bundle["model"]["p_home_cover_rl"], 3) == 0.355
-    assert round(bundle["edges"]["over_pp"], 1) == -4.1
+    m = bundle["model"]; e = bundle["edges"]
+    assert 0.0 < m["p_home_cover_rl"] < 1.0
+    assert 0.0 < m["p_over"] < 1.0
+    # edge = (model 機率 − 市場 no-vig)×100,驗證 orchestrator 接線(不綁 config)
+    assert e["home_rl_pp"] == round((m["p_home_cover_rl"] - 0.41) * 100, 1)
+    assert e["over_pp"] == round((m["p_over"] - 0.52) * 100, 1)

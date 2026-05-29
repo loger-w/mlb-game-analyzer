@@ -13,33 +13,38 @@ def pitch_today(starter_fip: float, bullpen_era: float) -> float:
 
 def expected_runs(home_rs: float, away_rs: float,
                   home_pitch: float, away_pitch: float,
-                  pf: float) -> tuple[float, float]:
+                  pf: float, league_rg: float | None = None) -> tuple[float, float]:
     """期望得分。home_pitch/away_pitch 為各隊今日防守力(pitch_today 輸出)。
+    league_rg 省略時用 config.LEAGUE_RG(fitting 時可覆寫)。
 
     μ_home = 主隊RS × 對方(away)防守力 / 聯盟 × PF/100
     """
+    lg = config.LEAGUE_RG if league_rg is None else league_rg
     pf_mult = pf / 100.0
-    mu_home = home_rs * away_pitch / config.LEAGUE_RG * pf_mult
-    mu_away = away_rs * home_pitch / config.LEAGUE_RG * pf_mult
+    mu_home = home_rs * away_pitch / lg * pf_mult
+    mu_away = away_rs * home_pitch / lg * pf_mult
     return mu_home, mu_away
 
 
-def cover_prob_home(mu_margin: float, rl_point_home: float) -> float:
+def cover_prob_home(mu_margin: float, rl_point_home: float, sigma: float | None = None) -> float:
     """P(主隊過 RL)。主隊 cover 條件:margin > −rl_point_home。
-    主 −1.5 → P(margin>1.5);主 +1.5 → P(margin>−1.5)。"""
-    z = (-rl_point_home - mu_margin) / config.SIGMA
+    主 −1.5 → P(margin>1.5);主 +1.5 → P(margin>−1.5)。sigma 省略時用 config.SIGMA。"""
+    s = config.SIGMA if sigma is None else sigma
+    z = (-rl_point_home - mu_margin) / s
     return 1.0 - _N.cdf(z)
 
 
-def over_prob(mu_total: float, total_line: float) -> float:
-    """P(Over):P(total > 線)。"""
-    z = (total_line - mu_total) / config.SIGMA
+def over_prob(mu_total: float, total_line: float, sigma: float | None = None) -> float:
+    """P(Over):P(total > 線)。sigma 省略時用 config.SIGMA。"""
+    s = config.SIGMA if sigma is None else sigma
+    z = (total_line - mu_total) / s
     return 1.0 - _N.cdf(z)
 
 
-def home_ml_prob(mu_margin: float) -> float:
-    """P(主隊勝)= P(margin > 0)。內部用,不輸出給使用者。"""
-    return _N.cdf(mu_margin / config.SIGMA)
+def home_ml_prob(mu_margin: float, sigma: float | None = None) -> float:
+    """P(主隊勝)= P(margin > 0)。內部用,不輸出給使用者。sigma 省略時用 config.SIGMA。"""
+    s = config.SIGMA if sigma is None else sigma
+    return _N.cdf(mu_margin / s)
 
 
 def predict(*, home_rs: float, away_rs: float,

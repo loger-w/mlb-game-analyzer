@@ -6,16 +6,18 @@ import config
 
 
 def test_constants_present_and_typed():
-    assert config.LEAGUE_RG == 4.4
+    # held priors(不參與 refit,維持固定)
     assert config.RECENT_W == 0.35
     assert config.SP_W == 0.6 and config.BP_W == 0.4
-    assert config.SIGMA_TEAM == 3.0
     assert config.FIP_CONSTANT == 3.10
     assert config.RECENT_N == 10
     assert config.MIN_IP == 10
-    # weights coherent
     assert math.isclose(config.SP_W + config.BP_W, 1.0)
+    # fitted(refit 後會變;只查型別與合理範圍)
+    assert isinstance(config.LEAGUE_RG, float) and 3.0 < config.LEAGUE_RG < 6.0
+    assert isinstance(config.SIGMA_TEAM, float) and 2.0 < config.SIGMA_TEAM < 6.0
 
 
 def test_sigma_derived():
-    assert math.isclose(config.SIGMA, 3.0 * math.sqrt(2), rel_tol=1e-9)
+    # 關係式不綁特定數值(SIGMA 由 SIGMA_TEAM 導出)
+    assert math.isclose(config.SIGMA, config.SIGMA_TEAM * math.sqrt(2), rel_tol=1e-9)
