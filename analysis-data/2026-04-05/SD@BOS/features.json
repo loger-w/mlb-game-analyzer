@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:54:49+00:00",
+  "game": {
+    "date": "2026-04-05",
+    "game_pk": 824781,
+    "home": "Boston Red Sox",
+    "away": "San Diego Padres",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.0,
+    "home_rs_season": 3.0,
+    "away_rs_recent": 3.0,
+    "away_rs_season": 3.0,
+    "home_ra_recent": 4.62,
+    "home_ra_season": 4.62,
+    "away_ra_recent": 4.12,
+    "away_ra_season": 4.12,
+    "home_starter": {
+      "name": "Ranger Suarez",
+      "id": 624133,
+      "fip": null,
+      "ip": 4.333333333333333,
+      "k": 3,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Walker Buehler",
+      "id": 621111,
+      "fip": null,
+      "ip": 4.0,
+      "k": 3,
+      "bb": 2,
+      "hbp": 1,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.6,
+    "away_bullpen_era": 3.51,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Roman Anthony",
+        "id": 701350,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ramón Laureano",
+        "id": 657656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Fernando Tatis Jr.",
+        "id": 665487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jackson Merrill",
+        "id": 701538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Manny Machado",
+        "id": 592518,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Miguel Andujar",
+        "id": 609280,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Xander Bogaerts",
+        "id": 593428,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ty France",
+        "id": 664034,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jake Cronenworth",
+        "id": 630105,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Freddy Fermin",
+        "id": 666023,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.87,
+    "mu_away": 2.89,
+    "mu_margin": -0.02,
+    "mu_total": 5.76,
+    "p_home_ml": 0.4981,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

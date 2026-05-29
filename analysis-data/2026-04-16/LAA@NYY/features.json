@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:11:11+00:00",
+  "game": {
+    "date": "2026-04-16",
+    "game_pk": 823560,
+    "home": "New York Yankees",
+    "away": "Los Angeles Angels",
+    "venue": "Yankee Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 4.1,
+    "home_rs_season": 4.56,
+    "away_rs_recent": 5.4,
+    "away_rs_season": 4.95,
+    "home_ra_recent": 5.0,
+    "home_ra_season": 3.61,
+    "away_ra_recent": 4.9,
+    "away_ra_season": 4.95,
+    "home_starter": {
+      "name": "Max Fried",
+      "id": 608331,
+      "fip": 2.42,
+      "ip": 28.0,
+      "k": 20,
+      "bb": 5,
+      "hbp": 2,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Brent Suter",
+      "id": 608718,
+      "fip": 3.02,
+      "ip": 13.0,
+      "k": 13,
+      "bb": 4,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.5,
+    "away_bullpen_era": 4.74,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Aaron Judge",
+        "id": 592450,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Giancarlo Stanton",
+        "id": 519317,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ben Rice",
+        "id": 700250,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Amed Rosario",
+        "id": 642708,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "José Caballero",
+        "id": 676609,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "J.C. Escarra",
+        "id": 641555,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mike Trout",
+        "id": 545361,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Vaughn Grissom",
+        "id": 687093,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nolan Schanuel",
+        "id": 694384,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Travis d'Arnaud",
+        "id": 518595,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Josh Lowe",
+        "id": 666139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Adam Frazier",
+        "id": 624428,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.56,
+    "mu_away": 3.18,
+    "mu_margin": 0.38,
+    "mu_total": 6.74,
+    "p_home_ml": 0.5357,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

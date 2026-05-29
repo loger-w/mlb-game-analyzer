@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:32:42+00:00",
+  "game": {
+    "date": "2026-05-03",
+    "game_pk": 822987,
+    "home": "Tampa Bay Rays",
+    "away": "San Francisco Giants",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.1,
+    "home_rs_season": 4.53,
+    "away_rs_recent": 2.7,
+    "away_rs_season": 3.09,
+    "home_ra_recent": 2.4,
+    "home_ra_season": 4.34,
+    "away_ra_recent": 3.8,
+    "away_ra_season": 4.06,
+    "home_starter": {
+      "name": "Steven Matz",
+      "id": 571927,
+      "fip": 5.01,
+      "ip": 31.333333333333332,
+      "k": 27,
+      "bb": 11,
+      "hbp": 1,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Tyler Mahle",
+      "id": 641816,
+      "fip": 5.42,
+      "ip": 30.666666666666668,
+      "k": 29,
+      "bb": 17,
+      "hbp": 0,
+      "hr": 6
+    },
+    "home_bullpen_era": 4.66,
+    "away_bullpen_era": 3.05,
+    "park_factor": 100.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Cedric Mullins",
+        "id": 656775,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hunter Feduccia",
+        "id": 676439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Heliot Ramos",
+        "id": 671218,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Rafael Devers",
+        "id": 646240,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Casey Schmitt",
+        "id": 669477,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Luis Arraez",
+        "id": 650333,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Matt Chapman",
+        "id": 656305,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Willy Adames",
+        "id": 642715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jung Hoo Lee",
+        "id": 808982,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Gilbert",
+        "id": 687551,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Eric Haase",
+        "id": 606992,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.67,
+    "mu_away": 3.43,
+    "mu_margin": 1.24,
+    "mu_total": 8.1,
+    "p_home_ml": 0.6,
+    "p_home_cover_rl": 0.4788,
+    "p_over": 0.5081,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-03_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.35700000000000004,
+      "away_point": 1.5,
+      "away_no_vig": 0.643
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.504,
+      "under_no_vig": 0.496
+    }
+  },
+  "edges": {
+    "home_rl_pp": 12.2,
+    "over_pp": 0.4
+  }
+}

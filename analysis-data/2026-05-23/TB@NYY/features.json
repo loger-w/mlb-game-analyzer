@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T09:03:02+00:00",
+  "game": {
+    "date": "2026-05-23",
+    "game_pk": 823543,
+    "home": "New York Yankees",
+    "away": "Tampa Bay Rays",
+    "venue": "Yankee Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 3.5,
+    "home_rs_season": 4.85,
+    "away_rs_recent": 6.5,
+    "away_rs_season": 4.72,
+    "home_ra_recent": 4.2,
+    "home_ra_season": 3.6,
+    "away_ra_recent": 4.3,
+    "away_ra_season": 3.88,
+    "home_starter": {
+      "name": "Ryan Weathers",
+      "id": 677960,
+      "fip": 3.52,
+      "ip": 50.333333333333336,
+      "k": 61,
+      "bb": 13,
+      "hbp": 0,
+      "hr": 8
+    },
+    "away_starter": {
+      "name": "Drew Rasmussen",
+      "id": 656876,
+      "fip": 3.75,
+      "ip": 48.0,
+      "k": 45,
+      "bb": 9,
+      "hbp": 1,
+      "hr": 7
+    },
+    "home_bullpen_era": 3.55,
+    "away_bullpen_era": 4.31,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.98,
+    "mu_away": 4.32,
+    "mu_margin": -0.34,
+    "mu_total": 8.3,
+    "p_home_ml": 0.4723,
+    "p_home_cover_rl": 0.3535,
+    "p_over": 0.5649,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-23_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.36700000000000005,
+      "away_point": 1.5,
+      "away_no_vig": 0.633
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.48100000000000004,
+      "under_no_vig": 0.519
+    }
+  },
+  "edges": {
+    "home_rl_pp": -1.4,
+    "over_pp": 8.4
+  }
+}

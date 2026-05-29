@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:51:24+00:00",
+  "game": {
+    "date": "2026-05-16",
+    "game_pk": 822737,
+    "home": "Washington Nationals",
+    "away": "Baltimore Orioles",
+    "venue": "Nationals Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.9,
+    "home_rs_season": 5.31,
+    "away_rs_recent": 4.0,
+    "away_rs_season": 4.24,
+    "home_ra_recent": 6.1,
+    "home_ra_season": 5.73,
+    "away_ra_recent": 3.7,
+    "away_ra_season": 5.07,
+    "home_starter": {
+      "name": "Cade Cavalli",
+      "id": 676917,
+      "fip": 3.17,
+      "ip": 40.333333333333336,
+      "k": 44,
+      "bb": 18,
+      "hbp": 8,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Chris Bassitt",
+      "id": 605135,
+      "fip": 4.65,
+      "ip": 38.0,
+      "k": 26,
+      "bb": 18,
+      "hbp": 6,
+      "hr": 3
+    },
+    "home_bullpen_era": 4.8,
+    "away_bullpen_era": 4.0,
+    "park_factor": 100.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Brady House",
+        "id": 691781,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Keibert Ruiz",
+        "id": 660688,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Joey Wiemer",
+        "id": 686894,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Maverick Handley",
+        "id": 668974,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Taylor Ward",
+        "id": 621493,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Adley Rutschman",
+        "id": 668939,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Samuel Basallo",
+        "id": 694212,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Tyler O'Neill",
+        "id": 641933,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Coby Mayo",
+        "id": 691723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jeremiah Jackson",
+        "id": 669236,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.77,
+    "mu_away": 3.79,
+    "mu_margin": 1.98,
+    "mu_total": 9.56,
+    "p_home_ml": 0.657,
+    "p_home_cover_rl": 0.7614,
+    "p_over": 0.4642,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-16_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.5670000000000001,
+      "away_point": -1.5,
+      "away_no_vig": 0.433
+    },
+    "total": {
+      "line": 10.0,
+      "over_no_vig": 0.517,
+      "under_no_vig": 0.483
+    }
+  },
+  "edges": {
+    "home_rl_pp": 19.4,
+    "over_pp": -5.3
+  }
+}

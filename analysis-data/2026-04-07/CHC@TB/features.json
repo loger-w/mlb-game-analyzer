@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:58:18+00:00",
+  "game": {
+    "date": "2026-04-07",
+    "game_pk": 822999,
+    "home": "Tampa Bay Rays",
+    "away": "Chicago Cubs",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.1,
+    "home_rs_season": 5.1,
+    "away_rs_recent": 3.7,
+    "away_rs_season": 3.73,
+    "home_ra_recent": 5.4,
+    "home_ra_season": 5.4,
+    "away_ra_recent": 3.0,
+    "away_ra_season": 3.64,
+    "home_starter": {
+      "name": "Mason Englert",
+      "id": 669438,
+      "fip": null,
+      "ip": 3.0,
+      "k": 2,
+      "bb": 0,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Javier Assad",
+      "id": 665871,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 7.34,
+    "away_bullpen_era": 5.27,
+    "park_factor": 100.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Yandy Díaz",
+        "id": 650490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cedric Mullins",
+        "id": 656775,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Nick Fortes",
+        "id": 663743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Richie Palacios",
+        "id": 680700,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Nico Hoerner",
+        "id": 663538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Michael Busch",
+        "id": 683737,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alex Bregman",
+        "id": 608324,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Crow-Armstrong",
+        "id": 691718,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Miguel Amaya",
+        "id": 665804,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Moisés Ballesteros",
+        "id": 694208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dansby Swanson",
+        "id": 621020,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Michael Conforto",
+        "id": 624424,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Matt Shaw",
+        "id": 807713,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.5,
+    "mu_away": 4.71,
+    "mu_margin": 0.79,
+    "mu_total": 10.21,
+    "p_home_ml": 0.5739,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

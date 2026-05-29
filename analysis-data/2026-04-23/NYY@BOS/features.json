@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:21:57+00:00",
+  "game": {
+    "date": "2026-04-23",
+    "game_pk": 824770,
+    "home": "Boston Red Sox",
+    "away": "New York Yankees",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 3.75,
+    "away_rs_recent": 5.7,
+    "away_rs_season": 4.92,
+    "home_ra_recent": 5.1,
+    "home_ra_season": 4.58,
+    "away_ra_recent": 4.4,
+    "away_ra_season": 3.46,
+    "home_starter": {
+      "name": "Payton Tolle",
+      "id": 801139,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Cam Schlittler",
+      "id": 693645,
+      "fip": 0.82,
+      "ip": 27.666666666666668,
+      "k": 36,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 3.56,
+    "away_bullpen_era": 4.04,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Masataka Yoshida",
+        "id": 807799,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Aaron Judge",
+        "id": 592450,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ben Rice",
+        "id": 700250,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Giancarlo Stanton",
+        "id": 519317,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ryan McMahon",
+        "id": 641857,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "José Caballero",
+        "id": 676609,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Austin Wells",
+        "id": 669224,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 1.86,
+    "mu_away": 4.99,
+    "mu_margin": -3.13,
+    "mu_total": 6.85,
+    "p_home_ml": 0.2303,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

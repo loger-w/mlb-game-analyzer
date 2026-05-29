@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:42:18+00:00",
+  "game": {
+    "date": "2026-05-09",
+    "game_pk": 823224,
+    "home": "San Francisco Giants",
+    "away": "Pittsburgh Pirates",
+    "venue": "Oracle Park"
+  },
+  "inputs": {
+    "home_rs_recent": 2.3,
+    "home_rs_season": 3.08,
+    "away_rs_recent": 5.0,
+    "away_rs_season": 4.79,
+    "home_ra_recent": 3.8,
+    "home_ra_season": 4.08,
+    "away_ra_recent": 5.0,
+    "away_ra_season": 4.23,
+    "home_starter": {
+      "name": "Landen Roupp",
+      "id": 694738,
+      "fip": 2.62,
+      "ip": 39.666666666666664,
+      "k": 43,
+      "bb": 16,
+      "hbp": 2,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Braxton Ashcraft",
+      "id": 677952,
+      "fip": 2.96,
+      "ip": 41.666666666666664,
+      "k": 45,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 3
+    },
+    "home_bullpen_era": 3.37,
+    "away_bullpen_era": 3.94,
+    "park_factor": 91.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jung Hoo Lee",
+        "id": 808982,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis Arraez",
+        "id": 650333,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Heliot Ramos",
+        "id": 671218,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Logan Porter",
+        "id": 682515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Bryce Eldridge",
+        "id": 805811,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Willy Adames",
+        "id": 642715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Matt Chapman",
+        "id": 656305,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Gilbert",
+        "id": 687551,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Eric Haase",
+        "id": 606992,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Oneil Cruz",
+        "id": 665833,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brandon Lowe",
+        "id": 664040,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jared Triolo",
+        "id": 669707,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Nick Yorke",
+        "id": 694377,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nick Gonzales",
+        "id": 693304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Marcell Ozuna",
+        "id": 542303,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Spencer Horwitz",
+        "id": 687462,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Billy Cook",
+        "id": 695257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Joey Bart",
+        "id": 663698,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.04,
+    "mu_away": 3.08,
+    "mu_margin": -1.04,
+    "mu_total": 5.12,
+    "p_home_ml": 0.4159,
+    "p_home_cover_rl": 0.302,
+    "p_over": 0.2782,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-09_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.35200000000000004,
+      "away_point": 1.5,
+      "away_no_vig": 0.648
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.512,
+      "under_no_vig": 0.488
+    }
+  },
+  "edges": {
+    "home_rl_pp": -5.0,
+    "over_pp": -23.4
+  }
+}

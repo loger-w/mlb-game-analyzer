@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:16:59+00:00",
+  "game": {
+    "date": "2026-04-20",
+    "game_pk": 824776,
+    "home": "Boston Red Sox",
+    "away": "Detroit Tigers",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.2,
+    "home_rs_season": 3.86,
+    "away_rs_recent": 4.1,
+    "away_rs_season": 4.27,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 4.57,
+    "away_ra_recent": 2.1,
+    "away_ra_season": 3.41,
+    "home_starter": {
+      "name": "Sonny Gray",
+      "id": 543243,
+      "fip": 4.67,
+      "ip": 20.333333333333332,
+      "k": 11,
+      "bb": 4,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Jack Flaherty",
+      "id": 656427,
+      "fip": 4.2,
+      "ip": 20.0,
+      "k": 21,
+      "bb": 14,
+      "hbp": 3,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.52,
+    "away_bullpen_era": 3.24,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Roman Anthony",
+        "id": 701350,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Masataka Yoshida",
+        "id": 807799,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Isiah Kiner-Falefa",
+        "id": 643396,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kevin McGonigle",
+        "id": 805808,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Gleyber Torres",
+        "id": 650402,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Spencer Torkelson",
+        "id": 679529,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Riley Greene",
+        "id": 682985,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Dillon Dingler",
+        "id": 693307,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Wenceel Pérez",
+        "id": 672761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Matt Vierling",
+        "id": 663837,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hao-Yu  Lee",
+        "id": 701678,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jake Rogers",
+        "id": 668670,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.59,
+    "mu_away": 4.19,
+    "mu_margin": -0.6,
+    "mu_total": 7.78,
+    "p_home_ml": 0.4438,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:32:19+00:00",
+  "game": {
+    "date": "2026-04-30",
+    "game_pk": 823795,
+    "home": "Milwaukee Brewers",
+    "away": "Arizona Diamondbacks",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.9,
+    "home_rs_season": 4.9,
+    "away_rs_recent": 5.7,
+    "away_rs_season": 4.83,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 4.03,
+    "away_ra_recent": 6.5,
+    "away_ra_season": 5.24,
+    "home_starter": {
+      "name": "Brandon Woodruff",
+      "id": 605540,
+      "fip": 4.04,
+      "ip": 28.666666666666668,
+      "k": 23,
+      "bb": 6,
+      "hbp": 1,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Michael Soroka",
+      "id": 647336,
+      "fip": 2.67,
+      "ip": 27.666666666666668,
+      "k": 34,
+      "bb": 7,
+      "hbp": 3,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.04,
+    "away_bullpen_era": 4.93,
+    "park_factor": 97.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Garrett Mitchell",
+        "id": 669003,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brice Turang",
+        "id": 668930,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "William Contreras",
+        "id": 661388,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Bauers",
+        "id": 641343,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Tyler Black",
+        "id": 672012,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Luis Rengifo",
+        "id": 650859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Sal Frelick",
+        "id": 686217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Greg Jones",
+        "id": 675659,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "David Hamilton",
+        "id": 666152,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jose Fernandez",
+        "id": 699912,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jorge Barrosa",
+        "id": 678489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Adrian Del Castillo",
+        "id": 680728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Lourdes Gurriel Jr.",
+        "id": 666971,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tim Tawa",
+        "id": 694374,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Alek Thomas",
+        "id": 677950,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "James McCann",
+        "id": 543510,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.86,
+    "mu_away": 4.57,
+    "mu_margin": -0.71,
+    "mu_total": 8.43,
+    "p_home_ml": 0.4335,
+    "p_home_cover_rl": 0.3012,
+    "p_over": 0.632,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-04-30_13-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.354,
+      "away_point": 1.5,
+      "away_no_vig": 0.6459999999999999
+    },
+    "total": {
+      "line": 7.0,
+      "over_no_vig": 0.518,
+      "under_no_vig": 0.48200000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -5.3,
+    "over_pp": 11.4
+  }
+}

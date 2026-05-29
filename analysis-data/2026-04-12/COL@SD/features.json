@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:06:09+00:00",
+  "game": {
+    "date": "2026-04-12",
+    "game_pk": 823317,
+    "home": "San Diego Padres",
+    "away": "Colorado Rockies",
+    "venue": "Petco Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.1,
+    "home_rs_season": 4.47,
+    "away_rs_recent": 4.1,
+    "away_rs_season": 4.2,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 3.87,
+    "away_ra_recent": 4.4,
+    "away_ra_season": 4.27,
+    "home_starter": {
+      "name": "Nick Pivetta",
+      "id": 601713,
+      "fip": 1.41,
+      "ip": 13.0,
+      "k": 20,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Kyle Freeland",
+      "id": 607536,
+      "fip": 3.8,
+      "ip": 15.666666666666666,
+      "k": 13,
+      "bb": 4,
+      "hbp": 4,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.2,
+    "away_bullpen_era": 3.29,
+    "park_factor": 95.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ramón Laureano",
+        "id": 657656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Fernando Tatis Jr.",
+        "id": 665487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jackson Merrill",
+        "id": 701538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Manny Machado",
+        "id": 592518,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Xander Bogaerts",
+        "id": 593428,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nick Castellanos",
+        "id": 592206,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ty France",
+        "id": 664034,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Bryce Johnson",
+        "id": 669369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Freddy Fermin",
+        "id": 666023,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Jordan Beck",
+        "id": 687597,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Tyler Freeman",
+        "id": 671289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Mickey Moniak",
+        "id": 666160,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brenton Doyle",
+        "id": 686668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brett Sullivan",
+        "id": 664954,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.64,
+    "mu_away": 1.91,
+    "mu_margin": 1.73,
+    "mu_total": 5.55,
+    "p_home_ml": 0.6583,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

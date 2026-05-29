@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:42:25+00:00",
+  "game": {
+    "date": "2026-05-09",
+    "game_pk": 823955,
+    "home": "Los Angeles Dodgers",
+    "away": "Atlanta Braves",
+    "venue": "UNIQLO Field at Dodger Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 4.0,
+    "home_rs_season": 5.24,
+    "away_rs_recent": 4.8,
+    "away_rs_season": 5.49,
+    "home_ra_recent": 2.8,
+    "home_ra_season": 3.16,
+    "away_ra_recent": 3.6,
+    "away_ra_season": 3.51,
+    "home_starter": {
+      "name": "Blake Snell",
+      "id": 605483,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Spencer Strider",
+      "id": 675911,
+      "fip": null,
+      "ip": 3.3333333333333335,
+      "k": 6,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.5,
+    "away_bullpen_era": 3.22,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Dalton Rushing",
+        "id": 687221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Will Smith",
+        "id": 669257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Alex Call",
+        "id": 669743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hyeseong Kim",
+        "id": 808975,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Alex Freeland",
+        "id": 690976,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Mauricio Dubón",
+        "id": 643289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Drake Baldwin",
+        "id": 686948,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ozzie Albies",
+        "id": 645277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Matt Olson",
+        "id": 621566,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Austin Riley",
+        "id": 663586,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Michael Harris II",
+        "id": 671739,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Sean Murphy",
+        "id": 669221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Mike Yastrzemski",
+        "id": 573262,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jorge Mateo",
+        "id": 622761,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.27,
+    "mu_away": 4.8,
+    "mu_margin": -0.53,
+    "mu_total": 9.07,
+    "p_home_ml": 0.4569,
+    "p_home_cover_rl": 0.3392,
+    "p_over": 0.5463,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-09_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.361,
+      "away_point": 1.5,
+      "away_no_vig": 0.639
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.496,
+      "under_no_vig": 0.504
+    }
+  },
+  "edges": {
+    "home_rl_pp": -2.2,
+    "over_pp": 5.0
+  }
+}

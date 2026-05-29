@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:49:12+00:00",
+  "game": {
+    "date": "2026-04-01",
+    "game_pk": 824860,
+    "home": "Baltimore Orioles",
+    "away": "Texas Rangers",
+    "venue": "Oriole Park at Camden Yards"
+  },
+  "inputs": {
+    "home_rs_recent": 3.6,
+    "home_rs_season": 3.6,
+    "away_rs_recent": 5.8,
+    "away_rs_season": 5.8,
+    "home_ra_recent": 4.8,
+    "home_ra_season": 4.8,
+    "away_ra_recent": 3.8,
+    "away_ra_season": 3.8,
+    "home_starter": {
+      "name": "Trevor Rogers",
+      "id": 669432,
+      "fip": null,
+      "ip": 7.0,
+      "k": 5,
+      "bb": 4,
+      "hbp": 1,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Nathan Eovaldi",
+      "id": 543135,
+      "fip": null,
+      "ip": 4.666666666666667,
+      "k": 7,
+      "bb": 0,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 5.4,
+    "away_bullpen_era": 1.33,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Taylor Ward",
+        "id": 621493,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Gunnar Henderson",
+        "id": 683002,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Samuel Basallo",
+        "id": 694212,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Coby Mayo",
+        "id": 691723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Dylan Beavers",
+        "id": 687637,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Colton Cowser",
+        "id": 681297,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jeremiah Jackson",
+        "id": 669236,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Brandon Nimmo",
+        "id": 607043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Wyatt Langford",
+        "id": 694671,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Corey Seager",
+        "id": 608369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Andrew McCutchen",
+        "id": 457705,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Danny Jansen",
+        "id": 643376,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Josh Jung",
+        "id": 673962,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Josh Smith",
+        "id": 669701,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Evan Carter",
+        "id": 694497,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.49,
+    "mu_away": 6.07,
+    "mu_margin": -3.58,
+    "mu_total": 8.56,
+    "p_home_ml": 0.1994,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

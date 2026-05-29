@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:01:58+00:00",
+  "game": {
+    "date": "2026-04-10",
+    "game_pk": 823482,
+    "home": "Philadelphia Phillies",
+    "away": "Arizona Diamondbacks",
+    "venue": "Citizens Bank Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.3,
+    "home_rs_season": 3.5,
+    "away_rs_recent": 4.4,
+    "away_rs_season": 4.0,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 4.75,
+    "away_ra_recent": 4.3,
+    "away_ra_season": 4.54,
+    "home_starter": {
+      "name": "Jesús Luzardo",
+      "id": 666200,
+      "fip": 2.55,
+      "ip": 12.666666666666666,
+      "k": 18,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Michael Soroka",
+      "id": 647336,
+      "fip": 2.0,
+      "ip": 10.0,
+      "k": 13,
+      "bb": 4,
+      "hbp": 1,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.32,
+    "away_bullpen_era": 5.21,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Schwarber",
+        "id": 656941,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Brandon Marsh",
+        "id": 669016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "J.T. Realmuto",
+        "id": 592663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Justin Crawford",
+        "id": 702222,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "James McCann",
+        "id": 543510,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jose Fernandez",
+        "id": 699912,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tim Tawa",
+        "id": 694374,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Alek Thomas",
+        "id": 677950,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jorge Barrosa",
+        "id": 678489,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.66,
+    "mu_away": 3.19,
+    "mu_margin": -0.53,
+    "mu_total": 5.85,
+    "p_home_ml": 0.4503,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

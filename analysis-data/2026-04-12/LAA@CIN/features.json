@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:05:19+00:00",
+  "game": {
+    "date": "2026-04-12",
+    "game_pk": 824533,
+    "home": "Cincinnati Reds",
+    "away": "Los Angeles Angels",
+    "venue": "Great American Ball Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.4,
+    "home_rs_season": 3.2,
+    "away_rs_recent": 3.7,
+    "away_rs_season": 4.27,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 4.07,
+    "away_ra_recent": 4.2,
+    "away_ra_season": 4.73,
+    "home_starter": {
+      "name": "Andrew Abbott",
+      "id": 671096,
+      "fip": 3.63,
+      "ip": 17.0,
+      "k": 11,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "José Soriano",
+      "id": 667755,
+      "fip": 2.55,
+      "ip": 20.0,
+      "k": 21,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.03,
+    "away_bullpen_era": 3.26,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "TJ Friedl",
+        "id": 670770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Matt McLain",
+        "id": 680574,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Elly De La Cruz",
+        "id": 682829,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Sal Stewart",
+        "id": 701398,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Will Benson",
+        "id": 666181,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nathaniel Lowe",
+        "id": 663993,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Spencer Steer",
+        "id": 668715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Noelvi Marte",
+        "id": 682622,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dane Myers",
+        "id": 667472,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Josh Lowe",
+        "id": 666139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jorge Soler",
+        "id": 624585,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Vaughn Grissom",
+        "id": 687093,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nolan Schanuel",
+        "id": 694384,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Logan O'Hoppe",
+        "id": 681351,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Bryce Teodosio",
+        "id": 669326,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.19,
+    "mu_away": 3.26,
+    "mu_margin": -1.07,
+    "mu_total": 5.45,
+    "p_home_ml": 0.4004,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

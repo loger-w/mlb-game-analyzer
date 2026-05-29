@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:43:17+00:00",
+  "game": {
+    "date": "2026-05-10",
+    "game_pk": 824440,
+    "home": "Cleveland Guardians",
+    "away": "Minnesota Twins",
+    "venue": "Progressive Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.9,
+    "home_rs_season": 4.02,
+    "away_rs_recent": 4.5,
+    "away_rs_season": 4.72,
+    "home_ra_recent": 4.2,
+    "home_ra_season": 4.1,
+    "away_ra_recent": 5.9,
+    "away_ra_season": 5.05,
+    "home_starter": {
+      "name": "Gavin Williams",
+      "id": 668909,
+      "fip": 4.11,
+      "ip": 49.333333333333336,
+      "k": 60,
+      "bb": 21,
+      "hbp": 1,
+      "hr": 8
+    },
+    "away_starter": {
+      "name": "Andrew Morris",
+      "id": 702193,
+      "fip": 2.98,
+      "ip": 16.333333333333332,
+      "k": 15,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 4.21,
+    "away_bullpen_era": 5.6,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Steven Kwan",
+        "id": 680757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Chase DeLauter",
+        "id": 800050,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "José Ramírez",
+        "id": 608070,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Rhys Hoskins",
+        "id": 656555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Daniel Schneemann",
+        "id": 682177,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Angel Martínez",
+        "id": 682657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Travis Bazzana",
+        "id": 683953,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "David Fry",
+        "id": 681807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brayan Rocchio",
+        "id": 677587,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "James Outman",
+        "id": 681546,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ryan Jeffers",
+        "id": 680777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Austin Martin",
+        "id": 668885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Luke Keaschall",
+        "id": 807712,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kody Clemens",
+        "id": 665019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brooks Lee",
+        "id": 686797,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Royce Lewis",
+        "id": 668904,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.2,
+    "mu_away": 4.64,
+    "mu_margin": -0.44,
+    "mu_total": 8.84,
+    "p_home_ml": 0.4642,
+    "p_home_cover_rl": 0.346,
+    "p_over": 0.6078,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-10_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.408,
+      "away_point": 1.5,
+      "away_no_vig": 0.5920000000000001
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.475,
+      "under_no_vig": 0.525
+    }
+  },
+  "edges": {
+    "home_rl_pp": -6.2,
+    "over_pp": 13.3
+  }
+}

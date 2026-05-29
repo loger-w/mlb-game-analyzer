@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:33:01+00:00",
+  "game": {
+    "date": "2026-05-03",
+    "game_pk": 824687,
+    "home": "Chicago Cubs",
+    "away": "Arizona Diamondbacks",
+    "venue": "Wrigley Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.3,
+    "home_rs_season": 5.21,
+    "away_rs_recent": 4.7,
+    "away_rs_season": 4.56,
+    "home_ra_recent": 5.2,
+    "home_ra_season": 4.09,
+    "away_ra_recent": 7.1,
+    "away_ra_season": 5.41,
+    "home_starter": {
+      "name": "Matthew Boyd",
+      "id": 571510,
+      "fip": 1.77,
+      "ip": 18.0,
+      "k": 26,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Merrill Kelly",
+      "id": 518876,
+      "fip": 8.76,
+      "ip": 14.666666666666666,
+      "k": 9,
+      "bb": 12,
+      "hbp": 0,
+      "hr": 5
+    },
+    "home_bullpen_era": 4.09,
+    "away_bullpen_era": 4.83,
+    "park_factor": 92.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Nico Hoerner",
+        "id": 663538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Moisés Ballesteros",
+        "id": 694208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alex Bregman",
+        "id": 608324,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ian Happ",
+        "id": 664023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Seiya Suzuki",
+        "id": 673548,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Michael Busch",
+        "id": 683737,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carson Kelly",
+        "id": 608348,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Pete Crow-Armstrong",
+        "id": 691718,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dansby Swanson",
+        "id": 621020,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Lourdes Gurriel Jr.",
+        "id": 666971,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Gabriel Moreno",
+        "id": 672515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jose Fernandez",
+        "id": 699912,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Adrian Del Castillo",
+        "id": 680728,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 8.26,
+    "mu_away": 2.73,
+    "mu_margin": 5.53,
+    "mu_total": 10.99,
+    "p_home_ml": 0.8707,
+    "p_home_cover_rl": 0.7948,
+    "p_over": 0.4183,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-03_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.433,
+      "away_point": 1.5,
+      "away_no_vig": 0.5670000000000001
+    },
+    "total": {
+      "line": 12.0,
+      "over_no_vig": 0.484,
+      "under_no_vig": 0.516
+    }
+  },
+  "edges": {
+    "home_rl_pp": 36.2,
+    "over_pp": -6.6
+  }
+}

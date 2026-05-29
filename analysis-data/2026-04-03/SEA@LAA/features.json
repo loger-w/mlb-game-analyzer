@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:52:12+00:00",
+  "game": {
+    "date": "2026-04-03",
+    "game_pk": 824056,
+    "home": "Los Angeles Angels",
+    "away": "Seattle Mariners",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 4.43,
+    "home_rs_season": 4.43,
+    "away_rs_recent": 3.86,
+    "away_rs_season": 3.86,
+    "home_ra_recent": 5.0,
+    "home_ra_season": 5.0,
+    "away_ra_recent": 3.43,
+    "away_ra_season": 3.43,
+    "home_starter": {
+      "name": "Reid Detmers",
+      "id": 672282,
+      "fip": null,
+      "ip": 4.666666666666667,
+      "k": 9,
+      "bb": 0,
+      "hbp": 1,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Bryan Woo",
+      "id": 693433,
+      "fip": null,
+      "ip": 6.0,
+      "k": 9,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 2.13,
+    "away_bullpen_era": 2.7,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mike Trout",
+        "id": 545361,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Nolan Schanuel",
+        "id": 694384,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jorge Soler",
+        "id": 624585,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Yoán Moncada",
+        "id": 660162,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Josh Lowe",
+        "id": 666139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Logan O'Hoppe",
+        "id": 681351,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Rob Refsnyder",
+        "id": 608701,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Cal Raleigh",
+        "id": 663728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Julio Rodríguez",
+        "id": 677594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Josh Naylor",
+        "id": 647304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Randy Arozarena",
+        "id": 668227,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Leo Rivas",
+        "id": 660844,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "J.P. Crawford",
+        "id": 641487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Luke Raley",
+        "id": 670042,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Cole Young",
+        "id": 702284,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.78,
+    "mu_away": 3.09,
+    "mu_margin": 0.69,
+    "mu_total": 6.87,
+    "p_home_ml": 0.5646,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

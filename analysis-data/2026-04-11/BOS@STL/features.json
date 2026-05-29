@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:04:30+00:00",
+  "game": {
+    "date": "2026-04-11",
+    "game_pk": 823074,
+    "home": "St. Louis Cardinals",
+    "away": "Boston Red Sox",
+    "venue": "Busch Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 4.0,
+    "home_rs_season": 4.77,
+    "away_rs_recent": 3.6,
+    "away_rs_season": 3.54,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 4.92,
+    "away_ra_recent": 4.9,
+    "away_ra_season": 4.46,
+    "home_starter": {
+      "name": "Kyle Leahy",
+      "id": 681517,
+      "fip": 4.9,
+      "ip": 10.0,
+      "k": 5,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Ranger Suarez",
+      "id": 624133,
+      "fip": null,
+      "ip": 8.333333333333334,
+      "k": 5,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 5.33,
+    "away_bullpen_era": 3.72,
+    "park_factor": 98.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "JJ Wetherholt",
+        "id": 802139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Iván Herrera",
+        "id": 671056,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jordan Walker",
+        "id": 691023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Nolan Gorman",
+        "id": 669357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ramón Urías",
+        "id": 602104,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "José Fermín",
+        "id": 665877,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Alec Burleson",
+        "id": 676475,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nathan Church",
+        "id": 701675,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Yohel Pozo",
+        "id": 650968,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Roman Anthony",
+        "id": 701350,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.14,
+    "mu_away": 4.02,
+    "mu_margin": 0.12,
+    "mu_total": 8.16,
+    "p_home_ml": 0.5113,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

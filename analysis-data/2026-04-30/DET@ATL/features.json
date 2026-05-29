@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:31:29+00:00",
+  "game": {
+    "date": "2026-04-30",
+    "game_pk": 824929,
+    "home": "Atlanta Braves",
+    "away": "Detroit Tigers",
+    "venue": "Truist Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.7,
+    "home_rs_season": 5.65,
+    "away_rs_recent": 4.9,
+    "away_rs_season": 4.42,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 3.42,
+    "away_ra_recent": 5.8,
+    "away_ra_season": 4.23,
+    "home_starter": {
+      "name": "Bryce Elder",
+      "id": 693821,
+      "fip": 3.1,
+      "ip": 37.0,
+      "k": 31,
+      "bb": 10,
+      "hbp": 2,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Framber Valdez",
+      "id": 664285,
+      "fip": 3.77,
+      "ip": 34.333333333333336,
+      "k": 24,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.08,
+    "away_bullpen_era": 4.51,
+    "park_factor": 98.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ronald Acuña Jr.",
+        "id": 660670,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Drake Baldwin",
+        "id": 686948,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ozzie Albies",
+        "id": 645277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Matt Olson",
+        "id": 621566,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Austin Riley",
+        "id": 663586,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Mauricio Dubón",
+        "id": 643289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Michael Harris II",
+        "id": 671739,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Mike Yastrzemski",
+        "id": 573262,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dominic Smith",
+        "id": 642086,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kevin McGonigle",
+        "id": 805808,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Gleyber Torres",
+        "id": 650402,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jahmai Jones",
+        "id": 663330,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Riley Greene",
+        "id": 682985,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Spencer Torkelson",
+        "id": 679529,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Wenceel Pérez",
+        "id": 672761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Matt Vierling",
+        "id": 663837,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hao-Yu  Lee",
+        "id": 701678,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dillon Dingler",
+        "id": 693307,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.13,
+    "mu_away": 3.16,
+    "mu_margin": 1.97,
+    "mu_total": 8.29,
+    "p_home_ml": 0.6788,
+    "p_home_cover_rl": 0.5441,
+    "p_over": 0.4803,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-04-30_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.364,
+      "away_point": 1.5,
+      "away_no_vig": 0.636
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.525,
+      "under_no_vig": 0.475
+    }
+  },
+  "edges": {
+    "home_rl_pp": 18.0,
+    "over_pp": -4.5
+  }
+}

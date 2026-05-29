@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:42:19+00:00",
+  "game": {
+    "date": "2026-03-27",
+    "game_pk": 823893,
+    "home": "Miami Marlins",
+    "away": "Colorado Rockies",
+    "venue": "loanDepot park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.4,
+    "home_rs_season": 4.4,
+    "away_rs_recent": 4.4,
+    "away_rs_season": 4.4,
+    "home_ra_recent": 4.4,
+    "home_ra_season": 4.4,
+    "away_ra_recent": 4.4,
+    "away_ra_season": 4.4,
+    "home_starter": {
+      "name": "Sandy Alcantara",
+      "id": 645261,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Kyle Freeland",
+      "id": 607536,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 4.0,
+    "away_bullpen_era": 4.0,
+    "park_factor": 106.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Griffin Conine",
+        "id": 665052,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Agustín Ramírez",
+        "id": 682663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Connor Norby",
+        "id": 681393,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Graham Pauley",
+        "id": 688363,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Xavier Edwards",
+        "id": 669364,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ryan Ritter",
+        "id": 690022,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Willi Castro",
+        "id": 650489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Brett Sullivan",
+        "id": 664954,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jordan Beck",
+        "id": 687597,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brenton Doyle",
+        "id": 686668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Braxton Fulford",
+        "id": 690924,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.49,
+    "mu_away": 4.49,
+    "mu_margin": 0.0,
+    "mu_total": 8.98,
+    "p_home_ml": 0.5,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

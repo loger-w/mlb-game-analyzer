@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:35:59+00:00",
+  "game": {
+    "date": "2026-05-05",
+    "game_pk": 824040,
+    "home": "Los Angeles Angels",
+    "away": "Chicago White Sox",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 3.2,
+    "home_rs_season": 4.39,
+    "away_rs_recent": 4.6,
+    "away_rs_season": 4.17,
+    "home_ra_recent": 6.3,
+    "home_ra_season": 4.97,
+    "away_ra_recent": 2.9,
+    "away_ra_season": 4.42,
+    "home_starter": {
+      "name": "Sam Aldegheri",
+      "id": 691951,
+      "fip": null,
+      "ip": 1.6666666666666665,
+      "k": 2,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Erick Fedde",
+      "id": 607200,
+      "fip": 4.9,
+      "ip": 33.333333333333336,
+      "k": 22,
+      "bb": 11,
+      "hbp": 2,
+      "hr": 5
+    },
+    "home_bullpen_era": 5.62,
+    "away_bullpen_era": 4.67,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mike Trout",
+        "id": 545361,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Nolan Schanuel",
+        "id": 694384,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jorge Soler",
+        "id": 624585,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Vaughn Grissom",
+        "id": 687093,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Sebastián Rivero",
+        "id": 665861,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Bryce Teodosio",
+        "id": 669326,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jarred Kelenic",
+        "id": 672284,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Edgar Quero",
+        "id": 700337,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Andrew Benintendi",
+        "id": 643217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tristan Peters",
+        "id": 671976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Munetaka Murakami",
+        "id": 808959,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Sam Antonacci",
+        "id": 803011,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.6,
+    "mu_away": 4.96,
+    "mu_margin": -0.36,
+    "mu_total": 9.56,
+    "p_home_ml": 0.4707,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

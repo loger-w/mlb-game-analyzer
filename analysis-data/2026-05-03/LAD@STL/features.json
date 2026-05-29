@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:32:55+00:00",
+  "game": {
+    "date": "2026-05-03",
+    "game_pk": 823065,
+    "home": "St. Louis Cardinals",
+    "away": "Los Angeles Dodgers",
+    "venue": "Busch Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.4,
+    "home_rs_season": 5.0,
+    "away_rs_recent": 3.7,
+    "away_rs_season": 5.18,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 4.91,
+    "away_ra_recent": 3.2,
+    "away_ra_season": 3.36,
+    "home_starter": {
+      "name": "Dustin May",
+      "id": 669160,
+      "fip": 3.82,
+      "ip": 30.666666666666668,
+      "k": 22,
+      "bb": 7,
+      "hbp": 2,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Justin Wrobleski",
+      "id": 680736,
+      "fip": 3.1,
+      "ip": 30.0,
+      "k": 15,
+      "bb": 9,
+      "hbp": 1,
+      "hr": 0
+    },
+    "home_bullpen_era": 5.03,
+    "away_bullpen_era": 3.86,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "JJ Wetherholt",
+        "id": 802139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Iván Herrera",
+        "id": 671056,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jordan Walker",
+        "id": 691023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Alec Burleson",
+        "id": 676475,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Masyn Winn",
+        "id": 691026,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "José Fermín",
+        "id": 665877,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Nathan Church",
+        "id": 701675,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Pedro Pagés",
+        "id": 686780,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nolan Gorman",
+        "id": 669357,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Freddie Freeman",
+        "id": 518692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Dalton Rushing",
+        "id": 687221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Miguel Rojas",
+        "id": 500743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.09,
+    "mu_away": 4.69,
+    "mu_margin": -0.6,
+    "mu_total": 8.78,
+    "p_home_ml": 0.4512,
+    "p_home_cover_rl": 0.5729,
+    "p_over": 0.4415,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-03_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.5529999999999999,
+      "away_point": -1.5,
+      "away_no_vig": 0.447
+    },
+    "total": {
+      "line": 9.5,
+      "over_no_vig": 0.5,
+      "under_no_vig": 0.5
+    }
+  },
+  "edges": {
+    "home_rl_pp": 2.0,
+    "over_pp": -5.8
+  }
+}

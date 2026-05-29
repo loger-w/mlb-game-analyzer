@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:59:56+00:00",
+  "game": {
+    "date": "2026-04-08",
+    "game_pk": 822915,
+    "home": "Texas Rangers",
+    "away": "Seattle Mariners",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.8,
+    "home_rs_season": 3.73,
+    "away_rs_recent": 3.1,
+    "away_rs_season": 3.33,
+    "home_ra_recent": 3.4,
+    "home_ra_season": 3.55,
+    "away_ra_recent": 3.2,
+    "away_ra_season": 3.25,
+    "home_starter": {
+      "name": "MacKenzie Gore",
+      "id": 669022,
+      "fip": 3.63,
+      "ip": 11.333333333333334,
+      "k": 16,
+      "bb": 3,
+      "hbp": 1,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Bryan Woo",
+      "id": 693433,
+      "fip": 1.48,
+      "ip": 13.0,
+      "k": 15,
+      "bb": 2,
+      "hbp": 1,
+      "hr": 0
+    },
+    "home_bullpen_era": 1.83,
+    "away_bullpen_era": 2.21,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Brandon Nimmo",
+        "id": 607043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Wyatt Langford",
+        "id": 694671,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Corey Seager",
+        "id": 608369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Andrew McCutchen",
+        "id": 457705,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Evan Carter",
+        "id": 694497,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Danny Jansen",
+        "id": 643376,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Josh Smith",
+        "id": 669701,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ezequiel Duran",
+        "id": 677649,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Luke Raley",
+        "id": 670042,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Cal Raleigh",
+        "id": 663728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Julio Rodríguez",
+        "id": 677594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Randy Arozarena",
+        "id": 668227,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Brendan Donovan",
+        "id": 680977,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Mitch Garver",
+        "id": 641598,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "J.P. Crawford",
+        "id": 641487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Connor Joe",
+        "id": 656582,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Cole Young",
+        "id": 702284,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 1.45,
+    "mu_away": 2.06,
+    "mu_margin": -0.61,
+    "mu_total": 3.51,
+    "p_home_ml": 0.4428,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

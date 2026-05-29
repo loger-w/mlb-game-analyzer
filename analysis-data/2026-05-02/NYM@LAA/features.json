@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:31:37+00:00",
+  "game": {
+    "date": "2026-05-02",
+    "game_pk": 824042,
+    "home": "Los Angeles Angels",
+    "away": "New York Mets",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 3.8,
+    "home_rs_season": 4.64,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 3.33,
+    "home_ra_recent": 6.1,
+    "home_ra_season": 5.0,
+    "away_ra_recent": 4.2,
+    "away_ra_season": 4.36,
+    "home_starter": {
+      "name": "Reid Detmers",
+      "id": 672282,
+      "fip": 3.19,
+      "ip": 33.666666666666664,
+      "k": 36,
+      "bb": 9,
+      "hbp": 3,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Nolan McLean",
+      "id": 690997,
+      "fip": 2.22,
+      "ip": 35.333333333333336,
+      "k": 45,
+      "bb": 10,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 5.66,
+    "away_bullpen_era": 3.86,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mike Trout",
+        "id": 545361,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Adam Frazier",
+        "id": 624428,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jorge Soler",
+        "id": 624585,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Josh Lowe",
+        "id": 666139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Vaughn Grissom",
+        "id": 687093,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Sebastián Rivero",
+        "id": 665861,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Juan Soto",
+        "id": 665742,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "MJ Melendez",
+        "id": 669004,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.01,
+    "mu_away": 3.41,
+    "mu_margin": -0.4,
+    "mu_total": 6.42,
+    "p_home_ml": 0.4674,
+    "p_home_cover_rl": 0.5889,
+    "p_over": 0.2991,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-02_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.578,
+      "away_point": -1.5,
+      "away_no_vig": 0.42200000000000004
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.491,
+      "under_no_vig": 0.509
+    }
+  },
+  "edges": {
+    "home_rl_pp": 1.1,
+    "over_pp": -19.2
+  }
+}

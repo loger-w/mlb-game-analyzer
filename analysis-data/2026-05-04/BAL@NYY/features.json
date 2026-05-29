@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:34:14+00:00",
+  "game": {
+    "date": "2026-05-04",
+    "game_pk": 823552,
+    "home": "New York Yankees",
+    "away": "Baltimore Orioles",
+    "venue": "Yankee Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 6.2,
+    "home_rs_season": 5.29,
+    "away_rs_recent": 4.3,
+    "away_rs_season": 4.4,
+    "home_ra_recent": 3.2,
+    "home_ra_season": 3.38,
+    "away_ra_recent": 6.9,
+    "away_ra_season": 5.26,
+    "home_starter": {
+      "name": "Cam Schlittler",
+      "id": 693645,
+      "fip": 1.49,
+      "ip": 41.666666666666664,
+      "k": 49,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Shane Baz",
+      "id": 669358,
+      "fip": 3.69,
+      "ip": 34.0,
+      "k": 29,
+      "bb": 11,
+      "hbp": 2,
+      "hr": 3
+    },
+    "home_bullpen_era": 3.51,
+    "away_bullpen_era": 4.48,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Max Schuemann",
+        "id": 680474,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jasson Domínguez",
+        "id": 691176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Paul Goldschmidt",
+        "id": 502671,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Austin Wells",
+        "id": 669224,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ryan McMahon",
+        "id": 641857,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "José Caballero",
+        "id": 676609,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Gunnar Henderson",
+        "id": 683002,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Adley Rutschman",
+        "id": 668939,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Dylan Beavers",
+        "id": 687637,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Samuel Basallo",
+        "id": 694212,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Colton Cowser",
+        "id": 681297,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jeremiah Jackson",
+        "id": 669236,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Blaze Alexander",
+        "id": 677942,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.14,
+    "mu_away": 2.29,
+    "mu_margin": 2.85,
+    "mu_total": 7.43,
+    "p_home_ml": 0.7198,
+    "p_home_cover_rl": 0.6086,
+    "p_over": 0.4135,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-04_15-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.495,
+      "away_point": 1.5,
+      "away_no_vig": 0.505
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.486,
+      "under_no_vig": 0.514
+    }
+  },
+  "edges": {
+    "home_rl_pp": 11.4,
+    "over_pp": -7.3
+  }
+}

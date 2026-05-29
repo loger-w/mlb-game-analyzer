@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:16:32+00:00",
+  "game": {
+    "date": "2026-04-19",
+    "game_pk": 823150,
+    "home": "Seattle Mariners",
+    "away": "Texas Rangers",
+    "venue": "T-Mobile Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.7,
+    "home_rs_season": 3.86,
+    "away_rs_recent": 4.9,
+    "away_rs_season": 4.29,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 3.73,
+    "away_ra_recent": 4.0,
+    "away_ra_season": 3.67,
+    "home_starter": {
+      "name": "Bryan Woo",
+      "id": 693433,
+      "fip": 2.22,
+      "ip": 25.0,
+      "k": 20,
+      "bb": 5,
+      "hbp": 1,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "MacKenzie Gore",
+      "id": 669022,
+      "fip": 3.2,
+      "ip": 21.0,
+      "k": 30,
+      "bb": 11,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.27,
+    "away_bullpen_era": 3.03,
+    "park_factor": 82.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Luke Raley",
+        "id": 670042,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Cal Raleigh",
+        "id": 663728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Julio Rodríguez",
+        "id": 677594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Randy Arozarena",
+        "id": 668227,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Mitch Garver",
+        "id": 641598,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Connor Joe",
+        "id": 656582,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "J.P. Crawford",
+        "id": 641487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Cole Young",
+        "id": 702284,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Leo Rivas",
+        "id": 660844,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Brandon Nimmo",
+        "id": 607043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Corey Seager",
+        "id": 608369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wyatt Langford",
+        "id": 694671,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Joc Pederson",
+        "id": 592626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Josh Jung",
+        "id": 673962,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Evan Carter",
+        "id": 694497,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Josh Smith",
+        "id": 669701,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Higashioka",
+        "id": 543309,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.42,
+    "mu_away": 2.22,
+    "mu_margin": 0.2,
+    "mu_total": 4.64,
+    "p_home_ml": 0.5188,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

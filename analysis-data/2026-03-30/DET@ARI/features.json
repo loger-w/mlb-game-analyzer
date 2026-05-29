@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:47:17+00:00",
+  "game": {
+    "date": "2026-03-30",
+    "game_pk": 825108,
+    "home": "Arizona Diamondbacks",
+    "away": "Detroit Tigers",
+    "venue": "Chase Field"
+  },
+  "inputs": {
+    "home_rs_recent": 2.67,
+    "home_rs_season": 2.67,
+    "away_rs_recent": 4.33,
+    "away_rs_season": 4.33,
+    "home_ra_recent": 5.33,
+    "home_ra_season": 5.33,
+    "away_ra_recent": 2.33,
+    "away_ra_season": 2.33,
+    "home_starter": {
+      "name": "Michael Soroka",
+      "id": 647336,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Justin Verlander",
+      "id": 434378,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 6.1,
+    "away_bullpen_era": 0.93,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Gabriel Moreno",
+        "id": 672515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Alek Thomas",
+        "id": 677950,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carlos Santana",
+        "id": 467793,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jordan Lawlar",
+        "id": 691783,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kerry Carpenter",
+        "id": 681481,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Gleyber Torres",
+        "id": 650402,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Colt Keith",
+        "id": 690993,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Riley Greene",
+        "id": 682985,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Spencer Torkelson",
+        "id": 679529,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Kevin McGonigle",
+        "id": 805808,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dillon Dingler",
+        "id": 693307,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Parker Meadows",
+        "id": 678009,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Javier Báez",
+        "id": 595879,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 1.85,
+    "mu_away": 5.05,
+    "mu_margin": -3.2,
+    "mu_total": 6.9,
+    "p_home_ml": 0.2254,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

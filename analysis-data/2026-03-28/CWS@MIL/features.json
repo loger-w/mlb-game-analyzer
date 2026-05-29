@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:43:56+00:00",
+  "game": {
+    "date": "2026-03-28",
+    "game_pk": 823811,
+    "home": "Milwaukee Brewers",
+    "away": "Chicago White Sox",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 14.0,
+    "home_rs_season": 14.0,
+    "away_rs_recent": 2.0,
+    "away_rs_season": 2.0,
+    "home_ra_recent": 2.0,
+    "home_ra_season": 2.0,
+    "away_ra_recent": 14.0,
+    "away_ra_season": 14.0,
+    "home_starter": {
+      "name": "Chad Patrick",
+      "id": 694477,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Sean Burke",
+      "id": 680732,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 2.25,
+    "away_bullpen_era": 14.21,
+    "park_factor": 97.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Brice Turang",
+        "id": 668930,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "William Contreras",
+        "id": 661388,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Christian Yelich",
+        "id": 592885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Bauers",
+        "id": 641343,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Garrett Mitchell",
+        "id": 669003,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Sal Frelick",
+        "id": 686217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Joey Ortiz",
+        "id": 687401,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "David Hamilton",
+        "id": 666152,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brandon Lockridge",
+        "id": 663604,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Austin Hays",
+        "id": 669720,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Munetaka Murakami",
+        "id": 808959,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Lenyn Sosa",
+        "id": 672820,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Everson Pereira",
+        "id": 677592,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Edgar Quero",
+        "id": 700337,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Luisangel Acuña",
+        "id": 682668,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 25.69,
+    "mu_away": 1.56,
+    "mu_margin": 24.13,
+    "mu_total": 27.25,
+    "p_home_ml": 1.0,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

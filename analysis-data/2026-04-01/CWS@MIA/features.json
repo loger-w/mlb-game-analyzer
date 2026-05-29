@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:49:38+00:00",
+  "game": {
+    "date": "2026-04-01",
+    "game_pk": 823889,
+    "home": "Miami Marlins",
+    "away": "Chicago White Sox",
+    "venue": "loanDepot park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.6,
+    "home_rs_season": 4.6,
+    "away_rs_recent": 4.2,
+    "away_rs_season": 4.2,
+    "home_ra_recent": 3.6,
+    "home_ra_season": 3.6,
+    "away_ra_recent": 8.4,
+    "away_ra_season": 8.4,
+    "home_starter": {
+      "name": "Sandy Alcantara",
+      "id": 645261,
+      "fip": null,
+      "ip": 7.0,
+      "k": 5,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Shane Smith",
+      "id": 681343,
+      "fip": null,
+      "ip": 1.6666666666666665,
+      "k": 2,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 0.51,
+    "away_bullpen_era": 10.45,
+    "park_factor": 106.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Leo Jiménez",
+        "id": 677870,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Liam Hicks",
+        "id": 689414,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Connor Norby",
+        "id": 681393,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Heriberto Hernández",
+        "id": 681715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Graham Pauley",
+        "id": 688363,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Lenyn Sosa",
+        "id": 672820,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Andrew Benintendi",
+        "id": 643217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Tristan Peters",
+        "id": 671976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Derek Hill",
+        "id": 656537,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Reese McGuire",
+        "id": 624512,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Luisangel Acuña",
+        "id": 682668,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 7.56,
+    "mu_away": 2.88,
+    "mu_margin": 4.68,
+    "mu_total": 10.44,
+    "p_home_ml": 0.865,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

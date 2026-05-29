@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:45:22+00:00",
+  "game": {
+    "date": "2026-05-12",
+    "game_pk": 824764,
+    "home": "Boston Red Sox",
+    "away": "Philadelphia Phillies",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.3,
+    "home_rs_season": 3.8,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 4.05,
+    "home_ra_recent": 2.9,
+    "home_ra_season": 4.1,
+    "away_ra_recent": 3.9,
+    "away_ra_season": 4.81,
+    "home_starter": {
+      "name": "Jovani Morán",
+      "id": 663558,
+      "fip": 5.13,
+      "ip": 21.666666666666668,
+      "k": 20,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Zack Wheeler",
+      "id": 554430,
+      "fip": 2.81,
+      "ip": 17.333333333333332,
+      "k": 18,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.39,
+    "away_bullpen_era": 4.04,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mickey Gasper",
+        "id": 681508,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Isiah Kiner-Falefa",
+        "id": 643396,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Connor Wong",
+        "id": 657136,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Schwarber",
+        "id": 656941,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Brandon Marsh",
+        "id": 669016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "J.T. Realmuto",
+        "id": 592663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Justin Crawford",
+        "id": 702222,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.97,
+    "mu_away": 4.89,
+    "mu_margin": -1.92,
+    "mu_total": 7.86,
+    "p_home_ml": 0.3475,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

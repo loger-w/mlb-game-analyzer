@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:25:17+00:00",
+  "game": {
+    "date": "2026-04-25",
+    "game_pk": 824933,
+    "home": "Atlanta Braves",
+    "away": "Philadelphia Phillies",
+    "venue": "Truist Park"
+  },
+  "inputs": {
+    "home_rs_recent": 6.1,
+    "home_rs_season": 5.74,
+    "away_rs_recent": 2.6,
+    "away_rs_season": 3.54,
+    "home_ra_recent": 3.7,
+    "home_ra_season": 3.37,
+    "away_ra_recent": 6.9,
+    "away_ra_season": 5.58,
+    "home_starter": {
+      "name": "Bryce Elder",
+      "id": 693821,
+      "fip": 3.13,
+      "ip": 30.0,
+      "k": 29,
+      "bb": 9,
+      "hbp": 2,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Zack Wheeler",
+      "id": 554430,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 2.96,
+    "away_bullpen_era": 4.46,
+    "park_factor": 98.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ronald Acuña Jr.",
+        "id": 660670,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Drake Baldwin",
+        "id": 686948,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Matt Olson",
+        "id": 621566,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ozzie Albies",
+        "id": 645277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Michael Harris II",
+        "id": 671739,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Austin Riley",
+        "id": 663586,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jorge Mateo",
+        "id": 622761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Mike Yastrzemski",
+        "id": 573262,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Eli White",
+        "id": 642201,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Dylan Moore",
+        "id": 664238,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Brandon Marsh",
+        "id": 669016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Justin Crawford",
+        "id": 702222,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Garrett Stubbs",
+        "id": 596117,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.78,
+    "mu_away": 2.19,
+    "mu_margin": 3.59,
+    "mu_total": 7.97,
+    "p_home_ml": 0.8013,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

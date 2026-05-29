@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:36:50+00:00",
+  "game": {
+    "date": "2026-05-06",
+    "game_pk": 824198,
+    "home": "Houston Astros",
+    "away": "Los Angeles Dodgers",
+    "venue": "Daikin Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.9,
+    "home_rs_season": 4.82,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 5.11,
+    "home_ra_recent": 4.0,
+    "home_ra_season": 5.53,
+    "away_ra_recent": 3.1,
+    "away_ra_season": 3.25,
+    "home_starter": {
+      "name": "Lance McCullers Jr.",
+      "id": 621121,
+      "fip": 4.47,
+      "ip": 31.333333333333332,
+      "k": 33,
+      "bb": 17,
+      "hbp": 2,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Tyler Glasnow",
+      "id": 607192,
+      "fip": 3.02,
+      "ip": 38.666666666666664,
+      "k": 47,
+      "bb": 13,
+      "hbp": 0,
+      "hr": 4
+    },
+    "home_bullpen_era": 6.21,
+    "away_bullpen_era": 3.72,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Brice Matthews",
+        "id": 694728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Christian Vázquez",
+        "id": 543877,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Nick Allen",
+        "id": 669397,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Christian Walker",
+        "id": 572233,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Cam Smith",
+        "id": 701358,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Zach Cole",
+        "id": 805904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Zach Dezenzo",
+        "id": 701305,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Braden Shewmake",
+        "id": 669699,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "César Salazar",
+        "id": 663967,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Miguel Rojas",
+        "id": 500743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Alex Call",
+        "id": 669743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dalton Rushing",
+        "id": 687221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hyeseong Kim",
+        "id": 808975,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Alex Freeland",
+        "id": 690976,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.47,
+    "mu_away": 5.48,
+    "mu_margin": -2.01,
+    "mu_total": 8.95,
+    "p_home_ml": 0.3407,
+    "p_home_cover_rl": 0.4585,
+    "p_over": 0.4959,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-06_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.446,
+      "away_point": -1.5,
+      "away_no_vig": 0.5539999999999999
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.478,
+      "under_no_vig": 0.522
+    }
+  },
+  "edges": {
+    "home_rl_pp": 1.3,
+    "over_pp": 1.8
+  }
+}

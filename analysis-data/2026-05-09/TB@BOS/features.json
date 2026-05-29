@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:42:31+00:00",
+  "game": {
+    "date": "2026-05-09",
+    "game_pk": 824766,
+    "home": "Boston Red Sox",
+    "away": "Tampa Bay Rays",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.3,
+    "home_rs_season": 3.97,
+    "away_rs_recent": 3.2,
+    "away_rs_season": 4.39,
+    "home_ra_recent": 3.6,
+    "home_ra_season": 4.21,
+    "away_ra_recent": 1.5,
+    "away_ra_season": 3.95,
+    "home_starter": {
+      "name": "Payton Tolle",
+      "id": 801139,
+      "fip": 2.42,
+      "ip": 17.666666666666668,
+      "k": 23,
+      "bb": 6,
+      "hbp": 1,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Nick Martinez",
+      "id": 607259,
+      "fip": 3.41,
+      "ip": 42.0,
+      "k": 28,
+      "bb": 10,
+      "hbp": 0,
+      "hr": 3
+    },
+    "home_bullpen_era": 3.42,
+    "away_bullpen_era": 4.02,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.38,
+    "mu_away": 2.78,
+    "mu_margin": 0.6,
+    "mu_total": 6.16,
+    "p_home_ml": 0.5488,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T09:05:46+00:00",
+  "game": {
+    "date": "2026-05-25",
+    "game_pk": 824437,
+    "home": "Cleveland Guardians",
+    "away": "Washington Nationals",
+    "venue": "Progressive Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.5,
+    "home_rs_season": 4.14,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 5.33,
+    "home_ra_recent": 2.6,
+    "home_ra_season": 3.73,
+    "away_ra_recent": 4.6,
+    "away_ra_season": 5.59,
+    "home_starter": {
+      "name": "Tanner Bibee",
+      "id": 676440,
+      "fip": 3.98,
+      "ip": 60.0,
+      "k": 52,
+      "bb": 21,
+      "hbp": 1,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "PJ Poulin",
+      "id": 676571,
+      "fip": 5.5,
+      "ip": 21.666666666666668,
+      "k": 16,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 3
+    },
+    "home_bullpen_era": 3.81,
+    "away_bullpen_era": 4.77,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Travis Bazzana",
+        "id": 683953,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "David Fry",
+        "id": 681807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Petey Halpin",
+        "id": 690984,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Rhys Hoskins",
+        "id": 656555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Kyle Manzardo",
+        "id": 700932,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Angel Martínez",
+        "id": 682657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Steven Kwan",
+        "id": 680757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Patrick Bailey",
+        "id": 672275,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brayan Rocchio",
+        "id": 677587,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "José Tena",
+        "id": 677588,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Dylan Crews",
+        "id": 686611,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Millas",
+        "id": 686452,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.35,
+    "mu_away": 4.98,
+    "mu_margin": 0.37,
+    "mu_total": 10.33,
+    "p_home_ml": 0.5301,
+    "p_home_cover_rl": 0.4087,
+    "p_over": 0.7184,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-25_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.371,
+      "away_point": 1.5,
+      "away_no_vig": 0.629
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.517,
+      "under_no_vig": 0.483
+    }
+  },
+  "edges": {
+    "home_rl_pp": 3.8,
+    "over_pp": 20.1
+  }
+}

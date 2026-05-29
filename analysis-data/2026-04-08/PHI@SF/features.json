@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:00:16+00:00",
+  "game": {
+    "date": "2026-04-08",
+    "game_pk": 823234,
+    "home": "San Francisco Giants",
+    "away": "Philadelphia Phillies",
+    "venue": "Oracle Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.6,
+    "home_rs_season": 3.0,
+    "away_rs_recent": 3.7,
+    "away_rs_season": 3.82,
+    "home_ra_recent": 4.7,
+    "home_ra_season": 4.75,
+    "away_ra_recent": 4.9,
+    "away_ra_season": 4.73,
+    "home_starter": {
+      "name": "Tyler Mahle",
+      "id": 641816,
+      "fip": null,
+      "ip": 9.0,
+      "k": 9,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Aaron Nola",
+      "id": 605400,
+      "fip": 3.36,
+      "ip": 11.333333333333334,
+      "k": 16,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.93,
+    "away_bullpen_era": 4.17,
+    "park_factor": 91.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Willy Adames",
+        "id": 642715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis Arraez",
+        "id": 650333,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Matt Chapman",
+        "id": 656305,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Rafael Devers",
+        "id": 646240,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jung Hoo Lee",
+        "id": 808982,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jared Oliva",
+        "id": 666931,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Harrison Bader",
+        "id": 664056,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Patrick Bailey",
+        "id": 672275,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Christian Koss",
+        "id": 683766,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Schwarber",
+        "id": 656941,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dylan Moore",
+        "id": 664238,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Rafael Marchán",
+        "id": 665561,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Otto Kemp",
+        "id": 805249,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.45,
+    "mu_away": 3.6,
+    "mu_margin": -1.15,
+    "mu_total": 6.05,
+    "p_home_ml": 0.3932,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

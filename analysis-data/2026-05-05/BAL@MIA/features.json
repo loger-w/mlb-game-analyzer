@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:35:21+00:00",
+  "game": {
+    "date": "2026-05-05",
+    "game_pk": 823873,
+    "home": "Miami Marlins",
+    "away": "Baltimore Orioles",
+    "venue": "loanDepot park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.4,
+    "home_rs_season": 4.17,
+    "away_rs_recent": 3.4,
+    "away_rs_season": 4.31,
+    "home_ra_recent": 3.8,
+    "home_ra_season": 4.23,
+    "away_ra_recent": 7.8,
+    "away_ra_season": 5.44,
+    "home_starter": {
+      "name": "Sandy Alcantara",
+      "id": 645261,
+      "fip": 3.9,
+      "ip": 47.333333333333336,
+      "k": 31,
+      "bb": 15,
+      "hbp": 1,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Chris Bassitt",
+      "id": 605135,
+      "fip": 5.1,
+      "ip": 28.0,
+      "k": 17,
+      "bb": 14,
+      "hbp": 3,
+      "hr": 3
+    },
+    "home_bullpen_era": 3.4,
+    "away_bullpen_era": 4.8,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Xavier Edwards",
+        "id": 669364,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Liam Hicks",
+        "id": 689414,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Stowers",
+        "id": 669065,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Connor Norby",
+        "id": 681393,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Graham Pauley",
+        "id": 688363,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Gunnar Henderson",
+        "id": 683002,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Taylor Ward",
+        "id": 621493,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Tyler O'Neill",
+        "id": 641933,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Adley Rutschman",
+        "id": 668939,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Colton Cowser",
+        "id": 681297,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jeremiah Jackson",
+        "id": 669236,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Blaze Alexander",
+        "id": 677942,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.91,
+    "mu_away": 3.73,
+    "mu_margin": 1.18,
+    "mu_total": 8.64,
+    "p_home_ml": 0.5952,
+    "p_home_cover_rl": 0.4739,
+    "p_over": 0.5114,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-05_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.371,
+      "away_point": 1.5,
+      "away_no_vig": 0.629
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.514,
+      "under_no_vig": 0.486
+    }
+  },
+  "edges": {
+    "home_rl_pp": 10.3,
+    "over_pp": -0.3
+  }
+}

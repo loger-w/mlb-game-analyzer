@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:55:27+00:00",
+  "game": {
+    "date": "2026-04-05",
+    "game_pk": 822917,
+    "home": "Texas Rangers",
+    "away": "Cincinnati Reds",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.38,
+    "home_rs_season": 4.38,
+    "away_rs_recent": 3.0,
+    "away_rs_season": 3.0,
+    "home_ra_recent": 4.25,
+    "home_ra_season": 4.25,
+    "away_ra_recent": 3.62,
+    "away_ra_season": 3.62,
+    "home_starter": {
+      "name": "Jack Leiter",
+      "id": 683004,
+      "fip": null,
+      "ip": 6.0,
+      "k": 8,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Chase Burns",
+      "id": 695505,
+      "fip": null,
+      "ip": 5.0,
+      "k": 7,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 2.01,
+    "away_bullpen_era": 3.31,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Brandon Nimmo",
+        "id": 607043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Wyatt Langford",
+        "id": 694671,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Corey Seager",
+        "id": 608369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Joc Pederson",
+        "id": 592626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Evan Carter",
+        "id": 694497,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kyle Higashioka",
+        "id": 543309,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Sam Haggerty",
+        "id": 664059,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Josh Jung",
+        "id": 673962,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "TJ Friedl",
+        "id": 670770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Matt McLain",
+        "id": 680574,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Elly De La Cruz",
+        "id": 682829,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Sal Stewart",
+        "id": 701398,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Eugenio Suárez",
+        "id": 553993,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Dane Myers",
+        "id": 667472,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tyler Stephenson",
+        "id": 663886,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Will Benson",
+        "id": 666181,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ke'Bryan Hayes",
+        "id": 663647,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.79,
+    "mu_away": 2.25,
+    "mu_margin": 1.54,
+    "mu_total": 6.04,
+    "p_home_ml": 0.6417,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

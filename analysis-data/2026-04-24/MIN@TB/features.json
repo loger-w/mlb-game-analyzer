@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:22:44+00:00",
+  "game": {
+    "date": "2026-04-24",
+    "game_pk": 822992,
+    "home": "Tampa Bay Rays",
+    "away": "Minnesota Twins",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.1,
+    "home_rs_season": 4.83,
+    "away_rs_recent": 5.6,
+    "away_rs_season": 5.08,
+    "home_ra_recent": 5.2,
+    "home_ra_season": 5.33,
+    "away_ra_recent": 4.7,
+    "away_ra_season": 4.64,
+    "home_starter": {
+      "name": "Drew Rasmussen",
+      "id": 656876,
+      "fip": 4.17,
+      "ip": 19.666666666666668,
+      "k": 20,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Taj Bradley",
+      "id": 671737,
+      "fip": 1.94,
+      "ip": 27.666666666666668,
+      "k": 34,
+      "bb": 10,
+      "hbp": 2,
+      "hr": 0
+    },
+    "home_bullpen_era": 5.64,
+    "away_bullpen_era": 4.84,
+    "park_factor": 100.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Yandy Díaz",
+        "id": 650490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cedric Mullins",
+        "id": 656775,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nick Fortes",
+        "id": 663743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Trevor Larnach",
+        "id": 663616,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Austin Martin",
+        "id": 668885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Victor Caratini",
+        "id": 605170,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Kody Clemens",
+        "id": 665019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Royce Lewis",
+        "id": 668904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Matt Wallner",
+        "id": 670242,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brooks Lee",
+        "id": 686797,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Tristan Gray",
+        "id": 656484,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.47,
+    "mu_away": 5.69,
+    "mu_margin": -2.22,
+    "mu_total": 9.16,
+    "p_home_ml": 0.3004,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

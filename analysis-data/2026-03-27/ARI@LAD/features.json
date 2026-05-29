@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:42:50+00:00",
+  "game": {
+    "date": "2026-03-27",
+    "game_pk": 823971,
+    "home": "Los Angeles Dodgers",
+    "away": "Arizona Diamondbacks",
+    "venue": "UNIQLO Field at Dodger Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 8.0,
+    "home_rs_season": 8.0,
+    "away_rs_recent": 2.0,
+    "away_rs_season": 2.0,
+    "home_ra_recent": 2.0,
+    "home_ra_season": 2.0,
+    "away_ra_recent": 8.0,
+    "away_ra_season": 8.0,
+    "home_starter": {
+      "name": "Emmet Sheehan",
+      "id": 686218,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Ryne Nelson",
+      "id": 669194,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 4.0,
+    "away_bullpen_era": 4.0,
+    "park_factor": 98.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Mookie Betts",
+        "id": 605141,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Freddie Freeman",
+        "id": 518692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Will Smith",
+        "id": 669257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Alex Freeland",
+        "id": 690976,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Gabriel Moreno",
+        "id": 672515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Pavin Smith",
+        "id": 656976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carlos Santana",
+        "id": 467793,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Alek Thomas",
+        "id": 677950,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jordan Lawlar",
+        "id": 691783,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 7.55,
+    "mu_away": 1.89,
+    "mu_margin": 5.66,
+    "mu_total": 9.44,
+    "p_home_ml": 0.9089,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

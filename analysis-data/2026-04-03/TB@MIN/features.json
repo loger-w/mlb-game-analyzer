@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:51:53+00:00",
+  "game": {
+    "date": "2026-04-03",
+    "game_pk": 823732,
+    "home": "Minnesota Twins",
+    "away": "Tampa Bay Rays",
+    "venue": "Target Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.33,
+    "home_rs_season": 4.33,
+    "away_rs_recent": 5.0,
+    "away_rs_season": 5.0,
+    "home_ra_recent": 4.67,
+    "home_ra_season": 4.67,
+    "away_ra_recent": 6.33,
+    "away_ra_season": 6.33,
+    "home_starter": {
+      "name": "Bailey Ober",
+      "id": 641927,
+      "fip": null,
+      "ip": 4.0,
+      "k": 1,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Joe Boyle",
+      "id": 671212,
+      "fip": null,
+      "ip": 6.0,
+      "k": 4,
+      "bb": 0,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 5.48,
+    "away_bullpen_era": 9.15,
+    "park_factor": 106.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Kody Clemens",
+        "id": 665019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "James Outman",
+        "id": 681546,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Luke Keaschall",
+        "id": 807712,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Matt Wallner",
+        "id": 670242,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ryan Jeffers",
+        "id": 680777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Austin Martin",
+        "id": 668885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Royce Lewis",
+        "id": 668904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Tristan Gray",
+        "id": 656484,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nick Fortes",
+        "id": 663743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cedric Mullins",
+        "id": 656775,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Carson Williams",
+        "id": 700246,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 6.57,
+    "mu_away": 5.82,
+    "mu_margin": 0.75,
+    "mu_total": 12.39,
+    "p_home_ml": 0.5702,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

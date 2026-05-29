@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:07:32+00:00",
+  "game": {
+    "date": "2026-04-13",
+    "game_pk": 823964,
+    "home": "Los Angeles Dodgers",
+    "away": "New York Mets",
+    "venue": "UNIQLO Field at Dodger Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 6.9,
+    "home_rs_season": 6.07,
+    "away_rs_recent": 3.9,
+    "away_rs_season": 3.88,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 3.73,
+    "away_ra_recent": 4.5,
+    "away_ra_season": 4.06,
+    "home_starter": {
+      "name": "Justin Wrobleski",
+      "id": 680736,
+      "fip": null,
+      "ip": 9.0,
+      "k": 4,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "David Peterson",
+      "id": 656849,
+      "fip": 2.42,
+      "ip": 14.666666666666666,
+      "k": 14,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 3.4,
+    "away_bullpen_era": 2.98,
+    "park_factor": 98.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Will Smith",
+        "id": 669257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Freddie Freeman",
+        "id": 518692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Miguel Rojas",
+        "id": 500743,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Francisco Lindor",
+        "id": 596019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis Robert Jr.",
+        "id": 673357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jorge Polanco",
+        "id": 593871,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tommy Pham",
+        "id": 502054,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.75,
+    "mu_away": 3.46,
+    "mu_margin": 0.29,
+    "mu_total": 7.21,
+    "p_home_ml": 0.5272,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

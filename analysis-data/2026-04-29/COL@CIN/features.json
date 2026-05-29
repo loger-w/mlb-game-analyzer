@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:30:35+00:00",
+  "game": {
+    "date": "2026-04-29",
+    "game_pk": 824525,
+    "home": "Cincinnati Reds",
+    "away": "Colorado Rockies",
+    "venue": "Great American Ball Park"
+  },
+  "inputs": {
+    "home_rs_recent": 6.1,
+    "home_rs_season": 4.31,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 3.87,
+    "home_ra_recent": 4.2,
+    "home_ra_season": 4.1,
+    "away_ra_recent": 4.0,
+    "away_ra_season": 4.39,
+    "home_starter": {
+      "name": "Brandon Williamson",
+      "id": 682227,
+      "fip": 6.26,
+      "ip": 25.0,
+      "k": 15,
+      "bb": 16,
+      "hbp": 3,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Tomoyuki Sugano",
+      "id": 608372,
+      "fip": 4.81,
+      "ip": 26.333333333333332,
+      "k": 19,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 5
+    },
+    "home_bullpen_era": 2.83,
+    "away_bullpen_era": 3.68,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "TJ Friedl",
+        "id": 670770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Matt McLain",
+        "id": 680574,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Elly De La Cruz",
+        "id": 682829,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Sal Stewart",
+        "id": 701398,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Tyler Stephenson",
+        "id": 663886,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Will Benson",
+        "id": 666181,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "JJ Bleday",
+        "id": 668709,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Rece Hinds",
+        "id": 677956,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ke'Bryan Hayes",
+        "id": 663647,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Jordan Beck",
+        "id": 687597,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brenton Doyle",
+        "id": 686668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Willi Castro",
+        "id": 650489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Brett Sullivan",
+        "id": 664954,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Mickey Moniak",
+        "id": 666160,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.08,
+    "mu_away": 4.32,
+    "mu_margin": 0.76,
+    "mu_total": 9.4,
+    "p_home_ml": 0.5711,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

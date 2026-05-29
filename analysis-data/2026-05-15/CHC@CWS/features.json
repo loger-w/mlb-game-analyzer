@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:50:19+00:00",
+  "game": {
+    "date": "2026-05-15",
+    "game_pk": 824601,
+    "home": "Chicago White Sox",
+    "away": "Chicago Cubs",
+    "venue": "Rate Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.9,
+    "home_rs_season": 4.3,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 4.89,
+    "home_ra_recent": 3.8,
+    "home_ra_season": 4.48,
+    "away_ra_recent": 3.4,
+    "away_ra_season": 3.93,
+    "home_starter": {
+      "name": "Sean Burke",
+      "id": 680732,
+      "fip": 3.83,
+      "ip": 44.0,
+      "k": 36,
+      "bb": 10,
+      "hbp": 3,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Edward Cabrera",
+      "id": 665795,
+      "fip": 4.24,
+      "ip": 46.333333333333336,
+      "k": 43,
+      "bb": 15,
+      "hbp": 1,
+      "hr": 7
+    },
+    "home_bullpen_era": 4.39,
+    "away_bullpen_era": 3.95,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Sam Antonacci",
+        "id": 803011,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Munetaka Murakami",
+        "id": 808959,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Randal Grichuk",
+        "id": 545341,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jarred Kelenic",
+        "id": 672284,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tristan Peters",
+        "id": 671976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Drew Romo",
+        "id": 691011,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Nico Hoerner",
+        "id": 663538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Michael Busch",
+        "id": 683737,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alex Bregman",
+        "id": 608324,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ian Happ",
+        "id": 664023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Seiya Suzuki",
+        "id": 673548,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Matt Shaw",
+        "id": 807713,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carson Kelly",
+        "id": 608348,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Pete Crow-Armstrong",
+        "id": 691718,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dansby Swanson",
+        "id": 621020,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.3,
+    "mu_away": 4.13,
+    "mu_margin": 0.17,
+    "mu_total": 8.43,
+    "p_home_ml": 0.5138,
+    "p_home_cover_rl": 0.6335,
+    "p_over": 0.4943,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-15_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.618,
+      "away_point": -1.5,
+      "away_no_vig": 0.382
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.491,
+      "under_no_vig": 0.509
+    }
+  },
+  "edges": {
+    "home_rl_pp": 1.5,
+    "over_pp": 0.3
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:41:46+00:00",
+  "game": {
+    "date": "2026-05-09",
+    "game_pk": 824115,
+    "home": "Kansas City Royals",
+    "away": "Detroit Tigers",
+    "venue": "Kauffman Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 4.0,
+    "home_rs_season": 4.03,
+    "away_rs_recent": 3.6,
+    "away_rs_season": 4.31,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 4.4,
+    "away_ra_recent": 4.1,
+    "away_ra_season": 4.18,
+    "home_starter": {
+      "name": "Michael Wacha",
+      "id": 608379,
+      "fip": 4.02,
+      "ip": 44.333333333333336,
+      "k": 36,
+      "bb": 15,
+      "hbp": 1,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Burch Smith",
+      "id": 572143,
+      "fip": 1.34,
+      "ip": 11.333333333333334,
+      "k": 16,
+      "bb": 4,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.63,
+    "away_bullpen_era": 3.88,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Maikel Garcia",
+        "id": 672580,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bobby Witt Jr.",
+        "id": 677951,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vinnie Pasquantino",
+        "id": 686469,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Salvador Perez",
+        "id": 521692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Carter Jensen",
+        "id": 695600,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jac Caglianone",
+        "id": 695506,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Lane Thomas",
+        "id": 657041,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Michael Massey",
+        "id": 686681,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Isbel",
+        "id": 664728,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kevin McGonigle",
+        "id": 805808,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Matt Vierling",
+        "id": 663837,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Hao-Yu  Lee",
+        "id": 701678,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Riley Greene",
+        "id": 682985,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Dillon Dingler",
+        "id": 693307,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Wenceel Pérez",
+        "id": 672761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Spencer Torkelson",
+        "id": 679529,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Zach McKinstry",
+        "id": 656716,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jake Rogers",
+        "id": 668670,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.39,
+    "mu_away": 4.37,
+    "mu_margin": -1.98,
+    "mu_total": 6.76,
+    "p_home_ml": 0.343,
+    "p_home_cover_rl": 0.2386,
+    "p_over": 0.3237,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-09_18-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.386,
+      "away_point": 1.5,
+      "away_no_vig": 0.614
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.522,
+      "under_no_vig": 0.478
+    }
+  },
+  "edges": {
+    "home_rl_pp": -14.7,
+    "over_pp": -19.8
+  }
+}

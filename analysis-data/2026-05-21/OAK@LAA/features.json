@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:59:43+00:00",
+  "game": {
+    "date": "2026-05-21",
+    "game_pk": 824031,
+    "home": "Los Angeles Angels",
+    "away": "Athletics",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 2.8,
+    "home_rs_season": 3.98,
+    "away_rs_recent": 4.6,
+    "away_rs_season": 4.51,
+    "home_ra_recent": 6.7,
+    "home_ra_season": 5.34,
+    "away_ra_recent": 4.6,
+    "away_ra_season": 4.61,
+    "home_starter": {
+      "name": "José Soriano",
+      "id": 667755,
+      "fip": 3.3,
+      "ip": 59.666666666666664,
+      "k": 67,
+      "bb": 26,
+      "hbp": 1,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Luis Severino",
+      "id": 622663,
+      "fip": 4.6,
+      "ip": 54.666666666666664,
+      "k": 54,
+      "bb": 31,
+      "hbp": 2,
+      "hr": 7
+    },
+    "home_bullpen_era": 5.63,
+    "away_bullpen_era": 4.64,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mike Trout",
+        "id": 545361,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Nolan Schanuel",
+        "id": 694384,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Vaughn Grissom",
+        "id": 687093,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Josh Lowe",
+        "id": 666139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jorge Soler",
+        "id": 624585,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Logan O'Hoppe",
+        "id": 681351,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Adam Frazier",
+        "id": 624428,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Alika Williams",
+        "id": 675961,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Shea Langeliers",
+        "id": 669127,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Nick Kurtz",
+        "id": 701762,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Brent Rooker",
+        "id": 667670,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Tyler Soderstrom",
+        "id": 691016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Zack Gelof",
+        "id": 680869,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Henry Bolte",
+        "id": 703607,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Darell Hernaiz",
+        "id": 687231,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Lawrence Butler",
+        "id": 671732,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.96,
+    "mu_away": 4.63,
+    "mu_margin": -0.67,
+    "mu_total": 8.59,
+    "p_home_ml": 0.4456,
+    "p_home_cover_rl": 0.3288,
+    "p_over": 0.548,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-21_21-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.35100000000000003,
+      "away_point": 1.5,
+      "away_no_vig": 0.649
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.506,
+      "under_no_vig": 0.494
+    }
+  },
+  "edges": {
+    "home_rl_pp": -2.2,
+    "over_pp": 4.2
+  }
+}

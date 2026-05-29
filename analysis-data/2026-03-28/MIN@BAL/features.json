@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:43:17+00:00",
+  "game": {
+    "date": "2026-03-28",
+    "game_pk": 824862,
+    "home": "Baltimore Orioles",
+    "away": "Minnesota Twins",
+    "venue": "Oriole Park at Camden Yards"
+  },
+  "inputs": {
+    "home_rs_recent": 2.0,
+    "home_rs_season": 2.0,
+    "away_rs_recent": 1.0,
+    "away_rs_season": 1.0,
+    "home_ra_recent": 1.0,
+    "home_ra_season": 1.0,
+    "away_ra_recent": 2.0,
+    "away_ra_season": 2.0,
+    "home_starter": {
+      "name": "Kyle Bradish",
+      "id": 680694,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Taj Bradley",
+      "id": 671737,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 4.5,
+    "away_bullpen_era": 6.75,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Taylor Ward",
+        "id": 621493,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Gunnar Henderson",
+        "id": 683002,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Adley Rutschman",
+        "id": 668939,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Samuel Basallo",
+        "id": 694212,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Tyler O'Neill",
+        "id": 641933,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Coby Mayo",
+        "id": 691723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jeremiah Jackson",
+        "id": 669236,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kody Clemens",
+        "id": 665019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Luke Keaschall",
+        "id": 807712,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Matt Wallner",
+        "id": 670242,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ryan Jeffers",
+        "id": 680777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "James Outman",
+        "id": 681546,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Royce Lewis",
+        "id": 668904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brooks Lee",
+        "id": 686797,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.33,
+    "mu_away": 0.97,
+    "mu_margin": 1.36,
+    "mu_total": 3.3,
+    "p_home_ml": 0.6257,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

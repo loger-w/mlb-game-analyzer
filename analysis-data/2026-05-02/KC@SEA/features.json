@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:31:44+00:00",
+  "game": {
+    "date": "2026-05-02",
+    "game_pk": 823144,
+    "home": "Seattle Mariners",
+    "away": "Kansas City Royals",
+    "venue": "T-Mobile Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.0,
+    "home_rs_season": 4.24,
+    "away_rs_recent": 6.2,
+    "away_rs_season": 4.03,
+    "home_ra_recent": 5.0,
+    "home_ra_season": 4.06,
+    "away_ra_recent": 5.1,
+    "away_ra_season": 4.67,
+    "home_starter": {
+      "name": "Emerson Hancock",
+      "id": 676106,
+      "fip": 4.57,
+      "ip": 34.666666666666664,
+      "k": 32,
+      "bb": 6,
+      "hbp": 2,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "Seth Lugo",
+      "id": 607625,
+      "fip": 2.68,
+      "ip": 37.666666666666664,
+      "k": 31,
+      "bb": 11,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.31,
+    "away_bullpen_era": 5.13,
+    "park_factor": 82.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "J.P. Crawford",
+        "id": 641487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Julio Rodríguez",
+        "id": 677594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Josh Naylor",
+        "id": 647304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Randy Arozarena",
+        "id": 668227,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Cole Young",
+        "id": 702284,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Rob Refsnyder",
+        "id": 608701,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Connor Joe",
+        "id": 656582,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Mitch Garver",
+        "id": 641598,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Leo Rivas",
+        "id": 660844,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Maikel Garcia",
+        "id": 672580,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bobby Witt Jr.",
+        "id": 677951,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vinnie Pasquantino",
+        "id": 686469,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Lane Thomas",
+        "id": 657041,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Carter Jensen",
+        "id": 695600,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jac Caglianone",
+        "id": 695506,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Isaac Collins",
+        "id": 686555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Michael Massey",
+        "id": 686681,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Isbel",
+        "id": 664728,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.22,
+    "mu_away": 3.81,
+    "mu_margin": -0.59,
+    "mu_total": 7.03,
+    "p_home_ml": 0.452,
+    "p_home_cover_rl": 0.3347,
+    "p_over": 0.4215,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-02_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.35700000000000004,
+      "away_point": 1.5,
+      "away_no_vig": 0.643
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.483,
+      "under_no_vig": 0.517
+    }
+  },
+  "edges": {
+    "home_rl_pp": -2.2,
+    "over_pp": -6.2
+  }
+}

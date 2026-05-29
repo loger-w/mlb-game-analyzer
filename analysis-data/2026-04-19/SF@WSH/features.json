@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:15:19+00:00",
+  "game": {
+    "date": "2026-04-19",
+    "game_pk": 822750,
+    "home": "Washington Nationals",
+    "away": "San Francisco Giants",
+    "venue": "Nationals Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.8,
+    "home_rs_season": 5.62,
+    "away_rs_recent": 4.5,
+    "away_rs_season": 3.57,
+    "home_ra_recent": 6.2,
+    "home_ra_season": 6.38,
+    "away_ra_recent": 3.6,
+    "away_ra_season": 4.43,
+    "home_starter": {
+      "name": "PJ Poulin",
+      "id": 676571,
+      "fip": 6.87,
+      "ip": 11.666666666666666,
+      "k": 8,
+      "bb": 7,
+      "hbp": 0,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Robbie Ray",
+      "id": 592662,
+      "fip": 4.62,
+      "ip": 22.333333333333332,
+      "k": 24,
+      "bb": 10,
+      "hbp": 0,
+      "hr": 4
+    },
+    "home_bullpen_era": 5.8,
+    "away_bullpen_era": 3.64,
+    "park_factor": 100.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Brady House",
+        "id": 691781,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Joey Wiemer",
+        "id": 686894,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Keibert Ruiz",
+        "id": 660688,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Willy Adames",
+        "id": 642715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis Arraez",
+        "id": 650333,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Matt Chapman",
+        "id": 656305,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Rafael Devers",
+        "id": 646240,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Casey Schmitt",
+        "id": 669477,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jerar Encarnacion",
+        "id": 666464,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Heliot Ramos",
+        "id": 671218,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Gilbert",
+        "id": 687551,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Daniel Susac",
+        "id": 691740,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.12,
+    "mu_away": 5.7,
+    "mu_margin": -0.58,
+    "mu_total": 10.82,
+    "p_home_ml": 0.4456,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

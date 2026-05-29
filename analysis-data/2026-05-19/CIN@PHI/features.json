@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:56:11+00:00",
+  "game": {
+    "date": "2026-05-19",
+    "game_pk": 823464,
+    "home": "Philadelphia Phillies",
+    "away": "Cincinnati Reds",
+    "venue": "Citizens Bank Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.6,
+    "home_rs_season": 4.16,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 4.33,
+    "home_ra_recent": 3.0,
+    "home_ra_season": 4.49,
+    "away_ra_recent": 5.8,
+    "away_ra_season": 5.08,
+    "home_starter": {
+      "name": "Jesús Luzardo",
+      "id": 666200,
+      "fip": 2.92,
+      "ip": 49.666666666666664,
+      "k": 61,
+      "bb": 13,
+      "hbp": 3,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Chase Burns",
+      "id": 695505,
+      "fip": 3.52,
+      "ip": 53.0,
+      "k": 55,
+      "bb": 18,
+      "hbp": 0,
+      "hr": 6
+    },
+    "home_bullpen_era": 3.92,
+    "away_bullpen_era": 5.06,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Brandon Marsh",
+        "id": 669016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Edmundo Sosa",
+        "id": 624641,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Otto Kemp",
+        "id": 805249,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Rafael Marchán",
+        "id": 665561,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Matt McLain",
+        "id": 680574,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Elly De La Cruz",
+        "id": 682829,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Spencer Steer",
+        "id": 668715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Sal Stewart",
+        "id": 701398,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Dane Myers",
+        "id": 667472,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "JJ Bleday",
+        "id": 668709,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Blake Dunn",
+        "id": 694362,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tyler Stephenson",
+        "id": 663886,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ke'Bryan Hayes",
+        "id": 663647,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.78,
+    "mu_away": 3.81,
+    "mu_margin": 0.97,
+    "mu_total": 8.59,
+    "p_home_ml": 0.5785,
+    "p_home_cover_rl": 0.4569,
+    "p_over": 0.4263,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-19_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.397,
+      "away_point": 1.5,
+      "away_no_vig": 0.603
+    },
+    "total": {
+      "line": 9.5,
+      "over_no_vig": 0.499,
+      "under_no_vig": 0.501
+    }
+  },
+  "edges": {
+    "home_rl_pp": 6.0,
+    "over_pp": -7.3
+  }
+}

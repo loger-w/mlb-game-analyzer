@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:23:24+00:00",
+  "game": {
+    "date": "2026-04-24",
+    "game_pk": 824204,
+    "home": "Houston Astros",
+    "away": "New York Yankees",
+    "venue": "Daikin Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.4,
+    "home_rs_season": 5.27,
+    "away_rs_recent": 5.7,
+    "away_rs_season": 4.88,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 5.77,
+    "away_ra_recent": 4.1,
+    "away_ra_season": 3.4,
+    "home_starter": {
+      "name": "Lance McCullers Jr.",
+      "id": 621121,
+      "fip": 3.94,
+      "ip": 20.333333333333332,
+      "k": 21,
+      "bb": 9,
+      "hbp": 2,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Will Warren",
+      "id": 701542,
+      "fip": 3.02,
+      "ip": 25.333333333333332,
+      "k": 31,
+      "bb": 6,
+      "hbp": 1,
+      "hr": 3
+    },
+    "home_bullpen_era": 5.75,
+    "away_bullpen_era": 3.99,
+    "park_factor": 98.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Braden Shewmake",
+        "id": 669699,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Christian Vázquez",
+        "id": 543877,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Shay Whitcomb",
+        "id": 694376,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Daniel Johnson",
+        "id": 669288,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Christian Walker",
+        "id": 572233,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cam Smith",
+        "id": 701358,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dustin Harris",
+        "id": 687957,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Yainer Diaz",
+        "id": 673237,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brice Matthews",
+        "id": 694728,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Amed Rosario",
+        "id": 642708,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ben Rice",
+        "id": 700250,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Randal Grichuk",
+        "id": 545341,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "J.C. Escarra",
+        "id": 641555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ryan McMahon",
+        "id": 641857,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "José Caballero",
+        "id": 676609,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.77,
+    "mu_away": 5.37,
+    "mu_margin": -1.6,
+    "mu_total": 9.14,
+    "p_home_ml": 0.353,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

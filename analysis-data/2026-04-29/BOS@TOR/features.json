@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:30:15+00:00",
+  "game": {
+    "date": "2026-04-29",
+    "game_pk": 822821,
+    "home": "Toronto Blue Jays",
+    "away": "Boston Red Sox",
+    "venue": "Rogers Centre"
+  },
+  "inputs": {
+    "home_rs_recent": 4.2,
+    "home_rs_season": 3.77,
+    "away_rs_recent": 4.3,
+    "away_rs_season": 4.07,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 4.6,
+    "away_ra_recent": 4.1,
+    "away_ra_season": 4.37,
+    "home_starter": {
+      "name": "Eric Lauer",
+      "id": 641778,
+      "fip": 6.45,
+      "ip": 22.666666666666668,
+      "k": 19,
+      "bb": 12,
+      "hbp": 0,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Brayan Bello",
+      "id": 678394,
+      "fip": 8.24,
+      "ip": 22.0,
+      "k": 15,
+      "bb": 13,
+      "hbp": 0,
+      "hr": 8
+    },
+    "home_bullpen_era": 4.08,
+    "away_bullpen_era": 3.49,
+    "park_factor": 99.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ernie Clement",
+        "id": 676391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jesús Sánchez",
+        "id": 660821,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vladimir Guerrero Jr.",
+        "id": 665489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kazuma Okamoto",
+        "id": 672960,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Daulton Varsho",
+        "id": 662139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "George Springer",
+        "id": 543807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Myles Straw",
+        "id": 664702,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Andrés Giménez",
+        "id": 665926,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brandon Valenzuela",
+        "id": 678218,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Roman Anthony",
+        "id": 701350,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Connor Wong",
+        "id": 657136,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.59,
+    "mu_away": 5.14,
+    "mu_margin": 0.45,
+    "mu_total": 10.73,
+    "p_home_ml": 0.5422,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

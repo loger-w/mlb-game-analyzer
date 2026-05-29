@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:54:30+00:00",
+  "game": {
+    "date": "2026-04-05",
+    "game_pk": 824459,
+    "home": "Cleveland Guardians",
+    "away": "Chicago Cubs",
+    "venue": "Progressive Field"
+  },
+  "inputs": {
+    "home_rs_recent": 2.89,
+    "home_rs_season": 2.89,
+    "away_rs_recent": 3.88,
+    "away_rs_season": 3.88,
+    "home_ra_recent": 3.33,
+    "home_ra_season": 3.33,
+    "away_ra_recent": 3.5,
+    "away_ra_season": 3.5,
+    "home_starter": {
+      "name": "Slade Cecconi",
+      "id": 677944,
+      "fip": null,
+      "ip": 4.333333333333333,
+      "k": 5,
+      "bb": 3,
+      "hbp": 2,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Edward Cabrera",
+      "id": 665795,
+      "fip": null,
+      "ip": 6.0,
+      "k": 5,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.28,
+    "away_bullpen_era": 4.68,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Steven Kwan",
+        "id": 680757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Chase DeLauter",
+        "id": 800050,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "José Ramírez",
+        "id": 608070,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Manzardo",
+        "id": 700932,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Bo Naylor",
+        "id": 666310,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Daniel Schneemann",
+        "id": 682177,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brayan Rocchio",
+        "id": 677587,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Gabriel Arias",
+        "id": 672356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Angel Martínez",
+        "id": 682657,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Michael Busch",
+        "id": 683737,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Alex Bregman",
+        "id": 608324,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ian Happ",
+        "id": 664023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Crow-Armstrong",
+        "id": 691718,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nico Hoerner",
+        "id": 663538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Dansby Swanson",
+        "id": 621020,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dylan Carlson",
+        "id": 666185,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Matt Shaw",
+        "id": 807713,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Miguel Amaya",
+        "id": 665804,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.99,
+    "mu_away": 3.88,
+    "mu_margin": -0.89,
+    "mu_total": 6.87,
+    "p_home_ml": 0.4169,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:42:05+00:00",
+  "game": {
+    "date": "2026-05-09",
+    "game_pk": 825089,
+    "home": "Arizona Diamondbacks",
+    "away": "New York Mets",
+    "venue": "Chase Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.0,
+    "home_rs_season": 4.38,
+    "away_rs_recent": 3.7,
+    "away_rs_season": 3.42,
+    "home_ra_recent": 5.2,
+    "home_ra_season": 5.11,
+    "away_ra_recent": 4.1,
+    "away_ra_season": 4.08,
+    "home_starter": {
+      "name": "Merrill Kelly",
+      "id": 518876,
+      "fip": 8.1,
+      "ip": 19.0,
+      "k": 14,
+      "bb": 15,
+      "hbp": 0,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Clay Holmes",
+      "id": 605280,
+      "fip": 3.62,
+      "ip": 42.666666666666664,
+      "k": 31,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 3
+    },
+    "home_bullpen_era": 4.56,
+    "away_bullpen_era": 4.08,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Adrian Del Castillo",
+        "id": 680728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jorge Barrosa",
+        "id": 678489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Gabriel Moreno",
+        "id": 672515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ryan Waldschmidt",
+        "id": 814439,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Juan Soto",
+        "id": 665742,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "MJ Melendez",
+        "id": 669004,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.57,
+    "mu_away": 5.66,
+    "mu_margin": -2.09,
+    "mu_total": 9.23,
+    "p_home_ml": 0.3347,
+    "p_home_cover_rl": 0.452,
+    "p_over": 0.478,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-09_18-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.601,
+      "away_point": -1.5,
+      "away_no_vig": 0.39899999999999997
+    },
+    "total": {
+      "line": 9.5,
+      "over_no_vig": 0.522,
+      "under_no_vig": 0.478
+    }
+  },
+  "edges": {
+    "home_rl_pp": -14.9,
+    "over_pp": -4.4
+  }
+}

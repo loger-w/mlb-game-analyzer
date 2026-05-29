@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:54:56+00:00",
+  "game": {
+    "date": "2026-04-05",
+    "game_pk": 823566,
+    "home": "New York Yankees",
+    "away": "Miami Marlins",
+    "venue": "Yankee Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.12,
+    "home_rs_season": 5.12,
+    "away_rs_recent": 5.25,
+    "away_rs_season": 5.25,
+    "home_ra_recent": 1.88,
+    "home_ra_season": 1.88,
+    "away_ra_recent": 4.38,
+    "away_ra_season": 4.38,
+    "home_starter": {
+      "name": "Max Fried",
+      "id": 608331,
+      "fip": 2.5,
+      "ip": 13.333333333333334,
+      "k": 10,
+      "bb": 2,
+      "hbp": 2,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Pete Fairbanks",
+      "id": 664126,
+      "fip": null,
+      "ip": 3.0,
+      "k": 5,
+      "bb": 0,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 2.22,
+    "away_bullpen_era": 3.24,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Aaron Judge",
+        "id": 592450,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ben Rice",
+        "id": 700250,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Giancarlo Stanton",
+        "id": 519317,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Austin Wells",
+        "id": 669224,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "J.C. Escarra",
+        "id": 641555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ryan McMahon",
+        "id": 641857,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Agustín Ramírez",
+        "id": 682663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Griffin Conine",
+        "id": 665052,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Graham Pauley",
+        "id": 688363,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Xavier Edwards",
+        "id": 669364,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Liam Hicks",
+        "id": 689414,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.4,
+    "mu_away": 2.74,
+    "mu_margin": 1.66,
+    "mu_total": 7.14,
+    "p_home_ml": 0.6522,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

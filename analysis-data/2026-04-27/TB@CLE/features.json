@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:27:13+00:00",
+  "game": {
+    "date": "2026-04-27",
+    "game_pk": 824446,
+    "home": "Cleveland Guardians",
+    "away": "Tampa Bay Rays",
+    "venue": "Progressive Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.3,
+    "home_rs_season": 3.93,
+    "away_rs_recent": 4.6,
+    "away_rs_season": 4.89,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 4.2,
+    "away_ra_recent": 4.5,
+    "away_ra_season": 4.93,
+    "home_starter": {
+      "name": "Parker Messick",
+      "id": 800048,
+      "fip": 2.51,
+      "ip": 30.666666666666668,
+      "k": 29,
+      "bb": 8,
+      "hbp": 1,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Steven Matz",
+      "id": 571927,
+      "fip": 5.07,
+      "ip": 24.333333333333332,
+      "k": 25,
+      "bb": 10,
+      "hbp": 1,
+      "hr": 5
+    },
+    "home_bullpen_era": 4.72,
+    "away_bullpen_era": 5.27,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Steven Kwan",
+        "id": 680757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Angel Martínez",
+        "id": 682657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "José Ramírez",
+        "id": 608070,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Manzardo",
+        "id": 700932,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Chase DeLauter",
+        "id": 800050,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "George Valera",
+        "id": 671655,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Daniel Schneemann",
+        "id": 682177,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Bo Naylor",
+        "id": 666310,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brayan Rocchio",
+        "id": 677587,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Yandy Díaz",
+        "id": 650490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Richie Palacios",
+        "id": 680700,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hunter Feduccia",
+        "id": 676439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.8,
+    "mu_away": 3.73,
+    "mu_margin": 1.07,
+    "mu_total": 8.53,
+    "p_home_ml": 0.5996,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

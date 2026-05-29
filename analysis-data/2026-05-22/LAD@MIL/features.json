@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T09:00:54+00:00",
+  "game": {
+    "date": "2026-05-22",
+    "game_pk": 823788,
+    "home": "Milwaukee Brewers",
+    "away": "Los Angeles Dodgers",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.6,
+    "home_rs_season": 4.84,
+    "away_rs_recent": 5.4,
+    "away_rs_season": 5.14,
+    "home_ra_recent": 2.4,
+    "home_ra_season": 3.31,
+    "away_ra_recent": 2.5,
+    "away_ra_season": 3.18,
+    "home_starter": {
+      "name": "Logan Henderson",
+      "id": 701656,
+      "fip": 2.49,
+      "ip": 18.0,
+      "k": 23,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Justin Wrobleski",
+      "id": 680736,
+      "fip": 3.38,
+      "ip": 50.666666666666664,
+      "k": 27,
+      "bb": 12,
+      "hbp": 2,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.33,
+    "away_bullpen_era": 3.03,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jackson Chourio",
+        "id": 694192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brice Turang",
+        "id": 668930,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "William Contreras",
+        "id": 661388,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Christian Yelich",
+        "id": 592885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Andrew Vaughn",
+        "id": 683734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Blake Perkins",
+        "id": 663368,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Luis Rengifo",
+        "id": 650859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Sal Frelick",
+        "id": 686217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Joey Ortiz",
+        "id": 687401,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mookie Betts",
+        "id": 605141,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Freddie Freeman",
+        "id": 518692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Dalton Rushing",
+        "id": 687221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Miguel Rojas",
+        "id": 500743,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.56,
+    "mu_away": 3.42,
+    "mu_margin": 0.14,
+    "mu_total": 6.98,
+    "p_home_ml": 0.5114,
+    "p_home_cover_rl": 0.6312,
+    "p_over": 0.34,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-22_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.5770000000000001,
+      "away_point": -1.5,
+      "away_no_vig": 0.423
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.483,
+      "under_no_vig": 0.517
+    }
+  },
+  "edges": {
+    "home_rl_pp": 5.4,
+    "over_pp": -14.3
+  }
+}

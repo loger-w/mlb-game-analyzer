@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:39:50+00:00",
+  "game": {
+    "date": "2026-05-08",
+    "game_pk": 824768,
+    "home": "Boston Red Sox",
+    "away": "Tampa Bay Rays",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.6,
+    "home_rs_season": 4.03,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 4.51,
+    "home_ra_recent": 3.6,
+    "home_ra_season": 4.32,
+    "away_ra_recent": 1.5,
+    "away_ra_season": 4.0,
+    "home_starter": {
+      "name": "Connelly Early",
+      "id": 813349,
+      "fip": 4.87,
+      "ip": 35.666666666666664,
+      "k": 31,
+      "bb": 17,
+      "hbp": 3,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Jesse Scholtens",
+      "id": 669947,
+      "fip": 3.81,
+      "ip": 22.666666666666668,
+      "k": 17,
+      "bb": 6,
+      "hbp": 2,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.47,
+    "away_bullpen_era": 4.11,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Masataka Yoshida",
+        "id": 807799,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Yandy Díaz",
+        "id": 650490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nick Fortes",
+        "id": 663743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.78,
+    "mu_away": 4.44,
+    "mu_margin": -0.66,
+    "mu_total": 8.22,
+    "p_home_ml": 0.4464,
+    "p_home_cover_rl": 0.3295,
+    "p_over": 0.5179,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-08_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.39399999999999996,
+      "away_point": 1.5,
+      "away_no_vig": 0.606
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.48100000000000004,
+      "under_no_vig": 0.519
+    }
+  },
+  "edges": {
+    "home_rl_pp": -6.4,
+    "over_pp": 3.7
+  }
+}

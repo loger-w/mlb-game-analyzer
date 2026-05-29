@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T09:06:05+00:00",
+  "game": {
+    "date": "2026-05-25",
+    "game_pk": 822812,
+    "home": "Toronto Blue Jays",
+    "away": "Miami Marlins",
+    "venue": "Rogers Centre"
+  },
+  "inputs": {
+    "home_rs_recent": 3.4,
+    "home_rs_season": 3.96,
+    "away_rs_recent": 4.5,
+    "away_rs_season": 4.28,
+    "home_ra_recent": 2.6,
+    "home_ra_season": 4.07,
+    "away_ra_recent": 4.6,
+    "away_ra_season": 4.48,
+    "home_starter": {
+      "name": "Trey Yesavage",
+      "id": 702056,
+      "fip": 1.88,
+      "ip": 25.333333333333332,
+      "k": 29,
+      "bb": 8,
+      "hbp": 1,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Janson Junk",
+      "id": 676083,
+      "fip": 4.3,
+      "ip": 55.0,
+      "k": 40,
+      "bb": 13,
+      "hbp": 1,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.72,
+    "away_bullpen_era": 3.33,
+    "park_factor": 99.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "George Springer",
+        "id": 543807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Nathan Lukes",
+        "id": 664770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Yohendrick Piñango",
+        "id": 682818,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kazuma Okamoto",
+        "id": 672960,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Myles Straw",
+        "id": 664702,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ernie Clement",
+        "id": 676391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Andrés Giménez",
+        "id": 665926,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brandon Valenzuela",
+        "id": 678218,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Lenyn Sosa",
+        "id": 672820,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Xavier Edwards",
+        "id": 669364,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Liam Hicks",
+        "id": 689414,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Stowers",
+        "id": 669065,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Joe Mack",
+        "id": 691788,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Esteury Ruiz",
+        "id": 665923,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.47,
+    "mu_away": 2.69,
+    "mu_margin": 0.78,
+    "mu_total": 6.16,
+    "p_home_ml": 0.5633,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:46:48+00:00",
+  "game": {
+    "date": "2026-05-13",
+    "game_pk": 824519,
+    "home": "Cincinnati Reds",
+    "away": "Washington Nationals",
+    "venue": "Great American Ball Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.4,
+    "home_rs_season": 4.0,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 5.4,
+    "home_ra_recent": 6.2,
+    "home_ra_season": 4.93,
+    "away_ra_recent": 4.9,
+    "away_ra_season": 5.57,
+    "home_starter": {
+      "name": "Nick Lodolo",
+      "id": 666157,
+      "fip": null,
+      "ip": 5.333333333333333,
+      "k": 2,
+      "bb": 1,
+      "hbp": 1,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Jake Irvin",
+      "id": 663623,
+      "fip": 4.26,
+      "ip": 39.666666666666664,
+      "k": 41,
+      "bb": 16,
+      "hbp": 5,
+      "hr": 5
+    },
+    "home_bullpen_era": 4.7,
+    "away_bullpen_era": 4.79,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Dane Myers",
+        "id": 667472,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Elly De La Cruz",
+        "id": 682829,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Sal Stewart",
+        "id": 701398,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "JJ Bleday",
+        "id": 668709,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Spencer Steer",
+        "id": 668715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nathaniel Lowe",
+        "id": 663993,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tyler Stephenson",
+        "id": 663886,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Blake Dunn",
+        "id": 694362,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Matt McLain",
+        "id": 680574,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jorbit Vivas",
+        "id": 678391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Joey Wiemer",
+        "id": 686894,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Keibert Ruiz",
+        "id": 660688,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.2,
+    "mu_away": 5.81,
+    "mu_margin": -1.61,
+    "mu_total": 10.01,
+    "p_home_ml": 0.3711,
+    "p_home_cover_rl": 0.2626,
+    "p_over": 0.6593,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-13_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.409,
+      "away_point": 1.5,
+      "away_no_vig": 0.591
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.518,
+      "under_no_vig": 0.48200000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -14.6,
+    "over_pp": 14.1
+  }
+}

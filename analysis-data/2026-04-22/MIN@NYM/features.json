@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:20:37+00:00",
+  "game": {
+    "date": "2026-04-22",
+    "game_pk": 823641,
+    "home": "New York Mets",
+    "away": "Minnesota Twins",
+    "venue": "Citi Field"
+  },
+  "inputs": {
+    "home_rs_recent": 1.9,
+    "home_rs_season": 3.26,
+    "away_rs_recent": 5.7,
+    "away_rs_season": 5.09,
+    "home_ra_recent": 5.3,
+    "home_ra_season": 4.43,
+    "away_ra_recent": 4.8,
+    "away_ra_season": 4.48,
+    "home_starter": {
+      "name": "Clay Holmes",
+      "id": 605280,
+      "fip": 4.14,
+      "ip": 23.0,
+      "k": 16,
+      "bb": 9,
+      "hbp": 1,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Connor Prielipp",
+      "id": 687570,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 3.81,
+    "away_bullpen_era": 4.82,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Juan Soto",
+        "id": 665742,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Luis Robert Jr.",
+        "id": 673357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Austin Martin",
+        "id": 668885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Victor Caratini",
+        "id": 605170,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ryan Jeffers",
+        "id": 680777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Luke Keaschall",
+        "id": 807712,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Matt Wallner",
+        "id": 670242,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Royce Lewis",
+        "id": 668904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "James Outman",
+        "id": 681546,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.77,
+    "mu_away": 4.64,
+    "mu_margin": -1.87,
+    "mu_total": 7.41,
+    "p_home_ml": 0.3297,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

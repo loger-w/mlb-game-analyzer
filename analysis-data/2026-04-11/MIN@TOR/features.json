@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:03:46+00:00",
+  "game": {
+    "date": "2026-04-11",
+    "game_pk": 822830,
+    "home": "Toronto Blue Jays",
+    "away": "Minnesota Twins",
+    "venue": "Rogers Centre"
+  },
+  "inputs": {
+    "home_rs_recent": 3.0,
+    "home_rs_season": 3.64,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 4.57,
+    "home_ra_recent": 4.2,
+    "home_ra_season": 4.79,
+    "away_ra_recent": 5.1,
+    "away_ra_season": 4.64,
+    "home_starter": {
+      "name": "Eric Lauer",
+      "id": 641778,
+      "fip": null,
+      "ip": 7.333333333333333,
+      "k": 9,
+      "bb": 4,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Joe Ryan",
+      "id": 657746,
+      "fip": 1.98,
+      "ip": 14.333333333333334,
+      "k": 17,
+      "bb": 5,
+      "hbp": 1,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.8,
+    "away_bullpen_era": 5.23,
+    "park_factor": 99.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Myles Straw",
+        "id": 664702,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Daulton Varsho",
+        "id": 662139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vladimir Guerrero Jr.",
+        "id": 665489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jesús Sánchez",
+        "id": 660821,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Davis Schneider",
+        "id": 676914,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nathan Lukes",
+        "id": 664770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ernie Clement",
+        "id": 676391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Andrés Giménez",
+        "id": 665926,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brandon Valenzuela",
+        "id": 678218,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Austin Martin",
+        "id": 668885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Luke Keaschall",
+        "id": 807712,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ryan Jeffers",
+        "id": 680777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Victor Caratini",
+        "id": 605170,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "James Outman",
+        "id": 681546,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brooks Lee",
+        "id": 686797,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ryan Kreidler",
+        "id": 668952,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.52,
+    "mu_away": 4.91,
+    "mu_margin": -2.39,
+    "mu_total": 7.43,
+    "p_home_ml": 0.2866,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

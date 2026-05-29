@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:55:49+00:00",
+  "game": {
+    "date": "2026-04-05",
+    "game_pk": 825025,
+    "home": "Athletics",
+    "away": "Houston Astros",
+    "venue": "Sutter Health Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.5,
+    "home_rs_season": 3.5,
+    "away_rs_recent": 6.67,
+    "away_rs_season": 6.67,
+    "home_ra_recent": 5.25,
+    "home_ra_season": 5.25,
+    "away_ra_recent": 4.78,
+    "away_ra_season": 4.78,
+    "home_starter": {
+      "name": "Jacob Lopez",
+      "id": 682052,
+      "fip": null,
+      "ip": 4.0,
+      "k": 0,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Lance McCullers Jr.",
+      "id": 621121,
+      "fip": null,
+      "ip": 7.0,
+      "k": 9,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.24,
+    "away_bullpen_era": 4.63,
+    "park_factor": 109.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Nick Kurtz",
+        "id": 701762,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Shea Langeliers",
+        "id": 669127,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Tyler Soderstrom",
+        "id": 691016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Brent Rooker",
+        "id": 667670,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jacob Wilson",
+        "id": 805779,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Lawrence Butler",
+        "id": 671732,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Max Muncy",
+        "id": 691777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jeff McNeil",
+        "id": 643446,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Denzel Clarke",
+        "id": 672016,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Jose Altuve",
+        "id": 514888,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Yordan Alvarez",
+        "id": 670541,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Carlos Correa",
+        "id": 621043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Christian Walker",
+        "id": 572233,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Cam Smith",
+        "id": 701358,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Yainer Diaz",
+        "id": 673237,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jake Meyers",
+        "id": 676694,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brice Matthews",
+        "id": 694728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nick Allen",
+        "id": 669397,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.89,
+    "mu_away": 7.16,
+    "mu_margin": -3.27,
+    "mu_total": 11.05,
+    "p_home_ml": 0.2204,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

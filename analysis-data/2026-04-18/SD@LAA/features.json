@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:15:12+00:00",
+  "game": {
+    "date": "2026-04-18",
+    "game_pk": 824049,
+    "home": "Los Angeles Angels",
+    "away": "San Diego Padres",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 6.6,
+    "home_rs_season": 5.38,
+    "away_rs_recent": 5.3,
+    "away_rs_season": 4.5,
+    "home_ra_recent": 5.1,
+    "home_ra_season": 4.67,
+    "away_ra_recent": 3.8,
+    "away_ra_season": 3.85,
+    "home_starter": {
+      "name": "Yusei Kikuchi",
+      "id": 579328,
+      "fip": 4.82,
+      "ip": 18.0,
+      "k": 19,
+      "bb": 10,
+      "hbp": 0,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Germán Márquez",
+      "id": 608566,
+      "fip": 7.48,
+      "ip": 13.0,
+      "k": 10,
+      "bb": 4,
+      "hbp": 0,
+      "hr": 5
+    },
+    "home_bullpen_era": 4.66,
+    "away_bullpen_era": 2.89,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mike Trout",
+        "id": 545361,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Teodosio",
+        "id": 669326,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Yoán Moncada",
+        "id": 660162,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Vaughn Grissom",
+        "id": 687093,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Logan O'Hoppe",
+        "id": 681351,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Adam Frazier",
+        "id": 624428,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ramón Laureano",
+        "id": 657656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Fernando Tatis Jr.",
+        "id": 665487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jackson Merrill",
+        "id": 701538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Manny Machado",
+        "id": 592518,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Xander Bogaerts",
+        "id": 593428,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Bryce Johnson",
+        "id": 669369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Gavin Sheets",
+        "id": 657757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Freddy Fermin",
+        "id": 666023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jake Cronenworth",
+        "id": 630105,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 7.52,
+    "mu_away": 5.22,
+    "mu_margin": 2.3,
+    "mu_total": 12.74,
+    "p_home_ml": 0.7061,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

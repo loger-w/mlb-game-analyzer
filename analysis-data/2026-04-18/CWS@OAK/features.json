@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:14:12+00:00",
+  "game": {
+    "date": "2026-04-18",
+    "game_pk": 825020,
+    "home": "Athletics",
+    "away": "Chicago White Sox",
+    "venue": "Sutter Health Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 4.0,
+    "away_rs_recent": 3.3,
+    "away_rs_season": 3.29,
+    "home_ra_recent": 4.0,
+    "home_ra_season": 4.85,
+    "away_ra_recent": 4.1,
+    "away_ra_season": 4.86,
+    "home_starter": {
+      "name": "Luis Severino",
+      "id": 622663,
+      "fip": 4.44,
+      "ip": 19.333333333333332,
+      "k": 24,
+      "bb": 16,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Erick Fedde",
+      "id": 607200,
+      "fip": 4.16,
+      "ip": 16.0,
+      "k": 12,
+      "bb": 3,
+      "hbp": 2,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.84,
+    "away_bullpen_era": 5.45,
+    "park_factor": 109.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zack Gelof",
+        "id": 680869,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Shea Langeliers",
+        "id": 669127,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Nick Kurtz",
+        "id": 701762,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Tyler Soderstrom",
+        "id": 691016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jacob Wilson",
+        "id": 805779,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Denzel Clarke",
+        "id": 672016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Max Muncy",
+        "id": 691777,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Lawrence Butler",
+        "id": 671732,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jack Perkins",
+        "id": 678022,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Andrew Benintendi",
+        "id": 643217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luisangel Acuña",
+        "id": 682668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Everson Pereira",
+        "id": 677592,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Sam Antonacci",
+        "id": 803011,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tanner Murray",
+        "id": 695020,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Reese McGuire",
+        "id": 624512,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.51,
+    "mu_away": 3.75,
+    "mu_margin": 0.76,
+    "mu_total": 8.26,
+    "p_home_ml": 0.5711,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

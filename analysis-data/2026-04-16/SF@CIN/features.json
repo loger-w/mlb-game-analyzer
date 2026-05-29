@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:10:58+00:00",
+  "game": {
+    "date": "2026-04-16",
+    "game_pk": 824530,
+    "home": "Cincinnati Reds",
+    "away": "San Francisco Giants",
+    "venue": "Great American Ball Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.0,
+    "home_rs_season": 3.56,
+    "away_rs_recent": 3.1,
+    "away_rs_season": 3.06,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 4.11,
+    "away_ra_recent": 4.5,
+    "away_ra_season": 4.56,
+    "home_starter": {
+      "name": "Chase Burns",
+      "id": 695505,
+      "fip": 4.75,
+      "ip": 16.333333333333332,
+      "k": 18,
+      "bb": 8,
+      "hbp": 0,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Landen Roupp",
+      "id": 694738,
+      "fip": 1.84,
+      "ip": 16.666666666666668,
+      "k": 18,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 2.67,
+    "away_bullpen_era": 4.1,
+    "park_factor": 104.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Dane Myers",
+        "id": 667472,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Matt McLain",
+        "id": 680574,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Elly De La Cruz",
+        "id": 682829,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Sal Stewart",
+        "id": 701398,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Eugenio Suárez",
+        "id": 553993,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Spencer Steer",
+        "id": 668715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Rece Hinds",
+        "id": 677956,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ke'Bryan Hayes",
+        "id": 663647,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "P.J. Higgins",
+        "id": 664731,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Luis Arraez",
+        "id": 650333,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Willy Adames",
+        "id": 642715,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Rafael Devers",
+        "id": 646240,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Matt Chapman",
+        "id": 656305,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jung Hoo Lee",
+        "id": 808982,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Heliot Ramos",
+        "id": 671218,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Casey Schmitt",
+        "id": 669477,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Gilbert",
+        "id": 687551,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Patrick Bailey",
+        "id": 672275,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.41,
+    "mu_away": 2.85,
+    "mu_margin": -0.44,
+    "mu_total": 5.26,
+    "p_home_ml": 0.4587,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

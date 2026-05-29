@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:05:44+00:00",
+  "game": {
+    "date": "2026-04-12",
+    "game_pk": 824126,
+    "home": "Kansas City Royals",
+    "away": "Chicago White Sox",
+    "venue": "Kauffman Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 2.6,
+    "home_rs_season": 3.06,
+    "away_rs_recent": 2.2,
+    "away_rs_season": 2.69,
+    "home_ra_recent": 3.1,
+    "home_ra_season": 3.69,
+    "away_ra_recent": 2.2,
+    "away_ra_season": 4.62,
+    "home_starter": {
+      "name": "Noah Cameron",
+      "id": 702070,
+      "fip": 1.79,
+      "ip": 10.666666666666666,
+      "k": 10,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Grant Taylor",
+      "id": 691799,
+      "fip": null,
+      "ip": 6.333333333333333,
+      "k": 8,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 5.27,
+    "away_bullpen_era": 4.99,
+    "park_factor": 106.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Maikel Garcia",
+        "id": 672580,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bobby Witt Jr.",
+        "id": 677951,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vinnie Pasquantino",
+        "id": 686469,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Salvador Perez",
+        "id": 521692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Carter Jensen",
+        "id": 695600,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Michael Massey",
+        "id": 686681,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jac Caglianone",
+        "id": 695506,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Isaac Collins",
+        "id": 686555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Isbel",
+        "id": 664728,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Munetaka Murakami",
+        "id": 808959,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Lenyn Sosa",
+        "id": 672820,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Edgar Quero",
+        "id": 700337,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tristan Peters",
+        "id": 671976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Luisangel Acuña",
+        "id": 682668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dustin Harris",
+        "id": 687957,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.24,
+    "mu_away": 1.93,
+    "mu_margin": 1.31,
+    "mu_total": 5.17,
+    "p_home_ml": 0.6213,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:53:04+00:00",
+  "game": {
+    "date": "2026-04-04",
+    "game_pk": 824132,
+    "home": "Kansas City Royals",
+    "away": "Milwaukee Brewers",
+    "venue": "Kauffman Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 3.29,
+    "home_rs_season": 3.29,
+    "away_rs_recent": 6.43,
+    "away_rs_season": 6.43,
+    "home_ra_recent": 4.0,
+    "home_ra_season": 4.0,
+    "away_ra_recent": 2.43,
+    "away_ra_season": 2.43,
+    "home_starter": {
+      "name": "Luinder Avila",
+      "id": 679883,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Chad Patrick",
+      "id": 694477,
+      "fip": null,
+      "ip": 4.333333333333333,
+      "k": 4,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 7.43,
+    "away_bullpen_era": 1.99,
+    "park_factor": 106.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Maikel Garcia",
+        "id": 672580,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bobby Witt Jr.",
+        "id": 677951,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vinnie Pasquantino",
+        "id": 686469,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Salvador Perez",
+        "id": 521692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jac Caglianone",
+        "id": 695506,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Carter Jensen",
+        "id": 695600,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Isaac Collins",
+        "id": 686555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nick Loftin",
+        "id": 679845,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Lane Thomas",
+        "id": 657041,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Brice Turang",
+        "id": 668930,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis Rengifo",
+        "id": 650859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "William Contreras",
+        "id": 661388,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Christian Yelich",
+        "id": 592885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Garrett Mitchell",
+        "id": 669003,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jake Bauers",
+        "id": 641343,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Sal Frelick",
+        "id": 686217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brandon Lockridge",
+        "id": 663604,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "David Hamilton",
+        "id": 666152,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.72,
+    "mu_away": 8.69,
+    "mu_margin": -5.97,
+    "mu_total": 11.41,
+    "p_home_ml": 0.0797,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

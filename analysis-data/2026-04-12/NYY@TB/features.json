@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:05:38+00:00",
+  "game": {
+    "date": "2026-04-12",
+    "game_pk": 822998,
+    "home": "Tampa Bay Rays",
+    "away": "New York Yankees",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.9,
+    "home_rs_season": 4.64,
+    "away_rs_recent": 4.7,
+    "away_rs_season": 4.36,
+    "home_ra_recent": 5.2,
+    "home_ra_season": 5.43,
+    "away_ra_recent": 3.6,
+    "away_ra_season": 2.79,
+    "home_starter": {
+      "name": "Drew Rasmussen",
+      "id": 656876,
+      "fip": 4.0,
+      "ip": 10.0,
+      "k": 10,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Cam Schlittler",
+      "id": 693645,
+      "fip": 0.46,
+      "ip": 16.666666666666668,
+      "k": 22,
+      "bb": 0,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 6.04,
+    "away_bullpen_era": 2.78,
+    "park_factor": 100.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Yandy Díaz",
+        "id": 650490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jake Fraley",
+        "id": 641584,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cedric Mullins",
+        "id": 656775,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nick Fortes",
+        "id": 663743,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ben Rice",
+        "id": 700250,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Aaron Judge",
+        "id": 592450,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Amed Rosario",
+        "id": 642708,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Austin Wells",
+        "id": 669224,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ryan McMahon",
+        "id": 641857,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "José Caballero",
+        "id": 676609,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 1.38,
+    "mu_away": 4.9,
+    "mu_margin": -3.52,
+    "mu_total": 6.28,
+    "p_home_ml": 0.2034,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

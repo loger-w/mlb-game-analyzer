@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:30:09+00:00",
+  "game": {
+    "date": "2026-04-29",
+    "game_pk": 822907,
+    "home": "Texas Rangers",
+    "away": "New York Yankees",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.2,
+    "home_rs_season": 3.9,
+    "away_rs_recent": 6.3,
+    "away_rs_season": 5.1,
+    "home_ra_recent": 3.5,
+    "home_ra_season": 3.73,
+    "away_ra_recent": 2.5,
+    "away_ra_season": 3.43,
+    "home_starter": {
+      "name": "Nathan Eovaldi",
+      "id": 543135,
+      "fip": 5.64,
+      "ip": 32.666666666666664,
+      "k": 32,
+      "bb": 9,
+      "hbp": 1,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Elmer Rodríguez",
+      "id": 695684,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 2.78,
+    "away_bullpen_era": 3.89,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Sam Haggerty",
+        "id": 664059,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Josh Jung",
+        "id": 673962,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Corey Seager",
+        "id": 608369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Joc Pederson",
+        "id": 592626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Evan Carter",
+        "id": 694497,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kyle Higashioka",
+        "id": 543309,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Alejandro Osuna",
+        "id": 696030,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ezequiel Duran",
+        "id": 677649,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trent Grisham",
+        "id": 663757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ben Rice",
+        "id": 700250,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Aaron Judge",
+        "id": 592450,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Cody Bellinger",
+        "id": 641355,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jazz Chisholm Jr.",
+        "id": 665862,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Max Schuemann",
+        "id": 680474,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "J.C. Escarra",
+        "id": 641555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ryan McMahon",
+        "id": 641857,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "José Caballero",
+        "id": 676609,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.35,
+    "mu_away": 5.41,
+    "mu_margin": -2.06,
+    "mu_total": 8.76,
+    "p_home_ml": 0.3136,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

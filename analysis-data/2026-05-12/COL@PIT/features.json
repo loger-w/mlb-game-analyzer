@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:45:16+00:00",
+  "game": {
+    "date": "2026-05-12",
+    "game_pk": 823385,
+    "home": "Pittsburgh Pirates",
+    "away": "Colorado Rockies",
+    "venue": "PNC Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.8,
+    "home_rs_season": 5.02,
+    "away_rs_recent": 3.8,
+    "away_rs_season": 4.07,
+    "home_ra_recent": 4.4,
+    "home_ra_season": 4.27,
+    "away_ra_recent": 6.6,
+    "away_ra_season": 4.88,
+    "home_starter": {
+      "name": "Paul Skenes",
+      "id": 694973,
+      "fip": 2.79,
+      "ip": 42.0,
+      "k": 46,
+      "bb": 7,
+      "hbp": 2,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Michael Lorenzen",
+      "id": 547179,
+      "fip": 5.25,
+      "ip": 39.0,
+      "k": 26,
+      "bb": 12,
+      "hbp": 3,
+      "hr": 7
+    },
+    "home_bullpen_era": 4.14,
+    "away_bullpen_era": 4.31,
+    "park_factor": 102.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Oneil Cruz",
+        "id": 665833,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brandon Lowe",
+        "id": 664040,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryan Reynolds",
+        "id": 668804,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ryan O'Hearn",
+        "id": 656811,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nick Gonzales",
+        "id": 693304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Marcell Ozuna",
+        "id": 542303,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Billy Cook",
+        "id": 695257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Konnor Griffin",
+        "id": 804606,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Henry Davis",
+        "id": 680779,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Brenton Doyle",
+        "id": 686668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jordan Beck",
+        "id": 687597,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Tyler Freeman",
+        "id": 671289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Troy Johnston",
+        "id": 687859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Willi Castro",
+        "id": 650489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 6.27,
+    "mu_away": 3.22,
+    "mu_margin": 3.05,
+    "mu_total": 9.49,
+    "p_home_ml": 0.7333,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:59:11+00:00",
+  "game": {
+    "date": "2026-04-07",
+    "game_pk": 824375,
+    "home": "Colorado Rockies",
+    "away": "Houston Astros",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.9,
+    "home_rs_season": 3.9,
+    "away_rs_recent": 7.7,
+    "away_rs_season": 7.0,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 4.1,
+    "away_ra_recent": 6.1,
+    "away_ra_season": 5.82,
+    "home_starter": {
+      "name": "Kyle Freeland",
+      "id": 607536,
+      "fip": null,
+      "ip": 9.333333333333334,
+      "k": 8,
+      "bb": 3,
+      "hbp": 3,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Mike Burrows",
+      "id": 681347,
+      "fip": 4.97,
+      "ip": 10.666666666666666,
+      "k": 12,
+      "bb": 5,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 2.91,
+    "away_bullpen_era": 5.85,
+    "park_factor": 131.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mickey Moniak",
+        "id": 666160,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Troy Johnston",
+        "id": 687859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Willi Castro",
+        "id": 650489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brenton Doyle",
+        "id": 686668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brett Sullivan",
+        "id": 664954,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Jeremy Peña",
+        "id": 665161,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Yordan Alvarez",
+        "id": 670541,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jose Altuve",
+        "id": 514888,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Isaac Paredes",
+        "id": 670623,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Christian Walker",
+        "id": 572233,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cam Smith",
+        "id": 701358,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jake Meyers",
+        "id": 676694,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Yainer Diaz",
+        "id": 673237,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Joey Loperfido",
+        "id": 694388,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 6.18,
+    "mu_away": 8.21,
+    "mu_margin": -2.03,
+    "mu_total": 14.39,
+    "p_home_ml": 0.3162,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

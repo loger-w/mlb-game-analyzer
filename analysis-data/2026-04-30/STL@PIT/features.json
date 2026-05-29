@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:31:47+00:00",
+  "game": {
+    "date": "2026-04-30",
+    "game_pk": 823391,
+    "home": "Pittsburgh Pirates",
+    "away": "St. Louis Cardinals",
+    "venue": "PNC Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.1,
+    "home_rs_season": 4.77,
+    "away_rs_recent": 4.9,
+    "away_rs_season": 4.83,
+    "home_ra_recent": 4.6,
+    "home_ra_season": 4.23,
+    "away_ra_recent": 4.7,
+    "away_ra_season": 5.1,
+    "home_starter": {
+      "name": "Paul Skenes",
+      "id": 694973,
+      "fip": 2.86,
+      "ip": 29.0,
+      "k": 30,
+      "bb": 7,
+      "hbp": 2,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Hunter Dobbins",
+      "id": 690928,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 3.52,
+    "away_bullpen_era": 5.2,
+    "park_factor": 102.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Oneil Cruz",
+        "id": 665833,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brandon Lowe",
+        "id": 664040,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryan Reynolds",
+        "id": 668804,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ryan O'Hearn",
+        "id": 656811,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nick Gonzales",
+        "id": 693304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Spencer Horwitz",
+        "id": 687462,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Konnor Griffin",
+        "id": 804606,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jake Mangum",
+        "id": 663968,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nick Yorke",
+        "id": 694377,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "JJ Wetherholt",
+        "id": 802139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Iván Herrera",
+        "id": 671056,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alec Burleson",
+        "id": 676475,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jordan Walker",
+        "id": 691023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nolan Gorman",
+        "id": 669357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Masyn Winn",
+        "id": 691026,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Nathan Church",
+        "id": 701675,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Pedro Pagés",
+        "id": 686780,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Victor Scott II",
+        "id": 687363,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.96,
+    "mu_away": 3.52,
+    "mu_margin": 1.44,
+    "mu_total": 8.48,
+    "p_home_ml": 0.6329,
+    "p_home_cover_rl": 0.4944,
+    "p_over": 0.6364,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-04-30_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.505,
+      "away_point": 1.5,
+      "away_no_vig": 0.495
+    },
+    "total": {
+      "line": 7.0,
+      "over_no_vig": 0.496,
+      "under_no_vig": 0.504
+    }
+  },
+  "edges": {
+    "home_rl_pp": -1.1,
+    "over_pp": 14.0
+  }
+}

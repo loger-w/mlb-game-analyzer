@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:51:51+00:00",
+  "game": {
+    "date": "2026-05-16",
+    "game_pk": 824193,
+    "home": "Houston Astros",
+    "away": "Texas Rangers",
+    "venue": "Daikin Park"
+  },
+  "inputs": {
+    "home_rs_recent": 2.7,
+    "home_rs_season": 4.43,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 3.68,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 5.4,
+    "away_ra_recent": 3.6,
+    "away_ra_season": 3.73,
+    "home_starter": {
+      "name": "Kai-Wei Teng",
+      "id": 678906,
+      "fip": 3.87,
+      "ip": 26.0,
+      "k": 23,
+      "bb": 8,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Jacob deGrom",
+      "id": 594798,
+      "fip": 2.83,
+      "ip": 44.666666666666664,
+      "k": 57,
+      "bb": 8,
+      "hbp": 0,
+      "hr": 6
+    },
+    "home_bullpen_era": 5.86,
+    "away_bullpen_era": 3.07,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Nick Allen",
+        "id": 669397,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Isaac Paredes",
+        "id": 670623,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Yordan Alvarez",
+        "id": 670541,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Christian Walker",
+        "id": 572233,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Braden Shewmake",
+        "id": 669699,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Brice Matthews",
+        "id": 694728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Zach Cole",
+        "id": 805904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Cam Smith",
+        "id": 701358,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Christian Vázquez",
+        "id": 543877,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Joc Pederson",
+        "id": 592626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brandon Nimmo",
+        "id": 607043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Josh Jung",
+        "id": 673962,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Andrew McCutchen",
+        "id": 457705,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ezequiel Duran",
+        "id": 677649,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Alejandro Osuna",
+        "id": 696030,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Danny Jansen",
+        "id": 643376,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Justin Foscue",
+        "id": 679822,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.61,
+    "mu_away": 3.94,
+    "mu_margin": -1.33,
+    "mu_total": 6.55,
+    "p_home_ml": 0.3929,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

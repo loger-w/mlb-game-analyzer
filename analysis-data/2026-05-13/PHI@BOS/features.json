@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:47:02+00:00",
+  "game": {
+    "date": "2026-05-13",
+    "game_pk": 824763,
+    "home": "Boston Red Sox",
+    "away": "Philadelphia Phillies",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.1,
+    "home_rs_season": 3.74,
+    "away_rs_recent": 4.8,
+    "away_rs_season": 4.0,
+    "home_ra_recent": 3.0,
+    "home_ra_season": 4.05,
+    "away_ra_recent": 3.5,
+    "away_ra_season": 4.72,
+    "home_starter": {
+      "name": "Sonny Gray",
+      "id": 543243,
+      "fip": 4.28,
+      "ip": 28.0,
+      "k": 15,
+      "bb": 7,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Andrew Painter",
+      "id": 691725,
+      "fip": 4.84,
+      "ip": 32.666666666666664,
+      "k": 30,
+      "bb": 12,
+      "hbp": 1,
+      "hr": 6
+    },
+    "home_bullpen_era": 3.28,
+    "away_bullpen_era": 4.0,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Isiah Kiner-Falefa",
+        "id": 643396,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Trevor Story",
+        "id": 596115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kyle Schwarber",
+        "id": 656941,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "J.T. Realmuto",
+        "id": 592663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Justin Crawford",
+        "id": 702222,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Edmundo Sosa",
+        "id": 624641,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.93,
+    "mu_away": 4.12,
+    "mu_margin": -0.19,
+    "mu_total": 8.05,
+    "p_home_ml": 0.4845,
+    "p_home_cover_rl": 0.6055,
+    "p_over": 0.5447,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-13_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.618,
+      "away_point": -1.5,
+      "away_no_vig": 0.382
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.5,
+      "under_no_vig": 0.5
+    }
+  },
+  "edges": {
+    "home_rl_pp": -1.2,
+    "over_pp": 4.5
+  }
+}

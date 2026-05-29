@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T09:02:19+00:00",
+  "game": {
+    "date": "2026-05-23",
+    "game_pk": 824760,
+    "home": "Boston Red Sox",
+    "away": "Minnesota Twins",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.1,
+    "home_rs_season": 3.67,
+    "away_rs_recent": 4.4,
+    "away_rs_season": 4.67,
+    "home_ra_recent": 3.2,
+    "home_ra_season": 3.92,
+    "away_ra_recent": 3.1,
+    "away_ra_season": 4.65,
+    "home_starter": {
+      "name": "Jovani Morán",
+      "id": 663558,
+      "fip": 4.62,
+      "ip": 25.666666666666668,
+      "k": 29,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Taj Bradley",
+      "id": 671737,
+      "fip": 3.48,
+      "ip": 47.0,
+      "k": 52,
+      "bb": 17,
+      "hbp": 2,
+      "hr": 5
+    },
+    "home_bullpen_era": 3.13,
+    "away_bullpen_era": 4.86,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mickey Gasper",
+        "id": 681508,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nick Sogard",
+        "id": 686765,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Connor Wong",
+        "id": 657136,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Isiah Kiner-Falefa",
+        "id": 643396,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "James Outman",
+        "id": 681546,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Austin Martin",
+        "id": 668885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Kody Clemens",
+        "id": 665019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Victor Caratini",
+        "id": 605170,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Orlando Arcia",
+        "id": 606115,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Brooks Lee",
+        "id": 686797,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ryan Kreidler",
+        "id": 668952,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.47,
+    "mu_away": 4.56,
+    "mu_margin": -1.09,
+    "mu_total": 8.03,
+    "p_home_ml": 0.4119,
+    "p_home_cover_rl": 0.2984,
+    "p_over": 0.5431,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-23_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.40700000000000003,
+      "away_point": 1.5,
+      "away_no_vig": 0.593
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.519,
+      "under_no_vig": 0.48100000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -10.9,
+    "over_pp": 2.4
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:15:05+00:00",
+  "game": {
+    "date": "2026-04-18",
+    "game_pk": 825098,
+    "home": "Arizona Diamondbacks",
+    "away": "Toronto Blue Jays",
+    "venue": "Chase Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.4,
+    "home_rs_season": 4.45,
+    "away_rs_recent": 3.7,
+    "away_rs_season": 3.55,
+    "home_ra_recent": 3.8,
+    "home_ra_season": 4.5,
+    "away_ra_recent": 5.7,
+    "away_ra_season": 4.95,
+    "home_starter": {
+      "name": "Zac Gallen",
+      "id": 668678,
+      "fip": 4.35,
+      "ip": 20.0,
+      "k": 11,
+      "bb": 7,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Max Scherzer",
+      "id": 453286,
+      "fip": 7.84,
+      "ip": 10.333333333333334,
+      "k": 9,
+      "bb": 4,
+      "hbp": 1,
+      "hr": 4
+    },
+    "home_bullpen_era": 4.81,
+    "away_bullpen_era": 4.25,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jorge Barrosa",
+        "id": 678489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Adrian Del Castillo",
+        "id": 680728,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jose Fernandez",
+        "id": 699912,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Alek Thomas",
+        "id": 677950,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Nathan Lukes",
+        "id": 664770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ernie Clement",
+        "id": 676391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vladimir Guerrero Jr.",
+        "id": 665489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jesús Sánchez",
+        "id": 660821,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Davis Schneider",
+        "id": 676914,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Andrés Giménez",
+        "id": 665926,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kazuma Okamoto",
+        "id": 672960,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Myles Straw",
+        "id": 664702,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Tyler Heineman",
+        "id": 623168,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 7.03,
+    "mu_away": 3.75,
+    "mu_margin": 3.28,
+    "mu_total": 10.78,
+    "p_home_ml": 0.7803,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

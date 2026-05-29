@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:53:59+00:00",
+  "game": {
+    "date": "2026-04-04",
+    "game_pk": 824378,
+    "home": "Colorado Rockies",
+    "away": "Philadelphia Phillies",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.57,
+    "home_rs_season": 3.57,
+    "away_rs_recent": 4.71,
+    "away_rs_season": 4.71,
+    "home_ra_recent": 4.43,
+    "home_ra_season": 4.43,
+    "away_ra_recent": 5.29,
+    "away_ra_season": 5.29,
+    "home_starter": {
+      "name": "Brennan Bernardino",
+      "id": 657514,
+      "fip": null,
+      "ip": 3.0,
+      "k": 1,
+      "bb": 0,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Jesús Luzardo",
+      "id": 666200,
+      "fip": null,
+      "ip": 6.0,
+      "k": 7,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.66,
+    "away_bullpen_era": 5.81,
+    "park_factor": 131.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Tyler Freeman",
+        "id": 671289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Victor Vodnik",
+        "id": 680767,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Willi Castro",
+        "id": 650489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Troy Johnston",
+        "id": 687859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jake McCarthy",
+        "id": 664983,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Schwarber",
+        "id": 656941,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Adolis García",
+        "id": 666969,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brandon Marsh",
+        "id": 669016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "J.T. Realmuto",
+        "id": 592663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Justin Crawford",
+        "id": 702222,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.28,
+    "mu_away": 5.76,
+    "mu_margin": -0.48,
+    "mu_total": 11.04,
+    "p_home_ml": 0.455,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

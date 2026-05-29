@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:28:41+00:00",
+  "game": {
+    "date": "2026-05-01",
+    "game_pk": 824686,
+    "home": "Chicago Cubs",
+    "away": "Arizona Diamondbacks",
+    "venue": "Wrigley Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.7,
+    "home_rs_season": 5.28,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 4.7,
+    "home_ra_recent": 5.2,
+    "home_ra_season": 4.19,
+    "away_ra_recent": 7.5,
+    "away_ra_season": 5.5,
+    "home_starter": {
+      "name": "Colin Rea",
+      "id": 607067,
+      "fip": 3.87,
+      "ip": 27.333333333333332,
+      "k": 24,
+      "bb": 9,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Zac Gallen",
+      "id": 668678,
+      "fip": 3.55,
+      "ip": 28.666666666666668,
+      "k": 17,
+      "bb": 7,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.05,
+    "away_bullpen_era": 5.03,
+    "park_factor": 92.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Matt Shaw",
+        "id": 807713,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Moisés Ballesteros",
+        "id": 694208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alex Bregman",
+        "id": 608324,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ian Happ",
+        "id": 664023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Seiya Suzuki",
+        "id": 673548,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Michael Busch",
+        "id": 683737,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carson Kelly",
+        "id": 608348,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Pete Crow-Armstrong",
+        "id": 691718,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Dansby Swanson",
+        "id": 621020,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ildemaro Vargas",
+        "id": 545121,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Gabriel Moreno",
+        "id": 672515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jose Fernandez",
+        "id": 699912,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tim Tawa",
+        "id": 694374,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jorge Barrosa",
+        "id": 678489,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.93,
+    "mu_away": 4.21,
+    "mu_margin": 0.72,
+    "mu_total": 9.14,
+    "p_home_ml": 0.5585,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

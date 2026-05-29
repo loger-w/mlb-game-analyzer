@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:58:11+00:00",
+  "game": {
+    "date": "2026-05-20",
+    "game_pk": 824273,
+    "home": "Detroit Tigers",
+    "away": "Cleveland Guardians",
+    "venue": "Comerica Park"
+  },
+  "inputs": {
+    "home_rs_recent": 2.5,
+    "home_rs_season": 3.94,
+    "away_rs_recent": 5.4,
+    "away_rs_season": 4.35,
+    "home_ra_recent": 5.0,
+    "home_ra_season": 4.35,
+    "away_ra_recent": 3.2,
+    "away_ra_season": 3.96,
+    "home_starter": {
+      "name": "TBD",
+      "id": null,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Tanner Bibee",
+      "id": 676440,
+      "fip": 4.25,
+      "ip": 52.0,
+      "k": 47,
+      "bb": 20,
+      "hbp": 1,
+      "hr": 7
+    },
+    "home_bullpen_era": 3.92,
+    "away_bullpen_era": 3.98,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Colt Keith",
+        "id": 690993,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kevin McGonigle",
+        "id": 805808,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Dillon Dingler",
+        "id": 693307,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Riley Greene",
+        "id": 682985,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Matt Vierling",
+        "id": 663837,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Wenceel Pérez",
+        "id": 672761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Zach McKinstry",
+        "id": 656716,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hao-Yu  Lee",
+        "id": 701678,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Spencer Torkelson",
+        "id": 679529,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Angel Martínez",
+        "id": 682657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "José Ramírez",
+        "id": 608070,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Chase DeLauter",
+        "id": 800050,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Manzardo",
+        "id": 700932,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Daniel Schneemann",
+        "id": 682177,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Travis Bazzana",
+        "id": 683953,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Steven Kwan",
+        "id": 680757,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Patrick Bailey",
+        "id": 672275,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brayan Rocchio",
+        "id": 677587,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.6,
+    "mu_away": 4.87,
+    "mu_margin": -1.27,
+    "mu_total": 8.47,
+    "p_home_ml": 0.3977,
+    "p_home_cover_rl": 0.2858,
+    "p_over": 0.5785,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-20_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.336,
+      "away_point": 1.5,
+      "away_no_vig": 0.664
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.493,
+      "under_no_vig": 0.507
+    }
+  },
+  "edges": {
+    "home_rl_pp": -5.0,
+    "over_pp": 8.6
+  }
+}

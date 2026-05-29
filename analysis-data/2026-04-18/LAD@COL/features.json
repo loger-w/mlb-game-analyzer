@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:14:58+00:00",
+  "game": {
+    "date": "2026-04-18",
+    "game_pk": 824372,
+    "home": "Colorado Rockies",
+    "away": "Los Angeles Dodgers",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 3.8,
+    "away_rs_recent": 5.8,
+    "away_rs_season": 5.89,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 4.5,
+    "away_ra_recent": 2.6,
+    "away_ra_season": 3.16,
+    "home_starter": {
+      "name": "Ryan Feltner",
+      "id": 663372,
+      "fip": 6.26,
+      "ip": 12.333333333333334,
+      "k": 9,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Emmet Sheehan",
+      "id": 686218,
+      "fip": 5.9,
+      "ip": 15.0,
+      "k": 14,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 4
+    },
+    "home_bullpen_era": 3.04,
+    "away_bullpen_era": 3.24,
+    "park_factor": 131.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Edouard Julien",
+        "id": 666397,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mickey Moniak",
+        "id": 666160,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Troy Johnston",
+        "id": 687859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brenton Doyle",
+        "id": 686668,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jordan Beck",
+        "id": 687597,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Freddie Freeman",
+        "id": 518692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dalton Rushing",
+        "id": 687221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hyeseong Kim",
+        "id": 808975,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.42,
+    "mu_away": 8.67,
+    "mu_margin": -3.25,
+    "mu_total": 14.09,
+    "p_home_ml": 0.2218,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

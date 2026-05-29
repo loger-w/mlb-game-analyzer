@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:28:48+00:00",
+  "game": {
+    "date": "2026-04-28",
+    "game_pk": 823636,
+    "home": "New York Mets",
+    "away": "Washington Nationals",
+    "venue": "Citi Field"
+  },
+  "inputs": {
+    "home_rs_recent": 2.7,
+    "home_rs_season": 3.17,
+    "away_rs_recent": 4.9,
+    "away_rs_season": 5.38,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 4.21,
+    "away_ra_recent": 5.4,
+    "away_ra_season": 5.9,
+    "home_starter": {
+      "name": "Clay Holmes",
+      "id": 605280,
+      "fip": 4.23,
+      "ip": 30.0,
+      "k": 19,
+      "bb": 10,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Zack Littell",
+      "id": 641793,
+      "fip": 8.58,
+      "ip": 25.0,
+      "k": 15,
+      "bb": 8,
+      "hbp": 0,
+      "hr": 11
+    },
+    "home_bullpen_era": 3.54,
+    "away_bullpen_era": 5.27,
+    "park_factor": 96.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Juan Soto",
+        "id": 665742,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Ronny Mauricio",
+        "id": 677595,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Brady House",
+        "id": 691781,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jorbit Vivas",
+        "id": 678391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Millas",
+        "id": 686452,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.76,
+    "mu_away": 4.5,
+    "mu_margin": 0.26,
+    "mu_total": 9.26,
+    "p_home_ml": 0.5244,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

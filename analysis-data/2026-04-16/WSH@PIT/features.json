@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:10:51+00:00",
+  "game": {
+    "date": "2026-04-16",
+    "game_pk": 823396,
+    "home": "Pittsburgh Pirates",
+    "away": "Washington Nationals",
+    "venue": "PNC Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.1,
+    "home_rs_season": 4.89,
+    "away_rs_recent": 5.0,
+    "away_rs_season": 5.5,
+    "home_ra_recent": 3.6,
+    "home_ra_season": 3.78,
+    "away_ra_recent": 5.9,
+    "away_ra_season": 6.11,
+    "home_starter": {
+      "name": "Braxton Ashcraft",
+      "id": 677952,
+      "fip": 1.63,
+      "ip": 17.0,
+      "k": 20,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Foster Griffin",
+      "id": 656492,
+      "fip": 4.6,
+      "ip": 15.333333333333334,
+      "k": 12,
+      "bb": 6,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.51,
+    "away_bullpen_era": 6.17,
+    "park_factor": 102.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Jake Mangum",
+        "id": 663968,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ryan O'Hearn",
+        "id": 656811,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Oneil Cruz",
+        "id": 665833,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Marcell Ozuna",
+        "id": 542303,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nick Yorke",
+        "id": 694377,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Brandon Lowe",
+        "id": 664040,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Henry Davis",
+        "id": 680779,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Konnor Griffin",
+        "id": 804606,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Bryan Reynolds",
+        "id": 668804,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Brady House",
+        "id": 691781,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jorbit Vivas",
+        "id": 678391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Keibert Ruiz",
+        "id": 660688,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 6.01,
+    "mu_away": 2.94,
+    "mu_margin": 3.07,
+    "mu_total": 8.95,
+    "p_home_ml": 0.7653,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

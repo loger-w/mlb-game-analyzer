@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:33:48+00:00",
+  "game": {
+    "date": "2026-05-04",
+    "game_pk": 824363,
+    "home": "Colorado Rockies",
+    "away": "New York Mets",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.2,
+    "home_rs_season": 4.17,
+    "away_rs_recent": 3.0,
+    "away_rs_season": 3.37,
+    "home_ra_recent": 4.7,
+    "home_ra_season": 4.78,
+    "away_ra_recent": 3.7,
+    "away_ra_season": 4.26,
+    "home_starter": {
+      "name": "Tomoyuki Sugano",
+      "id": 608372,
+      "fip": 4.68,
+      "ip": 31.666666666666668,
+      "k": 21,
+      "bb": 9,
+      "hbp": 0,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Huascar Brazobán",
+      "id": 623211,
+      "fip": 2.84,
+      "ip": 15.666666666666666,
+      "k": 13,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 4.38,
+    "away_bullpen_era": 3.53,
+    "park_factor": 131.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Mickey Moniak",
+        "id": 666160,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Tyler Freeman",
+        "id": 671289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "TJ Rumfield",
+        "id": 681198,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Hunter Goodman",
+        "id": 696100,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Willi Castro",
+        "id": 650489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Troy Johnston",
+        "id": 687859,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kyle Karros",
+        "id": 691720,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ezequiel Tovar",
+        "id": 678662,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Edouard Julien",
+        "id": 666397,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Juan Soto",
+        "id": 665742,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Luis Torrens",
+        "id": 620443,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.07,
+    "mu_away": 4.61,
+    "mu_margin": -0.54,
+    "mu_total": 8.68,
+    "p_home_ml": 0.4561,
+    "p_home_cover_rl": 0.5777,
+    "p_over": 0.3937,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-04_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.511,
+      "away_point": -1.5,
+      "away_no_vig": 0.489
+    },
+    "total": {
+      "line": 10.0,
+      "over_no_vig": 0.48700000000000004,
+      "under_no_vig": 0.513
+    }
+  },
+  "edges": {
+    "home_rl_pp": 6.7,
+    "over_pp": -9.3
+  }
+}

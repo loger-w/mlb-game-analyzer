@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:47:15+00:00",
+  "game": {
+    "date": "2026-05-13",
+    "game_pk": 823631,
+    "home": "New York Mets",
+    "away": "Detroit Tigers",
+    "venue": "Citi Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.9,
+    "home_rs_season": 3.47,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 4.21,
+    "home_ra_recent": 2.8,
+    "home_ra_season": 4.0,
+    "away_ra_recent": 4.8,
+    "away_ra_season": 4.31,
+    "home_starter": {
+      "name": "Christian Scott",
+      "id": 681035,
+      "fip": 4.01,
+      "ip": 11.0,
+      "k": 15,
+      "bb": 7,
+      "hbp": 2,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Framber Valdez",
+      "id": 664285,
+      "fip": 4.3,
+      "ip": 43.333333333333336,
+      "k": 35,
+      "bb": 15,
+      "hbp": 4,
+      "hr": 5
+    },
+    "home_bullpen_era": 3.7,
+    "away_bullpen_era": 3.95,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "MJ Melendez",
+        "id": 669004,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Mark Vientos",
+        "id": 668901,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tyrone Taylor",
+        "id": 621438,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "A.J. Ewing",
+        "id": 805999,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Luis Torrens",
+        "id": 620443,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kevin McGonigle",
+        "id": 805808,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Dillon Dingler",
+        "id": 693307,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jahmai Jones",
+        "id": 663330,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Riley Greene",
+        "id": 682985,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Matt Vierling",
+        "id": 663837,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Wenceel Pérez",
+        "id": 672761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Spencer Torkelson",
+        "id": 679529,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Zach McKinstry",
+        "id": 656716,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Gage Workman",
+        "id": 669398,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.45,
+    "mu_away": 3.52,
+    "mu_margin": -0.07,
+    "mu_total": 6.97,
+    "p_home_ml": 0.4943,
+    "p_home_cover_rl": 0.3742,
+    "p_over": 0.4569,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-13_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.418,
+      "away_point": 1.5,
+      "away_no_vig": 0.5820000000000001
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.48200000000000004,
+      "under_no_vig": 0.518
+    }
+  },
+  "edges": {
+    "home_rl_pp": -4.4,
+    "over_pp": -2.5
+  }
+}

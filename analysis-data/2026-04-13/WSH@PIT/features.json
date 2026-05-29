@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:06:48+00:00",
+  "game": {
+    "date": "2026-04-13",
+    "game_pk": 823400,
+    "home": "Pittsburgh Pirates",
+    "away": "Washington Nationals",
+    "venue": "PNC Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.5,
+    "home_rs_season": 4.4,
+    "away_rs_recent": 5.6,
+    "away_rs_season": 5.93,
+    "home_ra_recent": 3.5,
+    "home_ra_season": 3.87,
+    "away_ra_recent": 6.6,
+    "away_ra_season": 5.87,
+    "home_starter": {
+      "name": "Paul Skenes",
+      "id": 694973,
+      "fip": 4.18,
+      "ip": 12.0,
+      "k": 12,
+      "bb": 6,
+      "hbp": 2,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "PJ Poulin",
+      "id": 676571,
+      "fip": null,
+      "ip": 9.0,
+      "k": 6,
+      "bb": 7,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.84,
+    "away_bullpen_era": 5.78,
+    "park_factor": 102.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Billy Cook",
+        "id": 695257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Brandon Lowe",
+        "id": 664040,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Joey Bart",
+        "id": 663698,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Nick Gonzales",
+        "id": 693304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Nick Yorke",
+        "id": 694377,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Spencer Horwitz",
+        "id": 687462,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Konnor Griffin",
+        "id": 804606,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jake Mangum",
+        "id": 663968,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Henry Davis",
+        "id": 680779,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Joey Wiemer",
+        "id": 686894,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "José Tena",
+        "id": 677588,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jorbit Vivas",
+        "id": 678391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Keibert Ruiz",
+        "id": 660688,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.09,
+    "mu_away": 5.45,
+    "mu_margin": -0.36,
+    "mu_total": 10.54,
+    "p_home_ml": 0.4662,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

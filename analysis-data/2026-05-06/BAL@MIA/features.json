@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:37:30+00:00",
+  "game": {
+    "date": "2026-05-06",
+    "game_pk": 823872,
+    "home": "Miami Marlins",
+    "away": "Baltimore Orioles",
+    "venue": "loanDepot park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.9,
+    "home_rs_season": 4.25,
+    "away_rs_recent": 4.2,
+    "away_rs_season": 4.43,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 4.36,
+    "away_ra_recent": 6.8,
+    "away_ra_season": 5.49,
+    "home_starter": {
+      "name": "Eury Pérez",
+      "id": 691587,
+      "fip": 4.59,
+      "ip": 36.333333333333336,
+      "k": 39,
+      "bb": 16,
+      "hbp": 2,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Brandon Young",
+      "id": 687064,
+      "fip": 5.55,
+      "ip": 14.666666666666666,
+      "k": 9,
+      "bb": 5,
+      "hbp": 0,
+      "hr": 3
+    },
+    "home_bullpen_era": 3.42,
+    "away_bullpen_era": 4.75,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Xavier Edwards",
+        "id": 669364,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Liam Hicks",
+        "id": 689414,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Connor Norby",
+        "id": 681393,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Stowers",
+        "id": 669065,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Christopher Morel",
+        "id": 666624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Gunnar Henderson",
+        "id": 683002,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Taylor Ward",
+        "id": 621493,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Adley Rutschman",
+        "id": 668939,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Samuel Basallo",
+        "id": 694212,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Colton Cowser",
+        "id": 681297,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Blaze Alexander",
+        "id": 677942,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jeremiah Jackson",
+        "id": 669236,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 5.45,
+    "mu_away": 4.53,
+    "mu_margin": 0.92,
+    "mu_total": 9.98,
+    "p_home_ml": 0.5745,
+    "p_home_cover_rl": 0.4529,
+    "p_over": 0.6188,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-06_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.35700000000000004,
+      "away_point": 1.5,
+      "away_no_vig": 0.643
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.499,
+      "under_no_vig": 0.501
+    }
+  },
+  "edges": {
+    "home_rl_pp": 9.6,
+    "over_pp": 12.0
+  }
+}

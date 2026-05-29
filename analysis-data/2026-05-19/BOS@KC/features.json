@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:56:30+00:00",
+  "game": {
+    "date": "2026-05-19",
+    "game_pk": 824112,
+    "home": "Kansas City Royals",
+    "away": "Boston Red Sox",
+    "venue": "Kauffman Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 3.3,
+    "home_rs_season": 3.88,
+    "away_rs_recent": 1.7,
+    "away_rs_season": 3.54,
+    "home_ra_recent": 4.0,
+    "home_ra_season": 4.35,
+    "away_ra_recent": 2.4,
+    "away_ra_season": 3.92,
+    "home_starter": {
+      "name": "Bailey Falter",
+      "id": 663559,
+      "fip": null,
+      "ip": 5.333333333333333,
+      "k": 4,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Ranger Suarez",
+      "id": 624133,
+      "fip": 2.92,
+      "ip": 44.333333333333336,
+      "k": 40,
+      "bb": 11,
+      "hbp": 0,
+      "hr": 3
+    },
+    "home_bullpen_era": 4.29,
+    "away_bullpen_era": 3.11,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Maikel Garcia",
+        "id": 672580,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bobby Witt Jr.",
+        "id": 677951,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Salvador Perez",
+        "id": 521692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Lane Thomas",
+        "id": 657041,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jac Caglianone",
+        "id": 695506,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Starling Marte",
+        "id": 516782,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Vinnie Pasquantino",
+        "id": 686469,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Michael Massey",
+        "id": 686681,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Carter Jensen",
+        "id": 695600,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Masataka Yoshida",
+        "id": 807799,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Nick Sogard",
+        "id": 686765,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Isiah Kiner-Falefa",
+        "id": 643396,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.78,
+    "mu_away": 3.1,
+    "mu_margin": -0.32,
+    "mu_total": 5.88,
+    "p_home_ml": 0.4739,
+    "p_home_cover_rl": 0.355,
+    "p_over": 0.3325,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-19_22-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.345,
+      "away_point": 1.5,
+      "away_no_vig": 0.655
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.501,
+      "under_no_vig": 0.499
+    }
+  },
+  "edges": {
+    "home_rl_pp": 1.0,
+    "over_pp": -16.8
+  }
+}

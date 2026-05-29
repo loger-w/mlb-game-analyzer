@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:55:31+00:00",
+  "game": {
+    "date": "2026-05-18",
+    "game_pk": 823301,
+    "home": "San Diego Padres",
+    "away": "Los Angeles Dodgers",
+    "venue": "Petco Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.3,
+    "home_rs_season": 4.24,
+    "away_rs_recent": 5.2,
+    "away_rs_season": 5.28,
+    "home_ra_recent": 3.3,
+    "home_ra_season": 4.09,
+    "away_ra_recent": 3.5,
+    "away_ra_season": 3.28,
+    "home_starter": {
+      "name": "Michael King",
+      "id": 650633,
+      "fip": 3.68,
+      "ip": 51.333333333333336,
+      "k": 50,
+      "bb": 22,
+      "hbp": 4,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Yoshinobu Yamamoto",
+      "id": 808967,
+      "fip": 3.92,
+      "ip": 50.0,
+      "k": 48,
+      "bb": 10,
+      "hbp": 1,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.42,
+    "away_bullpen_era": 3.24,
+    "park_factor": 95.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Fernando Tatis Jr.",
+        "id": 665487,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Miguel Andujar",
+        "id": 609280,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ty France",
+        "id": 664034,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Manny Machado",
+        "id": 592518,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Xander Bogaerts",
+        "id": 593428,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jackson Merrill",
+        "id": 701538,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Sung-Mun Song",
+        "id": 823550,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Ramón Laureano",
+        "id": 657656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Rodolfo Durán",
+        "id": 660710,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Mookie Betts",
+        "id": 605141,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alex Call",
+        "id": 669743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Will Smith",
+        "id": 669257,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Hyeseong Kim",
+        "id": 808975,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.23,
+    "mu_away": 4.25,
+    "mu_margin": -1.02,
+    "mu_total": 7.48,
+    "p_home_ml": 0.4175,
+    "p_home_cover_rl": 0.539,
+    "p_over": 0.4175,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-18_22-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.544,
+      "away_point": -1.5,
+      "away_no_vig": 0.456
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.501,
+      "under_no_vig": 0.499
+    }
+  },
+  "edges": {
+    "home_rl_pp": -0.5,
+    "over_pp": -8.4
+  }
+}

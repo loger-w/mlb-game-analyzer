@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:57:38+00:00",
+  "game": {
+    "date": "2026-04-06",
+    "game_pk": 824052,
+    "home": "Los Angeles Angels",
+    "away": "Atlanta Braves",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 4.1,
+    "home_rs_season": 4.1,
+    "away_rs_recent": 4.9,
+    "away_rs_season": 4.9,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 4.5,
+    "away_ra_recent": 2.2,
+    "away_ra_season": 2.2,
+    "home_starter": {
+      "name": "José Soriano",
+      "id": 667755,
+      "fip": 2.77,
+      "ip": 12.0,
+      "k": 11,
+      "bb": 6,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Chris Sale",
+      "id": 519242,
+      "fip": 3.68,
+      "ip": 12.0,
+      "k": 9,
+      "bb": 3,
+      "hbp": 1,
+      "hr": 1
+    },
+    "home_bullpen_era": 2.68,
+    "away_bullpen_era": 1.08,
+    "park_factor": 101.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Zach Neto",
+        "id": 687263,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Josh Lowe",
+        "id": 666139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jo Adell",
+        "id": 666176,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jeimer Candelario",
+        "id": 600869,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Logan O'Hoppe",
+        "id": 681351,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Oswald Peraza",
+        "id": 672724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Yoán Moncada",
+        "id": 660162,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Bryce Teodosio",
+        "id": 669326,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Adam Frazier",
+        "id": 624428,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ronald Acuña Jr.",
+        "id": 660670,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Drake Baldwin",
+        "id": 686948,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Matt Olson",
+        "id": 621566,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Austin Riley",
+        "id": 663586,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Mike Yastrzemski",
+        "id": 573262,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ozzie Albies",
+        "id": 645277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Dominic Smith",
+        "id": 642086,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Michael Harris II",
+        "id": 671739,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Mauricio Dubón",
+        "id": 643289,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.48,
+    "mu_away": 3.08,
+    "mu_margin": -0.6,
+    "mu_total": 5.56,
+    "p_home_ml": 0.4438,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

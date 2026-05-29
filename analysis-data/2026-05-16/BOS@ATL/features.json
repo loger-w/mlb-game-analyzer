@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T08:52:16+00:00",
+  "game": {
+    "date": "2026-05-16",
+    "game_pk": 824924,
+    "home": "Atlanta Braves",
+    "away": "Boston Red Sox",
+    "venue": "Truist Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.5,
+    "home_rs_season": 5.33,
+    "away_rs_recent": 2.8,
+    "away_rs_season": 3.62,
+    "home_ra_recent": 2.4,
+    "home_ra_season": 3.29,
+    "away_ra_recent": 2.4,
+    "away_ra_season": 3.93,
+    "home_starter": {
+      "name": "Bryce Elder",
+      "id": 693821,
+      "fip": 3.08,
+      "ip": 54.666666666666664,
+      "k": 53,
+      "bb": 20,
+      "hbp": 2,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Payton Tolle",
+      "id": 801139,
+      "fip": 2.79,
+      "ip": 22.666666666666668,
+      "k": 27,
+      "bb": 6,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.06,
+    "away_bullpen_era": 3.18,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Drake Baldwin",
+        "id": 686948,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Ozzie Albies",
+        "id": 645277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Matt Olson",
+        "id": 621566,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jorge Mateo",
+        "id": 622761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Mauricio Dubón",
+        "id": 643289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Michael Harris II",
+        "id": 671739,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Ha-Seong Kim",
+        "id": 673490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Sandy León",
+        "id": 506702,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "José Azócar",
+        "id": 640492,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Jarren Duran",
+        "id": 680776,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Carlos Narváez",
+        "id": 665966,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Wilyer Abreu",
+        "id": 677800,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Willson Contreras",
+        "id": 575929,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Masataka Yoshida",
+        "id": 807799,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ceddanne Rafaela",
+        "id": 678882,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Marcelo Mayer",
+        "id": 691785,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Andruw Monasterio",
+        "id": 655316,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Caleb Durbin",
+        "id": 702332,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.23,
+    "mu_away": 2.39,
+    "mu_margin": 0.84,
+    "mu_total": 5.62,
+    "p_home_ml": 0.5681,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

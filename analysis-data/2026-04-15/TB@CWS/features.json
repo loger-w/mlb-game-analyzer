@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T05:10:09+00:00",
+  "game": {
+    "date": "2026-04-15",
+    "game_pk": 824615,
+    "home": "Chicago White Sox",
+    "away": "Tampa Bay Rays",
+    "venue": "Rate Field"
+  },
+  "inputs": {
+    "home_rs_recent": 2.8,
+    "home_rs_season": 3.0,
+    "away_rs_recent": 4.8,
+    "away_rs_season": 4.88,
+    "home_ra_recent": 3.1,
+    "home_ra_season": 4.83,
+    "away_ra_recent": 4.7,
+    "away_ra_season": 5.31,
+    "home_starter": {
+      "name": "Sean Burke",
+      "id": 680732,
+      "fip": 1.9,
+      "ip": 15.0,
+      "k": 15,
+      "bb": 3,
+      "hbp": 1,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Jesse Scholtens",
+      "id": 669947,
+      "fip": null,
+      "ip": 4.666666666666667,
+      "k": 4,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 5.24,
+    "away_bullpen_era": 6.23,
+    "park_factor": 97.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Andrew Benintendi",
+        "id": 643217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Edgar Quero",
+        "id": 700337,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Sam Antonacci",
+        "id": 803011,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Tanner Murray",
+        "id": 695020,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Derek Hill",
+        "id": 656537,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Reese McGuire",
+        "id": 624512,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Luisangel Acuña",
+        "id": 682668,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Cedric Mullins",
+        "id": 656775,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Richie Palacios",
+        "id": 680700,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Hunter Feduccia",
+        "id": 676439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.31,
+    "mu_away": 3.46,
+    "mu_margin": -0.15,
+    "mu_total": 6.77,
+    "p_home_ml": 0.4859,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}

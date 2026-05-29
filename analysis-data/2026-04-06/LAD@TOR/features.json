@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T04:57:06+00:00",
+  "game": {
+    "date": "2026-04-06",
+    "game_pk": 822832,
+    "home": "Toronto Blue Jays",
+    "away": "Los Angeles Dodgers",
+    "venue": "Rogers Centre"
+  },
+  "inputs": {
+    "home_rs_recent": 3.4,
+    "home_rs_season": 3.4,
+    "away_rs_recent": 6.0,
+    "away_rs_season": 6.0,
+    "home_ra_recent": 4.2,
+    "home_ra_season": 4.2,
+    "away_ra_recent": 3.78,
+    "away_ra_season": 3.78,
+    "home_starter": {
+      "name": "Max Scherzer",
+      "id": 453286,
+      "fip": null,
+      "ip": 6.0,
+      "k": 4,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Justin Wrobleski",
+      "id": 680736,
+      "fip": null,
+      "ip": 4.0,
+      "k": 2,
+      "bb": 1,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.17,
+    "away_bullpen_era": 3.0,
+    "park_factor": 99.0,
+    "league_rg_used": 4.4
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Brandon Valenzuela",
+        "id": 678218,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Davis Schneider",
+        "id": 676914,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vladimir Guerrero Jr.",
+        "id": 665489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kazuma Okamoto",
+        "id": 672960,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ernie Clement",
+        "id": 676391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Daulton Varsho",
+        "id": 662139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Myles Straw",
+        "id": 664702,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tyler Heineman",
+        "id": 623168,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Andrés Giménez",
+        "id": 665926,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Shohei Ohtani",
+        "id": 660271,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Teoscar Hernández",
+        "id": 606192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Alex Call",
+        "id": 669743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Alex Freeland",
+        "id": 690976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Dalton Rushing",
+        "id": 687221,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Hyeseong Kim",
+        "id": 808975,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 2.94,
+    "mu_away": 5.82,
+    "mu_margin": -2.88,
+    "mu_total": 8.76,
+    "p_home_ml": 0.2486,
+    "p_home_cover_rl": null,
+    "p_over": null,
+    "constants_used": {
+      "league_rg": 4.4,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.0,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": null,
+  "edges": {
+    "home_rl_pp": null,
+    "over_pp": null
+  }
+}
