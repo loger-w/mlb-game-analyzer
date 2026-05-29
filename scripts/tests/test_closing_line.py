@@ -115,3 +115,52 @@ def test_excludes_next_day_game_in_late_snapshot(tmp_path):
     )
     # Should NOT return the 5/03 game even though it's in a 5/02-named file
     assert snap is None
+
+
+def _snap(snap_utc, snap_et, commence_utc, date_et="2026-05-02",
+          home="New York Yankees", away="Baltimore Orioles", over_nv=51.0):
+    return {
+        "snapshot_time_utc": snap_utc, "snapshot_time_et": snap_et,
+        "games": [{
+            "away_team": away, "home_team": home, "game_date_et": date_et,
+            "commence_utc": commence_utc,
+            "bookmakers": {"pinnacle": {
+                "ml": {away: {"no_vig_pct": 39.2}, home: {"no_vig_pct": 60.8}},
+                "ou": {"Over": {"point": 8.5, "no_vig_pct": over_nv},
+                       "Under": {"point": 8.5, "no_vig_pct": 100 - over_nv}},
+                "rl": {home: {"point": -1.5, "no_vig_pct": 40.0},
+                       away: {"point": 1.5, "no_vig_pct": 60.0}},
+            }},
+        }],
+    }
+
+
+def test_find_entry_close_picks_earliest_and_latest(tmp_path):
+    from lib.closing_line import find_entry_close_snapshots
+    import json
+    (tmp_path / "2026-05-02_12-00-ET.json").write_text(json.dumps(
+        _snap("2026-05-02T16:00:00Z", "2026-05-02 12:00 ET", "2026-05-02T22:00:00Z", over_nv=50.0)), encoding="utf-8")
+    (tmp_path / "2026-05-02_15-00-ET.json").write_text(json.dumps(
+        _snap("2026-05-02T19:00:00Z", "2026-05-02 15:00 ET", "2026-05-02T22:00:00Z", over_nv=53.0)), encoding="utf-8")
+    (tmp_path / "2026-05-02_18-00-ET.json").write_text(json.dumps(
+        _snap("2026-05-02T21:00:00Z", "2026-05-02 18:00 ET", "2026-05-02T22:00:00Z", over_nv=55.0)), encoding="utf-8")
+    entry, close = find_entry_close_snapshots(tmp_path, "2026-05-02", "New York Yankees", "Baltimore Orioles")
+    assert entry["snapshot_time_utc"] == "2026-05-02T16:00:00Z"   # earliest
+    assert close["snapshot_time_utc"] == "2026-05-02T21:00:00Z"   # latest
+
+
+def test_find_entry_close_excludes_post_commence(tmp_path):
+    from lib.closing_line import find_entry_close_snapshots
+    import json
+    (tmp_path / "2026-05-02_12-00-ET.json").write_text(json.dumps(
+        _snap("2026-05-02T16:00:00Z", "2026-05-02 12:00 ET", "2026-05-02T22:00:00Z")), encoding="utf-8")
+    (tmp_path / "2026-05-02_22-00-ET.json").write_text(json.dumps(
+        _snap("2026-05-03T02:00:00Z", "2026-05-02 22:00 ET", "2026-05-02T22:00:00Z")), encoding="utf-8")
+    entry, close = find_entry_close_snapshots(tmp_path, "2026-05-02", "New York Yankees", "Baltimore Orioles")
+    assert entry["snapshot_time_utc"] == "2026-05-02T16:00:00Z"
+    assert close["snapshot_time_utc"] == "2026-05-02T16:00:00Z"   # only one qualifies → entry==close
+
+
+def test_find_entry_close_none_when_no_match(tmp_path):
+    from lib.closing_line import find_entry_close_snapshots
+    assert find_entry_close_snapshots(tmp_path, "2026-05-02", "X", "Y") == (None, None)

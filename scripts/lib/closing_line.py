@@ -66,6 +66,42 @@ def find_closing_snapshot_for_game(
     return None, None
 
 
+def find_entry_close_snapshots(snapshots_dir, date, home_team, away_team):
+    """Earliest & latest pre-commence Pinnacle snapshot for this matchup on the ET date.
+
+    Scans {date}_*-ET.json, keeps games with matching teams, game_date_et==date, and
+    snapshot_time < commence (strict — excludes the 22:00-ET post-commence trap).
+    Returns (earliest_game, latest_game) by snapshot_time, each with snapshot_time_utc/et
+    attached; (None, None) if none qualify. The two may be the same dict when only one qualifies.
+    """
+    snapshots_dir = Path(snapshots_dir)
+    cands = []  # (snap_ts, game_copy)
+    for f in sorted(snapshots_dir.glob(f"{date}_*-ET.json")):
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        snap_ts = _parse_iso_utc(data.get("snapshot_time_utc", ""))
+        if snap_ts is None:
+            continue
+        for g in data.get("games", []):
+            if g.get("game_date_et") != date:
+                continue
+            if g.get("home_team") != home_team or g.get("away_team") != away_team:
+                continue
+            commence = _parse_iso_utc(g.get("commence_utc", ""))
+            if commence is None or snap_ts >= commence:
+                continue
+            gc = dict(g)
+            gc["snapshot_time_utc"] = data.get("snapshot_time_utc", "")
+            gc["snapshot_time_et"] = data.get("snapshot_time_et", "")
+            cands.append((snap_ts, gc))
+    if not cands:
+        return None, None
+    cands.sort(key=lambda x: x[0])
+    return cands[0][1], cands[-1][1]
+
+
 def extract_pinnacle_no_vig(game: dict) -> Optional[dict]:
     """Extract Pinnacle ML / Total no-vig probabilities + line from a snapshot game.
 

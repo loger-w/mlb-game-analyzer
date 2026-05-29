@@ -22,6 +22,9 @@ sys.path.insert(0, str(SCRIPT_DIR))
 from lib.load import build_dataframe_for_month
 from lib.metrics import compute_rl_metrics, compute_ou_metrics, compute_edge_calibration
 from lib.render import render_report, render_details_csv
+from lib.clv import compute_clv_rows, aggregate_clv
+
+SNAPSHOTS_DIR = SKILL_ROOT / "odds" / "odds_snapshots"
 
 
 def cmd_run(args):
@@ -36,10 +39,11 @@ def cmd_run(args):
     rl = compute_rl_metrics(df)
     ou = compute_ou_metrics(df)
     edge = compute_edge_calibration(df)
+    clv = aggregate_clv(compute_clv_rows(df.to_dict("records"), SNAPSHOTS_DIR)) if len(df) else None
 
     report_path = out_dir / f"{args.month}-report.md"
     csv_path = out_dir / f"{args.month}-details.csv"
-    render_report(df=df, rl=rl, ou=ou, edge=edge, month=args.month, out_path=report_path)
+    render_report(df=df, rl=rl, ou=ou, edge=edge, month=args.month, out_path=report_path, clv=clv)
     render_details_csv(df, out_path=csv_path)
 
     print(f"Report: {report_path}")

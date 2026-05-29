@@ -41,6 +41,8 @@ def _build_row(date: str, matchup_dir: Path) -> Optional[dict]:
     return {
         "date": date, "matchup": matchup_dir.name,
         "game_pk": feats.get("game", {}).get("game_pk"),
+        "home_team": feats.get("game", {}).get("home"),
+        "away_team": feats.get("game", {}).get("away"),
         # model
         "mu_total": model.get("mu_total"),
         "p_home_cover_rl": model.get("p_home_cover_rl"),

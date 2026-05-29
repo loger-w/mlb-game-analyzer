@@ -45,3 +45,18 @@ def test_load_skips_non_v2(tmp_path, monkeypatch):
     (d / "features.json").write_text(json.dumps({"schema_version": 1}), encoding="utf-8")
     df = load.build_dataframe_for_month("2026-05")
     assert len(df) == 0
+
+
+def test_load_includes_team_names(tmp_path, monkeypatch):
+    from lib import load as load_mod
+    d = tmp_path / "2026-05-02" / "BAL@NYY"
+    d.mkdir(parents=True)
+    feats = {"schema_version": 2,
+             "game": {"game_pk": 1, "date": "2026-05-02",
+                      "home": "New York Yankees", "away": "Baltimore Orioles"},
+             "model": {}, "odds": None, "edges": {}}
+    (d / "features.json").write_text(json.dumps(feats), encoding="utf-8")
+    monkeypatch.setattr(load_mod, "ANALYSIS_DATA_DIR", tmp_path)
+    df = load_mod.build_dataframe_for_month("2026-05")
+    assert df.iloc[0]["home_team"] == "New York Yankees"
+    assert df.iloc[0]["away_team"] == "Baltimore Orioles"
