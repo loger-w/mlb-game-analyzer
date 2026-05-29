@@ -101,26 +101,34 @@ def find_matchup_dir(date: str, home_team: str, away_team: str) -> Optional[Path
     return None
 
 
-def find_matchup_dir_by_pk(date: str, game_pk: int) -> Optional[Path]:
-    """Locate analysis-data/{date}/{matchup}/ by exact game_pk in game_data.json.
+def _read_game_pk(matchup_dir: Path) -> Optional[int]:
+    """Read game_pk from game_data.json (old: game.gamePk) or features.json (new: game.game_pk)."""
+    for fname, key in (("game_data.json", "gamePk"), ("features.json", "game_pk")):
+        f = matchup_dir / fname
+        if not f.exists():
+            continue
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        pk = data.get("game", {}).get(key)
+        if pk is not None:
+            return pk
+    return None
 
-    Unambiguous for doubleheaders. Returns None if no matchup dir has matching gamePk.
+
+def find_matchup_dir_by_pk(date: str, game_pk: int) -> Optional[Path]:
+    """Locate analysis-data/{date}/{matchup}/ by exact game_pk.
+
+    Reads game_data.json (old pipeline) or features.json (new pipeline). Unambiguous
+    for doubleheaders. Returns None if no matchup dir has matching game_pk.
     """
     date_dir = ANALYSIS_DATA_DIR / date
     if not date_dir.is_dir():
         return None
     for sub in date_dir.iterdir():
-        if not sub.is_dir():
-            continue
-        gd = sub / "game_data.json"
-        if not gd.exists():
-            continue
-        try:
-            data = json.loads(gd.read_text(encoding="utf-8"))
-            if data.get("game", {}).get("gamePk") == game_pk:
-                return sub
-        except json.JSONDecodeError:
-            continue
+        if sub.is_dir() and _read_game_pk(sub) == game_pk:
+            return sub
     return None
 
 

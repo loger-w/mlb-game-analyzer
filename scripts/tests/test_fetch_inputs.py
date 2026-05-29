@@ -66,3 +66,18 @@ def test_assemble_inputs_fip_none_fallback():
     import config
     assert out["home_starter_fip"] == config.LEAGUE_RG   # None → fallback
     assert out["away_starter_fip"] == 3.6
+
+
+def test_stat_from_byrange_splits_takes_first():
+    # byDateRange 可能回重複 splits;取第一筆(已是彙總),不可加總
+    splits = [
+        {"stat": {"inningsPitched": "46.2", "strikeOuts": 43, "baseOnBalls": 9, "hitByPitch": 0, "homeRuns": 5}},
+        {"stat": {"inningsPitched": "46.2", "strikeOuts": 43, "baseOnBalls": 9, "hitByPitch": 0, "homeRuns": 5}},
+    ]
+    s = fi._stat_from_byrange_splits(splits)
+    assert s["inningsPitched"] == "46.2"
+    assert s["strikeOuts"] == 43
+
+
+def test_stat_from_byrange_splits_empty_is_none():
+    assert fi._stat_from_byrange_splits([]) is None

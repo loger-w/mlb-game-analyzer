@@ -99,3 +99,19 @@ def test_find_matchup_dir_by_pk_distinguishes_doubleheader(tmp_path, monkeypatch
 def test_find_matchup_dir_by_pk_returns_none_when_date_missing(tmp_path, monkeypatch):
     monkeypatch.setattr(fetch_results, "ANALYSIS_DATA_DIR", tmp_path)
     assert find_matchup_dir_by_pk("2026-05-23", 824518) is None
+
+
+def test_find_matchup_dir_by_pk_reads_features_json(tmp_path, monkeypatch):
+    """New pipeline writes features.json (game.game_pk), not game_data.json."""
+    date_dir = tmp_path / "2026-05-27"
+    g = date_dir / "MIA@TOR"
+    g.mkdir(parents=True)
+    (g / "features.json").write_text(json.dumps({
+        "schema_version": 2,
+        "game": {"date": "2026-05-27", "game_pk": 822809,
+                 "home": "Toronto Blue Jays", "away": "Miami Marlins"},
+    }), encoding="utf-8")
+
+    monkeypatch.setattr(fetch_results, "ANALYSIS_DATA_DIR", tmp_path)
+
+    assert find_matchup_dir_by_pk("2026-05-27", 822809) == g

@@ -85,21 +85,29 @@ def _team_rs_ra(team_id: int, before_date: str) -> dict:
     }
 
 
-def fetch_starter(mlbam_id: int | None, name: str, year: int) -> dict:
-    """抓先發季成績組件並算 FIP。id 缺 / 無成績 → fip=None(呼叫端 fallback)。"""
+def _stat_from_byrange_splits(splits: list) -> dict | None:
+    """byDateRange 的 splits 可能重複;取第一筆彙總(IP 已等於整段總和)。空 → None。"""
+    if not splits:
+        return None
+    return splits[0].get("stat", {})
+
+
+def fetch_starter(mlbam_id: int | None, name: str, year: int, end_date: str) -> dict:
+    """先發 point-in-time 成績(賽季起 → end_date,含)並算 FIP。id 缺 / 無成績 → fip=None。"""
     base = {"name": name, "id": mlbam_id, "fip": None,
             "ip": None, "k": None, "bb": None, "hbp": None, "hr": None}
     if not mlbam_id:
         return base
     try:
         r = requests.get(f"{MLB_API_BASE}/people/{mlbam_id}/stats",
-                         params={"stats": "season", "group": "pitching", "season": year},
+                         params={"stats": "byDateRange", "group": "pitching", "season": year,
+                                 "startDate": f"{year}-03-01", "endDate": end_date},
                          timeout=10)
         r.raise_for_status()
         splits = (r.json().get("stats") or [{}])[0].get("splits") or []
-        if not splits:
+        s = _stat_from_byrange_splits(splits)
+        if not s:
             return base
-        s = splits[0]["stat"]
         ip = parse_ip(s.get("inningsPitched", "0"))
         k = int(s.get("strikeOuts", 0)); bb = int(s.get("baseOnBalls", 0))
         hbp = int(s.get("hitByPitch", 0)); hr = int(s.get("homeRuns", 0))
@@ -111,21 +119,10 @@ def fetch_starter(mlbam_id: int | None, name: str, year: int) -> dict:
         return base
 
 
-def fetch_bullpen_era(team_id: int, year: int) -> float:
-    """牛棚 ERA(sitCodes=rp)。失敗 → 4.00。"""
-    try:
-        r = requests.get(f"{MLB_API_BASE}/teams/{team_id}/stats",
-                         params={"stats": "statSplits", "group": "pitching",
-                                 "season": year, "sitCodes": "rp"}, timeout=10)
-        r.raise_for_status()
-        for sg in r.json().get("stats", []):
-            for sp in sg.get("splits", []):
-                era = sp.get("stat", {}).get("era")
-                if era is not None:
-                    return float(era)
-    except Exception:
-        pass
-    return 4.00
+def fetch_bullpen_era(team_id: int, year: int, as_of: str) -> float:
+    """牛棚 relief ERA(point-in-time,不含 as_of 當日)。委派 bullpen.relief_era;無資料 → 4.00。"""
+    import bullpen
+    return bullpen.relief_era(team_id, year, as_of)
 
 
 def fetch_lineup_light(team_id: int, game_pk: int, year: int) -> list[dict]:
@@ -167,6 +164,7 @@ def fetch_inputs(date: str, away: str, home: str) -> dict:
     home_id = resolve_team_id(home)
     away_id = resolve_team_id(away)
     year = int(date[:4])
+    cutoff = (datetime.strptime(date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
 
     game = fetch_schedule_game(date, home_id, away_id)
     if game is None:
@@ -180,8 +178,8 @@ def fetch_inputs(date: str, away: str, home: str) -> dict:
 
     home_form = _team_rs_ra(home_id, date)
     away_form = _team_rs_ra(away_id, date)
-    home_starter = fetch_starter(home_pp.get("id"), home_pp.get("fullName", "TBD"), year)
-    away_starter = fetch_starter(away_pp.get("id"), away_pp.get("fullName", "TBD"), year)
+    home_starter = fetch_starter(home_pp.get("id"), home_pp.get("fullName", "TBD"), year, cutoff)
+    away_starter = fetch_starter(away_pp.get("id"), away_pp.get("fullName", "TBD"), year, cutoff)
 
     raw = {
         "game": {"date": date, "game_pk": game_pk, "venue": venue,
@@ -194,8 +192,8 @@ def fetch_inputs(date: str, away: str, home: str) -> dict:
         "home_ra_recent": home_form["ra_recent"], "home_ra_season": home_form["ra_season"],
         "away_ra_recent": away_form["ra_recent"], "away_ra_season": away_form["ra_season"],
         "home_starter": home_starter, "away_starter": away_starter,
-        "home_bullpen_era": fetch_bullpen_era(home_id, year),
-        "away_bullpen_era": fetch_bullpen_era(away_id, year),
+        "home_bullpen_era": fetch_bullpen_era(home_id, year, date),
+        "away_bullpen_era": fetch_bullpen_era(away_id, year, date),
         "park_factor": runs_pf(venue),
         "lineup_frozen": {"source": "official",
                           "home": fetch_lineup_light(home_id, game_pk, year),
