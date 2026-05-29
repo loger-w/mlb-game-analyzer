@@ -98,3 +98,15 @@ def test_relief_era_uses_cache_and_fallback(tmp_path, monkeypatch):
     assert bullpen.relief_era(141, 2026, "2026-05-02", cache_dir=tmp_path) == 4.50
     # unknown team → no innings → fallback
     assert bullpen.relief_era(999, 2026, "2026-05-02", cache_dir=tmp_path, fallback=4.00) == 4.00
+
+
+def test_relief_ip_last_k_sums_window():
+    idx = {"141": [{"date": "2026-05-01", "er": 0, "ip": 3.0},
+                   {"date": "2026-05-02", "er": 0, "ip": 2.0},
+                   {"date": "2026-05-04", "er": 0, "ip": 5.0}]}
+    # as_of 05-04, k=2 → window [05-02, 05-04) → only 05-02 (2.0); 05-01 outside, 05-04 excluded
+    assert bullpen.relief_ip_last_k(141, 2026, "2026-05-04", k=2, index=idx) == 2.0
+    # k=3 → [05-01, 05-04) → 3.0 + 2.0 = 5.0
+    assert bullpen.relief_ip_last_k(141, 2026, "2026-05-04", k=3, index=idx) == 5.0
+    # unknown team → 0.0
+    assert bullpen.relief_ip_last_k(999, 2026, "2026-05-04", k=2, index=idx) == 0.0

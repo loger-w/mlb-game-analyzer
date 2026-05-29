@@ -3,6 +3,7 @@
 relief 端點(byDateRange+rp 數值錯亂、statSplits+日期被忽略),故由 boxscore 重建。"""
 import json
 import sys
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -111,3 +112,17 @@ def relief_era(team_id: int, year: int, as_of: str,
     index = load_or_build_index(year, needed_through=as_of, cache_dir=cache_dir)
     val = relief_era_as_of(index.get(str(team_id), []), as_of)
     return val if val is not None else fallback
+
+
+def relief_ip_last_k(team_id, year, as_of, k=2, cache_dir=DEFAULT_CACHE_DIR, index=None) -> float:
+    """team_id 在 as_of 前 k 天(不含 as_of 當日)的後援投球局數總和。index 可注入避免重載。"""
+    if index is None:
+        index = load_or_build_index(year, needed_through=as_of, cache_dir=cache_dir)
+    a = datetime.strptime(as_of, "%Y-%m-%d")
+    lo = a - timedelta(days=k)
+    tot = 0.0
+    for e in index.get(str(team_id), []):
+        d = datetime.strptime(e["date"], "%Y-%m-%d")
+        if lo <= d < a:
+            tot += e["ip"]
+    return round(tot, 4)

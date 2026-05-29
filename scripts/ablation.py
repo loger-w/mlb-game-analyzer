@@ -46,20 +46,17 @@ def recompute_mu_ra(row: dict, league_rg: float, w_ra: float) -> tuple[float, fl
     return mu_home + mu_away, mu_home - mu_away
 
 
-def fit_params(rows: list, w_ra: float) -> dict:
-    """在固定 w_ra 下,mean-match 出 league_rg、殘差 MLE 出 sigma_team。"""
-    mu_fn = lambda r, L: recompute_mu_ra(r, L, w_ra)
+def fit_params(rows: list, w: float, recompute=recompute_mu_ra) -> dict:
+    """在固定 w 下,mean-match league_rg、殘差 MLE sigma_team。recompute 可換特徵(預設 RA)。"""
+    mu_fn = lambda r, L: recompute(r, L, w)
     L = fit_config.fit_league_rg(rows, mu_fn=mu_fn)
     s = fit_config.fit_sigma_team(rows, L, mu_fn=mu_fn)
-    return {"w_ra": w_ra, "league_rg": L, "sigma_team": s}
+    return {"w": w, "league_rg": L, "sigma_team": s}
 
 
-def select_w_ra(rows: list, grid: list) -> tuple:
-    """回 (w_ra*, [(w, sigma_train)...])。w_ra* = argmin σ_train(訓練得分殘差最小)。
-    平手時偏好較小的 w(0 優先,符合『沒幫助就不加』)。"""
-    table = []
-    for w in grid:
-        table.append((w, fit_params(rows, w)["sigma_team"]))
+def select_w(rows: list, grid: list, recompute=recompute_mu_ra) -> tuple:
+    """回 (w*, [(w, sigma_train)...])。w* = argmin σ_train,平手偏好較小 w(0 優先)。"""
+    table = [(w, fit_params(rows, w, recompute)["sigma_team"]) for w in grid]
     w_star = min(table, key=lambda t: (t[1], t[0]))[0]
     return w_star, table
 
@@ -73,15 +70,15 @@ def _ll(p: float, y: float) -> float:
     return -(y * math.log(p) + (1 - y) * math.log(1 - p))
 
 
-def eval_logloss(rows: list, params: dict) -> dict:
+def eval_logloss(rows: list, params: dict, recompute=recompute_mu_ra) -> dict:
     """每注 log-loss 陣列(model 與 market)。只取有盤口者;O-U 排除 push。"""
     sigma = params["sigma_team"] * math.sqrt(2)
-    L, w = params["league_rg"], params["w_ra"]
+    L, w = params["league_rg"], params["w"]
     out = {"rl": [], "ou": [], "market_rl": [], "market_ou": []}
     for r in rows:
         if not r["has_odds"] or r["rl_home_point"] is None:
             continue
-        mt, mm = recompute_mu_ra(r, L, w)
+        mt, mm = recompute(r, L, w)
         p_cov = run_model.cover_prob_home(mm, r["rl_home_point"], sigma=sigma)
         y = 1.0 if r["actual_margin"] > -r["rl_home_point"] else 0.0
         out["rl"].append(_ll(p_cov, y))
@@ -106,14 +103,14 @@ def _mean(xs: list):
     return sum(xs) / len(xs) if xs else None
 
 
-def ablate_ra(train_rows: list, test_rows: list, grid: list) -> dict:
+def ablate(train_rows: list, test_rows: list, grid: list, recompute=recompute_mu_ra) -> dict:
     """baseline(w=0) vs candidate(w*) 的 OOS 比較。accept = OOS pooled log-loss 改善 > 1 SE。"""
-    w_star, train_table = select_w_ra(train_rows, grid)
-    p_base = fit_params(train_rows, 0.0)
-    p_cand = fit_params(train_rows, w_star)
+    w_star, train_table = select_w(train_rows, grid, recompute)
+    p_base = fit_params(train_rows, 0.0, recompute)
+    p_cand = fit_params(train_rows, w_star, recompute)
 
-    ev_base = eval_logloss(test_rows, p_base)
-    ev_cand = eval_logloss(test_rows, p_cand)
+    ev_base = eval_logloss(test_rows, p_base, recompute)
+    ev_cand = eval_logloss(test_rows, p_cand, recompute)
 
     base_pool = _pooled(ev_base)
     cand_pool = _pooled(ev_cand)
@@ -131,11 +128,11 @@ def ablate_ra(train_rows: list, test_rows: list, grid: list) -> dict:
     accept = (w_star > 0.0) and (improve > se)   # 改善為正且超過 1 SE
 
     def _summ(p, ev):
-        return {"w_ra": p["w_ra"], "league_rg": p["league_rg"], "sigma_team": p["sigma_team"],
+        return {"w": p["w"], "league_rg": p["league_rg"], "sigma_team": p["sigma_team"],
                 "rl_ll": _mean(ev["rl"]), "ou_ll": _mean(ev["ou"]), "pooled_ll": _mean(_pooled(ev))}
 
     return {
-        "w_ra_star": w_star,
+        "w_star": w_star,
         "train_table": train_table,
         "baseline": _summ(p_base, ev_base),
         "candidate": _summ(p_cand, ev_cand),
@@ -159,12 +156,12 @@ def render_report(result: dict, train_n: int, test_n: int) -> str:
         "# RA-defense ablation — 2026 (train Mar–Apr → test May)",
         "",
         f"訓練={train_n} 場  測試(有盤口)={test_n} 注場",
-        f"選出 w_ra* = {result['w_ra_star']}",
+        f"選出 w* = {result['w_star']}",
         "",
-        "| 模型 | w_ra | league_rg | sigma_team | RL ll | OU ll | pooled ll |",
+        "| 模型 | w | league_rg | sigma_team | RL ll | OU ll | pooled ll |",
         "|------|------|-----------|------------|-------|-------|-----------|",
-        f"| baseline | {b['w_ra']} | {b['league_rg']} | {b['sigma_team']} | {_f(b['rl_ll'])} | {_f(b['ou_ll'])} | {_f(b['pooled_ll'])} |",
-        f"| candidate | {c['w_ra']} | {c['league_rg']} | {c['sigma_team']} | {_f(c['rl_ll'])} | {_f(c['ou_ll'])} | {_f(c['pooled_ll'])} |",
+        f"| baseline | {b['w']} | {b['league_rg']} | {b['sigma_team']} | {_f(b['rl_ll'])} | {_f(b['ou_ll'])} | {_f(b['pooled_ll'])} |",
+        f"| candidate | {c['w']} | {c['league_rg']} | {c['sigma_team']} | {_f(c['rl_ll'])} | {_f(c['ou_ll'])} | {_f(c['pooled_ll'])} |",
         "",
         f"OOS pooled 改善(baseline − candidate)= {_f(result['pooled_improve'])} ± {_f(result['pooled_se'])} (1 SE)",
         f"**判決:{verdict}**(接受條件:改善 > 1 SE)",
@@ -190,7 +187,7 @@ def main(argv=None):
         print("資料不足:確認三~五月已 backfill + fetch_results。", file=sys.stderr)
         return 1
 
-    result = ablate_ra(train_rows, test_rows, W_RA_GRID)
+    result = ablate(train_rows, test_rows, W_RA_GRID)
     report = render_report(result, train_n=len(train_rows), test_n=len(test_rows))
     print(report)
     out_path = SKILL_ROOT / "analysis-data" / "backtest" / "ablation-ra-2026.md"

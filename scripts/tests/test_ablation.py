@@ -45,8 +45,8 @@ def test_fit_params_returns_league_and_sigma():
                  home_starter_fip=4.0, away_starter_fip=4.0, home_bullpen_era=4.0, away_bullpen_era=4.0,
                  home_ra_recent=4.4, home_ra_season=4.4, away_ra_recent=4.4, away_ra_season=4.4,
                  park_factor=100.0, actual_total=8, actual_margin=0) for _ in range(20)]
-    p = ablation.fit_params(rows, w_ra=0.0)
-    assert p["w_ra"] == 0.0
+    p = ablation.fit_params(rows, 0.0)
+    assert p["w"] == 0.0
     assert abs(p["league_rg"] - 4.4) < 0.05    # mean total 8 at L=4.4 (mu_total=8)
     assert p["sigma_team"] == 0.0              # μ predicts actuals exactly
 
@@ -63,7 +63,7 @@ def test_select_w_ra_recovers_signal():
                              away_ra_recent=ra, away_ra_season=ra,
                              home_ra_recent=ra, home_ra_season=ra,
                              park_factor=100.0, actual_total=tot, actual_margin=0))
-    w_star, table = ablation.select_w_ra(rows, ablation.W_RA_GRID)
+    w_star, table = ablation.select_w(rows, ablation.W_RA_GRID)
     assert w_star > 0.0
     sig0 = dict(table)[0.0]
     assert dict(table)[w_star] <= sig0
@@ -75,7 +75,7 @@ def test_select_w_ra_rejects_noise():
                  home_starter_fip=4.0, away_starter_fip=4.0, home_bullpen_era=4.0, away_bullpen_era=4.0,
                  home_ra_recent=4.4, home_ra_season=4.4, away_ra_recent=4.4, away_ra_season=4.4,
                  park_factor=100.0, actual_total=8 + (i % 3), actual_margin=0) for i in range(30)]
-    w_star, table = ablation.select_w_ra(rows, ablation.W_RA_GRID)
+    w_star, table = ablation.select_w(rows, ablation.W_RA_GRID)
     assert w_star == 0.0
 
 
@@ -85,7 +85,7 @@ def test_eval_logloss_returns_per_bet_arrays():
              home_ra_recent=4.4, home_ra_season=4.4, away_ra_recent=4.4, away_ra_season=4.4,
              park_factor=100.0, actual_total=9, actual_margin=3, has_odds=True,
              rl_home_point=-1.5, rl_home_no_vig=0.40, total_line=8.5, over_no_vig=0.48)
-    out = ablation.eval_logloss([r], {"w_ra": 0.0, "league_rg": 4.4, "sigma_team": 3.0})
+    out = ablation.eval_logloss([r], {"w": 0.0, "league_rg": 4.4, "sigma_team": 3.0})
     assert len(out["rl"]) == 1 and out["rl"][0] > 0
     assert len(out["ou"]) == 1 and out["ou"][0] > 0
     assert len(out["market_rl"]) == 1 and len(out["market_ou"]) == 1
@@ -95,7 +95,7 @@ def test_eval_logloss_skips_push_and_no_odds():
     r_push = _row(has_odds=True, rl_home_point=-1.5, rl_home_no_vig=0.4,
                   total_line=9.0, over_no_vig=0.48, actual_total=9, actual_margin=2)
     r_noodds = _row(has_odds=False)
-    out = ablation.eval_logloss([r_push, r_noodds], {"w_ra": 0.0, "league_rg": 4.4, "sigma_team": 3.0})
+    out = ablation.eval_logloss([r_push, r_noodds], {"w": 0.0, "league_rg": 4.4, "sigma_team": 3.0})
     assert len(out["ou"]) == 0      # push excluded
     assert len(out["rl"]) == 1      # push row keeps RL; no-odds row excluded
 
@@ -114,11 +114,11 @@ def test_ablate_ra_structure_and_keys():
     train = [_row(away_ra_recent=4.4, away_ra_season=4.4,
                   actual_total=8 + (i % 3), actual_margin=(i % 3) - 1) for i in range(30)]
     test = [_odds_row(4.4, 9, 1) for _ in range(20)]
-    out = ablation.ablate_ra(train, test, ablation.W_RA_GRID)
-    for k in ("w_ra_star", "baseline", "candidate", "pooled_improve", "pooled_se",
+    out = ablation.ablate(train, test, ablation.W_RA_GRID)
+    for k in ("w_star", "baseline", "candidate", "pooled_improve", "pooled_se",
               "accept", "gap_baseline", "gap_candidate"):
         assert k in out
-    assert out["baseline"]["w_ra"] == 0.0
+    assert out["baseline"]["w"] == 0.0
     assert isinstance(out["accept"], bool)
 
 
@@ -142,23 +142,23 @@ def test_ablate_ra_accepts_when_candidate_clearly_better():
     for ra, tot in [(2.5, 5), (4.0, 8), (5.5, 11), (7.0, 14)]:
         for _ in range(15):
             test.append(_sym_odds_row(ra, tot, 1))
-    out = ablation.ablate_ra(train, test, ablation.W_RA_GRID)
-    assert out["w_ra_star"] > 0.0
+    out = ablation.ablate(train, test, ablation.W_RA_GRID)
+    assert out["w_star"] > 0.0
     assert out["candidate"]["pooled_ll"] < out["baseline"]["pooled_ll"]   # RA helps OOS
     assert out["accept"] is True
 
 
 def test_render_report_contains_verdict_and_numbers():
     result = {
-        "w_ra_star": 0.25, "train_table": [(0.0, 3.5), (0.25, 3.4)],
-        "baseline": {"w_ra": 0.0, "league_rg": 4.2, "sigma_team": 3.46,
+        "w_star": 0.25, "train_table": [(0.0, 3.5), (0.25, 3.4)],
+        "baseline": {"w": 0.0, "league_rg": 4.2, "sigma_team": 3.46,
                      "rl_ll": 0.69, "ou_ll": 0.70, "pooled_ll": 0.695},
-        "candidate": {"w_ra": 0.25, "league_rg": 4.1, "sigma_team": 3.40,
+        "candidate": {"w": 0.25, "league_rg": 4.1, "sigma_team": 3.40,
                       "rl_ll": 0.68, "ou_ll": 0.69, "pooled_ll": 0.685},
         "pooled_improve": 0.010, "pooled_se": 0.004, "accept": True,
         "market_pooled_ll": 0.690, "gap_baseline": 0.005, "gap_candidate": -0.005,
     }
     text = ablation.render_report(result, train_n=468, test_n=292)
-    assert "w_ra*" in text and "0.25" in text
+    assert "w*" in text and "0.25" in text
     assert "ACCEPT" in text
     assert "0.685" in text
