@@ -41,6 +41,8 @@ def test_load_fit_rows_reads_inputs_and_result(tmp_path):
     feats = {"schema_version": 2,
              "inputs": {"home_rs_recent": 4.5, "home_rs_season": 4.4,
                         "away_rs_recent": 4.0, "away_rs_season": 4.1,
+                        "home_ra_recent": 4.0, "home_ra_season": 4.2,
+                        "away_ra_recent": 4.3, "away_ra_season": 4.5,
                         "home_starter": {"fip": 3.5}, "away_starter": {"fip": None},
                         "home_bullpen_era": 3.9, "away_bullpen_era": 4.1, "park_factor": 101.0},
              "odds": {"rl": {"home_point": -1.5, "home_no_vig": 0.40},
@@ -130,6 +132,40 @@ def test_eval_calibration_excludes_push_and_no_odds():
     out = fit_config.eval_calibration([r_push, r_noodds], league_rg=4.4, sigma_team=3.0)
     assert out["n_ou"] == 0       # push excluded
     assert out["n_rl"] == 1       # the push row still has RL; no-odds row excluded everywhere
+
+
+def test_fit_functions_accept_mu_fn():
+    # A custom mu_fn that always predicts total=10, margin=0, ignoring league_rg.
+    def fake_mu(row, league_rg):
+        return 10.0, 0.0
+    rows = [_row(actual_total=10, actual_margin=0) for _ in range(5)]
+    # sigma should be ~0 because fake_mu predicts actuals exactly
+    s = fit_config.fit_sigma_team(rows, league_rg=4.4, mu_fn=fake_mu)
+    assert s == 0.0
+    # league_rg bisection still returns a value in range (fake_mu ignores L, mean_mu const=10 == target 10)
+    L = fit_config.fit_league_rg(rows, mu_fn=fake_mu)
+    assert 2.0 <= L <= 8.0
+
+
+def test_load_fit_rows_includes_ra_fields(tmp_path):
+    d = tmp_path / "2026-05-01" / "A@B"
+    d.mkdir(parents=True)
+    feats = {"schema_version": 2,
+             "inputs": {"home_rs_recent": 4.5, "home_rs_season": 4.4,
+                        "away_rs_recent": 4.0, "away_rs_season": 4.1,
+                        "home_ra_recent": 3.8, "home_ra_season": 4.2,
+                        "away_ra_recent": 5.1, "away_ra_season": 4.7,
+                        "home_starter": {"fip": 3.5}, "away_starter": {"fip": 4.0},
+                        "home_bullpen_era": 3.9, "away_bullpen_era": 4.1, "park_factor": 101.0}}
+    (d / "features.json").write_text(json.dumps(feats), encoding="utf-8")
+    (d / "result.json").write_text(json.dumps({"home_score": 6, "away_score": 3, "total": 9}), encoding="utf-8")
+
+    rows = fit_config.load_fit_rows({"2026-05"}, data_dir=tmp_path)
+    r = rows[0]
+    assert r["home_ra_recent"] == 3.8
+    assert r["home_ra_season"] == 4.2
+    assert r["away_ra_recent"] == 5.1
+    assert r["away_ra_season"] == 4.7
 
 
 def test_rewrite_config_text_replaces_only_two_values_and_keeps_comments():

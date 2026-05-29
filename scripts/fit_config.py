@@ -73,6 +73,8 @@ def load_fit_rows(months: set, data_dir: Path = ANALYSIS_DATA_DIR) -> list:
                 "date": date_dir.name, "matchup": m.name,
                 "home_rs_recent": inp["home_rs_recent"], "home_rs_season": inp["home_rs_season"],
                 "away_rs_recent": inp["away_rs_recent"], "away_rs_season": inp["away_rs_season"],
+                "home_ra_recent": inp["home_ra_recent"], "home_ra_season": inp["home_ra_season"],
+                "away_ra_recent": inp["away_ra_recent"], "away_ra_season": inp["away_ra_season"],
                 "home_starter_fip": (inp.get("home_starter") or {}).get("fip"),
                 "away_starter_fip": (inp.get("away_starter") or {}).get("fip"),
                 "home_bullpen_era": inp["home_bullpen_era"], "away_bullpen_era": inp["away_bullpen_era"],
@@ -86,12 +88,14 @@ def load_fit_rows(months: set, data_dir: Path = ANALYSIS_DATA_DIR) -> list:
     return rows
 
 
-def fit_league_rg(rows: list, lo: float = 2.0, hi: float = 8.0, iters: int = 50) -> float:
-    """二分搜尋 LEAGUE_RG 使 mean(預測 mu_total) = mean(實際 total)。mu_total 隨 L 單調遞減。"""
+def fit_league_rg(rows: list, lo: float = 2.0, hi: float = 8.0, iters: int = 50, mu_fn=None) -> float:
+    """二分搜尋 LEAGUE_RG 使 mean(預測 mu_total) = mean(實際 total)。mu_total 隨 L 單調遞減。
+    mu_fn 省略時用 recompute_mu(可注入 RA-aware μ 供 ablation)。"""
+    mu_fn = mu_fn or recompute_mu
     target = sum(r["actual_total"] for r in rows) / len(rows)
 
     def mean_mu_total(L: float) -> float:
-        return sum(recompute_mu(r, L)[0] for r in rows) / len(rows)
+        return sum(mu_fn(r, L)[0] for r in rows) / len(rows)
 
     for _ in range(iters):
         mid = (lo + hi) / 2
@@ -102,11 +106,13 @@ def fit_league_rg(rows: list, lo: float = 2.0, hi: float = 8.0, iters: int = 50)
     return round((lo + hi) / 2, 3)
 
 
-def fit_sigma_team(rows: list, league_rg: float) -> float:
-    """SIGMA_TEAM = sqrt( (mean(r_total^2)+mean(r_margin^2)) / 4 )，r = 實際 - 預測(高斯 MLE)。"""
+def fit_sigma_team(rows: list, league_rg: float, mu_fn=None) -> float:
+    """SIGMA_TEAM = sqrt( (mean(r_total^2)+mean(r_margin^2)) / 4 )，r = 實際 - 預測(高斯 MLE)。
+    mu_fn 省略時用 recompute_mu(可注入 RA-aware μ 供 ablation)。"""
+    mu_fn = mu_fn or recompute_mu
     sse = 0.0
     for r in rows:
-        mt, mm = recompute_mu(r, league_rg)
+        mt, mm = mu_fn(r, league_rg)
         sse += (r["actual_total"] - mt) ** 2 + (r["actual_margin"] - mm) ** 2
     n = len(rows)
     return round(math.sqrt(sse / (4 * n)), 3)
