@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T19:11:19+00:00",
+  "game": {
+    "date": "2026-05-29",
+    "game_pk": 824835,
+    "home": "Baltimore Orioles",
+    "away": "Toronto Blue Jays",
+    "venue": "Oriole Park at Camden Yards"
+  },
+  "inputs": {
+    "home_rs_recent": 4.4,
+    "home_rs_season": 4.32,
+    "away_rs_recent": 3.4,
+    "away_rs_season": 3.93,
+    "home_ra_recent": 3.2,
+    "home_ra_season": 5.03,
+    "away_ra_recent": 2.5,
+    "away_ra_season": 3.98,
+    "home_starter": {
+      "name": "Trevor Rogers",
+      "id": 669432,
+      "fip": 4.55,
+      "ip": 42.666666666666664,
+      "k": 35,
+      "bb": 17,
+      "hbp": 1,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Adam Macko",
+      "id": 671936,
+      "fip": null,
+      "ip": 4.333333333333333,
+      "k": 4,
+      "bb": 0,
+      "hbp": 1,
+      "hr": 0
+    },
+    "home_bullpen_era": 4.4,
+    "away_bullpen_era": 3.59,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.93,
+    "mu_away": 3.85,
+    "mu_margin": 0.08,
+    "mu_total": 7.78,
+    "p_home_ml": 0.5065,
+    "p_home_cover_rl": 0.3859,
+    "p_over": 0.4016,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-29_14-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.345,
+      "away_point": 1.5,
+      "away_no_vig": 0.655
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.475,
+      "under_no_vig": 0.525
+    }
+  },
+  "edges": {
+    "home_rl_pp": 4.1,
+    "over_pp": -7.3
+  }
+}

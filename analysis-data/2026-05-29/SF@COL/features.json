@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T19:12:09+00:00",
+  "game": {
+    "date": "2026-05-29",
+    "game_pk": 824353,
+    "home": "Colorado Rockies",
+    "away": "San Francisco Giants",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.0,
+    "home_rs_season": 3.88,
+    "away_rs_recent": 4.5,
+    "away_rs_season": 3.58,
+    "home_ra_recent": 6.3,
+    "home_ra_season": 5.19,
+    "away_ra_recent": 6.0,
+    "away_ra_season": 4.53,
+    "home_starter": {
+      "name": "Michael Lorenzen",
+      "id": 547179,
+      "fip": 5.17,
+      "ip": 53.666666666666664,
+      "k": 41,
+      "bb": 18,
+      "hbp": 3,
+      "hr": 10
+    },
+    "away_starter": {
+      "name": "Logan Webb",
+      "id": 657277,
+      "fip": 3.56,
+      "ip": 48.0,
+      "k": 42,
+      "bb": 15,
+      "hbp": 3,
+      "hr": 4
+    },
+    "home_bullpen_era": 4.42,
+    "away_bullpen_era": 3.35,
+    "park_factor": 131.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.88,
+    "mu_away": 5.93,
+    "mu_margin": -2.05,
+    "mu_total": 9.81,
+    "p_home_ml": 0.3377,
+    "p_home_cover_rl": 0.4553,
+    "p_over": 0.444,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-29_14-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.524,
+      "away_point": -1.5,
+      "away_no_vig": 0.47600000000000003
+    },
+    "total": {
+      "line": 10.5,
+      "over_no_vig": 0.519,
+      "under_no_vig": 0.48100000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -6.9,
+    "over_pp": -7.5
+  }
+}

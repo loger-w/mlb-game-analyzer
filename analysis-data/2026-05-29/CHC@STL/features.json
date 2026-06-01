@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-29T19:11:45+00:00",
+  "game": {
+    "date": "2026-05-29",
+    "game_pk": 823055,
+    "home": "St. Louis Cardinals",
+    "away": "Chicago Cubs",
+    "venue": "Busch Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 2.7,
+    "home_rs_season": 4.12,
+    "away_rs_recent": 3.1,
+    "away_rs_season": 4.69,
+    "home_ra_recent": 4.0,
+    "home_ra_season": 4.3,
+    "away_ra_recent": 5.4,
+    "away_ra_season": 4.36,
+    "home_starter": {
+      "name": "Andre Pallante",
+      "id": 669467,
+      "fip": 4.45,
+      "ip": 55.0,
+      "k": 43,
+      "bb": 20,
+      "hbp": 3,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "Shota Imanaga",
+      "id": 684007,
+      "fip": 3.87,
+      "ip": 64.66666666666667,
+      "k": 67,
+      "bb": 17,
+      "hbp": 1,
+      "hr": 10
+    },
+    "home_bullpen_era": 4.28,
+    "away_bullpen_era": 3.67,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "JJ Wetherholt",
+        "id": 802139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Iván Herrera",
+        "id": 671056,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jordan Walker",
+        "id": 691023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Nelson Velázquez",
+        "id": 676369,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Alec Burleson",
+        "id": 676475,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Masyn Winn",
+        "id": 691026,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "José Fermín",
+        "id": 665877,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Thomas Saggese",
+        "id": 695336,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Victor Scott II",
+        "id": 687363,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.21,
+    "mu_away": 4.23,
+    "mu_margin": -1.02,
+    "mu_total": 7.44,
+    "p_home_ml": 0.4175,
+    "p_home_cover_rl": 0.539,
+    "p_over": 0.4951,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-29_14-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.5870000000000001,
+      "away_point": -1.5,
+      "away_no_vig": 0.413
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.513,
+      "under_no_vig": 0.48700000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -4.8,
+    "over_pp": -1.8
+  }
+}
