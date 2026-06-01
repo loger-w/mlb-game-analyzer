@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-30T12:07:49+00:00",
+  "game": {
+    "date": "2026-05-30",
+    "game_pk": 823054,
+    "home": "St. Louis Cardinals",
+    "away": "Chicago Cubs",
+    "venue": "Busch Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 2.4,
+    "home_rs_season": 4.16,
+    "away_rs_recent": 3.3,
+    "away_rs_season": 4.69,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 4.31,
+    "away_ra_recent": 5.1,
+    "away_ra_season": 4.39,
+    "home_starter": {
+      "name": "Kyle Leahy",
+      "id": 681517,
+      "fip": 4.97,
+      "ip": 50.666666666666664,
+      "k": 42,
+      "bb": 22,
+      "hbp": 3,
+      "hr": 8
+    },
+    "away_starter": {
+      "name": "Ben Brown",
+      "id": 676962,
+      "fip": 2.29,
+      "ip": 44.666666666666664,
+      "k": 47,
+      "bb": 14,
+      "hbp": 1,
+      "hr": 1
+    },
+    "home_bullpen_era": 4.2,
+    "away_bullpen_era": 3.66,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 2.35,
+    "mu_away": 4.58,
+    "mu_margin": -2.23,
+    "mu_total": 6.93,
+    "p_home_ml": 0.3244,
+    "p_home_cover_rl": 0.4407,
+    "p_over": 0.3742,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-30_07-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.562,
+      "away_point": -1.5,
+      "away_no_vig": 0.43799999999999994
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.48700000000000004,
+      "under_no_vig": 0.513
+    }
+  },
+  "edges": {
+    "home_rl_pp": -12.1,
+    "over_pp": -11.3
+  }
+}
