@@ -1,0 +1,173 @@
+{
+  "name": "Chris Bassitt",
+  "mlbam_id": 605135,
+  "age": 37,
+  "birth_date": "1989-02-22",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉📉 快速退化",
+  "tier": "⚪ Below Average",
+  "tier_v2": "🟢 Back-end Starter",
+  "tier_components": {
+    "xfip_pct": 0.413,
+    "k_bb_pct": 0.264,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 42.1,
+    "era_only_score": 24.8,
+    "gap": 17.3
+  },
+  "season": {
+    "era": 5.51,
+    "whip": 1.67,
+    "k_pct": 15.3,
+    "bb_pct": 8.6,
+    "k_bb_pct": 6.7,
+    "fip": 3.97,
+    "xfip": 4.27,
+    "hr_per_9": 0.76,
+    "gb_pct": 50.0,
+    "ip": 47.333333333333336,
+    "games": 10,
+    "gs": 8
+  },
+  "expected": {
+    "xera": 4.84,
+    "xwoba": 0.345,
+    "xba": 0.287
+  },
+  "statcast": {
+    "avg_velo": 84.4,
+    "max_velo": 94.0,
+    "hard_hit_pct": 24.1,
+    "pitch_types": {
+      "SI": 36.1,
+      "CU": 24.6,
+      "FC": 22.1,
+      "ST": 6.2,
+      "CH": 5.5
+    },
+    "barrel_pct": 3.7,
+    "ev95percent": 37.0,
+    "whiff_pct": 8.9,
+    "csw_pct": 24.9
+  },
+  "game_log": [
+    {
+      "date": "2026-03-30",
+      "opponent": "Texas Rangers",
+      "ip": 4.333333333333333,
+      "era": 8.31,
+      "k": 3,
+      "bb": 4,
+      "h": 6,
+      "er": 4,
+      "pitches": 100,
+      "strikes": 61
+    },
+    {
+      "date": "2026-04-05",
+      "opponent": "Pittsburgh Pirates",
+      "ip": 2.0,
+      "era": 14.21,
+      "k": 0,
+      "bb": 2,
+      "h": 6,
+      "er": 6,
+      "pitches": 62,
+      "strikes": 32
+    },
+    {
+      "date": "2026-04-11",
+      "opponent": "San Francisco Giants",
+      "ip": 4.666666666666667,
+      "era": 9.0,
+      "k": 2,
+      "bb": 1,
+      "h": 7,
+      "er": 1,
+      "pitches": 89,
+      "strikes": 57
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".322",
+      "obp": ".404",
+      "slg": ".513",
+      "k": 20,
+      "bb": 15,
+      "bf": 136,
+      "k_pct": 14.7,
+      "bb_pct": 11.0
+    },
+    "vs_right": {
+      "avg": ".295",
+      "obp": ".360",
+      "slg": ".321",
+      "k": 14,
+      "bb": 4,
+      "bf": 86,
+      "k_pct": 16.3,
+      "bb_pct": 4.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.826,
+      "k_pct": 13.4,
+      "bb_pct": 11.3,
+      "bf": 97
+    },
+    "tto2": {
+      "ops": 0.72,
+      "k_pct": 14.9,
+      "bb_pct": 4.6,
+      "bf": 87
+    },
+    "tto3": {
+      "ops": 0.856,
+      "k_pct": 20.5,
+      "bb_pct": 9.1,
+      "bf": 44
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 36.3,
+      "rv_per_100": -1.8,
+      "xwoba_against": 0.352,
+      "whiff_pct": 13.0,
+      "put_away_pct": 21.2,
+      "hard_hit_pct": 45.7
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 24.8,
+      "rv_per_100": 0.8,
+      "xwoba_against": 0.294,
+      "whiff_pct": 32.0,
+      "put_away_pct": 14.5,
+      "hard_hit_pct": 11.8
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 22.2,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.38,
+      "whiff_pct": 22.6,
+      "put_away_pct": 11.3,
+      "hard_hit_pct": 44.8
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

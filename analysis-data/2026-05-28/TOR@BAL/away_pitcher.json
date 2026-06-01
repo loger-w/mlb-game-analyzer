@@ -1,0 +1,183 @@
+{
+  "name": "Patrick Corbin",
+  "mlbam_id": 571578,
+  "age": 36,
+  "birth_date": "1989-07-19",
+  "pitch_hand": "L",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🟡 Solid Starter",
+  "tier_components": {
+    "xfip_pct": 0.691,
+    "k_bb_pct": 0.5,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 62.5,
+    "era_only_score": 61.8,
+    "gap": 0.7
+  },
+  "season": {
+    "era": 3.86,
+    "whip": 1.4,
+    "k_pct": 16.8,
+    "bb_pct": 6.8,
+    "k_bb_pct": 10.0,
+    "fip": 3.71,
+    "xfip": 3.86,
+    "hr_per_9": 0.81,
+    "gb_pct": 51.1,
+    "ip": 44.333333333333336,
+    "games": 9,
+    "gs": 9
+  },
+  "expected": {
+    "xera": 5.38,
+    "xwoba": 0.361,
+    "xba": 0.291
+  },
+  "statcast": {
+    "avg_velo": 84.7,
+    "max_velo": 93.9,
+    "hard_hit_pct": 28.5,
+    "pitch_types": {
+      "SI": 30.8,
+      "SL": 24.9,
+      "FC": 18.9,
+      "CH": 17.8,
+      "FF": 7.3
+    },
+    "barrel_pct": 8.5,
+    "ev95percent": 43.3,
+    "whiff_pct": 8.8,
+    "csw_pct": 22.4
+  },
+  "game_log": [
+    {
+      "date": "2026-04-10",
+      "opponent": "Minnesota Twins",
+      "ip": 4.0,
+      "era": 9.0,
+      "k": 3,
+      "bb": 1,
+      "h": 6,
+      "er": 4,
+      "pitches": 85,
+      "strikes": 52
+    },
+    {
+      "date": "2026-04-16",
+      "opponent": "Milwaukee Brewers",
+      "ip": 5.666666666666667,
+      "era": 4.66,
+      "k": 6,
+      "bb": 1,
+      "h": 4,
+      "er": 1,
+      "pitches": 79,
+      "strikes": 50
+    },
+    {
+      "date": "2026-04-21",
+      "opponent": "Los Angeles Angels",
+      "ip": 5.0,
+      "era": 3.68,
+      "k": 3,
+      "bb": 2,
+      "h": 2,
+      "er": 1,
+      "pitches": 65,
+      "strikes": 40
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".306",
+      "obp": ".333",
+      "slg": ".361",
+      "k": 10,
+      "bb": 1,
+      "bf": 40,
+      "k_pct": 25.0,
+      "bb_pct": 2.5
+    },
+    "vs_right": {
+      "avg": ".286",
+      "obp": ".353",
+      "slg": ".444",
+      "k": 22,
+      "bb": 12,
+      "bf": 150,
+      "k_pct": 14.7,
+      "bb_pct": 8.0
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.824,
+      "k_pct": 20.5,
+      "bb_pct": 7.1,
+      "bf": 1319
+    },
+    "tto2": {
+      "ops": 0.772,
+      "k_pct": 17.8,
+      "bb_pct": 6.9,
+      "bf": 1239
+    },
+    "tto3": {
+      "ops": 0.891,
+      "k_pct": 14.2,
+      "bb_pct": 6.7,
+      "bf": 713
+    },
+    "source": "career"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 30.8,
+      "rv_per_100": -0.6,
+      "xwoba_against": 0.408,
+      "whiff_pct": 5.7,
+      "put_away_pct": 10.6,
+      "hard_hit_pct": 53.6
+    },
+    {
+      "pitch_type": "SL",
+      "pitch_name": "Slider",
+      "usage": 24.9,
+      "rv_per_100": 1.8,
+      "xwoba_against": 0.195,
+      "whiff_pct": 40.2,
+      "put_away_pct": 24.3,
+      "hard_hit_pct": 41.7
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 18.9,
+      "rv_per_100": -3.0,
+      "xwoba_against": 0.559,
+      "whiff_pct": 12.3,
+      "put_away_pct": 5.0,
+      "hard_hit_pct": 44.8
+    },
+    {
+      "pitch_type": "CH",
+      "pitch_name": "Changeup",
+      "usage": 17.8,
+      "rv_per_100": 1.4,
+      "xwoba_against": 0.284,
+      "whiff_pct": 33.9,
+      "put_away_pct": 12.5,
+      "hard_hit_pct": 18.2
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}

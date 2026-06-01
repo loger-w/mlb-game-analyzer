@@ -1,0 +1,193 @@
+{
+  "name": "Nathan Eovaldi",
+  "mlbam_id": 543135,
+  "age": 36,
+  "birth_date": "1990-02-13",
+  "pitch_hand": "R",
+  "age_assessment": "📉📉 明顯退化",
+  "tier": "🟡 Solid Starter",
+  "tier_v2": "🔴 Elite Ace",
+  "tier_components": {
+    "xfip_pct": 0.95,
+    "k_bb_pct": 0.893,
+    "stuff_pct": null,
+    "age_factor": 0.7
+  },
+  "tier_confidence": "missing_stuff",
+  "tier_gap": {
+    "expected_score": 87.6,
+    "era_only_score": 66.0,
+    "gap": 21.6
+  },
+  "season": {
+    "era": 3.65,
+    "whip": 1.14,
+    "k_pct": 23.8,
+    "bb_pct": 5.5,
+    "k_bb_pct": 18.3,
+    "fip": 4.12,
+    "xfip": 2.98,
+    "hr_per_9": 1.61,
+    "gb_pct": 53.3,
+    "ip": 61.666666666666664,
+    "games": 10,
+    "gs": 10
+  },
+  "expected": {
+    "xera": 4.09,
+    "xwoba": 0.32,
+    "xba": 0.251
+  },
+  "statcast": {
+    "avg_velo": 87.7,
+    "max_velo": 97.2,
+    "hard_hit_pct": 27.7,
+    "pitch_types": {
+      "FS": 38.9,
+      "FC": 20.8,
+      "CU": 19.8,
+      "FF": 11.3,
+      "SI": 8.4
+    },
+    "barrel_pct": 8.0,
+    "ev95percent": 41.5,
+    "whiff_pct": 15.1,
+    "csw_pct": 29.4
+  },
+  "game_log": [
+    {
+      "date": "2026-03-26",
+      "opponent": "Philadelphia Phillies",
+      "ip": 4.666666666666667,
+      "era": 9.64,
+      "k": 7,
+      "bb": 0,
+      "h": 8,
+      "er": 5,
+      "pitches": 80,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-01",
+      "opponent": "Baltimore Orioles",
+      "ip": 4.0,
+      "era": 11.42,
+      "k": 5,
+      "bb": 3,
+      "h": 8,
+      "er": 6,
+      "pitches": 88,
+      "strikes": 55
+    },
+    {
+      "date": "2026-04-07",
+      "opponent": "Seattle Mariners",
+      "ip": 6.0,
+      "era": 7.98,
+      "k": 7,
+      "bb": 2,
+      "h": 6,
+      "er": 2,
+      "pitches": 93,
+      "strikes": 60
+    }
+  ],
+  "platoon_splits": {
+    "vs_left": {
+      "avg": ".252",
+      "obp": ".291",
+      "slg": ".455",
+      "k": 34,
+      "bb": 7,
+      "bf": 151,
+      "k_pct": 22.5,
+      "bb_pct": 4.6
+    },
+    "vs_right": {
+      "avg": ".215",
+      "obp": ".295",
+      "slg": ".333",
+      "k": 27,
+      "bb": 7,
+      "bf": 105,
+      "k_pct": 25.7,
+      "bb_pct": 6.7
+    }
+  },
+  "tto_splits": {
+    "tto1": {
+      "ops": 0.781,
+      "k_pct": 27.7,
+      "bb_pct": 4.0,
+      "bf": 101
+    },
+    "tto2": {
+      "ops": 0.553,
+      "k_pct": 17.7,
+      "bb_pct": 4.2,
+      "bf": 96
+    },
+    "tto3": {
+      "ops": 0.784,
+      "k_pct": 22.2,
+      "bb_pct": 9.7,
+      "bf": 72
+    },
+    "source": "season"
+  },
+  "arsenal": [
+    {
+      "pitch_type": "FS",
+      "pitch_name": "Split-Finger",
+      "usage": 39.5,
+      "rv_per_100": 2.6,
+      "xwoba_against": 0.285,
+      "whiff_pct": 35.2,
+      "put_away_pct": 25.9,
+      "hard_hit_pct": 49.3
+    },
+    {
+      "pitch_type": "FC",
+      "pitch_name": "Cutter",
+      "usage": 21.1,
+      "rv_per_100": -1.6,
+      "xwoba_against": 0.442,
+      "whiff_pct": 33.3,
+      "put_away_pct": 15.1,
+      "hard_hit_pct": 41.2
+    },
+    {
+      "pitch_type": "CU",
+      "pitch_name": "Curveball",
+      "usage": 19.7,
+      "rv_per_100": 1.2,
+      "xwoba_against": 0.183,
+      "whiff_pct": 38.1,
+      "put_away_pct": 19.4,
+      "hard_hit_pct": 32.0
+    },
+    {
+      "pitch_type": "FF",
+      "pitch_name": "4-Seam Fastball",
+      "usage": 11.0,
+      "rv_per_100": -6.3,
+      "xwoba_against": 0.432,
+      "whiff_pct": 21.3,
+      "put_away_pct": 29.6,
+      "hard_hit_pct": 42.9
+    },
+    {
+      "pitch_type": "SI",
+      "pitch_name": "Sinker",
+      "usage": 8.0,
+      "rv_per_100": 1.2,
+      "xwoba_against": 0.315,
+      "whiff_pct": 15.2,
+      "put_away_pct": 40.0,
+      "hard_hit_pct": 25.0
+    }
+  ],
+  "stuff": {
+    "error": "Error accessing 'https://www.fangraphs.com/leaders-legacy.aspx'. Received status code 403"
+  }
+}
