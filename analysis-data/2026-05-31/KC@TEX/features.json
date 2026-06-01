@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-31T16:16:20+00:00",
+  "game": {
+    "date": "2026-05-31",
+    "game_pk": 822895,
+    "home": "Texas Rangers",
+    "away": "Kansas City Royals",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.9,
+    "home_rs_season": 3.98,
+    "away_rs_recent": 2.8,
+    "away_rs_season": 3.69,
+    "home_ra_recent": 4.8,
+    "home_ra_season": 3.91,
+    "away_ra_recent": 6.1,
+    "away_ra_season": 4.64,
+    "home_starter": {
+      "name": "Jack Leiter",
+      "id": 683004,
+      "fip": 4.4,
+      "ip": 60.666666666666664,
+      "k": 64,
+      "bb": 26,
+      "hbp": 4,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Michael Wacha",
+      "id": 608379,
+      "fip": 3.94,
+      "ip": 70.33333333333333,
+      "k": 60,
+      "bb": 22,
+      "hbp": 3,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.33,
+    "away_bullpen_era": 5.11,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Joc Pederson",
+        "id": 592626,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Josh Jung",
+        "id": 673962,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Brandon Nimmo",
+        "id": 607043,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jake Burger",
+        "id": 669394,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ezequiel Duran",
+        "id": 677649,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Alejandro Osuna",
+        "id": 696030,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Kyle Higashioka",
+        "id": 543309,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nicky Lopez",
+        "id": 670032,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Michael Helman",
+        "id": 680737,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Carter Jensen",
+        "id": 695600,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bobby Witt Jr.",
+        "id": 677951,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Vinnie Pasquantino",
+        "id": 686469,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Salvador Perez",
+        "id": 521692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jac Caglianone",
+        "id": 695506,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Isaac Collins",
+        "id": 686555,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Michael Massey",
+        "id": 686681,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nick Loftin",
+        "id": 679845,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Kyle Isbel",
+        "id": 664728,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.34,
+    "mu_away": 3.07,
+    "mu_margin": 1.27,
+    "mu_total": 7.41,
+    "p_home_ml": 0.6023,
+    "p_home_cover_rl": 0.4813,
+    "p_over": 0.4927,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-31_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.33299999999999996,
+      "away_point": 1.5,
+      "away_no_vig": 0.667
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.496,
+      "under_no_vig": 0.504
+    }
+  },
+  "edges": {
+    "home_rl_pp": 14.8,
+    "over_pp": -0.3
+  }
+}

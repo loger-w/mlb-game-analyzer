@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-31T16:15:24+00:00",
+  "game": {
+    "date": "2026-05-31",
+    "game_pk": 824832,
+    "home": "Baltimore Orioles",
+    "away": "Toronto Blue Jays",
+    "venue": "Oriole Park at Camden Yards"
+  },
+  "inputs": {
+    "home_rs_recent": 5.1,
+    "home_rs_season": 4.36,
+    "away_rs_recent": 3.9,
+    "away_rs_season": 3.98,
+    "home_ra_recent": 3.4,
+    "home_ra_season": 5.05,
+    "away_ra_recent": 3.0,
+    "away_ra_season": 4.03,
+    "home_starter": {
+      "name": "Kyle Bradish",
+      "id": 680694,
+      "fip": 4.16,
+      "ip": 58.333333333333336,
+      "k": 61,
+      "bb": 30,
+      "hbp": 1,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "Spencer Miles",
+      "id": 693686,
+      "fip": 2.77,
+      "ip": 33.333333333333336,
+      "k": 32,
+      "bb": 9,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.45,
+    "away_bullpen_era": 3.79,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Taylor Ward",
+        "id": 621493,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Gunnar Henderson",
+        "id": 683002,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Adley Rutschman",
+        "id": 668939,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Pete Alonso",
+        "id": 624413,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Samuel Basallo",
+        "id": 694212,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Leody Taveras",
+        "id": 665750,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Colton Cowser",
+        "id": 681297,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Blaze Alexander",
+        "id": 677942,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jackson Holliday",
+        "id": 702616,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Nathan Lukes",
+        "id": 664770,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Vladimir Guerrero Jr.",
+        "id": 665489,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Daulton Varsho",
+        "id": 662139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Kazuma Okamoto",
+        "id": 672960,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ernie Clement",
+        "id": 676391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Jesús Sánchez",
+        "id": 660821,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Charles McAdoo",
+        "id": 807727,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Andrés Giménez",
+        "id": 665926,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Brandon Valenzuela",
+        "id": 678218,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.36,
+    "mu_away": 3.87,
+    "mu_margin": -0.51,
+    "mu_total": 7.23,
+    "p_home_ml": 0.4585,
+    "p_home_cover_rl": 0.3407,
+    "p_over": 0.4375,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-31_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.375,
+      "away_point": 1.5,
+      "away_no_vig": 0.625
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.489,
+      "under_no_vig": 0.511
+    }
+  },
+  "edges": {
+    "home_rl_pp": -3.4,
+    "over_pp": -5.1
+  }
+}

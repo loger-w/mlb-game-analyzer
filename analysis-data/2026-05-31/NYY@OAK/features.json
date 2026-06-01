@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-31T16:16:33+00:00",
+  "game": {
+    "date": "2026-05-31",
+    "game_pk": 825001,
+    "home": "Athletics",
+    "away": "New York Yankees",
+    "venue": "Sutter Health Park"
+  },
+  "inputs": {
+    "home_rs_recent": 2.9,
+    "home_rs_season": 4.21,
+    "away_rs_recent": 4.3,
+    "away_rs_season": 4.95,
+    "home_ra_recent": 5.2,
+    "home_ra_season": 4.71,
+    "away_ra_recent": 2.0,
+    "away_ra_season": 3.37,
+    "home_starter": {
+      "name": "Jacob Lopez",
+      "id": 682052,
+      "fip": 6.51,
+      "ip": 48.666666666666664,
+      "k": 35,
+      "bb": 31,
+      "hbp": 0,
+      "hr": 11
+    },
+    "away_starter": {
+      "name": "Will Warren",
+      "id": 701542,
+      "fip": 3.31,
+      "ip": 58.333333333333336,
+      "k": 65,
+      "bb": 16,
+      "hbp": 1,
+      "hr": 7
+    },
+    "home_bullpen_era": 4.32,
+    "away_bullpen_era": 3.39,
+    "park_factor": 109.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.26,
+    "mu_away": 6.91,
+    "mu_margin": -3.65,
+    "mu_total": 10.17,
+    "p_home_ml": 0.228,
+    "p_home_cover_rl": 0.3303,
+    "p_over": 0.4731,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-31_11-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.498,
+      "away_point": -1.5,
+      "away_no_vig": 0.502
+    },
+    "total": {
+      "line": 10.5,
+      "over_no_vig": 0.48700000000000004,
+      "under_no_vig": 0.513
+    }
+  },
+  "edges": {
+    "home_rl_pp": -16.8,
+    "over_pp": -1.4
+  }
+}

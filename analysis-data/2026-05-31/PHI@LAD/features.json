@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-31T16:16:46+00:00",
+  "game": {
+    "date": "2026-05-31",
+    "game_pk": 823944,
+    "home": "Los Angeles Dodgers",
+    "away": "Philadelphia Phillies",
+    "venue": "UNIQLO Field at Dodger Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.7,
+    "home_rs_season": 5.26,
+    "away_rs_recent": 2.5,
+    "away_rs_season": 3.88,
+    "home_ra_recent": 2.9,
+    "home_ra_season": 3.17,
+    "away_ra_recent": 2.7,
+    "away_ra_season": 4.19,
+    "home_starter": {
+      "name": "Yoshinobu Yamamoto",
+      "id": 808967,
+      "fip": 3.79,
+      "ip": 64.0,
+      "k": 59,
+      "bb": 13,
+      "hbp": 2,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Andrew Painter",
+      "id": 691725,
+      "fip": 4.4,
+      "ip": 50.0,
+      "k": 40,
+      "bb": 16,
+      "hbp": 2,
+      "hr": 7
+    },
+    "home_bullpen_era": 3.05,
+    "away_bullpen_era": 3.91,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.32,
+    "mu_away": 2.77,
+    "mu_margin": 2.55,
+    "mu_total": 8.09,
+    "p_home_ml": 0.6988,
+    "p_home_cover_rl": 0.5849,
+    "p_over": 0.4263,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-31_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.505,
+      "away_point": 1.5,
+      "away_no_vig": 0.495
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.484,
+      "under_no_vig": 0.516
+    }
+  },
+  "edges": {
+    "home_rl_pp": 8.0,
+    "over_pp": -5.8
+  }
+}

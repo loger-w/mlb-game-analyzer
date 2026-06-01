@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-05-31T16:16:39+00:00",
+  "game": {
+    "date": "2026-05-31",
+    "game_pk": 823133,
+    "home": "Seattle Mariners",
+    "away": "Arizona Diamondbacks",
+    "venue": "T-Mobile Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.8,
+    "home_rs_season": 4.27,
+    "away_rs_recent": 4.6,
+    "away_rs_season": 4.6,
+    "home_ra_recent": 3.0,
+    "home_ra_season": 3.78,
+    "away_ra_recent": 3.3,
+    "away_ra_season": 4.44,
+    "home_starter": {
+      "name": "Bryce Miller",
+      "id": 682243,
+      "fip": 3.35,
+      "ip": 16.0,
+      "k": 14,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Merrill Kelly",
+      "id": 518876,
+      "fip": 5.22,
+      "ip": 48.0,
+      "k": 31,
+      "bb": 20,
+      "hbp": 0,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.18,
+    "away_bullpen_era": 4.06,
+    "park_factor": 82.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.14,
+    "mu_away": 2.95,
+    "mu_margin": 1.19,
+    "mu_total": 7.09,
+    "p_home_ml": 0.596,
+    "p_home_cover_rl": 0.4748,
+    "p_over": 0.4666,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-05-31_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.384,
+      "away_point": 1.5,
+      "away_no_vig": 0.616
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.483,
+      "under_no_vig": 0.517
+    }
+  },
+  "edges": {
+    "home_rl_pp": 9.1,
+    "over_pp": -1.6
+  }
+}
