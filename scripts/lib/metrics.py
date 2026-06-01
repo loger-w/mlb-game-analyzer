@@ -57,3 +57,33 @@ def compute_edge_calibration(df: pd.DataFrame) -> dict:
         out["ou_pos_edge_n"] = 0
         out["ou_pos_edge_hit"] = None
     return out
+
+
+def compute_threshold_sweep(df: pd.DataFrame, thresholds) -> dict:
+    """雙向下注:|edge|≥t 下 model pick 側(sign(edge)),逐門檻命中率。
+    RL 用 home_rl_pp(pick home/away)、O/U 用 over_pp(pick over/under,排 push)。"""
+    v = _valid(df)
+
+    rl = v[v["home_rl_pp"].notna() & (v["home_rl_pp"] != 0)
+           & v["actual_margin"].notna() & v["rl_home_point"].notna()].copy()
+    rl_home_cover = rl["actual_margin"] > (-rl["rl_home_point"])
+    rl_hit = (rl["home_rl_pp"] > 0) == rl_home_cover   # pick home & cover, or pick away & no-cover
+
+    ou = v[v["over_pp"].notna() & (v["over_pp"] != 0)
+           & v["actual_total"].notna() & v["total_line"].notna()].copy()
+    ou = ou[ou["actual_total"] != ou["total_line"]]    # exclude push
+    ou_over = ou["actual_total"] > ou["total_line"]
+    ou_hit = (ou["over_pp"] > 0) == ou_over
+
+    def _sweep(frame, edge_col, hit):
+        rows = []
+        for t in thresholds:
+            mask = frame[edge_col].abs() >= t
+            n = int(mask.sum())
+            rows.append({"t": t, "n_bets": n,
+                         "hit_rate": float(hit[mask].mean()) if n else None})
+        return rows
+
+    return {"thresholds": list(thresholds),
+            "rl": _sweep(rl, "home_rl_pp", rl_hit),
+            "ou": _sweep(ou, "over_pp", ou_hit)}

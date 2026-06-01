@@ -39,3 +39,45 @@ def test_edge_calibration_positive_side():
     # g2 has home_rl_pp>0 and over_pp>0
     assert out["rl_pos_edge_n"] == 1
     assert out["ou_pos_edge_n"] == 1
+
+
+def _sweep_df():
+    # row0: home edge +8, margin 3 (>1.5 → home covers) → pick home, HIT
+    # row1: home edge -5 (pick away), margin 0 (home no-cover → away covers) → HIT; ou edge -4 (under), total 7<8.5 under → HIT
+    # row2: home edge +2 (pick home), margin 1 (<1.5 no-cover) → MISS; ou edge +2 (over), total 10>8.5 over → HIT
+    # row3: home edge 0 (no pick); ou edge +3 but PUSH (total==line) → excluded from O/U
+    return pd.DataFrame([
+        {"home_rl_pp": 8.0, "rl_home_point": -1.5, "actual_margin": 3,
+         "over_pp": 6.0, "total_line": 8.5, "actual_total": 7,
+         "result_missing": False, "odds_missing": False},
+        {"home_rl_pp": -5.0, "rl_home_point": -1.5, "actual_margin": 0,
+         "over_pp": -4.0, "total_line": 8.5, "actual_total": 7,
+         "result_missing": False, "odds_missing": False},
+        {"home_rl_pp": 2.0, "rl_home_point": -1.5, "actual_margin": 1,
+         "over_pp": 2.0, "total_line": 8.5, "actual_total": 10,
+         "result_missing": False, "odds_missing": False},
+        {"home_rl_pp": 0.0, "rl_home_point": -1.5, "actual_margin": 5,
+         "over_pp": 3.0, "total_line": 8.5, "actual_total": 8.5,
+         "result_missing": False, "odds_missing": False},
+    ])
+
+
+def test_threshold_sweep_two_sided_and_filtering():
+    out = metrics.compute_threshold_sweep(_sweep_df(), [0, 2, 3])
+    assert out["thresholds"] == [0, 2, 3]
+    rl = {r["t"]: r for r in out["rl"]}
+    # row3 home edge 0 → no pick → excluded everywhere. Candidates: 8, -5, 2
+    assert rl[0]["n_bets"] == 3 and round(rl[0]["hit_rate"], 3) == round(2 / 3, 3)
+    # t=3 keeps |edge|>=3 → 8 (home pick HIT), -5 (away pick HIT) → 2/2; proves two-sided away pick counts
+    assert rl[3]["n_bets"] == 2 and rl[3]["hit_rate"] == 1.0
+    ou = {r["t"]: r for r in out["ou"]}
+    # push row excluded → 3 O/U bets (6, -4, 2)
+    assert ou[0]["n_bets"] == 3
+    # t=3 → |over_pp|>=3 → 6 (over MISS), -4 (under HIT) → 1/2
+    assert ou[3]["n_bets"] == 2 and ou[3]["hit_rate"] == 0.5
+
+
+def test_threshold_sweep_empty_bucket_hit_none():
+    out = metrics.compute_threshold_sweep(_sweep_df(), [99])
+    assert out["rl"][0]["n_bets"] == 0 and out["rl"][0]["hit_rate"] is None
+    assert out["ou"][0]["n_bets"] == 0 and out["ou"][0]["hit_rate"] is None
