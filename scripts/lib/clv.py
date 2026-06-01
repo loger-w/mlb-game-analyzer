@@ -160,3 +160,21 @@ def aggregate_clv(rows: list) -> dict:
                "pct_point_stable": _pct_stable(ou, "ou_point_stable")},
         "entry_hour_table": hour_table,
     }
+
+
+def aggregate_clv_by_threshold(rows: list, thresholds) -> dict:
+    """headroom 子集上,逐門檻(|edge_pp|≥t)的 CLV 彙總。重用 _finite_nonzero / _stats。
+    回傳每市場一個 list:[{t, n, mean, share_pos}, ...](對齊 thresholds 順序)。"""
+    hr = [r for r in rows if r["has_headroom"]]
+
+    def _sweep(clv_key, edge_key):
+        cand = [r for r in hr if r[clv_key] is not None and _finite_nonzero(r[edge_key])]
+        out = []
+        for t in thresholds:
+            sub = [r for r in cand if abs(r[edge_key]) >= t]
+            s = _stats([r[clv_key] for r in sub])
+            out.append({"t": t, "n": s["n"], "mean": s["mean"], "share_pos": s["share_pos"]})
+        return out
+
+    return {"rl": _sweep("rl_clv", "rl_edge_pp"),
+            "ou": _sweep("ou_clv", "ou_edge_pp")}

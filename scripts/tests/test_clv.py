@@ -134,3 +134,27 @@ def test_render_clv_section_present():
     assert "CLV" in text
     assert "120" in text and "292" in text
     assert "52" in text   # rl share>0 as pct
+
+
+def test_aggregate_clv_by_threshold():
+    rows = [
+        {"has_headroom": True, "rl_clv": 2.0, "rl_edge_pp": 1.0, "ou_clv": 5.0, "ou_edge_pp": 4.0},
+        {"has_headroom": True, "rl_clv": -1.0, "rl_edge_pp": 3.0, "ou_clv": 1.0, "ou_edge_pp": 2.0},
+        {"has_headroom": True, "rl_clv": 0.5, "rl_edge_pp": -3.0, "ou_clv": -2.0, "ou_edge_pp": -1.0},
+        {"has_headroom": True, "rl_clv": 9.0, "rl_edge_pp": 0.0, "ou_clv": 9.0, "ou_edge_pp": 0.0},   # edge 0 → never counts
+        {"has_headroom": False, "rl_clv": None, "rl_edge_pp": None, "ou_clv": None, "ou_edge_pp": None},
+    ]
+    out = clv.aggregate_clv_by_threshold(rows, [0, 2, 3])
+    rl = {r["t"]: r for r in out["rl"]}
+    # candidates (headroom, clv not None, edge finite & nonzero): edges 1, 3, -3 → 3 rows (edge 0 + no-headroom excluded)
+    assert rl[0]["n"] == 3
+    assert abs(rl[0]["mean"] - (2.0 - 1.0 + 0.5) / 3) < 1e-3
+    assert abs(rl[0]["share_pos"] - 2 / 3) < 1e-3      # 2.0>0, -1.0 no, 0.5>0
+    # t=2 → |edge|>=2 → edges 3, -3 → clv -1.0, 0.5 → n=2
+    assert rl[2]["n"] == 2
+    assert rl[3]["n"] == 2
+    ou = {r["t"]: r for r in out["ou"]}
+    # ou candidates: edges 4, 2, -1 (edge 0 + no-headroom excluded) → 3
+    assert ou[0]["n"] == 3
+    # t=2 → |edge|>=2 → 4, 2 → clv 5.0, 1.0 → n=2
+    assert ou[2]["n"] == 2 and abs(ou[2]["mean"] - 3.0) < 1e-3
