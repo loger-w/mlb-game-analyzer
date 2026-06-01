@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-01T16:10:08+00:00",
+  "game": {
+    "date": "2026-06-01",
+    "game_pk": 824027,
+    "home": "Los Angeles Angels",
+    "away": "Colorado Rockies",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.6,
+    "home_rs_season": 4.25,
+    "away_rs_recent": 4.1,
+    "away_rs_season": 4.05,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 5.1,
+    "away_ra_recent": 7.0,
+    "away_ra_season": 5.39,
+    "home_starter": {
+      "name": "José Soriano",
+      "id": 667755,
+      "fip": 3.35,
+      "ip": 71.33333333333333,
+      "k": 78,
+      "bb": 31,
+      "hbp": 1,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Kyle Freeland",
+      "id": 607536,
+      "fip": 6.29,
+      "ip": 42.333333333333336,
+      "k": 39,
+      "bb": 14,
+      "hbp": 5,
+      "hr": 12
+    },
+    "home_bullpen_era": 5.08,
+    "away_bullpen_era": 4.88,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 6.51,
+    "mu_away": 3.96,
+    "mu_margin": 2.55,
+    "mu_total": 10.47,
+    "p_home_ml": 0.6988,
+    "p_home_cover_rl": 0.5849,
+    "p_over": 0.693,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-01_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.47200000000000003,
+      "away_point": 1.5,
+      "away_no_vig": 0.528
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.517,
+      "under_no_vig": 0.483
+    }
+  },
+  "edges": {
+    "home_rl_pp": 11.3,
+    "over_pp": 17.6
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-01T16:09:30+00:00",
+  "game": {
+    "date": "2026-06-01",
+    "game_pk": 822974,
+    "home": "Tampa Bay Rays",
+    "away": "Detroit Tigers",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.5,
+    "home_rs_season": 4.52,
+    "away_rs_recent": 2.7,
+    "away_rs_season": 3.66,
+    "home_ra_recent": 5.4,
+    "home_ra_season": 4.19,
+    "away_ra_recent": 4.3,
+    "away_ra_season": 4.3,
+    "home_starter": {
+      "name": "Griffin Jax",
+      "id": 643377,
+      "fip": 4.53,
+      "ip": 30.0,
+      "k": 27,
+      "bb": 15,
+      "hbp": 0,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Ty Madden",
+      "id": 680744,
+      "fip": 2.66,
+      "ip": 11.333333333333334,
+      "k": 12,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 4.69,
+    "away_bullpen_era": 4.23,
+    "park_factor": 100.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.26,
+    "mu_away": 3.64,
+    "mu_margin": -0.38,
+    "mu_total": 6.9,
+    "p_home_ml": 0.4691,
+    "p_home_cover_rl": 0.3505,
+    "p_over": 0.4111,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-01_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.426,
+      "away_point": 1.5,
+      "away_no_vig": 0.574
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.489,
+      "under_no_vig": 0.511
+    }
+  },
+  "edges": {
+    "home_rl_pp": -7.6,
+    "over_pp": -7.8
+  }
+}
