@@ -12,6 +12,10 @@ def _f(x, nd=2):
     return f"{x:.{nd}f}" if isinstance(x, (int, float)) else "—"
 
 
+def _clvpp(x) -> str:
+    return f"{x:+.2f}pp" if isinstance(x, (int, float)) else "—"
+
+
 def render_clv_section(clv: dict) -> str:
     rl, ou = clv["rl"], clv["ou"]
     hours = "".join(f"  - {h}:00 ET｜n={v['n']}｜mean {_f(v['mean'])}pp\n"
@@ -33,8 +37,27 @@ def render_clv_section(clv: dict) -> str:
     )
 
 
+def render_threshold_section(sweep: dict, sweep_clv: dict) -> str:
+    def _table(hits, clvs):
+        lines = ["| 門檻 | 注數 | 命中率 | CLV注數 | CLV mean | 往我方 |",
+                 "|------|------|--------|---------|----------|--------|"]
+        for h, c in zip(hits, clvs):
+            lines.append(
+                f"| ≥{h['t']}pp | {h['n_bets']} | {_pct(h['hit_rate'])} "
+                f"| {c['n']} | {_clvpp(c['mean'])} | {_pct(c['share_pos'])} |")
+        return "\n".join(lines)
+    return (
+        "## edge 門檻掃描(雙向:|edge|≥門檻,下 model pick 側)\n\n"
+        "RL:\n" + _table(sweep["rl"], sweep_clv["rl"]) + "\n\n"
+        "O/U:\n" + _table(sweep["ou"], sweep_clv["ou"]) + "\n\n"
+        "> 判讀:命中率與 CLV 要「同向往上」才算門檻撈出 edge;\n"
+        "> 命中率升但 CLV≈0/負 = 高門檻只是小樣本雜訊,非真 alpha。\n"
+    )
+
+
 def render_report(*, df: pd.DataFrame, rl: dict, ou: dict, edge: dict,
-                  month: str, out_path: Path, clv: dict | None = None) -> None:
+                  month: str, out_path: Path, clv: dict | None = None,
+                  sweep: dict | None = None, sweep_clv: dict | None = None) -> None:
     valid = 0
     if len(df):
         valid = int(((~df["odds_missing"]) & (~df["result_missing"])).sum())
@@ -54,6 +77,8 @@ def render_report(*, df: pd.DataFrame, rl: dict, ou: dict, edge: dict,
         f"- O/U 正 edge:n = {edge['ou_pos_edge_n']}｜命中 = {_pct(edge['ou_pos_edge_hit'])}",
         "",
     ]
+    if sweep is not None and sweep_clv is not None:
+        lines += [render_threshold_section(sweep, sweep_clv), ""]
     if clv is not None:
         lines += [render_clv_section(clv), ""]
     lines += [

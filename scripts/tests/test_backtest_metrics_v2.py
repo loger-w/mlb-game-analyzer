@@ -81,3 +81,19 @@ def test_threshold_sweep_empty_bucket_hit_none():
     out = metrics.compute_threshold_sweep(_sweep_df(), [99])
     assert out["rl"][0]["n_bets"] == 0 and out["rl"][0]["hit_rate"] is None
     assert out["ou"][0]["n_bets"] == 0 and out["ou"][0]["hit_rate"] is None
+
+
+def test_render_threshold_section_present():
+    from lib import render
+    sweep = {"thresholds": [0, 2],
+             "rl": [{"t": 0, "n_bets": 100, "hit_rate": 0.5}, {"t": 2, "n_bets": 40, "hit_rate": 0.55}],
+             "ou": [{"t": 0, "n_bets": 90, "hit_rate": 0.52}, {"t": 2, "n_bets": 30, "hit_rate": None}]}
+    sweep_clv = {"rl": [{"t": 0, "n": 95, "mean": -0.2, "share_pos": 0.44},
+                        {"t": 2, "n": 38, "mean": 0.1, "share_pos": 0.5}],
+                 "ou": [{"t": 0, "n": 88, "mean": 0.07, "share_pos": 0.45},
+                        {"t": 2, "n": 0, "mean": None, "share_pos": None}]}
+    text = render.render_threshold_section(sweep, sweep_clv)
+    assert "edge 門檻掃描" in text
+    assert "≥0pp" in text and "≥2pp" in text
+    assert "RL" in text and "O/U" in text
+    assert "—" in text   # None hit_rate / mean / share render as em dash
