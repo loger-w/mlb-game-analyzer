@@ -67,7 +67,7 @@ Reading: a real edge would show hit rate **and** CLV both rising with the thresh
 - **Tests** —
   - `scripts/tests/test_backtest_metrics_v2.py`: `compute_threshold_sweep` on a synthetic df — two-sided pick correctness (a negative-edge `away` pick that hits), threshold filtering monotonically drops n, push excluded from O/U, `n_bets == 0 → hit_rate None`.
   - `scripts/tests/test_clv.py`: `aggregate_clv_by_threshold` on synthetic clv rows — threshold filter on `abs(edge_pp)`, None-CLV/no-headroom rows excluded, mean & share_pos correct, zero-edge never counts at `t = 0`.
-  - `scripts/tests/test_backtest_e2e.py` (exists): assert the new section header appears in the rendered report.
+  - `scripts/tests/test_backtest_metrics_v2.py`: a `render_threshold_section` unit test asserting the section header + rows render, with None → "—" (matches the existing `test_render_clv_section_present` convention in `test_clv.py`). Note: `test_backtest_e2e.py` does **not** exist (only a stale `.pyc`), so coverage is at the render-unit level.
 
 ## Error handling
 
