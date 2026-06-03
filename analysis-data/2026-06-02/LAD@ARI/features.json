@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-02T14:34:07+00:00",
+  "game": {
+    "date": "2026-06-02",
+    "game_pk": 825079,
+    "home": "Arizona Diamondbacks",
+    "away": "Los Angeles Dodgers",
+    "venue": "Chase Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.5,
+    "home_rs_season": 4.54,
+    "away_rs_recent": 5.8,
+    "away_rs_season": 5.25,
+    "home_ra_recent": 3.3,
+    "home_ra_season": 4.36,
+    "away_ra_recent": 3.0,
+    "away_ra_season": 3.15,
+    "home_starter": {
+      "name": "Michael Soroka",
+      "id": 647336,
+      "fip": 2.87,
+      "ip": 61.0,
+      "k": 60,
+      "bb": 14,
+      "hbp": 4,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Eric Lauer",
+      "id": 641778,
+      "fip": 6.93,
+      "ip": 36.333333333333336,
+      "k": 26,
+      "bb": 16,
+      "hbp": 0,
+      "hr": 11
+    },
+    "home_bullpen_era": 3.92,
+    "away_bullpen_era": 3.12,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.89,
+    "mu_away": 4.31,
+    "mu_margin": 1.58,
+    "mu_total": 10.2,
+    "p_home_ml": 0.6265,
+    "p_home_cover_rl": 0.7354,
+    "p_over": 0.5568,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-02_10-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.5870000000000001,
+      "away_point": -1.5,
+      "away_no_vig": 0.413
+    },
+    "total": {
+      "line": 9.5,
+      "over_no_vig": 0.494,
+      "under_no_vig": 0.506
+    }
+  },
+  "edges": {
+    "home_rl_pp": 14.8,
+    "over_pp": 6.3
+  }
+}

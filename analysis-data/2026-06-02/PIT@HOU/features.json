@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-02T14:33:52+00:00",
+  "game": {
+    "date": "2026-06-02",
+    "game_pk": 824189,
+    "home": "Houston Astros",
+    "away": "Pittsburgh Pirates",
+    "venue": "Daikin Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.3,
+    "home_rs_season": 4.37,
+    "away_rs_recent": 5.3,
+    "away_rs_season": 5.02,
+    "home_ra_recent": 3.0,
+    "home_ra_season": 4.9,
+    "away_ra_recent": 4.8,
+    "away_ra_season": 4.5,
+    "home_starter": {
+      "name": "Mike Burrows",
+      "id": 681347,
+      "fip": 5.2,
+      "ip": 63.333333333333336,
+      "k": 54,
+      "bb": 21,
+      "hbp": 3,
+      "hr": 13
+    },
+    "away_starter": {
+      "name": "Bubba Chandler",
+      "id": 696149,
+      "fip": 4.98,
+      "ip": 52.0,
+      "k": 52,
+      "bb": 36,
+      "hbp": 1,
+      "hr": 7
+    },
+    "home_bullpen_era": 5.17,
+    "away_bullpen_era": 4.07,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.06,
+    "mu_away": 6.2,
+    "mu_margin": -1.14,
+    "mu_total": 11.26,
+    "p_home_ml": 0.4079,
+    "p_home_cover_rl": 0.2949,
+    "p_over": 0.6778,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-02_10-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.345,
+      "away_point": 1.5,
+      "away_no_vig": 0.655
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.494,
+      "under_no_vig": 0.506
+    }
+  },
+  "edges": {
+    "home_rl_pp": -5.0,
+    "over_pp": 18.4
+  }
+}
