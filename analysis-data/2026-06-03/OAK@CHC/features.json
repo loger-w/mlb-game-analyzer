@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-03T15:38:15+00:00",
+  "game": {
+    "date": "2026-06-03",
+    "game_pk": 824671,
+    "home": "Chicago Cubs",
+    "away": "Athletics",
+    "venue": "Wrigley Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 4.6,
+    "away_rs_recent": 3.0,
+    "away_rs_season": 4.23,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 4.31,
+    "away_ra_recent": 5.9,
+    "away_ra_season": 4.78,
+    "home_starter": {
+      "name": "Colin Rea",
+      "id": 607067,
+      "fip": 4.58,
+      "ip": 59.333333333333336,
+      "k": 49,
+      "bb": 20,
+      "hbp": 3,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Jeffrey Springs",
+      "id": 605488,
+      "fip": 4.73,
+      "ip": 66.33333333333333,
+      "k": 57,
+      "bb": 20,
+      "hbp": 2,
+      "hr": 12
+    },
+    "home_bullpen_era": 3.61,
+    "away_bullpen_era": 4.49,
+    "park_factor": 92.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.35,
+    "mu_away": 3.49,
+    "mu_margin": 0.86,
+    "mu_total": 7.84,
+    "p_home_ml": 0.5697,
+    "p_home_cover_rl": 0.448,
+    "p_over": 0.4464,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-03_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.37,
+      "away_point": 1.5,
+      "away_no_vig": 0.63
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.522,
+      "under_no_vig": 0.478
+    }
+  },
+  "edges": {
+    "home_rl_pp": 7.8,
+    "over_pp": -7.6
+  }
+}

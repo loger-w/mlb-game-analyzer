@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-03T15:37:39+00:00",
+  "game": {
+    "date": "2026-06-03",
+    "game_pk": 824755,
+    "home": "Boston Red Sox",
+    "away": "Baltimore Orioles",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.2,
+    "home_rs_season": 3.88,
+    "away_rs_recent": 5.7,
+    "away_rs_season": 4.43,
+    "home_ra_recent": 4.8,
+    "home_ra_season": 4.0,
+    "away_ra_recent": 3.7,
+    "away_ra_season": 5.0,
+    "home_starter": {
+      "name": "Payton Tolle",
+      "id": 801139,
+      "fip": 2.69,
+      "ip": 41.333333333333336,
+      "k": 46,
+      "bb": 11,
+      "hbp": 1,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Chris Bassitt",
+      "id": 605135,
+      "fip": 4.54,
+      "ip": 53.333333333333336,
+      "k": 36,
+      "bb": 20,
+      "hbp": 8,
+      "hr": 5
+    },
+    "home_bullpen_era": 3.08,
+    "away_bullpen_era": 4.53,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.88,
+    "mu_away": 3.44,
+    "mu_margin": 1.44,
+    "mu_total": 8.32,
+    "p_home_ml": 0.6157,
+    "p_home_cover_rl": 0.4951,
+    "p_over": 0.4448,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-03_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.409,
+      "away_point": 1.5,
+      "away_no_vig": 0.591
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.494,
+      "under_no_vig": 0.506
+    }
+  },
+  "edges": {
+    "home_rl_pp": 8.6,
+    "over_pp": -4.9
+  }
+}

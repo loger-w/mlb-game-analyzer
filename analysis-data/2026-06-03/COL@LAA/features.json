@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-03T15:38:26+00:00",
+  "game": {
+    "date": "2026-06-03",
+    "game_pk": 824024,
+    "home": "Los Angeles Angels",
+    "away": "Colorado Rockies",
+    "venue": "Angel Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.5,
+    "home_rs_season": 4.27,
+    "away_rs_recent": 5.4,
+    "away_rs_season": 4.19,
+    "home_ra_recent": 4.7,
+    "home_ra_season": 5.21,
+    "away_ra_recent": 7.6,
+    "away_ra_season": 5.38,
+    "home_starter": {
+      "name": "Walbert Ureña",
+      "id": 700712,
+      "fip": 3.96,
+      "ip": 44.333333333333336,
+      "k": 41,
+      "bb": 25,
+      "hbp": 2,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Michael Lorenzen",
+      "id": 547179,
+      "fip": 5.07,
+      "ip": 57.333333333333336,
+      "k": 43,
+      "bb": 20,
+      "hbp": 3,
+      "hr": 10
+    },
+    "home_bullpen_era": 5.22,
+    "away_bullpen_era": 4.88,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.65,
+    "mu_away": 4.96,
+    "mu_margin": 0.69,
+    "mu_total": 10.61,
+    "p_home_ml": 0.556,
+    "p_home_cover_rl": 0.4343,
+    "p_over": 0.6668,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-03_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.406,
+      "away_point": 1.5,
+      "away_no_vig": 0.594
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.522,
+      "under_no_vig": 0.478
+    }
+  },
+  "edges": {
+    "home_rl_pp": 2.8,
+    "over_pp": 14.5
+  }
+}

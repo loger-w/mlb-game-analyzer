@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-03T15:37:45+00:00",
+  "game": {
+    "date": "2026-06-03",
+    "game_pk": 823540,
+    "home": "New York Yankees",
+    "away": "Cleveland Guardians",
+    "venue": "Yankee Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.9,
+    "home_rs_season": 5.07,
+    "away_rs_recent": 3.0,
+    "away_rs_season": 4.1,
+    "home_ra_recent": 3.3,
+    "home_ra_season": 3.54,
+    "away_ra_recent": 4.7,
+    "away_ra_season": 4.0,
+    "home_starter": {
+      "name": "Gerrit Cole",
+      "id": 543037,
+      "fip": 1.92,
+      "ip": 12.666666666666666,
+      "k": 12,
+      "bb": 3,
+      "hbp": 0,
+      "hr": 0
+    },
+    "away_starter": {
+      "name": "Gavin Williams",
+      "id": 668909,
+      "fip": 3.35,
+      "ip": 76.33333333333333,
+      "k": 88,
+      "bb": 24,
+      "hbp": 2,
+      "hr": 9
+    },
+    "home_bullpen_era": 3.69,
+    "away_bullpen_era": 3.83,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.34,
+    "mu_away": 2.23,
+    "mu_margin": 2.11,
+    "mu_total": 6.57,
+    "p_home_ml": 0.6668,
+    "p_home_cover_rl": 0.5496,
+    "p_over": 0.465,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-03_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.396,
+      "away_point": 1.5,
+      "away_no_vig": 0.604
+    },
+    "total": {
+      "line": 7.0,
+      "over_no_vig": 0.528,
+      "under_no_vig": 0.47200000000000003
+    }
+  },
+  "edges": {
+    "home_rl_pp": 15.4,
+    "over_pp": -6.3
+  }
+}

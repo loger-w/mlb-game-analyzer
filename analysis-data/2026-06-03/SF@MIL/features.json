@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-03T15:38:03+00:00",
+  "game": {
+    "date": "2026-06-03",
+    "game_pk": 823780,
+    "home": "Milwaukee Brewers",
+    "away": "San Francisco Giants",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.0,
+    "home_rs_season": 4.87,
+    "away_rs_recent": 5.4,
+    "away_rs_season": 3.82,
+    "home_ra_recent": 3.6,
+    "home_ra_season": 3.32,
+    "away_ra_recent": 7.6,
+    "away_ra_season": 4.9,
+    "home_starter": {
+      "name": "TBD",
+      "id": null,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Logan Webb",
+      "id": 657277,
+      "fip": 3.56,
+      "ip": 52.333333333333336,
+      "k": 47,
+      "bb": 18,
+      "hbp": 4,
+      "hr": 4
+    },
+    "home_bullpen_era": 3.29,
+    "away_bullpen_era": 4.11,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.29,
+    "mu_away": 3.88,
+    "mu_margin": 0.41,
+    "mu_total": 8.17,
+    "p_home_ml": 0.5334,
+    "p_home_cover_rl": 0.4119,
+    "p_over": 0.5138,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-03_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.397,
+      "away_point": 1.5,
+      "away_no_vig": 0.603
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.502,
+      "under_no_vig": 0.498
+    }
+  },
+  "edges": {
+    "home_rl_pp": 1.5,
+    "over_pp": 1.2
+  }
+}
