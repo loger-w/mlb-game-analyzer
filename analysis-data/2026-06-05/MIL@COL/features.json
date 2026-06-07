@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-05T16:58:13+00:00",
+  "game": {
+    "date": "2026-06-05",
+    "game_pk": 824350,
+    "home": "Colorado Rockies",
+    "away": "Milwaukee Brewers",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.7,
+    "home_rs_season": 4.18,
+    "away_rs_recent": 5.5,
+    "away_rs_season": 4.85,
+    "home_ra_recent": 7.8,
+    "home_ra_season": 5.46,
+    "away_ra_recent": 3.3,
+    "away_ra_season": 3.42,
+    "home_starter": {
+      "name": "Ryan Feltner",
+      "id": 663372,
+      "fip": 5.06,
+      "ip": 26.0,
+      "k": 19,
+      "bb": 8,
+      "hbp": 0,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Brandon Sproat",
+      "id": 687075,
+      "fip": 5.59,
+      "ip": 49.0,
+      "k": 52,
+      "bb": 27,
+      "hbp": 5,
+      "hr": 10
+    },
+    "home_bullpen_era": 4.83,
+    "away_bullpen_era": 3.36,
+    "park_factor": 131.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 6.91,
+    "mu_away": 7.87,
+    "mu_margin": -0.96,
+    "mu_total": 14.78,
+    "p_home_ml": 0.4223,
+    "p_home_cover_rl": 0.5439,
+    "p_over": 0.7149,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-05_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.512,
+      "away_point": -1.5,
+      "away_no_vig": 0.488
+    },
+    "total": {
+      "line": 12.0,
+      "over_no_vig": 0.494,
+      "under_no_vig": 0.506
+    }
+  },
+  "edges": {
+    "home_rl_pp": 3.2,
+    "over_pp": 22.1
+  }
+}

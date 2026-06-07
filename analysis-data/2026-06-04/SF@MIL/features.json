@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-04T11:58:03+00:00",
+  "game": {
+    "date": "2026-06-04",
+    "game_pk": 823779,
+    "home": "Milwaukee Brewers",
+    "away": "San Francisco Giants",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.7,
+    "home_rs_season": 4.79,
+    "away_rs_recent": 5.1,
+    "away_rs_season": 3.78,
+    "home_ra_recent": 2.6,
+    "home_ra_season": 3.28,
+    "away_ra_recent": 6.7,
+    "away_ra_season": 4.83,
+    "home_starter": {
+      "name": "Coleman Crow",
+      "id": 689441,
+      "fip": 3.73,
+      "ip": 14.333333333333334,
+      "k": 8,
+      "bb": 3,
+      "hbp": 1,
+      "hr": 1
+    },
+    "away_starter": {
+      "name": "Adrian Houser",
+      "id": 605288,
+      "fip": 5.21,
+      "ip": 56.333333333333336,
+      "k": 35,
+      "bb": 21,
+      "hbp": 3,
+      "hr": 9
+    },
+    "home_bullpen_era": 3.23,
+    "away_bullpen_era": 4.07,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.23,
+    "mu_away": 3.46,
+    "mu_margin": 1.77,
+    "mu_total": 8.69,
+    "p_home_ml": 0.6411,
+    "p_home_cover_rl": 0.522,
+    "p_over": 0.4748,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-04_07-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.446,
+      "away_point": 1.5,
+      "away_no_vig": 0.5539999999999999
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.518,
+      "under_no_vig": 0.48200000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": 7.6,
+    "over_pp": -4.3
+  }
+}

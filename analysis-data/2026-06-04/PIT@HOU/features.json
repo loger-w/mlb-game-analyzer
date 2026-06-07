@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-04T11:58:26+00:00",
+  "game": {
+    "date": "2026-06-04",
+    "game_pk": 824185,
+    "home": "Houston Astros",
+    "away": "Pittsburgh Pirates",
+    "venue": "Daikin Park"
+  },
+  "inputs": {
+    "home_rs_recent": 6.3,
+    "home_rs_season": 4.5,
+    "away_rs_recent": 6.8,
+    "away_rs_season": 5.16,
+    "home_ra_recent": 4.7,
+    "home_ra_season": 5.05,
+    "away_ra_recent": 5.4,
+    "away_ra_season": 4.63,
+    "home_starter": {
+      "name": "Kai-Wei Teng",
+      "id": 678906,
+      "fip": 4.1,
+      "ip": 42.0,
+      "k": 43,
+      "bb": 19,
+      "hbp": 2,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Jared Jones",
+      "id": 683003,
+      "fip": null,
+      "ip": 4.333333333333333,
+      "k": 6,
+      "bb": 2,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 5.23,
+    "away_bullpen_era": 4.08,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.97,
+    "mu_away": 6.1,
+    "mu_margin": -1.13,
+    "mu_total": 11.07,
+    "p_home_ml": 0.4087,
+    "p_home_cover_rl": 0.2956,
+    "p_over": 0.7002,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-04_07-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.336,
+      "away_point": 1.5,
+      "away_no_vig": 0.664
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.501,
+      "under_no_vig": 0.499
+    }
+  },
+  "edges": {
+    "home_rl_pp": -4.0,
+    "over_pp": 19.9
+  }
+}

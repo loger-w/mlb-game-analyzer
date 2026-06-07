@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-05T16:58:01+00:00",
+  "game": {
+    "date": "2026-06-05",
+    "game_pk": 822892,
+    "home": "Texas Rangers",
+    "away": "Cleveland Guardians",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.8,
+    "home_rs_season": 4.02,
+    "away_rs_recent": 3.5,
+    "away_rs_season": 4.06,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 3.87,
+    "away_ra_recent": 5.0,
+    "away_ra_season": 3.97,
+    "home_starter": {
+      "name": "Kumar Rocker",
+      "id": 677958,
+      "fip": 4.14,
+      "ip": 56.0,
+      "k": 44,
+      "bb": 25,
+      "hbp": 2,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Parker Messick",
+      "id": 800048,
+      "fip": 3.04,
+      "ip": 69.33333333333333,
+      "k": 74,
+      "bb": 21,
+      "hbp": 1,
+      "hr": 6
+    },
+    "home_bullpen_era": 3.33,
+    "away_bullpen_era": 3.82,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.29,
+    "mu_away": 3.37,
+    "mu_margin": -0.08,
+    "mu_total": 6.66,
+    "p_home_ml": 0.4935,
+    "p_home_cover_rl": 0.6141,
+    "p_over": 0.4319,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-05_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.588,
+      "away_point": -1.5,
+      "away_no_vig": 0.41200000000000003
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.504,
+      "under_no_vig": 0.496
+    }
+  },
+  "edges": {
+    "home_rl_pp": 2.6,
+    "over_pp": -7.2
+  }
+}
