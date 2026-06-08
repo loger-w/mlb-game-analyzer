@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-07T15:44:35+00:00",
+  "game": {
+    "date": "2026-06-07",
+    "game_pk": 824349,
+    "home": "Colorado Rockies",
+    "away": "Milwaukee Brewers",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.8,
+    "home_rs_season": 4.18,
+    "away_rs_recent": 6.0,
+    "away_rs_season": 4.95,
+    "home_ra_recent": 8.4,
+    "home_ra_season": 5.54,
+    "away_ra_recent": 4.0,
+    "away_ra_season": 3.44,
+    "home_starter": {
+      "name": "Kyle Freeland",
+      "id": 607536,
+      "fip": 6.08,
+      "ip": 48.0,
+      "k": 43,
+      "bb": 15,
+      "hbp": 5,
+      "hr": 13
+    },
+    "away_starter": {
+      "name": "Shane Drohan",
+      "id": 675660,
+      "fip": 2.78,
+      "ip": 31.333333333333332,
+      "k": 33,
+      "bb": 10,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.95,
+    "away_bullpen_era": 3.4,
+    "park_factor": 131.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.49,
+    "mu_away": 9.34,
+    "mu_margin": -4.85,
+    "mu_total": 13.83,
+    "p_home_ml": 0.1609,
+    "p_home_cover_rl": 0.2469,
+    "p_over": 0.6829,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-07_11-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.47,
+      "away_point": -1.5,
+      "away_no_vig": 0.53
+    },
+    "total": {
+      "line": 11.5,
+      "over_no_vig": 0.508,
+      "under_no_vig": 0.49200000000000005
+    }
+  },
+  "edges": {
+    "home_rl_pp": -22.3,
+    "over_pp": 17.5
+  }
+}

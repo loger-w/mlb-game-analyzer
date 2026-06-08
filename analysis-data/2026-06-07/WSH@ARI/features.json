@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-07T15:44:41+00:00",
+  "game": {
+    "date": "2026-06-07",
+    "game_pk": 825074,
+    "home": "Arizona Diamondbacks",
+    "away": "Washington Nationals",
+    "venue": "Chase Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.0,
+    "home_rs_season": 4.34,
+    "away_rs_recent": 5.3,
+    "away_rs_season": 5.4,
+    "home_ra_recent": 5.6,
+    "home_ra_season": 4.56,
+    "away_ra_recent": 3.9,
+    "away_ra_season": 5.28,
+    "home_starter": {
+      "name": "Michael Soroka",
+      "id": 647336,
+      "fip": 2.95,
+      "ip": 67.0,
+      "k": 66,
+      "bb": 15,
+      "hbp": 4,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Cade Cavalli",
+      "id": 676917,
+      "fip": 2.99,
+      "ip": 64.66666666666667,
+      "k": 74,
+      "bb": 24,
+      "hbp": 10,
+      "hr": 3
+    },
+    "home_bullpen_era": 4.13,
+    "away_bullpen_era": 4.67,
+    "park_factor": 101.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.41,
+    "mu_away": 4.42,
+    "mu_margin": -1.01,
+    "mu_total": 7.83,
+    "p_home_ml": 0.4183,
+    "p_home_cover_rl": 0.3041,
+    "p_over": 0.4862,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-07_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.371,
+      "away_point": 1.5,
+      "away_no_vig": 0.629
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.508,
+      "under_no_vig": 0.49200000000000005
+    }
+  },
+  "edges": {
+    "home_rl_pp": -6.7,
+    "over_pp": -2.2
+  }
+}
