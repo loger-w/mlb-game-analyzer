@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-10T16:57:44+00:00",
+  "game": {
+    "date": "2026-06-10",
+    "game_pk": 824590,
+    "home": "Chicago White Sox",
+    "away": "Atlanta Braves",
+    "venue": "Rate Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.4,
+    "home_rs_season": 4.72,
+    "away_rs_recent": 5.0,
+    "away_rs_season": 5.21,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 4.58,
+    "away_ra_recent": 3.8,
+    "away_ra_season": 3.49,
+    "home_starter": {
+      "name": "TBD",
+      "id": null,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Chris Sale",
+      "id": 519242,
+      "fip": 2.88,
+      "ip": 72.66666666666667,
+      "k": 86,
+      "bb": 19,
+      "hbp": 7,
+      "hr": 6
+    },
+    "home_bullpen_era": 4.29,
+    "away_bullpen_era": 2.96,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.34,
+    "mu_away": 5.03,
+    "mu_margin": -1.69,
+    "mu_total": 8.37,
+    "p_home_ml": 0.365,
+    "p_home_cover_rl": 0.4845,
+    "p_over": 0.6102,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-10_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.5539999999999999,
+      "away_point": -1.5,
+      "away_no_vig": 0.446
+    },
+    "total": {
+      "line": 7.0,
+      "over_no_vig": 0.522,
+      "under_no_vig": 0.478
+    }
+  },
+  "edges": {
+    "home_rl_pp": -6.9,
+    "over_pp": 8.8
+  }
+}
