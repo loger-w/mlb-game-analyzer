@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-09T19:23:38+00:00",
+  "game": {
+    "date": "2026-06-09",
+    "game_pk": 823620,
+    "home": "New York Mets",
+    "away": "St. Louis Cardinals",
+    "venue": "Citi Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.5,
+    "home_rs_season": 3.96,
+    "away_rs_recent": 4.4,
+    "away_rs_season": 4.21,
+    "home_ra_recent": 2.9,
+    "home_ra_season": 4.03,
+    "away_ra_recent": 3.7,
+    "away_ra_season": 4.24,
+    "home_starter": {
+      "name": "Freddy Peralta",
+      "id": 642547,
+      "fip": 4.0,
+      "ip": 72.0,
+      "k": 74,
+      "bb": 30,
+      "hbp": 2,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Dustin May",
+      "id": 669160,
+      "fip": 3.35,
+      "ip": 66.66666666666667,
+      "k": 60,
+      "bb": 19,
+      "hbp": 5,
+      "hr": 5
+    },
+    "home_bullpen_era": 3.29,
+    "away_bullpen_era": 4.04,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Carson Benge",
+        "id": 701807,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Bo Bichette",
+        "id": 666182,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Juan Soto",
+        "id": 665742,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jared Young",
+        "id": 676724,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "A.J. Ewing",
+        "id": 805999,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Marcus Semien",
+        "id": 543760,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brett Baty",
+        "id": 683146,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "MJ Melendez",
+        "id": 669004,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Francisco Alvarez",
+        "id": 682626,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.73,
+    "mu_away": 3.64,
+    "mu_margin": 0.09,
+    "mu_total": 7.37,
+    "p_home_ml": 0.5073,
+    "p_home_cover_rl": 0.3867,
+    "p_over": 0.4894,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-09_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.355,
+      "away_point": 1.5,
+      "away_no_vig": 0.645
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.518,
+      "under_no_vig": 0.48200000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": 3.2,
+    "over_pp": -2.9
+  }
+}

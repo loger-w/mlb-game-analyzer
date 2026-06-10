@@ -67,9 +67,17 @@ def _fetch_season_final_games(year: int, through: str) -> list[dict]:
 
 
 def _fetch_boxscore(game_pk: int) -> dict:
-    r = requests.get(f"{MLB_API_BASE}/game/{game_pk}/boxscore", timeout=15)
-    r.raise_for_status()
-    return r.json()
+    import time
+    last_err = None
+    for attempt in range(4):
+        try:
+            r = requests.get(f"{MLB_API_BASE}/game/{game_pk}/boxscore", timeout=30)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            last_err = e
+            time.sleep(1.5 * (attempt + 1))
+    raise last_err
 
 
 def build_relief_index(year: int, through: str,
