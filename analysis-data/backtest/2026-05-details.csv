@@ -1,345 +1,390 @@
-date,matchup,game_pk,home_team,away_team,mu_total,p_home_cover_rl,p_over,p_home_ml,rl_home_point,rl_home_no_vig,total_line,over_no_vig,home_rl_pp,over_pp,actual_winner,actual_total,actual_margin,odds_missing,result_missing
-2026-05-01,ARI@CHC,824686,Chicago Cubs,Arizona Diamondbacks,9.14,,,0.5585,,,,,,,HOME,11.0,1.0,True,False
-2026-05-01,ATL@COL,824366,Colorado Rockies,Atlanta Braves,15.23,0.3113,0.8062,0.2123,1.5,0.48100000000000004,11.0,0.478,-17.0,32.8,AWAY,14.0,-2.0,False,False
-2026-05-01,BAL@NYY,823557,New York Yankees,Baltimore Orioles,7.81,0.444,0.444,0.5657,-1.5,0.405,8.5,0.514,3.9,-7.0,HOME,9.0,5.0,False,False
-2026-05-01,CIN@PIT,823389,Pittsburgh Pirates,Cincinnati Reds,8.79,0.4391,0.5641,0.5609,-1.5,0.377,8.0,0.493,6.2,7.1,HOME,10.0,8.0,False,False
-2026-05-01,CLE@OAK,825012,Athletics,Cleveland Guardians,8.97,0.4071,0.4167,0.5285,-1.5,0.391,10.0,0.491,1.6,-7.4,,,,False,True
-2026-05-01,CWS@SD,823309,San Diego Padres,Chicago White Sox,9.49,0.2984,0.6578,0.4119,-1.5,0.46299999999999997,7.5,0.512,-16.5,14.6,AWAY,10.0,-6.0,False,False
-2026-05-01,HOU@BOS,824772,Boston Red Sox,Houston Astros,10.63,0.4472,0.6304,0.5689,-1.5,0.364,9.0,0.509,8.3,12.1,HOME,4.0,2.0,False,False
-2026-05-01,KC@SEA,823146,Seattle Mariners,Kansas City Royals,8.04,0.5244,0.5439,0.6434,-1.5,0.382,7.5,0.48100000000000004,14.2,6.3,AWAY,13.0,-1.0,False,False
-2026-05-01,LAD@STL,823066,St. Louis Cardinals,Los Angeles Dodgers,11.76,0.4367,0.7472,0.3207,1.5,0.542,8.5,0.526,-10.5,22.1,HOME,9.0,5.0,False,False
-2026-05-01,MIL@WSH,822744,Washington Nationals,Milwaukee Brewers,10.14,0.5326,0.669,0.4111,1.5,0.585,8.0,0.483,-5.2,18.6,AWAY,7.0,-5.0,False,False
-2026-05-01,NYM@LAA,824041,Los Angeles Angels,New York Mets,8.25,0.6335,0.5204,0.5138,1.5,0.599,8.0,0.499,3.4,2.1,AWAY,7.0,-1.0,False,False
-2026-05-01,PHI@MIA,823877,Miami Marlins,Philadelphia Phillies,8.87,,,0.5155,,,,,,,AWAY,11.0,-1.0,True,False
-2026-05-01,SF@TB,822990,Tampa Bay Rays,San Francisco Giants,6.78,,,0.5777,,,,,,,HOME,3.0,3.0,True,False
-2026-05-01,TEX@DET,824287,Detroit Tigers,Texas Rangers,8.94,0.3237,0.5761,0.4399,-1.5,0.374,8.0,0.501,-5.0,7.5,AWAY,9.0,-1.0,False,False
-2026-05-01,TOR@MIN,823713,Minnesota Twins,Toronto Blue Jays,10.19,0.5577,0.6727,0.4359,1.5,0.589,8.0,0.488,-3.1,18.5,AWAY,10.0,-4.0,False,False
-2026-05-02,ARI@CHC,824685,Chicago Cubs,Arizona Diamondbacks,9.94,,,0.7107,,,,,,,HOME,2.0,2.0,True,False
-2026-05-02,ATL@COL,824365,Colorado Rockies,Atlanta Braves,10.18,0.6343,0.4335,0.5147,1.5,0.49,11.0,0.478,14.4,-4.4,AWAY,10.0,-8.0,False,False
-2026-05-02,BAL@NYY,823554,New York Yankees,Baltimore Orioles,8.24,0.448,0.4383,0.5697,-1.5,0.47200000000000003,9.0,0.48200000000000004,-2.4,-4.4,HOME,13.0,5.0,False,False
-2026-05-02,CIN@PIT,823388,Pittsburgh Pirates,Cincinnati Reds,7.01,0.4247,0.4601,0.5463,-1.5,0.342,7.5,0.493,8.3,-3.3,HOME,24.0,10.0,False,False
-2026-05-02,CLE@OAK,825014,Athletics,Cleveland Guardians,11.08,0.6645,0.6265,0.5471,1.5,0.589,9.5,0.474,7.6,15.2,,,,False,True
-2026-05-02,CWS@SD,823308,San Diego Padres,Chicago White Sox,8.48,0.3843,0.539,0.5049,-1.5,0.436,8.0,0.512,-5.2,2.7,AWAY,4.0,-4.0,False,False
-2026-05-02,HOU@BOS,824771,Boston Red Sox,Houston Astros,9.33,,,0.4878,,,,,,,AWAY,9.0,-3.0,True,False
-2026-05-02,KC@SEA,823144,Seattle Mariners,Kansas City Royals,7.03,0.3347,0.4215,0.452,-1.5,0.35700000000000004,8.0,0.483,-2.2,-6.2,AWAY,5.0,-1.0,False,False
-2026-05-02,LAD@STL,823067,St. Louis Cardinals,Los Angeles Dodgers,12.22,0.7702,0.7446,0.6675,1.5,0.55,9.0,0.522,22.0,22.3,HOME,5.0,1.0,False,False
-2026-05-02,MIL@WSH,822746,Washington Nationals,Milwaukee Brewers,10.09,0.4878,0.6273,0.3681,1.5,0.5710000000000001,8.5,0.48100000000000004,-8.3,14.6,AWAY,5.0,-3.0,False,False
-2026-05-02,NYM@LAA,824042,Los Angeles Angels,New York Mets,6.42,0.5889,0.2991,0.4674,1.5,0.578,9.0,0.491,1.1,-19.2,HOME,7.0,1.0,False,False
-2026-05-02,PHI@MIA,823876,Miami Marlins,Philadelphia Phillies,7.55,0.6623,0.4634,0.5447,1.5,0.564,8.0,0.507,9.8,-4.4,HOME,4.0,4.0,False,False
-2026-05-02,SF@TB,822988,Tampa Bay Rays,San Francisco Giants,7.06,0.2907,0.4239,0.4032,-1.5,0.34600000000000003,8.0,0.519,-5.5,-9.5,HOME,6.0,4.0,False,False
-2026-05-02,TEX@DET,824284,Detroit Tigers,Texas Rangers,6.96,0.4207,0.3766,0.5423,-1.5,0.37200000000000005,8.5,0.484,4.9,-10.7,HOME,6.0,4.0,False,False
-2026-05-02,TOR@MIN,823715,Minnesota Twins,Toronto Blue Jays,7.67,0.4976,0.4731,0.3773,1.5,0.617,8.0,0.516,-11.9,-4.3,AWAY,15.0,-7.0,False,False
-2026-05-03,ARI@CHC,824687,Chicago Cubs,Arizona Diamondbacks,10.99,0.7948,0.4183,0.8707,-1.5,0.433,12.0,0.484,36.2,-6.6,HOME,12.0,4.0,False,False
-2026-05-03,ATL@COL,824364,Colorado Rockies,Atlanta Braves,12.25,0.4375,0.6771,0.3215,1.5,0.542,10.0,0.489,-10.5,18.8,AWAY,17.0,-5.0,False,False
-2026-05-03,BAL@NYY,823555,New York Yankees,Baltimore Orioles,8.18,0.5212,0.4739,0.6404,-1.5,0.456,8.5,0.496,6.5,-2.2,HOME,14.0,8.0,False,False
-2026-05-03,CIN@PIT,823387,Pittsburgh Pirates,Cincinnati Reds,9.03,0.4796,0.6227,0.6008,-1.5,0.33899999999999997,7.5,0.496,14.1,12.7,HOME,1.0,1.0,False,False
-2026-05-03,CLE@OAK,825013,Athletics,Cleveland Guardians,8.07,0.5382,0.3851,0.4167,1.5,0.57,9.5,0.475,-3.2,-9.0,HOME,8.0,6.0,False,False
-2026-05-03,CWS@SD,823307,San Diego Padres,Chicago White Sox,9.82,0.5065,0.645,0.6265,-1.5,0.424,8.0,0.517,8.2,12.8,HOME,7.0,1.0,False,False
-2026-05-03,HOU@BOS,824769,Boston Red Sox,Houston Astros,8.89,0.4666,0.5317,0.5881,-1.5,0.43799999999999994,8.5,0.522,2.9,1.0,AWAY,4.0,-2.0,False,False
-2026-05-03,KC@SEA,823145,Seattle Mariners,Kansas City Royals,7.39,0.382,0.4504,0.5024,-1.5,0.342,8.0,0.494,4.0,-4.4,AWAY,5.0,-3.0,False,False
-2026-05-03,LAD@STL,823065,St. Louis Cardinals,Los Angeles Dodgers,8.78,0.5729,0.4415,0.4512,1.5,0.5529999999999999,9.5,0.5,2.0,-5.8,AWAY,5.0,-3.0,False,False
-2026-05-03,MIL@WSH,822742,Washington Nationals,Milwaukee Brewers,11.46,0.4415,0.7273,0.3251,1.5,0.5529999999999999,8.5,0.517,-11.1,21.0,HOME,5.0,1.0,False,False
-2026-05-03,NYM@LAA,824043,Los Angeles Angels,New York Mets,7.68,0.645,0.3937,0.5261,1.5,0.573,9.0,0.49,7.2,-9.6,AWAY,6.0,-4.0,False,False
-2026-05-03,PHI@MIA,823875,Miami Marlins,Philadelphia Phillies,7.64,0.5889,0.4303,0.4674,1.5,0.601,8.5,0.514,-1.2,-8.4,AWAY,9.0,-5.0,False,False
-2026-05-03,SF@TB,822987,Tampa Bay Rays,San Francisco Giants,8.1,0.4788,0.5081,0.6,-1.5,0.35700000000000004,8.0,0.504,12.2,0.4,HOME,3.0,1.0,False,False
-2026-05-03,TEX@DET,824285,Detroit Tigers,Texas Rangers,9.05,0.3773,0.5447,0.4976,-1.5,0.35100000000000003,8.5,0.48200000000000004,2.6,6.3,HOME,8.0,6.0,False,False
-2026-05-03,TOR@MIN,823711,Minnesota Twins,Toronto Blue Jays,9.11,0.6457,0.5897,0.5269,1.5,0.618,8.0,0.514,2.8,7.6,HOME,7.0,1.0,False,False
-2026-05-04,ATL@SEA,823143,Seattle Mariners,Atlanta Braves,7.78,0.3937,0.4821,0.5147,-1.5,0.39,8.0,0.486,0.4,-0.4,HOME,9.0,1.0,False,False
-2026-05-04,BAL@NYY,823552,New York Yankees,Baltimore Orioles,7.43,0.6086,0.4135,0.7198,-1.5,0.495,8.5,0.486,11.4,-7.3,HOME,13.0,11.0,False,False
-2026-05-04,BOS@DET,824283,Detroit Tigers,Boston Red Sox,8.46,0.2963,0.5374,0.4095,-1.5,0.446,8.0,0.512,-15.0,2.5,AWAY,9.0,-1.0,False,False
-2026-05-04,CIN@CHC,824684,Chicago Cubs,Cincinnati Reds,8.49,,,0.6023,,,,,,,HOME,9.0,1.0,True,False
-2026-05-04,CLE@KC,824120,Kansas City Royals,Cleveland Guardians,9.54,0.6719,0.6615,0.5552,1.5,0.599,7.5,0.517,7.3,14.4,HOME,8.0,4.0,False,False
-2026-05-04,CWS@LAA,824039,Los Angeles Angels,Chicago White Sox,7.65,0.3362,0.4715,0.4537,-1.5,0.39899999999999997,8.0,0.48100000000000004,-6.3,-1.0,AWAY,6.0,-6.0,False,False
-2026-05-04,LAD@HOU,824201,Houston Astros,Los Angeles Dodgers,9.78,0.4756,0.6031,0.3566,1.5,0.475,8.5,0.501,0.1,10.2,AWAY,11.0,-5.0,False,False
-2026-05-04,MIL@STL,823064,St. Louis Cardinals,Milwaukee Brewers,11.17,0.268,0.7732,0.3773,-1.5,0.327,7.5,0.509,-5.9,26.4,HOME,9.0,3.0,False,False
-2026-05-04,NYM@COL,824363,Colorado Rockies,New York Mets,8.68,0.5777,0.3937,0.4561,1.5,0.511,10.0,0.48700000000000004,6.7,-9.3,AWAY,6.0,-2.0,False,False
-2026-05-04,PHI@MIA,823874,Miami Marlins,Philadelphia Phillies,8.1,0.7149,0.4674,0.6031,1.5,0.618,8.5,0.498,9.7,-3.1,AWAY,1.0,-1.0,False,False
-2026-05-04,SD@SF,823228,San Francisco Giants,San Diego Padres,5.92,0.5065,0.3355,0.3859,1.5,0.564,8.0,0.509,-5.8,-17.3,HOME,5.0,1.0,False,False
-2026-05-04,TOR@TB,822984,Tampa Bay Rays,Toronto Blue Jays,9.57,0.4894,0.6638,0.6102,-1.5,0.34600000000000003,7.5,0.47200000000000003,14.3,19.2,HOME,6.0,4.0,False,False
-2026-05-05,ATL@SEA,823142,Seattle Mariners,Atlanta Braves,6.58,0.2851,0.3475,0.3969,-1.5,0.379,8.5,0.484,-9.4,-13.7,AWAY,5.0,-1.0,False,False
-2026-05-05,BAL@MIA,823873,Miami Marlins,Baltimore Orioles,8.64,0.4739,0.5114,0.5952,-1.5,0.371,8.5,0.514,10.3,-0.3,AWAY,16.0,-2.0,False,False
-2026-05-05,BOS@DET,824281,Detroit Tigers,Boston Red Sox,8.5,,,0.5921,,,,,,,AWAY,13.0,-7.0,True,False
-2026-05-05,CIN@CHC,824682,Chicago Cubs,Cincinnati Reds,10.24,,,0.5244,,,,,,,HOME,5.0,1.0,True,False
-2026-05-05,CLE@KC,824119,Kansas City Royals,Cleveland Guardians,9.37,0.3945,0.6102,0.5155,-1.5,0.359,8.0,0.48200000000000004,3.6,12.8,HOME,8.0,2.0,False,False
-2026-05-05,CWS@LAA,824040,Los Angeles Angels,Chicago White Sox,9.56,,,0.4707,,,,,,,HOME,7.0,1.0,True,False
-2026-05-05,LAD@HOU,824200,Houston Astros,Los Angeles Dodgers,7.47,0.4862,0.3773,0.3665,1.5,0.469,9.0,0.499,1.7,-12.2,HOME,3.0,1.0,False,False
-2026-05-05,MIL@STL,823062,St. Louis Cardinals,Milwaukee Brewers,11.74,0.4255,0.7775,0.5471,-1.5,0.33,8.0,0.48200000000000004,9.5,29.5,TIE,0.0,0.0,False,False
-2026-05-05,MIN@WSH,822743,Washington Nationals,Minnesota Twins,8.6,0.7079,0.4271,0.5952,1.5,0.5579999999999999,9.5,0.47700000000000004,15.0,-5.0,AWAY,14.0,-8.0,False,False
-2026-05-05,NYM@COL,824362,Colorado Rockies,New York Mets,9.43,,,0.4748,,,,,,,TIE,0.0,0.0,True,False
-2026-05-05,OAK@PHI,823469,Philadelphia Phillies,Athletics,7.71,0.4151,0.4359,0.5366,-1.5,0.429,8.5,0.493,-1.4,-5.7,HOME,10.0,8.0,False,False
-2026-05-05,PIT@ARI,825092,Arizona Diamondbacks,Pittsburgh Pirates,11.34,0.5697,0.7524,0.448,1.5,0.5579999999999999,8.0,0.484,1.2,26.8,HOME,9.0,9.0,False,False
-2026-05-05,SD@SF,823227,San Francisco Giants,San Diego Padres,5.14,0.5552,0.2463,0.4335,1.5,0.603,8.5,0.499,-4.8,-25.3,AWAY,15.0,-5.0,False,False
-2026-05-05,TEX@NYY,823553,New York Yankees,Texas Rangers,6.86,0.4529,0.3688,0.5745,-1.5,0.44799999999999995,8.5,0.501,0.5,-13.2,HOME,11.0,3.0,False,False
-2026-05-05,TOR@TB,822986,Tampa Bay Rays,Toronto Blue Jays,7.43,0.3604,0.4537,0.4796,-1.5,0.368,8.0,0.483,-0.8,-2.9,HOME,7.0,1.0,False,False
-2026-05-06,ATL@SEA,823141,Seattle Mariners,Atlanta Braves,7.26,0.2963,0.4399,0.4095,-1.5,0.36700000000000005,8.0,0.495,-7.1,-5.5,HOME,4.0,2.0,False,False
-2026-05-06,BAL@MIA,823872,Miami Marlins,Baltimore Orioles,9.98,0.4529,0.6188,0.5745,-1.5,0.35700000000000004,8.5,0.499,9.6,12.0,AWAY,11.0,-3.0,False,False
-2026-05-06,BOS@DET,824282,Detroit Tigers,Boston Red Sox,10.25,0.2844,0.6396,0.3961,-1.5,0.337,8.5,0.504,-5.3,13.6,AWAY,4.0,-4.0,False,False
-2026-05-06,CIN@CHC,824683,Chicago Cubs,Cincinnati Reds,9.0,,,0.6966,,,,,,,HOME,13.0,1.0,True,False
-2026-05-06,CLE@KC,824118,Kansas City Royals,Cleveland Guardians,10.82,0.334,0.645,0.4512,-1.5,0.39299999999999996,9.0,0.519,-5.9,12.6,AWAY,4.0,-2.0,False,False
-2026-05-06,CWS@LAA,824036,Los Angeles Angels,Chicago White Sox,8.61,0.5415,0.4683,0.4199,1.5,0.595,9.0,0.496,-5.3,-2.8,HOME,10.0,6.0,False,False
-2026-05-06,LAD@HOU,824198,Houston Astros,Los Angeles Dodgers,8.95,0.4585,0.4959,0.3407,1.5,0.446,9.0,0.478,1.3,1.8,AWAY,14.0,-10.0,False,False
-2026-05-06,MIL@STL,823063,St. Louis Cardinals,Milwaukee Brewers,11.45,0.4183,0.7595,0.5399,-1.5,0.33,8.0,0.509,8.8,25.0,AWAY,8.0,-4.0,False,False
-2026-05-06,MIN@WSH,822740,Washington Nationals,Minnesota Twins,11.93,0.4813,0.7252,0.3619,1.5,0.613,9.0,0.51,-13.2,21.5,HOME,17.0,13.0,False,False
-2026-05-06,NYM@COL,824361,Colorado Rockies,New York Mets,9.26,0.5968,0.4,0.4756,1.5,0.531,10.5,0.518,6.6,-11.8,AWAY,15.0,-5.0,False,False
-2026-05-06,OAK@PHI,823470,Philadelphia Phillies,Athletics,7.5,0.487,0.3797,0.6078,-1.5,0.386,9.0,0.526,10.1,-14.6,HOME,9.0,3.0,False,False
-2026-05-06,PIT@ARI,825091,Arizona Diamondbacks,Pittsburgh Pirates,8.66,0.5665,0.4723,0.4448,1.5,0.5920000000000001,9.0,0.47700000000000004,-2.6,-0.5,AWAY,1.0,-1.0,False,False
-2026-05-06,SD@SF,823226,San Francisco Giants,San Diego Padres,6.49,0.4024,0.3407,0.29,1.5,0.623,8.5,0.49200000000000005,-22.1,-15.1,AWAY,6.0,-4.0,False,False
-2026-05-06,TEX@NYY,823550,New York Yankees,Texas Rangers,7.89,0.6518,0.491,0.7569,-1.5,0.45399999999999996,8.0,0.508,19.8,-1.7,AWAY,7.0,-5.0,False,False
-2026-05-06,TOR@TB,822985,Tampa Bay Rays,Toronto Blue Jays,7.37,0.4472,0.4894,0.5689,-1.5,0.374,7.5,0.511,7.3,-2.2,HOME,3.0,3.0,False,False
-2026-05-07,BAL@MIA,823870,Miami Marlins,Baltimore Orioles,8.51,0.4845,0.5008,0.6055,-1.5,0.363,8.5,0.48200000000000004,12.2,1.9,HOME,7.0,1.0,False,False
-2026-05-07,CIN@CHC,824681,Chicago Cubs,Cincinnati Reds,6.98,0.4788,0.34,0.6,-1.5,0.467,9.0,0.48,1.2,-14.0,HOME,11.0,5.0,False,False
-2026-05-07,CLE@KC,824117,Kansas City Royals,Cleveland Guardians,8.84,0.5488,0.487,0.666,-1.5,0.397,9.0,0.527,15.2,-4.0,AWAY,13.0,-3.0,False,False
-2026-05-07,MIN@WSH,822741,Washington Nationals,Minnesota Twins,12.58,0.6063,0.7677,0.7177,-1.5,0.35700000000000004,9.0,0.522,24.9,24.6,HOME,12.0,2.0,False,False
-2026-05-07,NYM@COL,824362,Colorado Rockies,New York Mets,11.35,0.5269,0.5285,0.4056,1.5,0.5379999999999999,11.0,0.486,-1.1,4.2,HOME,8.0,4.0,False,False
-2026-05-07,OAK@PHI,823467,Philadelphia Phillies,Athletics,8.99,0.4472,0.4992,0.5689,-1.5,0.375,9.0,0.502,7.2,-0.3,AWAY,13.0,-11.0,False,False
-2026-05-07,PIT@ARI,825090,Arizona Diamondbacks,Pittsburgh Pirates,8.26,0.2977,0.4805,0.4111,-1.5,0.33299999999999996,8.5,0.525,-3.5,-4.5,AWAY,6.0,-2.0,False,False
-2026-05-07,STL@SD,823306,San Diego Padres,St. Louis Cardinals,9.64,0.5,0.6312,0.6203,-1.5,0.409,8.0,0.502,9.1,12.9,AWAY,3.0,-1.0,False,False
-2026-05-07,TB@BOS,824767,Boston Red Sox,Tampa Bay Rays,8.77,0.4796,0.522,0.6008,-1.5,0.38299999999999995,8.5,0.49,9.7,3.2,AWAY,12.0,-4.0,False,False
-2026-05-07,TEX@NYY,823551,New York Yankees,Texas Rangers,6.7,0.5585,0.3566,0.6749,-1.5,0.426,8.5,0.522,13.2,-16.5,HOME,11.0,7.0,False,False
-2026-05-08,ATL@LAD,823957,Los Angeles Dodgers,Atlanta Braves,8.97,0.2914,0.5785,0.404,-1.5,0.33899999999999997,8.0,0.48100000000000004,-4.8,9.7,HOME,4.0,2.0,False,False
-2026-05-08,CHC@TEX,822904,Texas Rangers,Chicago Cubs,7.03,0.4618,0.382,0.3437,1.5,0.56,8.5,0.5,-9.8,-11.8,AWAY,8.0,-6.0,False,False
-2026-05-08,COL@PHI,823466,Philadelphia Phillies,Colorado Rockies,7.04,0.3843,0.3828,0.5049,-1.5,0.45399999999999996,8.5,0.484,-7.0,-10.1,AWAY,16.0,-2.0,False,False
-2026-05-08,DET@KC,824116,Kansas City Royals,Detroit Tigers,7.88,0.3281,0.4095,0.4448,-1.5,0.387,9.0,0.517,-5.9,-10.8,HOME,7.0,1.0,False,False
-2026-05-08,HOU@CIN,824522,Cincinnati Reds,Houston Astros,10.07,0.4618,0.6258,0.5833,-1.5,0.42200000000000004,8.5,0.499,4.0,12.7,AWAY,10.0,-10.0,False,False
-2026-05-08,LAA@TOR,822822,Toronto Blue Jays,Los Angeles Angels,6.32,0.4175,0.3657,0.539,-1.5,0.429,8.0,0.501,-1.2,-13.5,HOME,2.0,2.0,False,False
-2026-05-08,MIN@CLE,824443,Cleveland Guardians,Minnesota Twins,8.97,0.4295,0.618,0.5512,-1.5,0.345,7.5,0.517,8.5,10.1,HOME,10.0,2.0,False,False
-2026-05-08,NYM@ARI,825088,Arizona Diamondbacks,New York Mets,7.56,0.4967,0.4239,0.3766,1.5,0.589,8.5,0.522,-9.2,-9.8,AWAY,4.0,-2.0,False,False
-2026-05-08,NYY@MIL,823794,Milwaukee Brewers,New York Yankees,7.74,0.5407,0.5195,0.4191,1.5,0.5670000000000001,7.5,0.493,-2.6,2.6,HOME,6.0,6.0,False,False
-2026-05-08,OAK@BAL,824846,Baltimore Orioles,Athletics,10.77,0.452,0.6411,0.5737,-1.5,0.37799999999999995,9.0,0.516,7.4,12.5,AWAY,7.0,-1.0,False,False
-2026-05-08,PIT@SF,823225,San Francisco Giants,Pittsburgh Pirates,6.0,0.2035,0.3797,0.3005,-1.5,0.324,7.5,0.513,-12.1,-13.3,HOME,7.0,3.0,False,False
-2026-05-08,SEA@CWS,824607,Chicago White Sox,Seattle Mariners,6.65,0.618,0.3156,0.4976,1.5,0.551,9.0,0.491,6.7,-17.5,,,,False,True
-2026-05-08,STL@SD,823303,San Diego Padres,St. Louis Cardinals,8.51,0.3836,0.5415,0.5041,-1.5,0.386,8.0,0.491,-0.2,5.0,AWAY,6.0,-6.0,False,False
-2026-05-08,TB@BOS,824768,Boston Red Sox,Tampa Bay Rays,8.22,0.3295,0.5179,0.4464,-1.5,0.39399999999999996,8.0,0.48100000000000004,-6.4,3.7,HOME,2.0,2.0,False,False
-2026-05-08,WSH@MIA,823871,Miami Marlins,Washington Nationals,9.63,0.3229,0.5913,0.4391,-1.5,0.414,8.5,0.523,-9.1,6.8,AWAY,5.0,-1.0,False,False
-2026-05-09,ATL@LAD,823955,Los Angeles Dodgers,Atlanta Braves,9.07,0.3392,0.5463,0.4569,-1.5,0.361,8.5,0.496,-2.2,5.0,AWAY,9.0,-5.0,False,False
-2026-05-09,CHC@TEX,822905,Texas Rangers,Chicago Cubs,7.97,0.2495,0.4976,0.3558,-1.5,0.365,8.0,0.503,-11.5,-0.5,HOME,6.0,6.0,False,False
-2026-05-09,COL@PHI,823468,Philadelphia Phillies,Colorado Rockies,9.32,0.3781,0.5665,0.4984,-1.5,0.54,8.5,0.493,-16.2,7.4,HOME,12.0,6.0,False,False
-2026-05-09,DET@KC,824115,Kansas City Royals,Detroit Tigers,6.76,0.2386,0.3237,0.343,-1.5,0.386,9.0,0.522,-14.7,-19.8,HOME,6.0,4.0,False,False
-2026-05-09,HOU@CIN,824523,Cincinnati Reds,Houston Astros,8.81,0.3742,0.5252,0.4943,-1.5,0.424,8.5,0.525,-5.0,0.0,HOME,4.0,2.0,False,False
-2026-05-09,LAA@TOR,822820,Toronto Blue Jays,Los Angeles Angels,7.83,0.6366,0.4862,0.5171,1.5,0.602,8.0,0.516,3.5,-3.0,HOME,15.0,13.0,False,False
-2026-05-09,MIN@CLE,824444,Cleveland Guardians,Minnesota Twins,9.25,0.3288,0.6008,0.4456,-1.5,0.35100000000000003,8.0,0.483,-2.2,11.8,AWAY,3.0,-1.0,False,False
-2026-05-09,NYM@ARI,825089,Arizona Diamondbacks,New York Mets,9.23,0.452,0.478,0.3347,1.5,0.601,9.5,0.522,-14.9,-4.4,HOME,3.0,1.0,False,False
-2026-05-09,NYY@MIL,823792,Milwaukee Brewers,New York Yankees,6.79,0.5122,0.4024,0.3914,1.5,0.595,8.0,0.507,-8.3,-10.5,HOME,7.0,1.0,False,False
-2026-05-09,OAK@BAL,824847,Baltimore Orioles,Athletics,8.97,0.3696,0.4569,0.4894,-1.5,0.34600000000000003,9.5,0.516,2.4,-5.9,AWAY,8.0,-4.0,False,False
-2026-05-09,PIT@SF,823224,San Francisco Giants,Pittsburgh Pirates,5.12,0.302,0.2782,0.4159,-1.5,0.35200000000000004,8.0,0.512,-5.0,-23.4,AWAY,16.0,-10.0,False,False
-2026-05-09,SEA@CWS,824606,Chicago White Sox,Seattle Mariners,9.71,0.4764,0.6366,0.3573,1.5,0.5920000000000001,8.0,0.504,-11.6,13.3,HOME,7.0,5.0,False,False
-2026-05-09,STL@SD,823304,San Diego Padres,St. Louis Cardinals,7.47,0.3681,0.4167,0.4878,-1.5,0.371,8.5,0.48200000000000004,-0.3,-6.5,HOME,6.0,2.0,False,False
-2026-05-09,TB@BOS,824766,Boston Red Sox,Tampa Bay Rays,6.16,,,0.5488,,,,,,,TIE,0.0,0.0,True,False
-2026-05-09,WSH@MIA,823869,Miami Marlins,Washington Nationals,8.75,0.3604,0.5204,0.4796,-1.5,0.379,8.5,0.491,-1.9,2.9,HOME,15.0,1.0,False,False
-2026-05-10,ATL@LAD,823954,Los Angeles Dodgers,Atlanta Braves,7.51,0.3318,0.3422,0.4488,-1.5,0.39,9.5,0.483,-5.8,-14.1,AWAY,9.0,-5.0,False,False
-2026-05-10,CHC@TEX,822902,Texas Rangers,Chicago Cubs,7.97,0.4119,0.4976,0.5334,-1.5,0.359,8.0,0.484,5.3,1.4,HOME,3.0,3.0,False,False
-2026-05-10,COL@PHI,823463,Philadelphia Phillies,Colorado Rockies,8.16,0.5277,0.4723,0.6465,-1.5,0.557,8.5,0.494,-2.9,-2.2,HOME,6.0,6.0,False,False
-2026-05-10,DET@KC,824113,Kansas City Royals,Detroit Tigers,8.73,0.3558,0.5187,0.4748,-1.5,0.363,8.5,0.502,-0.7,1.7,AWAY,9.0,-3.0,False,False
-2026-05-10,HOU@CIN,824520,Cincinnati Reds,Houston Astros,9.63,0.3084,0.5512,0.4231,-1.5,0.354,9.0,0.517,-4.6,3.4,HOME,5.0,5.0,False,False
-2026-05-10,LAA@TOR,822819,Toronto Blue Jays,Los Angeles Angels,7.59,0.7058,0.4666,0.5929,1.5,0.626,8.0,0.504,8.0,-3.7,AWAY,7.0,-5.0,False,False
-2026-05-10,MIN@CLE,824440,Cleveland Guardians,Minnesota Twins,8.84,0.346,0.6078,0.4642,-1.5,0.408,7.5,0.475,-6.2,13.3,AWAY,9.0,-1.0,False,False
-2026-05-10,NYM@ARI,825085,Arizona Diamondbacks,New York Mets,6.95,0.3497,0.3758,0.4683,-1.5,0.345,8.5,0.517,0.5,-14.1,HOME,6.0,4.0,False,False
-2026-05-10,NYY@MIL,823793,Milwaukee Brewers,New York Yankees,9.36,0.552,0.6094,0.4303,1.5,0.601,8.0,0.506,-4.9,10.3,HOME,7.0,1.0,False,False
-2026-05-10,OAK@BAL,824845,Baltimore Orioles,Athletics,9.37,0.3665,0.4488,0.4862,-1.5,0.345,10.0,0.506,2.2,-5.7,HOME,3.0,1.0,False,False
-2026-05-10,PIT@SF,823221,San Francisco Giants,Pittsburgh Pirates,7.97,0.2573,0.4976,0.365,-1.5,0.359,8.0,0.519,-10.2,-2.1,HOME,13.0,1.0,False,False
-2026-05-10,SEA@CWS,824605,Chicago White Sox,Seattle Mariners,7.25,0.6858,0.4391,0.5705,1.5,0.581,8.0,0.48200000000000004,10.5,-4.3,HOME,3.0,1.0,False,False
-2026-05-10,STL@SD,823305,San Diego Padres,St. Louis Cardinals,7.81,0.452,0.444,0.5737,-1.5,0.371,8.5,0.48100000000000004,8.1,-3.7,HOME,5.0,1.0,False,False
-2026-05-10,TB@BOS,824765,Boston Red Sox,Tampa Bay Rays,6.03,0.4295,0.307,0.5512,-1.5,0.387,8.5,0.498,4.2,-19.1,AWAY,5.0,-3.0,False,False
-2026-05-10,WSH@MIA,823868,Miami Marlins,Washington Nationals,9.04,0.2865,0.5841,0.3985,-1.5,0.369,8.0,0.519,-8.3,6.5,HOME,7.0,3.0,False,False
-2026-05-11,ARI@TEX,822901,Texas Rangers,Arizona Diamondbacks,5.89,0.3961,0.3332,0.5171,-1.5,0.374,8.0,0.516,2.2,-18.3,AWAY,1.0,-1.0,False,False
-2026-05-11,LAA@CLE,824441,Cleveland Guardians,Los Angeles Angels,8.87,0.4569,0.5301,0.5785,-1.5,0.379,8.5,0.499,7.8,3.1,HOME,9.0,5.0,False,False
-2026-05-11,NYY@BAL,824844,Baltimore Orioles,New York Yankees,9.07,0.4056,0.5057,0.2928,1.5,0.527,9.0,0.489,-12.1,1.7,HOME,5.0,1.0,False,False
-2026-05-11,SEA@HOU,824199,Houston Astros,Seattle Mariners,7.08,0.5793,0.3859,0.4577,1.5,0.544,8.5,0.522,3.5,-13.6,AWAY,4.0,-2.0,False,False
-2026-05-11,SF@LAD,823953,Los Angeles Dodgers,San Francisco Giants,8.15,0.4151,0.4311,0.5366,-1.5,0.461,9.0,0.517,-4.6,-8.6,AWAY,12.0,-6.0,False,False
-2026-05-11,TB@TOR,822818,Toronto Blue Jays,Tampa Bay Rays,7.03,0.6442,0.4215,0.5252,1.5,0.608,8.0,0.493,3.6,-7.2,AWAY,13.0,-3.0,False,False
-2026-05-12,ARI@TEX,822903,Texas Rangers,Arizona Diamondbacks,6.33,,,0.522,,,,,,,HOME,11.0,3.0,True,False
-2026-05-12,CHC@ATL,824927,Atlanta Braves,Chicago Cubs,9.88,,,0.4919,,,,,,,HOME,7.0,3.0,True,False
-2026-05-12,COL@PIT,823385,Pittsburgh Pirates,Colorado Rockies,9.49,,,0.7333,,,,,,,HOME,4.0,2.0,True,False
-2026-05-12,DET@NYM,823632,New York Mets,Detroit Tigers,7.05,,,0.5041,,,,,,,HOME,12.0,8.0,True,False
-2026-05-12,KC@CWS,824604,Chicago White Sox,Kansas City Royals,9.32,,,0.448,,,,,,,HOME,11.0,1.0,True,False
-2026-05-12,LAA@CLE,824442,Cleveland Guardians,Los Angeles Angels,9.04,,,0.4984,,,,,,,HOME,5.0,1.0,True,False
-2026-05-12,MIA@MIN,823712,Minnesota Twins,Miami Marlins,10.21,,,0.4976,,,,,,,HOME,3.0,3.0,True,False
-2026-05-12,NYY@BAL,824843,Baltimore Orioles,New York Yankees,7.85,0.4829,0.4472,0.3634,1.5,0.536,8.5,0.519,-5.3,-7.2,AWAY,8.0,-4.0,False,False
-2026-05-12,PHI@BOS,824764,Boston Red Sox,Philadelphia Phillies,7.86,,,0.3475,,,,,,,AWAY,3.0,-1.0,True,False
-2026-05-12,SD@MIL,823790,Milwaukee Brewers,San Diego Padres,7.65,,,0.4008,,,,,,,HOME,10.0,2.0,True,False
-2026-05-12,SEA@HOU,824197,Houston Astros,Seattle Mariners,7.88,,,0.4111,,,,,,,AWAY,12.0,-8.0,True,False
-2026-05-12,SF@LAD,823951,Los Angeles Dodgers,San Francisco Giants,7.93,0.5801,0.4537,0.6945,-1.5,0.578,8.5,0.494,0.2,-4.0,AWAY,8.0,-4.0,False,False
-2026-05-12,STL@OAK,825011,Athletics,St. Louis Cardinals,10.37,,,0.5801,,,,,,,AWAY,10.0,-2.0,True,False
-2026-05-12,TB@TOR,822817,Toronto Blue Jays,Tampa Bay Rays,7.41,,,0.4247,,,,,,,AWAY,13.0,-1.0,True,False
-2026-05-12,WSH@CIN,824521,Cincinnati Reds,Washington Nationals,11.62,,,0.4079,,,,,,,AWAY,14.0,-6.0,True,False
-2026-05-13,ARI@TEX,822900,Texas Rangers,Arizona Diamondbacks,6.98,0.4351,0.4175,0.5568,-1.5,0.327,8.0,0.489,10.8,-7.2,HOME,11.0,1.0,False,False
-2026-05-13,CHC@ATL,824928,Atlanta Braves,Chicago Cubs,10.22,0.2541,0.7107,0.3611,-1.5,0.405,7.5,0.519,-15.1,19.2,HOME,5.0,3.0,False,False
-2026-05-13,COL@PIT,823386,Pittsburgh Pirates,Colorado Rockies,9.74,0.6419,0.6389,0.7485,-1.5,0.429,8.0,0.486,21.3,15.3,AWAY,14.0,-6.0,False,False
-2026-05-13,DET@NYM,823631,New York Mets,Detroit Tigers,6.97,0.3742,0.4569,0.4943,-1.5,0.418,7.5,0.48200000000000004,-4.4,-2.5,HOME,5.0,1.0,False,False
-2026-05-13,KC@CWS,824603,Chicago White Sox,Kansas City Royals,7.59,0.5769,0.4263,0.4553,1.5,0.573,8.5,0.513,0.4,-8.7,HOME,11.0,1.0,False,False
-2026-05-13,LAA@CLE,824438,Cleveland Guardians,Los Angeles Angels,6.79,0.4456,0.4829,0.5673,-1.5,0.395,7.0,0.486,5.1,-0.3,HOME,6.0,2.0,False,False
-2026-05-13,MIA@MIN,823710,Minnesota Twins,Miami Marlins,9.46,0.2093,0.5777,0.3077,-1.5,0.361,8.5,0.516,-15.2,6.2,AWAY,14.0,-4.0,False,False
-2026-05-13,NYY@BAL,824841,Baltimore Orioles,New York Yankees,7.62,0.4319,0.4287,0.3163,1.5,0.524,8.5,0.528,-9.2,-9.9,HOME,7.0,7.0,False,False
-2026-05-13,PHI@BOS,824763,Boston Red Sox,Philadelphia Phillies,8.05,0.6055,0.5447,0.4845,1.5,0.618,7.5,0.5,-1.2,4.5,HOME,4.0,2.0,False,False
-2026-05-13,SD@MIL,823791,Milwaukee Brewers,San Diego Padres,6.71,0.4878,0.3961,0.6086,-1.5,0.39,8.0,0.486,9.8,-9.0,AWAY,4.0,-2.0,False,False
-2026-05-13,SEA@HOU,824195,Houston Astros,Seattle Mariners,8.65,0.5008,0.4715,0.3804,1.5,0.57,9.0,0.516,-6.9,-4.5,HOME,7.0,1.0,False,False
-2026-05-13,SF@LAD,823952,Los Angeles Dodgers,San Francisco Giants,6.96,0.5342,0.4561,0.6525,-1.5,0.506,7.5,0.494,2.8,-3.8,HOME,4.0,4.0,False,False
-2026-05-13,STL@OAK,825010,Athletics,St. Louis Cardinals,10.93,0.4666,0.6149,0.5881,-1.5,0.35200000000000004,9.5,0.499,11.5,11.6,HOME,8.0,4.0,False,False
-2026-05-13,TB@TOR,822815,Toronto Blue Jays,Tampa Bay Rays,7.3,0.5228,0.4837,0.6419,-1.5,0.38,7.5,0.49,14.3,-0.6,HOME,8.0,2.0,False,False
-2026-05-13,WSH@CIN,824519,Cincinnati Reds,Washington Nationals,10.01,0.2626,0.6593,0.3711,-1.5,0.409,8.0,0.518,-14.6,14.1,AWAY,15.0,-1.0,False,False
-2026-05-14,CHC@ATL,824926,Atlanta Braves,Chicago Cubs,7.65,0.4151,0.5122,0.5366,-1.5,0.467,7.5,0.48200000000000004,-5.2,3.0,AWAY,2.0,-2.0,False,False
-2026-05-14,COL@PIT,823383,Pittsburgh Pirates,Colorado Rockies,7.91,0.522,0.5334,0.6411,-1.5,0.426,7.5,0.509,9.6,2.4,HOME,9.0,5.0,False,False
-2026-05-14,DET@NYM,823630,New York Mets,Detroit Tigers,5.35,0.404,0.3681,0.5252,-1.5,0.39799999999999996,7.0,0.525,0.6,-15.7,HOME,13.0,5.0,False,False
-2026-05-14,KC@CWS,824602,Chicago White Sox,Kansas City Royals,8.96,0.5374,0.6172,0.4159,1.5,0.58,7.5,0.509,-4.3,10.8,HOME,8.0,4.0,False,False
-2026-05-14,MIA@MIN,823709,Minnesota Twins,Miami Marlins,9.45,0.3392,0.5769,0.4569,-1.5,0.355,8.5,0.518,-1.6,5.9,HOME,10.0,8.0,False,False
-2026-05-14,PHI@BOS,824762,Boston Red Sox,Philadelphia Phillies,6.34,0.343,0.4464,0.461,-1.5,0.33299999999999996,7.0,0.506,1.0,-6.0,AWAY,4.0,-2.0,False,False
-2026-05-14,SD@MIL,823789,Milwaukee Brewers,San Diego Padres,7.04,0.4577,0.4626,0.5793,-1.5,0.382,7.5,0.517,7.6,-5.4,HOME,8.0,6.0,False,False
-2026-05-14,SEA@HOU,824196,Houston Astros,Seattle Mariners,8.71,0.509,0.4764,0.3882,1.5,0.5920000000000001,9.0,0.496,-8.3,-2.0,AWAY,11.0,-5.0,False,False
-2026-05-14,SF@LAD,823950,Los Angeles Dodgers,San Francisco Giants,6.26,0.3843,0.4,0.5049,-1.5,0.43200000000000005,7.5,0.513,-4.8,-11.3,HOME,7.0,3.0,False,False
-2026-05-14,STL@OAK,825008,Athletics,St. Louis Cardinals,10.78,0.302,0.6031,0.4159,-1.5,0.37,9.5,0.502,-6.8,10.1,AWAY,9.0,-1.0,False,False
-2026-05-14,WSH@CIN,824517,Cincinnati Reds,Washington Nationals,9.79,0.2613,0.6427,0.3696,-1.5,0.40299999999999997,8.0,0.48,-14.2,16.3,HOME,16.0,14.0,False,False
-2026-05-15,ARI@COL,824360,Colorado Rockies,Arizona Diamondbacks,13.25,0.6973,0.6396,0.5833,1.5,0.536,11.5,0.478,16.1,16.2,AWAY,10.0,-8.0,False,False
-2026-05-15,BAL@WSH,822739,Washington Nationals,Baltimore Orioles,12.32,0.5163,0.6822,0.3953,1.5,0.606,10.0,0.488,-9.0,19.4,HOME,5.0,1.0,False,False
-2026-05-15,BOS@ATL,824925,Atlanta Braves,Boston Red Sox,7.54,0.4967,0.4626,0.6172,-1.5,0.39,8.0,0.499,10.7,-3.6,HOME,5.0,1.0,False,False
-2026-05-15,CHC@CWS,824601,Chicago White Sox,Chicago Cubs,8.43,0.6335,0.4943,0.5138,1.5,0.618,8.5,0.491,1.5,0.3,AWAY,15.0,-5.0,False,False
-2026-05-15,CIN@CLE,824439,Cleveland Guardians,Cincinnati Reds,9.03,0.3604,0.5833,0.4796,-1.5,0.436,8.0,0.512,-7.6,7.1,AWAY,13.0,-1.0,False,False
-2026-05-15,KC@STL,823061,St. Louis Cardinals,Kansas City Royals,7.86,0.3797,0.4079,0.5,-1.5,0.35200000000000004,9.0,0.512,2.8,-10.4,HOME,9.0,1.0,False,False
-2026-05-15,LAD@LAA,824037,Los Angeles Angels,Los Angeles Dodgers,7.55,0.404,0.4231,0.2914,1.5,0.565,8.5,0.5,-16.1,-7.7,AWAY,6.0,-6.0,False,False
-2026-05-15,MIA@TB,822983,Tampa Bay Rays,Miami Marlins,7.29,0.3665,0.4829,0.4862,-1.5,0.374,7.5,0.512,-0.8,-2.9,HOME,9.0,5.0,False,False
-2026-05-15,MIL@MIN,823707,Minnesota Twins,Milwaukee Brewers,9.37,0.6427,0.5705,0.5236,1.5,0.585,8.5,0.484,5.8,8.7,AWAY,5.0,-1.0,False,False
-2026-05-15,NYY@NYM,823629,New York Mets,New York Yankees,5.87,,,0.3558,,,,,,,AWAY,7.0,-3.0,True,False
-2026-05-15,PHI@PIT,823384,Pittsburgh Pirates,Philadelphia Phillies,8.15,0.717,0.5122,0.6055,1.5,0.519,8.0,0.509,19.8,0.3,AWAY,20.0,-2.0,False,False
-2026-05-15,SD@SEA,823140,Seattle Mariners,San Diego Padres,5.67,0.404,0.3929,0.5252,-1.5,0.36,7.0,0.519,4.4,-12.6,AWAY,2.0,-2.0,False,False
-2026-05-15,SF@OAK,825009,Athletics,San Francisco Giants,9.01,0.491,0.4199,0.6118,-1.5,0.38299999999999995,10.0,0.486,10.8,-6.6,,,,False,True
-2026-05-15,TEX@HOU,824194,Houston Astros,Texas Rangers,7.41,0.5849,0.4927,0.4634,1.5,0.564,7.5,0.519,2.1,-2.6,HOME,2.0,2.0,False,False
-2026-05-15,TOR@DET,824280,Detroit Tigers,Toronto Blue Jays,7.1,0.5081,0.4271,0.3875,1.5,0.5920000000000001,8.0,0.483,-8.4,-5.6,HOME,5.0,1.0,False,False
-2026-05-16,ARI@COL,824359,Colorado Rockies,Arizona Diamondbacks,11.79,0.509,0.6039,0.3882,1.5,0.525,10.5,0.512,-1.6,9.2,HOME,6.0,2.0,False,False
-2026-05-16,BAL@WSH,822737,Washington Nationals,Baltimore Orioles,9.56,0.7614,0.4642,0.657,1.5,0.5670000000000001,10.0,0.517,19.4,-5.3,HOME,16.0,10.0,False,False
-2026-05-16,BOS@ATL,824924,Atlanta Braves,Boston Red Sox,5.62,,,0.5681,,,,,,,AWAY,5.0,-1.0,True,False
-2026-05-16,CHC@CWS,824600,Chicago White Sox,Chicago Cubs,8.7,0.7485,0.5163,0.6419,1.5,0.56,8.5,0.499,18.9,1.7,HOME,11.0,5.0,False,False
-2026-05-16,CIN@CLE,824435,Cleveland Guardians,Cincinnati Reds,9.67,0.404,0.5944,0.5252,-1.5,0.42,8.5,0.491,-1.6,10.3,HOME,11.0,3.0,False,False
-2026-05-16,KC@STL,823060,St. Louis Cardinals,Kansas City Royals,8.69,0.3528,0.4748,0.4715,-1.5,0.34600000000000003,9.0,0.507,0.7,-3.2,HOME,6.0,2.0,False,False
-2026-05-16,LAD@LAA,824038,Los Angeles Angels,Los Angeles Dodgers,7.47,0.5041,0.3773,0.3836,1.5,0.55,9.0,0.519,-4.6,-14.2,AWAY,17.0,-13.0,False,False
-2026-05-16,MIA@TB,822981,Tampa Bay Rays,Miami Marlins,7.42,0.3875,0.5342,0.5081,-1.5,0.39299999999999996,7.0,0.528,-0.5,0.6,AWAY,15.0,-5.0,False,False
-2026-05-16,MIL@MIN,823706,Minnesota Twins,Milwaukee Brewers,8.64,,,0.3237,,,,,,,AWAY,3.0,-1.0,True,False
-2026-05-16,NYY@NYM,823627,New York Mets,New York Yankees,6.96,0.5921,0.4159,0.4707,1.5,0.615,8.0,0.514,-2.3,-9.8,HOME,9.0,3.0,False,False
-2026-05-16,PHI@PIT,823382,Pittsburgh Pirates,Philadelphia Phillies,9.08,0.2361,0.6645,0.34,-1.5,0.374,7.0,0.523,-13.8,14.1,AWAY,6.0,-6.0,False,False
-2026-05-16,SD@SEA,823139,Seattle Mariners,San Diego Padres,5.59,0.4024,0.3482,0.5236,-1.5,0.405,7.5,0.501,-0.3,-15.3,AWAY,11.0,-3.0,False,False
-2026-05-16,SF@OAK,825007,Athletics,San Francisco Giants,8.51,0.404,0.4199,0.5252,-1.5,0.405,9.5,0.505,-0.1,-8.5,AWAY,10.0,-2.0,False,False
-2026-05-16,TEX@HOU,824193,Houston Astros,Texas Rangers,6.55,,,0.3929,,,,,,,HOME,5.0,3.0,True,False
-2026-05-16,TOR@DET,824278,Detroit Tigers,Toronto Blue Jays,6.38,0.6015,0.3704,0.4805,1.5,0.583,8.0,0.48100000000000004,1.9,-11.1,AWAY,3.0,-1.0,False,False
-2026-05-17,ARI@COL,824358,Colorado Rockies,Arizona Diamondbacks,10.22,0.5407,0.4772,0.4191,1.5,0.5329999999999999,10.5,0.483,0.8,-0.6,AWAY,14.0,-2.0,False,False
-2026-05-17,BAL@WSH,822738,Washington Nationals,Baltimore Orioles,10.82,0.7965,0.5665,0.6995,1.5,0.578,10.0,0.514,21.9,5.2,AWAY,10.0,-4.0,False,False
-2026-05-17,BOS@ATL,824923,Atlanta Braves,Boston Red Sox,8.04,0.5261,0.4626,0.645,-1.5,0.408,8.5,0.502,11.8,-3.9,HOME,9.0,7.0,False,False
-2026-05-17,CHC@CWS,824599,Chicago White Sox,Chicago Cubs,10.25,0.5073,0.6008,0.3867,1.5,0.5760000000000001,9.0,0.486,-6.9,11.5,HOME,17.0,1.0,False,False
-2026-05-17,CIN@CLE,824436,Cleveland Guardians,Cincinnati Reds,10.54,0.5016,0.6234,0.6219,-1.5,0.42,9.0,0.474,8.2,14.9,HOME,13.0,7.0,False,False
-2026-05-17,KC@STL,823058,St. Louis Cardinals,Kansas City Royals,9.33,0.465,0.5269,0.5865,-1.5,0.359,9.0,0.522,10.6,0.5,AWAY,2.0,-2.0,False,False
-2026-05-17,LAD@LAA,824034,Los Angeles Angels,Los Angeles Dodgers,9.87,0.5512,0.5301,0.4295,1.5,0.539,9.5,0.483,1.2,4.7,AWAY,11.0,-9.0,False,False
-2026-05-17,MIA@TB,822982,Tampa Bay Rays,Miami Marlins,8.69,0.4056,0.596,0.5269,-1.5,0.39399999999999996,7.5,0.484,1.2,11.2,HOME,9.0,3.0,False,False
-2026-05-17,MIL@MIN,823708,Minnesota Twins,Milwaukee Brewers,9.22,0.5665,0.5984,0.4448,1.5,0.579,8.0,0.489,-1.2,10.9,HOME,9.0,1.0,False,False
-2026-05-17,NYY@NYM,823628,New York Mets,New York Yankees,7.17,0.3742,0.3929,0.4943,-1.5,0.355,8.5,0.525,1.9,-13.2,HOME,13.0,1.0,False,False
-2026-05-17,PHI@PIT,823381,Pittsburgh Pirates,Philadelphia Phillies,7.29,0.4103,0.4829,0.5317,-1.5,0.359,7.5,0.478,5.1,0.5,AWAY,6.0,-6.0,False,False
-2026-05-17,SD@SEA,823138,Seattle Mariners,San Diego Padres,5.66,0.4448,0.3535,0.5665,-1.5,0.405,7.5,0.489,4.0,-13.6,AWAY,11.0,-5.0,False,False
-2026-05-17,SF@OAK,825006,Athletics,San Francisco Giants,9.82,0.4967,0.5261,0.6172,-1.5,0.405,9.5,0.486,9.2,4.0,AWAY,11.0,-9.0,False,False
-2026-05-17,TEX@HOU,824192,Houston Astros,Texas Rangers,6.98,0.6465,0.4175,0.5277,1.5,0.595,8.0,0.496,5.1,-7.9,AWAY,8.0,-8.0,False,False
-2026-05-17,TOR@DET,824279,Detroit Tigers,Toronto Blue Jays,7.88,0.4935,0.5309,0.3735,1.5,0.5920000000000001,7.5,0.519,-9.9,1.2,AWAY,5.0,-3.0,False,False
-2026-05-18,ATL@MIA,823867,Miami Marlins,Atlanta Braves,9.33,0.7225,0.5673,0.6118,1.5,0.574,8.5,0.48100000000000004,14.9,8.6,HOME,12.0,12.0,False,False
-2026-05-18,BAL@TB,822980,Tampa Bay Rays,Baltimore Orioles,7.93,0.5204,0.535,0.6396,-1.5,0.34600000000000003,7.5,0.484,17.4,5.1,HOME,22.0,10.0,False,False
-2026-05-18,BOS@KC,824114,Kansas City Royals,Boston Red Sox,6.16,,,0.5968,,,,,,,AWAY,4.0,-2.0,True,False
-2026-05-18,CIN@PHI,823465,Philadelphia Phillies,Cincinnati Reds,10.15,0.3789,0.6319,0.4992,-1.5,0.379,8.5,0.518,-0.0,11.4,HOME,9.0,1.0,False,False
-2026-05-18,CLE@DET,824277,Detroit Tigers,Cleveland Guardians,8.78,0.5633,0.5633,0.4415,1.5,0.606,8.0,0.496,-4.3,6.7,AWAY,10.0,-6.0,False,False
-2026-05-18,CWS@SEA,823137,Seattle Mariners,Chicago White Sox,6.9,0.4143,0.4512,0.5358,-1.5,0.391,7.5,0.501,2.3,-5.0,HOME,7.0,5.0,False,False
-2026-05-18,HOU@MIN,823705,Minnesota Twins,Houston Astros,11.46,0.6015,0.7273,0.7135,-1.5,0.386,8.5,0.49700000000000005,21.6,23.0,HOME,9.0,3.0,False,False
-2026-05-18,LAD@SD,823301,San Diego Padres,Los Angeles Dodgers,7.48,0.539,0.4175,0.4175,1.5,0.544,8.5,0.501,-0.5,-8.4,HOME,1.0,1.0,False,False
-2026-05-18,MIL@CHC,824680,Chicago Cubs,Milwaukee Brewers,8.29,,,0.6319,,,,,,,AWAY,12.0,-6.0,True,False
-2026-05-18,NYM@WSH,822734,Washington Nationals,New York Mets,9.46,0.6234,0.5374,0.5033,1.5,0.536,9.0,0.48100000000000004,8.7,5.6,AWAY,23.0,-9.0,False,False
-2026-05-18,OAK@LAA,824035,Los Angeles Angels,Athletics,8.42,0.2714,0.4529,0.3812,-1.5,0.374,9.0,0.509,-10.3,-5.6,,,,False,True
-2026-05-18,SF@ARI,825087,Arizona Diamondbacks,San Francisco Giants,8.72,0.3766,0.5179,0.4967,-1.5,0.353,8.5,0.512,2.4,0.6,HOME,14.0,10.0,False,False
-2026-05-18,TEX@COL,824357,Colorado Rockies,Texas Rangers,10.18,0.5358,0.5552,0.4143,1.5,0.5329999999999999,9.5,0.491,0.3,6.4,HOME,13.0,1.0,False,False
-2026-05-18,TOR@NYY,823549,New York Yankees,Toronto Blue Jays,7.42,0.4674,0.4127,0.5889,-1.5,0.392,8.5,0.526,7.5,-11.3,HOME,13.0,1.0,False,False
-2026-05-19,ATL@MIA,823865,Miami Marlins,Atlanta Braves,8.98,0.6172,0.6188,0.4967,1.5,0.502,7.5,0.48100000000000004,11.5,13.8,AWAY,12.0,-4.0,False,False
-2026-05-19,BAL@TB,822979,Tampa Bay Rays,Baltimore Orioles,9.74,0.4064,0.6389,0.5277,-1.5,0.345,8.0,0.519,6.1,12.0,HOME,5.0,3.0,False,False
-2026-05-19,BOS@KC,824112,Kansas City Royals,Boston Red Sox,5.88,0.355,0.3325,0.4739,-1.5,0.345,8.0,0.501,1.0,-16.8,AWAY,8.0,-6.0,False,False
-2026-05-19,CIN@PHI,823464,Philadelphia Phillies,Cincinnati Reds,8.59,0.4569,0.4263,0.5785,-1.5,0.397,9.5,0.499,6.0,-7.3,AWAY,5.0,-3.0,False,False
-2026-05-19,CLE@DET,824276,Detroit Tigers,Cleveland Guardians,7.69,0.4829,0.4748,0.3634,1.5,0.539,8.0,0.486,-5.6,-1.1,AWAY,7.0,-1.0,False,False
-2026-05-19,CWS@SEA,823136,Seattle Mariners,Chicago White Sox,7.62,0.4175,0.5098,0.539,-1.5,0.39399999999999996,7.5,0.505,2.4,0.5,AWAY,3.0,-1.0,False,False
-2026-05-19,HOU@MIN,823704,Minnesota Twins,Houston Astros,9.58,0.4984,0.6265,0.6188,-1.5,0.397,8.0,0.496,10.1,13.0,AWAY,3.0,-1.0,False,False
-2026-05-19,LAD@SD,823302,San Diego Padres,Los Angeles Dodgers,7.66,0.5195,0.5536,0.3985,1.5,0.54,7.0,0.526,-2.1,2.8,AWAY,9.0,-1.0,False,False
-2026-05-19,MIL@CHC,824677,Chicago Cubs,Milwaukee Brewers,5.85,,,0.4601,,,,,,,AWAY,7.0,-3.0,True,False
-2026-05-19,NYM@WSH,822736,Washington Nationals,New York Mets,9.07,0.5269,0.465,0.4056,1.5,0.579,9.5,0.512,-5.2,-4.7,HOME,15.0,3.0,False,False
-2026-05-19,OAK@LAA,824033,Los Angeles Angels,Athletics,8.61,0.6608,0.4279,0.5431,1.5,0.584,9.5,0.47700000000000004,7.7,-4.9,,,,False,True
-2026-05-19,PIT@STL,823059,St. Louis Cardinals,Pittsburgh Pirates,8.94,0.2348,0.5761,0.3385,-1.5,0.34600000000000003,8.0,0.479,-11.1,9.7,HOME,15.0,3.0,False,False
-2026-05-19,SF@ARI,825086,Arizona Diamondbacks,San Francisco Giants,7.67,0.3098,0.3929,0.4247,-1.5,0.374,9.0,0.496,-6.4,-10.3,HOME,8.0,2.0,False,False
-2026-05-19,TEX@COL,824356,Colorado Rockies,Texas Rangers,9.01,0.5544,0.3804,0.4327,1.5,0.552,10.5,0.507,0.2,-12.7,AWAY,10.0,-10.0,False,False
-2026-05-19,TOR@NYY,823548,New York Yankees,Toronto Blue Jays,6.02,0.3505,0.343,0.4691,-1.5,0.414,8.0,0.501,-6.3,-15.8,HOME,9.0,1.0,False,False
-2026-05-20,ATL@MIA,823866,Miami Marlins,Atlanta Braves,8.65,0.5512,0.5929,0.4295,1.5,0.5710000000000001,7.5,0.514,-2.0,7.9,AWAY,10.0,-8.0,False,False
-2026-05-20,BAL@TB,822977,Tampa Bay Rays,Baltimore Orioles,9.92,0.4707,0.6141,0.5921,-1.5,0.35600000000000004,8.5,0.5,11.5,11.4,HOME,8.0,2.0,False,False
-2026-05-20,BOS@KC,824111,Kansas City Royals,Boston Red Sox,6.87,0.3945,0.4488,0.5155,-1.5,0.34600000000000003,7.5,0.494,4.8,-4.5,AWAY,7.0,-1.0,False,False
-2026-05-20,CIN@PHI,823462,Philadelphia Phillies,Cincinnati Reds,10.5,0.3719,0.5809,0.4919,-1.5,0.414,9.5,0.511,-4.2,7.0,AWAY,13.0,-5.0,False,False
-2026-05-20,CLE@DET,824273,Detroit Tigers,Cleveland Guardians,8.47,0.2858,0.5785,0.3977,-1.5,0.336,7.5,0.493,-5.0,8.6,AWAY,5.0,-1.0,False,False
-2026-05-20,CWS@SEA,823134,Seattle Mariners,Chicago White Sox,6.23,0.3851,0.3977,0.5057,-1.5,0.382,7.5,0.46799999999999997,0.3,-7.0,HOME,9.0,1.0,False,False
-2026-05-20,HOU@MIN,823703,Minnesota Twins,Houston Astros,9.12,0.5841,0.5905,0.698,-1.5,0.396,8.0,0.502,18.8,8.9,HOME,5.0,3.0,False,False
-2026-05-20,LAD@SD,823299,San Diego Padres,Los Angeles Dodgers,6.27,0.4976,0.4008,0.3773,1.5,0.5,7.5,0.48200000000000004,-0.2,-8.1,AWAY,4.0,-4.0,False,False
-2026-05-20,MIL@CHC,824678,Chicago Cubs,Milwaukee Brewers,7.46,0.2782,0.5777,0.389,-1.5,0.32299999999999995,6.5,0.483,-4.5,9.5,AWAY,5.0,-5.0,False,False
-2026-05-20,NYM@WSH,822735,Washington Nationals,New York Mets,12.91,0.4456,0.8161,0.3288,1.5,0.611,8.5,0.499,-16.5,31.7,HOME,12.0,4.0,False,False
-2026-05-20,OAK@LAA,824032,Los Angeles Angels,Athletics,9.05,0.2508,0.5447,0.3573,-1.5,0.342,8.5,0.48200000000000004,-9.1,6.3,,,,False,True
-2026-05-20,PIT@STL,823057,St. Louis Cardinals,Pittsburgh Pirates,8.25,0.5269,0.5204,0.4056,1.5,0.6,8.0,0.48100000000000004,-7.3,3.9,AWAY,7.0,-7.0,False,False
-2026-05-20,SF@ARI,825084,Arizona Diamondbacks,San Francisco Giants,9.7,0.4,0.5968,0.5212,-1.5,0.354,8.5,0.516,4.6,8.1,HOME,9.0,3.0,False,False
-2026-05-20,TEX@COL,824355,Colorado Rockies,Texas Rangers,10.71,0.4959,0.5577,0.3758,1.5,0.568,10.0,0.489,-7.2,6.9,AWAY,9.0,-1.0,False,False
-2026-05-20,TOR@NYY,823547,New York Yankees,Toronto Blue Jays,5.69,,,0.5577,,,,,,,AWAY,3.0,-1.0,True,False
-2026-05-21,ATL@MIA,823864,Miami Marlins,Atlanta Braves,8.29,0.5769,0.5641,0.4553,1.5,0.57,7.5,0.478,0.7,8.6,AWAY,12.0,-6.0,False,False
-2026-05-21,CLE@DET,824274,Detroit Tigers,Cleveland Guardians,7.45,0.3665,0.5366,0.4862,-1.5,0.342,7.0,0.525,2.4,1.2,AWAY,4.0,-2.0,False,False
-2026-05-21,COL@ARI,825083,Arizona Diamondbacks,Colorado Rockies,8.76,0.4902,0.5212,0.611,-1.5,0.456,8.5,0.523,3.4,-0.2,HOME,3.0,1.0,False,False
-2026-05-21,NYM@WSH,822733,Washington Nationals,New York Mets,9.08,0.6078,0.5873,0.487,1.5,0.606,8.0,0.483,0.2,10.4,AWAY,3.0,-1.0,False,False
-2026-05-21,OAK@LAA,824031,Los Angeles Angels,Athletics,8.59,0.3288,0.548,0.4456,-1.5,0.35100000000000003,8.0,0.506,-2.2,4.2,,,,False,True
-2026-05-21,PIT@STL,823056,St. Louis Cardinals,Pittsburgh Pirates,8.46,0.5065,0.6172,0.3859,1.5,0.612,7.0,0.517,-10.6,10.0,AWAY,8.0,-4.0,False,False
-2026-05-21,TOR@NYY,823545,New York Yankees,Toronto Blue Jays,7.4,0.4143,0.4111,0.5358,-1.5,0.384,8.5,0.491,3.0,-8.0,AWAY,2.0,-2.0,False,False
-2026-05-22,CLE@PHI,823461,Philadelphia Phillies,Cleveland Guardians,7.28,0.4383,0.5228,0.5601,-1.5,0.446,7.0,0.528,-0.8,-0.5,AWAY,1.0,-1.0,False,False
-2026-05-22,COL@ARI,825082,Arizona Diamondbacks,Colorado Rockies,9.02,0.5921,0.5016,0.7051,-1.5,0.436,9.0,0.526,15.6,-2.4,AWAY,5.0,-1.0,False,False
-2026-05-22,CWS@SF,823223,San Francisco Giants,Chicago White Sox,6.05,0.556,0.3836,0.4343,1.5,0.613,7.5,0.483,-5.7,-9.9,AWAY,13.0,-5.0,False,False
-2026-05-22,DET@BAL,824842,Baltimore Orioles,Detroit Tigers,7.46,0.4529,0.4561,0.5745,-1.5,0.354,8.0,0.514,9.9,-5.8,HOME,11.0,3.0,False,False
-2026-05-22,HOU@CHC,824679,Chicago Cubs,Houston Astros,8.35,,,0.4878,,,,,,,AWAY,6.0,-2.0,True,False
-2026-05-22,LAD@MIL,823788,Milwaukee Brewers,Los Angeles Dodgers,6.98,0.6312,0.34,0.5114,1.5,0.5770000000000001,9.0,0.483,5.4,-14.3,HOME,6.0,4.0,False,False
-2026-05-22,MIN@BOS,824761,Boston Red Sox,Minnesota Twins,7.06,0.3985,0.4642,0.5195,-1.5,0.39299999999999996,7.5,0.469,0.6,-0.5,AWAY,14.0,-2.0,False,False
-2026-05-22,NYM@MIA,823863,Miami Marlins,New York Mets,9.94,,,0.4159,,,,,,,HOME,3.0,1.0,True,False
-2026-05-22,OAK@SD,823298,San Diego Padres,Athletics,7.47,0.3836,0.4569,0.5041,-1.5,0.32899999999999996,8.0,0.491,5.5,-3.4,,,,False,True
-2026-05-22,PIT@TOR,822816,Toronto Blue Jays,Pittsburgh Pirates,8.82,0.6719,0.6063,0.5552,1.5,0.5579999999999999,7.5,0.493,11.4,11.3,HOME,8.0,4.0,False,False
-2026-05-22,SEA@KC,824110,Kansas City Royals,Seattle Mariners,7.75,0.5431,0.3992,0.4215,1.5,0.547,9.0,0.474,-0.4,-7.5,AWAY,2.0,-2.0,False,False
-2026-05-22,STL@CIN,824518,Cincinnati Reds,St. Louis Cardinals,10.9,,,0.5713,,,,,,,TIE,0.0,0.0,True,False
-2026-05-22,TB@NYY,823546,New York Yankees,Tampa Bay Rays,8.48,,,0.4143,,,,,,,AWAY,6.0,-2.0,True,False
-2026-05-22,TEX@LAA,824029,Los Angeles Angels,Texas Rangers,7.53,0.4601,0.4618,0.3422,1.5,0.578,8.0,0.509,-11.8,-4.7,HOME,15.0,3.0,False,False
-2026-05-22,WSH@ATL,824922,Atlanta Braves,Washington Nationals,9.74,0.4739,0.5601,0.5952,-1.5,0.456,9.0,0.486,1.8,7.4,HOME,9.0,1.0,False,False
-2026-05-23,CLE@PHI,823458,Philadelphia Phillies,Cleveland Guardians,7.9,0.7009,0.5326,0.5873,1.5,0.5920000000000001,7.5,0.519,10.9,1.4,HOME,3.0,3.0,False,False
-2026-05-23,COL@ARI,825080,Arizona Diamondbacks,Colorado Rockies,9.85,0.5008,0.5689,0.6211,-1.5,0.461,9.0,0.526,4.0,4.3,HOME,9.0,1.0,False,False
-2026-05-23,CWS@SF,823222,San Francisco Giants,Chicago White Sox,7.63,0.2219,0.4699,0.3229,-1.5,0.331,8.0,0.496,-10.9,-2.6,HOME,13.0,7.0,False,False
-2026-05-23,DET@BAL,824840,Baltimore Orioles,Detroit Tigers,7.62,0.3828,0.4287,0.5033,-1.5,0.377,8.5,0.488,0.6,-5.9,TIE,0.0,0.0,False,False
-2026-05-23,HOU@CHC,824674,Chicago Cubs,Houston Astros,7.35,,,0.5897,,,,,,,AWAY,3.0,-3.0,True,False
-2026-05-23,LAD@MIL,823787,Milwaukee Brewers,Los Angeles Dodgers,9.51,0.6578,0.6211,0.5399,1.5,0.516,8.0,0.504,14.2,11.7,AWAY,14.0,-8.0,False,False
-2026-05-23,MIN@BOS,824760,Boston Red Sox,Minnesota Twins,8.03,0.2984,0.5431,0.4119,-1.5,0.40700000000000003,7.5,0.519,-10.9,2.4,AWAY,6.0,-2.0,False,False
-2026-05-23,NYM@MIA,823862,Miami Marlins,New York Mets,7.86,,,0.5504,,,,,,,HOME,5.0,3.0,True,False
-2026-05-23,OAK@SD,823300,San Diego Padres,Athletics,7.73,0.3665,0.4375,0.4862,-1.5,0.42200000000000004,8.5,0.483,-5.6,-4.5,,,,False,True
-2026-05-23,PIT@TOR,822814,Toronto Blue Jays,Pittsburgh Pirates,7.73,0.2626,0.5187,0.3711,-1.5,0.401,7.5,0.513,-13.8,0.6,HOME,7.0,3.0,False,False
-2026-05-23,SEA@KC,824109,Kansas City Royals,Seattle Mariners,7.67,0.452,0.4327,0.3347,1.5,0.56,8.5,0.507,-10.8,-7.4,HOME,5.0,5.0,False,False
-2026-05-23,STL@CIN,824518,Cincinnati Reds,St. Louis Cardinals,10.2,0.4095,0.5568,0.5309,-1.5,0.361,9.5,0.516,4.8,4.1,AWAY,9.0,-7.0,False,False
-2026-05-23,TB@NYY,823543,New York Yankees,Tampa Bay Rays,8.3,0.3535,0.5649,0.4723,-1.5,0.36700000000000005,7.5,0.48100000000000004,-1.4,8.4,TIE,0.0,0.0,False,False
-2026-05-23,TEX@LAA,824030,Los Angeles Angels,Texas Rangers,8.01,0.5138,0.5415,0.3929,1.5,0.564,7.5,0.48700000000000004,-5.0,5.4,HOME,7.0,3.0,False,False
-2026-05-23,WSH@ATL,824920,Atlanta Braves,Washington Nationals,11.07,0.4071,0.7002,0.5285,-1.5,0.415,8.5,0.501,-0.8,19.9,AWAY,2.0,-2.0,False,False
-2026-05-24,CLE@PHI,823459,Philadelphia Phillies,Cleveland Guardians,8.09,0.5171,0.5881,0.3961,1.5,0.612,7.0,0.531,-9.5,5.7,AWAY,4.0,-2.0,False,False
-2026-05-24,COL@ARI,825081,Arizona Diamondbacks,Colorado Rockies,10.01,0.5106,0.5817,0.6304,-1.5,0.46399999999999997,9.0,0.47200000000000003,4.7,11.0,HOME,10.0,8.0,False,False
-2026-05-24,CWS@SF,823220,San Francisco Giants,Chicago White Sox,8.34,0.3077,0.5277,0.4223,-1.5,0.35100000000000003,8.0,0.496,-4.3,3.2,HOME,13.0,3.0,False,False
-2026-05-24,DET@BAL,824839,Baltimore Orioles,Detroit Tigers,7.29,0.3836,0.4024,0.5041,-1.5,0.36700000000000005,8.5,0.483,1.7,-8.1,HOME,8.0,2.0,False,False
-2026-05-24,HOU@CHC,824676,Chicago Cubs,Houston Astros,6.61,0.4601,0.4683,0.5817,-1.5,0.41600000000000004,7.0,0.498,4.4,-3.0,AWAY,13.0,-3.0,False,False
-2026-05-24,LAD@MIL,823786,Milwaukee Brewers,Los Angeles Dodgers,9.95,0.4231,0.6548,0.3084,1.5,0.528,8.0,0.5,-10.5,15.5,AWAY,6.0,-4.0,False,False
-2026-05-24,MIN@BOS,824759,Boston Red Sox,Minnesota Twins,7.8,0.3766,0.5244,0.4967,-1.5,0.41600000000000004,7.5,0.465,-3.9,5.9,AWAY,11.0,-1.0,False,False
-2026-05-24,NYM@MIA,823861,Miami Marlins,New York Mets,7.6,0.3828,0.5081,0.5033,-1.5,0.349,7.5,0.518,3.4,-1.0,HOME,4.0,4.0,False,False
-2026-05-24,OAK@SD,823297,San Diego Padres,Athletics,6.74,0.3906,0.4383,0.5114,-1.5,0.43,7.5,0.5,-3.9,-6.2,,,,False,True
-2026-05-24,PIT@TOR,822813,Toronto Blue Jays,Pittsburgh Pirates,6.68,0.4079,0.4335,0.5293,-1.5,0.426,7.5,0.498,-1.8,-6.5,AWAY,5.0,-3.0,False,False
-2026-05-24,SEA@KC,824108,Kansas City Royals,Seattle Mariners,5.94,0.5697,0.337,0.448,1.5,0.591,8.0,0.509,-2.1,-17.2,HOME,14.0,2.0,False,False
-2026-05-24,STL@CIN,824514,Cincinnati Reds,St. Louis Cardinals,11.07,0.2914,0.5865,0.404,-1.5,0.371,10.0,0.494,-8.0,9.3,TIE,0.0,0.0,False,False
-2026-05-24,TB@NYY,823544,New York Yankees,Tampa Bay Rays,7.77,0.3558,0.5625,0.4748,-1.5,0.36700000000000005,7.0,0.48700000000000004,-1.1,7.5,HOME,2.0,2.0,False,False
-2026-05-24,TEX@LAA,824028,Los Angeles Angels,Texas Rangers,7.5,0.3091,0.5,0.4239,-1.5,0.355,7.5,0.518,-4.6,-1.8,HOME,3.0,1.0,False,False
-2026-05-24,WSH@ATL,824921,Atlanta Braves,Washington Nationals,9.93,0.4634,0.6149,0.5849,-1.5,0.426,8.5,0.483,3.7,13.2,AWAY,3.0,-1.0,False,False
-2026-05-25,ARI@SF,823219,San Francisco Giants,Arizona Diamondbacks,7.67,0.4829,0.4731,0.6039,-1.5,0.34,8.0,0.5,14.3,-2.7,AWAY,8.0,-4.0,False,False
-2026-05-25,CHC@PIT,823380,Pittsburgh Pirates,Chicago Cubs,6.89,0.3573,0.4103,0.4764,-1.5,0.361,8.0,0.509,-0.4,-9.9,HOME,3.0,1.0,False,False
-2026-05-25,CIN@NYM,823625,New York Mets,Cincinnati Reds,9.16,,,0.7232,,,,,,,AWAY,9.0,-5.0,True,False
-2026-05-25,COL@LAD,823948,Los Angeles Dodgers,Colorado Rockies,8.79,0.5705,0.4829,0.6858,-1.5,0.498,9.0,0.47700000000000004,7.3,0.6,HOME,8.0,2.0,False,False
-2026-05-25,HOU@TEX,822899,Texas Rangers,Houston Astros,8.95,0.5929,0.5366,0.7058,-1.5,0.38299999999999995,8.5,0.483,21.0,5.4,AWAY,9.0,-9.0,False,False
-2026-05-25,MIA@TOR,822812,Toronto Blue Jays,Miami Marlins,6.16,,,0.5633,,,,,,,AWAY,10.0,-6.0,True,False
-2026-05-25,MIN@CWS,824598,Chicago White Sox,Minnesota Twins,9.26,0.4837,0.6404,0.3642,1.5,0.611,7.5,0.518,-12.7,12.2,HOME,4.0,2.0,False,False
-2026-05-25,NYY@KC,824107,Kansas City Royals,New York Yankees,7.15,0.4992,0.3528,0.3789,1.5,0.469,9.0,0.486,3.0,-13.3,AWAY,7.0,-1.0,False,False
-2026-05-25,PHI@SD,823296,San Diego Padres,Philadelphia Phillies,6.3,0.3415,0.4032,0.4593,-1.5,0.345,7.5,0.517,-0.3,-11.4,AWAY,3.0,-3.0,False,False
-2026-05-25,SEA@OAK,825005,Athletics,Seattle Mariners,8.93,0.6196,0.4537,0.4992,1.5,0.593,9.5,0.49,2.7,-3.6,AWAY,11.0,-7.0,False,False
-2026-05-25,STL@MIL,823784,Milwaukee Brewers,St. Louis Cardinals,7.43,0.5785,0.4537,0.693,-1.5,0.418,8.0,0.504,16.1,-5.0,HOME,6.0,4.0,False,False
-2026-05-25,TB@BAL,824838,Baltimore Orioles,Tampa Bay Rays,7.58,0.27,0.3859,0.3797,-1.5,0.33299999999999996,9.0,0.473,-6.3,-8.7,HOME,16.0,2.0,False,False
-2026-05-25,WSH@CLE,824437,Cleveland Guardians,Washington Nationals,10.33,0.4087,0.7184,0.5301,-1.5,0.371,7.5,0.517,3.8,20.1,AWAY,12.0,-8.0,False,False
-2026-05-27,MIA@TOR,822809,Toronto Blue Jays,Miami Marlins,6.78,0.4178,0.4326,0.5581,-1.5,0.396,7.5,0.48700000000000004,2.2,-5.4,HOME,3.0,1.0,False,False
+date,matchup,game_pk,home_team,away_team,mu_total,p_home_cover_rl,p_over,rl_home_point,rl_home_no_vig,total_line,over_no_vig,home_rl_pp,over_pp,actual_winner,actual_total,actual_margin,odds_missing,result_missing
+2026-05-01,ARI@CHC,824686,Chicago Cubs,Arizona Diamondbacks,9.14,,,,,,,,,HOME,11.0,1.0,True,False
+2026-05-01,ATL@COL,824366,Colorado Rockies,Atlanta Braves,15.23,0.3113,0.8062,1.5,0.48100000000000004,11.0,0.478,-17.0,32.8,AWAY,14.0,-2.0,False,False
+2026-05-01,BAL@NYY,823557,New York Yankees,Baltimore Orioles,7.81,0.444,0.444,-1.5,0.405,8.5,0.514,3.9,-7.0,HOME,9.0,5.0,False,False
+2026-05-01,CIN@PIT,823389,Pittsburgh Pirates,Cincinnati Reds,8.79,0.4391,0.5641,-1.5,0.377,8.0,0.493,6.2,7.1,HOME,10.0,8.0,False,False
+2026-05-01,CLE@OAK,825012,Athletics,Cleveland Guardians,8.97,0.4071,0.4167,-1.5,0.391,10.0,0.491,1.6,-7.4,,,,False,True
+2026-05-01,CWS@SD,823309,San Diego Padres,Chicago White Sox,9.49,0.2984,0.6578,-1.5,0.46299999999999997,7.5,0.512,-16.5,14.6,AWAY,10.0,-6.0,False,False
+2026-05-01,HOU@BOS,824772,Boston Red Sox,Houston Astros,10.63,0.4472,0.6304,-1.5,0.364,9.0,0.509,8.3,12.1,HOME,4.0,2.0,False,False
+2026-05-01,KC@SEA,823146,Seattle Mariners,Kansas City Royals,8.04,0.5244,0.5439,-1.5,0.382,7.5,0.48100000000000004,14.2,6.3,AWAY,13.0,-1.0,False,False
+2026-05-01,LAD@STL,823066,St. Louis Cardinals,Los Angeles Dodgers,11.76,0.4367,0.7472,1.5,0.542,8.5,0.526,-10.5,22.1,HOME,9.0,5.0,False,False
+2026-05-01,MIL@WSH,822744,Washington Nationals,Milwaukee Brewers,10.14,0.5326,0.669,1.5,0.585,8.0,0.483,-5.2,18.6,AWAY,7.0,-5.0,False,False
+2026-05-01,NYM@LAA,824041,Los Angeles Angels,New York Mets,8.25,0.6335,0.5204,1.5,0.599,8.0,0.499,3.4,2.1,AWAY,7.0,-1.0,False,False
+2026-05-01,PHI@MIA,823877,Miami Marlins,Philadelphia Phillies,8.87,,,,,,,,,AWAY,11.0,-1.0,True,False
+2026-05-01,SF@TB,822990,Tampa Bay Rays,San Francisco Giants,6.78,,,,,,,,,HOME,3.0,3.0,True,False
+2026-05-01,TEX@DET,824287,Detroit Tigers,Texas Rangers,8.94,0.3237,0.5761,-1.5,0.374,8.0,0.501,-5.0,7.5,AWAY,9.0,-1.0,False,False
+2026-05-01,TOR@MIN,823713,Minnesota Twins,Toronto Blue Jays,10.19,0.5577,0.6727,1.5,0.589,8.0,0.488,-3.1,18.5,AWAY,10.0,-4.0,False,False
+2026-05-02,ARI@CHC,824685,Chicago Cubs,Arizona Diamondbacks,9.94,,,,,,,,,HOME,2.0,2.0,True,False
+2026-05-02,ATL@COL,824365,Colorado Rockies,Atlanta Braves,10.18,0.6343,0.4335,1.5,0.49,11.0,0.478,14.4,-4.4,AWAY,10.0,-8.0,False,False
+2026-05-02,BAL@NYY,823554,New York Yankees,Baltimore Orioles,8.24,0.448,0.4383,-1.5,0.47200000000000003,9.0,0.48200000000000004,-2.4,-4.4,HOME,13.0,5.0,False,False
+2026-05-02,CIN@PIT,823388,Pittsburgh Pirates,Cincinnati Reds,7.01,0.4247,0.4601,-1.5,0.342,7.5,0.493,8.3,-3.3,HOME,24.0,10.0,False,False
+2026-05-02,CLE@OAK,825014,Athletics,Cleveland Guardians,11.08,0.6645,0.6265,1.5,0.589,9.5,0.474,7.6,15.2,,,,False,True
+2026-05-02,CWS@SD,823308,San Diego Padres,Chicago White Sox,8.48,0.3843,0.539,-1.5,0.436,8.0,0.512,-5.2,2.7,AWAY,4.0,-4.0,False,False
+2026-05-02,HOU@BOS,824771,Boston Red Sox,Houston Astros,9.33,,,,,,,,,AWAY,9.0,-3.0,True,False
+2026-05-02,KC@SEA,823144,Seattle Mariners,Kansas City Royals,7.03,0.3347,0.4215,-1.5,0.35700000000000004,8.0,0.483,-2.2,-6.2,AWAY,5.0,-1.0,False,False
+2026-05-02,LAD@STL,823067,St. Louis Cardinals,Los Angeles Dodgers,12.22,0.7702,0.7446,1.5,0.55,9.0,0.522,22.0,22.3,HOME,5.0,1.0,False,False
+2026-05-02,MIL@WSH,822746,Washington Nationals,Milwaukee Brewers,10.09,0.4878,0.6273,1.5,0.5710000000000001,8.5,0.48100000000000004,-8.3,14.6,AWAY,5.0,-3.0,False,False
+2026-05-02,NYM@LAA,824042,Los Angeles Angels,New York Mets,6.42,0.5889,0.2991,1.5,0.578,9.0,0.491,1.1,-19.2,HOME,7.0,1.0,False,False
+2026-05-02,PHI@MIA,823876,Miami Marlins,Philadelphia Phillies,7.55,0.6623,0.4634,1.5,0.564,8.0,0.507,9.8,-4.4,HOME,4.0,4.0,False,False
+2026-05-02,SF@TB,822988,Tampa Bay Rays,San Francisco Giants,7.06,0.2907,0.4239,-1.5,0.34600000000000003,8.0,0.519,-5.5,-9.5,HOME,6.0,4.0,False,False
+2026-05-02,TEX@DET,824284,Detroit Tigers,Texas Rangers,6.96,0.4207,0.3766,-1.5,0.37200000000000005,8.5,0.484,4.9,-10.7,HOME,6.0,4.0,False,False
+2026-05-02,TOR@MIN,823715,Minnesota Twins,Toronto Blue Jays,7.67,0.4976,0.4731,1.5,0.617,8.0,0.516,-11.9,-4.3,AWAY,15.0,-7.0,False,False
+2026-05-03,ARI@CHC,824687,Chicago Cubs,Arizona Diamondbacks,10.99,0.7948,0.4183,-1.5,0.433,12.0,0.484,36.2,-6.6,HOME,12.0,4.0,False,False
+2026-05-03,ATL@COL,824364,Colorado Rockies,Atlanta Braves,12.25,0.4375,0.6771,1.5,0.542,10.0,0.489,-10.5,18.8,AWAY,17.0,-5.0,False,False
+2026-05-03,BAL@NYY,823555,New York Yankees,Baltimore Orioles,8.18,0.5212,0.4739,-1.5,0.456,8.5,0.496,6.5,-2.2,HOME,14.0,8.0,False,False
+2026-05-03,CIN@PIT,823387,Pittsburgh Pirates,Cincinnati Reds,9.03,0.4796,0.6227,-1.5,0.33899999999999997,7.5,0.496,14.1,12.7,HOME,1.0,1.0,False,False
+2026-05-03,CLE@OAK,825013,Athletics,Cleveland Guardians,8.07,0.5382,0.3851,1.5,0.57,9.5,0.475,-3.2,-9.0,HOME,8.0,6.0,False,False
+2026-05-03,CWS@SD,823307,San Diego Padres,Chicago White Sox,9.82,0.5065,0.645,-1.5,0.424,8.0,0.517,8.2,12.8,HOME,7.0,1.0,False,False
+2026-05-03,HOU@BOS,824769,Boston Red Sox,Houston Astros,8.89,0.4666,0.5317,-1.5,0.43799999999999994,8.5,0.522,2.9,1.0,AWAY,4.0,-2.0,False,False
+2026-05-03,KC@SEA,823145,Seattle Mariners,Kansas City Royals,7.39,0.382,0.4504,-1.5,0.342,8.0,0.494,4.0,-4.4,AWAY,5.0,-3.0,False,False
+2026-05-03,LAD@STL,823065,St. Louis Cardinals,Los Angeles Dodgers,8.78,0.5729,0.4415,1.5,0.5529999999999999,9.5,0.5,2.0,-5.8,AWAY,5.0,-3.0,False,False
+2026-05-03,MIL@WSH,822742,Washington Nationals,Milwaukee Brewers,11.46,0.4415,0.7273,1.5,0.5529999999999999,8.5,0.517,-11.1,21.0,HOME,5.0,1.0,False,False
+2026-05-03,NYM@LAA,824043,Los Angeles Angels,New York Mets,7.68,0.645,0.3937,1.5,0.573,9.0,0.49,7.2,-9.6,AWAY,6.0,-4.0,False,False
+2026-05-03,PHI@MIA,823875,Miami Marlins,Philadelphia Phillies,7.64,0.5889,0.4303,1.5,0.601,8.5,0.514,-1.2,-8.4,AWAY,9.0,-5.0,False,False
+2026-05-03,SF@TB,822987,Tampa Bay Rays,San Francisco Giants,8.1,0.4788,0.5081,-1.5,0.35700000000000004,8.0,0.504,12.2,0.4,HOME,3.0,1.0,False,False
+2026-05-03,TEX@DET,824285,Detroit Tigers,Texas Rangers,9.05,0.3773,0.5447,-1.5,0.35100000000000003,8.5,0.48200000000000004,2.6,6.3,HOME,8.0,6.0,False,False
+2026-05-03,TOR@MIN,823711,Minnesota Twins,Toronto Blue Jays,9.11,0.6457,0.5897,1.5,0.618,8.0,0.514,2.8,7.6,HOME,7.0,1.0,False,False
+2026-05-04,ATL@SEA,823143,Seattle Mariners,Atlanta Braves,7.78,0.3937,0.4821,-1.5,0.39,8.0,0.486,0.4,-0.4,HOME,9.0,1.0,False,False
+2026-05-04,BAL@NYY,823552,New York Yankees,Baltimore Orioles,7.43,0.6086,0.4135,-1.5,0.495,8.5,0.486,11.4,-7.3,HOME,13.0,11.0,False,False
+2026-05-04,BOS@DET,824283,Detroit Tigers,Boston Red Sox,8.46,0.2963,0.5374,-1.5,0.446,8.0,0.512,-15.0,2.5,AWAY,9.0,-1.0,False,False
+2026-05-04,CIN@CHC,824684,Chicago Cubs,Cincinnati Reds,8.49,,,,,,,,,HOME,9.0,1.0,True,False
+2026-05-04,CLE@KC,824120,Kansas City Royals,Cleveland Guardians,9.54,0.6719,0.6615,1.5,0.599,7.5,0.517,7.3,14.4,HOME,8.0,4.0,False,False
+2026-05-04,CWS@LAA,824039,Los Angeles Angels,Chicago White Sox,7.65,0.3362,0.4715,-1.5,0.39899999999999997,8.0,0.48100000000000004,-6.3,-1.0,AWAY,6.0,-6.0,False,False
+2026-05-04,LAD@HOU,824201,Houston Astros,Los Angeles Dodgers,9.78,0.4756,0.6031,1.5,0.475,8.5,0.501,0.1,10.2,AWAY,11.0,-5.0,False,False
+2026-05-04,MIL@STL,823064,St. Louis Cardinals,Milwaukee Brewers,11.17,0.268,0.7732,-1.5,0.327,7.5,0.509,-5.9,26.4,HOME,9.0,3.0,False,False
+2026-05-04,NYM@COL,824363,Colorado Rockies,New York Mets,8.68,0.5777,0.3937,1.5,0.511,10.0,0.48700000000000004,6.7,-9.3,AWAY,6.0,-2.0,False,False
+2026-05-04,PHI@MIA,823874,Miami Marlins,Philadelphia Phillies,8.1,0.7149,0.4674,1.5,0.618,8.5,0.498,9.7,-3.1,AWAY,1.0,-1.0,False,False
+2026-05-04,SD@SF,823228,San Francisco Giants,San Diego Padres,5.92,0.5065,0.3355,1.5,0.564,8.0,0.509,-5.8,-17.3,HOME,5.0,1.0,False,False
+2026-05-04,TOR@TB,822984,Tampa Bay Rays,Toronto Blue Jays,9.57,0.4894,0.6638,-1.5,0.34600000000000003,7.5,0.47200000000000003,14.3,19.2,HOME,6.0,4.0,False,False
+2026-05-05,ATL@SEA,823142,Seattle Mariners,Atlanta Braves,6.58,0.2851,0.3475,-1.5,0.379,8.5,0.484,-9.4,-13.7,AWAY,5.0,-1.0,False,False
+2026-05-05,BAL@MIA,823873,Miami Marlins,Baltimore Orioles,8.64,0.4739,0.5114,-1.5,0.371,8.5,0.514,10.3,-0.3,AWAY,16.0,-2.0,False,False
+2026-05-05,BOS@DET,824281,Detroit Tigers,Boston Red Sox,8.5,,,,,,,,,AWAY,13.0,-7.0,True,False
+2026-05-05,CIN@CHC,824682,Chicago Cubs,Cincinnati Reds,10.24,,,,,,,,,HOME,5.0,1.0,True,False
+2026-05-05,CLE@KC,824119,Kansas City Royals,Cleveland Guardians,9.37,0.3945,0.6102,-1.5,0.359,8.0,0.48200000000000004,3.6,12.8,HOME,8.0,2.0,False,False
+2026-05-05,CWS@LAA,824040,Los Angeles Angels,Chicago White Sox,9.56,,,,,,,,,HOME,7.0,1.0,True,False
+2026-05-05,LAD@HOU,824200,Houston Astros,Los Angeles Dodgers,7.47,0.4862,0.3773,1.5,0.469,9.0,0.499,1.7,-12.2,HOME,3.0,1.0,False,False
+2026-05-05,MIL@STL,823062,St. Louis Cardinals,Milwaukee Brewers,11.74,0.4255,0.7775,-1.5,0.33,8.0,0.48200000000000004,9.5,29.5,TIE,0.0,0.0,False,False
+2026-05-05,MIN@WSH,822743,Washington Nationals,Minnesota Twins,8.6,0.7079,0.4271,1.5,0.5579999999999999,9.5,0.47700000000000004,15.0,-5.0,AWAY,14.0,-8.0,False,False
+2026-05-05,NYM@COL,824362,Colorado Rockies,New York Mets,9.43,,,,,,,,,TIE,0.0,0.0,True,False
+2026-05-05,OAK@PHI,823469,Philadelphia Phillies,Athletics,7.71,0.4151,0.4359,-1.5,0.429,8.5,0.493,-1.4,-5.7,HOME,10.0,8.0,False,False
+2026-05-05,PIT@ARI,825092,Arizona Diamondbacks,Pittsburgh Pirates,11.34,0.5697,0.7524,1.5,0.5579999999999999,8.0,0.484,1.2,26.8,HOME,9.0,9.0,False,False
+2026-05-05,SD@SF,823227,San Francisco Giants,San Diego Padres,5.14,0.5552,0.2463,1.5,0.603,8.5,0.499,-4.8,-25.3,AWAY,15.0,-5.0,False,False
+2026-05-05,TEX@NYY,823553,New York Yankees,Texas Rangers,6.86,0.4529,0.3688,-1.5,0.44799999999999995,8.5,0.501,0.5,-13.2,HOME,11.0,3.0,False,False
+2026-05-05,TOR@TB,822986,Tampa Bay Rays,Toronto Blue Jays,7.43,0.3604,0.4537,-1.5,0.368,8.0,0.483,-0.8,-2.9,HOME,7.0,1.0,False,False
+2026-05-06,ATL@SEA,823141,Seattle Mariners,Atlanta Braves,7.26,0.2963,0.4399,-1.5,0.36700000000000005,8.0,0.495,-7.1,-5.5,HOME,4.0,2.0,False,False
+2026-05-06,BAL@MIA,823872,Miami Marlins,Baltimore Orioles,9.98,0.4529,0.6188,-1.5,0.35700000000000004,8.5,0.499,9.6,12.0,AWAY,11.0,-3.0,False,False
+2026-05-06,BOS@DET,824282,Detroit Tigers,Boston Red Sox,10.25,0.2844,0.6396,-1.5,0.337,8.5,0.504,-5.3,13.6,AWAY,4.0,-4.0,False,False
+2026-05-06,CIN@CHC,824683,Chicago Cubs,Cincinnati Reds,9.0,,,,,,,,,HOME,13.0,1.0,True,False
+2026-05-06,CLE@KC,824118,Kansas City Royals,Cleveland Guardians,10.82,0.334,0.645,-1.5,0.39299999999999996,9.0,0.519,-5.9,12.6,AWAY,4.0,-2.0,False,False
+2026-05-06,CWS@LAA,824036,Los Angeles Angels,Chicago White Sox,8.61,0.5415,0.4683,1.5,0.595,9.0,0.496,-5.3,-2.8,HOME,10.0,6.0,False,False
+2026-05-06,LAD@HOU,824198,Houston Astros,Los Angeles Dodgers,8.95,0.4585,0.4959,1.5,0.446,9.0,0.478,1.3,1.8,AWAY,14.0,-10.0,False,False
+2026-05-06,MIL@STL,823063,St. Louis Cardinals,Milwaukee Brewers,11.45,0.4183,0.7595,-1.5,0.33,8.0,0.509,8.8,25.0,AWAY,8.0,-4.0,False,False
+2026-05-06,MIN@WSH,822740,Washington Nationals,Minnesota Twins,11.93,0.4813,0.7252,1.5,0.613,9.0,0.51,-13.2,21.5,HOME,17.0,13.0,False,False
+2026-05-06,NYM@COL,824361,Colorado Rockies,New York Mets,9.26,0.5968,0.4,1.5,0.531,10.5,0.518,6.6,-11.8,AWAY,15.0,-5.0,False,False
+2026-05-06,OAK@PHI,823470,Philadelphia Phillies,Athletics,7.5,0.487,0.3797,-1.5,0.386,9.0,0.526,10.1,-14.6,HOME,9.0,3.0,False,False
+2026-05-06,PIT@ARI,825091,Arizona Diamondbacks,Pittsburgh Pirates,8.66,0.5665,0.4723,1.5,0.5920000000000001,9.0,0.47700000000000004,-2.6,-0.5,AWAY,1.0,-1.0,False,False
+2026-05-06,SD@SF,823226,San Francisco Giants,San Diego Padres,6.49,0.4024,0.3407,1.5,0.623,8.5,0.49200000000000005,-22.1,-15.1,AWAY,6.0,-4.0,False,False
+2026-05-06,TEX@NYY,823550,New York Yankees,Texas Rangers,7.89,0.6518,0.491,-1.5,0.45399999999999996,8.0,0.508,19.8,-1.7,AWAY,7.0,-5.0,False,False
+2026-05-06,TOR@TB,822985,Tampa Bay Rays,Toronto Blue Jays,7.37,0.4472,0.4894,-1.5,0.374,7.5,0.511,7.3,-2.2,HOME,3.0,3.0,False,False
+2026-05-07,BAL@MIA,823870,Miami Marlins,Baltimore Orioles,8.51,0.4845,0.5008,-1.5,0.363,8.5,0.48200000000000004,12.2,1.9,HOME,7.0,1.0,False,False
+2026-05-07,CIN@CHC,824681,Chicago Cubs,Cincinnati Reds,6.98,0.4788,0.34,-1.5,0.467,9.0,0.48,1.2,-14.0,HOME,11.0,5.0,False,False
+2026-05-07,CLE@KC,824117,Kansas City Royals,Cleveland Guardians,8.84,0.5488,0.487,-1.5,0.397,9.0,0.527,15.2,-4.0,AWAY,13.0,-3.0,False,False
+2026-05-07,MIN@WSH,822741,Washington Nationals,Minnesota Twins,12.58,0.6063,0.7677,-1.5,0.35700000000000004,9.0,0.522,24.9,24.6,HOME,12.0,2.0,False,False
+2026-05-07,NYM@COL,824362,Colorado Rockies,New York Mets,11.35,0.5269,0.5285,1.5,0.5379999999999999,11.0,0.486,-1.1,4.2,HOME,8.0,4.0,False,False
+2026-05-07,OAK@PHI,823467,Philadelphia Phillies,Athletics,8.99,0.4472,0.4992,-1.5,0.375,9.0,0.502,7.2,-0.3,AWAY,13.0,-11.0,False,False
+2026-05-07,PIT@ARI,825090,Arizona Diamondbacks,Pittsburgh Pirates,8.26,0.2977,0.4805,-1.5,0.33299999999999996,8.5,0.525,-3.5,-4.5,AWAY,6.0,-2.0,False,False
+2026-05-07,STL@SD,823306,San Diego Padres,St. Louis Cardinals,9.64,0.5,0.6312,-1.5,0.409,8.0,0.502,9.1,12.9,AWAY,3.0,-1.0,False,False
+2026-05-07,TB@BOS,824767,Boston Red Sox,Tampa Bay Rays,8.77,0.4796,0.522,-1.5,0.38299999999999995,8.5,0.49,9.7,3.2,AWAY,12.0,-4.0,False,False
+2026-05-07,TEX@NYY,823551,New York Yankees,Texas Rangers,6.7,0.5585,0.3566,-1.5,0.426,8.5,0.522,13.2,-16.5,HOME,11.0,7.0,False,False
+2026-05-08,ATL@LAD,823957,Los Angeles Dodgers,Atlanta Braves,8.97,0.2914,0.5785,-1.5,0.33899999999999997,8.0,0.48100000000000004,-4.8,9.7,HOME,4.0,2.0,False,False
+2026-05-08,CHC@TEX,822904,Texas Rangers,Chicago Cubs,7.03,0.4618,0.382,1.5,0.56,8.5,0.5,-9.8,-11.8,AWAY,8.0,-6.0,False,False
+2026-05-08,COL@PHI,823466,Philadelphia Phillies,Colorado Rockies,7.04,0.3843,0.3828,-1.5,0.45399999999999996,8.5,0.484,-7.0,-10.1,AWAY,16.0,-2.0,False,False
+2026-05-08,DET@KC,824116,Kansas City Royals,Detroit Tigers,7.88,0.3281,0.4095,-1.5,0.387,9.0,0.517,-5.9,-10.8,HOME,7.0,1.0,False,False
+2026-05-08,HOU@CIN,824522,Cincinnati Reds,Houston Astros,10.07,0.4618,0.6258,-1.5,0.42200000000000004,8.5,0.499,4.0,12.7,AWAY,10.0,-10.0,False,False
+2026-05-08,LAA@TOR,822822,Toronto Blue Jays,Los Angeles Angels,6.32,0.4175,0.3657,-1.5,0.429,8.0,0.501,-1.2,-13.5,HOME,2.0,2.0,False,False
+2026-05-08,MIN@CLE,824443,Cleveland Guardians,Minnesota Twins,8.97,0.4295,0.618,-1.5,0.345,7.5,0.517,8.5,10.1,HOME,10.0,2.0,False,False
+2026-05-08,NYM@ARI,825088,Arizona Diamondbacks,New York Mets,7.56,0.4967,0.4239,1.5,0.589,8.5,0.522,-9.2,-9.8,AWAY,4.0,-2.0,False,False
+2026-05-08,NYY@MIL,823794,Milwaukee Brewers,New York Yankees,7.74,0.5407,0.5195,1.5,0.5670000000000001,7.5,0.493,-2.6,2.6,HOME,6.0,6.0,False,False
+2026-05-08,OAK@BAL,824846,Baltimore Orioles,Athletics,10.77,0.452,0.6411,-1.5,0.37799999999999995,9.0,0.516,7.4,12.5,AWAY,7.0,-1.0,False,False
+2026-05-08,PIT@SF,823225,San Francisco Giants,Pittsburgh Pirates,6.0,0.2035,0.3797,-1.5,0.324,7.5,0.513,-12.1,-13.3,HOME,7.0,3.0,False,False
+2026-05-08,SEA@CWS,824607,Chicago White Sox,Seattle Mariners,6.65,0.618,0.3156,1.5,0.551,9.0,0.491,6.7,-17.5,,,,False,True
+2026-05-08,STL@SD,823303,San Diego Padres,St. Louis Cardinals,8.51,0.3836,0.5415,-1.5,0.386,8.0,0.491,-0.2,5.0,AWAY,6.0,-6.0,False,False
+2026-05-08,TB@BOS,824768,Boston Red Sox,Tampa Bay Rays,8.22,0.3295,0.5179,-1.5,0.39399999999999996,8.0,0.48100000000000004,-6.4,3.7,HOME,2.0,2.0,False,False
+2026-05-08,WSH@MIA,823871,Miami Marlins,Washington Nationals,9.63,0.3229,0.5913,-1.5,0.414,8.5,0.523,-9.1,6.8,AWAY,5.0,-1.0,False,False
+2026-05-09,ATL@LAD,823955,Los Angeles Dodgers,Atlanta Braves,9.07,0.3392,0.5463,-1.5,0.361,8.5,0.496,-2.2,5.0,AWAY,9.0,-5.0,False,False
+2026-05-09,CHC@TEX,822905,Texas Rangers,Chicago Cubs,7.97,0.2495,0.4976,-1.5,0.365,8.0,0.503,-11.5,-0.5,HOME,6.0,6.0,False,False
+2026-05-09,COL@PHI,823468,Philadelphia Phillies,Colorado Rockies,9.32,0.3781,0.5665,-1.5,0.54,8.5,0.493,-16.2,7.4,HOME,12.0,6.0,False,False
+2026-05-09,DET@KC,824115,Kansas City Royals,Detroit Tigers,6.76,0.2386,0.3237,-1.5,0.386,9.0,0.522,-14.7,-19.8,HOME,6.0,4.0,False,False
+2026-05-09,HOU@CIN,824523,Cincinnati Reds,Houston Astros,8.81,0.3742,0.5252,-1.5,0.424,8.5,0.525,-5.0,0.0,HOME,4.0,2.0,False,False
+2026-05-09,LAA@TOR,822820,Toronto Blue Jays,Los Angeles Angels,7.83,0.6366,0.4862,1.5,0.602,8.0,0.516,3.5,-3.0,HOME,15.0,13.0,False,False
+2026-05-09,MIN@CLE,824444,Cleveland Guardians,Minnesota Twins,9.25,0.3288,0.6008,-1.5,0.35100000000000003,8.0,0.483,-2.2,11.8,AWAY,3.0,-1.0,False,False
+2026-05-09,NYM@ARI,825089,Arizona Diamondbacks,New York Mets,9.23,0.452,0.478,1.5,0.601,9.5,0.522,-14.9,-4.4,HOME,3.0,1.0,False,False
+2026-05-09,NYY@MIL,823792,Milwaukee Brewers,New York Yankees,6.79,0.5122,0.4024,1.5,0.595,8.0,0.507,-8.3,-10.5,HOME,7.0,1.0,False,False
+2026-05-09,OAK@BAL,824847,Baltimore Orioles,Athletics,8.97,0.3696,0.4569,-1.5,0.34600000000000003,9.5,0.516,2.4,-5.9,AWAY,8.0,-4.0,False,False
+2026-05-09,PIT@SF,823224,San Francisco Giants,Pittsburgh Pirates,5.12,0.302,0.2782,-1.5,0.35200000000000004,8.0,0.512,-5.0,-23.4,AWAY,16.0,-10.0,False,False
+2026-05-09,SEA@CWS,824606,Chicago White Sox,Seattle Mariners,9.71,0.4764,0.6366,1.5,0.5920000000000001,8.0,0.504,-11.6,13.3,HOME,7.0,5.0,False,False
+2026-05-09,STL@SD,823304,San Diego Padres,St. Louis Cardinals,7.47,0.3681,0.4167,-1.5,0.371,8.5,0.48200000000000004,-0.3,-6.5,HOME,6.0,2.0,False,False
+2026-05-09,TB@BOS,824766,Boston Red Sox,Tampa Bay Rays,6.16,,,,,,,,,TIE,0.0,0.0,True,False
+2026-05-09,WSH@MIA,823869,Miami Marlins,Washington Nationals,8.75,0.3604,0.5204,-1.5,0.379,8.5,0.491,-1.9,2.9,HOME,15.0,1.0,False,False
+2026-05-10,ATL@LAD,823954,Los Angeles Dodgers,Atlanta Braves,7.51,0.3318,0.3422,-1.5,0.39,9.5,0.483,-5.8,-14.1,AWAY,9.0,-5.0,False,False
+2026-05-10,CHC@TEX,822902,Texas Rangers,Chicago Cubs,7.97,0.4119,0.4976,-1.5,0.359,8.0,0.484,5.3,1.4,HOME,3.0,3.0,False,False
+2026-05-10,COL@PHI,823463,Philadelphia Phillies,Colorado Rockies,8.16,0.5277,0.4723,-1.5,0.557,8.5,0.494,-2.9,-2.2,HOME,6.0,6.0,False,False
+2026-05-10,DET@KC,824113,Kansas City Royals,Detroit Tigers,8.73,0.3558,0.5187,-1.5,0.363,8.5,0.502,-0.7,1.7,AWAY,9.0,-3.0,False,False
+2026-05-10,HOU@CIN,824520,Cincinnati Reds,Houston Astros,9.63,0.3084,0.5512,-1.5,0.354,9.0,0.517,-4.6,3.4,HOME,5.0,5.0,False,False
+2026-05-10,LAA@TOR,822819,Toronto Blue Jays,Los Angeles Angels,7.59,0.7058,0.4666,1.5,0.626,8.0,0.504,8.0,-3.7,AWAY,7.0,-5.0,False,False
+2026-05-10,MIN@CLE,824440,Cleveland Guardians,Minnesota Twins,8.84,0.346,0.6078,-1.5,0.408,7.5,0.475,-6.2,13.3,AWAY,9.0,-1.0,False,False
+2026-05-10,NYM@ARI,825085,Arizona Diamondbacks,New York Mets,6.95,0.3497,0.3758,-1.5,0.345,8.5,0.517,0.5,-14.1,HOME,6.0,4.0,False,False
+2026-05-10,NYY@MIL,823793,Milwaukee Brewers,New York Yankees,9.36,0.552,0.6094,1.5,0.601,8.0,0.506,-4.9,10.3,HOME,7.0,1.0,False,False
+2026-05-10,OAK@BAL,824845,Baltimore Orioles,Athletics,9.37,0.3665,0.4488,-1.5,0.345,10.0,0.506,2.2,-5.7,HOME,3.0,1.0,False,False
+2026-05-10,PIT@SF,823221,San Francisco Giants,Pittsburgh Pirates,7.97,0.2573,0.4976,-1.5,0.359,8.0,0.519,-10.2,-2.1,HOME,13.0,1.0,False,False
+2026-05-10,SEA@CWS,824605,Chicago White Sox,Seattle Mariners,7.25,0.6858,0.4391,1.5,0.581,8.0,0.48200000000000004,10.5,-4.3,HOME,3.0,1.0,False,False
+2026-05-10,STL@SD,823305,San Diego Padres,St. Louis Cardinals,7.81,0.452,0.444,-1.5,0.371,8.5,0.48100000000000004,8.1,-3.7,HOME,5.0,1.0,False,False
+2026-05-10,TB@BOS,824765,Boston Red Sox,Tampa Bay Rays,6.03,0.4295,0.307,-1.5,0.387,8.5,0.498,4.2,-19.1,AWAY,5.0,-3.0,False,False
+2026-05-10,WSH@MIA,823868,Miami Marlins,Washington Nationals,9.04,0.2865,0.5841,-1.5,0.369,8.0,0.519,-8.3,6.5,HOME,7.0,3.0,False,False
+2026-05-11,ARI@TEX,822901,Texas Rangers,Arizona Diamondbacks,5.89,0.3961,0.3332,-1.5,0.374,8.0,0.516,2.2,-18.3,AWAY,1.0,-1.0,False,False
+2026-05-11,LAA@CLE,824441,Cleveland Guardians,Los Angeles Angels,8.87,0.4569,0.5301,-1.5,0.379,8.5,0.499,7.8,3.1,HOME,9.0,5.0,False,False
+2026-05-11,NYY@BAL,824844,Baltimore Orioles,New York Yankees,9.07,0.4056,0.5057,1.5,0.527,9.0,0.489,-12.1,1.7,HOME,5.0,1.0,False,False
+2026-05-11,SEA@HOU,824199,Houston Astros,Seattle Mariners,7.08,0.5793,0.3859,1.5,0.544,8.5,0.522,3.5,-13.6,AWAY,4.0,-2.0,False,False
+2026-05-11,SF@LAD,823953,Los Angeles Dodgers,San Francisco Giants,8.15,0.4151,0.4311,-1.5,0.461,9.0,0.517,-4.6,-8.6,AWAY,12.0,-6.0,False,False
+2026-05-11,TB@TOR,822818,Toronto Blue Jays,Tampa Bay Rays,7.03,0.6442,0.4215,1.5,0.608,8.0,0.493,3.6,-7.2,AWAY,13.0,-3.0,False,False
+2026-05-12,ARI@TEX,822903,Texas Rangers,Arizona Diamondbacks,6.33,,,,,,,,,HOME,11.0,3.0,True,False
+2026-05-12,CHC@ATL,824927,Atlanta Braves,Chicago Cubs,9.88,,,,,,,,,HOME,7.0,3.0,True,False
+2026-05-12,COL@PIT,823385,Pittsburgh Pirates,Colorado Rockies,9.49,,,,,,,,,HOME,4.0,2.0,True,False
+2026-05-12,DET@NYM,823632,New York Mets,Detroit Tigers,7.05,,,,,,,,,HOME,12.0,8.0,True,False
+2026-05-12,KC@CWS,824604,Chicago White Sox,Kansas City Royals,9.32,,,,,,,,,HOME,11.0,1.0,True,False
+2026-05-12,LAA@CLE,824442,Cleveland Guardians,Los Angeles Angels,9.04,,,,,,,,,HOME,5.0,1.0,True,False
+2026-05-12,MIA@MIN,823712,Minnesota Twins,Miami Marlins,10.21,,,,,,,,,HOME,3.0,3.0,True,False
+2026-05-12,NYY@BAL,824843,Baltimore Orioles,New York Yankees,7.85,0.4829,0.4472,1.5,0.536,8.5,0.519,-5.3,-7.2,AWAY,8.0,-4.0,False,False
+2026-05-12,PHI@BOS,824764,Boston Red Sox,Philadelphia Phillies,7.86,,,,,,,,,AWAY,3.0,-1.0,True,False
+2026-05-12,SD@MIL,823790,Milwaukee Brewers,San Diego Padres,7.65,,,,,,,,,HOME,10.0,2.0,True,False
+2026-05-12,SEA@HOU,824197,Houston Astros,Seattle Mariners,7.88,,,,,,,,,AWAY,12.0,-8.0,True,False
+2026-05-12,SF@LAD,823951,Los Angeles Dodgers,San Francisco Giants,7.93,0.5801,0.4537,-1.5,0.578,8.5,0.494,0.2,-4.0,AWAY,8.0,-4.0,False,False
+2026-05-12,STL@OAK,825011,Athletics,St. Louis Cardinals,10.37,,,,,,,,,AWAY,10.0,-2.0,True,False
+2026-05-12,TB@TOR,822817,Toronto Blue Jays,Tampa Bay Rays,7.41,,,,,,,,,AWAY,13.0,-1.0,True,False
+2026-05-12,WSH@CIN,824521,Cincinnati Reds,Washington Nationals,11.62,,,,,,,,,AWAY,14.0,-6.0,True,False
+2026-05-13,ARI@TEX,822900,Texas Rangers,Arizona Diamondbacks,6.98,0.4351,0.4175,-1.5,0.327,8.0,0.489,10.8,-7.2,HOME,11.0,1.0,False,False
+2026-05-13,CHC@ATL,824928,Atlanta Braves,Chicago Cubs,10.22,0.2541,0.7107,-1.5,0.405,7.5,0.519,-15.1,19.2,HOME,5.0,3.0,False,False
+2026-05-13,COL@PIT,823386,Pittsburgh Pirates,Colorado Rockies,9.74,0.6419,0.6389,-1.5,0.429,8.0,0.486,21.3,15.3,AWAY,14.0,-6.0,False,False
+2026-05-13,DET@NYM,823631,New York Mets,Detroit Tigers,6.97,0.3742,0.4569,-1.5,0.418,7.5,0.48200000000000004,-4.4,-2.5,HOME,5.0,1.0,False,False
+2026-05-13,KC@CWS,824603,Chicago White Sox,Kansas City Royals,7.59,0.5769,0.4263,1.5,0.573,8.5,0.513,0.4,-8.7,HOME,11.0,1.0,False,False
+2026-05-13,LAA@CLE,824438,Cleveland Guardians,Los Angeles Angels,6.79,0.4456,0.4829,-1.5,0.395,7.0,0.486,5.1,-0.3,HOME,6.0,2.0,False,False
+2026-05-13,MIA@MIN,823710,Minnesota Twins,Miami Marlins,9.46,0.2093,0.5777,-1.5,0.361,8.5,0.516,-15.2,6.2,AWAY,14.0,-4.0,False,False
+2026-05-13,NYY@BAL,824841,Baltimore Orioles,New York Yankees,7.62,0.4319,0.4287,1.5,0.524,8.5,0.528,-9.2,-9.9,HOME,7.0,7.0,False,False
+2026-05-13,PHI@BOS,824763,Boston Red Sox,Philadelphia Phillies,8.05,0.6055,0.5447,1.5,0.618,7.5,0.5,-1.2,4.5,HOME,4.0,2.0,False,False
+2026-05-13,SD@MIL,823791,Milwaukee Brewers,San Diego Padres,6.71,0.4878,0.3961,-1.5,0.39,8.0,0.486,9.8,-9.0,AWAY,4.0,-2.0,False,False
+2026-05-13,SEA@HOU,824195,Houston Astros,Seattle Mariners,8.65,0.5008,0.4715,1.5,0.57,9.0,0.516,-6.9,-4.5,HOME,7.0,1.0,False,False
+2026-05-13,SF@LAD,823952,Los Angeles Dodgers,San Francisco Giants,6.96,0.5342,0.4561,-1.5,0.506,7.5,0.494,2.8,-3.8,HOME,4.0,4.0,False,False
+2026-05-13,STL@OAK,825010,Athletics,St. Louis Cardinals,10.93,0.4666,0.6149,-1.5,0.35200000000000004,9.5,0.499,11.5,11.6,HOME,8.0,4.0,False,False
+2026-05-13,TB@TOR,822815,Toronto Blue Jays,Tampa Bay Rays,7.3,0.5228,0.4837,-1.5,0.38,7.5,0.49,14.3,-0.6,HOME,8.0,2.0,False,False
+2026-05-13,WSH@CIN,824519,Cincinnati Reds,Washington Nationals,10.01,0.2626,0.6593,-1.5,0.409,8.0,0.518,-14.6,14.1,AWAY,15.0,-1.0,False,False
+2026-05-14,CHC@ATL,824926,Atlanta Braves,Chicago Cubs,7.65,0.4151,0.5122,-1.5,0.467,7.5,0.48200000000000004,-5.2,3.0,AWAY,2.0,-2.0,False,False
+2026-05-14,COL@PIT,823383,Pittsburgh Pirates,Colorado Rockies,7.91,0.522,0.5334,-1.5,0.426,7.5,0.509,9.6,2.4,HOME,9.0,5.0,False,False
+2026-05-14,DET@NYM,823630,New York Mets,Detroit Tigers,5.35,0.404,0.3681,-1.5,0.39799999999999996,7.0,0.525,0.6,-15.7,HOME,13.0,5.0,False,False
+2026-05-14,KC@CWS,824602,Chicago White Sox,Kansas City Royals,8.96,0.5374,0.6172,1.5,0.58,7.5,0.509,-4.3,10.8,HOME,8.0,4.0,False,False
+2026-05-14,MIA@MIN,823709,Minnesota Twins,Miami Marlins,9.45,0.3392,0.5769,-1.5,0.355,8.5,0.518,-1.6,5.9,HOME,10.0,8.0,False,False
+2026-05-14,PHI@BOS,824762,Boston Red Sox,Philadelphia Phillies,6.34,0.343,0.4464,-1.5,0.33299999999999996,7.0,0.506,1.0,-6.0,AWAY,4.0,-2.0,False,False
+2026-05-14,SD@MIL,823789,Milwaukee Brewers,San Diego Padres,7.04,0.4577,0.4626,-1.5,0.382,7.5,0.517,7.6,-5.4,HOME,8.0,6.0,False,False
+2026-05-14,SEA@HOU,824196,Houston Astros,Seattle Mariners,8.71,0.509,0.4764,1.5,0.5920000000000001,9.0,0.496,-8.3,-2.0,AWAY,11.0,-5.0,False,False
+2026-05-14,SF@LAD,823950,Los Angeles Dodgers,San Francisco Giants,6.26,0.3843,0.4,-1.5,0.43200000000000005,7.5,0.513,-4.8,-11.3,HOME,7.0,3.0,False,False
+2026-05-14,STL@OAK,825008,Athletics,St. Louis Cardinals,10.78,0.302,0.6031,-1.5,0.37,9.5,0.502,-6.8,10.1,AWAY,9.0,-1.0,False,False
+2026-05-14,WSH@CIN,824517,Cincinnati Reds,Washington Nationals,9.79,0.2613,0.6427,-1.5,0.40299999999999997,8.0,0.48,-14.2,16.3,HOME,16.0,14.0,False,False
+2026-05-15,ARI@COL,824360,Colorado Rockies,Arizona Diamondbacks,13.25,0.6973,0.6396,1.5,0.536,11.5,0.478,16.1,16.2,AWAY,10.0,-8.0,False,False
+2026-05-15,BAL@WSH,822739,Washington Nationals,Baltimore Orioles,12.32,0.5163,0.6822,1.5,0.606,10.0,0.488,-9.0,19.4,HOME,5.0,1.0,False,False
+2026-05-15,BOS@ATL,824925,Atlanta Braves,Boston Red Sox,7.54,0.4967,0.4626,-1.5,0.39,8.0,0.499,10.7,-3.6,HOME,5.0,1.0,False,False
+2026-05-15,CHC@CWS,824601,Chicago White Sox,Chicago Cubs,8.43,0.6335,0.4943,1.5,0.618,8.5,0.491,1.5,0.3,AWAY,15.0,-5.0,False,False
+2026-05-15,CIN@CLE,824439,Cleveland Guardians,Cincinnati Reds,9.03,0.3604,0.5833,-1.5,0.436,8.0,0.512,-7.6,7.1,AWAY,13.0,-1.0,False,False
+2026-05-15,KC@STL,823061,St. Louis Cardinals,Kansas City Royals,7.86,0.3797,0.4079,-1.5,0.35200000000000004,9.0,0.512,2.8,-10.4,HOME,9.0,1.0,False,False
+2026-05-15,LAD@LAA,824037,Los Angeles Angels,Los Angeles Dodgers,7.55,0.404,0.4231,1.5,0.565,8.5,0.5,-16.1,-7.7,AWAY,6.0,-6.0,False,False
+2026-05-15,MIA@TB,822983,Tampa Bay Rays,Miami Marlins,7.29,0.3665,0.4829,-1.5,0.374,7.5,0.512,-0.8,-2.9,HOME,9.0,5.0,False,False
+2026-05-15,MIL@MIN,823707,Minnesota Twins,Milwaukee Brewers,9.37,0.6427,0.5705,1.5,0.585,8.5,0.484,5.8,8.7,AWAY,5.0,-1.0,False,False
+2026-05-15,NYY@NYM,823629,New York Mets,New York Yankees,5.87,,,,,,,,,AWAY,7.0,-3.0,True,False
+2026-05-15,PHI@PIT,823384,Pittsburgh Pirates,Philadelphia Phillies,8.15,0.717,0.5122,1.5,0.519,8.0,0.509,19.8,0.3,AWAY,20.0,-2.0,False,False
+2026-05-15,SD@SEA,823140,Seattle Mariners,San Diego Padres,5.67,0.404,0.3929,-1.5,0.36,7.0,0.519,4.4,-12.6,AWAY,2.0,-2.0,False,False
+2026-05-15,SF@OAK,825009,Athletics,San Francisco Giants,9.01,0.491,0.4199,-1.5,0.38299999999999995,10.0,0.486,10.8,-6.6,,,,False,True
+2026-05-15,TEX@HOU,824194,Houston Astros,Texas Rangers,7.41,0.5849,0.4927,1.5,0.564,7.5,0.519,2.1,-2.6,HOME,2.0,2.0,False,False
+2026-05-15,TOR@DET,824280,Detroit Tigers,Toronto Blue Jays,7.1,0.5081,0.4271,1.5,0.5920000000000001,8.0,0.483,-8.4,-5.6,HOME,5.0,1.0,False,False
+2026-05-16,ARI@COL,824359,Colorado Rockies,Arizona Diamondbacks,11.79,0.509,0.6039,1.5,0.525,10.5,0.512,-1.6,9.2,HOME,6.0,2.0,False,False
+2026-05-16,BAL@WSH,822737,Washington Nationals,Baltimore Orioles,9.56,0.7614,0.4642,1.5,0.5670000000000001,10.0,0.517,19.4,-5.3,HOME,16.0,10.0,False,False
+2026-05-16,BOS@ATL,824924,Atlanta Braves,Boston Red Sox,5.62,,,,,,,,,AWAY,5.0,-1.0,True,False
+2026-05-16,CHC@CWS,824600,Chicago White Sox,Chicago Cubs,8.7,0.7485,0.5163,1.5,0.56,8.5,0.499,18.9,1.7,HOME,11.0,5.0,False,False
+2026-05-16,CIN@CLE,824435,Cleveland Guardians,Cincinnati Reds,9.67,0.404,0.5944,-1.5,0.42,8.5,0.491,-1.6,10.3,HOME,11.0,3.0,False,False
+2026-05-16,KC@STL,823060,St. Louis Cardinals,Kansas City Royals,8.69,0.3528,0.4748,-1.5,0.34600000000000003,9.0,0.507,0.7,-3.2,HOME,6.0,2.0,False,False
+2026-05-16,LAD@LAA,824038,Los Angeles Angels,Los Angeles Dodgers,7.47,0.5041,0.3773,1.5,0.55,9.0,0.519,-4.6,-14.2,AWAY,17.0,-13.0,False,False
+2026-05-16,MIA@TB,822981,Tampa Bay Rays,Miami Marlins,7.42,0.3875,0.5342,-1.5,0.39299999999999996,7.0,0.528,-0.5,0.6,AWAY,15.0,-5.0,False,False
+2026-05-16,MIL@MIN,823706,Minnesota Twins,Milwaukee Brewers,8.64,,,,,,,,,AWAY,3.0,-1.0,True,False
+2026-05-16,NYY@NYM,823627,New York Mets,New York Yankees,6.96,0.5921,0.4159,1.5,0.615,8.0,0.514,-2.3,-9.8,HOME,9.0,3.0,False,False
+2026-05-16,PHI@PIT,823382,Pittsburgh Pirates,Philadelphia Phillies,9.08,0.2361,0.6645,-1.5,0.374,7.0,0.523,-13.8,14.1,AWAY,6.0,-6.0,False,False
+2026-05-16,SD@SEA,823139,Seattle Mariners,San Diego Padres,5.59,0.4024,0.3482,-1.5,0.405,7.5,0.501,-0.3,-15.3,AWAY,11.0,-3.0,False,False
+2026-05-16,SF@OAK,825007,Athletics,San Francisco Giants,8.51,0.404,0.4199,-1.5,0.405,9.5,0.505,-0.1,-8.5,AWAY,10.0,-2.0,False,False
+2026-05-16,TEX@HOU,824193,Houston Astros,Texas Rangers,6.55,,,,,,,,,HOME,5.0,3.0,True,False
+2026-05-16,TOR@DET,824278,Detroit Tigers,Toronto Blue Jays,6.38,0.6015,0.3704,1.5,0.583,8.0,0.48100000000000004,1.9,-11.1,AWAY,3.0,-1.0,False,False
+2026-05-17,ARI@COL,824358,Colorado Rockies,Arizona Diamondbacks,10.22,0.5407,0.4772,1.5,0.5329999999999999,10.5,0.483,0.8,-0.6,AWAY,14.0,-2.0,False,False
+2026-05-17,BAL@WSH,822738,Washington Nationals,Baltimore Orioles,10.82,0.7965,0.5665,1.5,0.578,10.0,0.514,21.9,5.2,AWAY,10.0,-4.0,False,False
+2026-05-17,BOS@ATL,824923,Atlanta Braves,Boston Red Sox,8.04,0.5261,0.4626,-1.5,0.408,8.5,0.502,11.8,-3.9,HOME,9.0,7.0,False,False
+2026-05-17,CHC@CWS,824599,Chicago White Sox,Chicago Cubs,10.25,0.5073,0.6008,1.5,0.5760000000000001,9.0,0.486,-6.9,11.5,HOME,17.0,1.0,False,False
+2026-05-17,CIN@CLE,824436,Cleveland Guardians,Cincinnati Reds,10.54,0.5016,0.6234,-1.5,0.42,9.0,0.474,8.2,14.9,HOME,13.0,7.0,False,False
+2026-05-17,KC@STL,823058,St. Louis Cardinals,Kansas City Royals,9.33,0.465,0.5269,-1.5,0.359,9.0,0.522,10.6,0.5,AWAY,2.0,-2.0,False,False
+2026-05-17,LAD@LAA,824034,Los Angeles Angels,Los Angeles Dodgers,9.87,0.5512,0.5301,1.5,0.539,9.5,0.483,1.2,4.7,AWAY,11.0,-9.0,False,False
+2026-05-17,MIA@TB,822982,Tampa Bay Rays,Miami Marlins,8.69,0.4056,0.596,-1.5,0.39399999999999996,7.5,0.484,1.2,11.2,HOME,9.0,3.0,False,False
+2026-05-17,MIL@MIN,823708,Minnesota Twins,Milwaukee Brewers,9.22,0.5665,0.5984,1.5,0.579,8.0,0.489,-1.2,10.9,HOME,9.0,1.0,False,False
+2026-05-17,NYY@NYM,823628,New York Mets,New York Yankees,7.17,0.3742,0.3929,-1.5,0.355,8.5,0.525,1.9,-13.2,HOME,13.0,1.0,False,False
+2026-05-17,PHI@PIT,823381,Pittsburgh Pirates,Philadelphia Phillies,7.29,0.4103,0.4829,-1.5,0.359,7.5,0.478,5.1,0.5,AWAY,6.0,-6.0,False,False
+2026-05-17,SD@SEA,823138,Seattle Mariners,San Diego Padres,5.66,0.4448,0.3535,-1.5,0.405,7.5,0.489,4.0,-13.6,AWAY,11.0,-5.0,False,False
+2026-05-17,SF@OAK,825006,Athletics,San Francisco Giants,9.82,0.4967,0.5261,-1.5,0.405,9.5,0.486,9.2,4.0,AWAY,11.0,-9.0,False,False
+2026-05-17,TEX@HOU,824192,Houston Astros,Texas Rangers,6.98,0.6465,0.4175,1.5,0.595,8.0,0.496,5.1,-7.9,AWAY,8.0,-8.0,False,False
+2026-05-17,TOR@DET,824279,Detroit Tigers,Toronto Blue Jays,7.88,0.4935,0.5309,1.5,0.5920000000000001,7.5,0.519,-9.9,1.2,AWAY,5.0,-3.0,False,False
+2026-05-18,ATL@MIA,823867,Miami Marlins,Atlanta Braves,9.33,0.7225,0.5673,1.5,0.574,8.5,0.48100000000000004,14.9,8.6,HOME,12.0,12.0,False,False
+2026-05-18,BAL@TB,822980,Tampa Bay Rays,Baltimore Orioles,7.93,0.5204,0.535,-1.5,0.34600000000000003,7.5,0.484,17.4,5.1,HOME,22.0,10.0,False,False
+2026-05-18,BOS@KC,824114,Kansas City Royals,Boston Red Sox,6.16,,,,,,,,,AWAY,4.0,-2.0,True,False
+2026-05-18,CIN@PHI,823465,Philadelphia Phillies,Cincinnati Reds,10.15,0.3789,0.6319,-1.5,0.379,8.5,0.518,-0.0,11.4,HOME,9.0,1.0,False,False
+2026-05-18,CLE@DET,824277,Detroit Tigers,Cleveland Guardians,8.78,0.5633,0.5633,1.5,0.606,8.0,0.496,-4.3,6.7,AWAY,10.0,-6.0,False,False
+2026-05-18,CWS@SEA,823137,Seattle Mariners,Chicago White Sox,6.9,0.4143,0.4512,-1.5,0.391,7.5,0.501,2.3,-5.0,HOME,7.0,5.0,False,False
+2026-05-18,HOU@MIN,823705,Minnesota Twins,Houston Astros,11.46,0.6015,0.7273,-1.5,0.386,8.5,0.49700000000000005,21.6,23.0,HOME,9.0,3.0,False,False
+2026-05-18,LAD@SD,823301,San Diego Padres,Los Angeles Dodgers,7.48,0.539,0.4175,1.5,0.544,8.5,0.501,-0.5,-8.4,HOME,1.0,1.0,False,False
+2026-05-18,MIL@CHC,824680,Chicago Cubs,Milwaukee Brewers,8.29,,,,,,,,,AWAY,12.0,-6.0,True,False
+2026-05-18,NYM@WSH,822734,Washington Nationals,New York Mets,9.46,0.6234,0.5374,1.5,0.536,9.0,0.48100000000000004,8.7,5.6,AWAY,23.0,-9.0,False,False
+2026-05-18,OAK@LAA,824035,Los Angeles Angels,Athletics,8.42,0.2714,0.4529,-1.5,0.374,9.0,0.509,-10.3,-5.6,,,,False,True
+2026-05-18,SF@ARI,825087,Arizona Diamondbacks,San Francisco Giants,8.72,0.3766,0.5179,-1.5,0.353,8.5,0.512,2.4,0.6,HOME,14.0,10.0,False,False
+2026-05-18,TEX@COL,824357,Colorado Rockies,Texas Rangers,10.18,0.5358,0.5552,1.5,0.5329999999999999,9.5,0.491,0.3,6.4,HOME,13.0,1.0,False,False
+2026-05-18,TOR@NYY,823549,New York Yankees,Toronto Blue Jays,7.42,0.4674,0.4127,-1.5,0.392,8.5,0.526,7.5,-11.3,HOME,13.0,1.0,False,False
+2026-05-19,ATL@MIA,823865,Miami Marlins,Atlanta Braves,8.98,0.6172,0.6188,1.5,0.502,7.5,0.48100000000000004,11.5,13.8,AWAY,12.0,-4.0,False,False
+2026-05-19,BAL@TB,822979,Tampa Bay Rays,Baltimore Orioles,9.74,0.4064,0.6389,-1.5,0.345,8.0,0.519,6.1,12.0,HOME,5.0,3.0,False,False
+2026-05-19,BOS@KC,824112,Kansas City Royals,Boston Red Sox,5.88,0.355,0.3325,-1.5,0.345,8.0,0.501,1.0,-16.8,AWAY,8.0,-6.0,False,False
+2026-05-19,CIN@PHI,823464,Philadelphia Phillies,Cincinnati Reds,8.59,0.4569,0.4263,-1.5,0.397,9.5,0.499,6.0,-7.3,AWAY,5.0,-3.0,False,False
+2026-05-19,CLE@DET,824276,Detroit Tigers,Cleveland Guardians,7.69,0.4829,0.4748,1.5,0.539,8.0,0.486,-5.6,-1.1,AWAY,7.0,-1.0,False,False
+2026-05-19,CWS@SEA,823136,Seattle Mariners,Chicago White Sox,7.62,0.4175,0.5098,-1.5,0.39399999999999996,7.5,0.505,2.4,0.5,AWAY,3.0,-1.0,False,False
+2026-05-19,HOU@MIN,823704,Minnesota Twins,Houston Astros,9.58,0.4984,0.6265,-1.5,0.397,8.0,0.496,10.1,13.0,AWAY,3.0,-1.0,False,False
+2026-05-19,LAD@SD,823302,San Diego Padres,Los Angeles Dodgers,7.66,0.5195,0.5536,1.5,0.54,7.0,0.526,-2.1,2.8,AWAY,9.0,-1.0,False,False
+2026-05-19,MIL@CHC,824677,Chicago Cubs,Milwaukee Brewers,5.85,,,,,,,,,AWAY,7.0,-3.0,True,False
+2026-05-19,NYM@WSH,822736,Washington Nationals,New York Mets,9.07,0.5269,0.465,1.5,0.579,9.5,0.512,-5.2,-4.7,HOME,15.0,3.0,False,False
+2026-05-19,OAK@LAA,824033,Los Angeles Angels,Athletics,8.61,0.6608,0.4279,1.5,0.584,9.5,0.47700000000000004,7.7,-4.9,,,,False,True
+2026-05-19,PIT@STL,823059,St. Louis Cardinals,Pittsburgh Pirates,8.94,0.2348,0.5761,-1.5,0.34600000000000003,8.0,0.479,-11.1,9.7,HOME,15.0,3.0,False,False
+2026-05-19,SF@ARI,825086,Arizona Diamondbacks,San Francisco Giants,7.67,0.3098,0.3929,-1.5,0.374,9.0,0.496,-6.4,-10.3,HOME,8.0,2.0,False,False
+2026-05-19,TEX@COL,824356,Colorado Rockies,Texas Rangers,9.01,0.5544,0.3804,1.5,0.552,10.5,0.507,0.2,-12.7,AWAY,10.0,-10.0,False,False
+2026-05-19,TOR@NYY,823548,New York Yankees,Toronto Blue Jays,6.02,0.3505,0.343,-1.5,0.414,8.0,0.501,-6.3,-15.8,HOME,9.0,1.0,False,False
+2026-05-20,ATL@MIA,823866,Miami Marlins,Atlanta Braves,8.65,0.5512,0.5929,1.5,0.5710000000000001,7.5,0.514,-2.0,7.9,AWAY,10.0,-8.0,False,False
+2026-05-20,BAL@TB,822977,Tampa Bay Rays,Baltimore Orioles,9.92,0.4707,0.6141,-1.5,0.35600000000000004,8.5,0.5,11.5,11.4,HOME,8.0,2.0,False,False
+2026-05-20,BOS@KC,824111,Kansas City Royals,Boston Red Sox,6.87,0.3945,0.4488,-1.5,0.34600000000000003,7.5,0.494,4.8,-4.5,AWAY,7.0,-1.0,False,False
+2026-05-20,CIN@PHI,823462,Philadelphia Phillies,Cincinnati Reds,10.5,0.3719,0.5809,-1.5,0.414,9.5,0.511,-4.2,7.0,AWAY,13.0,-5.0,False,False
+2026-05-20,CLE@DET,824273,Detroit Tigers,Cleveland Guardians,8.47,0.2858,0.5785,-1.5,0.336,7.5,0.493,-5.0,8.6,AWAY,5.0,-1.0,False,False
+2026-05-20,CWS@SEA,823134,Seattle Mariners,Chicago White Sox,6.23,0.3851,0.3977,-1.5,0.382,7.5,0.46799999999999997,0.3,-7.0,HOME,9.0,1.0,False,False
+2026-05-20,HOU@MIN,823703,Minnesota Twins,Houston Astros,9.12,0.5841,0.5905,-1.5,0.396,8.0,0.502,18.8,8.9,HOME,5.0,3.0,False,False
+2026-05-20,LAD@SD,823299,San Diego Padres,Los Angeles Dodgers,6.27,0.4976,0.4008,1.5,0.5,7.5,0.48200000000000004,-0.2,-8.1,AWAY,4.0,-4.0,False,False
+2026-05-20,MIL@CHC,824678,Chicago Cubs,Milwaukee Brewers,7.46,0.2782,0.5777,-1.5,0.32299999999999995,6.5,0.483,-4.5,9.5,AWAY,5.0,-5.0,False,False
+2026-05-20,NYM@WSH,822735,Washington Nationals,New York Mets,12.91,0.4456,0.8161,1.5,0.611,8.5,0.499,-16.5,31.7,HOME,12.0,4.0,False,False
+2026-05-20,OAK@LAA,824032,Los Angeles Angels,Athletics,9.05,0.2508,0.5447,-1.5,0.342,8.5,0.48200000000000004,-9.1,6.3,,,,False,True
+2026-05-20,PIT@STL,823057,St. Louis Cardinals,Pittsburgh Pirates,8.25,0.5269,0.5204,1.5,0.6,8.0,0.48100000000000004,-7.3,3.9,AWAY,7.0,-7.0,False,False
+2026-05-20,SF@ARI,825084,Arizona Diamondbacks,San Francisco Giants,9.7,0.4,0.5968,-1.5,0.354,8.5,0.516,4.6,8.1,HOME,9.0,3.0,False,False
+2026-05-20,TEX@COL,824355,Colorado Rockies,Texas Rangers,10.71,0.4959,0.5577,1.5,0.568,10.0,0.489,-7.2,6.9,AWAY,9.0,-1.0,False,False
+2026-05-20,TOR@NYY,823547,New York Yankees,Toronto Blue Jays,5.69,,,,,,,,,AWAY,3.0,-1.0,True,False
+2026-05-21,ATL@MIA,823864,Miami Marlins,Atlanta Braves,8.29,0.5769,0.5641,1.5,0.57,7.5,0.478,0.7,8.6,AWAY,12.0,-6.0,False,False
+2026-05-21,CLE@DET,824274,Detroit Tigers,Cleveland Guardians,7.45,0.3665,0.5366,-1.5,0.342,7.0,0.525,2.4,1.2,AWAY,4.0,-2.0,False,False
+2026-05-21,COL@ARI,825083,Arizona Diamondbacks,Colorado Rockies,8.76,0.4902,0.5212,-1.5,0.456,8.5,0.523,3.4,-0.2,HOME,3.0,1.0,False,False
+2026-05-21,NYM@WSH,822733,Washington Nationals,New York Mets,9.08,0.6078,0.5873,1.5,0.606,8.0,0.483,0.2,10.4,AWAY,3.0,-1.0,False,False
+2026-05-21,OAK@LAA,824031,Los Angeles Angels,Athletics,8.59,0.3288,0.548,-1.5,0.35100000000000003,8.0,0.506,-2.2,4.2,,,,False,True
+2026-05-21,PIT@STL,823056,St. Louis Cardinals,Pittsburgh Pirates,8.46,0.5065,0.6172,1.5,0.612,7.0,0.517,-10.6,10.0,AWAY,8.0,-4.0,False,False
+2026-05-21,TOR@NYY,823545,New York Yankees,Toronto Blue Jays,7.4,0.4143,0.4111,-1.5,0.384,8.5,0.491,3.0,-8.0,AWAY,2.0,-2.0,False,False
+2026-05-22,CLE@PHI,823461,Philadelphia Phillies,Cleveland Guardians,7.28,0.4383,0.5228,-1.5,0.446,7.0,0.528,-0.8,-0.5,AWAY,1.0,-1.0,False,False
+2026-05-22,COL@ARI,825082,Arizona Diamondbacks,Colorado Rockies,9.02,0.5921,0.5016,-1.5,0.436,9.0,0.526,15.6,-2.4,AWAY,5.0,-1.0,False,False
+2026-05-22,CWS@SF,823223,San Francisco Giants,Chicago White Sox,6.05,0.556,0.3836,1.5,0.613,7.5,0.483,-5.7,-9.9,AWAY,13.0,-5.0,False,False
+2026-05-22,DET@BAL,824842,Baltimore Orioles,Detroit Tigers,7.46,0.4529,0.4561,-1.5,0.354,8.0,0.514,9.9,-5.8,HOME,11.0,3.0,False,False
+2026-05-22,HOU@CHC,824679,Chicago Cubs,Houston Astros,8.35,,,,,,,,,AWAY,6.0,-2.0,True,False
+2026-05-22,LAD@MIL,823788,Milwaukee Brewers,Los Angeles Dodgers,6.98,0.6312,0.34,1.5,0.5770000000000001,9.0,0.483,5.4,-14.3,HOME,6.0,4.0,False,False
+2026-05-22,MIN@BOS,824761,Boston Red Sox,Minnesota Twins,7.06,0.3985,0.4642,-1.5,0.39299999999999996,7.5,0.469,0.6,-0.5,AWAY,14.0,-2.0,False,False
+2026-05-22,NYM@MIA,823863,Miami Marlins,New York Mets,9.94,,,,,,,,,HOME,3.0,1.0,True,False
+2026-05-22,OAK@SD,823298,San Diego Padres,Athletics,7.47,0.3836,0.4569,-1.5,0.32899999999999996,8.0,0.491,5.5,-3.4,,,,False,True
+2026-05-22,PIT@TOR,822816,Toronto Blue Jays,Pittsburgh Pirates,8.82,0.6719,0.6063,1.5,0.5579999999999999,7.5,0.493,11.4,11.3,HOME,8.0,4.0,False,False
+2026-05-22,SEA@KC,824110,Kansas City Royals,Seattle Mariners,7.75,0.5431,0.3992,1.5,0.547,9.0,0.474,-0.4,-7.5,AWAY,2.0,-2.0,False,False
+2026-05-22,STL@CIN,824518,Cincinnati Reds,St. Louis Cardinals,10.9,,,,,,,,,TIE,0.0,0.0,True,False
+2026-05-22,TB@NYY,823546,New York Yankees,Tampa Bay Rays,8.48,,,,,,,,,AWAY,6.0,-2.0,True,False
+2026-05-22,TEX@LAA,824029,Los Angeles Angels,Texas Rangers,7.53,0.4601,0.4618,1.5,0.578,8.0,0.509,-11.8,-4.7,HOME,15.0,3.0,False,False
+2026-05-22,WSH@ATL,824922,Atlanta Braves,Washington Nationals,9.74,0.4739,0.5601,-1.5,0.456,9.0,0.486,1.8,7.4,HOME,9.0,1.0,False,False
+2026-05-23,CLE@PHI,823458,Philadelphia Phillies,Cleveland Guardians,7.9,0.7009,0.5326,1.5,0.5920000000000001,7.5,0.519,10.9,1.4,HOME,3.0,3.0,False,False
+2026-05-23,COL@ARI,825080,Arizona Diamondbacks,Colorado Rockies,9.85,0.5008,0.5689,-1.5,0.461,9.0,0.526,4.0,4.3,HOME,9.0,1.0,False,False
+2026-05-23,CWS@SF,823222,San Francisco Giants,Chicago White Sox,7.63,0.2219,0.4699,-1.5,0.331,8.0,0.496,-10.9,-2.6,HOME,13.0,7.0,False,False
+2026-05-23,DET@BAL,824840,Baltimore Orioles,Detroit Tigers,7.62,0.3828,0.4287,-1.5,0.377,8.5,0.488,0.6,-5.9,TIE,0.0,0.0,False,False
+2026-05-23,HOU@CHC,824674,Chicago Cubs,Houston Astros,7.35,,,,,,,,,AWAY,3.0,-3.0,True,False
+2026-05-23,LAD@MIL,823787,Milwaukee Brewers,Los Angeles Dodgers,9.51,0.6578,0.6211,1.5,0.516,8.0,0.504,14.2,11.7,AWAY,14.0,-8.0,False,False
+2026-05-23,MIN@BOS,824760,Boston Red Sox,Minnesota Twins,8.03,0.2984,0.5431,-1.5,0.40700000000000003,7.5,0.519,-10.9,2.4,AWAY,6.0,-2.0,False,False
+2026-05-23,NYM@MIA,823862,Miami Marlins,New York Mets,7.86,,,,,,,,,HOME,5.0,3.0,True,False
+2026-05-23,OAK@SD,823300,San Diego Padres,Athletics,7.73,0.3665,0.4375,-1.5,0.42200000000000004,8.5,0.483,-5.6,-4.5,,,,False,True
+2026-05-23,PIT@TOR,822814,Toronto Blue Jays,Pittsburgh Pirates,7.73,0.2626,0.5187,-1.5,0.401,7.5,0.513,-13.8,0.6,HOME,7.0,3.0,False,False
+2026-05-23,SEA@KC,824109,Kansas City Royals,Seattle Mariners,7.67,0.452,0.4327,1.5,0.56,8.5,0.507,-10.8,-7.4,HOME,5.0,5.0,False,False
+2026-05-23,STL@CIN,824518,Cincinnati Reds,St. Louis Cardinals,10.2,0.4095,0.5568,-1.5,0.361,9.5,0.516,4.8,4.1,AWAY,9.0,-7.0,False,False
+2026-05-23,TB@NYY,823543,New York Yankees,Tampa Bay Rays,8.3,0.3535,0.5649,-1.5,0.36700000000000005,7.5,0.48100000000000004,-1.4,8.4,TIE,0.0,0.0,False,False
+2026-05-23,TEX@LAA,824030,Los Angeles Angels,Texas Rangers,8.01,0.5138,0.5415,1.5,0.564,7.5,0.48700000000000004,-5.0,5.4,HOME,7.0,3.0,False,False
+2026-05-23,WSH@ATL,824920,Atlanta Braves,Washington Nationals,11.07,0.4071,0.7002,-1.5,0.415,8.5,0.501,-0.8,19.9,AWAY,2.0,-2.0,False,False
+2026-05-24,CLE@PHI,823459,Philadelphia Phillies,Cleveland Guardians,8.09,0.5171,0.5881,1.5,0.612,7.0,0.531,-9.5,5.7,AWAY,4.0,-2.0,False,False
+2026-05-24,COL@ARI,825081,Arizona Diamondbacks,Colorado Rockies,10.01,0.5106,0.5817,-1.5,0.46399999999999997,9.0,0.47200000000000003,4.7,11.0,HOME,10.0,8.0,False,False
+2026-05-24,CWS@SF,823220,San Francisco Giants,Chicago White Sox,8.34,0.3077,0.5277,-1.5,0.35100000000000003,8.0,0.496,-4.3,3.2,HOME,13.0,3.0,False,False
+2026-05-24,DET@BAL,824839,Baltimore Orioles,Detroit Tigers,7.29,0.3836,0.4024,-1.5,0.36700000000000005,8.5,0.483,1.7,-8.1,HOME,8.0,2.0,False,False
+2026-05-24,HOU@CHC,824676,Chicago Cubs,Houston Astros,6.61,0.4601,0.4683,-1.5,0.41600000000000004,7.0,0.498,4.4,-3.0,AWAY,13.0,-3.0,False,False
+2026-05-24,LAD@MIL,823786,Milwaukee Brewers,Los Angeles Dodgers,9.95,0.4231,0.6548,1.5,0.528,8.0,0.5,-10.5,15.5,AWAY,6.0,-4.0,False,False
+2026-05-24,MIN@BOS,824759,Boston Red Sox,Minnesota Twins,7.8,0.3766,0.5244,-1.5,0.41600000000000004,7.5,0.465,-3.9,5.9,AWAY,11.0,-1.0,False,False
+2026-05-24,NYM@MIA,823861,Miami Marlins,New York Mets,7.6,0.3828,0.5081,-1.5,0.349,7.5,0.518,3.4,-1.0,HOME,4.0,4.0,False,False
+2026-05-24,OAK@SD,823297,San Diego Padres,Athletics,6.74,0.3906,0.4383,-1.5,0.43,7.5,0.5,-3.9,-6.2,,,,False,True
+2026-05-24,PIT@TOR,822813,Toronto Blue Jays,Pittsburgh Pirates,6.68,0.4079,0.4335,-1.5,0.426,7.5,0.498,-1.8,-6.5,AWAY,5.0,-3.0,False,False
+2026-05-24,SEA@KC,824108,Kansas City Royals,Seattle Mariners,5.94,0.5697,0.337,1.5,0.591,8.0,0.509,-2.1,-17.2,HOME,14.0,2.0,False,False
+2026-05-24,STL@CIN,824514,Cincinnati Reds,St. Louis Cardinals,11.07,0.2914,0.5865,-1.5,0.371,10.0,0.494,-8.0,9.3,TIE,0.0,0.0,False,False
+2026-05-24,TB@NYY,823544,New York Yankees,Tampa Bay Rays,7.77,0.3558,0.5625,-1.5,0.36700000000000005,7.0,0.48700000000000004,-1.1,7.5,HOME,2.0,2.0,False,False
+2026-05-24,TEX@LAA,824028,Los Angeles Angels,Texas Rangers,7.5,0.3091,0.5,-1.5,0.355,7.5,0.518,-4.6,-1.8,HOME,3.0,1.0,False,False
+2026-05-24,WSH@ATL,824921,Atlanta Braves,Washington Nationals,9.93,0.4634,0.6149,-1.5,0.426,8.5,0.483,3.7,13.2,AWAY,3.0,-1.0,False,False
+2026-05-25,ARI@SF,823219,San Francisco Giants,Arizona Diamondbacks,7.67,0.4829,0.4731,-1.5,0.34,8.0,0.5,14.3,-2.7,AWAY,8.0,-4.0,False,False
+2026-05-25,CHC@PIT,823380,Pittsburgh Pirates,Chicago Cubs,6.89,0.3573,0.4103,-1.5,0.361,8.0,0.509,-0.4,-9.9,HOME,3.0,1.0,False,False
+2026-05-25,CIN@NYM,823625,New York Mets,Cincinnati Reds,9.16,,,,,,,,,AWAY,9.0,-5.0,True,False
+2026-05-25,COL@LAD,823948,Los Angeles Dodgers,Colorado Rockies,8.79,0.5705,0.4829,-1.5,0.498,9.0,0.47700000000000004,7.3,0.6,HOME,8.0,2.0,False,False
+2026-05-25,HOU@TEX,822899,Texas Rangers,Houston Astros,8.95,0.5929,0.5366,-1.5,0.38299999999999995,8.5,0.483,21.0,5.4,AWAY,9.0,-9.0,False,False
+2026-05-25,MIA@TOR,822812,Toronto Blue Jays,Miami Marlins,6.16,,,,,,,,,AWAY,10.0,-6.0,True,False
+2026-05-25,MIN@CWS,824598,Chicago White Sox,Minnesota Twins,9.26,0.4837,0.6404,1.5,0.611,7.5,0.518,-12.7,12.2,HOME,4.0,2.0,False,False
+2026-05-25,NYY@KC,824107,Kansas City Royals,New York Yankees,7.15,0.4992,0.3528,1.5,0.469,9.0,0.486,3.0,-13.3,AWAY,7.0,-1.0,False,False
+2026-05-25,PHI@SD,823296,San Diego Padres,Philadelphia Phillies,6.3,0.3415,0.4032,-1.5,0.345,7.5,0.517,-0.3,-11.4,AWAY,3.0,-3.0,False,False
+2026-05-25,SEA@OAK,825005,Athletics,Seattle Mariners,8.93,0.6196,0.4537,1.5,0.593,9.5,0.49,2.7,-3.6,AWAY,11.0,-7.0,False,False
+2026-05-25,STL@MIL,823784,Milwaukee Brewers,St. Louis Cardinals,7.43,0.5785,0.4537,-1.5,0.418,8.0,0.504,16.1,-5.0,HOME,6.0,4.0,False,False
+2026-05-25,TB@BAL,824838,Baltimore Orioles,Tampa Bay Rays,7.58,0.27,0.3859,-1.5,0.33299999999999996,9.0,0.473,-6.3,-8.7,HOME,16.0,2.0,False,False
+2026-05-25,WSH@CLE,824437,Cleveland Guardians,Washington Nationals,10.33,0.4087,0.7184,-1.5,0.371,7.5,0.517,3.8,20.1,AWAY,12.0,-8.0,False,False
+2026-05-27,MIA@TOR,822809,Toronto Blue Jays,Miami Marlins,6.78,0.4178,0.4326,-1.5,0.396,7.5,0.48700000000000004,2.2,-5.4,HOME,3.0,1.0,False,False
+2026-05-29,ARI@SEA,823135,Seattle Mariners,Arizona Diamondbacks,6.83,0.4056,0.4862,-1.5,0.379,7.0,0.519,2.7,-3.3,HOME,13.0,1.0,False,False
+2026-05-29,ATL@CIN,824515,Cincinnati Reds,Atlanta Braves,10.71,0.4618,0.5976,1.5,0.542,9.5,0.474,-8.0,12.4,AWAY,11.0,-5.0,False,False
+2026-05-29,BOS@CLE,824433,Cleveland Guardians,Boston Red Sox,7.39,0.3156,0.4504,-1.5,0.359,8.0,0.483,-4.3,-3.3,HOME,7.0,1.0,False,False
+2026-05-29,CHC@STL,823055,St. Louis Cardinals,Chicago Cubs,7.44,0.539,0.4951,1.5,0.5870000000000001,7.5,0.513,-4.8,-1.8,HOME,11.0,1.0,False,False
+2026-05-29,DET@CWS,824594,Chicago White Sox,Detroit Tigers,9.05,0.6273,0.5447,1.5,0.603,8.5,0.525,2.4,2.0,HOME,7.0,1.0,False,False
+2026-05-29,KC@TEX,822894,Texas Rangers,Kansas City Royals,6.76,0.5049,0.4399,-1.5,0.359,7.5,0.48,14.6,-4.0,HOME,10.0,8.0,False,False
+2026-05-29,LAA@TB,822978,Tampa Bay Rays,Los Angeles Angels,8.55,0.4263,0.5447,-1.5,0.42,8.0,0.483,0.6,6.2,HOME,13.0,3.0,False,False
+2026-05-29,MIA@NYM,823623,New York Mets,Miami Marlins,6.29,0.307,0.4024,-1.5,0.33399999999999996,7.5,0.469,-2.7,-6.7,HOME,16.0,2.0,False,False
+2026-05-29,MIL@HOU,824191,Houston Astros,Milwaukee Brewers,7.54,0.4707,0.4223,1.5,0.5920000000000001,8.5,0.483,-12.1,-6.1,AWAY,9.0,-1.0,False,False
+2026-05-29,MIN@PIT,823377,Pittsburgh Pirates,Minnesota Twins,8.93,0.3914,0.5753,-1.5,0.38,8.0,0.504,1.1,7.1,HOME,11.0,1.0,False,False
+2026-05-29,NYY@OAK,825002,Athletics,New York Yankees,8.71,0.4731,0.4359,1.5,0.5579999999999999,9.5,0.498,-8.5,-6.2,AWAY,10.0,-6.0,False,False
+2026-05-29,PHI@LAD,823946,Los Angeles Dodgers,Philadelphia Phillies,6.72,0.4691,0.3969,-1.5,0.35100000000000003,8.0,0.506,11.8,-10.9,HOME,6.0,2.0,False,False
+2026-05-29,SD@WSH,822732,Washington Nationals,San Diego Padres,8.29,0.5447,0.4024,-1.5,0.354,9.5,0.474,19.1,-7.2,AWAY,12.0,-2.0,False,False
+2026-05-29,SF@COL,824353,Colorado Rockies,San Francisco Giants,9.81,0.4553,0.444,1.5,0.524,10.5,0.519,-6.9,-7.5,HOME,14.0,2.0,False,False
+2026-05-29,TOR@BAL,824835,Baltimore Orioles,Toronto Blue Jays,7.78,0.3859,0.4016,-1.5,0.345,9.0,0.475,4.1,-7.3,AWAY,11.0,-1.0,False,False
+2026-05-30,ARI@SEA,823132,Seattle Mariners,Arizona Diamondbacks,7.0,0.4577,0.5,-1.5,0.391,7.0,0.478,6.7,2.2,HOME,6.0,4.0,False,False
+2026-05-30,ATL@CIN,824513,Cincinnati Reds,Atlanta Braves,11.71,0.2775,0.6741,1.5,0.542,9.5,0.499,-26.5,17.5,AWAY,7.0,-3.0,False,False
+2026-05-30,BOS@CLE,824431,Cleveland Guardians,Boston Red Sox,6.2,0.3642,0.4756,-1.5,0.353,6.5,0.522,1.1,-4.6,AWAY,10.0,-8.0,False,False
+2026-05-30,CHC@STL,823054,St. Louis Cardinals,Chicago Cubs,6.93,0.4407,0.3742,1.5,0.562,8.5,0.48700000000000004,-12.1,-11.3,AWAY,7.0,-5.0,False,False
+2026-05-30,DET@CWS,824593,Chicago White Sox,Detroit Tigers,8.55,0.6741,0.5849,1.5,0.5920000000000001,7.5,0.517,8.2,6.8,HOME,8.0,6.0,False,False
+2026-05-30,KC@TEX,822893,Texas Rangers,Kansas City Royals,6.4,0.4561,0.3719,-1.5,0.349,8.0,0.491,10.7,-11.9,HOME,13.0,1.0,False,False
+2026-05-30,LAA@TB,822975,Tampa Bay Rays,Los Angeles Angels,8.34,0.3843,0.6078,-1.5,0.405,7.0,0.509,-2.1,9.9,AWAY,17.0,-11.0,False,False
+2026-05-30,MIA@NYM,823622,New York Mets,Miami Marlins,5.86,0.3445,0.4079,-1.5,0.36200000000000004,7.0,0.522,-1.8,-11.4,HOME,7.0,5.0,False,False
+2026-05-30,MIL@HOU,824190,Houston Astros,Milwaukee Brewers,9.49,0.6457,0.5801,1.5,0.609,8.5,0.523,3.7,5.7,HOME,11.0,7.0,False,False
+2026-05-30,MIN@PIT,823375,Pittsburgh Pirates,Minnesota Twins,9.3,0.5016,0.5649,-1.5,0.387,8.5,0.484,11.5,8.1,HOME,19.0,1.0,False,False
+2026-05-30,NYY@OAK,825000,Athletics,New York Yankees,8.87,0.4845,0.4488,1.5,0.53,9.5,0.513,-4.6,-6.4,HOME,10.0,2.0,False,False
+2026-05-30,PHI@LAD,823945,Los Angeles Dodgers,Philadelphia Phillies,7.57,,,,,,,,,AWAY,7.0,-1.0,True,False
+2026-05-30,SD@WSH,822731,Washington Nationals,San Diego Padres,7.94,0.6585,0.5358,1.5,0.595,7.5,0.49200000000000005,6.3,4.4,HOME,13.0,5.0,False,False
+2026-05-30,SF@COL,824352,Colorado Rockies,San Francisco Giants,11.48,,,,,,,,,HOME,11.0,5.0,True,False
+2026-05-30,TOR@BAL,824833,Baltimore Orioles,Toronto Blue Jays,6.77,0.5106,0.4407,1.5,0.589,7.5,0.5,-7.8,-5.9,HOME,11.0,1.0,False,False
+2026-05-31,ARI@SEA,823133,Seattle Mariners,Arizona Diamondbacks,7.09,0.4748,0.4666,-1.5,0.384,7.5,0.483,9.1,-1.6,HOME,5.0,1.0,False,False
+2026-05-31,ATL@CIN,824512,Cincinnati Reds,Atlanta Braves,12.3,0.352,0.7499,1.5,0.57,9.0,0.483,-21.8,26.7,HOME,10.0,2.0,False,False
+2026-05-31,BOS@CLE,824430,Cleveland Guardians,Boston Red Sox,7.27,0.4683,0.522,1.5,0.649,7.0,0.474,-18.1,4.8,AWAY,13.0,-5.0,False,False
+2026-05-31,CHC@STL,823053,St. Louis Cardinals,Chicago Cubs,7.86,0.2837,0.448,-1.5,0.342,8.5,0.49200000000000005,-5.8,-4.4,HOME,6.0,4.0,False,False
+2026-05-31,DET@CWS,824592,Chicago White Sox,Detroit Tigers,7.84,0.5309,0.487,-1.5,0.375,8.0,0.491,15.6,-0.4,HOME,3.0,1.0,False,False
+2026-05-31,KC@TEX,822895,Texas Rangers,Kansas City Royals,7.41,0.4813,0.4927,-1.5,0.33299999999999996,7.5,0.496,14.8,-0.3,HOME,9.0,3.0,False,False
+2026-05-31,LAA@TB,822976,Tampa Bay Rays,Los Angeles Angels,8.82,0.4207,0.5665,-1.5,0.48200000000000004,8.0,0.496,-6.1,7.1,HOME,7.0,3.0,False,False
+2026-05-31,MIA@NYM,823621,New York Mets,Miami Marlins,6.21,0.382,0.3961,-1.5,0.39799999999999996,7.5,0.498,-1.6,-10.2,HOME,11.0,9.0,False,False
+2026-05-31,MIL@HOU,824187,Houston Astros,Milwaukee Brewers,8.67,0.3711,0.5944,1.5,0.486,7.5,0.498,-11.5,9.6,AWAY,2.0,-2.0,False,False
+2026-05-31,MIN@PIT,823373,Pittsburgh Pirates,Minnesota Twins,9.07,0.4715,0.6258,-1.5,0.405,7.5,0.5,6.6,12.6,HOME,12.0,6.0,False,False
+2026-05-31,NYY@OAK,825001,Athletics,New York Yankees,10.17,0.3303,0.4731,1.5,0.498,10.5,0.48700000000000004,-16.8,-1.4,AWAY,21.0,-5.0,False,False
+2026-05-31,PHI@LAD,823944,Los Angeles Dodgers,Philadelphia Phillies,8.09,0.5849,0.4263,-1.5,0.505,9.0,0.484,8.0,-5.8,HOME,10.0,8.0,False,False
+2026-05-31,SD@WSH,822729,Washington Nationals,San Diego Padres,10.24,0.645,0.5601,1.5,0.602,9.5,0.483,4.3,7.7,HOME,6.0,2.0,False,False
+2026-05-31,SF@COL,824354,Colorado Rockies,San Francisco Giants,11.03,0.6623,0.5024,1.5,0.584,11.0,0.506,7.8,-0.4,AWAY,25.0,-13.0,False,False
+2026-05-31,TOR@BAL,824832,Baltimore Orioles,Toronto Blue Jays,7.23,0.3407,0.4375,-1.5,0.375,8.0,0.489,-3.4,-5.1,HOME,14.0,4.0,False,False
