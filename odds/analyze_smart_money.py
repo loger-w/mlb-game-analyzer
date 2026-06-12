@@ -16,7 +16,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from pathlib import Path
 
 # 讓 lib/ 子模組可被 import
@@ -28,6 +28,7 @@ from snapshot_loader import (
 )
 from movement import compute_game_movement, GameMovementReport
 from md_renderer import render
+from timeutil import ET, TW, parse_iso_utc
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
@@ -39,12 +40,6 @@ if sys.platform == "win32":
 BASE_DIR             = Path(__file__).resolve().parent.parent   # mlb-game-analyzer/
 DEFAULT_SNAPSHOT_DIR = Path(__file__).resolve().parent / "odds_snapshots"
 DEFAULT_REPORTS_DIR  = Path(__file__).resolve().parent / "reports"
-
-# MLB 球季固定 EDT = UTC-4
-ET = timezone(timedelta(hours=-4))
-# TW 僅用於 rendered_at 副欄顯示（給 TW 使用者方便對時），不參與任何邏輯
-TW = timezone(timedelta(hours=+8))
-
 
 # ── 主程式 ────────────────────────────────────────────────────────────────────
 
@@ -88,14 +83,10 @@ def _discover_et_dates(snapshots: list) -> list[str]:
     dates: set[str] = set()
     for snap in snapshots:
         for g in snap.games:
-            s = g.get("commence_utc")
-            if not s:
+            utc = parse_iso_utc(g.get("commence_utc"))
+            if utc is None:
                 continue
-            try:
-                utc = datetime.fromisoformat(s.replace("Z", "+00:00"))
-                dates.add(utc.astimezone(ET).strftime("%Y-%m-%d"))
-            except ValueError:
-                continue
+            dates.add(utc.astimezone(ET).strftime("%Y-%m-%d"))
     return sorted(dates)
 
 

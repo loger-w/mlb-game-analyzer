@@ -47,7 +47,6 @@ def _build_row(date: str, matchup_dir: Path) -> Optional[dict]:
         "mu_total": model.get("mu_total"),
         "p_home_cover_rl": model.get("p_home_cover_rl"),
         "p_over": model.get("p_over"),
-        "p_home_ml": model.get("p_home_ml"),
         # market
         "rl_home_point": rl.get("home_point"),
         "rl_home_no_vig": rl.get("home_no_vig"),

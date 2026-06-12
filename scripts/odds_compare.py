@@ -1,7 +1,5 @@
 """找預測當下的最新 Pinnacle snapshot,抽 RL+總分 no-vig,算 vs model 的 edge。"""
-import json
 import sys
-from datetime import datetime
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -11,22 +9,19 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from lib.closing_line import (
-    _parse_iso_utc, extract_pinnacle_no_vig, extract_pinnacle_rl_no_vig,
+    _parse_iso_utc, _snapshots_for_date,
+    extract_pinnacle_no_vig, extract_pinnacle_rl_no_vig,
 )
 
 
 def find_latest_snapshot_for_game(date: str, home_team: str, away_team: str,
                                   snapshots_dir: Path = SNAPSHOTS_DIR) -> tuple[dict | None, str | None]:
-    """掃 odds_snapshots,挑「snapshot_time 最新且 < 開球」且含此 matchup 的那筆。"""
+    """掃 odds_snapshots,挑「snapshot_time 最新且 < 開球」且含此 matchup 的那筆。
+
+    同日快照經 _snapshots_for_date 做 per-process 快取;回傳 dict 為複本,可安全改動。
+    """
     best = None  # (snap_ts, game_dict, filename)
-    for f in sorted(Path(snapshots_dir).glob(f"{date}_*-ET.json")):
-        try:
-            data = json.loads(f.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            continue
-        snap_ts = _parse_iso_utc(data.get("snapshot_time_utc", ""))
-        if snap_ts is None:
-            continue
+    for snap_ts, fname, data in _snapshots_for_date(str(Path(snapshots_dir).resolve()), str(date)):
         for g in data.get("games", []):
             if g.get("home_team") != home_team or g.get("away_team") != away_team:
                 continue
@@ -34,10 +29,10 @@ def find_latest_snapshot_for_game(date: str, home_team: str, away_team: str,
             if commence is None or snap_ts >= commence:
                 continue
             if best is None or snap_ts > best[0]:
-                best = (snap_ts, g, f.name)
+                best = (snap_ts, g, fname)
     if best is None:
         return None, None
-    return best[1], best[2]
+    return dict(best[1]), best[2]
 
 
 def market_from_snapshot(game: dict) -> dict | None:
@@ -60,8 +55,8 @@ def compute_edges(model: dict, market: dict | None) -> dict:
         return {"home_rl_pp": None, "over_pp": None}
     home_rl_pp = None
     if model.get("p_home_cover_rl") is not None:
-        home_rl_pp = round((model["p_home_cover_rl"] - market["rl"]["home_no_vig"]) * 100, 1)
+        home_rl_pp = round((model["p_home_cover_rl"] - market["rl"]["home_no_vig"]) * 100, 2)
     over_pp = None
     if model.get("p_over") is not None:
-        over_pp = round((model["p_over"] - market["total"]["over_no_vig"]) * 100, 1)
+        over_pp = round((model["p_over"] - market["total"]["over_no_vig"]) * 100, 2)
     return {"home_rl_pp": home_rl_pp, "over_pp": over_pp}

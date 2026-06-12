@@ -419,3 +419,41 @@ def _make_record(
         snapshot_time_et_label=snap_time_dt.strftime("%m-%d %H:%M"),
         game_date_et=commence_et.strftime("%Y-%m-%d"),
     )
+
+
+# ── _get_implied / _get_no_vig 容錯路徑(核心數學,靜默回 0.0 的邊界)──────────
+
+def test_get_implied_fallback_cases():
+    from movement import _get_implied
+    assert _get_implied({}) == 0.0
+    assert _get_implied({"implied_pct": None, "odds": None}) == 0.0
+    assert _get_implied({"odds": 0}) == 0.0
+    assert _get_implied({"odds": "bad"}) == 0.0
+    assert _get_implied({"odds": 1.0}) == 0.0          # ≤1.0 無意義賠率
+    assert _get_implied({"implied_pct": "unparseable", "odds": 1.95}) == round(100 / 1.95, 1)
+    assert _get_implied({"implied_pct": 52.4, "odds": 1.91}) == 52.4
+
+
+def test_get_no_vig_fallback_cases():
+    from movement import _get_no_vig
+    # 兩邊全空 → 無法解出 → 0.0
+    assert _get_no_vig({}, {}) == 0.0
+    # 缺 no_vig_pct 但兩邊有 raw implied → 即時 normalize
+    fair = _get_no_vig({"implied_pct": 52.4}, {"implied_pct": 51.3})
+    assert fair == round(52.4 / (52.4 + 51.3) * 100, 1)
+    # 對邊死掉(implied 0)→ no_vig_two_way 回 (None, None) → 0.0
+    assert _get_no_vig({"implied_pct": 52.4}, {}) == 0.0
+    # no_vig_pct 是壞字串 → 走 fallback 而非 crash
+    assert _get_no_vig({"no_vig_pct": "bad", "implied_pct": 50.0}, {"implied_pct": 50.0}) == 50.0
+
+
+def test_tier_upgrades_via_total_shift_when_ml_missing():
+    """ML/RL 全缺時 pp-fields 全為 0(quiet),total point 位移 ≥1.0 仍須推到 significant。"""
+    anchor = _make_record(snap_time="00:00", total_point=8.5)
+    latest = _make_record(snap_time="04:00", total_point=9.5)
+    for rec in (anchor, latest):
+        rec.pinnacle["ml"] = {}
+        rec.pinnacle["rl"] = {}
+    report = compute_game_movement(
+        [anchor, latest], now_utc=datetime(2026, 5, 1, 8, 0, tzinfo=timezone.utc))
+    assert report.tier == "significant"

@@ -29,16 +29,13 @@ import os
 import sys
 import urllib.request
 import urllib.error
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 
 # 讓 lib/ 子模組可被 import（與 analyze_smart_money.py 對齊）
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib"))
 
 from odds_math import no_vig_two_way
-
-# 美東時間（4月-10月為 EDT = UTC-4，11月-3月為 EST = UTC-5）
-# MLB 球季期間固定用 EDT，此處統一設為 UTC-4
-ET = timezone(timedelta(hours=-4))
+from timeutil import ET, parse_iso_utc
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
@@ -91,9 +88,16 @@ def fetch_odds(api_key: str) -> tuple:
     return games, remaining, used
 
 
-def parse_game(game: dict) -> dict:
-    """解析單場比賽，提取各莊家的 ML / O/U / RL 賠率與隱含勝率"""
-    utc_dt = datetime.fromisoformat(game["commence_time"].replace("Z", "+00:00"))
+def parse_game(game: dict) -> dict | None:
+    """解析單場比賽，提取各莊家的 ML / O/U / RL 賠率與隱含勝率。
+
+    commence_time 缺或無法解析 → None（單場跳過，不可炸掉整輪快照）。
+    """
+    if not game.get("home_team") or not game.get("away_team"):
+        return None
+    utc_dt = parse_iso_utc(game.get("commence_time"))
+    if utc_dt is None:
+        return None
     et_dt  = utc_dt.astimezone(ET)
 
     parsed = {
@@ -155,6 +159,12 @@ def _attach_no_vig(bk_data: dict, home: str, away: str) -> None:
     _pair_no_vig(rl.get(home), rl.get(away))
 
 
+def parse_games(raw_games: list) -> tuple[list, int]:
+    """整批解析。回 (parsed, skipped);skipped = 必要欄位缺/壞而被丟棄的場數。"""
+    parsed = [p for p in (parse_game(g) for g in raw_games) if p is not None]
+    return parsed, len(raw_games) - len(parsed)
+
+
 def _pair_no_vig(side_a: dict | None, side_b: dict | None) -> None:
     """讀兩個 outcome dict 的 implied_pct，計 no-vig 後 in-place 寫回。"""
     if not side_a or not side_b:
@@ -206,7 +216,9 @@ def main():
     now_utc  = datetime.now(timezone.utc)
     now_et   = now_utc.astimezone(ET)
     ts_label = now_et.strftime("%Y-%m-%d_%H-00-ET")   # 例：2026-04-14_18-00-ET
-    parsed   = [parse_game(g) for g in raw_games]
+    parsed, skipped = parse_games(raw_games)
+    if skipped:
+        write_log(f"WARN {skipped} 場因必要欄位缺/壞被跳過(API 回傳 {len(raw_games)} 場)")
 
     snapshot = {
         "snapshot_time_utc": now_utc.isoformat(),

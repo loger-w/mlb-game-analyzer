@@ -111,3 +111,38 @@ def test_parse_game_preserves_raw_implied_pct():
     assert home_ml["implied_pct"] == 52.4   # 1 / 1.91 * 100
     # raw 含 vig，故 ≠ no_vig
     assert home_ml["implied_pct"] != home_ml["no_vig_pct"]
+
+
+# ── 容錯:畸形 commence_time ───────────────────────────────────────────────────
+
+def test_parse_game_malformed_commence_time_returns_none():
+    """API 偶發壞資料不可炸掉整輪快照;單場跳過(回 None),其餘照常。"""
+    g = _raw_game()
+    g["commence_time"] = "not-a-timestamp"
+    assert parse_game(g) is None
+
+
+def test_parse_game_missing_commence_time_returns_none():
+    g = _raw_game()
+    del g["commence_time"]
+    assert parse_game(g) is None
+
+
+def test_parse_game_missing_team_fields_returns_none():
+    """docstring 宣稱「壞資料不可炸掉整輪快照」必須對所有必要欄位成立,不只 commence_time。"""
+    g = _raw_game()
+    del g["home_team"]
+    assert parse_game(g) is None
+    g2 = _raw_game()
+    del g2["away_team"]
+    assert parse_game(g2) is None
+
+
+def test_parse_games_returns_parsed_and_skip_count():
+    """整批解析回 (parsed, skipped),操作者能從 log 看出 API 回了幾場、丟了幾場。"""
+    from fetch_odds import parse_games
+    bad = _raw_game()
+    bad["commence_time"] = "garbage"
+    parsed, skipped = parse_games([_raw_game(), bad, _raw_game()])
+    assert len(parsed) == 2
+    assert skipped == 1

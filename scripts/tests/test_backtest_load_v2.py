@@ -60,3 +60,18 @@ def test_load_includes_team_names(tmp_path, monkeypatch):
     df = load_mod.build_dataframe_for_month("2026-05")
     assert df.iloc[0]["home_team"] == "New York Yankees"
     assert df.iloc[0]["away_team"] == "Baltimore Orioles"
+
+
+def test_load_skips_unknown_schema_versions(tmp_path, monkeypatch):
+    """schema_version 嚴格 ==2(int):3、'2'(字串)、缺欄全部跳過。"""
+    monkeypatch.setattr(load, "ANALYSIS_DATA_DIR", tmp_path)
+    for abbr, sv in zip(("ARI", "ATL", "BOS"),
+                        ({"schema_version": 3}, {"schema_version": "2"}, {})):
+        d = tmp_path / "2026-05-29" / f"{abbr}@COL"
+        d.mkdir(parents=True)
+        (d / "features.json").write_text(json.dumps({
+            **sv, "game": {"date": "2026-05-29", "game_pk": 1, "home": "H", "away": "A"},
+            "model": {"p_home_cover_rl": 0.5, "p_over": 0.5},
+        }), encoding="utf-8")
+    df = load.build_dataframe_for_month("2026-05")
+    assert len(df) == 0

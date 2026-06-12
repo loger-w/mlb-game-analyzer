@@ -1,19 +1,24 @@
 """回測報告渲染(v2):RL / O/U / edge 三段 + per-game CSV。"""
+import math
 from pathlib import Path
 
 import pandas as pd
 
 
+def _finite(x) -> bool:
+    return isinstance(x, (int, float)) and math.isfinite(x)
+
+
 def _pct(x) -> str:
-    return f"{x*100:.1f}%" if isinstance(x, (int, float)) else "—"
+    return f"{x*100:.1f}%" if _finite(x) else "—"
 
 
 def _f(x, nd=2):
-    return f"{x:.{nd}f}" if isinstance(x, (int, float)) else "—"
+    return f"{x:.{nd}f}" if _finite(x) else "—"
 
 
 def _clvpp(x) -> str:
-    return f"{x:+.2f}pp" if isinstance(x, (int, float)) else "—"
+    return f"{x:+.2f}pp" if _finite(x) else "—"
 
 
 def render_clv_section(clv: dict) -> str:

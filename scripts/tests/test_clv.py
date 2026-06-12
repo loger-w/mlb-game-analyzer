@@ -158,3 +158,10 @@ def test_aggregate_clv_by_threshold():
     assert ou[0]["n"] == 3
     # t=2 → |edge|>=2 → 4, 2 → clv 5.0, 1.0 → n=2
     assert ou[2]["n"] == 2 and abs(ou[2]["mean"] - 3.0) < 1e-3
+
+
+def test_corr_degenerate_constant_series_returns_none():
+    """任一邊零變異(全部 CLV 相同 / 全部 edge 相同)→ sxx/syy=0 → None,不可除零。"""
+    assert clv._corr([1, 1, 1, 1], [2, 3, 4, 5]) is None
+    assert clv._corr([1, 2, 3, 4], [5, 5, 5, 5]) is None
+    assert clv._corr([1, 1, 1], [1, 1, 1]) is None

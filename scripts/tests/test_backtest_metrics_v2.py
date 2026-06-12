@@ -97,3 +97,22 @@ def test_render_threshold_section_present():
     assert "≥0pp" in text and "≥2pp" in text
     assert "RL" in text and "O/U" in text
     assert "—" in text   # None hit_rate / mean / share render as em dash
+
+
+def test_metrics_all_rows_filtered_returns_n0():
+    """全部 result_missing / 全 NaN 預測欄 → n=0, hit_rate=None,不可炸。"""
+    all_missing = pd.DataFrame([
+        {"p_home_cover_rl": 0.6, "rl_home_point": -1.5, "actual_margin": 3,
+         "p_over": 0.6, "total_line": 8.5, "actual_total": 9,
+         "home_rl_pp": 1.0, "over_pp": 1.0, "result_missing": True, "odds_missing": False},
+    ])
+    assert metrics.compute_rl_metrics(all_missing) == {"n": 0, "rl_hit_rate": None}
+    assert metrics.compute_ou_metrics(all_missing) == {"n": 0, "ou_hit_rate": None}
+
+    all_nan = pd.DataFrame([
+        {"p_home_cover_rl": None, "rl_home_point": -1.5, "actual_margin": 3,
+         "p_over": None, "total_line": 8.5, "actual_total": 9,
+         "home_rl_pp": None, "over_pp": None, "result_missing": False, "odds_missing": False},
+    ])
+    assert metrics.compute_rl_metrics(all_nan) == {"n": 0, "rl_hit_rate": None}
+    assert metrics.compute_ou_metrics(all_nan) == {"n": 0, "ou_hit_rate": None}

@@ -36,5 +36,5 @@ def test_run_one_from_inputs_with_market():
     assert 0.0 < m["p_home_cover_rl"] < 1.0
     assert 0.0 < m["p_over"] < 1.0
     # edge = (model 機率 − 市場 no-vig)×100,驗證 orchestrator 接線(不綁 config)
-    assert e["home_rl_pp"] == round((m["p_home_cover_rl"] - 0.41) * 100, 1)
-    assert e["over_pp"] == round((m["p_over"] - 0.52) * 100, 1)
+    assert e["home_rl_pp"] == round((m["p_home_cover_rl"] - 0.41) * 100, 2)
+    assert e["over_pp"] == round((m["p_over"] - 0.52) * 100, 2)

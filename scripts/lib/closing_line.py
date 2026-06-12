@@ -7,6 +7,7 @@ on-demand snapshot per game before fundamentals analysis.
 
 import json
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path
 from typing import Optional
 
@@ -66,17 +67,15 @@ def find_closing_snapshot_for_game(
     return None, None
 
 
-def find_entry_close_snapshots(snapshots_dir, date, home_team, away_team):
-    """Earliest & latest pre-commence Pinnacle snapshot for this matchup on the ET date.
+@lru_cache(maxsize=None)
+def _snapshots_for_date(snapshots_dir: str, date: str) -> tuple:
+    """同一 (dir, date) 的 {date}_*-ET.json 只 glob+parse 一次(per-process cache)。
 
-    Scans {date}_*-ET.json, keeps games with matching teams, game_date_et==date, and
-    snapshot_time < commence (strict — excludes the 22:00-ET post-commence trap).
-    Returns (earliest_game, latest_game) by snapshot_time, each with snapshot_time_utc/et
-    attached; (None, None) if none qualify. The two may be the same dict when only one qualifies.
+    回測同一天 ~15 場逐場查詢同一目錄,無快取時 95% 的 I/O 是重複的。
+    回傳 ((snap_ts, filename, data), ...) 依檔名排序。回傳的 data 為共享物件,呼叫端只讀不改。
     """
-    snapshots_dir = Path(snapshots_dir)
-    cands = []  # (snap_ts, game_copy)
-    for f in sorted(snapshots_dir.glob(f"{date}_*-ET.json")):
+    out = []
+    for f in sorted(Path(snapshots_dir).glob(f"{date}_*-ET.json")):
         try:
             data = json.loads(f.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
@@ -84,6 +83,23 @@ def find_entry_close_snapshots(snapshots_dir, date, home_team, away_team):
         snap_ts = _parse_iso_utc(data.get("snapshot_time_utc", ""))
         if snap_ts is None:
             continue
+        out.append((snap_ts, f.name, data))
+    return tuple(out)
+
+
+def find_entry_close_snapshots(snapshots_dir, date, home_team, away_team):
+    """Earliest & latest pre-commence Pinnacle snapshot for this matchup on the ET date.
+
+    Scans {date}_*-ET.json, keeps games with matching teams, game_date_et==date, and
+    snapshot_time < commence (strict — excludes the 22:00-ET post-commence trap).
+    Returns (earliest_game, latest_game) by snapshot_time, each with snapshot_time_utc/et
+    attached; (None, None) if none qualify. The two may be the same dict when only one qualifies.
+
+    同日快照經 _snapshots_for_date 做 per-process 快取 — 同 process 內中途新增的快照檔不會
+    被看見(測試重用同目錄時可用 _snapshots_for_date.cache_clear())。
+    """
+    cands = []  # (snap_ts, game_copy)
+    for snap_ts, _fname, data in _snapshots_for_date(str(Path(snapshots_dir).resolve()), str(date)):
         for g in data.get("games", []):
             if g.get("game_date_et") != date:
                 continue
@@ -122,6 +138,8 @@ def extract_pinnacle_no_vig(game: dict) -> Optional[dict]:
     home_team = game.get("home_team")
     away_team = game.get("away_team")
     if not (home_team and away_team and home_team in ml and away_team in ml):
+        return None
+    if "no_vig_pct" not in ml[home_team] or "no_vig_pct" not in ml[away_team]:
         return None
 
     over = ou.get("Over", {})

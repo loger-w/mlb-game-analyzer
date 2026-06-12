@@ -72,6 +72,26 @@ def test_extract_returns_none_if_pinnacle_missing(tmp_path):
     assert line is None
 
 
+def test_extract_returns_none_if_ml_no_vig_missing():
+    """fetch_odds._pair_no_vig 在任一邊缺 implied_pct 時不會寫 no_vig_pct;
+    ML 缺 no_vig_pct 而 O/U 完整時必須回 None,不能 KeyError。"""
+    game = {
+        "home_team": "New York Yankees",
+        "away_team": "Baltimore Orioles",
+        "bookmakers": {"pinnacle": {
+            "ml": {
+                "New York Yankees": {"odds": 1.61, "implied_pct": 62.1},  # no no_vig_pct
+                "Baltimore Orioles": {"odds": 2.5, "implied_pct": 40.0},
+            },
+            "ou": {
+                "Over": {"odds": 1.9, "point": 8.5, "no_vig_pct": 51.0},
+                "Under": {"odds": 1.99, "point": 8.5, "no_vig_pct": 49.0},
+            },
+        }},
+    }
+    assert extract_pinnacle_no_vig(game) is None
+
+
 def test_excludes_next_day_game_in_late_snapshot(tmp_path):
     """A snapshot file dated 5/02 can contain games for 5/03. Must not match
     when caller asks for 5/02 matchup."""
@@ -164,3 +184,19 @@ def test_find_entry_close_excludes_post_commence(tmp_path):
 def test_find_entry_close_none_when_no_match(tmp_path):
     from lib.closing_line import find_entry_close_snapshots
     assert find_entry_close_snapshots(tmp_path, "2026-05-02", "X", "Y") == (None, None)
+
+
+def test_find_entry_close_caches_per_date_dir(tmp_path):
+    """回測同一天 ~15 場重複掃同目錄;同 (dir, date) 只 glob+parse 一次。
+    驗證方式:第一次呼叫後刪檔,第二次呼叫仍命中快取回傳結果。"""
+    from lib.closing_line import find_entry_close_snapshots
+    import json
+    f = tmp_path / "2026-05-02_12-00-ET.json"
+    f.write_text(json.dumps(
+        _snap("2026-05-02T16:00:00Z", "2026-05-02 12:00 ET", "2026-05-02T22:00:00Z")), encoding="utf-8")
+    entry, _ = find_entry_close_snapshots(tmp_path, "2026-05-02", "New York Yankees", "Baltimore Orioles")
+    assert entry is not None
+    f.unlink()
+    entry2, _ = find_entry_close_snapshots(tmp_path, "2026-05-02", "New York Yankees", "Baltimore Orioles")
+    assert entry2 is not None
+    assert entry2["snapshot_time_utc"] == "2026-05-02T16:00:00Z"

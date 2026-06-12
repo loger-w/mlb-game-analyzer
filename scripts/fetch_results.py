@@ -73,34 +73,6 @@ def build_result_record(raw: dict) -> dict:
     }
 
 
-def find_matchup_dir(date: str, home_team: str, away_team: str) -> Optional[Path]:
-    """Locate analysis-data/{date}/{AWAY_ABBR}@{HOME_ABBR}/ by matching team names.
-
-    Matchup dirs are like 'BAL@NYY' (away@home, both English abbr). We resolve by
-    reading each subdir's game_data.json `game.home.team` / `game.away.team`.
-
-    Note: ambiguous for doubleheaders (same teams, two games on the same day).
-    Prefer `find_matchup_dir_by_pk` when game_pk is available.
-    """
-    date_dir = ANALYSIS_DATA_DIR / date
-    if not date_dir.is_dir():
-        return None
-    for sub in date_dir.iterdir():
-        if not sub.is_dir():
-            continue
-        gd = sub / "game_data.json"
-        if not gd.exists():
-            continue
-        try:
-            data = json.loads(gd.read_text(encoding="utf-8"))
-            g = data.get("game", {})
-            if g.get("home", {}).get("team") == home_team and g.get("away", {}).get("team") == away_team:
-                return sub
-        except json.JSONDecodeError:
-            continue
-    return None
-
-
 def _read_game_pk(matchup_dir: Path) -> Optional[int]:
     """Read game_pk from game_data.json (old: game.gamePk) or features.json (new: game.game_pk)."""
     for fname, key in (("game_data.json", "gamePk"), ("features.json", "game_pk")):

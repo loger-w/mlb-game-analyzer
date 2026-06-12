@@ -9,11 +9,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from typing import Optional
 
 from snapshot_loader import GameKey, GameRecord
 from odds_math import no_vig_two_way
+from timeutil import ET
 
 
 # ── 常數 ──────────────────────────────────────────────────────────────────────
@@ -289,7 +290,7 @@ def compute_game_movement(
         now_utc_aware = now_utc
     hours_to_game = (commence_utc - now_utc_aware).total_seconds() / 3600.0
     # 薄盤判斷使用 latest snapshot 距 commence
-    snap_et_as_utc = latest.snapshot_time_et.replace(tzinfo=timezone(timedelta(hours=-4))).astimezone(timezone.utc)
+    snap_et_as_utc = latest.snapshot_time_et.replace(tzinfo=ET).astimezone(timezone.utc)
     hours_snap_to_commence = (commence_utc - snap_et_as_utc).total_seconds() / 3600.0
 
     # ── 薄盤降級（基於 latest snapshot 與 commence 的 ET-差，避免歷史分析誤判）──

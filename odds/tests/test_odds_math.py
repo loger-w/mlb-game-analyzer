@@ -53,3 +53,21 @@ def test_no_vig_zero_or_negative():
     assert no_vig_two_way(0.0, 51.0) == (None, None)
     assert no_vig_two_way(52.4, 0.0) == (None, None)
     assert no_vig_two_way(-1.0, 51.0) == (None, None)
+
+
+# ── 極端不平衡盤(重注熱門可到 95/5)────────────────────────────────────────────
+
+def test_no_vig_two_way_extreme_imbalance():
+    f1, f2 = no_vig_two_way(95.0, 5.0)       # 無 vig → 原樣
+    assert (f1, f2) == (95.0, 5.0)
+    f1, f2 = no_vig_two_way(90.0, 12.0)      # vig 2pp
+    assert f1 == round(90 / 102 * 100, 1)
+    assert f2 == round(12 / 102 * 100, 1)
+
+
+def test_no_vig_two_way_fair_probs_sum_to_100_over_grid():
+    """任意有效輸入,fair 兩邊之和必為 100(各自 round 到 1 位 → 容差 0.1)。"""
+    for a in range(1, 100, 7):
+        for b in range(1, 100, 7):
+            f1, f2 = no_vig_two_way(float(a), float(b))
+            assert abs(f1 + f2 - 100.0) <= 0.1, (a, b, f1, f2)

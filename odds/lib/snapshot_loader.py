@@ -13,15 +13,13 @@ from __future__ import annotations
 import json
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from pathlib import Path
+
+from timeutil import ET, parse_iso_utc
 
 
 GameKey = tuple[str, str, str]   # (away_team, home_team, commence_utc_iso)
-
-
-# MLB 球季固定 EDT = UTC-4
-ET = timezone(timedelta(hours=-4))
 
 
 @dataclass
@@ -117,9 +115,8 @@ def collect_game_timeline(
             commence_utc_s = g.get("commence_utc")
             if not commence_utc_s:
                 continue
-            try:
-                commence_utc = datetime.fromisoformat(commence_utc_s.replace("Z", "+00:00"))
-            except ValueError:
+            commence_utc = parse_iso_utc(commence_utc_s)
+            if commence_utc is None:
                 continue
             # ET 日期過濾（取代舊 TW 化邏輯與 g["game_date_et"] 字串比對；以 commence_utc 為單一真實來源）
             commence_et = commence_utc.astimezone(ET)
