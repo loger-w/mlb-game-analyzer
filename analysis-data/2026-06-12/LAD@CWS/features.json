@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-12T21:48:47+00:00",
+  "game": {
+    "date": "2026-06-12",
+    "game_pk": 824588,
+    "home": "Chicago White Sox",
+    "away": "Los Angeles Dodgers",
+    "venue": "Rate Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.5,
+    "home_rs_season": 4.61,
+    "away_rs_recent": 5.9,
+    "away_rs_season": 5.41,
+    "home_ra_recent": 4.2,
+    "home_ra_season": 4.46,
+    "away_ra_recent": 4.5,
+    "away_ra_season": 3.33,
+    "home_starter": {
+      "name": "Anthony Kay",
+      "id": 641743,
+      "fip": 5.48,
+      "ip": 61.333333333333336,
+      "k": 46,
+      "bb": 26,
+      "hbp": 10,
+      "hr": 10
+    },
+    "away_starter": {
+      "name": "Roki Sasaki",
+      "id": 808963,
+      "fip": 4.57,
+      "ip": 58.0,
+      "k": 60,
+      "bb": 21,
+      "hbp": 4,
+      "hr": 10
+    },
+    "home_bullpen_era": 4.25,
+    "away_bullpen_era": 3.84,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Sam Antonacci",
+        "id": 803011,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Miguel Vargas",
+        "id": 678246,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Andrew Benintendi",
+        "id": 643217,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Colson Montgomery",
+        "id": 695657,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Braden Montgomery",
+        "id": 695731,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Chase Meidroth",
+        "id": 805367,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jacob Gonzalez",
+        "id": 694378,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tristan Peters",
+        "id": 671976,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Drew Romo",
+        "id": 691011,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Alex Call",
+        "id": 669743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Andy Pages",
+        "id": 681624,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Freddie Freeman",
+        "id": 518692,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Mookie Betts",
+        "id": 605141,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Kyle Tucker",
+        "id": 663656,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Miguel Rojas",
+        "id": 500743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Max Muncy",
+        "id": 571970,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Santiago Espinal",
+        "id": 669289,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Chuckie Robinson",
+        "id": 642020,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.52,
+    "mu_away": 6.44,
+    "mu_margin": -1.92,
+    "mu_total": 10.96,
+    "p_home_ml": 0.3475,
+    "p_home_cover_rl": 0.4658,
+    "p_over": 0.6555,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-12_17-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.537,
+      "away_point": -1.5,
+      "away_no_vig": 0.46299999999999997
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.48100000000000004,
+      "under_no_vig": 0.519
+    }
+  },
+  "edges": {
+    "home_rl_pp": -7.12,
+    "over_pp": 17.45
+  }
+}

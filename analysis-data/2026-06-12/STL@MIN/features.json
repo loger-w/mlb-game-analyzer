@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-12T21:49:07+00:00",
+  "game": {
+    "date": "2026-06-12",
+    "game_pk": 823695,
+    "home": "Minnesota Twins",
+    "away": "St. Louis Cardinals",
+    "venue": "Target Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.3,
+    "home_rs_season": 4.54,
+    "away_rs_recent": 5.6,
+    "away_rs_season": 4.32,
+    "home_ra_recent": 6.3,
+    "home_ra_season": 5.13,
+    "away_ra_recent": 3.1,
+    "away_ra_season": 4.16,
+    "home_starter": {
+      "name": "Joe Ryan",
+      "id": 657746,
+      "fip": 2.92,
+      "ip": 76.33333333333333,
+      "k": 84,
+      "bb": 16,
+      "hbp": 5,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "Kyle Leahy",
+      "id": 681517,
+      "fip": 4.69,
+      "ip": 59.0,
+      "k": 47,
+      "bb": 24,
+      "hbp": 4,
+      "hr": 8
+    },
+    "home_bullpen_era": 5.03,
+    "away_bullpen_era": 3.96,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Trevor Larnach",
+        "id": 663616,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Byron Buxton",
+        "id": 621439,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Kody Clemens",
+        "id": 665019,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Josh Bell",
+        "id": 605137,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Royce Lewis",
+        "id": 668904,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Victor Caratini",
+        "id": 605170,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Brooks Lee",
+        "id": 686797,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Tristan Gray",
+        "id": 656484,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Luke Keaschall",
+        "id": 807712,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "JJ Wetherholt",
+        "id": 802139,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Iván Herrera",
+        "id": 671056,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Alec Burleson",
+        "id": 676475,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Jordan Walker",
+        "id": 691023,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Lars Nootbaar",
+        "id": 663457,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Masyn Winn",
+        "id": 691026,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jimmy Crooks",
+        "id": 699625,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Blaze Jordan",
+        "id": 691458,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nathan Church",
+        "id": 701675,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.95,
+    "mu_away": 4.53,
+    "mu_margin": 0.42,
+    "mu_total": 9.48,
+    "p_home_ml": 0.5342,
+    "p_home_cover_rl": 0.4127,
+    "p_over": 0.539,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-12_17-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.382,
+      "away_point": 1.5,
+      "away_no_vig": 0.618
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.495,
+      "under_no_vig": 0.505
+    }
+  },
+  "edges": {
+    "home_rl_pp": 3.07,
+    "over_pp": 4.4
+  }
+}

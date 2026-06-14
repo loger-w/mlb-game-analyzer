@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-12T21:48:53+00:00",
+  "game": {
+    "date": "2026-06-12",
+    "game_pk": 823778,
+    "home": "Milwaukee Brewers",
+    "away": "Philadelphia Phillies",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 8.4,
+    "home_rs_season": 5.18,
+    "away_rs_recent": 5.0,
+    "away_rs_season": 4.0,
+    "home_ra_recent": 5.5,
+    "home_ra_season": 3.66,
+    "away_ra_recent": 3.7,
+    "away_ra_season": 4.2,
+    "home_starter": {
+      "name": "Jacob Misiorowski",
+      "id": 694819,
+      "fip": 1.91,
+      "ip": 78.0,
+      "k": 116,
+      "bb": 22,
+      "hbp": 7,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Tanner Banks",
+      "id": 621383,
+      "fip": 2.76,
+      "ip": 23.666666666666668,
+      "k": 27,
+      "bb": 11,
+      "hbp": 0,
+      "hr": 1
+    },
+    "home_bullpen_era": 3.49,
+    "away_bullpen_era": 3.85,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Christian Yelich",
+        "id": 592885,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jackson Chourio",
+        "id": 694192,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Brice Turang",
+        "id": 668930,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "William Contreras",
+        "id": 661388,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Jake Bauers",
+        "id": 641343,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Andrew Vaughn",
+        "id": 683734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Garrett Mitchell",
+        "id": 669003,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "David Hamilton",
+        "id": 666152,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Joey Ortiz",
+        "id": 687401,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Kyle Schwarber",
+        "id": 656941,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Trea Turner",
+        "id": 607208,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Bryce Harper",
+        "id": 547180,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Brandon Marsh",
+        "id": 669016,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Alec Bohm",
+        "id": 664761,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Bryson Stott",
+        "id": 681082,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Gabriel Rincones Jr.",
+        "id": 687282,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "J.T. Realmuto",
+        "id": 592663,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Justin Crawford",
+        "id": 702222,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.66,
+    "mu_away": 2.56,
+    "mu_margin": 2.1,
+    "mu_total": 7.22,
+    "p_home_ml": 0.666,
+    "p_home_cover_rl": 0.5488,
+    "p_over": 0.4772,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-12_17-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.506,
+      "away_point": 1.5,
+      "away_no_vig": 0.494
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.517,
+      "under_no_vig": 0.483
+    }
+  },
+  "edges": {
+    "home_rl_pp": 4.28,
+    "over_pp": -3.98
+  }
+}
