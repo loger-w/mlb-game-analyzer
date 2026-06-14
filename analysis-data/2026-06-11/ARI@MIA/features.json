@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-11T16:43:15+00:00",
+  "game": {
+    "date": "2026-06-11",
+    "game_pk": 823855,
+    "home": "Miami Marlins",
+    "away": "Arizona Diamondbacks",
+    "venue": "loanDepot park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.6,
+    "home_rs_season": 4.32,
+    "away_rs_recent": 2.6,
+    "away_rs_season": 4.31,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 4.44,
+    "away_ra_recent": 6.0,
+    "away_ra_season": 4.64,
+    "home_starter": {
+      "name": "Tyler Phillips",
+      "id": 663969,
+      "fip": 3.63,
+      "ip": 43.333333333333336,
+      "k": 36,
+      "bb": 22,
+      "hbp": 1,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Merrill Kelly",
+      "id": 518876,
+      "fip": 6.12,
+      "ip": 58.333333333333336,
+      "k": 37,
+      "bb": 25,
+      "hbp": 2,
+      "hr": 13
+    },
+    "home_bullpen_era": 3.58,
+    "away_bullpen_era": 4.25,
+    "park_factor": 106.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Liam Hicks",
+        "id": 689414,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Otto Lopez",
+        "id": 672640,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Kyle Stowers",
+        "id": 669065,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Xavier Edwards",
+        "id": 669364,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Javier Sanoja",
+        "id": 691594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Owen Caissie",
+        "id": 683357,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Jakob Marsee",
+        "id": 805300,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Joe Mack",
+        "id": 691788,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Esteury Ruiz",
+        "id": 665923,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Ketel Marte",
+        "id": 606466,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Corbin Carroll",
+        "id": 682998,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Gabriel Moreno",
+        "id": 672515,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Nolan Arenado",
+        "id": 571448,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Geraldo Perdomo",
+        "id": 672695,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "LuJames Groover",
+        "id": 694410,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Tommy Troy",
+        "id": 694371,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Aramis Garcia",
+        "id": 605244,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jorge Barrosa",
+        "id": 678489,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 6.0,
+    "mu_away": 3.39,
+    "mu_margin": 2.61,
+    "mu_total": 9.39,
+    "p_home_ml": 0.703,
+    "p_home_cover_rl": 0.5897,
+    "p_over": 0.5721,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-11_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.359,
+      "away_point": 1.5,
+      "away_no_vig": 0.6409999999999999
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.491,
+      "under_no_vig": 0.509
+    }
+  },
+  "edges": {
+    "home_rl_pp": 23.1,
+    "over_pp": 8.1
+  }
+}

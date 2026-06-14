@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-11T16:43:46+00:00",
+  "game": {
+    "date": "2026-06-11",
+    "game_pk": 824589,
+    "home": "Chicago White Sox",
+    "away": "Atlanta Braves",
+    "venue": "Rate Field"
+  },
+  "inputs": {
+    "home_rs_recent": 5.2,
+    "home_rs_season": 4.68,
+    "away_rs_recent": 4.3,
+    "away_rs_season": 5.15,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 4.53,
+    "away_ra_recent": 3.7,
+    "away_ra_season": 3.47,
+    "home_starter": {
+      "name": "TBD",
+      "id": null,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "away_starter": {
+      "name": "Martín Pérez",
+      "id": 527048,
+      "fip": 3.98,
+      "ip": 56.666666666666664,
+      "k": 47,
+      "bb": 20,
+      "hbp": 2,
+      "hr": 6
+    },
+    "home_bullpen_era": 4.25,
+    "away_bullpen_era": 2.93,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.0,
+    "mu_away": 4.73,
+    "mu_margin": -0.73,
+    "mu_total": 8.73,
+    "p_home_ml": 0.4407,
+    "p_home_cover_rl": 0.5625,
+    "p_over": 0.5187,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-11_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.598,
+      "away_point": -1.5,
+      "away_no_vig": 0.402
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.511,
+      "under_no_vig": 0.489
+    }
+  },
+  "edges": {
+    "home_rl_pp": -3.5,
+    "over_pp": 0.8
+  }
+}
