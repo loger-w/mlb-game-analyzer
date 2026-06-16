@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-15T16:39:50+00:00",
+  "game": {
+    "date": "2026-06-15",
+    "game_pk": 824505,
+    "home": "Cincinnati Reds",
+    "away": "New York Mets",
+    "venue": "Great American Ball Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.1,
+    "home_rs_season": 4.07,
+    "away_rs_recent": 4.0,
+    "away_rs_season": 3.95,
+    "home_ra_recent": 5.1,
+    "home_ra_season": 4.88,
+    "away_ra_recent": 4.3,
+    "away_ra_season": 4.1,
+    "home_starter": {
+      "name": "Chase Burns",
+      "id": 695505,
+      "fip": 3.23,
+      "ip": 75.66666666666667,
+      "k": 88,
+      "bb": 23,
+      "hbp": 0,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Tobias Myers",
+      "id": 668964,
+      "fip": 4.51,
+      "ip": 33.333333333333336,
+      "k": 26,
+      "bb": 7,
+      "hbp": 0,
+      "hr": 6
+    },
+    "home_bullpen_era": 5.11,
+    "away_bullpen_era": 3.34,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.74,
+    "mu_away": 3.92,
+    "mu_margin": -0.18,
+    "mu_total": 7.66,
+    "p_home_ml": 0.4853,
+    "p_home_cover_rl": 0.3657,
+    "p_over": 0.4319,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-15_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.38,
+      "away_point": 1.5,
+      "away_no_vig": 0.62
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.483,
+      "under_no_vig": 0.517
+    }
+  },
+  "edges": {
+    "home_rl_pp": -1.43,
+    "over_pp": -5.11
+  }
+}

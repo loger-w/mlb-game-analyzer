@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-15T16:40:02+00:00",
+  "game": {
+    "date": "2026-06-15",
+    "game_pk": 824666,
+    "home": "Chicago Cubs",
+    "away": "Colorado Rockies",
+    "venue": "Wrigley Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.0,
+    "home_rs_season": 4.51,
+    "away_rs_recent": 6.1,
+    "away_rs_season": 4.45,
+    "home_ra_recent": 4.8,
+    "home_ra_season": 4.38,
+    "away_ra_recent": 7.5,
+    "away_ra_season": 5.66,
+    "home_starter": {
+      "name": "Shota Imanaga",
+      "id": 684007,
+      "fip": 4.72,
+      "ip": 81.0,
+      "k": 81,
+      "bb": 21,
+      "hbp": 3,
+      "hr": 17
+    },
+    "away_starter": {
+      "name": "Michael Lorenzen",
+      "id": 547179,
+      "fip": 4.84,
+      "ip": 65.66666666666667,
+      "k": 55,
+      "bb": 24,
+      "hbp": 3,
+      "hr": 11
+    },
+    "home_bullpen_era": 3.7,
+    "away_bullpen_era": 5.12,
+    "park_factor": 92.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.7,
+    "mu_away": 4.75,
+    "mu_margin": -0.05,
+    "mu_total": 9.45,
+    "p_home_ml": 0.4959,
+    "p_home_cover_rl": 0.3758,
+    "p_over": 0.4959,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-15_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.488,
+      "away_point": 1.5,
+      "away_no_vig": 0.512
+    },
+    "total": {
+      "line": 9.5,
+      "over_no_vig": 0.484,
+      "under_no_vig": 0.516
+    }
+  },
+  "edges": {
+    "home_rl_pp": -11.22,
+    "over_pp": 1.19
+  }
+}

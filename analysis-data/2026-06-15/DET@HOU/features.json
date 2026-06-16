@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-15T16:40:14+00:00",
+  "game": {
+    "date": "2026-06-15",
+    "game_pk": 824181,
+    "home": "Houston Astros",
+    "away": "Detroit Tigers",
+    "venue": "Daikin Park"
+  },
+  "inputs": {
+    "home_rs_recent": 4.5,
+    "home_rs_season": 4.5,
+    "away_rs_recent": 4.7,
+    "away_rs_season": 3.95,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 5.03,
+    "away_ra_recent": 2.9,
+    "away_ra_season": 4.11,
+    "home_starter": {
+      "name": "Kai-Wei Teng",
+      "id": 678906,
+      "fip": 4.35,
+      "ip": 51.0,
+      "k": 49,
+      "bb": 24,
+      "hbp": 4,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Troy Melton",
+      "id": 675512,
+      "fip": 5.36,
+      "ip": 25.666666666666668,
+      "k": 14,
+      "bb": 6,
+      "hbp": 1,
+      "hr": 5
+    },
+    "home_bullpen_era": 4.75,
+    "away_bullpen_era": 4.01,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.07,
+    "mu_away": 4.44,
+    "mu_margin": 0.63,
+    "mu_total": 9.51,
+    "p_home_ml": 0.5512,
+    "p_home_cover_rl": 0.4295,
+    "p_over": 0.5415,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-15_12-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.364,
+      "away_point": 1.5,
+      "away_no_vig": 0.636
+    },
+    "total": {
+      "line": 9.0,
+      "over_no_vig": 0.478,
+      "under_no_vig": 0.522
+    }
+  },
+  "edges": {
+    "home_rl_pp": 6.55,
+    "over_pp": 6.35
+  }
+}
