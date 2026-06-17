@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-14T16:29:36+00:00",
+  "game": {
+    "date": "2026-06-14",
+    "game_pk": 822722,
+    "home": "Washington Nationals",
+    "away": "Seattle Mariners",
+    "venue": "Nationals Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.5,
+    "home_rs_season": 5.38,
+    "away_rs_recent": 5.1,
+    "away_rs_season": 4.31,
+    "home_ra_recent": 4.8,
+    "home_ra_season": 5.32,
+    "away_ra_recent": 4.7,
+    "away_ra_season": 3.9,
+    "home_starter": {
+      "name": "PJ Poulin",
+      "id": 676571,
+      "fip": 5.86,
+      "ip": 25.333333333333332,
+      "k": 18,
+      "bb": 17,
+      "hbp": 1,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Emerson Hancock",
+      "id": 676106,
+      "fip": 3.72,
+      "ip": 75.66666666666667,
+      "k": 73,
+      "bb": 17,
+      "hbp": 4,
+      "hr": 10
+    },
+    "home_bullpen_era": 4.77,
+    "away_bullpen_era": 3.38,
+    "park_factor": 100.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Dylan Crews",
+        "id": 686611,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Keibert Ruiz",
+        "id": 660688,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jorbit Vivas",
+        "id": 678391,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Jacob Young",
+        "id": 696285,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "Cole Young",
+        "id": 702284,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Julio Rodríguez",
+        "id": 677594,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Josh Naylor",
+        "id": 647304,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Luke Raley",
+        "id": 670042,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Dominic Canzone",
+        "id": 686527,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Victor Robles",
+        "id": 645302,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Miles Mastrobuoni",
+        "id": 670156,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Jhonny Pereda",
+        "id": 640902,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Colt Emerson",
+        "id": 806068,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 4.63,
+    "mu_away": 5.93,
+    "mu_margin": -1.3,
+    "mu_total": 10.56,
+    "p_home_ml": 0.3953,
+    "p_home_cover_rl": 0.5163,
+    "p_over": 0.5049,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-14_11-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.552,
+      "away_point": -1.5,
+      "away_no_vig": 0.44799999999999995
+    },
+    "total": {
+      "line": 10.5,
+      "over_no_vig": 0.483,
+      "under_no_vig": 0.517
+    }
+  },
+  "edges": {
+    "home_rl_pp": -3.57,
+    "over_pp": 2.19
+  }
+}
