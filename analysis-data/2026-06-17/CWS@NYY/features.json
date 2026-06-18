@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-17T11:17:03+00:00",
+  "game": {
+    "date": "2026-06-17",
+    "game_pk": 823536,
+    "home": "New York Yankees",
+    "away": "Chicago White Sox",
+    "venue": "Yankee Stadium"
+  },
+  "inputs": {
+    "home_rs_recent": 5.5,
+    "home_rs_season": 5.07,
+    "away_rs_recent": 4.2,
+    "away_rs_season": 4.59,
+    "home_ra_recent": 3.1,
+    "home_ra_season": 3.47,
+    "away_ra_recent": 5.1,
+    "away_ra_season": 4.56,
+    "home_starter": {
+      "name": "Carlos Rodón",
+      "id": 607074,
+      "fip": 3.68,
+      "ip": 31.0,
+      "k": 34,
+      "bb": 19,
+      "hbp": 1,
+      "hr": 2
+    },
+    "away_starter": {
+      "name": "Anthony Kay",
+      "id": 641743,
+      "fip": 5.23,
+      "ip": 66.33333333333333,
+      "k": 53,
+      "bb": 27,
+      "hbp": 12,
+      "hr": 10
+    },
+    "home_bullpen_era": 3.33,
+    "away_bullpen_era": 4.19,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.75,
+    "mu_away": 3.61,
+    "mu_margin": 2.14,
+    "mu_total": 9.36,
+    "p_home_ml": 0.669,
+    "p_home_cover_rl": 0.552,
+    "p_over": 0.5697,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-17_07-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.45299999999999996,
+      "away_point": 1.5,
+      "away_no_vig": 0.547
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.49,
+      "under_no_vig": 0.51
+    }
+  },
+  "edges": {
+    "home_rl_pp": 9.9,
+    "over_pp": 7.97
+  }
+}
