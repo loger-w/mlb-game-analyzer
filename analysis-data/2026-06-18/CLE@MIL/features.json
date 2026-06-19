@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-18T12:44:47+00:00",
+  "game": {
+    "date": "2026-06-18",
+    "game_pk": 823772,
+    "home": "Milwaukee Brewers",
+    "away": "Cleveland Guardians",
+    "venue": "American Family Field"
+  },
+  "inputs": {
+    "home_rs_recent": 7.1,
+    "home_rs_season": 5.22,
+    "away_rs_recent": 2.4,
+    "away_rs_season": 3.87,
+    "home_ra_recent": 4.4,
+    "home_ra_season": 3.6,
+    "away_ra_recent": 4.5,
+    "away_ra_season": 3.99,
+    "home_starter": {
+      "name": "Shane Drohan",
+      "id": 675660,
+      "fip": 2.73,
+      "ip": 42.666666666666664,
+      "k": 44,
+      "bb": 11,
+      "hbp": 0,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "Parker Messick",
+      "id": 800048,
+      "fip": 3.32,
+      "ip": 80.66666666666667,
+      "k": 82,
+      "bb": 25,
+      "hbp": 1,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.55,
+    "away_bullpen_era": 3.76,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.75,
+    "mu_away": 2.37,
+    "mu_margin": 2.38,
+    "mu_total": 7.12,
+    "p_home_ml": 0.6866,
+    "p_home_cover_rl": 0.5713,
+    "p_over": 0.4691,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-18_08-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.384,
+      "away_point": 1.5,
+      "away_no_vig": 0.616
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.491,
+      "under_no_vig": 0.509
+    }
+  },
+  "edges": {
+    "home_rl_pp": 18.73,
+    "over_pp": -2.19
+  }
+}

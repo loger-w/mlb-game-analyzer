@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-18T12:44:55+00:00",
+  "game": {
+    "date": "2026-06-18",
+    "game_pk": 822889,
+    "home": "Texas Rangers",
+    "away": "Minnesota Twins",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 4.0,
+    "home_rs_season": 3.96,
+    "away_rs_recent": 5.6,
+    "away_rs_season": 4.72,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 4.04,
+    "away_ra_recent": 5.9,
+    "away_ra_season": 5.12,
+    "home_starter": {
+      "name": "Jack Leiter",
+      "id": 683004,
+      "fip": 4.53,
+      "ip": 76.0,
+      "k": 79,
+      "bb": 33,
+      "hbp": 4,
+      "hr": 12
+    },
+    "away_starter": {
+      "name": "Joe Ryan",
+      "id": 657746,
+      "fip": 2.89,
+      "ip": 82.33333333333333,
+      "k": 92,
+      "bb": 16,
+      "hbp": 5,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.44,
+    "away_bullpen_era": 5.09,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.43,
+    "mu_away": 4.71,
+    "mu_margin": -1.28,
+    "mu_total": 8.14,
+    "p_home_ml": 0.3969,
+    "p_home_cover_rl": 0.5179,
+    "p_over": 0.552,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-18_08-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.591,
+      "away_point": -1.5,
+      "away_no_vig": 0.409
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.504,
+      "under_no_vig": 0.496
+    }
+  },
+  "edges": {
+    "home_rl_pp": -7.31,
+    "over_pp": 4.8
+  }
+}
