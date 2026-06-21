@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-19T16:38:05+00:00",
+  "game": {
+    "date": "2026-06-19",
+    "game_pk": 824910,
+    "home": "Atlanta Braves",
+    "away": "Milwaukee Brewers",
+    "venue": "Truist Park"
+  },
+  "inputs": {
+    "home_rs_recent": 2.4,
+    "home_rs_season": 4.84,
+    "away_rs_recent": 6.1,
+    "away_rs_season": 5.18,
+    "home_ra_recent": 4.5,
+    "home_ra_season": 3.59,
+    "away_ra_recent": 4.4,
+    "away_ra_season": 3.61,
+    "home_starter": {
+      "name": "Martín Pérez",
+      "id": 527048,
+      "fip": 3.83,
+      "ip": 62.0,
+      "k": 51,
+      "bb": 21,
+      "hbp": 2,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Jacob Misiorowski",
+      "id": 694819,
+      "fip": 1.69,
+      "ip": 87.0,
+      "k": 131,
+      "bb": 22,
+      "hbp": 7,
+      "hr": 4
+    },
+    "home_bullpen_era": 2.96,
+    "away_bullpen_era": 3.53,
+    "park_factor": 98.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 2.26,
+    "mu_away": 4.47,
+    "mu_margin": -2.21,
+    "mu_total": 6.73,
+    "p_home_ml": 0.3259,
+    "p_home_cover_rl": 0.4423,
+    "p_over": 0.4375,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-19_12-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.53,
+      "away_point": -1.5,
+      "away_no_vig": 0.47
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.498,
+      "under_no_vig": 0.502
+    }
+  },
+  "edges": {
+    "home_rl_pp": -8.77,
+    "over_pp": -6.05
+  }
+}
