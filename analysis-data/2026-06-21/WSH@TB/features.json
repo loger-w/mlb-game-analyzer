@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-21T17:08:36+00:00",
+  "game": {
+    "date": "2026-06-21",
+    "game_pk": 822968,
+    "home": "Tampa Bay Rays",
+    "away": "Washington Nationals",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 4.31,
+    "away_rs_recent": 5.7,
+    "away_rs_season": 5.36,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 4.21,
+    "away_ra_recent": 4.9,
+    "away_ra_season": 5.19,
+    "home_starter": {
+      "name": "Nick Martinez",
+      "id": 607259,
+      "fip": 3.57,
+      "ip": 83.0,
+      "k": 50,
+      "bb": 14,
+      "hbp": 2,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "Andrew Alvarez",
+      "id": 674841,
+      "fip": 3.1,
+      "ip": 28.333333333333332,
+      "k": 31,
+      "bb": 12,
+      "hbp": 0,
+      "hr": 2
+    },
+    "home_bullpen_era": 4.58,
+    "away_bullpen_era": 4.69,
+    "park_factor": 100.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "official",
+    "home": [
+      {
+        "order": 1,
+        "name": "Yandy Díaz",
+        "id": 650490,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Jonny DeLuca",
+        "id": 676356,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Jonathan Aranda",
+        "id": 666018,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "Junior Caminero",
+        "id": 691406,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Ryan Vilade",
+        "id": 668723,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Ben Williamson",
+        "id": 810938,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "Chandler Simpson",
+        "id": 802415,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Nick Fortes",
+        "id": 663743,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Taylor Walls",
+        "id": 670764,
+        "ops": null,
+        "woba": null
+      }
+    ],
+    "away": [
+      {
+        "order": 1,
+        "name": "James Wood",
+        "id": 695578,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 2,
+        "name": "Luis García Jr.",
+        "id": 671277,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 3,
+        "name": "Curtis Mead",
+        "id": 678554,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 4,
+        "name": "CJ Abrams",
+        "id": 682928,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 5,
+        "name": "Daylen Lile",
+        "id": 695734,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 6,
+        "name": "Dylan Crews",
+        "id": 686611,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 7,
+        "name": "José Tena",
+        "id": 677588,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 8,
+        "name": "Drew Millas",
+        "id": 686452,
+        "ops": null,
+        "woba": null
+      },
+      {
+        "order": 9,
+        "name": "Nasim Nuñez",
+        "id": 683083,
+        "ops": null,
+        "woba": null
+      }
+    ]
+  },
+  "model": {
+    "mu_home": 3.65,
+    "mu_away": 5.19,
+    "mu_margin": -1.54,
+    "mu_total": 8.84,
+    "p_home_ml": 0.3766,
+    "p_home_cover_rl": 0.2673,
+    "p_over": 0.5277,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-21_10-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.371,
+      "away_point": 1.5,
+      "away_no_vig": 0.629
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.484,
+      "under_no_vig": 0.516
+    }
+  },
+  "edges": {
+    "home_rl_pp": -10.37,
+    "over_pp": 4.37
+  }
+}
