@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-16T14:19:18+00:00",
+  "game": {
+    "date": "2026-06-16",
+    "game_pk": 822888,
+    "home": "Texas Rangers",
+    "away": "Minnesota Twins",
+    "venue": "Globe Life Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.8,
+    "home_rs_season": 3.99,
+    "away_rs_recent": 4.6,
+    "away_rs_season": 4.62,
+    "home_ra_recent": 4.3,
+    "home_ra_season": 3.93,
+    "away_ra_recent": 6.0,
+    "away_ra_season": 5.16,
+    "home_starter": {
+      "name": "Kumar Rocker",
+      "id": 677958,
+      "fip": 4.07,
+      "ip": 65.66666666666667,
+      "k": 52,
+      "bb": 28,
+      "hbp": 2,
+      "hr": 6
+    },
+    "away_starter": {
+      "name": "Zebby Matthews",
+      "id": 805673,
+      "fip": 5.22,
+      "ip": 36.333333333333336,
+      "k": 30,
+      "bb": 9,
+      "hbp": 2,
+      "hr": 8
+    },
+    "home_bullpen_era": 3.36,
+    "away_bullpen_era": 5.22,
+    "park_factor": 96.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.69,
+    "mu_away": 4.0,
+    "mu_margin": 0.69,
+    "mu_total": 8.69,
+    "p_home_ml": 0.556,
+    "p_home_cover_rl": 0.4343,
+    "p_over": 0.5155,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-16_10-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.377,
+      "away_point": 1.5,
+      "away_no_vig": 0.623
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.491,
+      "under_no_vig": 0.509
+    }
+  },
+  "edges": {
+    "home_rl_pp": 5.73,
+    "over_pp": 2.45
+  }
+}

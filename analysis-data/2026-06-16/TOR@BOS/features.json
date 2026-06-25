@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-16T14:18:31+00:00",
+  "game": {
+    "date": "2026-06-16",
+    "game_pk": 824750,
+    "home": "Boston Red Sox",
+    "away": "Toronto Blue Jays",
+    "venue": "Fenway Park"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 3.92,
+    "away_rs_recent": 4.3,
+    "away_rs_season": 4.01,
+    "home_ra_recent": 4.1,
+    "home_ra_season": 3.97,
+    "away_ra_recent": 5.3,
+    "away_ra_season": 4.32,
+    "home_starter": {
+      "name": "Payton Tolle",
+      "id": 801139,
+      "fip": 2.71,
+      "ip": 53.333333333333336,
+      "k": 54,
+      "bb": 14,
+      "hbp": 2,
+      "hr": 3
+    },
+    "away_starter": {
+      "name": "TBD",
+      "id": null,
+      "fip": null,
+      "ip": null,
+      "k": null,
+      "bb": null,
+      "hbp": null,
+      "hr": null
+    },
+    "home_bullpen_era": 3.09,
+    "away_bullpen_era": 3.88,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.88,
+    "mu_away": 2.92,
+    "mu_margin": 0.96,
+    "mu_total": 6.8,
+    "p_home_ml": 0.5777,
+    "p_home_cover_rl": 0.6923,
+    "p_over": 0.4432,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-16_10-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.601,
+      "away_point": -1.5,
+      "away_no_vig": 0.39899999999999997
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.489,
+      "under_no_vig": 0.511
+    }
+  },
+  "edges": {
+    "home_rl_pp": 9.13,
+    "over_pp": -4.58
+  }
+}

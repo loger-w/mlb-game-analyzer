@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-22T16:24:34+00:00",
+  "game": {
+    "date": "2026-06-22",
+    "game_pk": 822964,
+    "home": "Tampa Bay Rays",
+    "away": "Kansas City Royals",
+    "venue": "Tropicana Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.7,
+    "home_rs_season": 4.3,
+    "away_rs_recent": 6.4,
+    "away_rs_season": 4.19,
+    "home_ra_recent": 3.9,
+    "home_ra_season": 4.2,
+    "away_ra_recent": 6.0,
+    "away_ra_season": 4.75,
+    "home_starter": {
+      "name": "Drew Rasmussen",
+      "id": 656876,
+      "fip": 3.02,
+      "ip": 80.0,
+      "k": 84,
+      "bb": 13,
+      "hbp": 2,
+      "hr": 9
+    },
+    "away_starter": {
+      "name": "Michael Wacha",
+      "id": 608379,
+      "fip": 3.97,
+      "ip": 94.0,
+      "k": 72,
+      "bb": 28,
+      "hbp": 4,
+      "hr": 10
+    },
+    "home_bullpen_era": 4.53,
+    "away_bullpen_era": 4.78,
+    "park_factor": 100.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.19,
+    "mu_away": 4.29,
+    "mu_margin": -0.1,
+    "mu_total": 8.48,
+    "p_home_ml": 0.4919,
+    "p_home_cover_rl": 0.3719,
+    "p_over": 0.5793,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-22_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.44799999999999995,
+      "away_point": 1.5,
+      "away_no_vig": 0.552
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.475,
+      "under_no_vig": 0.525
+    }
+  },
+  "edges": {
+    "home_rl_pp": -7.61,
+    "over_pp": 10.43
+  }
+}

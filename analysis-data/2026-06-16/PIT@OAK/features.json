@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-16T14:19:37+00:00",
+  "game": {
+    "date": "2026-06-16",
+    "game_pk": 824991,
+    "home": "Athletics",
+    "away": "Pittsburgh Pirates",
+    "venue": "Sutter Health Park"
+  },
+  "inputs": {
+    "home_rs_recent": 6.6,
+    "home_rs_season": 4.6,
+    "away_rs_recent": 3.8,
+    "away_rs_season": 4.95,
+    "home_ra_recent": 7.5,
+    "home_ra_season": 5.18,
+    "away_ra_recent": 6.3,
+    "away_ra_season": 4.88,
+    "home_starter": {
+      "name": "Jack Perkins",
+      "id": 678022,
+      "fip": 3.66,
+      "ip": 36.0,
+      "k": 43,
+      "bb": 12,
+      "hbp": 6,
+      "hr": 4
+    },
+    "away_starter": {
+      "name": "Mitch Keller",
+      "id": 656605,
+      "fip": 3.89,
+      "ip": 77.0,
+      "k": 58,
+      "bb": 27,
+      "hbp": 6,
+      "hr": 6
+    },
+    "home_bullpen_era": 4.8,
+    "away_bullpen_era": 4.53,
+    "park_factor": 109.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.71,
+    "mu_away": 4.86,
+    "mu_margin": 0.85,
+    "mu_total": 10.57,
+    "p_home_ml": 0.5689,
+    "p_home_cover_rl": 0.4472,
+    "p_over": 0.465,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-16_10-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.39399999999999996,
+      "away_point": 1.5,
+      "away_no_vig": 0.606
+    },
+    "total": {
+      "line": 11.0,
+      "over_no_vig": 0.48200000000000004,
+      "under_no_vig": 0.518
+    }
+  },
+  "edges": {
+    "home_rl_pp": 5.32,
+    "over_pp": -1.7
+  }
+}

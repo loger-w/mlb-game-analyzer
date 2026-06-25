@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-22T16:25:15+00:00",
+  "game": {
+    "date": "2026-06-22",
+    "game_pk": 824585,
+    "home": "Chicago White Sox",
+    "away": "Cleveland Guardians",
+    "venue": "Rate Field"
+  },
+  "inputs": {
+    "home_rs_recent": 3.5,
+    "home_rs_season": 4.53,
+    "away_rs_recent": 3.1,
+    "away_rs_season": 3.88,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 4.58,
+    "away_ra_recent": 3.6,
+    "away_ra_season": 3.96,
+    "home_starter": {
+      "name": "Anthony Kay",
+      "id": 641743,
+      "fip": 5.32,
+      "ip": 70.33333333333333,
+      "k": 55,
+      "bb": 28,
+      "hbp": 13,
+      "hr": 11
+    },
+    "away_starter": {
+      "name": "Gavin Williams",
+      "id": 668909,
+      "fip": 4.03,
+      "ip": 91.66666666666667,
+      "k": 103,
+      "bb": 30,
+      "hbp": 2,
+      "hr": 15
+    },
+    "home_bullpen_era": 4.26,
+    "away_bullpen_era": 3.84,
+    "park_factor": 97.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.81,
+    "mu_away": 4.08,
+    "mu_margin": -0.27,
+    "mu_total": 7.89,
+    "p_home_ml": 0.478,
+    "p_home_cover_rl": 0.5992,
+    "p_over": 0.5317,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-22_11-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.624,
+      "away_point": -1.5,
+      "away_no_vig": 0.376
+    },
+    "total": {
+      "line": 7.5,
+      "over_no_vig": 0.513,
+      "under_no_vig": 0.48700000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -2.48,
+    "over_pp": 1.87
+  }
+}

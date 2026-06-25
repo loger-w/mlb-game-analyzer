@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-22T16:25:27+00:00",
+  "game": {
+    "date": "2026-06-22",
+    "game_pk": 824344,
+    "home": "Colorado Rockies",
+    "away": "Boston Red Sox",
+    "venue": "Coors Field"
+  },
+  "inputs": {
+    "home_rs_recent": 6.2,
+    "home_rs_season": 4.45,
+    "away_rs_recent": 4.1,
+    "away_rs_season": 3.82,
+    "home_ra_recent": 5.1,
+    "home_ra_season": 5.58,
+    "away_ra_recent": 3.6,
+    "away_ra_season": 3.91,
+    "home_starter": {
+      "name": "Ryan Feltner",
+      "id": 663372,
+      "fip": 4.95,
+      "ip": 41.0,
+      "k": 33,
+      "bb": 16,
+      "hbp": 1,
+      "hr": 7
+    },
+    "away_starter": {
+      "name": "Jake Bennett",
+      "id": 687562,
+      "fip": 3.34,
+      "ip": 20.666666666666668,
+      "k": 13,
+      "bb": 5,
+      "hbp": 1,
+      "hr": 1
+    },
+    "home_bullpen_era": 5.04,
+    "away_bullpen_era": 3.13,
+    "park_factor": 131.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 5.15,
+    "mu_away": 6.1,
+    "mu_margin": -0.95,
+    "mu_total": 11.25,
+    "p_home_ml": 0.4231,
+    "p_home_cover_rl": 0.5447,
+    "p_over": 0.4796,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-22_11-00-ET.json",
+    "rl": {
+      "home_point": 1.5,
+      "home_no_vig": 0.555,
+      "away_point": -1.5,
+      "away_no_vig": 0.445
+    },
+    "total": {
+      "line": 11.5,
+      "over_no_vig": 0.513,
+      "under_no_vig": 0.48700000000000004
+    }
+  },
+  "edges": {
+    "home_rl_pp": -1.03,
+    "over_pp": -3.34
+  }
+}

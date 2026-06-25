@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-16T14:18:18+00:00",
+  "game": {
+    "date": "2026-06-16",
+    "game_pk": 823451,
+    "home": "Philadelphia Phillies",
+    "away": "Miami Marlins",
+    "venue": "Citizens Bank Park"
+  },
+  "inputs": {
+    "home_rs_recent": 5.0,
+    "home_rs_season": 4.0,
+    "away_rs_recent": 4.2,
+    "away_rs_season": 4.25,
+    "home_ra_recent": 4.4,
+    "home_ra_season": 4.22,
+    "away_ra_recent": 3.1,
+    "away_ra_season": 4.34,
+    "home_starter": {
+      "name": "Jesús Luzardo",
+      "id": 666200,
+      "fip": 3.33,
+      "ip": 78.66666666666667,
+      "k": 88,
+      "bb": 25,
+      "hbp": 5,
+      "hr": 8
+    },
+    "away_starter": {
+      "name": "Tyler Phillips",
+      "id": 663969,
+      "fip": 3.49,
+      "ip": 48.333333333333336,
+      "k": 41,
+      "bb": 24,
+      "hbp": 1,
+      "hr": 2
+    },
+    "home_bullpen_era": 3.95,
+    "away_bullpen_era": 3.52,
+    "park_factor": 104.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 3.78,
+    "mu_away": 3.75,
+    "mu_margin": 0.03,
+    "mu_total": 7.53,
+    "p_home_ml": 0.5024,
+    "p_home_cover_rl": 0.382,
+    "p_over": 0.4618,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-16_10-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.42700000000000005,
+      "away_point": 1.5,
+      "away_no_vig": 0.573
+    },
+    "total": {
+      "line": 8.0,
+      "over_no_vig": 0.498,
+      "under_no_vig": 0.502
+    }
+  },
+  "edges": {
+    "home_rl_pp": -4.5,
+    "over_pp": -3.62
+  }
+}

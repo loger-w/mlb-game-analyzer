@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-24T16:24:27+00:00",
+  "game": {
+    "date": "2026-06-24",
+    "game_pk": 822798,
+    "home": "Toronto Blue Jays",
+    "away": "Houston Astros",
+    "venue": "Rogers Centre"
+  },
+  "inputs": {
+    "home_rs_recent": 3.8,
+    "home_rs_season": 4.04,
+    "away_rs_recent": 4.4,
+    "away_rs_season": 4.48,
+    "home_ra_recent": 4.8,
+    "home_ra_season": 4.35,
+    "away_ra_recent": 4.8,
+    "away_ra_season": 4.98,
+    "home_starter": {
+      "name": "Trey Yesavage",
+      "id": 702056,
+      "fip": 3.77,
+      "ip": 55.0,
+      "k": 53,
+      "bb": 25,
+      "hbp": 1,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Mike Burrows",
+      "id": 681347,
+      "fip": 5.63,
+      "ip": 79.33333333333333,
+      "k": 66,
+      "bb": 30,
+      "hbp": 3,
+      "hr": 18
+    },
+    "home_bullpen_era": 3.77,
+    "away_bullpen_era": 4.63,
+    "park_factor": 99.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 4.88,
+    "mu_away": 3.96,
+    "mu_margin": 0.92,
+    "mu_total": 8.84,
+    "p_home_ml": 0.5745,
+    "p_home_cover_rl": 0.4529,
+    "p_over": 0.5277,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-24_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.408,
+      "away_point": 1.5,
+      "away_no_vig": 0.5920000000000001
+    },
+    "total": {
+      "line": 8.5,
+      "over_no_vig": 0.496,
+      "under_no_vig": 0.504
+    }
+  },
+  "edges": {
+    "home_rl_pp": 4.49,
+    "over_pp": 3.17
+  }
+}

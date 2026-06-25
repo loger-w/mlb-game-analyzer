@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-06-22T16:24:51+00:00",
+  "game": {
+    "date": "2026-06-22",
+    "game_pk": 822800,
+    "home": "Toronto Blue Jays",
+    "away": "Houston Astros",
+    "venue": "Rogers Centre"
+  },
+  "inputs": {
+    "home_rs_recent": 3.9,
+    "home_rs_season": 4.0,
+    "away_rs_recent": 4.3,
+    "away_rs_season": 4.45,
+    "home_ra_recent": 4.9,
+    "home_ra_season": 4.32,
+    "away_ra_recent": 4.7,
+    "away_ra_season": 4.96,
+    "home_starter": {
+      "name": "Dylan Cease",
+      "id": 656302,
+      "fip": 2.37,
+      "ip": 73.0,
+      "k": 110,
+      "bb": 31,
+      "hbp": 3,
+      "hr": 5
+    },
+    "away_starter": {
+      "name": "Hunter Brown",
+      "id": 686613,
+      "fip": 1.81,
+      "ip": 16.333333333333332,
+      "k": 24,
+      "bb": 9,
+      "hbp": 0,
+      "hr": 0
+    },
+    "home_bullpen_era": 3.81,
+    "away_bullpen_era": 4.65,
+    "park_factor": 99.0,
+    "league_rg_used": 4.196
+  },
+  "lineup_frozen": {
+    "source": "projected",
+    "home": [],
+    "away": []
+  },
+  "model": {
+    "mu_home": 2.76,
+    "mu_away": 3.06,
+    "mu_margin": -0.3,
+    "mu_total": 5.82,
+    "p_home_ml": 0.4756,
+    "p_home_cover_rl": 0.3566,
+    "p_over": 0.4048,
+    "constants_used": {
+      "league_rg": 4.196,
+      "recent_w": 0.35,
+      "sp_w": 0.6,
+      "bp_w": 0.4,
+      "sigma_team": 3.462,
+      "fip_constant": 3.1,
+      "recent_n": 10,
+      "min_ip": 10
+    }
+  },
+  "odds": {
+    "snapshot_file": "2026-06-22_11-00-ET.json",
+    "rl": {
+      "home_point": -1.5,
+      "home_no_vig": 0.35100000000000003,
+      "away_point": 1.5,
+      "away_no_vig": 0.649
+    },
+    "total": {
+      "line": 7.0,
+      "over_no_vig": 0.531,
+      "under_no_vig": 0.469
+    }
+  },
+  "edges": {
+    "home_rl_pp": 0.56,
+    "over_pp": -12.62
+  }
+}
